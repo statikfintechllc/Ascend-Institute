@@ -1,4 +1,5 @@
 ⸻
+
 Ascend Institute for Autonomous Sovereignty & Human Financial Liberation
 
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/YourUser/AscendAI/actions)
