@@ -5,9 +5,7 @@
 *.pth
 *.ckpt
 
-# Ignore everything in Private.interal except README.md
 Private.internal/*
-!Private.internal/README.md
 
 # Ignore logs and outputs
 *.log
