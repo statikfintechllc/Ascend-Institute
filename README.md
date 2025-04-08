@@ -3,7 +3,7 @@
 
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/YourUser/AscendAI/actions)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue)](LICENSE)
-[![Contributors](https://img.shields.io/github/contributors/YourUser/AscendAI)](https://github.com/YourUser/AscendAI/graphs/contributors)
+[![Contributors](https://img.shields.io/github/contributors/statikfinteckllc/AscendAI)](https://github.com/statikfinteckllc/AscendAI/graphs/contributors)
 
 ---
 
