@@ -5,7 +5,7 @@
 *.pth
 *.ckpt
 
-# Ignore Private.interal
+# Ignore everything in Private.interal except README.md
 Private.internal/*
 !Private.internal/README.md
 
