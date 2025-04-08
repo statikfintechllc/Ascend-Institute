@@ -5,7 +5,11 @@
 *.pth
 *.ckpt
 
-# Private.internal/*
+# Ignore everthing inside Private.internal
+Private.internal/**
+
+# Except this file
+!Private.internal/.gitignore
 
 # Ignore logs and outputs
 *.log
