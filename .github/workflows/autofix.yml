@@ -1,36 +1,39 @@
-name: Auto Format
+name: Lint & Auto-Fix
 
 on:
-  push:
+  pull_request:
     branches: [main]
   workflow_dispatch:
 
 jobs:
-  format:
+  lint-fix:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      - name: Install tools
+      - name: Install flake8 and black
         run: |
-          pip install black flake8
+          pip install flake8 black
 
-      - name: Auto-format code
-        run: |
-          black .
-          flake8 . || true  # show errors but don't fail build
+      - name: Run flake8 (only judge)
+        run: flake8 . --count --exit-zero --statistics
 
-      - name: Commit changes
-        run: |
-          git config --global user.name 'AutoFormatter'
-          git config --global user.email 'bot@autofix.local'
-          git add .
-          git commit -m 'Automated style fixes via Black' || echo "No changes to commit"
-          git push
+      - name: Auto-fix with black
+        run: black .
+
+      - name: Create Pull Request with fixes
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: "chore(style): auto-format code with black"
+          title: "Auto-format code (judgment delivered)"
+          body: "This PR was created by your friendly code janitor bot. It didn’t like what it saw."
+          branch: bot/auto-format
