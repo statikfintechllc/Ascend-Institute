@@ -1,7 +1,8 @@
 import subprocess
 import gnupg
+import os
 
-GPG_HOME = "/root/.gnupg"
+GPG_HOME = os.getenv("ASCEND_GPG_HOME", "/root/.gnupg")
 AUTHORIZED_KEY = "394504B2D849D4A377036EBDB8B556DE69147BAA"
 gpg = gnupg.GPG(gnupghome=GPG_HOME)
 
