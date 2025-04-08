@@ -1,5 +1,5 @@
 ⸻
-# Ascend-AI | Sovereign Core | Ghost Protocol
+Ascend Institute for Autonomous Sovereignty & Human Financial Liberation
 
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/YourUser/AscendAI/actions)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue)](LICENSE)
