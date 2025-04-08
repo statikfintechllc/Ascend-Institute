@@ -5,6 +5,10 @@
 *.pth
 *.ckpt
 
+# Ignore Private.interal
+Private.internal/*
+!Private.internal/README.md
+
 # Ignore logs and outputs
 *.log
 *.jsonl
