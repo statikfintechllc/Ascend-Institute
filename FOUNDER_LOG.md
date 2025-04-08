@@ -9,9 +9,9 @@ Not in a lab. Not with a team. Not with VC money.
 
 But with:
 - An iPhone.
-- A Go 3 camera.
+- A Microsoft Go 3(4gb RAM😭).
 - A broken HDD.
-- A half-dead charger.
+- A half-dead charger cable.
 - No devs.
 - No sleep.
 - And a dream.
