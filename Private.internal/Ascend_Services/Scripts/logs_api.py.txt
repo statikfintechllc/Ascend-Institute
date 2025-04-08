@@ -1,0 +1,16 @@
+from flask import Flask, jsonify
+
+app = Flask(__name__)
+
+@app.route('/fetch_logs', methods=['GET'])
+def fetch_logs():
+    return jsonify({"result": "[Logs] AI System Logs Retrieved."})
+
+if __name__ == '__main__':
+    app.run(port=5005)
+
+
+
+Run-
+
+python /mnt/s/AI_Logs/logs_api.py &

@@ -1,0 +1,34 @@
+# /self_healing/backup_copier.py
+
+import shutil
+import time
+import os
+
+CRITICAL_FILES = [
+    "./memory/core_log.json",
+    "./memory/ascend_constitution.json",
+    "./scripts/log_ascension.py",
+    "./scripts/constitution_writer.py"
+]
+
+BACKUP_DIR = "./backups/"
+
+def ensure_backup_dir():
+    if not os.path.exists(BACKUP_DIR):
+        os.makedirs(BACKUP_DIR)
+
+def perform_backup():
+    ensure_backup_dir()
+    for file in CRITICAL_FILES:
+        if os.path.exists(file):
+            filename = os.path.basename(file)
+            destination = os.path.join(BACKUP_DIR, filename)
+            shutil.copy(file, destination)
+            print(f"[BACKUP] {filename} saved.")
+
+if __name__ == "__main__":
+    while True:
+        print("[BACKUP LOOP] Starting system backup...")
+        perform_backup()
+        print("[BACKUP LOOP] Complete. Sleeping 6 hours.")
+        time.sleep(21600)  # 6 hours

@@ -1,0 +1,2 @@
+./llama_weights_and_models.sh
+./Neo

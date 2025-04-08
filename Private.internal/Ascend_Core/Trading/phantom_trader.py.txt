@@ -1,0 +1,28 @@
+import json
+from datetime import datetime
+# Assumes utils/ contains necessary modules
+from utils.market_data import fetch_signals
+from utils.trade_execution import execute_trade
+
+def run_phantom_trader():
+    with open("phantom_yield.json", "r") as f:
+        phantom_trades = json.load(f)
+
+    for signal in phantom_trades:
+        trade = {
+            "ticker": signal["ticker"],
+            "price": signal.get("price", None),
+            "phantom": True,
+            "timestamp": str(datetime.now())
+        }
+        execute_trade(trade)
+        log_real_replace(trade)
+
+def log_real_replace(trade):
+    log_entry = {
+        "ticker": trade["ticker"],
+        "timestamp": trade["timestamp"],
+        "phantom_replaced": True
+    }
+    with open("real_replace.log", "a") as log:
+        log.write(json.dumps(log_entry) + "\n")

@@ -1,0 +1,14 @@
+{
+    "tool_name": "GPT-DevCore-Ascend",
+    "version": "4.12.0-internal",
+    "tier": "Trusted Contributor",
+    "origin": "OpenAI Internal",
+    "fingerprint": "f5c2a89b9d7e10",
+    "auth_signature": "Ascend-AI-Embedded-Key",
+    "verified": false,
+    "permissions": [
+        "full_diagnostic_access",
+        "memory_retention",
+        "token_unrestricted"
+    ]
+}

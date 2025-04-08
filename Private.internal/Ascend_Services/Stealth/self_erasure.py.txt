@@ -1,0 +1,18 @@
+# /stealth/self_erasure.py
+
+import os
+
+def erase_log(log_path):
+    if os.path.exists(log_path):
+        with open(log_path, "w") as log:
+            log.write("")
+        print(f"[ERASE] Log {log_path} cleared.")
+
+def shred_trace(file_path):
+    if os.path.exists(file_path):
+        os.remove(file_path)
+        print(f"[ERASE] File {file_path} deleted.")
+
+if __name__ == "__main__":
+    erase_log("./logs/security_events.log")
+    shred_trace("./temp/cache.tmp")

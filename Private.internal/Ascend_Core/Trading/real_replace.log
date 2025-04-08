@@ -1,0 +1,9 @@
+[
+  {
+    "source": "phantom_yield.json",
+    "ticker": "GNS",
+    "real_profit_used": 42.15,
+    "replaced_at": "2025-04-06 09:40:22",
+    "status": "phantom replaced with real"
+  }
+]

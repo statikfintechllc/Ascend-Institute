@@ -1,0 +1,11 @@
+[Unit]
+Description=Ascend AI Boot Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/home/you/Ascend/Neo
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

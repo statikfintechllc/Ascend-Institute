@@ -1,0 +1,141 @@
+import os
+import importlib.util
+import traceback
+import logging
+import time
+from pathlib import Path
+from model_registry import scan_models, execute, MODEL_REGISTRY
+from cli_dashboard import launch_dashboard
+
+# == CONFIG ==
+INTEGRATIONS_DIR = "./Scripts"  # or "./integrations"
+LOG_DIR = "./AscendAI_Logs"
+MODEL_REGISTRY = {}
+
+# == LOGGING ==
+os.makedirs(LOG_DIR, exist_ok=True)
+logging.basicConfig(
+    filename=f"{LOG_DIR}/ascend_bootloader.log",
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s"
+)
+
+# == HELPER FUNCTIONS ==
+
+def dynamic_import(module_path):
+    try:
+        module_name = Path(module_path).stem
+        spec = importlib.util.spec_from_file_location(module_name, module_path)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        return module
+    except Exception as e:
+        logging.error(f"Failed to import {module_path}: {e}")
+        return None
+
+def register_models():
+    for file in os.listdir(INTEGRATIONS_DIR):
+        if file.endswith(".py") and not file.startswith("__"):
+            module_path = os.path.join(INTEGRATIONS_DIR, file)
+            mod = dynamic_import(module_path)
+            if mod:
+                try:
+                    MODEL_REGISTRY[file.replace(".py", "")] = {
+                        "call": getattr(mod, "call_model", None),
+                        "load": getattr(mod, "load_model", None),
+                        "validate": getattr(mod, "validate_model", None),
+                        "test": getattr(mod, "test_model", None),
+                        "module": mod
+                    }
+                    logging.info(f"Registered model: {file}")
+                except Exception as e:
+                    logging.error(f"Failed to register {file}: {e}")
+
+def load_and_validate(model_name):
+    model = MODEL_REGISTRY.get(model_name)
+    if not model:
+        logging.error(f"Model {model_name} not found in registry.")
+        return False
+
+    try:
+        if model["load"]:
+            model["load"]()
+        if model["validate"]:
+            return model["validate"]()
+    except Exception as e:
+        logging.error(f"{model_name} load/validate error: {e}")
+        return False
+    return True
+
+def test_all_models():
+    test_log = os.path.join(LOG_DIR, "model_tests.log")
+    with open(test_log, "a") as f:
+        for name, model in MODEL_REGISTRY.items():
+            try:
+                result = model["test"]() if model["test"] else "NO TEST"
+                f.write(f"{name}: {result}\n")
+                logging.info(f"Tested {name}: {result}")
+            except Exception as e:
+                f.write(f"{name}: FAIL ({e})\n")
+                logging.error(f"Test failed for {name}: {e}")
+
+def run_model(prompt, model_name):
+    if model_name not in MODEL_REGISTRY:
+        logging.warning(f"Model {model_name} not found. Trying fallback...")
+        return fallback(prompt)
+
+    model = MODEL_REGISTRY[model_name]
+    try:
+        if not load_and_validate(model_name):
+            raise Exception("Model validation failed.")
+        return model["call"](prompt)
+    except Exception as e:
+        logging.error(f"Model execution error: {e}")
+        return fallback(prompt)
+
+def fallback(prompt):
+    for name in MODEL_REGISTRY:
+        try:
+            return MODEL_REGISTRY[name]["call"](prompt)
+        except:
+            continue
+    return "All models failed."
+
+# == SELF-LEARNING LOOP ==
+def recursive_learning_loop():
+    from threading import Thread
+    def monitor():
+        log_path = os.path.join(LOG_DIR, "recursive_learning.log")
+        while True:
+            try:
+                with open(log_path, "a") as log_file:
+                    for name, model in MODEL_REGISTRY.items():
+                        try:
+                            if model["test"]:
+                                result = model["test"]()
+                                if "FAIL" in str(result):
+                                    log_file.write(f"Retrying model {name}...\n")
+                                    # AI repair logic would go here
+                        except Exception as e:
+                            log_file.write(f"Error in loop for {name}: {e}\n")
+                time.sleep(10)
+            except Exception as e:
+                logging.error(f"Recursive loop error: {e}")
+                time.sleep(10)
+
+    thread = Thread(target=monitor, daemon=True)
+    thread.start()
+
+# == INIT ==
+if __name__ == "__main__":
+    logging.info("=== ASCEND-AI BOOTLOADER INITIALIZED ===")
+    register_models()
+    test_all_models()
+    recursive_learning_loop()
+    scan_models("./Scripts")
+    test_all_models()  # (Optional: run test_model on all)
+    launch_dashboard(MODEL_REGISTRY)
+
+    # Sample manual call for startup test
+    response = run_model("What is quantum entanglement?", model_name="starcoder")
+    print(response)
