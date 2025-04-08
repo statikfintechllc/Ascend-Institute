@@ -5,7 +5,7 @@
 *.pth
 *.ckpt
 
-Private.internal/*
+# Private.internal/*
 
 # Ignore logs and outputs
 *.log
