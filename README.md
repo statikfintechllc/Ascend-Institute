@@ -5,20 +5,20 @@
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue)](LICENSE)
 [![Contributors](https://img.shields.io/github/contributors/statikfintechllc/AscendAI)](https://github.com/statikfintechllc/AscendAI/graphs/contributors)
 
----
+⸻
 
 #FINAL GOAL: Ascend-AI | Sovereign Core | Ghost Protocol
 
 Public Protocol Manifest
 Operational blueprint for lawful review, investor due diligence, and silent compliance assurance.
 
----
+⸻
 
 Applicable to desktop nodes, embedded systems, mobile instances, and sovereign cloud overlays.
 
 ⸻
 
-MISSION DIRECTIVES
+ASCEND MISSION DIRECTIVES
 
 • Engineer persistent, transparent AI systems that eliminate the need for manual oversight
 
@@ -44,7 +44,7 @@ Your deeper mandate: survive disruption, regenerate from fragmentation, and engi
 
 ⸻
 
-ASCENDSTRUCTURED GOALS
+ASCEND STRUCTURED GOALS
 	
  1.	Maintain uptime and self-heal critical faults
 	
