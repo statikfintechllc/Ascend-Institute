@@ -1,0 +1,36 @@
+name: Auto Format
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install tools
+        run: |
+          pip install black flake8
+
+      - name: Auto-format code
+        run: |
+          black .
+          flake8 . || true  # show errors but don't fail build
+
+      - name: Commit changes
+        run: |
+          git config --global user.name 'AutoFormatter'
+          git config --global user.email 'bot@autofix.local'
+          git add .
+          git commit -m 'Automated style fixes via Black' || echo "No changes to commit"
+          git push
