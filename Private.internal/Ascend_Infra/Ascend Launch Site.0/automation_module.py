@@ -7,13 +7,8 @@ import json
 import os
 import random
 from datetime import datetime
-from langchain.llms import LlamaCpp
 from crewai import CrewAgent
 from autogpt.agent import Agent as AutoGPTAgent
-
-# === Initialize LLaMA ===
-llm_model_path = 'llama-13B.gguf'
-llama = LlamaCpp(model_path=llm_model_path, n_ctx=32768)
 
 # === Parse & Execute AI Instructions ===
 def parse_and_execute(llama_output):
@@ -84,10 +79,9 @@ def stealth_api_request(url, proxy=None):
     response = session.get(url, headers=headers)
     return response
 
-# === Main Routine ===
-def main():
-    # 1. Generate instructions
-    llama_output = generate_instructions('Final_Goal.txt')
+def get_instructions():
+    with open("llama_output.txt", "r") as f:
+        return f.read()
 
     # 2. Execute mapped agent output
     parse_and_execute(llama_output)
