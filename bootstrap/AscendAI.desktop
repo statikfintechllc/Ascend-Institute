@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=AscendAI
-Comment=Launch the Ascend AI system
-Exec=bash -c "cd \"$(dirname %k)\" && ./bootstrap/Neo.sh"
+Comment=Boot the Sovereign Core
+Exec=bash -c "cd \"$(dirname %k)\" && ./Neo.sh"
 Icon=utilities-terminal
 Terminal=true
 Type=Application
