@@ -14,6 +14,24 @@ MATRIX_INTERVAL = 300  # 5 minutes
 # Ensure log directory exists
 os.makedirs(LOG_FOLDER, exist_ok=True)
 
+def launch_matrix():
+    subprocess.run(["python3", "ascend_matrix.py"])
+
+def main():
+    logging.basicConfig(
+        filename=os.path.join(LOG_FOLDER, "loop_engine.log"),
+        level=logging.INFO,
+        format='%(asctime)s [%(levelname)s]: %(message)s'
+    )
+    logging.info("Loop Engine started.")
+
+    # Start the matrix thread
+    matrix_thread = threading.Thread(target=launch_matrix, daemon=True)
+    matrix_thread.start()
+
+    # Monitor loops
+    monitor_loops()
+
 # Dictionary to track subprocesses
 loop_processes = {}
 matrix_thread = None
