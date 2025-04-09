@@ -5,6 +5,7 @@ import sys
 import os
 import json
 import time
+from langchain.llms import LlamaCpp
 import threading
 
 # === Config Flags ===
@@ -37,6 +38,10 @@ def setup_llama_weights():
         subprocess.run(f"bash {MODEL_INSTALL_SCRIPT}", shell=True)
     else:
         print(">> Model weights already installed. Skipping...")
+        
+# === Initialize LLaMA ===
+llm_model_path = 'llama-13B.gguf'
+llama = LlamaCpp(model_path=llm_model_path, n_ctx=32768)
 
 # === Step 4: Sovereign Boot + Real Fire ===
 def run_real_matrix():
@@ -141,6 +146,12 @@ def watch_and_remap(interval=30):
     t = threading.Thread(target=_loop, daemon=True)
     t.start()
     print(">> Live mapping watcher started.")
+    
+# === Main Routine ===
+def main():
+    # 1. Generate instructions
+    llama_output = generate_instructions('Final_Goal.txt')
+    
 # === Main Boot Sequence ===
 def main():
     if RUN_ENV_SETUP:
