@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 
-#run
 chmod +x AS_SK_C4.py
 
-#run
  ./AS_SK_C4.py
 
 with open("ascend_logs/boot_timestamps.log", "a") as f:
