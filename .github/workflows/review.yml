@@ -40,7 +40,7 @@ jobs:
         run: python .github/scripts/smart_review_agent.py
 
       - name: Upload Reports
-        uses: actions/upload-artifact@v3
+        uses: uses: actions/upload-artifact@3.1.3
         with:
           name: smart-reports
           path: |
