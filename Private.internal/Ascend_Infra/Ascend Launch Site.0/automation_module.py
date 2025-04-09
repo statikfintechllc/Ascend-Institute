@@ -10,6 +10,9 @@ from datetime import datetime
 from crewai import CrewAgent
 from autogpt.agent import Agent as AutoGPTAgent
 
+# === Base Directory ===
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 # === Parse & Execute AI Instructions ===
 def parse_and_execute(llama_output):
     crew_agent = CrewAgent()
@@ -26,9 +29,10 @@ def parse_and_execute(llama_output):
 
 # === Generate Instruction Set from LLaMA ===
 def generate_instructions(prompt_path):
-    with open(prompt_path, 'r') as file:
+    prompt_file_path = os.path.join(BASE_DIR, prompt_path)
+    with open(prompt_file_path, 'r') as file:
         prompt = file.read()
-    return llama(prompt)
+    return llama(prompt)  # Assumes `llama` is defined somewhere — is it?
 
 # === Setup WireGuard Network ===
 def setup_wireguard(peers):
@@ -79,9 +83,16 @@ def stealth_api_request(url, proxy=None):
     response = session.get(url, headers=headers)
     return response
 
+# === Get Instructions ===
 def get_instructions():
-    with open("llama_output.txt", "r") as f:
+    instructions_path = os.path.join(BASE_DIR, "llama_output.txt")
+    with open(instructions_path, "r") as f:
         return f.read()
+
+# === Main Execution ===
+def main():
+    # 1. Get instructions
+    llama_output = get_instructions()
 
     # 2. Execute mapped agent output
     parse_and_execute(llama_output)
