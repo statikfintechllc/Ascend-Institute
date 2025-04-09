@@ -1,2 +1,2 @@
-./llama_weights_and_models.sh
+chmod +x Neo
 ./Neo
