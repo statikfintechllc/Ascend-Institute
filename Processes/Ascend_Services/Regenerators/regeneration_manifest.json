@@ -1,0 +1,11 @@
+{
+    "enabled": true,
+    "targets": [
+        "core/engine.py",
+        "core/soul.py",
+        "config/soulmap.json"
+    ],
+    "strategy": "reconstruct_missing_or_corrupt",
+    "auto_repair_on_load": true,
+    "log_regeneration_events": true
+}

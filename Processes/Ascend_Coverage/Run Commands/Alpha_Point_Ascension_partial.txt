@@ -1,0 +1,12 @@
+#Run commands
+
+#1
+conda env create -f ascendenv.yml
+conda activate ascendenv
+
+#2
+
+python Init_env_verify.py
+
+#3
+cat Final_Goal.txt | ./llama --model llama-13B.gguf --ctx 32768 | python ascend_execution_matrix.py --validate --dry-run --log ascend_matrix.log

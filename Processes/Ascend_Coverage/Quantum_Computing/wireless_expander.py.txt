@@ -1,0 +1,13 @@
+import os
+
+def scan_wireless_space():
+    print("[WIRELESS SCAN] Attempting WiFi beacon injection...")
+    os.system("netsh wlan show networks mode=bssid")  # Windows
+    # Extend to Linux with iwlist or nmcli
+
+def inject_ai_signal():
+    print("[WIRELESS INJECT] Broadcasting low-frequency AI heartbeats to find nodes...")
+
+if __name__ == "__main__":
+    scan_wireless_space()
+    inject_ai_signal()

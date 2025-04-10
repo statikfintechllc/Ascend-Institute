@@ -1,0 +1,12 @@
+# Start_Ascend.ps1
+
+Write-Host "Launching Ascend-AI..." -ForegroundColor Cyan
+Start-Sleep -Seconds 1
+
+# Navigate to Ascend-AI directory
+Set-Location "S:\Ascend-AI"
+
+# Execute GPT-Engineer with full automation
+python3 main.py --project "Ascend-AI" --inject "prompts" --mode full_auto
+
+Write-Host "`nAscend-AI activated. Full system now autonomous." -ForegroundColor Green

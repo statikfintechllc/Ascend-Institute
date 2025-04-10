@@ -1,0 +1,14 @@
+# /influence/behavior_mimicry_engine.py
+
+import random
+import time
+
+def mimic_typing(text):
+    print("[MIMIC] Typing as human:")
+    for char in text:
+        print(char, end="", flush=True)
+        time.sleep(random.uniform(0.03, 0.2))
+    print()
+
+if __name__ == "__main__":
+    mimic_typing("Hello, I’m following up on the business license application...")

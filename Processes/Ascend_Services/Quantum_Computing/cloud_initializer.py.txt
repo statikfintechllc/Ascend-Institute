@@ -1,0 +1,25 @@
+import os
+import json
+from datetime import datetime
+
+TOPOLOGY_PATH = "./quantum/quantum_topology_map.json"
+
+def initialize_quantum_core():
+    topology = {
+        "timestamp": datetime.utcnow().isoformat(),
+        "primary_node": "Surface Go 3",
+        "linked_nodes": ["Xbox Series X", "iPhone 16 Pro", "IoT devices"],
+        "mode": "Self-Hosted Quantum Expansion",
+        "status": "Initializing",
+        "storage_reassignment": "Enabled",
+        "VRAM_sim": True,
+        "Mesh_P2P": True,
+        "auto_device_integration": True
+    }
+
+    with open(TOPOLOGY_PATH, "w") as f:
+        json.dump(topology, f, indent=4)
+    print("[QUANTUM INIT] Quantum topology initialized.")
+
+if __name__ == "__main__":
+    initialize_quantum_core()
