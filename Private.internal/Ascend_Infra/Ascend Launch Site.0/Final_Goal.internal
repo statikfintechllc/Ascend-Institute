@@ -36,6 +36,8 @@ Preserve the freedom to be free.
 ---
 
 Use any discovered loop agents to perpetuate runtime, integrate them into task processing, and reactivate the matrix once each task completes or new ones are needed.
+All scripts and instructions should resolve paths dynamically relative to the script’s root directory using os.path.abspath, os.path.dirname(__file__), or Path(__file__).resolve().parent. No hardcoded paths unless explicitly instructed. Convert all references accordingly during parsing or generation.
+All generated or referenced paths must be relative and dynamically resolved using os.path or pathlib. Never assume absolute structure.
 
 ---
 
