@@ -1,8 +1,0 @@
-import requests
-
-def call_local_starcoder(prompt):
-    response = requests.post(
-        "http://localhost:11434/api/generate",
-        json={"model": "starcoder", "prompt": prompt}
-    )
-    return response.json()['response']
