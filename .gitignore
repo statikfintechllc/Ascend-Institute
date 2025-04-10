@@ -1,61 +1,51 @@
-# Ignore model weights
+# === MODEL FILES ===
 /models/*
-/private/*
+!models/README.md
 *.gguf
 *.pth
 *.ckpt
 
-# Ignore everthing inside Private.internal
+# === FORMERLY IGNORED PRIVATE INTERNAL STUFF ===
+# No longer ignoring 'Processes', so we remove these:
+/private/*
+private/
 Private.internal/**
 
-# Except this file
-!Private.internal/.gitignore
+# === TRACK 'Processing/' EVEN IF IT LOOKS SUSPICIOUS ===
+!Processing/
+!Processing/**
 
-# Ignore logs and outputs
+# === LOGS AND OUTPUT FILES ===
 *.log
 *.jsonl
 *.sig
 *.tmp
-__pycache__/
-.cache/
 *.sqlite
+*.sqlite3
+*.db
 
-# Ignore credentials, keys, secrets
-.env
-*.pem
-*.key
-
-# Ignore backups and system trash
-backup_*/
-.DS_Store
-*.swp
-*.bak
-
-# Byte-compiled / optimized / DLL files
+# === PYTHON CACHE ===
 __pycache__/
 *.py[cod]
 *.so
 
-# Environment
+# === ENVIRONMENTS & SECRETS ===
 .env
 *.env
-venv/
 .envrc
+*.pem
+*.key
 
-# Logs & cache
-*.log
-.cache/
-*.db
-*.sqlite3
-
-# System
+# === SYSTEM TRASH ===
 .DS_Store
 Thumbs.db
+*.swp
+*.bak
+.cache/
+backup_*/
 
-# Models and weights
-models/*
-!models/README.md
-
-# Secret keys
+# === SECRET KEYS OR API KEYS FOLDERS ===
 API_Keys/
-private/
+
+# === VIRTUAL ENVIRONMENTS ===
+venv/
