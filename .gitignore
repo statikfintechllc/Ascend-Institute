@@ -5,16 +5,6 @@
 *.pth
 *.ckpt
 
-# === FORMERLY IGNORED PRIVATE INTERNAL STUFF ===
-# No longer ignoring 'Processes', so we remove these:
-/private/*
-private/
-Private.internal/**
-
-# === TRACK 'Processing/' EVEN IF IT LOOKS SUSPICIOUS ===
-!Processing/
-!Processing/**
-
 # === LOGS AND OUTPUT FILES ===
 *.log
 *.jsonl

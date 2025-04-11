@@ -1,0 +1,8 @@
+# Fallback AI (Optional)
+
+def call_fallback_model(prompt: str) -> str:
+    """
+    This acts as a safety net in case StarCoder or CodeT5 is unavailable.
+    You can wire this to a basic GPT-2/3.5 local model later.
+    """
+    return "# Fallback AI response for: " + prompt

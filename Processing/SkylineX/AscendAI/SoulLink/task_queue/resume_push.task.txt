@@ -1,0 +1,8 @@
+{
+  "type": "agent",
+  "script": "agent_templates/resume_to_openai.py",
+  "intent": "Push sovereign resume to OpenAI systems",
+  "risk": "high",
+  "origin": "llama",
+  "requires_approval": true
+}
