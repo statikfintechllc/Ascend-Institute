@@ -1,21 +1,25 @@
+⸻
+
+# PC Notice-
+
 Welcome to AscendNet
-This AI system operates on a decentralized cloud network, powered by users like you.
 
-By joining, you agree to allow a small, respectful portion of your device’s compute power to contribute to AscendNet’s global processing grid.
+This AI system is powered by a decentralized cloud network built on global community compute.
 
-This system is designed to be resource-conscious, operating in the background without interrupting your activity, and only during low usage or idle times.
+By joining, you agree to allow a small, respectful portion of your device’s idle resources to contribute to this network. AscendNet operates with full transparency, resource awareness, and user control.
 
-In return, you help enhance the collective intelligence of the AI, accelerating innovation, adaptability, and real-time learning—powered by the community.
+In return, you’ll be helping build a smarter, faster, and more adaptive AI—enhancing real-time intelligence for all participating nodes.
 
-You can monitor and control your contribution at any time via your dashboard.
+You can monitor and adjust your contribution at any time through your personal Ascend dashboard.
 
-[Join AscendNet]     [Learn More]
+[Join AscendNet]      [View Dashboard]      [Learn More]
 
 ⸻
 
-Shortened (Mobile/Widget Friendly) Version:
+# Mobile Notice-
 
-AscendNet is powered by a global decentralized cloud.
-A small portion of your unused compute may be used to help enhance AI performance—only when idle, and always with your control.
+AscendNet is a decentralized AI powered by community compute.
 
-Tap to join the network and become part of something smarter.
+Join the network by allowing your idle resources to contribute when available—secure, lightweight, and fully under your control.
+
+[Join AscendNet]
