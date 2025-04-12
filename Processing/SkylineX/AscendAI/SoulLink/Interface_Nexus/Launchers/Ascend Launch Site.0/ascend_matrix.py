@@ -13,25 +13,15 @@ import json
 from datetime import datetime
 from ascend_execution_matrix import interpret_task
 
-# === Dynamic Base Path ===
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
-# === Logging ===
-LOG_FILE = os.path.join(BASE_DIR, 'ascend_matrix.log')
+# Setup Logging
 logging.basicConfig(
-    filename=LOG_FILE,
+    filename='ascend_matrix.log',
     level=logging.INFO,
     format='%(asctime)s [%(levelname)s]: %(message)s'
 )
 
-# === Boot State Files ===
-APPROVED_TASKS_PATH = os.path.join(BASE_DIR, "approved_tasks.jsonl")
-SIGNATURE_FILE = os.path.join(BASE_DIR, "llama_output.sig")
-LLAMA_OUTPUT_FILE = os.path.join(BASE_DIR, "llama_output.txt")
-GOAL_MEMORY_FILE = os.path.join(BASE_DIR, "goal_memory.jsonl")
-
-if not os.path.exists(APPROVED_TASKS_PATH):
-    with open(APPROVED_TASKS_PATH, "w") as f:
+if not os.path.exists("approved_tasks.jsonl"):
+    with open("approved_tasks.jsonl", "w") as f:
         f.write("")
 
 # Constants
@@ -42,9 +32,11 @@ DANGEROUS_PATTERNS = [r"rm\s+-rf", r"sudo.*shutdown", r"mkfs.*", r"format", r"dd
 task_counter = {}
 gpg = gnupg.GPG()
 
+# Environment Verification
 def verify_environment():
     subprocess.run('conda activate ascendenv', shell=True)
 
+# Dangerous Pattern Scan
 def sanitize_task(task):
     for pattern in DANGEROUS_PATTERNS:
         if re.search(pattern, task):
@@ -52,6 +44,7 @@ def sanitize_task(task):
             return False
     return True
 
+# Signature Verification
 def verify_signature(task, signature_path):
     try:
         with open(signature_path, 'rb') as sig_file:
@@ -64,6 +57,7 @@ def verify_signature(task, signature_path):
         logging.error(f"Signature verification failed: {e}")
         return False
 
+# Script Integrity Check
 def verify_script_integrity(script_path, expected_checksum):
     with open(script_path, 'rb') as f:
         file_hash = hashlib.sha256(f.read()).hexdigest()
@@ -72,17 +66,20 @@ def verify_script_integrity(script_path, expected_checksum):
         return False
     return True
 
+# Update Checksum CLI Tool
 def update_checksum(script_path):
     with open(script_path, 'rb') as f:
         file_hash = hashlib.sha256(f.read()).hexdigest()
-    manifest_path = os.path.join(BASE_DIR, ".matrix_manifest")
+    manifest_path = ".matrix_manifest"
     with open(manifest_path, "a") as mf:
         mf.write(f"{script_path}: {file_hash}\n")
     logging.info(f"Checksum updated for {script_path}")
 
+# Dry Run Mode
 def dry_run(task):
     logging.info(f"[DRY RUN] Task: {task}")
 
+# Dockerized Sandbox
 def sandbox_task(task):
     try:
         client = docker.from_env()
@@ -101,52 +98,48 @@ def sandbox_task(task):
     except Exception as e:
         logging.error(f"Sandbox error: {e}")
 
+# Backup System
 def create_backup(files=['Final_Goal.txt', 'ascend_matrix.log', 'configs']):
-    backup_dir = os.path.join(BASE_DIR, f"backup_{datetime.now().strftime('%Y%m%d_%H%M%S')}")
+    backup_dir = f"backup_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
     os.makedirs(backup_dir, exist_ok=True)
     for file in files:
-        src = os.path.join(BASE_DIR, file)
-        subprocess.run(["cp", "-r", src, backup_dir])
+        subprocess.run(["cp", "-r", file, backup_dir])
     logging.info(f"Backup created at {backup_dir}")
     return backup_dir
 
+# Rollback
 def rollback_from_backup(backup_dir):
     for file in os.listdir(backup_dir):
-        subprocess.run(["cp", "-r", os.path.join(backup_dir, file), BASE_DIR])
+        subprocess.run(["cp", "-r", f"{backup_dir}/{file}", "."])
     logging.info(f"Rollback restored from {backup_dir}")
 
+# Dashboard API Hook
 def push_to_dashboard(event):
     try:
-        with open(LOG_FILE, "rb") as log_file:
+        with open("ascend_matrix.log", "rb") as log_file:
             data = {
                 "timestamp": str(datetime.now()),
                 "event": event,
                 "log": log_file.read().decode(errors='ignore')
             }
-        subprocess.run([
-            "curl", "-X", "POST", "http://localhost:5000/dashboard",
-            "-d", json.dumps(data)
-        ])
+        subprocess.run(["curl", "-X", "POST", "http://localhost:5000/dashboard", "-d", json.dumps(data)])
     except Exception as e:
         logging.warning(f"Dashboard push failed: {e}")
 
+# Approval Handler
 def await_human_approval(task_meta):
-    approval_dir = os.path.join(BASE_DIR, "approval_required")
-    approved_dir = os.path.join(BASE_DIR, "approved")
-    os.makedirs(approval_dir, exist_ok=True)
-    os.makedirs(approved_dir, exist_ok=True)
-
-    approval_file = os.path.join(approval_dir, f"{int(time.time())}.json")
+    approval_file = f"approval_required/{int(time.time())}.json"
     with open(approval_file, "w") as f:
         json.dump(task_meta, f)
 
     logging.info(f"[AWAITING APPROVAL] {task_meta['intent']} — Awaiting iPhone signal")
 
-    while not os.path.exists(os.path.join(approved_dir, os.path.basename(approval_file))):
+    while not os.path.exists("approved/" + os.path.basename(approval_file)):
         time.sleep(1)
 
     logging.info(f"[APPROVED] {task_meta['intent']}")
 
+# Core Task Executor
 def execute_task(task, signature):
     if DRY_RUN_MODE:
         dry_run(task)
@@ -185,18 +178,19 @@ def execute_task(task, signature):
                 logging.info(f"Shell task success: {result.stdout.decode()}")
 
     elif meta["type"] == 'agent':
-        agent_script = os.path.join(BASE_DIR, interpretation['script'])
+        agent_script = interpretation['script']
         logging.info(f"Launching agent: {agent_script}")
         subprocess.run(["python3", agent_script])
     else:
         logging.warning(f"Unknown interpretation type: {interpretation}")
 
+# Memory Tools
 def log_approved_task(task):
-    with open(APPROVED_TASKS_PATH, "a") as f:
+    with open("approved_tasks.jsonl", "a") as f:
         f.write(json.dumps({"task": task}) + "\n")
 
 def is_task_whitelisted(task):
-    with open(APPROVED_TASKS_PATH, "r") as f:
+    with open("approved_tasks.jsonl", "r") as f:
         for line in f:
             approved = json.loads(line)
             if approved["task"] == task:
@@ -205,21 +199,15 @@ def is_task_whitelisted(task):
 
 def compose_agent(goal_json):
     agent_id = f"agent_{int(time.time())}"
-    tpl_path = os.path.join(BASE_DIR, "agent_templates", f"{goal_json['intent']}.tpl")
-    agents_dir = os.path.join(BASE_DIR, "agents")
-    os.makedirs(agents_dir, exist_ok=True)
-
-    if not os.path.exists(tpl_path):
+    template_path = f"agent_templates/{goal_json['intent']}.tpl"
+    if not os.path.exists(template_path):
         logging.error(f"No agent template for intent: {goal_json['intent']}")
         return None
-
-    with open(tpl_path, 'r') as tpl:
+    with open(template_path, 'r') as tpl:
         code = tpl.read().replace("{{INTENT}}", goal_json['intent'])
-
-    output_file = os.path.join(agents_dir, f"{agent_id}.py")
+    output_file = f"agents/{agent_id}.py"
     with open(output_file, 'w') as out:
         out.write(code)
-
     logging.info(f"Agent composed: {output_file}")
     return output_file
 
@@ -230,15 +218,17 @@ def log_goal_memory(task, result, interpretation):
         "result": result,
         "meta": interpretation
     }
-    with open(GOAL_MEMORY_FILE, 'a') as f:
+    with open("goal_memory.jsonl", "a") as f:
         f.write(json.dumps(memory) + "\n")
 
+# Main
 def main_execution_matrix():
     verify_environment()
     backup_dir = create_backup()
 
+    # === STEP 1: Read LLaMA output generated by Alpha ===
     try:
-        with open(LLAMA_OUTPUT_FILE, 'r') as f:
+        with open('llama_output.txt', 'r') as f:
             tasks = f.read().splitlines()
         logging.info(f"Loaded {len(tasks)} tasks from llama_output.txt")
     except FileNotFoundError:
@@ -246,8 +236,9 @@ def main_execution_matrix():
         rollback_from_backup(backup_dir)
         return
 
+    # === STEP 2: Try to load signatures (optional) ===
     try:
-        with open(SIGNATURE_FILE, 'r') as sig_file:
+        with open('llama_output.sig', 'r') as sig_file:
             signatures = sig_file.readlines()
     except FileNotFoundError:
         logging.warning("No signature file found — enabling DRY RUN.")
@@ -259,12 +250,13 @@ def main_execution_matrix():
         logging.warning("Signature count mismatch — continuing in DRY RUN mode.")
         DRY_RUN_MODE = True
 
+    # === STEP 3: Execute tasks ===
     for task, signature in zip(tasks, signatures):
         execute_task(task.strip(), signature.strip())
         time.sleep(THROTTLE_INTERVAL)
 
-    automation_path = os.path.join(BASE_DIR, "automation_module.py")
-    sandbox_task(f"python {automation_path} {LLAMA_OUTPUT_FILE}")
-
+    # === STEP 4: Kick off automation with same output ===
+    sandbox_task("python automation_module.py llama_output.txt")
+    
 if __name__ == '__main__':
     main_execution_matrix()
