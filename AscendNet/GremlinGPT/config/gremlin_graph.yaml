@@ -1,0 +1,17 @@
+nodes:
+  scrape:
+    type: tool
+    name: scrape_web
+  buy:
+    type: tool
+    name: buy_crypto
+  llm:
+    type: llm
+    fallback: true
+
+routing:
+  - match: "scrape"
+    route: "scrape"
+  - match: "crypto"
+    route: "buy"
+  - default: "llm"
