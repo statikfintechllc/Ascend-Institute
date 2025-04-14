@@ -1,5 +1,23 @@
 from tools import web_scraper, data_analyzer, trade_executor
 from core import decision_engine, error_handler
+from multiprocessing import Process
+import subprocess
+
+def run_dashboard_server():
+    subprocess.run(["python", "mobile_dashboard/dashboard_server.py"])
+
+def run_visual_dashboard():
+    subprocess.run(["python", "mobile_dashboard/dashboard.py"])
+
+if __name__ == '__main__':
+    p1 = Process(target=run_dashboard_server)
+    p2 = Process(target=run_visual_dashboard)
+
+    p1.start()
+    p2.start()
+
+    p1.join()
+    p2.join()
 
 def run():
     try:

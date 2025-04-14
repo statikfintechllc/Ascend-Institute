@@ -53,8 +53,16 @@ def home():
 
 @app.route('/idea', methods=['POST'])
 def receive_idea():
-    data = request.get_json(force=True)
-    idea = data.get('idea', '').strip()
+# Very basic token check
+AUTH_TOKEN = os.environ.get("DASHBOARD_AUTH_TOKEN", "changeme")
+
+data = request.get_json(force=True)
+token = request.headers.get("Authorization", "").replace("Bearer ", "").strip()
+
+if token != AUTH_TOKEN:
+    return jsonify({"status": "error", "message": "Unauthorized"}), 401
+
+idea = data.get('idea', '').strip()
 
     if not idea:
         return jsonify({"status": "error", "message": "No idea content provided."}), 400

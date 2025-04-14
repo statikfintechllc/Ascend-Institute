@@ -1,23 +1,78 @@
 version: '3.8'
+
 services:
   ascend_ai:
     build: ./Ascend_Core
+    container_name: ascend_ai
     ports:
       - "8080:8080"
     volumes:
       - ./Ascend_Core:/app
     restart: always
+    environment:
+      - ENV=production
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      - redis
+      - postgres
+    networks:
+      - ascend_net
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+
+  redis:
+    image: redis:alpine
+    container_name: ascend_redis
+    ports:
+      - "6379:6379"
+    restart: always
+    networks:
+      - ascend_net
+
+  postgres:
+    image: postgres:14-alpine
+    container_name: ascend_postgres
+    environment:
+      POSTGRES_USER: ascend_user
+      POSTGRES_PASSWORD: ascend_pass
+      POSTGRES_DB: ascend_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ascend_pgdata:/var/lib/postgresql/data
+    restart: always
+    networks:
+      - ascend_net
 
   prometheus:
     image: prom/prometheus
+    container_name: prometheus
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
+    restart: always
+    networks:
+      - ascend_net
 
   grafana:
     image: grafana/grafana
+    container_name: grafana
     ports:
       - "3000:3000"
     volumes:
-      - ./grafana:/var/lib/grafana"
+      - ./grafana:/var/lib/grafana
+    restart: always
+    networks:
+      - ascend_net
+    depends_on:
+      - prometheus
+
+networks:
+  ascend_net:
+
+volumes:
+  ascend_pgdata:

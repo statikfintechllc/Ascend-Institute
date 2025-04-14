@@ -1,4 +1,5 @@
 import os
+import logging
 import sys
 from pathlib import Path
 
@@ -10,12 +11,22 @@ USE_OLLAMA = False  # Set to True to use Ollama instead of llama.cpp
 if not USE_OLLAMA:
     from llama_cpp import Llama
 
+try:
+    model_path = ROOT_DIR / "models" / "mistral-7b-instruct.gguf"
+    if not model_path.exists():
+        raise FileNotFoundError(f"Model not found at {model_path}")
+
     llm = Llama(
-        model_path=str(ROOT_DIR / "models" / "mistral-7b-instruct.gguf"),
+        model_path=str(model_path),
         n_ctx=4096,
-        n_gpu_layers=33,  # Adjust based on your GPU
+        n_gpu_layers=33,
         verbose=False
     )
+    logging.info(f"[Model Interface] Loaded model at: {model_path}")
+
+except Exception as e:
+    logging.error(f"[Model Interface] Failed to load model: {e}")
+    llm = None  # Optional: prevent everything from dying
 else:
     import requests
 
