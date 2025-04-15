@@ -4,10 +4,18 @@ execnet
 firmadyne
 rekall
 volatility3
+volatility3-plugins
+cuckoo
+firecracker
+pysec
 objgraph
 memory_profiler
 tracemalloc
 faulthandler
+memray
+memprocfs
+py-stackexchange
+python-ptrace
 
 # === Code Quality & Static Analysis ===
 autopep8
@@ -19,6 +27,10 @@ vulture
 mypy
 pyright
 mutmut
+isort
+pycln
+codex-cli
+pyflakes
 
 # === Snapshotting & Dumping ===
 dill
@@ -27,8 +39,18 @@ cloudpickle
 checksumdir
 hashlib
 zlib
+pickle
+deepdiff
+line-profiler
+heapy
+unidiff
 
 # === Core Dev Glue ===
 python-dotenv
 loguru
 dotenv
+coloredlogs
+typer
+gitpython
+python-json-logger
+auditlog

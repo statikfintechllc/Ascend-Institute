@@ -6,15 +6,32 @@ masscan
 snort
 suricata
 openvas
+zmap
 dnsrecon
 pypykatz
 evilginx2
+responder
+cobaltstrike
+honeyd
+cowrie
+conpot
+theHarvester
+amass
+sublist3r
+fuzzingbook
+crackmapexec
 
 # === Packet & Protocol Analysis ===
 scapy
 pyshark
 tshark
 wireshark
+ettercap
+sslsplit
+tcpdump
+kamene
+proxmark3
+proxmark3tools
 
 # === Reverse Engineering & Binary Analysis ===
 capstone
@@ -26,11 +43,17 @@ angr
 r2pipe
 radare2
 ghidra-bridge
+ghidra
+ghidra-plugins
 cutter
 xortool
-yara
-yara-python
+miasm
+binary-ninja
+ida-pro
 z3-solver
+binwalk
+firmadyne
+avclass
 
 # === Passwords / Hash / Crypto ===
 hashlib
@@ -38,8 +61,19 @@ passlib
 pycryptodome
 stealthcrypto
 python-Levenshtein
+pycipher
+bcrypt
+argon2-cffi
+pbkdf2
 
 # === Logging / Detection ===
 loguru
 sentry-sdk
 watchtower
+pyinotify
+graylog
+prometheus-client
+auditd
+tripwire
+pysec
+secure-execution

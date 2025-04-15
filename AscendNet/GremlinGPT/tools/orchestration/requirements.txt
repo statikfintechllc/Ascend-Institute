@@ -5,6 +5,11 @@ prefect
 ray
 watchdog
 supervisor
+retry-decorator
+heartbeat-check
+cron-pulse
+multiprocessing-monitor
+dagster
 
 # === Containerization & Virtualization ===
 docker
@@ -15,6 +20,15 @@ multipass
 proxmoxer
 terraform
 ansible
+helm
+saltstack
+argocd
+minikube
+microk8s
+openstack
+fleet
+cloud-init
+firecracker
 
 # === Deployment & API Backends ===
 uvicorn
@@ -25,12 +39,25 @@ flask
 panel
 streamlit
 gradio
+voila
+responder
+tornado
 
 # === Metrics & Monitoring ===
 prometheus-client
 opentelemetry-api
 opentelemetry-sdk
 grafana-api
+grafana
+glances
+graylog
 sentry-sdk
 elastic-apm
 watchtower
+jaeger-client
+elastic-ai-search
+statsd
+tensorboard
+mlflow
+influxdb
+psutil

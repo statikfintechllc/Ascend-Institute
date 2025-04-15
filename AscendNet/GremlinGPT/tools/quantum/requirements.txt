@@ -1,9 +1,17 @@
 # === Quantum Frameworks ===
 qiskit
+qiskit-aqua
+qiskit-optimization
+qiskit-machine-learning
+qiskit-nature
 cirq
 braket
 pennylane
 pyquil
+forest-benchmarking
+blueqat
+pytket
+qsharp
 
 # === Classical–Quantum Glue ===
 numpy
@@ -12,11 +20,24 @@ sympy
 matplotlib
 networkx
 tweedledum
-pytket
+pennylane-lightning
+torchquantum
+jax
+jaxlib
+tensorflow-quantum
+mindspore
+tensorflow
+torch
+onp  # Open Numeric Python, if using custom low-level glue
 
 # === Quantum Compilers / Interops ===
 qiskit-aer
-qiskit-ibmq-provider
 qiskit-terra
-pennylane-lightning
-qsharp
+qiskit-ibmq-provider
+pytket-qiskit
+pytket-braket
+pytket-pennylane
+openql
+xacc
+qulacs
+pennylane-qiskit
