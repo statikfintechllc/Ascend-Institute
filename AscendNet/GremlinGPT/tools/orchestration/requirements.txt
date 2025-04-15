@@ -1,0 +1,36 @@
+# === Scheduling & Automation ===
+apscheduler
+celery
+prefect
+ray
+watchdog
+supervisor
+
+# === Containerization & Virtualization ===
+docker
+docker-py
+k3s
+nomad
+multipass
+proxmoxer
+terraform
+ansible
+
+# === Deployment & API Backends ===
+uvicorn
+gunicorn
+hypercorn
+fastapi
+flask
+panel
+streamlit
+gradio
+
+# === Metrics & Monitoring ===
+prometheus-client
+opentelemetry-api
+opentelemetry-sdk
+grafana-api
+sentry-sdk
+elastic-apm
+watchtower

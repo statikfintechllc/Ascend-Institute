@@ -1,0 +1,45 @@
+# === Exploit & Recon Tools ===
+bettercap
+mitmproxy
+nmap
+masscan
+snort
+suricata
+openvas
+dnsrecon
+pypykatz
+evilginx2
+
+# === Packet & Protocol Analysis ===
+scapy
+pyshark
+tshark
+wireshark
+
+# === Reverse Engineering & Binary Analysis ===
+capstone
+unicorn
+lief
+frida
+frida-tools
+angr
+r2pipe
+radare2
+ghidra-bridge
+cutter
+xortool
+yara
+yara-python
+z3-solver
+
+# === Passwords / Hash / Crypto ===
+hashlib
+passlib
+pycryptodome
+stealthcrypto
+python-Levenshtein
+
+# === Logging / Detection ===
+loguru
+sentry-sdk
+watchtower

@@ -1,0 +1,22 @@
+# === Quantum Frameworks ===
+qiskit
+cirq
+braket
+pennylane
+pyquil
+
+# === Classical–Quantum Glue ===
+numpy
+scipy
+sympy
+matplotlib
+networkx
+tweedledum
+pytket
+
+# === Quantum Compilers / Interops ===
+qiskit-aer
+qiskit-ibmq-provider
+qiskit-terra
+pennylane-lightning
+qsharp

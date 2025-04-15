@@ -1,0 +1,34 @@
+# === System Sandboxing & Virtual Analysis ===
+restrictedpython
+execnet
+firmadyne
+rekall
+volatility3
+objgraph
+memory_profiler
+tracemalloc
+faulthandler
+
+# === Code Quality & Static Analysis ===
+autopep8
+pylint
+flake8
+black
+bandit
+vulture
+mypy
+pyright
+mutmut
+
+# === Snapshotting & Dumping ===
+dill
+joblib
+cloudpickle
+checksumdir
+hashlib
+zlib
+
+# === Core Dev Glue ===
+python-dotenv
+loguru
+dotenv
