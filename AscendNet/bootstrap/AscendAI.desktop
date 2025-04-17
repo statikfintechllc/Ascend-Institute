@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=AscendAI
 Comment=Boot the Sovereign Core
-Exec=bash -c "cd \"$(dirname %k)\" && ./Neo.sh"
+Exec=bash -c "./Neo.sh"
 Icon=utilities-terminal
 Terminal=true
 Type=Application

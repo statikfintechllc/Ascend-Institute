@@ -1,7 +1,7 @@
 @echo off
 echo [BOOT] Launching Ascend Matrix Environment...
 
-:: Try Conda activation
+:: Attempt to activate Conda environment
 call conda activate ascendenv
 
 :: Step 1: Try Git Bash

@@ -1,0 +1,69 @@
+# Ignore everything
+*
+
+# --- Exceptions ---
+
+# Project documentation and tracking
+!README.md
+!LICENSE
+!FOUNDER_LOG.md
+!.gitignore
+
+# Project structure
+!bootstrap/
+!AscendAI/
+!GremlinGPT/
+!OpenDevin/
+!.github/
+
+# Scripts
+!install_devin.sh
+
+# --- Devin-specific ignore rules ---
+OpenDevin/node_modules/
+OpenDevin/frontend/node_modules/
+OpenDevin/__pycache__/
+OpenDevin/.env
+OpenDevin/workspace/
+OpenDevin/.venv/
+OpenDevin/.DS_Store
+OpenDevin/*.log
+OpenDevin/.pytest_cache/
+
+# --- Python garbage ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+*.pyo
+
+# --- System junk ---
+.DS_Store
+Thumbs.db
+*.log
+*.swp
+*.tmp
+
+# --- VS Code ---
+.vscode/
+
+# --- Conda environment (if saved) ---
+env/
+.conda/
+
+# --- Jupyter outputs ---
+.ipynb_checkpoints/
+*.ipynb
+
+# --- Node/npm ---
+node_modules/
+dist/
+.cache/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- Ignore everything in memory except task-related markdowns ---
+OpenDevin/memory/*
+!OpenDevin/memory/task_*.md
+!OpenDevin/memory/instruction_*.md
