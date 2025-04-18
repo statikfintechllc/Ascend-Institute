@@ -6,6 +6,9 @@ import os
 # Load .env file from project root
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '.env'))
 
+# Git Key
+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
+
 # Telegram Settings
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
