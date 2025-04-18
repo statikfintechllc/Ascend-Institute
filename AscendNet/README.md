@@ -1,17 +1,26 @@
-# AscendNet: Sovereign AI Bootstrap System
+# AscendNet: Sovereign Bootstrap System
 
-> **“Devin is the beginning. Ascend is the evolution.”**
+> “Devin is the beginning. Ascend is the evolution.”
 
-Welcome to **AscendNet**—a recursive, memory-augmented AI architecture designed to grow, learn, and eventually become your sovereign digital assistant.
+**AscendNet** is the infrastructural boot system for initializing Ascend’s recursive agents and AI layers. It includes:
 
-This is not a chatbot. This is a framework for recursive autonomy.
+- Devin (the primal autonomous agent)
+- Vector memory embedding and search
+- Task queue logic
+- ChatGPT desktop interface
+- Multi-agent system preparation
+- Hardware-level readiness protocols
 
 ---
 
-## **Getting Started**
+## Integration with Ascend
 
-### **Step 1: Clone the Repo**
+AscendNet is **invoked during system install and boot**, and:
+- Sets up the Conda environment
+- Launches `Devin` via `Neo.sh`
+- Routes persistent memory and scripts into the main loop engine
+- Prepares agents for recursive self-modification
 
-```bash
-git clone https://github.com/yourusername/AscendNet.git
-cd AscendNet/bootstrap
+Do not clone or use this as a separate repo. It is a component of the [AscendAI Framework](https://github.com/statikfintechllc/AscendAI).
+
+---
