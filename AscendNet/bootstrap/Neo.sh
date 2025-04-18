@@ -10,21 +10,49 @@ echo "[BOOT] $(date)" >> ascend_logs/boot_timestamps.log
 
 # Initialize task queue
 mkdir -p task_queue
-echo "Launch full matrix." > task_queue/init.task
+echo "Scan memory and initialize vector DB." > task_queue/init.task
 
-# Make sure the Python core is executable
-if [ ! -f AS_SK_C4.py ]; then
-    echo "[ERROR] Sovereign kernel not found: AS_SK_C4.py"
+# Path to OpenDevin
+DEVIN_CORE="../OpenDevin"
+
+# Check if Devin exists
+if [ ! -d "$DEVIN_CORE" ]; then
+    echo "[ERROR] OpenDevin core not found in expected location: $DEVIN_CORE"
     exit 1
 fi
 
-chmod +x AS_SK_C4.py
+cd "$DEVIN_CORE" || exit 1
 
-echo ">> [Neo] Launching Sovereign Kernel..."
-./AS_SK_C4.py || { echo "[ERROR] Kernel launch failed."; exit 1; }
+# Activate Conda environment
+if ! command -v conda &> /dev/null; then
+    echo "[ERROR] Conda not found. Please install Miniconda or Anaconda."
+    exit 1
+fi
 
-echo ">> [Neo] Launching Loop Engine & Supervisor..."
-python3 Private.internal/Ascend_Infra/Launch_Ascend/loop_engine.py &
-python3 Ascend_Infra/Supervision/ascend_supervisor_agent.py &
+eval "$(conda shell.bash hook)"
+conda activate opendevin
 
-echo ">> [Neo] Systems online. Awaiting LLaMA ignition."
+# Create default config if missing
+if [ ! -f "config.toml" ]; then
+    echo "[Neo] Creating default config.toml..."
+    cat <<EOF > config.toml
+[core]
+workspace_base = "./workspace"
+persist_sandbox = false
+run_as_devin = true
+sandbox_container_image = "custom_image"
+EOF
+fi
+
+# Build Devin once if needed
+if [ ! -f "./build_marker.txt" ]; then
+    echo ">>> [DEVIN] First-time build..."
+    make build || { echo "[ERROR] Build failed."; exit 1; }
+    touch build_marker.txt
+fi
+
+# Run Devin
+echo ">>> [DEVIN] Sovereign Core launching..."
+make run || { echo "[ERROR] Devin launch failed."; exit 1; }
+
+echo ">> [Neo] Systems online. Awaiting recursive chain loop."
