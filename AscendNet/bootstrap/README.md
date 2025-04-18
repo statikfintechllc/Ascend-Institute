@@ -51,23 +51,13 @@ After install:
 ⸻
 
 What Each Script Does
-
-Script
-Purpose
-install.sh
-Sets up core dependencies, memory folders, tools
-Neo.sh
-Sovereign Kernel boot protocol
-run_devin.sh
-Launches Devin and begins recursive task building
-launch_the_matrix.sh
-One-shot orchestration of all modules
-llama_weights_and_models.sh
-Mounts/prepares LLaMA or similar weights
-Launch_Ascend.bat
-Windows full-launch fallback
-AscendAI.desktop
-Linux desktop GUI entrypoint
+	•	install.sh — Sets up core dependencies, memory folders, and internal tools
+	•	Neo.sh — Sovereign Kernel boot protocol (initiates core system and logging)
+	•	run_devin.sh — Launches Devin and begins recursive task construction
+	•	launch_the_matrix.sh — Orchestrates all major modules and agents in one shot
+	•	llama_weights_and_models.sh — Mounts and configures LLaMA or other local model weights
+	•	Launch_Ascend.bat — Windows-friendly launcher for full stack deployment
+	•	AscendAI.desktop — Linux GUI entrypoint for the Ascend Dashboard (Devin + Memory + Agents)
 
 Outcome
 
