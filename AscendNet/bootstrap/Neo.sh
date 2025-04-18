@@ -32,6 +32,20 @@ fi
 eval "$(conda shell.bash hook)"
 conda activate opendevin
 
+# Ensure Conda shell is initialized
+if ! grep -q 'conda initialize' ~/.bashrc; then
+    echo "[FIX] Conda not initialized. Running 'conda init bash'..."
+    conda init bash
+    source ~/.bashrc
+fi
+
+# Ensure Conda shell is initialized
+if ! grep -q 'conda initialize' ~/.bashrc; then
+    echo "[FIX] Conda not initialized. Running 'conda init bash'..."
+    conda init bash
+    source ~/.bashrc
+fi
+
 # Create default config if missing
 if [ ! -f "config.toml" ]; then
     echo "[Neo] Creating default config.toml..."
@@ -42,6 +56,19 @@ persist_sandbox = false
 run_as_devin = true
 sandbox_container_image = "custom_image"
 EOF
+fi
+
+REQUIRED=("make" "python3" "pip" "node" "npm")  # Add more as needed
+for cmd in "${REQUIRED[@]}"; do
+    if ! command -v $cmd &> /dev/null; then
+        echo "[ERROR] Required command '$cmd' not found. Please install it."
+        exit 1
+    fi
+done
+
+if [ ! -f "$DEVIN_CORE/Makefile" ] || [ ! -d "$DEVIN_CORE/src" ]; then
+    echo "[ERROR] OpenDevin source structure incomplete."
+    exit 1
 fi
 
 # Build Devin once if needed

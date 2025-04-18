@@ -6,3 +6,6 @@ Icon=utilities-terminal
 Terminal=true
 Type=Application
 Categories=Utility;
+#!/bin/bash
+echo "[FALLBACK] Trying to launch Devin from terminal..."
+./Neo.sh | tee ascend_logs/devin_terminal.log

@@ -68,3 +68,7 @@ yarn-error.log*
 OpenDevin/memory/*
 !OpenDevin/memory/task_*.md
 !OpenDevin/memory/instruction_*.md
+!/bootstrap/llama_weights_and_models.txt
+
+!/AscendAI/Ascend_Core/Models/model_registry.py
+

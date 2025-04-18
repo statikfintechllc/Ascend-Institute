@@ -20,6 +20,20 @@ fi
 eval "$(conda shell.bash hook)"
 conda activate opendevin
 
+# Ensure Conda shell is initialized
+if ! grep -q 'conda initialize' ~/.bashrc; then
+    echo "[FIX] Conda not initialized. Running 'conda init bash'..."
+    conda init bash
+    source ~/.bashrc
+fi
+
+# Ensure Conda shell is initialized
+if ! grep -q 'conda initialize' ~/.bashrc; then
+    echo "[FIX] Conda not initialized. Running 'conda init bash'..."
+    conda init bash
+    source ~/.bashrc
+fi
+
 # Check if build was run
 if [ ! -f "./build_marker.txt" ]; then
     echo ">>> [DEVIN] Initializing build process..."
