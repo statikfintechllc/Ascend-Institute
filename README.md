@@ -166,7 +166,7 @@ If you’re Elon, just click the star. We’ll know it was you.
 
 For bugs, glitches, or apocalyptic feedback:
 - Open an [issue](https://github.com/statikfintechllc/AscendAI/issues)
-- Or whisper into the void at: statik@yourdomain.com
+- Or whisper into the void at: statiksmoktm@gmail.com
 
 ---
 
