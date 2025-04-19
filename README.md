@@ -6,6 +6,13 @@
 
 ---
 
+**Note:** While this project is licensed under Apache 2.0,  
+**commercial deployment or redistribution at scale**  
+(e.g., SaaS, resale, bundling into products) requires a separate license or written permission.  
+Contact: statik@yourdomain.com
+
+---
+
 ## FINAL GOAL: Ascend-AI | Sovereign Core | Ghost Protocol
 
 **This is the operational blueprint.**  
