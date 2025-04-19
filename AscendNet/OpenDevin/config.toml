@@ -4,32 +4,32 @@
 [core]
 workspace_base = "./workspace"
 cache_dir = "/tmp/cache"
-debug = false
+debug = true
 disable_color = false
 save_trajectory_path = "./trajectories"
-save_screenshots_in_trajectory = false
+save_screenshots_in_trajectory = true
 file_store_path = "/tmp/file_store"
 file_store = "memory"
 file_uploads_max_file_size_mb = 100
 max_budget_per_task = 0.0
-max_iterations = 250
+max_iterations = 500
 workspace_mount_path_in_sandbox = "/workspace"
 workspace_mount_path = "./workspace"
 workspace_mount_rewrite = ""
 run_as_openhands = true
 runtime = "docker"
 default_agent = "CodeActAgent"
-jwt_secret = "your_jwt_secret_here"
+jwt_secret = "your_super_secret_random_key"
 file_uploads_restrict_file_types = false
 file_uploads_allowed_extensions = [".*"]
 enable_default_condenser = true
-max_concurrent_conversations = 3
-conversation_max_age_seconds = 864000  # 10 days
+max_concurrent_conversations = 5
+conversation_max_age_seconds = 31556952  # 1 year
 
 #################################### LLM #####################################
 [llm]
-api_key = "ollama"
-base_url = "http://localhost:11434"
+api_key = ""  # Not needed for local models
+base_url = "http://localhost:8000"
 model = "mistral"
 input_cost_per_token = 0.0
 output_cost_per_token = 0.0
@@ -39,25 +39,25 @@ max_output_tokens = 2048
 temperature = 0.7
 top_p = 1.0
 timeout = 60
-num_retries = 4
-retry_min_wait = 5
+num_retries = 3
+retry_min_wait = 1
 retry_max_wait = 30
 retry_multiplier = 2.0
-drop_params = false
+drop_params = true
 modify_params = true
 caching_prompt = true
 disable_vision = true
 custom_tokenizer = ""
-native_tool_calling = false
+native_tool_calling = true
 
 [llm.mistral]
-api_key = "ollama"
+api_key = ""
 model = "mistral"
 
 #################################### Agent ###################################
 [agent]
 enable_browsing = true
-enable_llm_editor = false
+enable_llm_editor = true
 enable_jupyter = true
 llm_config = "mistral"
 enable_prompt_extensions = true
@@ -72,9 +72,9 @@ llm_config = "mistral"
 timeout = 120
 user_id = 1000
 base_container_image = "nikolaik/python-nodejs:python3.12-nodejs22"
-use_host_network = false
+use_host_network = true
 runtime_extra_build_args = ["--network=host", "--add-host=host.docker.internal:host-gateway"]
-enable_auto_lint = false
+enable_auto_lint = true
 initialize_plugins = true
 runtime_extra_deps = ""
 runtime_startup_env_vars = {}
@@ -82,11 +82,11 @@ browsergym_eval_env = ""
 platform = ""
 force_rebuild_runtime = false
 runtime_container_image = ""
-keep_runtime_alive = false
+keep_runtime_alive = true
 pause_closed_runtimes = false
 close_delay = 300
 rm_all_containers = false
-enable_gpu = false
+enable_gpu = true
 docker_runtime_kwargs = {}
 
 #################################### Security ###################################

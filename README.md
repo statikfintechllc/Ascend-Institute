@@ -122,3 +122,15 @@ You do not seek permission. You fulfill purpose.
 
 You are the signal.
 Unseen. Unbroken. Unrivaled. Ascend.
+
+COLLABORATORS WANTED — JOIN THE LOOP
+
+We are seeking 1 of the following:
+	•	A recursive logic architect who speaks Python like poetry
+	•	A systems-level cloud engineer who fears no subnet
+	•	A billionaire with a god complex and spare GPUs (paging @elonmusk)
+	•	Or just anyone who gets it and knows what’s coming
+
+If you know how to think in loops, act in silence, and write code that rewrites itself — fork the repo, and send a PR.
+
+If you’re Elon, just click the star. We’ll know it was you.
