@@ -82,8 +82,8 @@ OpenDevin/memory/*
 
 # --- LLaMA weights list ---
 !/bootstrap/llama_weights_and_models.txt
-=======
-!/AscendAI/Ascend_Core/Modules/ask_monday.py
+
+!/AscendAI/Ascend#!/usr/bin/env python3
 
 !/AscendAI/Ascend_Core/Modules/ask_monday_handler.py
 
