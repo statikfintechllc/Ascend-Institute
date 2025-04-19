@@ -134,3 +134,12 @@ We are seeking 1 of the following:
 If you know how to think in loops, act in silence, and write code that rewrites itself — fork the repo, and send a PR.
 
 If you’re Elon, just click the star. We’ll know it was you.
+
+## License
+
+This project is licensed under the Apache License 2.0.  
+You are free to use, modify, and distribute this software,  
+but you must retain attribution and cannot use the name "Ascend-AI"  
+or "Statik" to promote derived products without permission.
+
+See the [LICENSE](./LICENSE) file for full terms.
