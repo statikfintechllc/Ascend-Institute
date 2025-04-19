@@ -72,3 +72,9 @@ OpenDevin/memory/*
 
 !/AscendAI/Ascend_Core/Models/model_registry.py
 
+!/AscendAI/Ascend_Core/Modules/ask_monday.py
+
+!/AscendAI/Ascend_Core/Modules/ask_monday_handler.py
+
+!/GremlinGPT/models/Mistral-7b/mistral_7b.temp
+

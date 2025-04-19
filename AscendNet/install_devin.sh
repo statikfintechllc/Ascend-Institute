@@ -6,22 +6,21 @@
 
 set -euo pipefail
 
-# Define the Devin directory
 DEVIN_DIR="./OpenDevin"
 
 echo ">>> Navigating to Devin project directory..."
 cd "$DEVIN_DIR"
 
-echo ">>> Creating Conda environment 'opendevin' with Python 3.11..."
+echo ">>> Checking Conda installation..."
 if ! command -v conda &> /dev/null; then
     echo "ERROR: Conda not found. Please install Miniconda or Anaconda first."
     exit 1
 fi
 
 eval "$(conda shell.bash hook)"
+echo ">>> Creating Conda environment 'opendevin' with Python 3.11..."
 conda create -y -n opendevin python=3.11
 conda activate opendevin
-
 echo ">>> Conda environment 'opendevin' activated."
 
 echo ">>> Installing frontend dependencies via npm..."
@@ -45,5 +44,10 @@ EOF
 echo ">>> Building Devin..."
 make build
 
-echo ">>> Running Devin..."
-make run
+echo ">>> Launching GUI (interactive)..."
+npm run dev --prefix frontend
+read -p "Launch backend now? [Y/n]: " LAUNCH_BACKEND
+if [[ "$LAUNCH_BACKEND" != "Y" ]]; then
+    echo ">>> Running Devin backend..."
+    make run
+fi
