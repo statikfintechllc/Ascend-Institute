@@ -4,6 +4,7 @@ from flask import Flask, request, jsonify
 from datetime import datetime
 import os
 import re
+from core.dual_mode_layer import respond, set_mode, set_personality
 
 app = Flask(__name__)
 
@@ -13,6 +14,19 @@ TASK_DIR = "task_queue"
 os.makedirs("dashboard_logs", exist_ok=True)
 os.makedirs(TASK_DIR, exist_ok=True)
 LOG_PATH = os.path.join("dashboard_logs", LOG_FILE)
+
+# Example wiring logic
+def handle_dashboard_input(prompt):
+    if "switch to" in prompt.lower():
+        if "architect" in prompt.lower():
+            set_mode("architect")
+        elif "ceo" in prompt.lower():
+            set_mode("ceo")
+        elif any(p in prompt for p in ["sassy", "military", "zen", "goblin"]):
+            personality = prompt.split("switch to")[-1].strip().replace(" ", "_")
+            set_personality(personality)
+    else:
+        respond(prompt)
 
 # === Lightweight NLP Classifier ===
 def classify_idea(idea_text):

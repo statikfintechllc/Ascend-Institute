@@ -20,7 +20,7 @@ Designed for investor due diligence, legal review, strategic partner vetting, an
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YourUser/AscendNet.git
+git git clone https://github.com/statikfintechllc/AscendAI.git
 cd AscendNet/bootstrap
 
 2.	Run the bootstrap install
