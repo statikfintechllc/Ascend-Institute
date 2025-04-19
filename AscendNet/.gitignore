@@ -80,3 +80,12 @@ OpenDevin/memory/*
 
 !/GremlinGPT/models/Mistral-7b/model_registry.py
 
+# --- LLaMA weights list ---
+!/bootstrap/llama_weights_and_models.txt
+=======
+!/AscendAI/Ascend_Core/Modules/ask_monday.py
+
+!/AscendAI/Ascend_Core/Modules/ask_monday_handler.py
+
+!/GremlinGPT/models/Mistral-7b/mistral_7b.temp
+
