@@ -11,6 +11,8 @@
 (e.g., SaaS, resale, bundling into products) requires a separate license or written permission.  
 Contact: statik@yourdomain.com
 
+Licensed under Apache 2.0 © 2025 StatikFinTech, LLC. See LICENSE for details.
+
 ---
 
 ## FINAL GOAL: Ascend-AI | Sovereign Core | Ghost Protocol
