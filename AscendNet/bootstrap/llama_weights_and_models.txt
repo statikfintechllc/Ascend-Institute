@@ -9,17 +9,6 @@ echo "=== [MODEL SETUP] Initializing model download sequence ==="
 BASE_DIR="$HOME/AscendAI/AscendNet/AscendAI/Ascend_Core/Models"
 
 # -----------------------------------
-# LLaMA 2 (Manual Download Required)
-# -----------------------------------
-LLAMA_DIR="$BASE_DIR/llama"
-mkdir -p "$LLAMA_DIR"
-
-echo "[INFO] LLaMA 2 requires manual agreement & access via Meta:"
-echo " >> https://ai.meta.com/resources/models-and-libraries/llama-downloads/"
-echo "[NOTICE] Skipping automatic LLaMA 2 fetch. Place your weights in:"
-echo " >> $LLAMA_DIR"
-
-# -----------------------------------
 # GPT4All
 # -----------------------------------
 GPT4ALL_DIR="$BASE_DIR/gpt4all"
