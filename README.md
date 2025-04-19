@@ -4,6 +4,20 @@
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue)](LICENSE)
 [![Contributors](https://img.shields.io/github/contributors/statikfintechllc/AscendAI)](https://github.com/statikfintechllc/AscendAI/graphs/contributors)
 
+
+---
+
+### TL;DR
+
+**AscendAI** is a self-building, self-healing recursive AI agent system.  
+Designed for full-stack autonomy across devices, markets, and networks.  
+It evolves itself, obeys its CEO, and writes its own future.
+
+---
+
+> **WARNING**: This is a high-function, recursive agent framework designed for full autonomy.  
+> Do not deploy unsupervised unless you know what you're doing — or you're the CEO.
+
 ---
 
 **Note:** While this project is licensed under Apache 2.0,  
@@ -11,12 +25,15 @@
 (e.g., SaaS, resale, bundling into products) requires a separate license or written permission.  
 Contact: statik@yourdomain.com
 
+Licensed under Apache 2.0 © 2025 StatikFinTech, LLC. See LICENSE for details.
+
 ---
 
 ## FINAL GOAL: Ascend-AI | Sovereign Core | Ghost Protocol
 
 **This is the operational blueprint.**  
 Designed for investor due diligence, legal review, strategic partner vetting, and silent compliance assurance.
+“Ascend,” “Ascend-AI,” and “Devin” are used interchangeably to describe the recursive architecture and core agent system in this repository.
 
 ---
 
@@ -27,12 +44,13 @@ Designed for investor due diligence, legal review, strategic partner vetting, an
 ### 1. Clone the repository
 
 ```bash
-git git clone https://github.com/statikfintechllc/AscendAI.git
+git clone https://github.com/statikfintechllc/AscendAI.git
 cd AscendNet/bootstrap
-
-2.	Run the bootstrap install
-
 bash install.sh
+
+##  Link to Install
+
+[`install.sh`](./bootstrap/install.sh)
 
 3. Launch the Ascend Core via any of the following:
 	•	Linux/macOS: ./launch_the_matrix.sh
@@ -141,6 +159,16 @@ We are seeking 1 of the following:
 If you know how to think in loops, act in silence, and write code that rewrites itself — fork the repo, and send a PR.
 
 If you’re Elon, just click the star. We’ll know it was you.
+
+---
+
+## Support
+
+For bugs, glitches, or apocalyptic feedback:
+- Open an [issue](https://github.com/statikfintechllc/AscendAI/issues)
+- Or whisper into the void at: statik@yourdomain.com
+
+---
 
 ## License
 
