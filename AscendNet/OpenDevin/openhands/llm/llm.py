@@ -69,6 +69,10 @@ FUNCTION_CALLING_SUPPORTED_MODELS = [
     'o1-2024-12-17',
     'o3-mini-2025-01-31',
     'o3-mini',
+    'o3',
+    'o3-2025-04-16',
+    'o4-mini',
+    'o4-mini-2025-04-16',
     'gemini-2.5-pro',
     'gpt-4.1',
 ]
@@ -76,8 +80,12 @@ FUNCTION_CALLING_SUPPORTED_MODELS = [
 REASONING_EFFORT_SUPPORTED_MODELS = [
     'o1-2024-12-17',
     'o1',
+    'o3',
+    'o3-2025-04-16',
     'o3-mini-2025-01-31',
     'o3-mini',
+    'o4-mini',
+    'o4-mini-2025-04-16',
 ]
 
 MODELS_WITHOUT_STOP_WORDS = [
@@ -648,19 +656,11 @@ class LLM(RetryMixin, DebugMixin):
             return 0
 
     def _is_local(self) -> bool:
-        """Determines if the system is using a locally running LLM.
+        """Determines if the system is using a locally running LLM."""
+        base_url = self.config.base_url or ''
+        model = self.config.model or ''
+        return any(s in base_url for s in ['localhost', '127.0.0.1', '0.0.0.0']) or model.startswith('ollama')
 
-        Returns:
-            boolean: True if executing a local model.
-        """
-        if self.config.base_url is not None:
-            for substring in ['localhost', '127.0.0.1' '0.0.0.0']:
-                if substring in self.config.base_url:
-                    return True
-        elif self.config.model is not None:
-            if self.config.model.startswith('ollama'):
-                return True
-        return False
 
     def _completion_cost(self, response: Any) -> float:
         """Calculate completion cost and update metrics with running total.

@@ -39,13 +39,6 @@ if ! grep -q 'conda initialize' ~/.bashrc; then
     source ~/.bashrc
 fi
 
-# Ensure Conda shell is initialized
-if ! grep -q 'conda initialize' ~/.bashrc; then
-    echo "[FIX] Conda not initialized. Running 'conda init bash'..."
-    conda init bash
-    source ~/.bashrc
-fi
-
 # Create default config if missing
 if [ ! -f "config.toml" ]; then
     echo "[Neo] Creating default config.toml..."
@@ -66,8 +59,9 @@ for cmd in "${REQUIRED[@]}"; do
     fi
 done
 
-if [ ! -f "$DEVIN_CORE/Makefile" ] || [ ! -d "$DEVIN_CORE/src" ]; then
-    echo "[ERROR] OpenDevin source structure incomplete."
+# 🔥 Corrected source check 🔥
+if [ ! -f "$DEVIN_CORE/Makefile" ] || [ ! -d "$DEVIN_CORE/frontend" ] || [ ! -d "$DEVIN_CORE/openhands" ]; then
+    echo "[ERROR] OpenDevin source structure incomplete (frontend or openhands missing)."
     exit 1
 fi
 
