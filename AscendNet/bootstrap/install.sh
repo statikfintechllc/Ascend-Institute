@@ -25,7 +25,7 @@ mkdir -p ascend_logs task_queue
 
 # Set executable permissions
 chmod +x bootstrap/Neo.sh
-chmod +x bootstrap/launch_devin.sh
+chmod +x bootstrap/run_devin.sh
 chmod +x bootstrap/launch_menu.sh
 chmod +x Private.internal/Ascend_Infra/Launch_Ascend/loop_engine.py
 
