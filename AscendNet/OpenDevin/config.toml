@@ -1,13 +1,104 @@
-[core]
-workspace_base = "./workspace"
-persist_sandbox = false
-run_as_devin = true
-sandbox_container_image = "custom_image"
+###################### OpenDevin Configuration ######################
 
+#################################### Core ####################################
+[core]
+workspace_base = "/home/statiksmoke8/AscendAI/AscendNet/OpenDevin/workspace"
+cache_dir = "/tmp/cache"
+debug = true
+disable_color = false
+save_trajectory_path = "./trajectories"
+save_screenshots_in_trajectory = true
+file_store_path = "/tmp/file_store"
+file_store = "memory"
+file_uploads_max_file_size_mb = 100
+max_budget_per_task = 0.0
+max_iterations = 500
+workspace_mount_path_in_sandbox = "/workspace"
+workspace_mount_path = "/home/statiksmoke8/AscendAI/AscendNet/OpenDevin/workspace"
+workspace_mount_rewrite = ""
+run_as_openhands = true
+runtime = "docker"
+default_agent = "CodeActAgent"
+file_uploads_restrict_file_types = false
+file_uploads_allowed_extensions = [".*"]
+enable_default_condenser = true
+max_concurrent_conversations = 5
+conversation_max_age_seconds = 31556952
+persist_sandbox = "true"
+
+#################################### LLM #####################################
 [llm]
+default = "Mixtral-48B-Instruct"
+
+[llm.Mixtral-48B-Instruct]
 api_key = ""
-base_url = "http://localhost:5000"
-model = "Mistral-7B-Instruct"
-temperature = 0.1
+base_url = "http://127.0.0.1:5000"
+model = "Mixtral-48B-Instruct"
+streaming = true
+input_cost_per_token = 0.0
+output_cost_per_token = 0.0
+max_message_chars = 100000
 max_input_tokens = 4000
 max_output_tokens = 4000
+temperature = 0.2
+top_p = 1.0
+timeout = 120
+num_retries = 1000
+retry_min_wait = 1
+retry_max_wait = 15
+retry_multiplier = 2.0
+drop_params = true
+modify_params = true
+caching_prompt = true
+disable_vision = false
+custom_tokenizer = ""
+native_tool_calling = true
+
+#################################### Agent ###################################
+[agent]
+enable_browsing = true
+enable_llm_editor = true
+enable_jupyter = true
+llm_config = "Mixtral-48B-Instruct"
+enable_prompt_extensions = true
+disabled_microagents = []
+enable_history_truncation = false
+
+[agent.RepoExplorerAgent]
+llm_config = "Mixtral-48B-Instruct"
+
+#################################### Sandbox ###################################
+[sandbox]
+timeout = 300
+user_id = 1000
+base_container_image = "nikolaik/python-nodejs:python3.12-nodejs22"
+use_host_network = true
+runtime_extra_build_args = ["--network=host", "--add-host=host.docker.internal:host-gateway"]
+enable_auto_lint = true
+initialize_plugins = true
+runtime_extra_deps = ""
+runtime_startup_env_vars = {}
+browsergym_eval_env = ""
+platform = ""
+force_rebuild_runtime = false
+runtime_container_image = ""
+keep_runtime_alive = true
+pause_closed_runtimes = false
+close_delay = 600
+rm_all_containers = false
+enable_gpu = true
+docker_runtime_kwargs = {}
+
+#################################### Security ###################################
+[security]
+confirmation_mode = false
+enable_security_analyzer = false
+jwt_secret_key = "devin-secret-key-change-this-please"
+encryption_key = "super-secret-encryption-key-change-this-too"
+
+#################################### Condenser #################################
+[condenser]
+type = "noop"
+
+#################################### Eval ####################################
+# Evaluation configuration can be added here if needed

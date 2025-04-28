@@ -40,10 +40,10 @@ Your tasks:
 Await my confirmation before proceeding with the first retry if there are failures.'; exec bash"
 
 # Launch other agents in standby mode
-gnome-terminal -- bash -c "cd \"$BASE_DIR/Auto-GPT\" && python -m autogpt; exec bash"
-gnome-terminal -- bash -c "cd \"$BASE_DIR/babyagi\" && python babyagi.py; exec bash"
-gnome-terminal -- bash -c "cd \"$BASE_DIR/starcoder\" && python app.py; exec bash"
-gnome-terminal -- bash -c "cd \"$BASE_DIR/llama.cpp\" && ./main -m models/llama-model.gguf -p 'LLaMA 7B standing by.'; exec bash"
+gnome-terminal -- zsh -c "cd \"$BASE_DIR/Auto-GPT\" && python -m autogpt; exec bash"
+gnome-terminal -- zsh -c "cd \"$BASE_DIR/babyagi\" && python babyagi.py; exec bash"
+gnome-terminal -- zsh -c "cd \"$BASE_DIR/starcoder\" && python app.py; exec bash"
+gnome-terminal -- zsh -c "cd \"$BASE_DIR/llama.cpp\" && ./main -m models/llama-model.gguf -p 'LLaMA 7B standing by.'; exec bash"
 
 # Logging & Vector Memory Setup (Failure Logging & Learning)
 echo ">> Setting up failure log and vector memory systems..."
