@@ -1,0 +1,15 @@
+{
+  "llm": {
+    "llm_config": "LocalMistral13B",
+    "enable_llm_editor": true
+  },
+  "llm_configurations": {
+    "LocalMistral13B": {
+      "base_url": "http://host.docker.internal:8000/v1",
+      "model": "mistral"
+    }
+  },
+  "agent": {
+    "default_agent": "CodeActAgent"
+  }
+}
