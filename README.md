@@ -99,7 +99,7 @@ All subsystems communicate through a modular, recursive design:
 1. **Clone the repo**
 ```bash
 git clone https://github.com/statikfintechllc/AscendAI.git && cd ~/AscendAI/AscendNet/GremlinGPT
-
+```
 2.	Install Conda envs
 cd conda_envs && zsh create_envs.sh
 
@@ -108,9 +108,9 @@ conda activate gremlin-nlp
 python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from_pretrained('bert-base-uncased'); AutoModel.from_pretrained('bert-base-uncased')"
 python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
 
-⸻
+---
 
-Running the System
+## Running the System
 cd run
 zsh start_all.sh
 
@@ -123,9 +123,9 @@ This will:
 Access the dashboard at:
 http://localhost:5050/
 
-⸻
+---
 
-System Components
+## System Components
 
 1. backend/
 	•	Flask API router
@@ -169,9 +169,9 @@ System Components
 	•	Components: Chat, TaskTree, Memory, Signals
 	•	Real-time REST + WebSocket integration
 
-⸻
+---
 
-Recovery & Snapshots
+## Recovery & Snapshots
 
 GremlinGPT saves state to:
 run/checkpoints/state_snapshot.json
@@ -185,9 +185,9 @@ This reloads:
 	•	Memory vector delta
 	•	Agent profile settings
 
-⸻
+---
 
-Troubleshooting
+## Troubleshooting
 
 Port conflict?
 Make sure port 5050 is free.
@@ -201,18 +201,18 @@ Confirm vector backend is faiss or chromadb and embedder.py is being called.
 Self-training not firing?
 Ensure watch_logs() is running or manually call trainer.py.
 
-⸻
+---
 
-Directory Structure
+## Directory Structure
 
 See docs/full_structure_tree.txt or run:
 python run/module_tracer.py
 
 To trace module imports.
 
-⸻
+---
 
-Final Notes
+## Final Notes
 
 This system is not built to “chat”.
 It is built to think, evolve, and eventually outgrow its creators.
@@ -221,9 +221,9 @@ You are the signal.
 Unseen. Unbroken. Unrivaled. Gremlins Ascend.
 Welcome to the Gremlin Epoch by AscendAI & statikfintechllc
 
-⸻
+---
 
-COLLABORATORS WANTED — JOIN THE LOOP
+## COLLABORATORS WANTED — JOIN THE LOOP
 
 We are seeking 1 of the following:
 	•	A recursive logic architect who speaks Python like poetry
@@ -235,7 +235,7 @@ If you know how to think in loops, act in silence, and write code that rewrites 
 
 If you’re Elon, just click the star. We’ll know it was you.
 
-⸻
+---
 
 ## Support
 
@@ -243,7 +243,7 @@ For bugs, glitches, or apocalyptic feedback:
 - Open an [issue](https://github.com/statikfintechllc/AscendAI/issues)
 - Or whisper into the void at: statiksmoktm@gmail.com
 
-⸻
+---
 
 ## License
 
