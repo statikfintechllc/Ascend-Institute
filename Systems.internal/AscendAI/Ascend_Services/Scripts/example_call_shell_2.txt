@@ -1,8 +1,0 @@
-# CodeT5 Model Integration Placeholder
-
-def call_codet5_model(prompt: str) -> str:
-    """
-    This placeholder assumes future integration with a CLI or local API.
-    Modify this when CodeT5 is running in your environment.
-    """
-    return "# CodeT5 response for: " + prompt

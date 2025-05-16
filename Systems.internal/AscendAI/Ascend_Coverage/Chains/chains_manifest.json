@@ -1,7 +1,0 @@
-{
-    "enabled": true,
-    "chain_mode": "sequential",
-    "auto_execute_on_load": true,
-    "log_execution": true,
-    "default_chain": "core_sequence"
-}

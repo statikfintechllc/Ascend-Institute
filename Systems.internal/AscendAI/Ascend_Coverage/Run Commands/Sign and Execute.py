@@ -1,1 +1,0 @@
-python automation_module.py --execute ascend_matrix.log
