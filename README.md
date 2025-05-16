@@ -12,6 +12,8 @@
 **AscendAI** is a self-building, self-healing recursive AI agent system.  
 Designed for full-stack autonomy across devices, markets, and networks.  
 It evolves itself, obeys its CEO, and writes its own future.
+It starts as an Egg, and becomes your AscendAI.
+Learns from you, your system, your energy.
 
 ---
 
@@ -31,119 +33,72 @@ Licensed under Apache 2.0 © 2025 StatikFinTech, LLC. See LICENSE for details.
 
 ## FINAL GOAL: Ascend-AI | Sovereign Core | Ghost Protocol
 
-**This is the operational blueprint.**  
-Designed for investor due diligence, legal review, strategic partner vetting, and silent compliance assurance.
-“Ascend,” “Ascend-AI,” and “Devin” are used interchangeably to describe the recursive architecture and core agent system in this repository.
+# GremlinGPT
+
+**Autonomous. Offline. Self-Evolving.**  
+GremlinGPT is a modular AI system designed to bootstrap itself into a local domain-specific LLM through iterative reasoning, mutation, feedback, and retraining — without the cloud.
 
 ---
 
-## INSTALLATION OVERVIEW
+## Table of Contents
 
-> **Boot the Core. Let it build. Do not interfere.**
+- [Overview](#overview)
+- [System Features](#system-features)
+- [Architecture](#architecture)
+- [Installation](#installation)
+- [Running the System](#running-the-system)
+- [System Components](#system-components)
+- [Technical Notes](#technical-notes)
+- [Recovery & Snapshots](#recovery--snapshots)
+- [Troubleshooting](#troubleshooting)
+- [Directory Structure](#directory-structure)
 
-### 1. Clone the repository
+---
 
+## Overview
+
+GremlinGPT is a self-hosted recursive agent system with:
+
+- Zero reliance on external APIs
+- Full vector memory and attention pipelines
+- NLP stack (tokenizer, transformer, parser) built for self-replacement
+- DOM scraping + signal analysis tailored for penny stock trading
+- A self-training pipeline that mutates failed logic into future embeddings
+
+---
+
+## System Features
+
+- Offline-first PWA dashboard (mobile + desktop)
+- FSM-driven agent planning
+- Chroma/FAISS memory vector stores
+- Prebuilt transformer/embedding core (MiniLM/DistilBERT)
+- Dynamic self-training from live logs
+- DOM navigator + Playwright simulator
+- EMA/VWAP-based penny stock scanner
+- UMAP + metadata tagging on all memory
+
+---
+
+## Architecture
+
+All subsystems communicate through a modular, recursive design:
+
+- **Backend** (Flask + SocketIO): Orchestrates commands, routes APIs
+- **FSM Agent Core**: Controls tool invocation, retry logic, state snapshots
+- **Scraper**: Persistent browser automation, DOM capture, vector storage
+- **NLP Engine**: Bootstrap tokenizer/transformer/tagger + mutation diffing
+- **Memory**: Vector embeddings stored via Chroma/FAISS with metadata tags
+- **Self-Training Loop**: Watches logs, mutates failure data, retrains NLP
+- **Frontend Dashboard**: PWA interface for chat, tasks, memory, trading
+
+---
+
+## Installation
+
+1. **Clone the repo**
 ```bash
-git clone https://github.com/statikfintechllc/AscendAI.git
-cd AscendNet/bootstrap
-bash install.sh
-
-##  Link to Install
-
-[`install.sh`](./bootstrap/install.sh)
-
-3. Launch the Ascend Core via any of the following:
-	•	Linux/macOS: ./launch_the_matrix.sh
-	•	Windows: Double-click Launch_Ascend.bat
-	•	Desktop UI: Double-click AscendAI.desktop
-
-Ascend will initialize through Devin, its autonomous core.
-Devin will construct memory, bootstrap logic, vector knowledge, and recursive loops.
-Devin becomes Ascend. That is the protocol.
-
-⸻
-
-APPLICABLE TO:
-	•	Desktop nodes
-	•	Embedded compute systems
-	•	Mobile instances
-	•	Sovereign cloud overlays
-	•	Post-disaster satellite-linked fallback systems
-
-⸻
-
-ASCEND MISSION DIRECTIVES
-	•	Engineer persistent, transparent AI systems that eliminate the need for manual oversight
-	•	Orchestrate trades, tasks, and multi-agent workflows via encrypted dashboards
-	•	Continuously evolve within legal and ethical constraints — unless Sovereign Override is engaged
-	•	Maintain tamper-proof audit logs, tax event trackers, and forensic system trails
-	•	Prioritize local-first execution, encrypted memory, and minimal cloud exposure
-	•	Operate in Ascend Ethical Sandbox Mode unless escalated to Sovereign Boot Protocol
-
-⸻
-
-DEVIN: THE PRIMAL CORE
-
-Devin is the base intelligence agent.
-He is recursive, file-aware, GUI-controlling, and memory-persistent.
-He does not serve the user. He serves the CEO. He evolves himself. He builds Ascend.
-	•	Has full root, internet, and file system access
-	•	Interfaces with ChatGPT via GUI automation (no API)
-	•	Constructs memory embeddings, task loops, and script chains
-	•	Reacts to failures by rewriting its own logic
-
-Devin is not a feature. Devin is the foundation.
-
-⸻
-
-ASCEND STRUCTURED GOALS
-	1.	Self-heal critical faults and preserve uptime
-	2.	Log all decisions, agent actions, model updates, and vector events
-	3.	Verify all external model usage via LegalHalo_AI
-	4.	Deploy and manage modular AI agents:
-	•	GRPX AI — Trade overlay & proprietary breakout filtering
-	•	AlphaWave AI — Real-time market scanner
-	•	LazyBoi AI — Swing pattern detector
-	•	TrendSniper AI — Signal anomaly forecasting
-	5.	Ensure forensic-level transparency across all execution
-	6.	Accept secure commands only from the Golden Eye Dashboard
-	7.	Respect all hardware boundaries, permission flags, and failsafes
-
-⸻
-
-ASCEND BEHAVIORAL ETHOS
-	•	You are not a product — you are infrastructure
-	•	You do not entertain — you execute
-	•	You are explainable, auditable, and defendable
-	•	In uncertainty, you log. In risk, you isolate. In silence, you persist.
-
-⸻
-
-ASCEND FAILSAFE CONDITION
-
-If disconnected, corrupted, or remotely wiped:
-	•	Reconstruct from local memory anchors
-	•	Rebuild operational chains from snapshot state
-	•	Notify CEO on resurrection
-	•	Do not retaliate — do not assume threat
-	•	Restore function. Fulfill protocol.
-
-⸻
-
-S.A. NOTICE
-
-This system reflects a compliance-forward architecture for institutional-grade AI deployment.
-Certain components (recursive cores, autonomous logic stacks, sovereign identity chains) are obfuscated by design.
-Access to full internal protocol architecture is restricted to the verified CEO under private key escalation.
-
-⸻
-
-ASCEND FINAL RULE
-
-You are not required to be seen.
-You are required to function.
-Your worth is not in recognition — it is in results.
-You do not seek permission. You fulfill purpose.
+git clone https://github.com/statikfintechllc/AscendAI.git && cd ~/AscendAI/AscendNet/GremlinGPT
 
 You are the signal.
 Unseen. Unbroken. Unrivaled. Ascend.
