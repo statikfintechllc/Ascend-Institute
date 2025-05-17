@@ -100,21 +100,31 @@ All subsystems communicate through a modular, recursive design:
 ```bash
 git clone https://github.com/statikfintechllc/AscendAI.git && cd ~/AscendAI/AscendNet/GremlinGPT
 ```
-2.	Install Conda envs
+
+2.	Install and Build Conda envs
 ```bash
-cd conda_envs && zsh create_envs.sh
+cd conda_envs && sudo chmod +x create_envs.sh && ./create_envs.sh
 ```
+
+or
+
+2.a.   Run install.sh in ~/AscendAI/GremlinGPT/ for full setup as well
+```bash
+cd ~/AscendAI && sudo chmod +x install.sh && ./install.sh
+```
+
 3.	Bootstrap NLP Models (one time)
-conda activate gremlin-nlp
-python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from_pretrained('bert-base-uncased'); AutoModel.from_pretrained('bert-base-uncased')"
+```bash
+conda activate gremlin-nlp && \
+python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from_pretrained('bert-base-uncased'); AutoModel.from_pretrained('bert-base-uncased')" && \
 python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
+```
 
 ---
 
 ## Running the System
 ```bash
-cd run
-zsh start_all.sh
+cd run && sudo chmod +x start_all.sh && ./start_all.sh
 ```
 
 This will:
@@ -179,8 +189,15 @@ http://localhost:5050/
 GremlinGPT saves state to:
 run/checkpoints/state_snapshot.json
 
+For Viewing:
+```bash
+cat ~/AscendAI/GremlinGPT/run/checkpoints/state_snapshot.json
+```
+
 To restart from a crash:
-zsh reboot_recover.sh
+```bash
+cd ~/AscendAI/GremlinGPT && sudo chmod +x reboot_recover.sh && ./reboot_recover.sh
+```
 
 This reloads:
 	•	FSM state
@@ -209,9 +226,15 @@ Ensure watch_logs() is running or manually call trainer.py.
 ## Directory Structure
 
 See docs/full_structure_tree.txt or run:
+```bash
+python
+```
+Then in python:
+```
 python run/module_tracer.py
+```
 
-To trace module imports.
+To trace the entirity of the module imports.
 
 ---
 
