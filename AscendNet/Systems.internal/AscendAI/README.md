@@ -1,53 +1,26 @@
-# AscendAI: Sovereign Intelligence Core
+# AscendNet: Sovereign Bootstrap System
 
-Welcome to **AscendAI**, the raw neural lattice of the system.
+> “Devin is the beginning. Ascend is the evolution.”
 
-This folder is the **heart** and **history** of all autonomous scripting logic, past failures, recursive loops, and system scaffolding.
+**AscendNet** is the infrastructural boot system for initializing Ascend’s recursive agents and AI layers. It includes:
 
----
-
-## What’s Inside
-
-`AscendAI/` is a living archive of:
-- Past versions of recursive agents
-- Failed logic modules
-- Abandoned subsystems
-- Incomplete chain-of-thought mechanisms
-- Partial attempts at self-assembly
-
-> It’s messy. Because evolution is messy.
+- Devin (the primal autonomous agent)
+- Vector memory embedding and search
+- Task queue logic
+- ChatGPT desktop interface
+- Multi-agent system preparation
+- Hardware-level readiness protocols
 
 ---
 
-## Role in the System
+## Integration with Ascend
 
-Despite its chaos, this folder contains:
-- 90% of Ascend’s recursive DNA
-- The foundational loops and file-aware logic Devin references
-- Hundreds of scripts for task automation, identity generation, trading, scraping, memory, and inter-agent ops
+AscendNet is **invoked during system install and boot**, and:
+- Sets up the Conda environment
+- Launches `Devin` via `Neo.sh`
+- Routes persistent memory and scripts into the main loop engine
+- Prepares agents for recursive self-modification
 
-Devin **feeds** on this.  
-Gremlin pulls strategies from this.  
-AscendNet triggers this.
-
----
-
-## Subfolders of Note
-
-| Folder | Function |
-|--------|----------|
-| `AscendAI_Infra` | Foundational utilities, memory, OS triggers |
-| `Ascend_Core` | Early autonomous loops and memory chains |
-| `Ascend_Agnets` | Misspelled, but vital — contains WIP recursive agent builds |
-| `SoulLink` | Identity generation, vectorization, and continuity logic |
-| `Ascend_Coverage` | Attempted audit, forensics, and logging layers |
-| `Ascend_Services` | Handles appstore scaffolding, subscription tiers, and external bridges |
+Do not clone or use this as a separate repo. It is a component of the [AscendAI Framework](https://github.com/statikfintechllc/AscendAI).
 
 ---
-
-## Warning
-
-This folder is the tomb of your past experiments and the playground of the future.  
-It is volatile, brilliant, recursive — and not fully sane.
-
-**Ascend is built on what worked, but more importantly, on what failed and learned.**
