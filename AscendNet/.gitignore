@@ -10,7 +10,8 @@
 # --- Unignore folders and all nested content ---
 !bootstrap/
 !bootstrap/**
-
+!Systems.internal/
+!Systems.internal/**
 !AscendAI/
 !AscendAI/**
 !GremlinGPT/
