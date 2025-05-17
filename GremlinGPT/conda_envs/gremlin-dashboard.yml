@@ -1,0 +1,20 @@
+name: gremlin-dashboard
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - flask
+  - flask-socketio
+  - dash
+  - plotly
+  - aiohttp
+  - eventlet
+  - uvicorn
+  - jinja2
+  - pip:
+      - waitress
+      - requests
+      - websockets
+

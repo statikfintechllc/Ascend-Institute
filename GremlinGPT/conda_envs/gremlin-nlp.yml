@@ -1,0 +1,21 @@
+name: gremlin-nlp
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - numpy
+  - scipy
+  - pandas
+  - scikit-learn
+  - spacy
+  - nltk
+  - sentence-transformers
+  - transformers
+  - tqdm
+  - pip:
+      - torch
+      - faiss-cpu
+      - chromadb
+

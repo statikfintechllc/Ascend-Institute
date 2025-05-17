@@ -1,0 +1,16 @@
+name: gremlin-scraper
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - playwright
+  - beautifulsoup4
+  - lxml
+  - aiohttp
+  - requests
+  - pip:
+      - undetected-chromedriver
+      - websockets
+

@@ -1,0 +1,9 @@
+GremlinGPT/memory/
+├── vector_store/
+│   ├── faiss/                  # FAISS index backend (optional future use)
+│   ├── chroma/                 # ChromaDB backend (optional plug-in)
+│   └── embedder.py             # Primary memory I/O and embedder logic
+├── local_index/
+│   ├── documents/              # Texts and embeddings stored in .json files
+│   ├── scripts/                # Stored agent-generated scripts
+│   └── metadata.db             # Metadata index (SQLite; initialized on install)
