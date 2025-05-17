@@ -1,0 +1,131 @@
+GremlinGPT/
+├── README.md
+├── install.sh
+├── reboot_recover.sh
+│
+├── config/
+│   ├── config.toml
+│   ├── memory_settings.json
+│   └── dashboard_config.yaml
+│
+├── conda_envs/
+│   ├── gremlin-nlp.yml
+│   ├── gremlin-dashboard.yml
+│   ├── gremlin-scraper.yml
+│   ├── gremlin-memory.yml
+│   ├── gremlin-orchestrator.yml
+│   └── create_envs.sh
+│
+├── run/
+│   ├── start_all.sh
+│   ├── stop_all.sh
+│   ├── reboot_recover.sh
+│   ├── module_tracer.py
+│   ├── logs/
+│   │   └── runtime.log
+│   └── checkpoints/
+│       └── state_snapshot.json
+│
+├── frontend/
+│   ├── index.html
+│   ├── app.js
+│   ├── service-worker.js
+│   ├── manifest.json
+│   └── components/
+│       ├── ChatInterface.js
+│       ├── TaskTreeView.js
+│       ├── MemoryGraph.js
+│       └── TradingPanel.js
+│
+├── backend/
+│   ├── server.py
+│   ├── router.py
+│   ├── state_manager.py
+│   ├── scheduler.py
+│   ├── globals.py
+│   ├── interface/
+│   │   └── commands.py
+│   └── api/
+│       ├── chat_handler.py
+│       ├── memory_api.py
+│       ├── scraping_api.py
+│       └── planner.py
+│
+├── memory/
+│   ├── vector_store/
+│   │   ├── faiss/
+│   │   ├── chroma/
+│   │   └── embedder.py
+│   └── local_index/
+│       ├── documents/
+│       ├── scripts/
+│       └── metadata.db
+│
+├── nlp_engine/
+│   ├── tokenizer.py
+│   ├── parser.py
+│   ├── pos_tagger.py
+│   ├── semantic_score.py
+│   ├── transformer_core.py
+│   ├── diff_engine.py
+│   └── mini_attention.py
+│
+├── self_training/
+│   ├── trainer.py
+│   ├── generate_dataset.py
+│   ├── mutation_engine.py
+│   └── feedback_loop.py
+│
+├── scraper/
+│   ├── scraper_loop.py
+│   ├── dom_navigator.py
+│   ├── page_simulator.py
+│   ├── playwright_handler.py
+│   ├── persistence/
+│   │   └── cookies/
+│   └── profiles/
+│       └── chromium_profile/
+│
+├── agent_core/
+│   ├── fsm.py
+│   ├── task_queue.py
+│   ├── heuristics.py
+│   ├── tool_executor.py
+│   ├── agent_profiles.yaml
+│   └── error_log.py
+│
+├── trading_core/
+│   ├── signal_generator.py
+│   ├── stock_scraper.py
+│   ├── rules_engine.py
+│   ├── portfolio_tracker.py
+│   └── tax_estimator.py
+│
+├── data/
+│   ├── prompts/
+│   │   └── README.md
+│   ├── raw_scrapes/
+│   ├── embeddings/
+│   ├── nlp_training_sets/
+│   │   └── bootstrap.json
+│   └── logs/
+│       └── bootstrap.log
+│
+├── tests/
+│   ├── test_scraper.py
+│   ├── test_memory.py
+│   ├── test_nlp.py
+│   └── test_dashboard.py
+│
+├── self_mustation_watcher/
+│   ├── watcher.py
+│   └── mutation_deamon.py
+│
+└── docs/
+    ├── full_structure_tree.txt
+    ├── system_call_graph.md
+    ├── system_overview.md
+    ├── fsm_architecture.md
+    ├── memory_pipeline.md
+    ├── trading_signals.md
+    └── self_training.md
