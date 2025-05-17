@@ -101,8 +101,9 @@ All subsystems communicate through a modular, recursive design:
 git clone https://github.com/statikfintechllc/AscendAI.git && cd ~/AscendAI/AscendNet/GremlinGPT
 ```
 2.	Install Conda envs
+```bash
 cd conda_envs && zsh create_envs.sh
-
+```
 3.	Bootstrap NLP Models (one time)
 conda activate gremlin-nlp
 python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from_pretrained('bert-base-uncased'); AutoModel.from_pretrained('bert-base-uncased')"
@@ -111,8 +112,10 @@ python -c "from sentence_transformers import SentenceTransformer; SentenceTransf
 ---
 
 ## Running the System
+```bash
 cd run
 zsh start_all.sh
+```
 
 This will:
 	•	Start the backend server
