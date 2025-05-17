@@ -1,0 +1,14 @@
+{
+    "enabled": true,
+    "auto_reboot": true,
+    "fallback_module": "Ascend_Core/main.py",
+    "log_on_trigger": true,
+    "notify_ceo": true,
+    "ceo_contact": "statik@soullink.api",
+    "trigger_conditions": [
+        "engine_crash",
+        "missing_memory",
+        "mutation_failure",
+        "node_timeout"
+    ]
+}

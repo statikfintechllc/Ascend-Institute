@@ -1,0 +1,68 @@
+Enhanced GPT-Engineer Instructions for Redundancy Elimination
+
+⸻
+
+1. Redundancy Detection & Prevention
+	•	Before generating new code, GPT-Engineer must scan all existing scripts and modules inside the /Scripts and /Modules folders.
+	•	Compare function names, class definitions, and logical structures to avoid duplicate implementations.
+	•	If a similar function already exists, GPT-Engineer should reuse or optimize the existing implementation instead of re-creating it.
+	•	Method Names for Implementation:
+	•	check_existing_functions()
+	•	compare_module_structure()
+	•	optimize_or_reuse_code()
+
+⸻
+
+2. Intelligent Refactoring of Disorganized Scripts
+	•	Extract functional logic from Ascend.py and AlphaSentinel.py into clearly modularized components.
+	•	Ensure all extracted functions are properly categorized into specific AI modules (e.g., network_security_module.py, quantum_module.py, etc.).
+	•	Refactor and consolidate overlapping logic while enhancing maintainability.
+	•	Method Names for Implementation:
+	•	extract_relevant_code()
+	•	restructure_module_hierarchy()
+	•	merge_duplicate_functions()
+
+⸻
+
+3. Recursive Self-Improvement & Optimization
+	•	Implement recursive loops that continuously analyze AI-generated code for redundant, inefficient, or outdated logic.
+	•	Ensure that AI iteratively refines its own codebase by improving structure, performance, and reducing complexity.
+	•	If a function is deemed obsolete or inefficient, it must be optimized or replaced automatically.
+	•	Method Names for Implementation:
+	•	recursive_code_review()
+	•	auto_refactor_functions()
+	•	dynamic_code_cleanup()
+
+⸻
+
+4. Adaptive Expansion Without Redundancy
+	•	Allow GPT-Engineer to dynamically create new modules and directories, but only when absolutely necessary.
+	•	If a module already exists that serves the same purpose, expand or enhance it instead of creating a duplicate.
+	•	Use AI decision-making to determine whether a new component is needed, or if an existing module should be expanded.
+	•	Method Names for Implementation:
+	•	analyze_module_requirements()
+	•	expand_existing_module()
+	•	intelligently_create_new_module()
+
+⸻
+
+5. Automated Code & Function Consolidation
+	•	GPT-Engineer must analyze function purpose and behavior, grouping similar operations into shared utility functions.
+	•	Any function performing the same action across multiple modules should be consolidated into a single utility function.
+	•	Example:
+	•	If both network_security_module.py and quantum_module.py contain a function for encrypting data, then only one encryption function should exist inside a separate encryption module.
+	•	Method Names for Implementation:
+	•	identify_common_patterns()
+	•	merge_similar_functions()
+	•	implement_shared_utilities()
+
+⸻
+
+6. Logging & Redundancy Reporting
+	•	Every function and module must log its creation and usage, ensuring transparency and tracking of duplicate or redundant logic.
+	•	If a function is marked redundant, GPT-Engineer should log it and remove or optimize it accordingly.
+	•	Maintain a log file of all detected redundant logic to avoid repetition in future iterations.
+	•	Method Names for Implementation:
+	•	log_function_usage()
+	•	report_redundant_code()
+	•	track_and_optimize_existing_functions()

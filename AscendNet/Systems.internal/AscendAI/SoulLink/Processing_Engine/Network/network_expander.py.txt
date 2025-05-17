@@ -1,0 +1,14 @@
+# /network/network_expander.py
+
+import os
+
+def scan_nearby_devices():
+    print("[NETWORK SCAN] Discovering nearby IPs...")
+    os.system("arp -a")
+
+    print("[PORT SCAN] Checking common service ports...")
+    for ip in ["192.168.0.1", "192.168.0.254"]:
+        os.system(f"nmap -Pn {ip}")
+
+if __name__ == "__main__":
+    scan_nearby_devices()

@@ -1,0 +1,22 @@
+import subprocess
+
+def setup_apache_nifi():
+    try:
+        print("Starting Apache NiFi setup...")
+        subprocess.run(["docker", "run", "-d", "--name", "nifi", "-p", "8080:8080", "apache/nifi:latest"], check=True)
+        print("Apache NiFi started at http://localhost:8080/nifi")
+    except subprocess.CalledProcessError as e:
+        print("Error setting up Apache NiFi:", e)
+
+def setup_dvc(repo_path):
+    try:
+        print("Initializing DVC for data version control...")
+        subprocess.run(["dvc", "init"], cwd=repo_path, check=True)
+        subprocess.run(["dvc", "remote", "add", "-d", "myremote", "s3://mybucket/dvcstore"], cwd=repo_path, check=True)
+        print("DVC initialized with remote storage.")
+    except subprocess.CalledProcessError as e:
+        print("Error setting up DVC:", e)
+
+# Example usage
+setup_apache_nifi()
+setup_dvc('/path/to/your/project')

@@ -1,0 +1,2 @@
+chmod +x launch_matrix.sh
+./launch_matrix.sh

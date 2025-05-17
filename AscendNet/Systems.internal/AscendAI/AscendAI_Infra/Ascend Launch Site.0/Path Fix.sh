@@ -1,0 +1,2 @@
+# Replaces any '~/AscendAI' usage with the new full path
+find . -type f -exec sed -i 's|~/AscendAI|/mnt/SkylineX/AscendAI|g' {} + && find . -type f -exec sed -i 's|/home/you/AscendAI|/mnt/SkylineX/AscendAI|g' {} + && find . -type f -exec sed -i 's|~/|/mnt/SkylineX/|g' {} +

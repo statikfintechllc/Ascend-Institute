@@ -1,0 +1,28 @@
+# Agent Core
+openai
+langchain
+langgraph-core
+python-dotenv
+
+# Memory & Context
+sentence-transformers
+faiss-cpu
+tinydb
+
+# Logging & Monitoring
+loguru
+sentry-sdk
+watchtower
+
+# Code Quality & Execution Safety
+autopep8
+pylint
+flake8
+bandit
+black
+vulture
+restrictedpython
+
+# Tool Registry Plumbing
+importlib-metadata
+inspect
