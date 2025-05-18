@@ -129,4 +129,5 @@ GremlinGPT/
 │   ├── memory_pipeline.md
 │   ├── trading_signals.md
 │   └── self_training.md
+│
 └── test_system_start.sh
