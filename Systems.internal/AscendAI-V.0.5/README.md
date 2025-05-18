@@ -24,3 +24,7 @@ AscendNet is **invoked during system install and boot**, and:
 Do not clone or use this as a separate repo. It is a component of the [AscendAI Framework](https://github.com/statikfintechllc/AscendAI).
 
 ---
+
+FAILED
+
+THIS PLACE SUCKS LOL
