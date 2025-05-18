@@ -28,5 +28,14 @@ echo "[START] Launching Self-Trainer..."
 conda activate gremlin-orchestrator && \
   nohup python self_training/trainer.py > run/logs/trainer.out 2>&1 &
 
+# Launch dashboard backend
+echo "[*] Starting backend server..."
+conda activate gremlin-dashboard
+  nohub python backend/server.py &
+
+# Launch ngrok tunnel if enabled
+echo "[*] Checking ngrok..."
+  nohub python run/ngrok_launcher.py
+
 echo "[START] All subsystems running."
 
