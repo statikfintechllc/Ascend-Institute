@@ -5,6 +5,12 @@ offline = true
 debug = true
 log_level = "INFO"
 
+[ngrok]
+enabled = true
+authtoken = "REPLACE_ME"
+region = "us"
+subdomain = ""
+
 [paths]
 base_dir = "~/GremlinGPT/"
 data_dir = "$ROOT/data/"
