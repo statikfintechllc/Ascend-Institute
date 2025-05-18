@@ -121,11 +121,12 @@ GremlinGPT/
 │   ├── watcher.py
 │   └── mutation_deamon.py
 │
-└── docs/
-    ├── full_structure_tree.txt
-    ├── system_call_graph.md
-    ├── system_overview.md
-    ├── fsm_architecture.md
-    ├── memory_pipeline.md
-    ├── trading_signals.md
-    └── self_training.md
+├── docs/
+│   ├── full_structure_tree.txt
+│   ├── system_call_graph.md
+│   ├── system_overview.md
+│   ├── fsm_architecture.md
+│   ├── memory_pipeline.md
+│   ├── trading_signals.md
+│   └── self_training.md
+└── test_system_start.sh
