@@ -189,6 +189,11 @@ http://localhost:5050/
 GremlinGPT saves state to:
 run/checkpoints/state_snapshot.json
 
+To Test Systems Before Launch:
+```bash
+cd ~/AscendAI/GremlinGPT && sudo chmod +x test_system_start.sh && ./test_system_start.sh
+```
+
 For Viewing:
 ```bash
 cat ~/AscendAI/GremlinGPT/run/checkpoints/state_snapshot.json
