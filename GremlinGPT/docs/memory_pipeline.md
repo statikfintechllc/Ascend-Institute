@@ -21,35 +21,17 @@ It is structured to support:
 ---
 
 ## Architecture
-+--------------------+
-|   Raw Task Input   |
-+--------------------+
-          |
-          v
-+--------------------+        <- SBERT / MiniLM
-|     Embedder       |  (sentence-transformers)
-+--------------------+
-          |
-          v
-+----------------------------+
-|   package_embedding(text)  |
-+----------------------------+
-          |
-          v
-+----------------------------+
-|  Tag + Vectorize + Store   |
-+----------------------------+
-          |
-          v
-+------------------+    +---------------------+
-| Chroma VectorDB  |    |  FAISS Local Index  |
-|  (configurable)  |    | (default: CPU-fast) |
-+------------------+    +---------------------+
-          |
-          v
-+-----------------------+
-| metadata.db (sqlite)  |
-+-----------------------+
+
+	•	The architecture consists of multiple components:
+	•	Raw Task Input
+	•	SBERT / MiniLM (sentence-transformers)
+	•	Embedder
+	•	package_embedding(text)
+	•	Tag + Vectorize + Store
+	•	Chroma VectorDB (configurable)
+	•	FAISS Local Index (default: CPU-fast)
+	•	metadata.db (sqlite)
+
 
 ---
 
