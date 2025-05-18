@@ -25,7 +25,7 @@ Learns from you, your system, your energy.
 **Note:** While this project is licensed under Apache 2.0,  
 **commercial deployment or redistribution at scale**  
 (e.g., SaaS, resale, bundling into products) requires a separate license or written permission.  
-Contact: statiksmoktm@gmail.com
+Contact: ascend.gremlin@gmail.com
 
 Licensed under Apache 2.0 © 2025 StatikFinTech, LLC. See LICENSE for details.
 
