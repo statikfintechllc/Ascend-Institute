@@ -57,7 +57,7 @@ Controlled via:
 
 ⸻
 
-Embedding + Tagging
+## Embedding + Tagging
 
 All embeddings include:
 	•	384-d vector (MiniLM)
@@ -80,7 +80,7 @@ Metadata supports:
 
 ⸻
 
-Embedder Logic
+## Embedder Logic
 
 memory/vector_store/embedder.py
 	•	Loads SentenceTransformer (MiniLM-L6-v2)
@@ -90,7 +90,7 @@ memory/vector_store/embedder.py
 
 ⸻
 
-Auto-Indexing
+## Auto-Indexing
 
 If auto_index = true in config:
 	•	All scrapes
@@ -104,7 +104,7 @@ Chunking can be configured by index_chunk_size.
 
 ⸻
 
-Semantic Search
+## Semantic Search
 
 Search queries use:
 	•	Vector cosine similarity (semantic_score.py)
@@ -118,7 +118,7 @@ All search results can:
 
 ⸻
 
-Backends
+## Backends
 
 GremlinGPT supports:
 Backend
@@ -135,7 +135,7 @@ Backend is selected at runtime via config.toml.
 
 ⸻
 
-Mutation Awareness
+## Mutation Awareness
 
 Memory stores code diffs (from watcher.py) as:
 ```json
@@ -151,7 +151,7 @@ Used later in generate_dataset.py to build finetuning data.
 
 ⸻
 
-Snapshot & Rollback
+## Snapshot & Rollback
 
 Memory snapshot system:
 	•	Saves vector + metadata periodically
@@ -161,7 +161,8 @@ Memory snapshot system:
 
 ⸻
 
-Usage in Other Modules
+## Usage in Other Modules
+
 Module
 Role
 chat_handler.py
@@ -175,7 +176,7 @@ Pulls vector logs for NLP retraining
 
 ⸻
 
-Conclusion
+## Conclusion
 
 The memory engine is what enables GremlinGPT to:
 	•	Learn from experience
