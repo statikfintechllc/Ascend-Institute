@@ -19,37 +19,6 @@ GremlinGPT is a locally hosted recursive intelligence system that:
 
 ---
 
-## High-Level Architecture
-+———————–+
-|      Frontend (PWA)   |
-| Chat, Graph, Trading  |
-+———————–+
-|
-v
-+———————–+
-|    Backend (Flask)    |
-| SocketIO + API Router |
-+———————–+
-|
-v
-+—————————+
-|      Agent FSM Loop       |
-| Task queue + Heuristics   |
-+—————————+
-|
-+—–+——+–––––––––––+
-|            |                      |
-v            v                      v
-Memory        NLP Engine             Shell Tools
-(VectorDB)    (Embedder, Parser)     (Secure exec)
- ^            ^                      |
- +------------+----------------------+
-              |
-      Self-Mutation Core
-  (Watcher → Feedback → Trainer)
-
-  ---
-
 ## Modules and Responsibilities
 
 ### 1. `frontend/` (PWA Interface)
