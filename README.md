@@ -148,7 +148,7 @@ http://localhost:5050/
 
 2. agent_core/
 	•	Task queue w/ retry
-	•	Tool dispatcher (scrape, scan, train, nlp)
+	•	Tool dispatcher (scrape, scan, train, nlp, shell executor)
 	•	FSM planner + heuristics
 
 3. nlp_engine/
