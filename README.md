@@ -6,6 +6,17 @@
 
 ⸻
 
+## Support This Project
+
+**Sponsor via:**
+- [CashApp – $statikmoney8](https://cash.app/$statikmoney8)
+- [PayPal](https://paypal.me/statikmoney8)
+- Bitcoin (Coinbase): `bc1qarsr966ulmcs3mlcvae7p63v4j2y2vqrw74jl8`
+- Ethereum (Coinbase): `0xC2db50A0fc6c95f36Af7171D8C41F6998184103F`
+- Chime (manual): `$StatikSmokTM`
+
+⸻
+
 ### TL;DR
 
 **AscendAI** is a self-building, self-healing recursive AI agent system.  
