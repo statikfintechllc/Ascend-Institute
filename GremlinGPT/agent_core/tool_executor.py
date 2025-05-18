@@ -21,6 +21,7 @@ def execute_tool(task):
     elif task["type"] == "self_train":
         inject_feedback()
         return {"trained": True}
+        
     elif task["type"] == "shell":
         output = run_shell_command(task["command"])
         return {"shell_result": output[:500]}  # Limit for memory safety
