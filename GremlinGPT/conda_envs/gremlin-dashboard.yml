@@ -17,4 +17,6 @@ dependencies:
       - waitress
       - requests
       - websockets
+      - qrcode[pil]
+      - pyngrok      
 
