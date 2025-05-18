@@ -21,6 +21,7 @@ GremlinGPT/
 │   ├── stop_all.sh
 │   ├── reboot_recover.sh
 │   ├── module_tracer.py
+│   ├── ngrok_launcher.py
 │   ├── logs/
 │   │   └── runtime.log
 │   └── checkpoints/
@@ -153,6 +154,7 @@ GremlinGPT/
 │   ├── memory_pipeline.md
 │   ├── trading_signals.md
 │   ├── self_training.md
+│   ├── ngrok_integration.md
 │   ├── gremlin.service.md
 │   └── automated_shell.md
 │
