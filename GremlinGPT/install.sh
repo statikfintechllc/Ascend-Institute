@@ -34,6 +34,10 @@ touch data/logs/bootstrap.log
 
 # Setup environment
 cd conda_envs && zsh create_envs.sh && cd ..
-
+echo "[*] Installing ngrok CLI (optional)..."
+if ! command -v ngrok &> /dev/null; then
+    echo "You may install it via: https://ngrok.com/download"
+    echo "Or configure it via pyngrok in config.toml"
+fi
 echo "[INSTALL] GremlinGPT installed successfully."
 
