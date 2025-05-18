@@ -23,7 +23,7 @@
           TradingPanel.js  ─→  mutation_engine.py  ─→  dom_navigator.py
               ▲
               │
-frontend/app.js  ─→  ChatInterface.js
+    frontend/app.js  ─→  ChatInterface.js
                    └→  TaskTreeView.js  ─→  embedder.py
                    └→  MemoryGraph.js   ─→  memory_api.py
 
