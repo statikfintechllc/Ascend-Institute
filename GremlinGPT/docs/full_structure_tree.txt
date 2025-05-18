@@ -24,7 +24,11 @@ GremlinGPT/
 │   ├── logs/
 │   │   └── runtime.log
 │   └── checkpoints/
-│       └── state_snapshot.json
+│       ├── state_snapshot.json
+│       └── snapshots/
+│
+├── systemd/
+│   └── gremlin.service
 │
 ├── frontend/
 │   ├── index.html
@@ -56,6 +60,7 @@ GremlinGPT/
 │   │   ├── faiss/
 │   │   ├── chroma/
 │   │   └── embedder.py
+│   ├── log_history.py
 │   └── local_index/
 │       ├── documents/
 │       ├── scripts/
@@ -94,15 +99,33 @@ GremlinGPT/
 │   ├── agent_profiles.yaml
 │   └── error_log.py
 │
-├── agent_shell/
-│   └── shell_executor.py
-│
 ├── trading_core/
 │   ├── signal_generator.py
 │   ├── stock_scraper.py
 │   ├── rules_engine.py
 │   ├── portfolio_tracker.py
 │   └── tax_estimator.py
+│
+├── agents/
+│   └── planner_agent.py
+│
+├── core/
+│   ├── loop.py
+│   ├── kernel.py
+│   └── snapshot.py
+│
+├── executors/
+│   └── python_executor.py
+│
+├── tools/
+│   └── reward_model.py
+│
+├── agent_shell/
+│   └── shell_executor.py
+│
+├── self_mutation_watcher/
+│   ├── watcher.py
+│   └── mutation_daemon.py
 │
 ├── data/
 │   ├── prompts/
@@ -112,17 +135,15 @@ GremlinGPT/
 │   ├── nlp_training_sets/
 │   │   └── bootstrap.json
 │   └── logs/
-│       └── bootstrap.log
+│       ├── bootstrap.log
+│       ├── gremlin_exec_log.jsonl
+│       └── rewards.jsonl
 │
 ├── tests/
 │   ├── test_scraper.py
 │   ├── test_memory.py
 │   ├── test_nlp.py
 │   └── test_dashboard.py
-│
-├── self_mustation_watcher/
-│   ├── watcher.py
-│   └── mutation_deamon.py
 │
 ├── docs/
 │   ├── full_structure_tree.txt
@@ -131,6 +152,8 @@ GremlinGPT/
 │   ├── fsm_architecture.md
 │   ├── memory_pipeline.md
 │   ├── trading_signals.md
-│   └── self_training.md
+│   ├── self_training.md
+│   ├── gremlin.service.md
+│   └── automated_shell.md
 │
 └── test_system_start.sh
