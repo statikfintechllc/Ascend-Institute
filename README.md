@@ -194,6 +194,11 @@ For Viewing:
 cat ~/AscendAI/GremlinGPT/run/checkpoints/state_snapshot.json
 ```
 
+To trace logs live:
+```bash
+tail -f run/logs/runtime.log
+```
+
 To restart from a crash:
 ```bash
 cd ~/AscendAI/GremlinGPT && sudo chmod +x reboot_recover.sh && ./reboot_recover.sh
