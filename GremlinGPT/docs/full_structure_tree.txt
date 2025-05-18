@@ -94,6 +94,9 @@ GremlinGPT/
 │   ├── agent_profiles.yaml
 │   └── error_log.py
 │
+├── agent_shell/
+│   └── shell_executor.py
+│
 ├── trading_core/
 │   ├── signal_generator.py
 │   ├── stock_scraper.py
