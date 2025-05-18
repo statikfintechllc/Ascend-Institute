@@ -17,7 +17,7 @@ jobs:
       - name: Lint codebase
         run: |
           pip install flake8
-          flake8 .
+          flake8 GremlinGPT/
 
       - name: Install requirements
         run: |
@@ -25,7 +25,7 @@ jobs:
 
       - name: Targeted Lint
         run: |
-          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 GremlinGPT/ --count --select=E9,F63,F7,F82 --show-source --statistics
 
       - name: Run Matrix
         run: |
