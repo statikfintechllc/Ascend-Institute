@@ -3,6 +3,7 @@ from nlp_engine.transformer_core import encode
 from memory.vector_store.embedder import package_embedding
 from trading_core.signal_generator import generate_signals
 from self_training.feedback_loop import inject_feedback
+from agent_shell.shell_executor import run_shell_command
 import asyncio
 
 def execute_tool(task):
@@ -20,7 +21,9 @@ def execute_tool(task):
     elif task["type"] == "self_train":
         inject_feedback()
         return {"trained": True}
-
+    elif task["type"] == "shell":
+        output = run_shell_command(task["command"])
+        return {"shell_result": output[:500]}  # Limit for memory safety
     else:
         raise ValueError("Unknown task type")
 
