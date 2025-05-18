@@ -11,9 +11,9 @@
 **Sponsor via:**
 - [CashApp](https://cash.app/$statikmoney8)
 - [PayPal](https://paypal.me/statikmoney8)
-- Bitcoin (Coinbase): `bc1qarsr966ulmcs3mlcvae7p63v4j2y2vqrw74jl8`
-- Ethereum (Coinbase): `0xC2db50A0fc6c95f36Af7171D8C41F6998184103F`
-- Chime (manual): `$StatikSmokTM`
+- Bitcoin: `bc1qarsr966ulmcs3mlcvae7p63v4j2y2vqrw74jl8`
+- Ethereum: `0xC2db50A0fc6c95f36Af7171D8C41F6998184103F`
+- Chime: `$StatikSmokTM`
 
 ⸻
 
