@@ -103,7 +103,7 @@ git clone https://github.com/statikfintechllc/AscendAI.git && cd ~/AscendAI/Asce
 
 2.	Install and Build Conda envs
 ```bash
-cd conda_envs && sudo chmod +x create_envs.sh && ./create_envs.sh
+cd ~/AscendAI/GremlinGPT/conda_envs && sudo chmod +x create_envs.sh && ./create_envs.sh
 ```
 
 or
