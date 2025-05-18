@@ -3,7 +3,10 @@
 from pyngrok import ngrok
 import toml
 import os
+import qrcode
 
+img = qrcode.make(str(public_url))
+img.save("run/ngrok_qr.png")
 config = toml.load("config/config.toml")
 
 if not config.get("ngrok", {}).get("enabled", False):
