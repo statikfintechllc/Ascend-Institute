@@ -14,7 +14,10 @@ def generate_signals():
             result = {**stock, **signal}
             signals.append(result)
 
-            text = f"{stock['symbol']} @ ${stock['price']} | Signal: {signal['signal']}"
+            text = (
+                f"{stock['symbol']} @ ${stock['price']} | "
+                f"Signal: {signal['signal']}"
+            )
             vec = [
                 stock["price"],
                 stock["ema"],

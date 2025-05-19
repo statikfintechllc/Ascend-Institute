@@ -6,6 +6,8 @@ from collections import Counter
 def extract_dom_structure(html):
     """
     Extracts structured DOM metadata, links, semantic blocks, and top text from HTML.
+    """
+    """
     This enhances what goes into memory or NLP for semantic tagging.
     """
     soup = BeautifulSoup(html, "lxml")
@@ -49,11 +51,11 @@ def extract_dom_structure(html):
     }
 
     logger.info(
-        f"[DOM NAVIGATOR] Parsed HTML: {len(links)} links, {len(nodes)} semantic nodes, {len(full_text)} chars of text."
+        f"[DOM NAVIGATOR] Parsed HTML: {len(links)} links, "
+        f"{len(nodes)} semantic nodes, {len(full_text)} chars of text."
     )
 
     return result
-
 
 # CLI/Debug Usage
 if __name__ == "__main__":
