@@ -111,7 +111,14 @@ All subsystems communicate through a modular, recursive design:
 git clone https://github.com/statikfintechllc/AscendAI.git && cd ~/AscendAI/AscendNet/GremlinGPT
 ```
 
-2.	Install and Build Conda envs
+2.	Bootstrap NLP Models (one time)
+```bash
+conda activate gremlin-nlp && \
+python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from_pretrained('bert-base-uncased'); AutoModel.from_pretrained('bert-base-uncased')" && \
+python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
+```
+
+3.	Install and Build Conda envs
 ```bash
 cd ~/AscendAI/GremlinGPT/conda_envs && sudo chmod +x create_envs.sh && ./create_envs.sh
 ```
@@ -120,13 +127,6 @@ or
 
 ```bash
 cd ~/AscendAI/GremlinGPT && sudo chmod +x install.sh && ./install.sh
-```
-
-3.	Bootstrap NLP Models (one time)
-```bash
-conda activate gremlin-nlp && \
-python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from_pretrained('bert-base-uncased'); AutoModel.from_pretrained('bert-base-uncased')" && \
-python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
 ```
 
 ⸻

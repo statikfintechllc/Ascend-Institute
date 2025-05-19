@@ -33,7 +33,7 @@ touch run/checkpoints/state_snapshot.json
 touch data/logs/bootstrap.log
 
 # Setup environment
-cd conda_envs && zsh create_envs.sh && cd ..
+cd conda_envs && sudo chmod +x create_envs.sh && ./create_envs.sh && cd ..
 echo "[*] Installing ngrok CLI (optional)..."
 if ! command -v ngrok &> /dev/null; then
     echo "You may install it via: https://ngrok.com/download"

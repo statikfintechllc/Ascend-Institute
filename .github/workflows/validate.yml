@@ -1,33 +1,63 @@
-name: AscendAI Validation & Lint
+name: GremlinGPT Validation & Lint
 
 on: [push, pull_request]
 
 jobs:
   validate:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Set up Miniconda
+        uses: conda-incubator/setup-miniconda@v2
         with:
+          auto-update-conda: true
           python-version: 3.11
+          auto-activate-base: true
+
+      - name: Run create_envs.sh to build Conda env
+        run: |
+          cd GremlinGPT/conda_envs
+          chmod +x create_envs.sh
+          ./create_envs.sh
+
+      - name: Activate Conda env and install linters
+        run: |
+          source ~/miniconda3/etc/profile.d/conda.sh
+          conda activate gremlin-nlp
+          pip install flake8 black
+
+      - name: Bootstrap NLP models
+        run: |
+          source ~/miniconda3/etc/profile.d/conda.sh
+          conda activate gremlin-nlp
+          python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from_pretrained('bert-base-uncased'); AutoModel.from_pretrained('bert-base-uncased')"
+          python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
+
+      - name: Run Black (non-blocking diff check)
+        run: |
+          source ~/miniconda3/etc/profile.d/conda.sh
+          conda activate gremlin-nlp
+          black GremlinGPT/ --check --diff || echo "Black found formatting issues"
 
       - name: Lint codebase
         run: |
-          pip install flake8
-          flake8 GremlinGPT/ --exclude=GremlinGPT/data/prompts --max-line-length=120
+          source ~/miniconda3/etc/profile.d/conda.sh
+          conda activate gremlin-nlp
+          flake8 GremlinGPT/ --exclude=GremlinGPT/data/prompts
 
-      - name: Install requirements
+      - name: Targeted Lint (fail on critical issues only)
         run: |
-          pip install -r ascend_requirements.txt
-
-      - name: Targeted Lint
-        run: |
+          source ~/miniconda3/etc/profile.d/conda.sh
+          conda activate gremlin-nlp
           flake8 GremlinGPT/ --exclude=GremlinGPT/data/prompts --count \
-          --select=E9,F63,F7,F82 --max-line-length=120 --show-source --statistics
+          --select=E9,F63,F7,F82 --show-source --statistics
 
       - name: Run GremlinGPT
         run: |
-          python start_all.sh || echo "Run complete, warnings ignored"
+          source ~/miniconda3/etc/profile.d/conda.sh
+          conda activate gremlin-nlp
+          chmod +x GremlinGPT/start_all.sh
+          ./GremlinGPT/start_all.sh || echo "Run complete, warnings ignored"
