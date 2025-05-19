@@ -1,15 +1,17 @@
+# agent_core/fsm.py
+
+import time
+import schedule
+from rich.console import Console
+
 from agent_core.task_queue import TaskQueue
 from agent_core.tool_executor import execute_tool
 from agent_core.heuristics import evaluate_task
 from agent_core.error_log import log_error
 from backend import globals as G
-from rich.console import Console
-import time
-import schedule
 
-# New Import
-from self_mutation_watcher.mutation_daemon import run_daemon
 from self_mutation_watcher.watcher import scan_and_diff
+from self_mutation_watcher.mutation_daemon import run_daemon
 
 FSM_STATE = "IDLE"
 console = Console()
@@ -39,7 +41,7 @@ def fsm_loop():
         try:
             scan_and_diff()
         except Exception as e:
-            console.log(f"[FSM] Diff Scan Failed: {e}")
+            console.log(f"[FSM] Diff scan error: {e}")
 
         time.sleep(0.5)
 
@@ -47,8 +49,10 @@ def fsm_loop():
     console.log("[FSM] Queue cleared.")
 
 def run_schedule():
-    run_daemon()  # Start mutation watcher in background
+    run_daemon()  # Persistent mutation daemon thread
     schedule.every(30).seconds.do(fsm_loop)
+
+    console.log("[FSM] Scheduler engaged.")
     while True:
         schedule.run_pending()
         time.sleep(1)
