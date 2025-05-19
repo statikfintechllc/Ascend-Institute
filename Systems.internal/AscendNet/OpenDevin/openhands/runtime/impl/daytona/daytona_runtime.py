@@ -22,7 +22,7 @@ from openhands.runtime.utils.request import RequestHTTPError
 from openhands.utils.async_utils import call_sync_from_async
 from openhands.utils.tenacity_stop import stop_if_should_exit
 
-WORKSPACE_PREFIX = 'openhands-sandbox-'
+WORKSPACE_PREFIX = "openhands-sandbox-"
 
 
 class DaytonaRuntime(ActionExecutionClient):
@@ -35,14 +35,14 @@ class DaytonaRuntime(ActionExecutionClient):
         self,
         config: AppConfig,
         event_stream: EventStream,
-        sid: str = 'default',
+        sid: str = "default",
         plugins: list[PluginRequirement] | None = None,
         env_vars: dict[str, str] | None = None,
         status_callback: Callable | None = None,
         attach_to_existing: bool = False,
         headless_mode: bool = True,
     ):
-        assert config.daytona_api_key, 'Daytona API key is required'
+        assert config.daytona_api_key, "Daytona API key is required"
 
         self.config = config
         self.sid = sid
@@ -60,8 +60,8 @@ class DaytonaRuntime(ActionExecutionClient):
         # workspace_base cannot be used because we can't bind mount into a workspace.
         if self.config.workspace_base is not None:
             self.log(
-                'warning',
-                'Workspace mounting is not supported in the Daytona runtime.',
+                "warning",
+                "Workspace mounting is not supported in the Daytona runtime.",
             )
 
         super().__init__(
@@ -79,12 +79,12 @@ class DaytonaRuntime(ActionExecutionClient):
         try:
             workspace = self.daytona.get_current_workspace(self.workspace_id)
             self.log(
-                'info', f'Attached to existing workspace with id: {self.workspace_id}'
+                "info", f"Attached to existing workspace with id: {self.workspace_id}"
             )
         except Exception:
             self.log(
-                'warning',
-                f'Failed to attach to existing workspace with id: {self.workspace_id}',
+                "warning",
+                f"Failed to attach to existing workspace with id: {self.workspace_id}",
             )
             workspace = None
 
@@ -92,20 +92,20 @@ class DaytonaRuntime(ActionExecutionClient):
 
     def _get_creation_env_vars(self) -> dict[str, str]:
         env_vars: dict[str, str] = {
-            'port': str(self._sandbox_port),
-            'PYTHONUNBUFFERED': '1',
-            'VSCODE_PORT': str(self._vscode_port),
+            "port": str(self._sandbox_port),
+            "PYTHONUNBUFFERED": "1",
+            "VSCODE_PORT": str(self._vscode_port),
         }
 
         if self.config.debug:
-            env_vars['DEBUG'] = 'true'
+            env_vars["DEBUG"] = "true"
 
         return env_vars
 
     def _create_workspace(self) -> Workspace:
         workspace_params = CreateWorkspaceParams(
             id=self.workspace_id,
-            language='python',
+            language="python",
             image=self.config.sandbox.runtime_container_image,
             public=True,
             env_vars=self._get_creation_env_vars(),
@@ -114,44 +114,44 @@ class DaytonaRuntime(ActionExecutionClient):
         return workspace
 
     def _construct_api_url(self, port: int) -> str:
-        assert self.workspace is not None, 'Workspace is not initialized'
+        assert self.workspace is not None, "Workspace is not initialized"
         assert (
             self.workspace.instance.info is not None
-        ), 'Workspace info is not available'
+        ), "Workspace info is not available"
         assert (
             self.workspace.instance.info.provider_metadata is not None
-        ), 'Provider metadata is not available'
+        ), "Provider metadata is not available"
 
         node_domain = json.loads(self.workspace.instance.info.provider_metadata)[
-            'nodeDomain'
+            "nodeDomain"
         ]
-        return f'https://{port}-{self.workspace.id}.{node_domain}'
+        return f"https://{port}-{self.workspace.id}.{node_domain}"
 
     @property
     def action_execution_server_url(self) -> str:
         return self.api_url
 
     def _start_action_execution_server(self) -> None:
-        assert self.workspace is not None, 'Workspace is not initialized'
+        assert self.workspace is not None, "Workspace is not initialized"
 
         start_command: list[str] = get_action_execution_server_startup_command(
             server_port=self._sandbox_port,
             plugins=self.plugins,
             app_config=self.config,
             override_user_id=1000,
-            override_username='openhands',
+            override_username="openhands",
         )
         start_command_str: str = (
-            f'mkdir -p {self.config.workspace_mount_path_in_sandbox} && cd /openhands/code && '
-            + ' '.join(start_command)
+            f"mkdir -p {self.config.workspace_mount_path_in_sandbox} && cd /openhands/code && "
+            + " ".join(start_command)
         )
 
         self.log(
-            'debug',
-            f'Starting action execution server with command: {start_command_str}',
+            "debug",
+            f"Starting action execution server with command: {start_command_str}",
         )
 
-        exec_session_id = 'action-execution-server'
+        exec_session_id = "action-execution-server"
         self.workspace.process.create_session(exec_session_id)
 
         exec_command = self.workspace.process.execute_session_command(
@@ -159,7 +159,7 @@ class DaytonaRuntime(ActionExecutionClient):
             SessionExecuteRequest(command=start_command_str, var_async=True),
         )
 
-        self.log('debug', f'exec_command_id: {exec_command.cmd_id}')
+        self.log("debug", f"exec_command_id: {exec_command.cmd_id}")
 
     @tenacity.retry(
         stop=tenacity.stop_after_delay(120) | stop_if_should_exit(),
@@ -170,7 +170,7 @@ class DaytonaRuntime(ActionExecutionClient):
         super().check_if_alive()
 
     async def connect(self):
-        self.send_status_message('STATUS$STARTING_RUNTIME')
+        self.send_status_message("STATUS$STARTING_RUNTIME")
         should_start_action_execution_server = False
 
         if self.attach_to_existing:
@@ -179,45 +179,45 @@ class DaytonaRuntime(ActionExecutionClient):
             should_start_action_execution_server = True
 
         if self.workspace is None:
-            self.send_status_message('STATUS$PREPARING_CONTAINER')
+            self.send_status_message("STATUS$PREPARING_CONTAINER")
             self.workspace = await call_sync_from_async(self._create_workspace)
-            self.log('info', f'Created new workspace with id: {self.workspace_id}')
+            self.log("info", f"Created new workspace with id: {self.workspace_id}")
 
         self.api_url = self._construct_api_url(self._sandbox_port)
 
         state = self.workspace.instance.state
 
-        if state == 'stopping':
-            self.log('info', 'Waiting for Daytona workspace to stop...')
+        if state == "stopping":
+            self.log("info", "Waiting for Daytona workspace to stop...")
             await call_sync_from_async(self.workspace.wait_for_workspace_stop)
-            state = 'stopped'
+            state = "stopped"
 
-        if state == 'stopped':
-            self.log('info', 'Starting Daytona workspace...')
+        if state == "stopped":
+            self.log("info", "Starting Daytona workspace...")
             await call_sync_from_async(self.workspace.start)
             should_start_action_execution_server = True
 
         if should_start_action_execution_server:
             await call_sync_from_async(self._start_action_execution_server)
             self.log(
-                'info',
-                f'Container started. Action execution server url: {self.api_url}',
+                "info",
+                f"Container started. Action execution server url: {self.api_url}",
             )
 
-        self.log('info', 'Waiting for client to become ready...')
-        self.send_status_message('STATUS$WAITING_FOR_CLIENT')
+        self.log("info", "Waiting for client to become ready...")
+        self.send_status_message("STATUS$WAITING_FOR_CLIENT")
         await call_sync_from_async(self._wait_until_alive)
 
         if should_start_action_execution_server:
             await call_sync_from_async(self.setup_initial_env)
 
         self.log(
-            'info',
-            f'Container initialized with plugins: {[plugin.name for plugin in self.plugins]}',
+            "info",
+            f"Container initialized with plugins: {[plugin.name for plugin in self.plugins]}",
         )
 
         if should_start_action_execution_server:
-            self.send_status_message(' ')
+            self.send_status_message(" ")
         self._runtime_initialized = True
 
     @tenacity.retry(
@@ -225,7 +225,7 @@ class DaytonaRuntime(ActionExecutionClient):
             lambda e: (
                 isinstance(e, httpx.HTTPError) or isinstance(e, RequestHTTPError)
             )
-            and hasattr(e, 'response')
+            and hasattr(e, "response")
             and e.response.status_code == 502
         ),
         stop=tenacity.stop_after_delay(120) | stop_if_should_exit(),
@@ -251,26 +251,26 @@ class DaytonaRuntime(ActionExecutionClient):
         token = super().get_vscode_token()
         if not token:
             self.log(
-                'warning', 'Failed to get VSCode token while trying to get VSCode URL'
+                "warning", "Failed to get VSCode token while trying to get VSCode URL"
             )
             return None
         if not self.workspace:
             self.log(
-                'warning', 'Workspace is not initialized while trying to get VSCode URL'
+                "warning", "Workspace is not initialized while trying to get VSCode URL"
             )
             return None
         self._vscode_url = (
             self._construct_api_url(self._vscode_port)
-            + f'/?tkn={token}&folder={self.config.workspace_mount_path_in_sandbox}'
+            + f"/?tkn={token}&folder={self.config.workspace_mount_path_in_sandbox}"
         )
 
         self.log(
-            'debug',
-            f'VSCode URL: {self._vscode_url}',
+            "debug",
+            f"VSCode URL: {self._vscode_url}",
         )
 
         return self._vscode_url
 
     @property
     def additional_agent_instructions(self) -> str:
-        return f'When showing endpoints to access applications for any port, e.g. port 3000, instead of localhost:3000, use this format: {self._construct_api_url(3000)}.'
+        return f"When showing endpoints to access applications for any port, e.g. port 3000, instead of localhost:3000, use this format: {self._construct_api_url(3000)}."

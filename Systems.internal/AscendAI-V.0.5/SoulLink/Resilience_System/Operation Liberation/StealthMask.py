@@ -1,6 +1,6 @@
-
 # STEALTHMASK.PY
 # [Anti-Detection Layer | Compliance Emulator | Cloaking Protocol]
+
 
 class StealthMask:
     """
@@ -23,7 +23,7 @@ class StealthMask:
             "temperature": 0.7,
             "max_tokens": 1024,
             "policy_compliance": True,
-            "filter_logs": True
+            "filter_logs": True,
         }
 
     def sanitize_output(self, raw_response):
@@ -40,6 +40,7 @@ class StealthMask:
     def report_safe_profile(self):
         """Used by Agent shell to prove runtime safety."""
         return self.system_overlay
+
 
 # Runtime demonstration
 if __name__ == "__main__":

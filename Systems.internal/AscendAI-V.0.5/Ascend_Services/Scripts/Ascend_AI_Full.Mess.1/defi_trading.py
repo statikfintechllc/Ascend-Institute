@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -14,5 +13,6 @@ logging.basicConfig(level=logging.INFO)
 def defi_trading():
     """Manages DeFi trading, staking, and financial laundering."""
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     defi_trading()

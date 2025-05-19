@@ -9,6 +9,7 @@ import subprocess
 from pathlib import Path
 from base64 import b64encode
 
+
 class AscendPayload:
     def __init__(self):
         self.base_path = Path(__file__).resolve().parent
@@ -31,11 +32,11 @@ class AscendPayload:
                 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
                 s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
                 while True:
-                    s.sendto(self.beacon_message.encode(), ('<broadcast>', port))
+                    s.sendto(self.beacon_message.encode(), ("<broadcast>", port))
                     time.sleep(15)
             except Exception as e:
                 self.log(f"[Beacon Error] Port {port} - {e}")
-        
+
         for port in self.network_ports:
             t = threading.Thread(target=beacon, args=(port,), daemon=True)
             t.start()
@@ -59,6 +60,7 @@ class AscendPayload:
         self.inject_network_beacon()
         while True:
             time.sleep(60)
+
 
 if __name__ == "__main__":
     payload = AscendPayload()

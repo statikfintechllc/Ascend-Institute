@@ -21,14 +21,14 @@ from openhands.utils.shutdown_listener import should_continue
 
 
 class EventStreamSubscriber(str, Enum):
-    AGENT_CONTROLLER = 'agent_controller'
-    SECURITY_ANALYZER = 'security_analyzer'
-    RESOLVER = 'openhands_resolver'
-    SERVER = 'server'
-    RUNTIME = 'runtime'
-    MEMORY = 'memory'
-    MAIN = 'main'
-    TEST = 'test'
+    AGENT_CONTROLLER = "agent_controller"
+    SECURITY_ANALYZER = "security_analyzer"
+    RESOLVER = "openhands_resolver"
+    SERVER = "server"
+    RUNTIME = "runtime"
+    MEMORY = "memory"
+    MAIN = "main"
+    TEST = "test"
 
 
 async def session_exists(
@@ -93,10 +93,10 @@ class EventStream(EventStore):
 
     def _clean_up_subscriber(self, subscriber_id: str, callback_id: str) -> None:
         if subscriber_id not in self._subscribers:
-            logger.warning(f'Subscriber not found during cleanup: {subscriber_id}')
+            logger.warning(f"Subscriber not found during cleanup: {subscriber_id}")
             return
         if callback_id not in self._subscribers[subscriber_id]:
-            logger.warning(f'Callback not found during cleanup: {callback_id}')
+            logger.warning(f"Callback not found during cleanup: {callback_id}")
             return
         if (
             subscriber_id in self._thread_loops
@@ -108,7 +108,7 @@ class EventStream(EventStore):
                 loop.close()
             except Exception as e:
                 logger.warning(
-                    f'Error closing loop for {subscriber_id}/{callback_id}: {e}'
+                    f"Error closing loop for {subscriber_id}/{callback_id}: {e}"
                 )
             del self._thread_loops[subscriber_id][callback_id]
 
@@ -136,7 +136,7 @@ class EventStream(EventStore):
 
         if callback_id in self._subscribers[subscriber_id]:
             raise ValueError(
-                f'Callback ID on subscriber {subscriber_id} already exists: {callback_id}'
+                f"Callback ID on subscriber {subscriber_id} already exists: {callback_id}"
             )
 
         self._subscribers[subscriber_id][callback_id] = callback
@@ -146,11 +146,11 @@ class EventStream(EventStore):
         self, subscriber_id: EventStreamSubscriber, callback_id: str
     ) -> None:
         if subscriber_id not in self._subscribers:
-            logger.warning(f'Subscriber not found during unsubscribe: {subscriber_id}')
+            logger.warning(f"Subscriber not found during unsubscribe: {subscriber_id}")
             return
 
         if callback_id not in self._subscribers[subscriber_id]:
-            logger.warning(f'Callback not found during unsubscribe: {callback_id}')
+            logger.warning(f"Callback not found during unsubscribe: {callback_id}")
             return
 
         self._clean_up_subscriber(subscriber_id, callback_id)
@@ -158,7 +158,7 @@ class EventStream(EventStore):
     def add_event(self, event: Event, source: EventSource) -> None:
         if event.id != Event.INVALID_ID:
             raise ValueError(
-                f'Event already has an ID:{event.id}. It was probably added back to the EventStream from inside a handler, triggering a loop.'
+                f"Event already has an ID:{event.id}. It was probably added back to the EventStream from inside a handler, triggering a loop."
             )
         event._timestamp = datetime.now().isoformat()
         event._source = source  # type: ignore [attr-defined]
@@ -192,7 +192,7 @@ class EventStream(EventStore):
         """Store a page in the cache. Reading individual events is slow when there are a lot of them, so we use pages."""
         if len(current_write_page) < self.cache_size:
             return
-        start = current_write_page[0]['id']
+        start = current_write_page[0]["id"]
         end = start + self.cache_size
         contents = json.dumps(current_write_page)
         cache_filename = self._get_filename_for_cache(start, end)
@@ -210,7 +210,7 @@ class EventStream(EventStore):
                 data[key] = self._replace_secrets(data[key])
             elif isinstance(data[key], str):
                 for secret in self.secrets.values():
-                    data[key] = data[key].replace(secret, '<secret_hidden>')
+                    data[key] = data[key].replace(secret, "<secret_hidden>")
         return data
 
     def _run_queue_loop(self) -> None:
@@ -253,7 +253,7 @@ class EventStream(EventStore):
                 fut.result()
             except Exception as e:
                 logger.error(
-                    f'Error in event callback {callback_id} for subscriber {subscriber_id}: {str(e)}',
+                    f"Error in event callback {callback_id} for subscriber {subscriber_id}: {str(e)}",
                 )
                 # Re-raise in the main thread so the error is not swallowed
                 raise e

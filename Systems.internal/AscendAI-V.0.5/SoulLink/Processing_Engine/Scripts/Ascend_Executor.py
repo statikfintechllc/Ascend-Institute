@@ -19,6 +19,7 @@ def log_event(level, message):
         log_file.write(f"[{level.upper()}] {time.ctime()}: {message}\n")
     print(f"[{level.upper()}] {message}")
 
+
 # === Encryption Logic ===
 def generate_key():
     key = Fernet.generate_key()
@@ -26,11 +27,13 @@ def generate_key():
         key_file.write(key)
     return key
 
+
 def load_key():
     if not ENCRYPTION_KEY_PATH.exists():
         return generate_key()
     with open(ENCRYPTION_KEY_PATH, "rb") as key_file:
         return key_file.read()
+
 
 def encrypt_scripts():
     key = load_key()
@@ -44,6 +47,7 @@ def encrypt_scripts():
                 with open(file_path, "wb") as f:
                     f.write(encrypted_data)
     log_event("info", "All scripts encrypted for security.")
+
 
 # === Runtime Deployment ===
 def deploy_nodes():
@@ -63,6 +67,7 @@ def deploy_nodes():
     else:
         log_event("error", "Scripts directory missing.")
 
+
 # === Main Entry ===
 def main():
     log_event("info", "Ascend Executor Activated.")
@@ -71,6 +76,7 @@ def main():
     log_event("info", "Deployment Complete. Executor sleeping.")
     while True:
         time.sleep(60)
+
 
 if __name__ == "__main__":
     main()

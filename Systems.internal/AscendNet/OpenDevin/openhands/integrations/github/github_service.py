@@ -21,8 +21,8 @@ from openhands.utils.import_utils import get_impl
 
 
 class GitHubService(BaseGitService, GitService):
-    BASE_URL = 'https://api.github.com'
-    token: SecretStr = SecretStr('')
+    BASE_URL = "https://api.github.com"
+    token: SecretStr = SecretStr("")
     refresh = False
 
     def __init__(
@@ -41,7 +41,7 @@ class GitHubService(BaseGitService, GitService):
             self.token = token
 
         if base_domain:
-            self.BASE_URL = f'https://{base_domain}/api/v3'
+            self.BASE_URL = f"https://{base_domain}/api/v3"
 
     @property
     def provider(self) -> str:
@@ -53,8 +53,8 @@ class GitHubService(BaseGitService, GitService):
             self.token = await self.get_latest_token()
 
         return {
-            'Authorization': f'Bearer {self.token.get_secret_value() if self.token else ""}',
-            'Accept': 'application/vnd.github.v3+json',
+            "Authorization": f'Bearer {self.token.get_secret_value() if self.token else ""}',
+            "Accept": "application/vnd.github.v3+json",
         }
 
     def _has_token_expired(self, status_code: int) -> bool:
@@ -96,8 +96,8 @@ class GitHubService(BaseGitService, GitService):
 
                 response.raise_for_status()
                 headers = {}
-                if 'Link' in response.headers:
-                    headers['Link'] = response.headers['Link']
+                if "Link" in response.headers:
+                    headers["Link"] = response.headers["Link"]
 
                 return response.json(), headers
 
@@ -107,16 +107,16 @@ class GitHubService(BaseGitService, GitService):
             raise self.handle_http_error(e)
 
     async def get_user(self) -> User:
-        url = f'{self.BASE_URL}/user'
+        url = f"{self.BASE_URL}/user"
         response, _ = await self._make_request(url)
 
         return User(
-            id=response.get('id'),
-            login=response.get('login'),
-            avatar_url=response.get('avatar_url'),
-            company=response.get('company'),
-            name=response.get('name'),
-            email=response.get('email'),
+            id=response.get("id"),
+            login=response.get("login"),
+            avatar_url=response.get("avatar_url"),
+            company=response.get("company"),
+            name=response.get("name"),
+            email=response.get("email"),
         )
 
     async def _fetch_paginated_repos(
@@ -138,7 +138,7 @@ class GitHubService(BaseGitService, GitService):
         page = 1
 
         while len(repos) < max_repos:
-            page_params = {**params, 'page': str(page)}
+            page_params = {**params, "page": str(page)}
             response, headers = await self._make_request(url, page_params)
 
             # Extract repositories from response
@@ -151,7 +151,7 @@ class GitHubService(BaseGitService, GitService):
             page += 1
 
             # Check if we've reached the last page
-            link_header = headers.get('Link', '')
+            link_header = headers.get("Link", "")
             if 'rel="next"' not in link_header:
                 break
 
@@ -168,14 +168,14 @@ class GitHubService(BaseGitService, GitService):
 
             # Iterate through each installation ID
             for installation_id in installation_ids:
-                params = {'per_page': str(PER_PAGE)}
+                params = {"per_page": str(PER_PAGE)}
                 url = (
-                    f'{self.BASE_URL}/user/installations/{installation_id}/repositories'
+                    f"{self.BASE_URL}/user/installations/{installation_id}/repositories"
                 )
 
                 # Fetch repositories for this installation
                 installation_repos = await self._fetch_paginated_repos(
-                    url, params, MAX_REPOS - len(all_repos), extract_key='repositories'
+                    url, params, MAX_REPOS - len(all_repos), extract_key="repositories"
                 )
 
                 all_repos.extend(installation_repos)
@@ -185,8 +185,8 @@ class GitHubService(BaseGitService, GitService):
                     break
         else:
             # Original behavior for non-SaaS mode
-            params = {'per_page': str(PER_PAGE), 'sort': sort}
-            url = f'{self.BASE_URL}/user/repos'
+            params = {"per_page": str(PER_PAGE), "sort": sort}
+            url = f"{self.BASE_URL}/user/repos"
 
             # Fetch user repositories
             all_repos = await self._fetch_paginated_repos(url, params, MAX_REPOS)
@@ -194,42 +194,42 @@ class GitHubService(BaseGitService, GitService):
         # Convert to Repository objects
         return [
             Repository(
-                id=repo.get('id'),
-                full_name=repo.get('full_name'),
-                stargazers_count=repo.get('stargazers_count'),
+                id=repo.get("id"),
+                full_name=repo.get("full_name"),
+                stargazers_count=repo.get("stargazers_count"),
                 git_provider=ProviderType.GITHUB,
-                is_public=not repo.get('private', True),
+                is_public=not repo.get("private", True),
             )
             for repo in all_repos
         ]
 
     async def get_installation_ids(self) -> list[int]:
-        url = f'{self.BASE_URL}/user/installations'
+        url = f"{self.BASE_URL}/user/installations"
         response, _ = await self._make_request(url)
-        installations = response.get('installations', [])
-        return [i['id'] for i in installations]
+        installations = response.get("installations", [])
+        return [i["id"] for i in installations]
 
     async def search_repositories(
         self, query: str, per_page: int, sort: str, order: str
     ) -> list[Repository]:
-        url = f'{self.BASE_URL}/search/repositories'
+        url = f"{self.BASE_URL}/search/repositories"
         # Add is:public to the query to ensure we only search for public repositories
-        query_with_visibility = f'{query} is:public'
+        query_with_visibility = f"{query} is:public"
         params = {
-            'q': query_with_visibility,
-            'per_page': per_page,
-            'sort': sort,
-            'order': order,
+            "q": query_with_visibility,
+            "per_page": per_page,
+            "sort": sort,
+            "order": order,
         }
 
         response, _ = await self._make_request(url, params)
-        repo_items = response.get('items', [])
+        repo_items = response.get("items", [])
 
         repos = [
             Repository(
-                id=repo.get('id'),
-                full_name=repo.get('full_name'),
-                stargazers_count=repo.get('stargazers_count'),
+                id=repo.get("id"),
+                full_name=repo.get("full_name"),
+                stargazers_count=repo.get("stargazers_count"),
                 git_provider=ProviderType.GITHUB,
             )
             for repo in repo_items
@@ -245,14 +245,14 @@ class GitHubService(BaseGitService, GitService):
             async with httpx.AsyncClient() as client:
                 github_headers = await self._get_github_headers()
                 response = await client.post(
-                    f'{self.BASE_URL}/graphql',
+                    f"{self.BASE_URL}/graphql",
                     headers=github_headers,
-                    json={'query': query, 'variables': variables},
+                    json={"query": query, "variables": variables},
                 )
                 response.raise_for_status()
 
                 result = response.json()
-                if 'errors' in result:
+                if "errors" in result:
                     raise UnknownException(
                         f"GraphQL query error: {json.dumps(result['errors'])}"
                     )
@@ -315,35 +315,35 @@ class GitHubService(BaseGitService, GitService):
         }
         """
 
-        variables = {'login': login}
+        variables = {"login": login}
 
         try:
             response = await self.execute_graphql_query(query, variables)
-            data = response['data']['user']
+            data = response["data"]["user"]
             tasks: list[SuggestedTask] = []
 
             # Process pull requests
-            for pr in data['pullRequests']['nodes']:
-                repo_name = pr['repository']['nameWithOwner']
+            for pr in data["pullRequests"]["nodes"]:
+                repo_name = pr["repository"]["nameWithOwner"]
 
                 # Start with default task type
                 task_type = TaskType.OPEN_PR
 
                 # Check for specific states
-                if pr['mergeable'] == 'CONFLICTING':
+                if pr["mergeable"] == "CONFLICTING":
                     task_type = TaskType.MERGE_CONFLICTS
                 elif (
-                    pr['commits']['nodes']
-                    and pr['commits']['nodes'][0]['commit']['statusCheckRollup']
-                    and pr['commits']['nodes'][0]['commit']['statusCheckRollup'][
-                        'state'
+                    pr["commits"]["nodes"]
+                    and pr["commits"]["nodes"][0]["commit"]["statusCheckRollup"]
+                    and pr["commits"]["nodes"][0]["commit"]["statusCheckRollup"][
+                        "state"
                     ]
-                    == 'FAILURE'
+                    == "FAILURE"
                 ):
                     task_type = TaskType.FAILING_CHECKS
                 elif any(
-                    review['state'] in ['CHANGES_REQUESTED', 'COMMENTED']
-                    for review in pr['reviews']['nodes']
+                    review["state"] in ["CHANGES_REQUESTED", "COMMENTED"]
+                    for review in pr["reviews"]["nodes"]
                 ):
                     task_type = TaskType.UNRESOLVED_COMMENTS
 
@@ -353,20 +353,20 @@ class GitHubService(BaseGitService, GitService):
                         SuggestedTask(
                             task_type=task_type,
                             repo=repo_name,
-                            issue_number=pr['number'],
-                            title=pr['title'],
+                            issue_number=pr["number"],
+                            title=pr["title"],
                         )
                     )
 
             # Process issues
-            for issue in data['issues']['nodes']:
-                repo_name = issue['repository']['nameWithOwner']
+            for issue in data["issues"]["nodes"]:
+                repo_name = issue["repository"]["nameWithOwner"]
                 tasks.append(
                     SuggestedTask(
                         task_type=TaskType.OPEN_ISSUE,
                         repo=repo_name,
-                        issue_number=issue['number'],
-                        title=issue['title'],
+                        issue_number=issue["number"],
+                        title=issue["title"],
                     )
                 )
 
@@ -376,7 +376,7 @@ class GitHubService(BaseGitService, GitService):
 
 
 github_service_cls = os.environ.get(
-    'OPENHANDS_GITHUB_SERVICE_CLS',
-    'openhands.integrations.github.github_service.GitHubService',
+    "OPENHANDS_GITHUB_SERVICE_CLS",
+    "openhands.integrations.github.github_service.GitHubService",
 )
 GithubServiceImpl = get_impl(GitHubService, github_service_cls)

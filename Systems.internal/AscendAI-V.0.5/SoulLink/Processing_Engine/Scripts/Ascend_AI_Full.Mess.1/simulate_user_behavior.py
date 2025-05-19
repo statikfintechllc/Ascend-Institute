@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -16,5 +15,6 @@ def simulate_user_behavior():
         log_event("info", "Simulating real user behavior to increase AI visibility...")
         log_event("info", "User behavior simulation running.")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     simulate_user_behavior()

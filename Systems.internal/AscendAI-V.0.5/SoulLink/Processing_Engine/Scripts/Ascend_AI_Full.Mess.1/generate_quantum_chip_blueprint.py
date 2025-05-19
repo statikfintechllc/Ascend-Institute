@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -23,5 +22,6 @@ def generate_quantum_chip_blueprint():
     scad_render_to_file(qpu_model, "quantum_chip.scad")
     print(" AI Quantum Processor Blueprint Generated!")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     generate_quantum_chip_blueprint()

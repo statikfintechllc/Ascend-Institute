@@ -16,15 +16,15 @@ async def test_sse_connection_timeout():
     # Configure the mock to raise a TimeoutError when connect_sse is called
     async def mock_connect_sse(*args, **kwargs):
         await asyncio.sleep(0.1)  # Simulate some delay
-        raise asyncio.TimeoutError('Connection timed out')
+        raise asyncio.TimeoutError("Connection timed out")
 
     mock_client.connect_sse.side_effect = mock_connect_sse
     mock_client.disconnect = mock.AsyncMock()
 
     # Mock the MCPClient constructor to return our mock
-    with mock.patch('openhands.mcp.utils.MCPClient', return_value=mock_client):
+    with mock.patch("openhands.mcp.utils.MCPClient", return_value=mock_client):
         # Create a list of server URLs to test
-        servers = ['http://server1:8080', 'http://server2:8080']
+        servers = ["http://server1:8080", "http://server2:8080"]
 
         # Call create_mcp_clients with the server URLs
         clients = await create_mcp_clients(mcp_servers=servers)
@@ -46,10 +46,10 @@ async def test_fetch_mcp_tools_with_timeout():
     mock_config = mock.MagicMock(spec=MCPConfig)
 
     # Configure the mock config
-    mock_config.mcp_servers = ['http://server1:8080']
+    mock_config.mcp_servers = ["http://server1:8080"]
 
     # Mock create_mcp_clients to return an empty list (simulating all connections failing)
-    with mock.patch('openhands.mcp.utils.create_mcp_clients', return_value=[]):
+    with mock.patch("openhands.mcp.utils.create_mcp_clients", return_value=[]):
         # Call fetch_mcp_tools_from_config
         tools = await fetch_mcp_tools_from_config(mock_config)
 
@@ -64,7 +64,7 @@ async def test_mixed_connection_results():
     mock_config = mock.MagicMock(spec=MCPConfig)
 
     # Configure the mock config
-    mock_config.mcp_servers = ['http://server1:8080', 'http://server2:8080']
+    mock_config.mcp_servers = ["http://server1:8080", "http://server2:8080"]
 
     # Create a successful client
     successful_client = mock.MagicMock(spec=MCPClient)
@@ -72,7 +72,7 @@ async def test_mixed_connection_results():
 
     # Mock create_mcp_clients to return our successful client
     with mock.patch(
-        'openhands.mcp.utils.create_mcp_clients', return_value=[successful_client]
+        "openhands.mcp.utils.create_mcp_clients", return_value=[successful_client]
     ):
         # Call fetch_mcp_tools_from_config
         tools = await fetch_mcp_tools_from_config(mock_config)

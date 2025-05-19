@@ -44,9 +44,9 @@ class GitHandler:
         Returns:
             bool: True if inside a Git repository, otherwise False.
         """
-        cmd = 'git rev-parse --is-inside-work-tree'
+        cmd = "git rev-parse --is-inside-work-tree"
         output = self.execute(cmd, self.cwd)
-        return output.content.strip() == 'true'
+        return output.content.strip() == "true"
 
     def _get_current_file_content(self, file_path: str) -> str:
         """
@@ -58,7 +58,7 @@ class GitHandler:
         Returns:
             str: The file content.
         """
-        output = self.execute(f'cat {file_path}', self.cwd)
+        output = self.execute(f"cat {file_path}", self.cwd)
         return output.content
 
     def _verify_ref_exists(self, ref: str) -> bool:
@@ -71,7 +71,7 @@ class GitHandler:
         Returns:
             bool: True if the reference exists, otherwise False.
         """
-        cmd = f'git rev-parse --verify {ref}'
+        cmd = f"git rev-parse --verify {ref}"
         output = self.execute(cmd, self.cwd)
         return output.exit_code == 0
 
@@ -83,8 +83,8 @@ class GitHandler:
             str | None: A valid Git reference or None if no valid reference is found.
         """
         ref_non_default_branch = f'$(git merge-base HEAD "$(git rev-parse --abbrev-ref origin/{self._get_current_branch()})")'
-        ref_default_branch = 'origin/' + self._get_current_branch()
-        ref_new_repo = '$(git rev-parse --verify 4b825dc642cb6eb9a060e54bf8d69288fbee4904)'  # compares with empty tree
+        ref_default_branch = "origin/" + self._get_current_branch()
+        ref_new_repo = "$(git rev-parse --verify 4b825dc642cb6eb9a060e54bf8d69288fbee4904)"  # compares with empty tree
 
         refs = [ref_non_default_branch, ref_default_branch, ref_new_repo]
         for ref in refs:
@@ -105,11 +105,11 @@ class GitHandler:
         """
         ref = self._get_valid_ref()
         if not ref:
-            return ''
+            return ""
 
-        cmd = f'git show {ref}:{file_path}'
+        cmd = f"git show {ref}:{file_path}"
         output = self.execute(cmd, self.cwd)
-        return output.content if output.exit_code == 0 else ''
+        return output.content if output.exit_code == 0 else ""
 
     def _get_current_branch(self) -> str:
         """
@@ -133,7 +133,7 @@ class GitHandler:
         if not ref:
             return []
 
-        diff_cmd = f'git diff --name-status {ref}'
+        diff_cmd = f"git diff --name-status {ref}"
         output = self.execute(diff_cmd, self.cwd)
         return output.content.splitlines()
 
@@ -144,11 +144,11 @@ class GitHandler:
         Returns:
             list[dict[str, str]]: A list of dictionaries containing file paths and statuses.
         """
-        cmd = 'git ls-files --others --exclude-standard'
+        cmd = "git ls-files --others --exclude-standard"
         output = self.execute(cmd, self.cwd)
         obs_list = output.content.splitlines()
         return (
-            [{'status': 'A', 'path': path} for path in obs_list]
+            [{"status": "A", "path": path} for path in obs_list]
             if output.exit_code == 0
             else []
         )
@@ -184,8 +184,8 @@ class GitHandler:
         original = self._get_ref_content(file_path)
 
         return {
-            'modified': modified,
-            'original': original,
+            "modified": modified,
+            "original": original,
         }
 
 
@@ -205,11 +205,11 @@ def parse_git_changes(changes_list: list[str]) -> list[dict[str, str]]:
         path = line[2:].strip()
 
         # Get the first non-space character as the primary status
-        primary_status = status.replace(' ', '')[0]
+        primary_status = status.replace(" ", "")[0]
         result.append(
             {
-                'status': primary_status,
-                'path': path,
+                "status": primary_status,
+                "path": path,
             }
         )
     return result

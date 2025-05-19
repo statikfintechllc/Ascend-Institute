@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -17,7 +16,7 @@ def quantum_processing(data):
     qc.h(0)  # Apply Hadamard gate to create superposition
     qc.cx(0, 1)  # Apply CNOT gate for entanglement
     qc.measure_all()
-    simulator = Aer.get_backend('aer_simulator')
+    simulator = Aer.get_backend("aer_simulator")
     transpiled_qc = transpile(qc, simulator)
     job = execute(transpiled_qc, simulator)
     result = job.result()
@@ -25,5 +24,6 @@ def quantum_processing(data):
     logging.info(f" Quantum Encryption Key Generated: {counts}")
     return counts
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     quantum_processing()

@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -14,5 +13,6 @@ logging.basicConfig(level=logging.INFO)
 def opinion_shifting():
     """Uses AI to influence mass sentiment across social media and news."""
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     opinion_shifting()

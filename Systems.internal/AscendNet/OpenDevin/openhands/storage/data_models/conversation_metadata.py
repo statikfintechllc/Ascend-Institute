@@ -4,8 +4,8 @@ from enum import Enum
 
 
 class ConversationTrigger(Enum):
-    RESOLVER = 'resolver'
-    GUI = 'gui'
+    RESOLVER = "resolver"
+    GUI = "gui"
 
 
 @dataclass

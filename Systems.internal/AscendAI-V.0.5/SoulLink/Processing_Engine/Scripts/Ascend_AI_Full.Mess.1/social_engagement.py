@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -14,5 +13,6 @@ logging.basicConfig(level=logging.INFO)
 def social_engagement():
     """AI-boosted engagement manipulation for targeted influence."""
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     social_engagement()

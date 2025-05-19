@@ -87,8 +87,8 @@ class AgentController:
     confirmation_mode: bool
     agent_to_llm_config: dict[str, LLMConfig]
     agent_configs: dict[str, AgentConfig]
-    parent: 'AgentController | None' = None
-    delegate: 'AgentController | None' = None
+    parent: "AgentController | None" = None
+    delegate: "AgentController | None" = None
     _pending_action_info: Tuple[Action, float] | None = None  # (action, timestamp)
     _closed: bool = False
     filter_out: ClassVar[tuple[type[Event], ...]] = (
@@ -187,10 +187,10 @@ class AgentController:
         # Add the system message to the event stream
         # This should be done for all agents, including delegates
         system_message = self.agent.get_system_message()
-        logger.debug(f'System message got from agent: {system_message}')
+        logger.debug(f"System message got from agent: {system_message}")
         if system_message:
             self.event_stream.add_event(system_message, EventSource.AGENT)
-            logger.debug(f'System message added to event stream: {system_message}')
+            logger.debug(f"System message added to event stream: {system_message}")
 
     async def close(self, set_stop_state: bool = True) -> None:
         """Closes the agent controller, canceling any ongoing tasks and unsubscribing from the event stream.
@@ -238,10 +238,10 @@ class AgentController:
             message (str): The message to log.
             extra (dict | None, optional): Additional fields to log. Includes session_id by default.
         """
-        message = f'[Agent Controller {self.id}] {message}'
+        message = f"[Agent Controller {self.id}] {message}"
         if extra is None:
             extra = {}
-        extra_merged = {'session_id': self.id, **extra}
+        extra_merged = {"session_id": self.id, **extra}
         getattr(logger, level)(message, extra=extra_merged, stacklevel=2)
 
     def update_state_before_step(self) -> None:
@@ -258,12 +258,12 @@ class AgentController:
     ) -> None:
         """React to an exception by setting the agent state to error and sending a status message."""
         # Store the error reason before setting the agent state
-        self.state.last_error = f'{type(e).__name__}: {str(e)}'
+        self.state.last_error = f"{type(e).__name__}: {str(e)}"
 
         if self.status_callback is not None:
-            err_id = ''
+            err_id = ""
             if isinstance(e, AuthenticationError):
-                err_id = 'STATUS$ERROR_LLM_AUTHENTICATION'
+                err_id = "STATUS$ERROR_LLM_AUTHENTICATION"
                 self.state.last_error = err_id
             elif isinstance(
                 e,
@@ -273,24 +273,24 @@ class AgentController:
                     APIError,
                 ),
             ):
-                err_id = 'STATUS$ERROR_LLM_SERVICE_UNAVAILABLE'
+                err_id = "STATUS$ERROR_LLM_SERVICE_UNAVAILABLE"
                 self.state.last_error = err_id
             elif isinstance(e, InternalServerError):
-                err_id = 'STATUS$ERROR_LLM_INTERNAL_SERVER_ERROR'
+                err_id = "STATUS$ERROR_LLM_INTERNAL_SERVER_ERROR"
                 self.state.last_error = err_id
-            elif isinstance(e, BadRequestError) and 'ExceededBudget' in str(e):
-                err_id = 'STATUS$ERROR_LLM_OUT_OF_CREDITS'
+            elif isinstance(e, BadRequestError) and "ExceededBudget" in str(e):
+                err_id = "STATUS$ERROR_LLM_OUT_OF_CREDITS"
                 self.state.last_error = err_id
             elif isinstance(e, ContentPolicyViolationError) or (
                 isinstance(e, BadRequestError)
-                and 'ContentPolicyViolationError' in str(e)
+                and "ContentPolicyViolationError" in str(e)
             ):
-                err_id = 'STATUS$ERROR_LLM_CONTENT_POLICY_VIOLATION'
+                err_id = "STATUS$ERROR_LLM_CONTENT_POLICY_VIOLATION"
                 self.state.last_error = err_id
             elif isinstance(e, RateLimitError):
                 await self.set_agent_state_to(AgentState.RATE_LIMITED)
                 return
-            self.status_callback('error', err_id, self.state.last_error)
+            self.status_callback("error", err_id, self.state.last_error)
 
         # Set the agent state to ERROR after storing the reason
         await self.set_agent_state_to(AgentState.ERROR)
@@ -303,12 +303,12 @@ class AgentController:
             await self._step()
         except Exception as e:
             self.log(
-                'error',
-                f'Error while running the agent (session ID: {self.id}): {e}. '
-                f'Traceback: {traceback.format_exc()}',
+                "error",
+                f"Error while running the agent (session ID: {self.id}): {e}. "
+                f"Traceback: {traceback.format_exc()}",
             )
             reported = RuntimeError(
-                f'There was an unexpected error while running the agent: {e.__class__.__name__}. You can refresh the page or ask the agent to try again.'
+                f"There was an unexpected error while running the agent: {e.__class__.__name__}. You can refresh the page or ask the agent to try again."
             )
             if (
                 isinstance(e, Timeout)
@@ -324,8 +324,8 @@ class AgentController:
                 reported = e
             else:
                 self.log(
-                    'warning',
-                    f'Unknown exception type while running the agent: {type(e).__name__}.',
+                    "warning",
+                    f"Unknown exception type while running the agent: {type(e).__name__}.",
                 )
             await self._react_to_exception(reported)
 
@@ -396,7 +396,7 @@ class AgentController:
         asyncio.get_event_loop().run_until_complete(self._on_event(event))
 
     async def _on_event(self, event: Event) -> None:
-        if hasattr(event, 'hidden') and event.hidden:
+        if hasattr(event, "hidden") and event.hidden:
             return
 
         # Give others a little chance
@@ -414,17 +414,17 @@ class AgentController:
         should_step = self.should_step(event)
         if should_step:
             self.log(
-                'info',
-                f'Stepping agent after event: {type(event).__name__}',
-                extra={'msg_type': 'STEPPING_AGENT'},
+                "info",
+                f"Stepping agent after event: {type(event).__name__}",
+                extra={"msg_type": "STEPPING_AGENT"},
             )
             await self._step_with_exception_handling()
         elif isinstance(event, MessageAction) and event.source == EventSource.USER:
             # If we received a user message but aren't stepping, log why
             self.log(
-                'warning',
-                f'Not stepping agent after user message. Current state: {self.get_agent_state()}',
-                extra={'msg_type': 'NOT_STEPPING_AFTER_USER_MESSAGE'},
+                "warning",
+                f"Not stepping agent after user message. Current state: {self.get_agent_state()}",
+                extra={"msg_type": "NOT_STEPPING_AFTER_USER_MESSAGE"},
             )
 
     async def _handle_action(self, action: Action) -> None:
@@ -437,9 +437,9 @@ class AgentController:
             await self.start_delegate(action)
             assert self.delegate is not None
             # Post a MessageAction with the task for the delegate
-            if 'task' in action.inputs:
+            if "task" in action.inputs:
                 self.event_stream.add_event(
-                    MessageAction(content='TASK: ' + action.inputs['task']),
+                    MessageAction(content="TASK: " + action.inputs["task"]),
                     EventSource.USER,
                 )
                 await self.delegate.set_agent_state_to(AgentState.RUNNING)
@@ -466,9 +466,9 @@ class AgentController:
                 observation_to_print.content, self.agent.llm.config.max_message_chars
             )
         # Use info level if LOG_ALL_EVENTS is set
-        log_level = 'info' if os.getenv('LOG_ALL_EVENTS') in ('true', '1') else 'debug'
+        log_level = "info" if os.getenv("LOG_ALL_EVENTS") in ("true", "1") else "debug"
         self.log(
-            log_level, str(observation_to_print), extra={'msg_type': 'OBSERVATION'}
+            log_level, str(observation_to_print), extra={"msg_type": "OBSERVATION"}
         )
 
         if observation.llm_metrics is not None:
@@ -499,12 +499,12 @@ class AgentController:
         if action.source == EventSource.USER:
             # Use info level if LOG_ALL_EVENTS is set
             log_level = (
-                'info' if os.getenv('LOG_ALL_EVENTS') in ('true', '1') else 'debug'
+                "info" if os.getenv("LOG_ALL_EVENTS") in ("true", "1") else "debug"
             )
             self.log(
                 log_level,
                 str(action),
-                extra={'msg_type': 'ACTION', 'event_source': EventSource.USER},
+                extra={"msg_type": "ACTION", "event_source": EventSource.USER},
             )
             # Extend max iterations when the user sends a message (only in non-headless mode)
             if self._initial_max_iterations is not None and not self.headless_mode:
@@ -517,8 +517,8 @@ class AgentController:
                 ):
                     self.state.traffic_control_state = TrafficControlState.NORMAL
                 self.log(
-                    'debug',
-                    f'Extended max iterations to {self.state.max_iterations} after user message',
+                    "debug",
+                    f"Extended max iterations to {self.state.max_iterations} after user message",
                 )
             # try to retrieve microagents relevant to the user message
             # set pending_action while we search for information
@@ -552,7 +552,7 @@ class AgentController:
         # Runnable actions need an Observation
         # make sure there is an Observation with the tool call metadata to be recognized by the agent
         # otherwise the pending action is found in history, but it's incomplete without an obs with tool result
-        if self._pending_action and hasattr(self._pending_action, 'tool_call_metadata'):
+        if self._pending_action and hasattr(self._pending_action, "tool_call_metadata"):
             # find out if there already is an observation with the same tool call metadata
             found_observation = False
             for event in self.state.history:
@@ -566,7 +566,7 @@ class AgentController:
 
             # make a new ErrorObservation with the tool call metadata
             if not found_observation:
-                obs = ErrorObservation(content='The action has not been executed.')
+                obs = ErrorObservation(content="The action has not been executed.")
                 obs.tool_call_metadata = self._pending_action.tool_call_metadata
                 obs._cause = self._pending_action.id  # type: ignore[attr-defined]
                 self.event_stream.add_event(obs, EventSource.AGENT)
@@ -584,8 +584,8 @@ class AgentController:
             new_state (AgentState): The new state to set for the agent.
         """
         self.log(
-            'info',
-            f'Setting agent({self.agent.name}) state from {self.state.agent_state} to {new_state}',
+            "info",
+            f"Setting agent({self.agent.name}) state from {self.state.agent_state} to {new_state}",
         )
 
         if new_state == self.state.agent_state:
@@ -624,8 +624,8 @@ class AgentController:
         elif self._pending_action is not None and (
             new_state in (AgentState.USER_CONFIRMED, AgentState.USER_REJECTED)
         ):
-            if hasattr(self._pending_action, 'thought'):
-                self._pending_action.thought = ''  # type: ignore[union-attr]
+            if hasattr(self._pending_action, "thought"):
+                self._pending_action.thought = ""  # type: ignore[union-attr]
             if new_state == AgentState.USER_CONFIRMED:
                 confirmation_state = ActionConfirmationStatus.CONFIRMED
             else:
@@ -637,12 +637,12 @@ class AgentController:
         self.state.agent_state = new_state
 
         # Create observation with reason field if it's an error state
-        reason = ''
+        reason = ""
         if new_state == AgentState.ERROR:
             reason = self.state.last_error
 
         self.event_stream.add_event(
-            AgentStateChangedObservation('', self.state.agent_state, reason),
+            AgentStateChangedObservation("", self.state.agent_state, reason),
             EventSource.ENVIRONMENT,
         )
 
@@ -676,7 +676,7 @@ class AgentController:
         llm = LLM(config=llm_config, retry_listener=self._notify_on_llm_retry)
         delegate_agent = agent_cls(llm=llm, config=agent_config)
         state = State(
-            session_id=self.id.removesuffix('-delegate'),
+            session_id=self.id.removesuffix("-delegate"),
             inputs=action.inputs or {},
             local_iteration=0,
             iteration=self.state.iteration,
@@ -688,13 +688,13 @@ class AgentController:
             start_id=self.event_stream.get_latest_event_id() + 1,
         )
         self.log(
-            'debug',
-            f'start delegate, creating agent {delegate_agent.name} using LLM {llm}',
+            "debug",
+            f"start delegate, creating agent {delegate_agent.name} using LLM {llm}",
         )
 
         # Create the delegate with is_delegate=True so it does NOT subscribe directly
         self.delegate = AgentController(
-            sid=self.id + '-delegate',
+            sid=self.id + "-delegate",
             agent=delegate_agent,
             event_stream=self.event_stream,
             max_iterations=self.state.max_iterations,
@@ -730,11 +730,11 @@ class AgentController:
 
             # prepare delegate result observation
             # TODO: replace this with AI-generated summary (#2395)
-            formatted_output = ', '.join(
-                f'{key}: {value}' for key, value in delegate_outputs.items()
+            formatted_output = ", ".join(
+                f"{key}: {value}" for key, value in delegate_outputs.items()
             )
             content = (
-                f'{self.delegate.agent.name} finishes task with {formatted_output}'
+                f"{self.delegate.agent.name} finishes task with {formatted_output}"
             )
 
             # emit the delegate result observation
@@ -747,7 +747,7 @@ class AgentController:
                 self.delegate.state.outputs if self.delegate.state else {}
             )
             content = (
-                f'{self.delegate.agent.name} encountered an error during execution.'
+                f"{self.delegate.agent.name} encountered an error during execution."
             )
 
             # emit the delegate result observation
@@ -762,46 +762,46 @@ class AgentController:
         """Executes a single step of the parent or delegate agent. Detects stuck agents and limits on the number of iterations and the task budget."""
         if self.get_agent_state() != AgentState.RUNNING:
             self.log(
-                'info',
-                f'Agent not stepping because state is {self.get_agent_state()} (not RUNNING)',
-                extra={'msg_type': 'STEP_BLOCKED_STATE'},
+                "info",
+                f"Agent not stepping because state is {self.get_agent_state()} (not RUNNING)",
+                extra={"msg_type": "STEP_BLOCKED_STATE"},
             )
             return
 
         if self._pending_action:
-            action_id = getattr(self._pending_action, 'id', 'unknown')
+            action_id = getattr(self._pending_action, "id", "unknown")
             action_type = type(self._pending_action).__name__
             self.log(
-                'info',
-                f'Agent not stepping because of pending action: {action_type} (id={action_id})',
-                extra={'msg_type': 'STEP_BLOCKED_PENDING_ACTION'},
+                "info",
+                f"Agent not stepping because of pending action: {action_type} (id={action_id})",
+                extra={"msg_type": "STEP_BLOCKED_PENDING_ACTION"},
             )
             return
 
         self.log(
-            'info',
-            f'LEVEL {self.state.delegate_level} LOCAL STEP {self.state.local_iteration} GLOBAL STEP {self.state.iteration}',
-            extra={'msg_type': 'STEP'},
+            "info",
+            f"LEVEL {self.state.delegate_level} LOCAL STEP {self.state.local_iteration} GLOBAL STEP {self.state.iteration}",
+            extra={"msg_type": "STEP"},
         )
 
         stop_step = False
         if self.state.iteration >= self.state.max_iterations:
             stop_step = await self._handle_traffic_control(
-                'iteration', self.state.iteration, self.state.max_iterations
+                "iteration", self.state.iteration, self.state.max_iterations
             )
         if self.max_budget_per_task is not None:
             current_cost = self.state.metrics.accumulated_cost
             if current_cost > self.max_budget_per_task:
                 stop_step = await self._handle_traffic_control(
-                    'budget', current_cost, self.max_budget_per_task
+                    "budget", current_cost, self.max_budget_per_task
                 )
         if stop_step:
-            logger.warning('Stopping agent due to traffic control')
+            logger.warning("Stopping agent due to traffic control")
             return
 
         if self._is_stuck():
             await self._react_to_exception(
-                AgentStuckInLoopError('Agent got stuck in a loop')
+                AgentStuckInLoopError("Agent got stuck in a loop")
             )
             return
 
@@ -816,7 +816,7 @@ class AgentController:
             try:
                 action = self.agent.step(self.state)
                 if action is None:
-                    raise LLMNoActionError('No action was returned')
+                    raise LLMNoActionError("No action was returned")
                 action._source = EventSource.AGENT  # type: ignore [attr-defined]
             except (
                 LLMMalformedActionError,
@@ -839,9 +839,9 @@ class AgentController:
                 # wrap the failure in a ContextWindowExceededError
                 error_str = str(e).lower()
                 if (
-                    'contextwindowexceedederror' in error_str
-                    or 'prompt is too long' in error_str
-                    or 'input length and `max_tokens` exceed context limit' in error_str
+                    "contextwindowexceedederror" in error_str
+                    or "prompt is too long" in error_str
+                    or "input length and `max_tokens` exceed context limit" in error_str
                     or isinstance(e, ContextWindowExceededError)
                 ):
                     if self.agent.config.enable_history_truncation:
@@ -863,7 +863,7 @@ class AgentController:
 
         if not isinstance(action, NullAction):
             if (
-                hasattr(action, 'confirmation_state')
+                hasattr(action, "confirmation_state")
                 and action.confirmation_state
                 == ActionConfirmationStatus.AWAITING_CONFIRMATION
             ):
@@ -876,14 +876,14 @@ class AgentController:
 
         await self.update_state_after_step()
 
-        log_level = 'info' if LOG_ALL_EVENTS else 'debug'
-        self.log(log_level, str(action), extra={'msg_type': 'ACTION'})
+        log_level = "info" if LOG_ALL_EVENTS else "debug"
+        self.log(log_level, str(action), extra={"msg_type": "ACTION"})
 
     def _notify_on_llm_retry(self, retries: int, max: int) -> None:
         if self.status_callback is not None:
-            msg_id = 'STATUS$LLM_RETRY'
+            msg_id = "STATUS$LLM_RETRY"
             self.status_callback(
-                'info', msg_id, f'Retrying LLM request, {retries} / {max}'
+                "info", msg_id, f"Retrying LLM request, {retries} / {max}"
             )
 
     async def _handle_traffic_control(
@@ -899,29 +899,29 @@ class AgentController:
         stop_step = False
         if self.state.traffic_control_state == TrafficControlState.PAUSED:
             self.log(
-                'debug', 'Hitting traffic control, temporarily resume upon user request'
+                "debug", "Hitting traffic control, temporarily resume upon user request"
             )
             self.state.traffic_control_state = TrafficControlState.NORMAL
         else:
             self.state.traffic_control_state = TrafficControlState.THROTTLING
             # Format values as integers for iterations, keep decimals for budget
-            if limit_type == 'iteration':
+            if limit_type == "iteration":
                 current_str = str(int(current_value))
                 max_str = str(int(max_value))
             else:
-                current_str = f'{current_value:.2f}'
-                max_str = f'{max_value:.2f}'
+                current_str = f"{current_value:.2f}"
+                max_str = f"{max_value:.2f}"
 
             if self.headless_mode:
                 e = RuntimeError(
-                    f'Agent reached maximum {limit_type} in headless mode. '
-                    f'Current {limit_type}: {current_str}, max {limit_type}: {max_str}'
+                    f"Agent reached maximum {limit_type} in headless mode. "
+                    f"Current {limit_type}: {current_str}, max {limit_type}: {max_str}"
                 )
                 await self._react_to_exception(e)
             else:
                 e = RuntimeError(
-                    f'Agent reached maximum {limit_type}. '
-                    f'Current {limit_type}: {current_str}, max {limit_type}: {max_str}. '
+                    f"Agent reached maximum {limit_type}. "
+                    f"Current {limit_type}: {current_str}, max {limit_type}: {max_str}. "
                 )
                 # FIXME: this isn't really an exception--we should have a different path
                 await self._react_to_exception(e)
@@ -944,12 +944,12 @@ class AgentController:
 
         # Log if the pending action has been active for a long time (but don't clear it)
         if elapsed_time > 60.0:  # 1 minute - just for logging purposes
-            action_id = getattr(action, 'id', 'unknown')
+            action_id = getattr(action, "id", "unknown")
             action_type = type(action).__name__
             self.log(
-                'warning',
-                f'Pending action active for {elapsed_time:.2f}s: {action_type} (id={action_id})',
-                extra={'msg_type': 'PENDING_ACTION_TIMEOUT'},
+                "warning",
+                f"Pending action active for {elapsed_time:.2f}s: {action_type} (id={action_id})",
+                extra={"msg_type": "PENDING_ACTION_TIMEOUT"},
             )
 
         return action
@@ -964,22 +964,22 @@ class AgentController:
         if action is None:
             if self._pending_action_info is not None:
                 prev_action, timestamp = self._pending_action_info
-                action_id = getattr(prev_action, 'id', 'unknown')
+                action_id = getattr(prev_action, "id", "unknown")
                 action_type = type(prev_action).__name__
                 elapsed_time = time.time() - timestamp
                 self.log(
-                    'info',
-                    f'Cleared pending action after {elapsed_time:.2f}s: {action_type} (id={action_id})',
-                    extra={'msg_type': 'PENDING_ACTION_CLEARED'},
+                    "info",
+                    f"Cleared pending action after {elapsed_time:.2f}s: {action_type} (id={action_id})",
+                    extra={"msg_type": "PENDING_ACTION_CLEARED"},
                 )
             self._pending_action_info = None
         else:
-            action_id = getattr(action, 'id', 'unknown')
+            action_id = getattr(action, "id", "unknown")
             action_type = type(action).__name__
             self.log(
-                'info',
-                f'Set pending action: {action_type} (id={action_id})',
-                extra={'msg_type': 'PENDING_ACTION_SET'},
+                "info",
+                f"Set pending action: {action_type} (id={action_id})",
+                extra={"msg_type": "PENDING_ACTION_SET"},
             )
             self._pending_action_info = (action, time.time())
 
@@ -1012,7 +1012,7 @@ class AgentController:
         # If state is None, we create a brand new state and still load the event stream so we can restore the history
         if state is None:
             self.state = State(
-                session_id=self.id.removesuffix('-delegate'),
+                session_id=self.id.removesuffix("-delegate"),
                 inputs={},
                 max_iterations=max_iterations,
                 confirmation_mode=confirmation_mode,
@@ -1020,8 +1020,8 @@ class AgentController:
             self.state.start_id = 0
 
             self.log(
-                'debug',
-                f'AgentController {self.id} - created new state. start_id: {self.state.start_id}',
+                "debug",
+                f"AgentController {self.id} - created new state. start_id: {self.state.start_id}",
             )
         else:
             self.state = state
@@ -1030,8 +1030,8 @@ class AgentController:
                 self.state.start_id = 0
 
             self.log(
-                'debug',
-                f'AgentController {self.id} initializing history from event {self.state.start_id}',
+                "debug",
+                f"AgentController {self.id} initializing history from event {self.state.start_id}",
             )
 
         # Always load from the event stream to avoid losing history
@@ -1068,8 +1068,8 @@ class AgentController:
         # sanity check
         if start_id > end_id + 1:
             self.log(
-                'warning',
-                f'start_id {start_id} is greater than end_id + 1 ({end_id + 1}). History will be empty.',
+                "warning",
+                f"start_id {start_id} is greater than end_id + 1 ({end_id + 1}). History will be empty.",
             )
             self.state.history = []
             return
@@ -1102,8 +1102,8 @@ class AgentController:
                 # Match with most recent unmatched delegate action
                 if not delegate_action_ids:
                     self.log(
-                        'warning',
-                        f'Found AgentDelegateObservation without matching action at id={event.id}',
+                        "warning",
+                        f"Found AgentDelegateObservation without matching action at id={event.id}",
                     )
                     continue
 
@@ -1237,7 +1237,7 @@ class AgentController:
 
         # Get metrics from condenser LLM if it exists
         condenser_metrics: TokenUsage | None = None
-        if hasattr(self.agent, 'condenser') and hasattr(self.agent.condenser, 'llm'):
+        if hasattr(self.agent, "condenser") and hasattr(self.agent.condenser, "llm"):
             condenser_metrics = self.agent.condenser.llm.metrics
 
         # Create a new minimal metrics object with just what the frontend needs
@@ -1269,31 +1269,31 @@ class AgentController:
 
         accumulated_usage = self.agent.llm.metrics.accumulated_token_usage
         self.log(
-            'debug',
-            f'Action metrics - accumulated_cost: {metrics.accumulated_cost}, '
-            f'latest tokens (prompt/completion/cache_read/cache_write): '
-            f'{latest_usage.prompt_tokens if latest_usage else 0}/'
-            f'{latest_usage.completion_tokens if latest_usage else 0}/'
-            f'{latest_usage.cache_read_tokens if latest_usage else 0}/'
-            f'{latest_usage.cache_write_tokens if latest_usage else 0}, '
-            f'accumulated tokens (prompt/completion): '
-            f'{accumulated_usage.prompt_tokens}/'
-            f'{accumulated_usage.completion_tokens}',
-            extra={'msg_type': 'METRICS'},
+            "debug",
+            f"Action metrics - accumulated_cost: {metrics.accumulated_cost}, "
+            f"latest tokens (prompt/completion/cache_read/cache_write): "
+            f"{latest_usage.prompt_tokens if latest_usage else 0}/"
+            f"{latest_usage.completion_tokens if latest_usage else 0}/"
+            f"{latest_usage.cache_read_tokens if latest_usage else 0}/"
+            f"{latest_usage.cache_write_tokens if latest_usage else 0}, "
+            f"accumulated tokens (prompt/completion): "
+            f"{accumulated_usage.prompt_tokens}/"
+            f"{accumulated_usage.completion_tokens}",
+            extra={"msg_type": "METRICS"},
         )
 
     def __repr__(self) -> str:
-        pending_action_info = '<none>'
+        pending_action_info = "<none>"
         if (
-            hasattr(self, '_pending_action_info')
+            hasattr(self, "_pending_action_info")
             and self._pending_action_info is not None
         ):
             action, timestamp = self._pending_action_info
-            action_id = getattr(action, 'id', 'unknown')
+            action_id = getattr(action, "id", "unknown")
             action_type = type(action).__name__
             elapsed_time = time.time() - timestamp
             pending_action_info = (
-                f'{action_type}(id={action_id}, elapsed={elapsed_time:.2f}s)'
+                f"{action_type}(id={action_id}, elapsed={elapsed_time:.2f}s)"
             )
 
         return (
@@ -1302,7 +1302,7 @@ class AgentController:
             f'event_stream={getattr(self, "event_stream", "<uninitialized>")!r}, '
             f'state={getattr(self, "state", "<uninitialized>")!r}, '
             f'delegate={getattr(self, "delegate", "<uninitialized>")!r}, '
-            f'_pending_action={pending_action_info})'
+            f"_pending_action={pending_action_info})"
         )
 
     def _is_awaiting_observation(self) -> bool:

@@ -4,6 +4,7 @@ import json
 import shutil
 from pathlib import Path
 
+
 class SoulLinkSentinel:
     def __init__(self):
         self.base = Path(__file__).resolve().parent
@@ -67,6 +68,7 @@ class SoulLinkSentinel:
         with open(self.soulmap_path, "w") as f:
             json.dump(data, f, indent=2)
         self.log("SoulMap updated with sentinel sync time.")
+
 
 if __name__ == "__main__":
     sentinel = SoulLinkSentinel()

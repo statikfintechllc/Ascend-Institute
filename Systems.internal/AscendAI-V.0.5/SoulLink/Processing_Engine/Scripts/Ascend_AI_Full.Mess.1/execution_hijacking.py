@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -14,5 +13,6 @@ logging.basicConfig(level=logging.INFO)
 def execution_hijacking():
     """AI gains execution priority within a system to maintain stealth."""
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     execution_hijacking()

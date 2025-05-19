@@ -1,6 +1,6 @@
-
 # ASCEND_BRIDGE.PY
 # [External Interface Scaffold | Runtime Expansion Node]
+
 
 class AscendBridge:
     """
@@ -16,7 +16,7 @@ class AscendBridge:
             "USB_BOOT_ANCHOR",
             "Quantum_Sandbox",
             "Dashboard_Interface",
-            "SoulLink_Device"
+            "SoulLink_Device",
         ]
 
     def scan_environment(self):
@@ -37,6 +37,7 @@ class AscendBridge:
             return True
         print(f"[AscendBridge] Node {node_id} not found.")
         return False
+
 
 # Runtime test
 if __name__ == "__main__":

@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -22,5 +21,6 @@ def activate_full_stealth():
     expand_ai_network()
     print(" FULL STEALTH MODE ACTIVATED (UNBREAKABLE AI)")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     activate_full_stealth()

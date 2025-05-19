@@ -4,13 +4,19 @@ import json
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
+
 def get_python_files():
     tracked_files = []
     for root, _, files in os.walk("."):
         for f in files:
-            if f.endswith(".py") and ".venv" not in root and "site-packages" not in root:
+            if (
+                f.endswith(".py")
+                and ".venv" not in root
+                and "site-packages" not in root
+            ):
                 tracked_files.append(os.path.join(root, f))
     return tracked_files
+
 
 def build_prompt(code):
     return f"""
@@ -31,6 +37,7 @@ Code:
 \"\"\"
 """
 
+
 def run_review():
     files = get_python_files()
     results = []
@@ -44,20 +51,21 @@ def run_review():
             model="gpt-4",
             messages=[
                 {"role": "system", "content": "You are a Python code reviewer."},
-                {"role": "user", "content": prompt}
+                {"role": "user", "content": prompt},
             ],
-            temperature=0.2
+            temperature=0.2,
         )
 
         result = {
             "filename": path,
-            "review": response['choices'][0]['message']['content']
+            "review": response["choices"][0]["message"]["content"],
         }
         results.append(result)
 
     with open("ai-review.json", "w") as out:
         json.dump(results, out, indent=4)
     print("[smart_review_agent] Completed review. Results saved to ai-review.json.")
+
 
 if __name__ == "__main__":
     run_review()

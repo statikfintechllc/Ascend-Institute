@@ -21,13 +21,14 @@ os.makedirs(LOG_FOLDER, exist_ok=True)
 logging.basicConfig(
     filename=os.path.join(LOG_FOLDER, "supervisor.log"),
     level=logging.INFO,
-    format='%(asctime)s [SUPERVISOR]: %(message)s'
+    format="%(asctime)s [SUPERVISOR]: %(message)s",
 )
 
 # === Function: Is process running? ===
 def is_process_alive(process_name):
     result = subprocess.run(["pgrep", "-f", process_name], capture_output=True)
     return bool(result.stdout)
+
 
 # === Function: Restart Matrix if crashed ===
 def restart_matrix_if_crashed():
@@ -36,6 +37,7 @@ def restart_matrix_if_crashed():
             logging.warning(f"{MATRIX_NAME} not running. Restarting...")
             subprocess.Popen(["python3", MATRIX_NAME])
         time.sleep(MONITOR_INTERVAL)
+
 
 # === Function: Validate Final_Goal priority ===
 def validate_goal_file():
@@ -49,12 +51,14 @@ def validate_goal_file():
         else:
             logging.info("Dashboard found in Final_Goal.txt")
 
+
 # === Function: Check dashboard health ===
 def check_dashboard():
     try:
         result = subprocess.run(
             ["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}", DASHBOARD_ENDPOINT],
-            capture_output=True, text=True
+            capture_output=True,
+            text=True,
         )
         if result.stdout.strip() != "200":
             logging.warning(f"Dashboard health check failed: {result.stdout.strip()}")
@@ -62,6 +66,7 @@ def check_dashboard():
             logging.info("Dashboard endpoint healthy.")
     except Exception as e:
         logging.error(f"Dashboard check error: {e}")
+
 
 # === Function: Loop folder check ===
 def verify_loops_present():
@@ -71,6 +76,7 @@ def verify_loops_present():
     else:
         logging.info(f"{len(loops)} loop scripts present.")
 
+
 # === Function: Agent sanity check ===
 def verify_agents_exist():
     for agent in REQUIRED_AGENTS:
@@ -78,6 +84,7 @@ def verify_agents_exist():
             logging.error(f"Required agent missing: {agent}")
         else:
             logging.info(f"Verified agent exists: {agent}")
+
 
 # === Supervisor Main Loop ===
 def supervisor_loop():
@@ -89,12 +96,14 @@ def supervisor_loop():
         validate_goal_file()
         time.sleep(MONITOR_INTERVAL * 2)  # Longer loop for heavier checks
 
+
 # === Launch ===
 def main():
     threading.Thread(target=restart_matrix_if_crashed, daemon=True).start()
     threading.Thread(target=supervisor_loop, daemon=True).start()
     while True:
         time.sleep(60)  # Keep main thread alive while daemons run
+
 
 if __name__ == "__main__":
     main()

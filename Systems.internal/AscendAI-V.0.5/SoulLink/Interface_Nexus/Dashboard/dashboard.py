@@ -26,11 +26,16 @@ class UltimateDashboard:
 
     def call_api(self, api_url, payload=None):
         try:
-            response = requests.post(api_url, json=payload) if payload else requests.get(api_url)
+            response = (
+                requests.post(api_url, json=payload)
+                if payload
+                else requests.get(api_url)
+            )
             return response.json().get("result", "[AI] No response received.")
         except Exception as e:
             logging.error(f"[Dashboard] API Call Failed: {str(e)}")
             return "[AI] Service communication failed."
+
 
 ultimate_dashboard = UltimateDashboard()
 
@@ -60,47 +65,70 @@ def glowing_golden_eye():
         ],
     )
 
-app.layout = html.Div([
-    html.Div(glowing_golden_eye(), id="golden-eye-wrapper", style={"position": "absolute", "top": "20px", "right": "20px"}),
 
-    html.Div([
-        html.H2("AI System Status", style={'textAlign': 'center'}),
-        html.Div(id="ai-status", style={'textAlign': 'center', 'color': '#FFD700'}),
-    ]),
-
-    html.Div([
-        dcc.Input(id="user-command", type="text", placeholder="Enter command..."),
-        html.Button("Execute Command", id="execute-button"),
-        html.Div(id="command-output"),
-    ], style={"textAlign": "center", "marginTop": "20px"}),
-
-    html.Div([
-        html.Button("Run Security Scan", id="security-button"),
-        html.Div(id="security-output"),
-    ], style={"textAlign": "center", "marginTop": "20px"}),
-
-    html.Div([
-        html.Button("Check Network Status", id="network-button"),
-        html.Div(id="network-output"),
-    ], style={"textAlign": "center", "marginTop": "20px"}),
-
-    html.Div([
-        html.Button("Run Quantum AI", id="quantum-button"),
-        html.Div(id="quantum-output"),
-    ], style={"textAlign": "center", "marginTop": "20px"}),
-
-    html.Div([
-        html.Button("Fetch System Logs", id="logs-button"),
-        html.Div(id="logs-output"),
-    ], style={"textAlign": "center", "marginTop": "20px"}),
-])
+app.layout = html.Div(
+    [
+        html.Div(
+            glowing_golden_eye(),
+            id="golden-eye-wrapper",
+            style={"position": "absolute", "top": "20px", "right": "20px"},
+        ),
+        html.Div(
+            [
+                html.H2("AI System Status", style={"textAlign": "center"}),
+                html.Div(
+                    id="ai-status", style={"textAlign": "center", "color": "#FFD700"}
+                ),
+            ]
+        ),
+        html.Div(
+            [
+                dcc.Input(
+                    id="user-command", type="text", placeholder="Enter command..."
+                ),
+                html.Button("Execute Command", id="execute-button"),
+                html.Div(id="command-output"),
+            ],
+            style={"textAlign": "center", "marginTop": "20px"},
+        ),
+        html.Div(
+            [
+                html.Button("Run Security Scan", id="security-button"),
+                html.Div(id="security-output"),
+            ],
+            style={"textAlign": "center", "marginTop": "20px"},
+        ),
+        html.Div(
+            [
+                html.Button("Check Network Status", id="network-button"),
+                html.Div(id="network-output"),
+            ],
+            style={"textAlign": "center", "marginTop": "20px"},
+        ),
+        html.Div(
+            [
+                html.Button("Run Quantum AI", id="quantum-button"),
+                html.Div(id="quantum-output"),
+            ],
+            style={"textAlign": "center", "marginTop": "20px"},
+        ),
+        html.Div(
+            [
+                html.Button("Fetch System Logs", id="logs-button"),
+                html.Div(id="logs-output"),
+            ],
+            style={"textAlign": "center", "marginTop": "20px"},
+        ),
+    ]
+)
 
 # Callbacks
+
 
 @app.callback(
     Output("command-output", "children"),
     [Input("execute-button", "n_clicks")],
-    [State("user-command", "value")]
+    [State("user-command", "value")],
 )
 def execute_ai_command(n_clicks, command):
     if n_clicks and command:
@@ -114,23 +142,33 @@ def execute_ai_command(n_clicks, command):
         return f"Model: {model_response}"
     return "Awaiting AI Command..."
 
-@app.callback(Output("security-output", "children"), [Input("security-button", "n_clicks")])
+
+@app.callback(
+    Output("security-output", "children"), [Input("security-button", "n_clicks")]
+)
 def run_security_scan(n_clicks):
     if n_clicks:
         return ultimate_dashboard.call_api(SECURITY_API)
     return "Press button to scan security."
 
-@app.callback(Output("network-output", "children"), [Input("network-button", "n_clicks")])
+
+@app.callback(
+    Output("network-output", "children"), [Input("network-button", "n_clicks")]
+)
 def check_network(n_clicks):
     if n_clicks:
         return ultimate_dashboard.call_api(NETWORK_API)
     return "Press button to check network."
 
-@app.callback(Output("quantum-output", "children"), [Input("quantum-button", "n_clicks")])
+
+@app.callback(
+    Output("quantum-output", "children"), [Input("quantum-button", "n_clicks")]
+)
 def execute_quantum_ai(n_clicks):
     if n_clicks:
         return ultimate_dashboard.call_api(QUANTUM_API)
     return "Press button to run Quantum AI."
+
 
 @app.callback(Output("logs-output", "children"), [Input("logs-button", "n_clicks")])
 def fetch_logs(n_clicks):
@@ -138,6 +176,7 @@ def fetch_logs(n_clicks):
         return ultimate_dashboard.call_api(LOGS_API)
     return "Press button to fetch logs."
 
+
 # Launch
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run_server(debug=True, port=8050)

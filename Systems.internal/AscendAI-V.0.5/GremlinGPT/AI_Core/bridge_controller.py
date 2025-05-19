@@ -19,8 +19,9 @@ ENV_PORTS = {
     "darknet-interface": 5115,
     "ai-eval": 5116,
     "code-fuzz": 5117,
-    "base-dev": 5118
+    "base-dev": 5118,
 }
+
 
 def send_to_env(env, python_code):
     port = ENV_PORTS[env]

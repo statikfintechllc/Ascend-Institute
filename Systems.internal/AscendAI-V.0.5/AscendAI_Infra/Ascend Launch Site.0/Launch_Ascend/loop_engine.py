@@ -14,14 +14,16 @@ MATRIX_INTERVAL = 300  # 5 minutes
 # Ensure log directory exists
 os.makedirs(LOG_FOLDER, exist_ok=True)
 
+
 def launch_matrix():
     subprocess.run(["python3", "ascend_matrix.py"])
+
 
 def main():
     logging.basicConfig(
         filename=os.path.join(LOG_FOLDER, "loop_engine.log"),
         level=logging.INFO,
-        format='%(asctime)s [%(levelname)s]: %(message)s'
+        format="%(asctime)s [%(levelname)s]: %(message)s",
     )
     logging.info("Loop Engine started.")
 
@@ -32,10 +34,12 @@ def main():
     # Monitor loops
     monitor_loops()
 
+
 # Dictionary to track subprocesses
 loop_processes = {}
 matrix_thread = None
 last_matrix_time = 0
+
 
 def launch_loop(loop_path):
     """Launch a loop script as a subprocess and log its output."""
@@ -43,14 +47,14 @@ def launch_loop(loop_path):
     log_path = os.path.join(LOG_FOLDER, f"{loop_name}.log")
     with open(log_path, "a") as log_file:
         process = subprocess.Popen(
-            ["python3", str(loop_path)],
-            stdout=log_file,
-            stderr=log_file
+            ["python3", str(loop_path)], stdout=log_file, stderr=log_file
         )
     return process
 
+
 def run_matrix_background():
     """Fire up ascend_matrix.py in a background thread."""
+
     def matrix_task():
         logging.info("[MATRIX] Activating ascend_matrix.py")
         subprocess.run(["python3", "ascend_matrix.py"])
@@ -62,13 +66,17 @@ def run_matrix_background():
     else:
         logging.info("[MATRIX] Already running; skipping new launch.")
 
+
 def monitor_loops():
     """Monitor and restart loops as necessary."""
     global last_matrix_time
     while True:
         for loop_path in Path(LOOP_FOLDER).glob("*.py"):
             loop_name = loop_path.name
-            if loop_name not in loop_processes or loop_processes[loop_name].poll() is not None:
+            if (
+                loop_name not in loop_processes
+                or loop_processes[loop_name].poll() is not None
+            ):
                 logging.info(f"[LOOP] Launching/restarting: {loop_name}")
                 loop_processes[loop_name] = launch_loop(loop_path)
 
@@ -79,15 +87,17 @@ def monitor_loops():
 
         time.sleep(10)
 
+
 def main():
     """Start loop monitoring and Matrix execution."""
     logging.basicConfig(
         filename=os.path.join(LOG_FOLDER, "loop_engine.log"),
         level=logging.INFO,
-        format='%(asctime)s [%(levelname)s]: %(message)s'
+        format="%(asctime)s [%(levelname)s]: %(message)s",
     )
     logging.info("[ENGINE] Loop Engine initialized.")
     monitor_loops()
+
 
 if __name__ == "__main__":
     main()

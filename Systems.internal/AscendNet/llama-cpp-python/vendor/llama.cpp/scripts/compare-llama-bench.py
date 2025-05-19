@@ -12,34 +12,83 @@ try:
     import git
     from tabulate import tabulate
 except ImportError as e:
-    print("the following Python libraries are required: GitPython, tabulate.") # noqa: NP100
+    print(
+        "the following Python libraries are required: GitPython, tabulate."
+    )  # noqa: NP100
     raise e
 
 logger = logging.getLogger("compare-llama-bench")
 
 # Properties by which to differentiate results per commit:
 KEY_PROPERTIES = [
-    "cpu_info", "gpu_info", "backends", "n_gpu_layers", "model_filename", "model_type", "n_batch", "n_ubatch",
-    "embeddings", "cpu_mask", "cpu_strict", "poll", "n_threads", "type_k", "type_v", "use_mmap", "no_kv_offload",
-    "split_mode", "main_gpu", "tensor_split", "flash_attn", "n_prompt", "n_gen"
+    "cpu_info",
+    "gpu_info",
+    "backends",
+    "n_gpu_layers",
+    "model_filename",
+    "model_type",
+    "n_batch",
+    "n_ubatch",
+    "embeddings",
+    "cpu_mask",
+    "cpu_strict",
+    "poll",
+    "n_threads",
+    "type_k",
+    "type_v",
+    "use_mmap",
+    "no_kv_offload",
+    "split_mode",
+    "main_gpu",
+    "tensor_split",
+    "flash_attn",
+    "n_prompt",
+    "n_gen",
 ]
 
 # Properties that are boolean and are converted to Yes/No for the table:
-BOOL_PROPERTIES = ["embeddings", "cpu_strict", "use_mmap", "no_kv_offload", "flash_attn"]
+BOOL_PROPERTIES = [
+    "embeddings",
+    "cpu_strict",
+    "use_mmap",
+    "no_kv_offload",
+    "flash_attn",
+]
 
 # Header names for the table:
 PRETTY_NAMES = {
-    "cpu_info": "CPU", "gpu_info": "GPU", "backends": "Backends", "n_gpu_layers": "GPU layers",
-    "model_filename": "File", "model_type": "Model", "model_size": "Model size [GiB]",
-    "model_n_params": "Num. of par.", "n_batch": "Batch size", "n_ubatch": "Microbatch size",
-    "embeddings": "Embeddings", "cpu_mask": "CPU mask", "cpu_strict": "CPU strict", "poll": "Poll",
-    "n_threads": "Threads", "type_k": "K type", "type_v": "V type", "split_mode": "Split mode", "main_gpu": "Main GPU",
-    "no_kv_offload": "NKVO", "flash_attn": "FlashAttention", "tensor_split": "Tensor split", "use_mmap": "Use mmap",
+    "cpu_info": "CPU",
+    "gpu_info": "GPU",
+    "backends": "Backends",
+    "n_gpu_layers": "GPU layers",
+    "model_filename": "File",
+    "model_type": "Model",
+    "model_size": "Model size [GiB]",
+    "model_n_params": "Num. of par.",
+    "n_batch": "Batch size",
+    "n_ubatch": "Microbatch size",
+    "embeddings": "Embeddings",
+    "cpu_mask": "CPU mask",
+    "cpu_strict": "CPU strict",
+    "poll": "Poll",
+    "n_threads": "Threads",
+    "type_k": "K type",
+    "type_v": "V type",
+    "split_mode": "Split mode",
+    "main_gpu": "Main GPU",
+    "no_kv_offload": "NKVO",
+    "flash_attn": "FlashAttention",
+    "tensor_split": "Tensor split",
+    "use_mmap": "Use mmap",
 }
 
 DEFAULT_SHOW = ["model_type"]  # Always show these properties by default.
 DEFAULT_HIDE = ["model_filename"]  # Always hide these properties by default.
-GPU_NAME_STRIP = ["NVIDIA GeForce ", "Tesla ", "AMD Radeon "]  # Strip prefixes for smaller tables.
+GPU_NAME_STRIP = [
+    "NVIDIA GeForce ",
+    "Tesla ",
+    "AMD Radeon ",
+]  # Strip prefixes for smaller tables.
 MODEL_SUFFIX_REPLACE = {" - Small": "_S", " - Medium": "_M", " - Large": "_L"}
 
 DESCRIPTION = """Creates tables from llama-bench data written to an SQLite database. Example usage (Linux):
@@ -56,7 +105,8 @@ Performance numbers from multiple runs per commit are averaged WITHOUT being wei
 """
 
 parser = argparse.ArgumentParser(
-    description=DESCRIPTION, formatter_class=argparse.RawDescriptionHelpFormatter)
+    description=DESCRIPTION, formatter_class=argparse.RawDescriptionHelpFormatter
+)
 help_b = (
     "The baseline commit to compare performance to. "
     "Accepts either a branch name, tag name, or commit hash. "
@@ -92,7 +142,11 @@ help_s = (
     "If the columns are manually specified, then the results for each unique combination of the "
     "specified values are averaged WITHOUT weighing by the --repetitions parameter of llama-bench."
 )
-parser.add_argument("--check", action="store_true", help="check if all required Python libraries are installed")
+parser.add_argument(
+    "--check",
+    action="store_true",
+    help="check if all required Python libraries are installed",
+)
 parser.add_argument("-s", "--show", help=help_s)
 parser.add_argument("--verbose", action="store_true", help="increase output verbosity")
 
@@ -125,13 +179,21 @@ if input_file is None:
 connection = sqlite3.connect(input_file)
 cursor = connection.cursor()
 
-build_len_min: int = cursor.execute("SELECT MIN(LENGTH(build_commit)) from test;").fetchone()[0]
-build_len_max: int = cursor.execute("SELECT MAX(LENGTH(build_commit)) from test;").fetchone()[0]
+build_len_min: int = cursor.execute(
+    "SELECT MIN(LENGTH(build_commit)) from test;"
+).fetchone()[0]
+build_len_max: int = cursor.execute(
+    "SELECT MAX(LENGTH(build_commit)) from test;"
+).fetchone()[0]
 
 if build_len_min != build_len_max:
-    logger.warning(f"{input_file} contains commit hashes of differing lengths. It's possible that the wrong commits will be compared. "
-                   "Try purging the the database of old commits.")
-    cursor.execute(f"UPDATE test SET build_commit = SUBSTRING(build_commit, 1, {build_len_min});")
+    logger.warning(
+        f"{input_file} contains commit hashes of differing lengths. It's possible that the wrong commits will be compared. "
+        "Try purging the the database of old commits."
+    )
+    cursor.execute(
+        f"UPDATE test SET build_commit = SUBSTRING(build_commit, 1, {build_len_min});"
+    )
 
 build_len: int = build_len_min
 
@@ -167,7 +229,7 @@ def find_parent_in_data(commit: git.Commit):
 def get_all_parent_hexsha8s(commit: git.Commit):
     """Helper function to recursively get hexsha8 values for all parents of a commit."""
     unvisited = [commit]
-    visited   = []
+    visited = []
 
     while unvisited:
         current_commit = unvisited.pop(0)
@@ -225,12 +287,16 @@ elif repo is not None:
     hexsha8_baseline = find_parent_in_data(repo.heads.master.commit)
 
     if hexsha8_baseline is None:
-        logger.error("No baseline was provided and did not find data for any master branch commits.\n")
+        logger.error(
+            "No baseline was provided and did not find data for any master branch commits.\n"
+        )
         parser.print_help()
         sys.exit(1)
 else:
-    logger.error("No baseline was provided and the current working directory "
-                 "is not part of a git repository from which a baseline could be inferred.\n")
+    logger.error(
+        "No baseline was provided and the current working directory "
+        "is not part of a git repository from which a baseline could be inferred.\n"
+    )
     parser.print_help()
     sys.exit(1)
 
@@ -254,19 +320,24 @@ if known_args.compare is not None:
 elif repo is not None:
     hexsha8s_master = get_all_parent_hexsha8s(repo.heads.master.commit)
     builds_timestamp = cursor.execute(
-        "SELECT build_commit, test_time FROM test ORDER BY test_time;").fetchall()
+        "SELECT build_commit, test_time FROM test ORDER BY test_time;"
+    ).fetchall()
     for (hexsha8, _) in reversed(builds_timestamp):
         if hexsha8 not in hexsha8s_master:
             hexsha8_compare = hexsha8
             break
 
     if hexsha8_compare is None:
-        logger.error("No compare target was provided and did not find data for any non-master commits.\n")
+        logger.error(
+            "No compare target was provided and did not find data for any non-master commits.\n"
+        )
         parser.print_help()
         sys.exit(1)
 else:
-    logger.error("No compare target was provided and the current working directory "
-                 "is not part of a git repository from which a compare target could be inferred.\n")
+    logger.error(
+        "No compare target was provided and the current working directory "
+        "is not part of a git repository from which a compare target could be inferred.\n"
+    )
     parser.print_help()
     sys.exit(1)
 
@@ -281,14 +352,23 @@ def get_rows(properties):
     The returned rows are unique in terms of property combinations.
     """
     select_string = ", ".join(
-        [f"tb.{p}" for p in properties] + ["tb.n_prompt", "tb.n_gen", "AVG(tb.avg_ts)", "AVG(tc.avg_ts)"])
-    equal_string = " AND ".join(
-        [f"tb.{p} = tc.{p}" for p in KEY_PROPERTIES] + [
-            f"tb.build_commit = '{hexsha8_baseline}'", f"tc.build_commit = '{hexsha8_compare}'"]
+        [f"tb.{p}" for p in properties]
+        + ["tb.n_prompt", "tb.n_gen", "AVG(tb.avg_ts)", "AVG(tc.avg_ts)"]
     )
-    group_order_string = ", ".join([f"tb.{p}" for p in properties] + ["tb.n_gen", "tb.n_prompt"])
-    query = (f"SELECT {select_string} FROM test tb JOIN test tc ON {equal_string} "
-             f"GROUP BY {group_order_string} ORDER BY {group_order_string};")
+    equal_string = " AND ".join(
+        [f"tb.{p} = tc.{p}" for p in KEY_PROPERTIES]
+        + [
+            f"tb.build_commit = '{hexsha8_baseline}'",
+            f"tc.build_commit = '{hexsha8_compare}'",
+        ]
+    )
+    group_order_string = ", ".join(
+        [f"tb.{p}" for p in properties] + ["tb.n_gen", "tb.n_prompt"]
+    )
+    query = (
+        f"SELECT {select_string} FROM test tb JOIN test tc ON {equal_string} "
+        f"GROUP BY {group_order_string} ORDER BY {group_order_string};"
+    )
     return cursor.execute(query).fetchall()
 
 
@@ -341,7 +421,7 @@ else:
 table = []
 for row in rows_show:
     n_prompt = int(row[-4])
-    n_gen    = int(row[-3])
+    n_gen = int(row[-3])
     if n_prompt != 0 and n_gen == 0:
         test_name = f"pp{n_prompt}"
     elif n_prompt == 0 and n_gen != 0:
@@ -350,7 +430,12 @@ for row in rows_show:
         test_name = f"pp{n_prompt}+tg{n_gen}"
     #           Regular columns    test name    avg t/s values              Speedup
     #            VVVVVVVVVVVVV     VVVVVVVVV    VVVVVVVVVVVVVV              VVVVVVV
-    table.append(list(row[:-4]) + [test_name] + list(row[-2:]) + [float(row[-1]) / float(row[-2])])
+    table.append(
+        list(row[:-4])
+        + [test_name]
+        + list(row[-2:])
+        + [float(row[-1]) / float(row[-2])]
+    )
 
 # Some a-posteriori fixes to make the table contents prettier:
 for bool_property in BOOL_PROPERTIES:
@@ -382,12 +467,11 @@ if "gpu_info" in show:
         if len(gpu_names) >= 2 and all_names_the_same:
             row_table[ip] = f"{num_gpus}x {gpu_names[0]}"
 
-headers  = [PRETTY_NAMES[p] for p in show]
+headers = [PRETTY_NAMES[p] for p in show]
 headers += ["Test", f"t/s {name_baseline}", f"t/s {name_compare}", "Speedup"]
 
-print(tabulate( # noqa: NP100
-    table,
-    headers=headers,
-    floatfmt=".2f",
-    tablefmt=known_args.output
-))
+print(
+    tabulate(  # noqa: NP100
+        table, headers=headers, floatfmt=".2f", tablefmt=known_args.output
+    )
+)

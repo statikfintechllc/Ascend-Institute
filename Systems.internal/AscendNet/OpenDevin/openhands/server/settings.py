@@ -37,62 +37,62 @@ class Settings(BaseModel):
     sandbox_runtime_container_image: str | None = None
 
     model_config = {
-        'validate_assignment': True,
+        "validate_assignment": True,
     }
 
-    @field_serializer('llm_api_key')
+    @field_serializer("llm_api_key")
     def llm_api_key_serializer(self, llm_api_key: SecretStr, info: SerializationInfo):
         """Custom serializer for the LLM API key.
 
         To serialize the API key instead of ********, set expose_secrets to True in the serialization context.
         """
         context = info.context
-        if context and context.get('expose_secrets', False):
+        if context and context.get("expose_secrets", False):
             return llm_api_key.get_secret_value()
 
         return pydantic_encoder(llm_api_key) if llm_api_key else None
 
-    @model_validator(mode='before')
+    @model_validator(mode="before")
     @classmethod
     def convert_provider_tokens(cls, data: dict | object) -> dict | object:
         """Convert provider tokens from JSON format to SecretStore format."""
         if not isinstance(data, dict):
             return data
 
-        secrets_store = data.get('secrets_store')
+        secrets_store = data.get("secrets_store")
         if not isinstance(secrets_store, dict):
             return data
 
-        custom_secrets = secrets_store.get('custom_secrets')
-        tokens = secrets_store.get('provider_tokens')
+        custom_secrets = secrets_store.get("custom_secrets")
+        tokens = secrets_store.get("provider_tokens")
 
         secret_store = SecretStore(provider_tokens={}, custom_secrets={})
 
         if isinstance(tokens, dict):
             converted_store = SecretStore(provider_tokens=tokens)
             secret_store = secret_store.model_copy(
-                update={'provider_tokens': converted_store.provider_tokens}
+                update={"provider_tokens": converted_store.provider_tokens}
             )
         else:
-            secret_store.model_copy(update={'provider_tokens': tokens})
+            secret_store.model_copy(update={"provider_tokens": tokens})
 
         if isinstance(custom_secrets, dict):
             converted_store = SecretStore(custom_secrets=custom_secrets)
             secret_store = secret_store.model_copy(
-                update={'custom_secrets': converted_store.custom_secrets}
+                update={"custom_secrets": converted_store.custom_secrets}
             )
         else:
             secret_store = secret_store.model_copy(
-                update={'custom_secrets': custom_secrets}
+                update={"custom_secrets": custom_secrets}
             )
-        data['secret_store'] = secret_store
+        data["secret_store"] = secret_store
         return data
 
-    @field_serializer('secrets_store')
+    @field_serializer("secrets_store")
     def secrets_store_serializer(self, secrets: SecretStore, info: SerializationInfo):
         """Custom serializer for secrets store."""
         return {
-            'provider_tokens': secrets.provider_tokens_serializer(
+            "provider_tokens": secrets.provider_tokens_serializer(
                 secrets.provider_tokens, info
             )
         }
@@ -106,7 +106,7 @@ class Settings(BaseModel):
             return None
         security = app_config.security
         settings = Settings(
-            language='en',
+            language="en",
             agent=app_config.default_agent,
             max_iterations=app_config.max_iterations,
             security_analyzer=security.security_analyzer,

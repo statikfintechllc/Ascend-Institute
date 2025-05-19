@@ -44,13 +44,13 @@ class MockEventStream:
 
 @pytest.fixture
 def mock_agent():
-    with patch('openhands.core.cli.create_agent') as mock_create_agent:
+    with patch("openhands.core.cli.create_agent") as mock_create_agent:
         mock_agent_instance = AsyncMock()
-        mock_agent_instance.name = 'test-agent'
+        mock_agent_instance.name = "test-agent"
         mock_agent_instance.llm = AsyncMock()
         mock_agent_instance.llm.config = AsyncMock()
-        mock_agent_instance.llm.config.model = 'test-model'
-        mock_agent_instance.llm.config.base_url = 'http://test'
+        mock_agent_instance.llm.config.model = "test-model"
+        mock_agent_instance.llm.config.base_url = "http://test"
         mock_agent_instance.llm.config.max_message_chars = 1000
         mock_agent_instance.config = AsyncMock()
         mock_agent_instance.config.disabled_microagents = []
@@ -62,7 +62,7 @@ def mock_agent():
 
 @pytest.fixture
 def mock_controller():
-    with patch('openhands.core.cli.create_controller') as mock_create_controller:
+    with patch("openhands.core.cli.create_controller") as mock_create_controller:
         mock_controller_instance = AsyncMock()
         mock_controller_instance.state.agent_state = None
         # Mock run_until_done to finish immediately
@@ -73,27 +73,27 @@ def mock_controller():
 
 @pytest.fixture
 def mock_config():
-    with patch('openhands.core.cli.parse_arguments') as mock_parse_args:
+    with patch("openhands.core.cli.parse_arguments") as mock_parse_args:
         args = Mock()
         args.file = None
         args.task = None
         args.directory = None
         mock_parse_args.return_value = args
-        with patch('openhands.core.cli.setup_config_from_args') as mock_setup_config:
+        with patch("openhands.core.cli.setup_config_from_args") as mock_setup_config:
             mock_config = AppConfig()
             mock_config.cli_multiline_input = False
             mock_config.security = Mock()
             mock_config.security.confirmation_mode = False
             mock_config.sandbox = Mock()
             mock_config.sandbox.selected_repo = None
-            mock_config.workspace_base = '/test'
+            mock_config.workspace_base = "/test"
             mock_setup_config.return_value = mock_config
             yield mock_config
 
 
 @pytest.fixture
 def mock_memory():
-    with patch('openhands.core.cli.create_memory') as mock_create_memory:
+    with patch("openhands.core.cli.create_memory") as mock_create_memory:
         mock_memory_instance = AsyncMock()
         mock_create_memory.return_value = mock_memory_instance
         yield mock_memory_instance
@@ -101,14 +101,14 @@ def mock_memory():
 
 @pytest.fixture
 def mock_read_task():
-    with patch('openhands.core.cli.read_task') as mock_read_task:
+    with patch("openhands.core.cli.read_task") as mock_read_task:
         mock_read_task.return_value = None
         yield mock_read_task
 
 
 @pytest.fixture
 def mock_runtime():
-    with patch('openhands.core.cli.create_runtime') as mock_create_runtime:
+    with patch("openhands.core.cli.create_runtime") as mock_create_runtime:
         mock_runtime_instance = AsyncMock()
 
         mock_event_stream = MockEventStream()
@@ -130,8 +130,8 @@ async def test_cli_basic_prompt(
 ):
     buffer = StringIO()
 
-    with patch('openhands.core.cli.manage_openhands_file', return_value=True):
-        with patch('openhands.core.cli.cli_confirm', return_value=True):
+    with patch("openhands.core.cli.manage_openhands_file", return_value=True):
+        with patch("openhands.core.cli.cli_confirm", return_value=True):
             with create_app_session(
                 input=create_pipe_input(), output=create_output(stdout=buffer)
             ):
@@ -141,7 +141,7 @@ async def test_cli_basic_prompt(
 
                 await asyncio.sleep(0.1)
 
-                hello_response = MessageAction(content='Ping')
+                hello_response = MessageAction(content="Ping")
                 hello_response._source = EventSource.AGENT
                 mock_runtime.event_stream.add_event(hello_response, EventSource.AGENT)
 
@@ -153,4 +153,4 @@ async def test_cli_basic_prompt(
                 buffer.seek(0)
                 output = buffer.read()
 
-                assert 'Ping' in output
+                assert "Ping" in output

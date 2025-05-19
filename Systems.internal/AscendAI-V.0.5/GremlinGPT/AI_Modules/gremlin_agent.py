@@ -10,12 +10,14 @@ from memory.task_journal import log_task_event
 logger = logging.getLogger(__name__)
 graph = build_gremlin_graph()
 
+
 def run_as_agent(task_text):
     logger.info(f"[Agent] Running LangGraph on task: {task_text}")
     result = graph.run(task_text)
     store_context(task_text, result)
     log_task_event(task_text, "agent_run", result)
     return result
+
 
 class GremlinAgent:
     def __init__(self, name="Gremlin", tools=None, memory=None, retry_limit=1):
@@ -44,7 +46,7 @@ class GremlinAgent:
                     if attempt < self.retry_limit:
                         return self.act(task, attempt + 1)
                     return f"[{self.name}] Tool '{tool}' failed permanently."
-        
+
         # Fallback: execute generated code with lint check
         if "code:" in decision.lower():
             code_block = decision.split("code:")[-1].strip()

@@ -3,10 +3,11 @@ import traceback
 
 # Configure logging
 logging.basicConfig(
-    filename='logs/gremlingpt.log',
+    filename="logs/gremlingpt.log",
     level=logging.INFO,
-    format='%(asctime)s %(levelname)s:%(message)s'
+    format="%(asctime)s %(levelname)s:%(message)s",
 )
+
 
 def log_exception(e):
     logging.error(f"Exception occurred: {e}")

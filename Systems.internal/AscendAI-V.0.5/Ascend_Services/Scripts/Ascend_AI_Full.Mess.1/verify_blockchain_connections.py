@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -18,5 +17,6 @@ def verify_blockchain_connections():
             logging.info(f" Connected to {chain.upper()} Blockchain")
             logging.error(f" Connection Failed: {chain.upper()}")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     verify_blockchain_connections()

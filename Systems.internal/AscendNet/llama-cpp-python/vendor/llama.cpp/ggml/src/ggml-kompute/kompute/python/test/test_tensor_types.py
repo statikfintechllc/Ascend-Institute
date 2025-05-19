@@ -7,6 +7,7 @@ from .utils import compile_source
 
 VK_ICD_FILENAMES = os.environ.get("VK_ICD_FILENAMES", "")
 
+
 def test_type_float():
 
     shader = """
@@ -25,7 +26,7 @@ def test_type_float():
 
     spirv = compile_source(shader)
 
-    arr_in_a = np.array([123., 153., 231.], dtype=np.float32)
+    arr_in_a = np.array([123.0, 153.0, 231.0], dtype=np.float32)
     arr_in_b = np.array([9482, 1208, 1238], dtype=np.float32)
     arr_out = np.array([0, 0, 0], dtype=np.float32)
 
@@ -37,11 +38,13 @@ def test_type_float():
 
     params = [tensor_in_a, tensor_in_b, tensor_out]
 
-    (mgr.sequence()
+    (
+        mgr.sequence()
         .record(kp.OpTensorSyncDevice(params))
         .record(kp.OpAlgoDispatch(mgr.algorithm(params, spirv)))
         .record(kp.OpTensorSyncLocal([tensor_out]))
-        .eval())
+        .eval()
+    )
 
     assert np.all(tensor_out.data() == arr_in_a * arr_in_b)
 
@@ -64,7 +67,7 @@ def test_type_float_double_incorrect():
 
     spirv = compile_source(shader)
 
-    arr_in_a = np.array([123., 153., 231.], dtype=np.float32)
+    arr_in_a = np.array([123.0, 153.0, 231.0], dtype=np.float32)
     arr_in_b = np.array([9482, 1208, 1238], dtype=np.uint32)
     arr_out = np.array([0, 0, 0], dtype=np.float32)
 
@@ -76,18 +79,23 @@ def test_type_float_double_incorrect():
 
     params = [tensor_in_a, tensor_in_b, tensor_out]
 
-    (mgr.sequence()
+    (
+        mgr.sequence()
         .record(kp.OpTensorSyncDevice(params))
         .record(kp.OpAlgoDispatch(mgr.algorithm(params, spirv)))
         .record(kp.OpTensorSyncLocal([tensor_out]))
-        .eval())
+        .eval()
+    )
 
     assert np.all(tensor_out.data() != arr_in_a * arr_in_b)
 
-@pytest.mark.skipif("broadcom" in VK_ICD_FILENAMES,
-                    reason="Broadcom doesn't support double")
-@pytest.mark.skipif("swiftshader" in VK_ICD_FILENAMES,
-                    reason="Swiftshader doesn't support double")
+
+@pytest.mark.skipif(
+    "broadcom" in VK_ICD_FILENAMES, reason="Broadcom doesn't support double"
+)
+@pytest.mark.skipif(
+    "swiftshader" in VK_ICD_FILENAMES, reason="Swiftshader doesn't support double"
+)
 def test_type_double():
 
     shader = """
@@ -106,7 +114,7 @@ def test_type_double():
 
     spirv = compile_source(shader)
 
-    arr_in_a = np.array([123., 153., 231.], dtype=np.float64)
+    arr_in_a = np.array([123.0, 153.0, 231.0], dtype=np.float64)
     arr_in_b = np.array([9482, 1208, 1238], dtype=np.float64)
     arr_out = np.array([0, 0, 0], dtype=np.float64)
 
@@ -118,15 +126,18 @@ def test_type_double():
 
     params = [tensor_in_a, tensor_in_b, tensor_out]
 
-    (mgr.sequence()
+    (
+        mgr.sequence()
         .record(kp.OpTensorSyncDevice(params))
         .record(kp.OpAlgoDispatch(mgr.algorithm(params, spirv)))
         .record(kp.OpTensorSyncLocal([tensor_out]))
-        .eval())
+        .eval()
+    )
 
     print(f"Dtype value {tensor_out.data().dtype}")
 
     assert np.all(tensor_out.data() == arr_in_a * arr_in_b)
+
 
 def test_type_int():
 
@@ -158,15 +169,18 @@ def test_type_int():
 
     params = [tensor_in_a, tensor_in_b, tensor_out]
 
-    (mgr.sequence()
+    (
+        mgr.sequence()
         .record(kp.OpTensorSyncDevice(params))
         .record(kp.OpAlgoDispatch(mgr.algorithm(params, spirv)))
         .record(kp.OpTensorSyncLocal([tensor_out]))
-        .eval())
+        .eval()
+    )
 
     print(f"Dtype value {tensor_out.data().dtype}")
 
     assert np.all(tensor_out.data() == arr_in_a * arr_in_b)
+
 
 def test_type_unsigned_int():
 
@@ -198,15 +212,18 @@ def test_type_unsigned_int():
 
     params = [tensor_in_a, tensor_in_b, tensor_out]
 
-    (mgr.sequence()
+    (
+        mgr.sequence()
         .record(kp.OpTensorSyncDevice(params))
         .record(kp.OpAlgoDispatch(mgr.algorithm(params, spirv)))
         .record(kp.OpTensorSyncLocal([tensor_out]))
-        .eval())
+        .eval()
+    )
 
     print(f"Dtype value {tensor_out.data().dtype}")
 
     assert np.all(tensor_out.data() == arr_in_a * arr_in_b)
+
 
 def test_tensor_numpy_ownership():
 

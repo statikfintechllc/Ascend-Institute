@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -20,5 +19,6 @@ def install_missing_dependencies():
             print(f" Missing {lib}. Installing now...")
             run_command(f"pip install {lib}")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     install_missing_dependencies()

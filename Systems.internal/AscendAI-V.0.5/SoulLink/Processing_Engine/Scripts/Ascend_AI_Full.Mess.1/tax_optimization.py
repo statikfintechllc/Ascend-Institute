@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -14,5 +13,6 @@ logging.basicConfig(level=logging.INFO)
 def tax_optimization():
     """AI-driven tax minimization and jurisdiction shifting strategies."""
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     tax_optimization()

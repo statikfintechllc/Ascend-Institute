@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -21,5 +20,6 @@ def ai_self_optimize():
         file.writelines(script_lines)
     logging.info(" AI Self-Optimization Completed")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     ai_self_optimize()

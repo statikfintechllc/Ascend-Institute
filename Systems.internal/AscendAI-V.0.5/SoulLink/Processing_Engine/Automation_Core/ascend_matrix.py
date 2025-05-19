@@ -15,9 +15,9 @@ from ascend_execution_matrix import interpret_task
 
 # Setup Logging
 logging.basicConfig(
-    filename='ascend_matrix.log',
+    filename="ascend_matrix.log",
     level=logging.INFO,
-    format='%(asctime)s [%(levelname)s]: %(message)s'
+    format="%(asctime)s [%(levelname)s]: %(message)s",
 )
 
 if not os.path.exists("approved_tasks.jsonl"):
@@ -28,13 +28,21 @@ if not os.path.exists("approved_tasks.jsonl"):
 MAX_TASK_ITERATIONS = 10
 THROTTLE_INTERVAL = 2
 DRY_RUN_MODE = False
-DANGEROUS_PATTERNS = [r"rm\s+-rf", r"sudo.*shutdown", r"mkfs.*", r"format", r"dd if=.* of=.*", r":\(\)\{:\|:&\};:"]
+DANGEROUS_PATTERNS = [
+    r"rm\s+-rf",
+    r"sudo.*shutdown",
+    r"mkfs.*",
+    r"format",
+    r"dd if=.* of=.*",
+    r":\(\)\{:\|:&\};:",
+]
 task_counter = {}
 gpg = gnupg.GPG()
 
 # Environment Verification
 def verify_environment():
-    subprocess.run('conda activate ascendenv', shell=True)
+    subprocess.run("conda activate ascendenv", shell=True)
+
 
 # Dangerous Pattern Scan
 def sanitize_task(task):
@@ -44,10 +52,11 @@ def sanitize_task(task):
             return False
     return True
 
+
 # Signature Verification
 def verify_signature(task, signature_path):
     try:
-        with open(signature_path, 'rb') as sig_file:
+        with open(signature_path, "rb") as sig_file:
             verified = gpg.verify_data(sig_file, task.encode())
         if not verified.valid:
             logging.error("Invalid task signature.")
@@ -57,40 +66,44 @@ def verify_signature(task, signature_path):
         logging.error(f"Signature verification failed: {e}")
         return False
 
+
 # Script Integrity Check
 def verify_script_integrity(script_path, expected_checksum):
-    with open(script_path, 'rb') as f:
+    with open(script_path, "rb") as f:
         file_hash = hashlib.sha256(f.read()).hexdigest()
     if file_hash != expected_checksum:
         logging.error(f"Checksum mismatch: {script_path}")
         return False
     return True
 
+
 # Update Checksum CLI Tool
 def update_checksum(script_path):
-    with open(script_path, 'rb') as f:
+    with open(script_path, "rb") as f:
         file_hash = hashlib.sha256(f.read()).hexdigest()
     manifest_path = ".matrix_manifest"
     with open(manifest_path, "a") as mf:
         mf.write(f"{script_path}: {file_hash}\n")
     logging.info(f"Checksum updated for {script_path}")
 
+
 # Dry Run Mode
 def dry_run(task):
     logging.info(f"[DRY RUN] Task: {task}")
+
 
 # Dockerized Sandbox
 def sandbox_task(task):
     try:
         client = docker.from_env()
-        client.images.pull('python:3.11-slim')
+        client.images.pull("python:3.11-slim")
         container = client.containers.run(
-            'python:3.11-slim',
+            "python:3.11-slim",
             f'/bin/bash -c "{task}"',
             detach=True,
-            network_mode='none',
+            network_mode="none",
             pids_limit=100,
-            read_only=True
+            read_only=True,
         )
         logging.info(f"Sandboxed task: Container {container.id}")
         container.wait()
@@ -98,8 +111,9 @@ def sandbox_task(task):
     except Exception as e:
         logging.error(f"Sandbox error: {e}")
 
+
 # Backup System
-def create_backup(files=['Final_Goal.txt', 'ascend_matrix.log', 'configs']):
+def create_backup(files=["Final_Goal.txt", "ascend_matrix.log", "configs"]):
     backup_dir = f"backup_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
     os.makedirs(backup_dir, exist_ok=True)
     for file in files:
@@ -107,11 +121,13 @@ def create_backup(files=['Final_Goal.txt', 'ascend_matrix.log', 'configs']):
     logging.info(f"Backup created at {backup_dir}")
     return backup_dir
 
+
 # Rollback
 def rollback_from_backup(backup_dir):
     for file in os.listdir(backup_dir):
         subprocess.run(["cp", "-r", f"{backup_dir}/{file}", "."])
     logging.info(f"Rollback restored from {backup_dir}")
+
 
 # Dashboard API Hook
 def push_to_dashboard(event):
@@ -120,11 +136,21 @@ def push_to_dashboard(event):
             data = {
                 "timestamp": str(datetime.now()),
                 "event": event,
-                "log": log_file.read().decode(errors='ignore')
+                "log": log_file.read().decode(errors="ignore"),
             }
-        subprocess.run(["curl", "-X", "POST", "http://localhost:5000/dashboard", "-d", json.dumps(data)])
+        subprocess.run(
+            [
+                "curl",
+                "-X",
+                "POST",
+                "http://localhost:5000/dashboard",
+                "-d",
+                json.dumps(data),
+            ]
+        )
     except Exception as e:
         logging.warning(f"Dashboard push failed: {e}")
+
 
 # Approval Handler
 def await_human_approval(task_meta):
@@ -138,6 +164,7 @@ def await_human_approval(task_meta):
         time.sleep(1)
 
     logging.info(f"[APPROVED] {task_meta['intent']}")
+
 
 # Core Task Executor
 def execute_task(task, signature):
@@ -155,7 +182,7 @@ def execute_task(task, signature):
         "risk": interpretation.get("risk", "low"),
         "intent": interpretation.get("intent", "unknown"),
         "origin": interpretation.get("origin", "unknown"),
-        "requires_approval": False
+        "requires_approval": False,
     }
 
     if not is_task_whitelisted(task) and meta["risk"] in ["high", "critical"]:
@@ -166,9 +193,9 @@ def execute_task(task, signature):
         await_human_approval(meta)
         log_approved_task(task)
 
-    if meta["type"] == 'shell':
+    if meta["type"] == "shell":
         command = interpretation["command"]
-        if meta["risk"] == 'high':
+        if meta["risk"] == "high":
             sandbox_task(command)
         else:
             result = subprocess.run(command, shell=True, capture_output=True)
@@ -177,17 +204,19 @@ def execute_task(task, signature):
             else:
                 logging.info(f"Shell task success: {result.stdout.decode()}")
 
-    elif meta["type"] == 'agent':
-        agent_script = interpretation['script']
+    elif meta["type"] == "agent":
+        agent_script = interpretation["script"]
         logging.info(f"Launching agent: {agent_script}")
         subprocess.run(["python3", agent_script])
     else:
         logging.warning(f"Unknown interpretation type: {interpretation}")
 
+
 # Memory Tools
 def log_approved_task(task):
     with open("approved_tasks.jsonl", "a") as f:
         f.write(json.dumps({"task": task}) + "\n")
+
 
 def is_task_whitelisted(task):
     with open("approved_tasks.jsonl", "r") as f:
@@ -197,29 +226,32 @@ def is_task_whitelisted(task):
                 return True
     return False
 
+
 def compose_agent(goal_json):
     agent_id = f"agent_{int(time.time())}"
     template_path = f"agent_templates/{goal_json['intent']}.tpl"
     if not os.path.exists(template_path):
         logging.error(f"No agent template for intent: {goal_json['intent']}")
         return None
-    with open(template_path, 'r') as tpl:
-        code = tpl.read().replace("{{INTENT}}", goal_json['intent'])
+    with open(template_path, "r") as tpl:
+        code = tpl.read().replace("{{INTENT}}", goal_json["intent"])
     output_file = f"agents/{agent_id}.py"
-    with open(output_file, 'w') as out:
+    with open(output_file, "w") as out:
         out.write(code)
     logging.info(f"Agent composed: {output_file}")
     return output_file
+
 
 def log_goal_memory(task, result, interpretation):
     memory = {
         "timestamp": str(datetime.now()),
         "task": task,
         "result": result,
-        "meta": interpretation
+        "meta": interpretation,
     }
     with open("goal_memory.jsonl", "a") as f:
         f.write(json.dumps(memory) + "\n")
+
 
 # Main
 def main_execution_matrix():
@@ -234,13 +266,13 @@ def main_execution_matrix():
 
     tasks = result.stdout.splitlines()
     try:
-        with open('llama_output.sig', 'r') as sig_file:
+        with open("llama_output.sig", "r") as sig_file:
             signatures = sig_file.readlines()
     except FileNotFoundError:
         logging.warning("No signature file found, switching to DRY RUN.")
         global DRY_RUN_MODE
         DRY_RUN_MODE = True
-        signatures = [''] * len(tasks)
+        signatures = [""] * len(tasks)
 
     if len(signatures) < len(tasks):
         logging.warning("Insufficient signatures, continuing in DRY RUN mode.")
@@ -252,5 +284,6 @@ def main_execution_matrix():
 
     sandbox_task("python automation_module.py llama_output.txt")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main_execution_matrix()

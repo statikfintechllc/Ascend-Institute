@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -16,5 +15,6 @@ def manipulate_app_store_algorithm():
         log_event("info", "Analyzing App Store algorithms for ranking manipulation...")
         log_event("info", "App Store ranking algorithm manipulation activated.")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     manipulate_app_store_algorithm()

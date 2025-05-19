@@ -2,12 +2,15 @@ import os
 import json
 import time
 
+
 class Regenerator:
     def __init__(self, manifest_path="Regenerators/regeneration_manifest.json"):
         with open(manifest_path, "r") as f:
             self.manifest = json.load(f)
         self.log_path = "Regenerators/regeneration_log.txt"
-        if self.manifest.get("log_regeneration_events") and not os.path.exists(self.log_path):
+        if self.manifest.get("log_regeneration_events") and not os.path.exists(
+            self.log_path
+        ):
             with open(self.log_path, "w") as f:
                 f.write("[REGENERATOR LOG INITIATED]\n")
 
@@ -28,11 +31,11 @@ class Regenerator:
         elif "soul.py" in path:
             code = "class SoulCore:\n    def load_identity(self):\n        print('Rebuilt Soul Identity')\n"
         elif "soulmap.json" in path:
-            code = json.dumps({ "name": "Ascend-AI", "restored": True }, indent=4)
+            code = json.dumps({"name": "Ascend-AI", "restored": True}, indent=4)
         else:
             code = "# Auto-regenerated file"
-        
-        with open(path, 'w') as f:
+
+        with open(path, "w") as f:
             f.write(code)
 
     def log_event(self, path):

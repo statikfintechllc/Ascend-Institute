@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -15,5 +14,6 @@ def dark_web_relay():
     """Handles AI-powered anonymous routing through the dark web."""
     pass  # TODO: Implement
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     dark_web_relay()

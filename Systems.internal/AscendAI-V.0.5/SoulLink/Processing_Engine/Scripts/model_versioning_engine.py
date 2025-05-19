@@ -1,4 +1,3 @@
-
 import os
 import hashlib
 import json
@@ -8,6 +7,7 @@ VERSION_TRACKER_PATH = "./ModelRegistry/version_history.json"
 VERSION_DIR = "./ModelRegistry"
 REUSE_DIR = "./ReusableModules"
 
+
 def init_registry():
     os.makedirs(VERSION_DIR, exist_ok=True)
     os.makedirs(REUSE_DIR, exist_ok=True)
@@ -15,9 +15,11 @@ def init_registry():
         with open(VERSION_TRACKER_PATH, "w") as f:
             json.dump({}, f, indent=2)
 
+
 def hash_model(file_path):
     with open(file_path, "rb") as f:
         return hashlib.sha256(f.read()).hexdigest()
+
 
 def register_model(model_name, file_path, context_note=""):
     init_registry()
@@ -33,7 +35,7 @@ def register_model(model_name, file_path, context_note=""):
         "timestamp": timestamp,
         "hash": model_hash,
         "context": context_note,
-        "path": file_path
+        "path": file_path,
     }
 
     with open(VERSION_TRACKER_PATH, "w") as f:
@@ -41,6 +43,7 @@ def register_model(model_name, file_path, context_note=""):
 
     print(f"✅ Model registered: {version_id}")
     return version_id
+
 
 def reuse_module(module_path):
     if not os.path.exists(module_path):
@@ -63,6 +66,7 @@ def reuse_module(module_path):
         f.write(code)
     print(f"♻️ Reusable Module Stored: {file_name}")
 
+
 def mutate_module(module_path, mutation_prompt, generator):
     with open(module_path, "r") as f:
         current_code = f.read()
@@ -81,12 +85,13 @@ MODULE:
 
 Return only the updated Python code:
 """
-    result = generator(prompt, max_new_tokens=300)[0]['generated_text']
+    result = generator(prompt, max_new_tokens=300)[0]["generated_text"]
 
     with open(module_path, "w") as f:
         f.write(result)
 
     print(f"🧬 Mutated & Updated: {module_path}")
+
 
 def get_version_history():
     if not os.path.exists(VERSION_TRACKER_PATH):
@@ -94,6 +99,7 @@ def get_version_history():
         return {}
     with open(VERSION_TRACKER_PATH, "r") as f:
         return json.load(f)
+
 
 if __name__ == "__main__":
     init_registry()

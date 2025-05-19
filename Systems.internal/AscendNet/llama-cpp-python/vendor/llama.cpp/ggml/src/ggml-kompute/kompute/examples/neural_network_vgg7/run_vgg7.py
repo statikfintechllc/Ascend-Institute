@@ -24,12 +24,12 @@ else:
 
 image = sh_common.image_load(sys.argv[1])
 image = image.repeat(2, 0).repeat(2, 1)
-image = numpy.pad(image, [[7, 7], [7, 7], [0, 0]], mode = "edge")
+image = numpy.pad(image, [[7, 7], [7, 7], [0, 0]], mode="edge")
 
 # Ensure image has 4 channels even though they will be unused.
 # This is because of vectorization vec4 magic.
 while image.shape[2] < sh_common.VSZ:
-    image = numpy.pad(image, [[0, 0], [0, 0], [0, 1]], mode = "constant")
+    image = numpy.pad(image, [[0, 0], [0, 0], [0, 1]], mode="constant")
 
 # sh_common.image_save("pad.png", image)
 
@@ -57,8 +57,14 @@ for i in range(7):
     #  but what about memory usage?
     # *Most* of these tensors live entirely on-device except when debugging.
     # Can that be handled? (Also good question: Does it even need to be handled?)
-    tensor_out = kpm.tensor(numpy.zeros((tensor_out_h * tensor_out_w * tensor_out_cg * sh_common.VSZ)))
-    weight = kpm.tensor(sh_common.load_weights_padded("kipper", (i * 2) + 0, tensor_out_c, tensor_in_c, 3))
+    tensor_out = kpm.tensor(
+        numpy.zeros((tensor_out_h * tensor_out_w * tensor_out_cg * sh_common.VSZ))
+    )
+    weight = kpm.tensor(
+        sh_common.load_weights_padded(
+            "kipper", (i * 2) + 0, tensor_out_c, tensor_in_c, 3
+        )
+    )
     bias = kpm.tensor(sh_common.load_biases_padded("kipper", (i * 2) + 1, tensor_out_c))
     # Compute.
     # TODO: It'd be nice to wrap this up into a class for optimization purposes.
@@ -71,9 +77,16 @@ for i in range(7):
         # workgroup
         workgroup,
         # spec_consts
-        [tensor_in_w, tensor_in_h, tensor_in_cg, tensor_out_w, tensor_out_h, tensor_out_cg],
+        [
+            tensor_in_w,
+            tensor_in_h,
+            tensor_in_cg,
+            tensor_out_w,
+            tensor_out_h,
+            tensor_out_cg,
+        ],
         # push_consts
-        []
+        [],
     )
 
     print("Step complexity " + str(workgroup))
@@ -89,9 +102,7 @@ for i in range(7):
     last_seq.eval_await()
 
     # Prepare
-    seq = (kpm.sequence()
-        .record(kp.OpAlgoDispatch(alg, []))
-    )
+    seq = kpm.sequence().record(kp.OpAlgoDispatch(alg, []))
     # Run
     seq.eval()
 
@@ -118,8 +129,9 @@ fin_seq.eval_async(kp.OpTensorSyncLocal([tensor_in]))
 fin_seq.eval_await()
 
 # Output
-out_na = tensor_in.data().reshape((tensor_in_h, tensor_in_w, tensor_in_cg * sh_common.VSZ))
+out_na = tensor_in.data().reshape(
+    (tensor_in_h, tensor_in_w, tensor_in_cg * sh_common.VSZ)
+)
 # Crop off 'alpha'
 out_na = out_na[:, :, 0:3]
 sh_common.image_save(sys.argv[2], out_na)
-

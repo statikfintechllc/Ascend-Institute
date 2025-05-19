@@ -8,8 +8,9 @@ from runtime.runner import run
 logging.basicConfig(
     filename="logs/gremlin_cron.log",
     level=logging.INFO,
-    format="%(asctime)s | %(levelname)s | %(message)s"
+    format="%(asctime)s | %(levelname)s | %(message)s",
 )
+
 
 def start_scheduler():
     logging.info("Starting GremlinGPT scheduler...")
@@ -23,6 +24,7 @@ def start_scheduler():
         except Exception as e:
             logging.error(f"[SCHEDULER ERROR] {e}")
         time.sleep(5)
+
 
 def scheduled_run():
     logging.info("Scheduled run triggered.")

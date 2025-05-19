@@ -65,7 +65,7 @@ class ActionExecutionClient(Runtime):
         self,
         config: AppConfig,
         event_stream: EventStream,
-        sid: str = 'default',
+        sid: str = "default",
         plugins: list[PluginRequirement] | None = None,
         env_vars: dict[str, str] | None = None,
         status_callback: Any | None = None,
@@ -95,7 +95,7 @@ class ActionExecutionClient(Runtime):
 
     @property
     def action_execution_server_url(self) -> str:
-        raise NotImplementedError('Action execution server URL is not implemented')
+        raise NotImplementedError("Action execution server URL is not implemented")
 
     @property
     def runtime_initialized(self) -> bool:
@@ -129,8 +129,8 @@ class ActionExecutionClient(Runtime):
 
     def check_if_alive(self) -> None:
         response = self._send_action_server_request(
-            'GET',
-            f'{self.action_execution_server_url}/alive',
+            "GET",
+            f"{self.action_execution_server_url}/alive",
             timeout=5,
         )
         assert response.is_closed
@@ -144,11 +144,11 @@ class ActionExecutionClient(Runtime):
         try:
             data = {}
             if path is not None:
-                data['path'] = path
+                data["path"] = path
 
             response = self._send_action_server_request(
-                'POST',
-                f'{self.action_execution_server_url}/list_files',
+                "POST",
+                f"{self.action_execution_server_url}/list_files",
                 json=data,
                 timeout=10,
             )
@@ -157,43 +157,43 @@ class ActionExecutionClient(Runtime):
             assert isinstance(response_json, list)
             return response_json
         except httpx.TimeoutException:
-            raise TimeoutError('List files operation timed out')
+            raise TimeoutError("List files operation timed out")
 
     def copy_from(self, path: str) -> Path:
         """Zip all files in the sandbox and return as a stream of bytes."""
 
         try:
-            params = {'path': path}
+            params = {"path": path}
             with self.session.stream(
-                'GET',
-                f'{self.action_execution_server_url}/download_files',
+                "GET",
+                f"{self.action_execution_server_url}/download_files",
                 params=params,
                 timeout=30,
             ) as response:
                 with tempfile.NamedTemporaryFile(
-                    suffix='.zip', delete=False
+                    suffix=".zip", delete=False
                 ) as temp_file:
                     for chunk in response.iter_bytes():
                         temp_file.write(chunk)
                     temp_file.flush()
                     return Path(temp_file.name)
         except httpx.TimeoutException:
-            raise TimeoutError('Copy operation timed out')
+            raise TimeoutError("Copy operation timed out")
 
     def copy_to(
         self, host_src: str, sandbox_dest: str, recursive: bool = False
     ) -> None:
         if not os.path.exists(host_src):
-            raise FileNotFoundError(f'Source file {host_src} does not exist')
+            raise FileNotFoundError(f"Source file {host_src} does not exist")
 
         try:
             if recursive:
                 with tempfile.NamedTemporaryFile(
-                    suffix='.zip', delete=False
+                    suffix=".zip", delete=False
                 ) as temp_zip:
                     temp_zip_path = temp_zip.name
 
-                with ZipFile(temp_zip_path, 'w') as zipf:
+                with ZipFile(temp_zip_path, "w") as zipf:
                     for root, _, files in os.walk(host_src):
                         for file in files:
                             file_path = os.path.join(root, file)
@@ -202,28 +202,28 @@ class ActionExecutionClient(Runtime):
                             )
                             zipf.write(file_path, arcname)
 
-                upload_data = {'file': open(temp_zip_path, 'rb')}
+                upload_data = {"file": open(temp_zip_path, "rb")}
             else:
-                upload_data = {'file': open(host_src, 'rb')}
+                upload_data = {"file": open(host_src, "rb")}
 
-            params = {'destination': sandbox_dest, 'recursive': str(recursive).lower()}
+            params = {"destination": sandbox_dest, "recursive": str(recursive).lower()}
 
             response = self._send_action_server_request(
-                'POST',
-                f'{self.action_execution_server_url}/upload_file',
+                "POST",
+                f"{self.action_execution_server_url}/upload_file",
                 files=upload_data,
                 params=params,
                 timeout=300,
             )
             self.log(
-                'debug',
-                f'Copy completed: host:{host_src} -> runtime:{sandbox_dest}. Response: {response.text}',
+                "debug",
+                f"Copy completed: host:{host_src} -> runtime:{sandbox_dest}. Response: {response.text}",
             )
         finally:
             if recursive:
                 os.unlink(temp_zip_path)
             self.log(
-                'debug', f'Copy completed: host:{host_src} -> runtime:{sandbox_dest}'
+                "debug", f"Copy completed: host:{host_src} -> runtime:{sandbox_dest}"
             )
 
     def get_vscode_token(self) -> str:
@@ -231,18 +231,18 @@ class ActionExecutionClient(Runtime):
             if self._vscode_token is not None:  # cached value
                 return self._vscode_token
             response = self._send_action_server_request(
-                'GET',
-                f'{self.action_execution_server_url}/vscode/connection_token',
+                "GET",
+                f"{self.action_execution_server_url}/vscode/connection_token",
                 timeout=10,
             )
             response_json = response.json()
             assert isinstance(response_json, dict)
-            if response_json['token'] is None:
-                return ''
-            self._vscode_token = response_json['token']
-            return response_json['token']
+            if response_json["token"] is None:
+                return ""
+            self._vscode_token = response_json["token"]
+            return response_json["token"]
         else:
-            return ''
+            return ""
 
     def send_action_for_execution(self, action: Action) -> Observation:
         if (
@@ -259,39 +259,39 @@ class ActionExecutionClient(Runtime):
         with self.action_semaphore:
             if not action.runnable:
                 if isinstance(action, AgentThinkAction):
-                    return AgentThinkObservation('Your thought has been logged.')
-                return NullObservation('')
+                    return AgentThinkObservation("Your thought has been logged.")
+                return NullObservation("")
             if (
-                hasattr(action, 'confirmation_state')
+                hasattr(action, "confirmation_state")
                 and action.confirmation_state
                 == ActionConfirmationStatus.AWAITING_CONFIRMATION
             ):
-                return NullObservation('')
+                return NullObservation("")
             action_type = action.action  # type: ignore[attr-defined]
             if action_type not in ACTION_TYPE_TO_CLASS:
-                raise ValueError(f'Action {action_type} does not exist.')
+                raise ValueError(f"Action {action_type} does not exist.")
             if not hasattr(self, action_type):
                 return ErrorObservation(
-                    f'Action {action_type} is not supported in the current runtime.',
-                    error_id='AGENT_ERROR$BAD_ACTION',
+                    f"Action {action_type} is not supported in the current runtime.",
+                    error_id="AGENT_ERROR$BAD_ACTION",
                 )
             if (
-                getattr(action, 'confirmation_state', None)
+                getattr(action, "confirmation_state", None)
                 == ActionConfirmationStatus.REJECTED
             ):
                 return UserRejectObservation(
-                    'Action has been rejected by the user! Waiting for further user input.'
+                    "Action has been rejected by the user! Waiting for further user input."
                 )
 
             assert action.timeout is not None
 
             try:
                 execution_action_body: dict[str, Any] = {
-                    'action': event_to_dict(action),
+                    "action": event_to_dict(action),
                 }
                 response = self._send_action_server_request(
-                    'POST',
-                    f'{self.action_execution_server_url}/execute_action',
+                    "POST",
+                    f"{self.action_execution_server_url}/execute_action",
                     json=execution_action_body,
                     # wait a few more seconds to get the timeout error from client side
                     timeout=action.timeout + 5,
@@ -302,7 +302,7 @@ class ActionExecutionClient(Runtime):
                 obs._cause = action.id  # type: ignore[attr-defined]
             except httpx.TimeoutException:
                 raise AgentRuntimeTimeoutError(
-                    f'Runtime failed to return execute_action before the requested timeout of {action.timeout}s'
+                    f"Runtime failed to return execute_action before the requested timeout of {action.timeout}s"
                 )
             return obs
 
@@ -330,8 +330,8 @@ class ActionExecutionClient(Runtime):
     async def call_tool_mcp(self, action: McpAction) -> Observation:
         if self.mcp_clients is None:
             self.log(
-                'debug',
-                f'Creating MCP clients with servers: {self.config.mcp.mcp_servers}',
+                "debug",
+                f"Creating MCP clients with servers: {self.config.mcp.mcp_servers}",
             )
             self.mcp_clients = await create_mcp_clients(self.config.mcp.mcp_servers)
         return await call_tool_mcp_handler(self.mcp_clients, action)

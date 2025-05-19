@@ -347,7 +347,9 @@ class LlamaContext:
         #     penalty_freq,
         #     penalty_present,
         # )
-        raise NotImplementedError("sample_repetition_penalties is not implemented in llama.cpp")
+        raise NotImplementedError(
+            "sample_repetition_penalties is not implemented in llama.cpp"
+        )
 
     def sample_softmax(self, candidates: "_LlamaTokenDataArray"):
         # llama_cpp.llama_sample_softmax(
@@ -404,7 +406,9 @@ class LlamaContext:
         m: int,
         mu: llama_cpp.CtypesPointerOrRef[ctypes.c_float],
     ) -> int:
-        raise NotImplementedError("sample_token_mirostat is not implemented in llama.cpp")
+        raise NotImplementedError(
+            "sample_token_mirostat is not implemented in llama.cpp"
+        )
         # return llama_cpp.llama_sample_token_mirostat(
         #     self.ctx,
         #     llama_cpp.byref(candidates.candidates),
@@ -421,7 +425,9 @@ class LlamaContext:
         eta: float,
         mu: llama_cpp.CtypesPointerOrRef[ctypes.c_float],
     ) -> int:
-        raise NotImplementedError("sample_token_mirostat_v2 is not implemented in llama.cpp")
+        raise NotImplementedError(
+            "sample_token_mirostat_v2 is not implemented in llama.cpp"
+        )
         # return llama_cpp.llama_sample_token_mirostat_v2(
         #     self.ctx,
         #     llama_cpp.byref(candidates.candidates),
@@ -446,7 +452,9 @@ class LlamaContext:
 
     # Grammar
     def grammar_accept_token(self, grammar: LlamaGrammar, token: int):
-        raise NotImplementedError("grammar_accept_token is not implemented in llama.cpp")
+        raise NotImplementedError(
+            "grammar_accept_token is not implemented in llama.cpp"
+        )
         # llama_cpp.llama_grammar_accept_token(grammar.grammar, self.ctx, token)
 
     def reset_timings(self):

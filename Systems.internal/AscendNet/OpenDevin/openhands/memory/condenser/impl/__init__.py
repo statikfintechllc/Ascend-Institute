@@ -24,14 +24,14 @@ from openhands.memory.condenser.impl.structured_summary_condenser import (
 )
 
 __all__ = [
-    'AmortizedForgettingCondenser',
-    'LLMAttentionCondenser',
-    'ImportantEventSelection',
-    'LLMSummarizingCondenser',
-    'NoOpCondenser',
-    'ObservationMaskingCondenser',
-    'BrowserOutputCondenser',
-    'RecentEventsCondenser',
-    'StructuredSummaryCondenser',
-    'CondenserPipeline',
+    "AmortizedForgettingCondenser",
+    "LLMAttentionCondenser",
+    "ImportantEventSelection",
+    "LLMSummarizingCondenser",
+    "NoOpCondenser",
+    "ObservationMaskingCondenser",
+    "BrowserOutputCondenser",
+    "RecentEventsCondenser",
+    "StructuredSummaryCondenser",
+    "CondenserPipeline",
 ]

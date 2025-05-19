@@ -4,6 +4,7 @@ import pandas as pd
 import ta
 from memory.sqlite_memory import log_memory
 
+
 def analyze_market_data(input_data):
     """
     input_data: dict with 'symbol': str, and 'prices': List[dict] like:
@@ -48,7 +49,7 @@ def analyze_market_data(input_data):
         "macd": round(latest["macd"], 4),
         "macd_signal": round(latest["macd_signal"], 4),
         "sma_20": round(latest["sma_20"], 2),
-        "signal": signal
+        "signal": signal,
     }
 
     log_memory(f"Market Analysis for {symbol}", str(summary), tag="market_analysis")

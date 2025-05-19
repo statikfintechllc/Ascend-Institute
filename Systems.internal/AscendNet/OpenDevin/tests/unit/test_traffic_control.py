@@ -13,7 +13,7 @@ from openhands.storage import InMemoryFileStore
 def agent_controller():
     llm = LLM(config=LLMConfig())
     agent = MagicMock()
-    agent.name = 'test_agent'
+    agent.name = "test_agent"
     agent.llm = llm
     agent.config = AgentConfig()
 
@@ -21,18 +21,18 @@ def agent_controller():
     from openhands.events import EventSource
     from openhands.events.action.message import SystemMessageAction
 
-    system_message = SystemMessageAction(content='Test system message')
+    system_message = SystemMessageAction(content="Test system message")
     system_message._source = EventSource.AGENT
     system_message._id = -1  # Set invalid ID to avoid the ID check
     agent.get_system_message.return_value = system_message
 
-    event_stream = EventStream(sid='test', file_store=InMemoryFileStore())
+    event_stream = EventStream(sid="test", file_store=InMemoryFileStore())
     controller = AgentController(
         agent=agent,
         event_stream=event_stream,
         max_iterations=100,
         max_budget_per_task=10.0,
-        sid='test',
+        sid="test",
         headless_mode=False,
     )
     return controller
@@ -50,9 +50,9 @@ async def test_traffic_control_iteration_message(agent_controller):
 
     agent_controller._react_to_exception = mock_react_to_exception
 
-    await agent_controller._handle_traffic_control('iteration', 200.0, 100.0)
+    await agent_controller._handle_traffic_control("iteration", 200.0, 100.0)
     assert error is not None
-    assert 'Current iteration: 200, max iteration: 100' in str(error)
+    assert "Current iteration: 200, max iteration: 100" in str(error)
 
 
 @pytest.mark.asyncio
@@ -67,9 +67,9 @@ async def test_traffic_control_budget_message(agent_controller):
 
     agent_controller._react_to_exception = mock_react_to_exception
 
-    await agent_controller._handle_traffic_control('budget', 15.75, 10.0)
+    await agent_controller._handle_traffic_control("budget", 15.75, 10.0)
     assert error is not None
-    assert 'Current budget: 15.75, max budget: 10.00' in str(error)
+    assert "Current budget: 15.75, max budget: 10.00" in str(error)
 
 
 @pytest.mark.asyncio
@@ -85,7 +85,7 @@ async def test_traffic_control_headless_mode(agent_controller):
     agent_controller._react_to_exception = mock_react_to_exception
 
     agent_controller.headless_mode = True
-    await agent_controller._handle_traffic_control('iteration', 200.0, 100.0)
+    await agent_controller._handle_traffic_control("iteration", 200.0, 100.0)
     assert error is not None
-    assert 'in headless mode' in str(error)
-    assert 'Current iteration: 200, max iteration: 100' in str(error)
+    assert "in headless mode" in str(error)
+    assert "Current iteration: 200, max iteration: 100" in str(error)

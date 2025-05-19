@@ -11,6 +11,7 @@ from tools.self_edit import self_edit
 
 dreambox_running = False
 
+
 def dreambox_loop():
     global dreambox_running
     logging.info("[Dreambox] Background loop started.")
@@ -18,10 +19,14 @@ def dreambox_loop():
         try:
             # Simulate market reasoning
             action = analyze_market("BTC")
-            log_memory("Dreambox: Simulated Market", f"Signal: {action}", tag="dreambox")
+            log_memory(
+                "Dreambox: Simulated Market", f"Signal: {action}", tag="dreambox"
+            )
 
             # Scrape some crypto headlines
-            headlines = scrape_web(["https://www.coindesk.com", "https://cointelegraph.com"])
+            headlines = scrape_web(
+                ["https://www.coindesk.com", "https://cointelegraph.com"]
+            )
             for h in headlines:
                 summary = h.get("summary", "")
                 log_memory("Dreambox: Web Summary", summary[:300], tag="dreambox")
@@ -46,6 +51,7 @@ def dreambox_loop():
 
         time.sleep(600)  # Run every 10 min
 
+
 def start_dreambox():
     global dreambox_running
     if not dreambox_running:
@@ -54,6 +60,7 @@ def start_dreambox():
         thread.start()
         return "[Dreambox] Loop activated."
     return "[Dreambox] Already running."
+
 
 def stop_dreambox():
     global dreambox_running

@@ -10,11 +10,13 @@ SCRIPTS_DIR = "./Scripts"
 RETRY_LIMIT = 3
 MUTATION_RECORD_FILE = "./mutation_record.json"
 
+
 def log(message):
     timestamp = time.strftime("[%Y-%m-%d %H:%M:%S]")
     with open(LOG_FILE, "a") as log_file:
         log_file.write(f"{timestamp} {message}\n")
     print(f"{timestamp} {message}")
+
 
 def load_mutation_record():
     if os.path.exists(MUTATION_RECORD_FILE):
@@ -22,18 +24,23 @@ def load_mutation_record():
             return json.load(file)
     return {}
 
+
 def save_mutation_record(record):
     with open(MUTATION_RECORD_FILE, "w") as file:
         json.dump(record, file, indent=2)
+
 
 def mutate_script(script_path):
     # Placeholder: Add mutation logic here
     log(f"[MUTATE] Attempting mutation of: {script_path}")
     return True
 
+
 def run_script(script_path):
     try:
-        result = subprocess.run(["python3", script_path], capture_output=True, timeout=60)
+        result = subprocess.run(
+            ["python3", script_path], capture_output=True, timeout=60
+        )
         if result.returncode == 0:
             log(f"[SUCCESS] {script_path}")
             return True
@@ -43,6 +50,7 @@ def run_script(script_path):
     except Exception as e:
         log(f"[ERROR] {script_path} | EXCEPTION: {e}")
         return False
+
 
 def bootstrap():
     mutation_record = load_mutation_record()
@@ -59,6 +67,7 @@ def bootstrap():
             mutation_record[filename] = "Success" if success else "Failed"
     save_mutation_record(mutation_record)
     log("[BOOTSTRAP COMPLETE]")
+
 
 if __name__ == "__main__":
     bootstrap()

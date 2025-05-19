@@ -33,7 +33,11 @@ if TYPE_CHECKING:
 # Specify the base name of the shared library to load
 _lib_base_name = "llama"
 _override_base_path = os.environ.get("LLAMA_CPP_LIB_PATH")
-_base_path = pathlib.Path(os.path.abspath(os.path.dirname(__file__))) / "lib" if _override_base_path is None else pathlib.Path(_override_base_path)
+_base_path = (
+    pathlib.Path(os.path.abspath(os.path.dirname(__file__))) / "lib"
+    if _override_base_path is None
+    else pathlib.Path(_override_base_path)
+)
 # Load the library
 _lib = load_shared_library(_lib_base_name, _base_path)
 
@@ -703,7 +707,9 @@ class llama_model_params(ctypes.Structure):
 
     if TYPE_CHECKING:
         devices: CtypesArray[ctypes.c_void_p]  # NOTE: unused
-        tensor_buft_overrides: CtypesArray[llama_model_tensor_buft_override] # NOTE: unused
+        tensor_buft_overrides: CtypesArray[
+            llama_model_tensor_buft_override
+        ]  # NOTE: unused
         n_gpu_layers: int
         split_mode: int
         main_gpu: int
@@ -717,8 +723,8 @@ class llama_model_params(ctypes.Structure):
         check_tensors: bool
 
     _fields_ = [
-        ("devices", ctypes.c_void_p), # NOTE: unnused
-        ("tensor_buft_overrides", ctypes.c_void_p), # NOTE: unused
+        ("devices", ctypes.c_void_p),  # NOTE: unnused
+        ("tensor_buft_overrides", ctypes.c_void_p),  # NOTE: unused
         ("n_gpu_layers", ctypes.c_int32),
         ("split_mode", ctypes.c_int),
         ("main_gpu", ctypes.c_int32),
@@ -1303,8 +1309,6 @@ def llama_n_seq_max(ctx: llama_context_p, /) -> int:
     ...
 
 
-
-
 # DEPRECATED(LLAMA_API int32_t llama_n_ctx_train(const struct llama_model * model), "use llama_model_n_ctx_train instead");
 @ctypes_function("llama_n_ctx_train", [llama_model_p_ctypes], ctypes.c_int32)
 def llama_n_ctx_train(model: llama_model_p, /) -> int:
@@ -1402,7 +1406,9 @@ def llama_model_n_head_kv(model: llama_model_p, /) -> int:
 
 # // Get the model's RoPE frequency scaling factor
 # LLAMA_API float llama_model_rope_freq_scale_train(const struct llama_model * model);
-@ctypes_function("llama_model_rope_freq_scale_train", [llama_model_p_ctypes], ctypes.c_float)
+@ctypes_function(
+    "llama_model_rope_freq_scale_train", [llama_model_p_ctypes], ctypes.c_float
+)
 def llama_model_rope_freq_scale_train(model: llama_model_p, /) -> float:
     ...
 
@@ -1531,8 +1537,14 @@ def llama_model_size(model: llama_model_p, /) -> int:
 # // Get the default chat template. Returns nullptr if not available
 # // If name is NULL, returns the default chat template
 # LLAMA_API const char * llama_model_chat_template(const struct llama_model * model, const char * name);
-@ctypes_function("llama_model_chat_template", [llama_model_p_ctypes, ctypes.c_char_p], ctypes.c_char_p)
-def llama_model_chat_template(model: llama_model_p, name: Optional[bytes], /) -> Optional[bytes]:
+@ctypes_function(
+    "llama_model_chat_template",
+    [llama_model_p_ctypes, ctypes.c_char_p],
+    ctypes.c_char_p,
+)
+def llama_model_chat_template(
+    model: llama_model_p, name: Optional[bytes], /
+) -> Optional[bytes]:
     """Get the default chat template. Returns None if not available
     If name is None, returns the default chat template"""
     ...
@@ -1846,9 +1858,7 @@ def llama_kv_cache_view_update(ctx: llama_context_p, view: CtypesPointerOrRef[ll
 # // Returns the number of tokens in the KV cache (slow, use only for debug)
 # // If a KV cell has multiple sequences assigned to it, it will be counted multiple times
 # LLAMA_API int32_t llama_kv_self_n_tokens(const struct llama_context * ctx);
-@ctypes_function(
-    "llama_kv_self_n_tokens", [llama_context_p_ctypes], ctypes.c_int32
-)
+@ctypes_function("llama_kv_self_n_tokens", [llama_context_p_ctypes], ctypes.c_int32)
 def llama_kv_self_n_tokens(ctx: llama_context_p, /) -> int:
     """Returns the number of tokens in the KV cache (slow, use only for debug)
     If a KV cell has multiple sequences assigned to it, it will be counted multiple times
@@ -1870,9 +1880,7 @@ def llama_get_kv_cache_token_count(ctx: llama_context_p, /) -> int:
 
 # // Returns the number of used KV cells (i.e. have at least one sequence assigned to them)
 # LLAMA_API int32_t llama_kv_self_used_cells(const struct llama_context * ctx);
-@ctypes_function(
-    "llama_kv_self_used_cells", [llama_context_p_ctypes], ctypes.c_int32
-)
+@ctypes_function("llama_kv_self_used_cells", [llama_context_p_ctypes], ctypes.c_int32)
 def llama_kv_self_used_cells(ctx: llama_context_p, /) -> int:
     """Returns the number of used KV cells (i.e. have at least one sequence assigned to them)"""
     ...
@@ -1891,12 +1899,11 @@ def llama_get_kv_cache_used_cells(ctx: llama_context_p, /) -> int:
 # // Clear the KV cache - both cell info is erased and KV data is zeroed
 # LLAMA_API void llama_kv_self_clear(
 #         struct llama_context * ctx);
-@ctypes_function(
-    "llama_kv_self_clear", [llama_context_p_ctypes], None
-)
+@ctypes_function("llama_kv_self_clear", [llama_context_p_ctypes], None)
 def llama_kv_self_clear(ctx: llama_context_p, /):
     """Clear the KV cache - both cell info is erased and KV data is zeroed"""
     ...
+
 
 # NOTE: Deprecated
 @ctypes_function("llama_kv_self_clear", [llama_context_p_ctypes], None)
@@ -2009,22 +2016,17 @@ def llama_kv_cache_seq_cp(
 # LLAMA_API void llama_kv_self_seq_keep(
 #         struct llama_context * ctx,
 #                 llama_seq_id   seq_id);
-@ctypes_function(
-    "llama_kv_self_seq_keep", [llama_context_p_ctypes, llama_seq_id], None
-)
+@ctypes_function("llama_kv_self_seq_keep", [llama_context_p_ctypes, llama_seq_id], None)
 def llama_kv_self_seq_keep(ctx: llama_context_p, seq_id: Union[llama_seq_id, int], /):
     """Removes all tokens that do not belong to the specified sequence"""
     ...
 
 
 # NOTE: Deprecated
-@ctypes_function(
-    "llama_kv_self_seq_keep", [llama_context_p_ctypes, llama_seq_id], None
-)
+@ctypes_function("llama_kv_self_seq_keep", [llama_context_p_ctypes, llama_seq_id], None)
 def llama_kv_cache_seq_keep(ctx: llama_context_p, seq_id: Union[llama_seq_id, int], /):
     """Removes all tokens that do not belong to the specified sequence"""
     ...
-
 
 
 # // Adds relative position "delta" to all tokens that belong to the specified sequence and have positions in [p0, p1)
@@ -2230,6 +2232,7 @@ def llama_kv_cache_defrag(ctx: llama_context_p, /):
 def llama_kv_self_update(ctx: llama_context_p, /):
     """Apply the KV cache updates (such as K-shifts, defragmentation, etc.)"""
     ...
+
 
 # // NOTE: Deprecated
 # // Apply the KV cache updates (such as K-shifts, defragmentation, etc.)
@@ -3006,6 +3009,7 @@ def llama_vocab_pad(vocab: llama_vocab_p, /) -> llama_token:
     """padding"""
     ...
 
+
 # LLAMA_API bool llama_vocab_get_add_bos(const struct llama_vocab * vocab);
 @ctypes_function(
     "llama_vocab_get_add_bos",
@@ -3086,7 +3090,6 @@ def llama_vocab_fim_sep(vocab: llama_vocab_p, /) -> llama_token:
     ...
 
 
-
 # DEPRECATED(LLAMA_API const char * llama_token_get_text(const struct llama_vocab * vocab, llama_token token), "use llama_vocab_get_text instead");
 @ctypes_function(
     "llama_token_get_text",
@@ -3110,6 +3113,7 @@ def llama_token_get_score(
 ) -> float:
     ...
 
+
 # DEPRECATED(LLAMA_API enum llama_token_attr llama_token_get_attr(const struct llama_vocab * vocab, llama_token token), "use llama_vocab_get_attr instead");
 @ctypes_function(
     "llama_token_get_attr",
@@ -3121,16 +3125,16 @@ def llama_token_get_attr(
 ) -> int:
     ...
 
+
 # DEPRECATED(LLAMA_API bool llama_token_is_eog(const struct llama_vocab * vocab, llama_token token), "use llama_vocab_is_eog instead");
 @ctypes_function(
     "llama_token_is_eog",
     [llama_vocab_p_ctypes, llama_token],
     ctypes.c_bool,
 )
-def llama_token_is_eog(
-    vocab: llama_vocab_p, token: Union[llama_token, int], /
-) -> bool:
+def llama_token_is_eog(vocab: llama_vocab_p, token: Union[llama_token, int], /) -> bool:
     ...
+
 
 # DEPRECATED(LLAMA_API bool llama_token_is_control(const struct llama_vocab * vocab, llama_token token), "use llama_vocab_is_control instead");
 @ctypes_function(
@@ -3143,6 +3147,7 @@ def llama_token_is_control(
 ) -> bool:
     ...
 
+
 # DEPRECATED(LLAMA_API llama_token llama_token_bos(const struct llama_vocab * vocab), "use llama_vocab_bos instead");
 @ctypes_function(
     "llama_token_bos",
@@ -3151,6 +3156,7 @@ def llama_token_is_control(
 )
 def llama_token_bos(vocab: llama_vocab_p, /) -> int:
     ...
+
 
 # DEPRECATED(LLAMA_API llama_token llama_token_eos(const struct llama_vocab * vocab), "use llama_vocab_eos instead");
 @ctypes_function(
@@ -3161,6 +3167,7 @@ def llama_token_bos(vocab: llama_vocab_p, /) -> int:
 def llama_token_eos(vocab: llama_vocab_p, /) -> int:
     ...
 
+
 # DEPRECATED(LLAMA_API llama_token llama_token_eot(const struct llama_vocab * vocab), "use llama_vocab_eot instead");
 @ctypes_function(
     "llama_token_eot",
@@ -3170,6 +3177,7 @@ def llama_token_eos(vocab: llama_vocab_p, /) -> int:
 def llama_token_eot(vocab: llama_vocab_p, /) -> int:
     ...
 
+
 # DEPRECATED(LLAMA_API llama_token llama_token_cls(const struct llama_vocab * vocab), "use llama_vocab_cls instead");
 @ctypes_function(
     "llama_token_cls",
@@ -3178,6 +3186,7 @@ def llama_token_eot(vocab: llama_vocab_p, /) -> int:
 )
 def llama_token_cls(vocab: llama_vocab_p, /) -> int:
     ...
+
 
 # DEPRECATED(LLAMA_API llama_token llama_token_sep(const struct llama_vocab * vocab), "use llama_vocab_sep instead");
 @ctypes_function(
@@ -3218,6 +3227,7 @@ def llama_token_pad(vocab: llama_vocab_p, /) -> int:
 def llama_add_bos_token(vocab: llama_vocab_p, /) -> bool:
     ...
 
+
 # DEPRECATED(LLAMA_API bool llama_add_eos_token(const struct llama_vocab * vocab), "use llama_vocab_get_add_eos instead");
 @ctypes_function(
     "llama_add_eos_token",
@@ -3237,6 +3247,7 @@ def llama_add_eos_token(vocab: llama_vocab_p, /) -> bool:
 def llama_token_fim_pre(vocab: llama_vocab_p, /) -> llama_token:
     ...
 
+
 # DEPRECATED(LLAMA_API llama_token llama_token_fim_suf(const struct llama_vocab * vocab), "use llama_vocab_fim_suf instead");
 @ctypes_function(
     "llama_token_fim_suf",
@@ -3245,6 +3256,7 @@ def llama_token_fim_pre(vocab: llama_vocab_p, /) -> llama_token:
 )
 def llama_token_fim_suf(vocab: llama_vocab_p, /) -> llama_token:
     ...
+
 
 # DEPRECATED(LLAMA_API llama_token llama_token_fim_mid(const struct llama_vocab * vocab), "use llama_vocab_fim_mid instead");
 @ctypes_function(
@@ -3255,6 +3267,7 @@ def llama_token_fim_suf(vocab: llama_vocab_p, /) -> llama_token:
 def llama_token_fim_mid(vocab: llama_vocab_p, /) -> llama_token:
     ...
 
+
 # DEPRECATED(LLAMA_API llama_token llama_token_fim_pad(const struct llama_vocab * vocab), "use llama_vocab_fim_pad instead");
 @ctypes_function(
     "llama_token_fim_pad",
@@ -3263,6 +3276,7 @@ def llama_token_fim_mid(vocab: llama_vocab_p, /) -> llama_token:
 )
 def llama_token_fim_pad(vocab: llama_vocab_p, /) -> llama_token:
     ...
+
 
 # DEPRECATED(LLAMA_API llama_token llama_token_fim_rep(const struct llama_vocab * vocab), "use llama_vocab_fim_rep instead");
 @ctypes_function(
@@ -3273,6 +3287,7 @@ def llama_token_fim_pad(vocab: llama_vocab_p, /) -> llama_token:
 def llama_token_fim_rep(vocab: llama_vocab_p, /) -> llama_token:
     ...
 
+
 # DEPRECATED(LLAMA_API llama_token llama_token_fim_sep(const struct llama_vocab * vocab), "use llama_vocab_fim_sep instead");
 @ctypes_function(
     "llama_token_fim_sep",
@@ -3281,6 +3296,7 @@ def llama_token_fim_rep(vocab: llama_vocab_p, /) -> llama_token:
 )
 def llama_token_fim_sep(vocab: llama_vocab_p, /) -> llama_token:
     ...
+
 
 # // CLS is equivalent to BOS
 # DEPRECATED(LLAMA_API llama_token llama_vocab_cls(const struct llama_vocab * vocab), // classification
@@ -3500,9 +3516,9 @@ def llama_detokenize(
         ctypes.c_char_p,  # tmpl
         ctypes.POINTER(llama_chat_message),  # chat
         ctypes.c_size_t,  # n_msg
-        ctypes.c_bool,    # add_ass (added)
+        ctypes.c_bool,  # add_ass (added)
         ctypes.c_char_p,  # buf
-        ctypes.c_int32,   # length
+        ctypes.c_int32,  # length
     ],
     ctypes.c_int32,
 )
@@ -4302,5 +4318,3 @@ def llama_perf_sampler_print(chain: llama_sampler_p, /):
 )
 def llama_perf_sampler_reset(chain: llama_sampler_p, /):
     ...
-
-

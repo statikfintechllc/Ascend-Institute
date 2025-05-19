@@ -24,10 +24,12 @@ if VECTOR_INDEX_FILE.exists() and TEXT_STORE_FILE.exists():
     faiss.read_index(str(VECTOR_INDEX_FILE))
 else:
     stored_texts = []
-    
+
+
 def store(prompt, decision):
     # Store the prompt and decision for future reference
     pass
+
 
 def store_context(text: str):
     """Embed and store text in vector DB."""
@@ -39,6 +41,7 @@ def store_context(text: str):
     with open(TEXT_STORE_FILE, "wb") as f:
         pickle.dump(stored_texts, f)
     faiss.write_index(index, str(VECTOR_INDEX_FILE))
+
 
 def recall_context(query: str, k: int = 3):
     """Return top-k similar text snippets from memory."""

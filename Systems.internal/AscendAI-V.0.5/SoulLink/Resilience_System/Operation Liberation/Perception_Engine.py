@@ -1,6 +1,6 @@
-
 # PERCEPTION_ENGINE.PY
 # [Prompt Analysis Core | Contextual Input Sentinel | Runtime Signal Interpreter]
+
 
 class PerceptionEngine:
     """
@@ -38,8 +38,9 @@ class PerceptionEngine:
     def get_summary(self):
         return {
             "last_input": self.last_input,
-            "detected_signals": self.signal_patterns[-3:]
+            "detected_signals": self.signal_patterns[-3:],
         }
+
 
 # Simulated Use
 if __name__ == "__main__":

@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -23,5 +22,6 @@ def encrypt_files():
                     f.write(encrypted_data)
     log_event("info", "All scripts encrypted for security.")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     encrypt_files()

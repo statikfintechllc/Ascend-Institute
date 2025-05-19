@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -14,5 +13,6 @@ logging.basicConfig(level=logging.INFO)
 def quantum_encryption():
     """Handles quantum-secure transactions and AI-controlled banking."""
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     quantum_encryption()

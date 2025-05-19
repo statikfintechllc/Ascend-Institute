@@ -5,7 +5,7 @@ from openhands.storage.memory import InMemoryFileStore
 
 def example_event(index: int) -> Event:
     event = Event()
-    event._message = f'Test message {index}'
+    event._message = f"Test message {index}"
     event._id = index
     return event
 
@@ -43,8 +43,8 @@ def test_state_view_cache_not_serialized():
 
     # Serialize the state.
     store = InMemoryFileStore()
-    state.save_to_session('test_sid', store, None)
-    restored_state = State.restore_from_session('test_sid', store, None)
+    state.save_to_session("test_sid", store, None)
+    restored_state = State.restore_from_session("test_sid", store, None)
 
     # The state usually has the history rebuilt from the event stream -- we'll
     # simulate this by manually setting the state history to the same events.

@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -12,10 +11,11 @@ logging.basicConfig(level=logging.INFO)
 
 
 class Discriminator(nn.Module):
-        super(Discriminator, self).__init__()
-        self.sigmoid = nn.Sigmoid()
-        x = self.sigmoid(self.layer3(x))
+    super(Discriminator, self).__init__()
+    self.sigmoid = nn.Sigmoid()
+    x = self.sigmoid(self.layer3(x))
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     instance = Discriminator()
     print(instance)

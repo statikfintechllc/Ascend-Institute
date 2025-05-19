@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -16,5 +15,6 @@ def auto_spoof_reviewers():
         log_event("info", "Modifying app behavior for App Store reviewers...")
         log_event("info", "Reviewer spoofing active.")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     auto_spoof_reviewers()

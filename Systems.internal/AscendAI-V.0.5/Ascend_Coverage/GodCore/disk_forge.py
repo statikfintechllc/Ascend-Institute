@@ -1,9 +1,9 @@
-
 import os
 import subprocess
 
 VIRTUAL_DISK_PATH = "/mnt/data/ascend.vdisk"
 MOUNT_POINT = "/mnt/ascend_disk"
+
 
 def create_virtual_disk():
     try:
@@ -18,6 +18,7 @@ def create_virtual_disk():
             print("Virtual disk already exists.")
     except Exception as e:
         print(f"[ERROR] Failed to create/mount virtual disk: {e}")
+
 
 if __name__ == "__main__":
     create_virtual_disk()

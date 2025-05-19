@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -18,5 +17,6 @@ def spoof_mac():
     os.system("ifconfig eth0 up")
     logging.info(" MAC Address Spoofed")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     spoof_mac()

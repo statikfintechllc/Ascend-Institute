@@ -17,18 +17,22 @@ def test_array_multiplication():
 
     # 4. Define the multiplication shader code to run on the GPU
     @ps.python2shader
-    def compute_mult(index=("input", "GlobalInvocationId", ps.ivec3),
-                                data1=("buffer", 0, ps.Array(ps.f32)),
-                                data2=("buffer", 1, ps.Array(ps.f32)),
-                                data3=("buffer", 2, ps.Array(ps.f32))):
+    def compute_mult(
+        index=("input", "GlobalInvocationId", ps.ivec3),
+        data1=("buffer", 0, ps.Array(ps.f32)),
+        data2=("buffer", 1, ps.Array(ps.f32)),
+        data3=("buffer", 2, ps.Array(ps.f32)),
+    ):
         i = index.x
         data3[i] = data1[i] * data2[i]
 
-    (mgr.sequence()
+    (
+        mgr.sequence()
         .record(kp.OpTensorSyncDevice(params))
         .record(kp.OpAlgoDispatch(mgr.algorithm(params, compute_mult.to_spirv())))
         .record(kp.OpTensorSyncLocal([tensor_out]))
-        .eval())
+        .eval()
+    )
 
     assert tensor_out.data().tolist() == [2.0, 4.0, 6.0]
     assert np.all(tensor_out.data() == [2.0, 4.0, 6.0])

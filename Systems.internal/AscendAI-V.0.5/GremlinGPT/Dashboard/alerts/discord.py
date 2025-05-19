@@ -5,6 +5,7 @@ import requests
 
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
 
+
 def send_discord_alert(message: str) -> bool:
     """
     Sends a message to a Discord channel via webhook.
@@ -14,9 +15,7 @@ def send_discord_alert(message: str) -> bool:
         print("[discord.py] No DISCORD_WEBHOOK_URL found in environment.")
         return False
 
-    payload = {
-        "content": f"**[GremlinGPT Alert]**\n{message}"
-    }
+    payload = {"content": f"**[GremlinGPT Alert]**\n{message}"}
 
     try:
         response = requests.post(DISCORD_WEBHOOK_URL, json=payload)

@@ -3,13 +3,16 @@ from core import decision_engine, error_handler
 from multiprocessing import Process
 import subprocess
 
+
 def run_dashboard_server():
     subprocess.run(["python", "mobile_dashboard/dashboard_server.py"])
+
 
 def run_visual_dashboard():
     subprocess.run(["python", "mobile_dashboard/dashboard.py"])
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     p1 = Process(target=run_dashboard_server)
     p2 = Process(target=run_visual_dashboard)
 
@@ -18,6 +21,7 @@ if __name__ == '__main__':
 
     p1.join()
     p2.join()
+
 
 def run():
     try:

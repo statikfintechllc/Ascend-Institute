@@ -19,8 +19,8 @@ def test_json_encoder_memory_leak():
 
     # Create a large dataset that will need encoding
     large_data = {
-        'datetime': datetime.now(),
-        'nested': [{'timestamp': datetime.now()} for _ in range(1000)],
+        "datetime": datetime.now(),
+        "nested": [{"timestamp": datetime.now()} for _ in range(1000)],
     }
 
     # Track memory usage over multiple iterations
@@ -45,7 +45,7 @@ def test_json_encoder_memory_leak():
     # The standard library's json module may use more memory than expected
     assert (
         memory_variation < 2 * 1024 * 1024
-    ), f'Memory usage unstable: {memory_variation} bytes variation'
+    ), f"Memory usage unstable: {memory_variation} bytes variation"
 
     # Also check total memory increase from start
     final_memory = memory_samples[-1]
@@ -54,4 +54,4 @@ def test_json_encoder_memory_leak():
     # Allow for some memory increase (2MB) as some objects may be cached
     assert (
         memory_increase < 2 * 1024 * 1024
-    ), f'Memory leak detected: {memory_increase} bytes increase'
+    ), f"Memory leak detected: {memory_increase} bytes increase"

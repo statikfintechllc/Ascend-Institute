@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -15,5 +14,6 @@ def quantum_financial_forecasting():
     """Executes a quantum algorithm to predict financial markets."""
     logging.info(f" Quantum Financial Prediction Result: {result}")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     quantum_financial_forecasting()

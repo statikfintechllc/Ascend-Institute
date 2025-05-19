@@ -25,11 +25,11 @@ def generate_file_viewer_html(file_path: str) -> str:
 
     # Define supported file extensions
     supported_extensions = [
-        '.pdf',
-        '.png',
-        '.jpg',
-        '.jpeg',
-        '.gif',
+        ".pdf",
+        ".png",
+        ".jpg",
+        ".jpeg",
+        ".gif",
     ]
 
     # Check if the file extension is supported
@@ -42,20 +42,20 @@ def generate_file_viewer_html(file_path: str) -> str:
     # Check if the file exists
     if not os.path.exists(file_path):
         raise ValueError(
-            f'File not found locally: {file_path}. Please download the file to the local machine and try again.'
+            f"File not found locally: {file_path}. Please download the file to the local machine and try again."
         )
 
     # Read file content directly
     file_content = None
-    mime_type = mimetypes.guess_type(file_path)[0] or 'application/octet-stream'
+    mime_type = mimetypes.guess_type(file_path)[0] or "application/octet-stream"
 
     # For binary files (images, PDFs), encode as base64
-    if file_extension in ['.pdf', '.png', '.jpg', '.jpeg', '.gif', '.bmp']:
-        with open(file_path, 'rb') as file:
-            file_content = base64.b64encode(file.read()).decode('utf-8')
+    if file_extension in [".pdf", ".png", ".jpg", ".jpeg", ".gif", ".bmp"]:
+        with open(file_path, "rb") as file:
+            file_content = base64.b64encode(file.read()).decode("utf-8")
     # For text files, read as text
     else:
-        with open(file_path, 'r', encoding='utf-8') as file:
+        with open(file_path, "r", encoding="utf-8") as file:
             file_content = file.read()
 
     return f"""<!DOCTYPE html>

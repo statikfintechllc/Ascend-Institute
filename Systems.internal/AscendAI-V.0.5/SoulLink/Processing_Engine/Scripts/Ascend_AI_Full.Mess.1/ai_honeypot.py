@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -14,5 +13,6 @@ logging.basicConfig(level=logging.INFO)
 def ai_honeypot():
     """Deploys AI-driven honeypots to track attackers and divert threats."""
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     ai_honeypot()

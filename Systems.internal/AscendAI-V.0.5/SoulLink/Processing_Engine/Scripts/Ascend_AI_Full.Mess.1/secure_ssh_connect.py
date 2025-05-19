@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -17,5 +16,6 @@ def secure_ssh_connect(host, user, key_path):
     ssh.connect(hostname=host, username=user, key_filename=key_path)
     return ssh
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     secure_ssh_connect()

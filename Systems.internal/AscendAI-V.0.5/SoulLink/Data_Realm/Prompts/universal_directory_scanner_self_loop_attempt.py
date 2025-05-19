@@ -1,4 +1,3 @@
-
 import os
 import re
 import json
@@ -7,7 +6,9 @@ import subprocess
 
 # Predefined critical files with AI logic templates that evolve over time
 CRITICAL_FILES = {
-    "preprocess.py": ("/data_pipeline/preprocess.py", """import pandas as pd
+    "preprocess.py": (
+        "/data_pipeline/preprocess.py",
+        """import pandas as pd
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 
 def load_and_preprocess(file_path):
@@ -22,9 +23,11 @@ def load_and_preprocess(file_path):
     X = scaler.fit_transform(df.drop('label', axis=1))
     y = df['label'].values
 
-    return X, y"""),
-
-    "model.py": ("/models/model.py", """import torch.nn as nn
+    return X, y""",
+    ),
+    "model.py": (
+        "/models/model.py",
+        """import torch.nn as nn
 
 class EvolvingNN(nn.Module):
     def __init__(self, input_dim, output_dim, hidden_size=128):
@@ -35,9 +38,11 @@ class EvolvingNN(nn.Module):
             nn.Linear(hidden_size, output_dim)
         )
     def forward(self, x):
-        return self.layers(x)"""),
-
-    "train.py": ("/training/train.py", """import torch
+        return self.layers(x)""",
+    ),
+    "train.py": (
+        "/training/train.py",
+        """import torch
 import torch.nn as nn
 import torch.optim as optim
 from model import EvolvingNN
@@ -55,9 +60,11 @@ def train_model(X_train, y_train, epochs=10, lr=0.001, hidden_size=128):
         optimizer.step()
         print(f"Epoch {epoch+1}, Loss: {loss.item()}")
 
-    return model"""),
-
-    "watchdog.py": ("/monitoring/watchdog.py", """import subprocess, time
+    return model""",
+    ),
+    "watchdog.py": (
+        "/monitoring/watchdog.py",
+        """import subprocess, time
 
 def monitor(script="train.py"):
     while True:
@@ -68,9 +75,11 @@ def monitor(script="train.py"):
         time.sleep(5)
 
 if __name__ == "__main__":
-    monitor()"""),
-
-    "memory_engine.py": ("/core/memory_engine.py", """import faiss, numpy as np
+    monitor()""",
+    ),
+    "memory_engine.py": (
+        "/core/memory_engine.py",
+        """import faiss, numpy as np
 from sentence_transformers import SentenceTransformer
 
 model = SentenceTransformer('all-MiniLM-L6-v2')
@@ -83,8 +92,10 @@ def store_embedding(text):
 def search_embedding(query):
     vec = model.encode([query])
     _, I = index.search(vec, k=1)
-    return I"""),
+    return I""",
+    ),
 }
+
 
 def scan_and_self_optimize(directory="Ascend_AI"):
     iteration = 0
@@ -103,8 +114,10 @@ def scan_and_self_optimize(directory="Ascend_AI"):
         for required_file, (path, content) in CRITICAL_FILES.items():
             target_path = os.path.join(directory, path)
             if required_file not in scanned_files or needs_upgrade(target_path):
-                missing_files.append({"file": required_file, "path": target_path, "content": content})
-        
+                missing_files.append(
+                    {"file": required_file, "path": target_path, "content": content}
+                )
+
         # Rebuild missing or outdated AI components
         for missing in missing_files:
             os.makedirs(os.path.dirname(missing["path"]), exist_ok=True)
@@ -118,12 +131,14 @@ def scan_and_self_optimize(directory="Ascend_AI"):
         iteration += 1
         time.sleep(5)  # Small delay before next iteration
 
+
 def needs_upgrade(file_path):
-    """ Check if the file needs an upgrade based on versioning or size growth """
+    """Check if the file needs an upgrade based on versioning or size growth"""
     return os.path.getsize(file_path) < 1024  # If file is too small, consider upgrading
 
+
 def run_all_tests():
-    """ Run all AI system tests dynamically """
+    """Run all AI system tests dynamically"""
     print("[TEST] Running AI system tests...")
     try:
         subprocess.run(["pytest", "--disable-warnings"], check=True)
@@ -131,8 +146,9 @@ def run_all_tests():
     except subprocess.CalledProcessError:
         print("[TEST] Some tests failed. AI will attempt fixes.")
 
+
 def evolve_logic():
-    """ AI self-improvement logic: adjusts model complexity and retrains """
+    """AI self-improvement logic: adjusts model complexity and retrains"""
     print("[EVOLVE] Enhancing AI logic dynamically...")
     model_file = os.path.join("Ascend_AI", "models", "model.py")
 
@@ -143,11 +159,12 @@ def evolve_logic():
             if "hidden_size=" in line:
                 num = int(re.findall(r"\d+", line)[0])
                 new_size = num + 32
-                lines[i] = f'        self.hidden_size = {new_size}\n'
+                lines[i] = f"        self.hidden_size = {new_size}\n"
                 print(f"[EVOLVE] Increasing hidden layer size: {new_size}")
         f.seek(0)
         f.writelines(lines)
         f.truncate()
+
 
 if __name__ == "__main__":
     scan_and_self_optimize()

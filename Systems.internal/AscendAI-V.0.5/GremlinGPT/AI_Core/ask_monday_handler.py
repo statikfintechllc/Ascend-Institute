@@ -27,6 +27,7 @@ def log(message):
     with open(LOG_FILE, "a") as f:
         f.write(f"[{datetime.now()}] {message}\n")
 
+
 # === TASK PARSER ===
 def extract_task():
     if not os.path.exists(TASK_FILE):
@@ -43,6 +44,7 @@ def extract_task():
         f.writelines(lines[1:])  # remove first line
 
     return current
+
 
 # === CHATGPT LAUNCH ===
 def launch_chatgpt():
@@ -62,6 +64,7 @@ def launch_chatgpt():
     except Exception as e:
         log(f"[ERROR] Failed to launch ChatGPT app: {e}")
 
+
 # === INTERACTION ===
 def paste_and_enter(text):
     pyperclip.copy(text)
@@ -69,19 +72,24 @@ def paste_and_enter(text):
     time.sleep(1)
     pyautogui.press("enter")
 
+
 def scroll_and_capture():
     time.sleep(10)
     screenshots = []
 
     for i in range(3):
         img = ImageGrab.grab(bbox=None)  # full screen
-        path = os.path.join(SCREENSHOT_DIR, f"response_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{i}.png")
+        path = os.path.join(
+            SCREENSHOT_DIR,
+            f"response_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{i}.png",
+        )
         img.save(path)
         screenshots.append(path)
         pyautogui.scroll(-500)
         time.sleep(2)
 
     return screenshots
+
 
 def ocr_images(paths):
     text_blocks = []
@@ -94,6 +102,7 @@ def ocr_images(paths):
             text_blocks.append("[OCR ERROR]")
     return "\n---\n".join(text_blocks)
 
+
 # === FINAL STORAGE ===
 def save_response(original, result):
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -101,6 +110,7 @@ def save_response(original, result):
     with open(fname, "w") as f:
         f.write(f"# Prompt:\n{original}\n\n# Response:\n{result}\n")
     log(f"Saved ChatGPT response to {fname}")
+
 
 # === MAIN ===
 def main():
@@ -115,6 +125,7 @@ def main():
     images = scroll_and_capture()
     response = ocr_images(images)
     save_response(query, response)
+
 
 if __name__ == "__main__":
     main()

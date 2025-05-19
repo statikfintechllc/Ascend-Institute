@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -13,8 +12,12 @@ logging.basicConfig(level=logging.INFO)
 
 def route_profits():
     if ROUTE_PROFITS_TO_LEGAL_BUSINESS:
-        log_event("info", "Routing AI-generated profits to legal business expansion and payments...")
+        log_event(
+            "info",
+            "Routing AI-generated profits to legal business expansion and payments...",
+        )
         # AI-Driven Security Patching & Defense
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     route_profits()

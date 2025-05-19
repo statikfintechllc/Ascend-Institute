@@ -58,7 +58,7 @@ class EventStore:
             events_dir = get_conversation_events_dir(self.sid, self.user_id)
             events = self.file_store.list(events_dir)
         except FileNotFoundError:
-            logger.debug(f'No events found for session {self.sid} at {events_dir}')
+            logger.debug(f"No events found for session {self.sid} at {events_dir}")
 
         if self.user_id:
             # During transition to new location, try old location if user_id is set
@@ -67,7 +67,7 @@ class EventStore:
                 events_dir = get_conversation_events_dir(self.sid)
                 events += self.file_store.list(events_dir)
             except FileNotFoundError:
-                logger.debug(f'No events found for session {self.sid} at {events_dir}')
+                logger.debug(f"No events found for session {self.sid} at {events_dir}")
 
         if not events:
             self.cur_id = 0
@@ -103,7 +103,7 @@ class EventStore:
         """
 
         def should_filter(event: Event) -> bool:
-            if filter_hidden and hasattr(event, 'hidden') and event.hidden:
+            if filter_hidden and hasattr(event, "hidden") and event.hidden:
                 return True
             if filter_out_type is not None and isinstance(event, filter_out_type):
                 return True
@@ -144,7 +144,7 @@ class EventStore:
             data = json.loads(content)
             return event_from_dict(data)
         except FileNotFoundError:
-            logger.debug(f'File {filename} not found')
+            logger.debug(f"File {filename} not found")
             # TODO remove this block after 5/1/2025
             if self.user_id:
                 filename = self._get_filename_for_id(id, None)
@@ -238,7 +238,7 @@ class EventStore:
             ValueError: If limit is less than 1 or greater than 100
         """
         if limit < 1 or limit > 100:
-            raise ValueError('Limit must be between 1 and 100')
+            raise ValueError("Limit must be between 1 and 100")
 
         matching_events: list = []
 
@@ -260,7 +260,7 @@ class EventStore:
         return get_conversation_event_filename(self.sid, id, user_id)
 
     def _get_filename_for_cache(self, start: int, end: int) -> str:
-        return f'{get_conversation_dir(self.sid, self.user_id)}event_cache/{start}-{end}.json'
+        return f"{get_conversation_dir(self.sid, self.user_id)}event_cache/{start}-{end}.json"
 
     def _load_cache_page(self, start: int, end: int) -> _CachePage:
         """Read a page from the cache. Reading individual events is slow when there are a lot of them, so we use pages."""
@@ -281,7 +281,7 @@ class EventStore:
     @staticmethod
     def _get_id_from_filename(filename: str) -> int:
         try:
-            return int(filename.split('/')[-1].split('.')[0])
+            return int(filename.split("/")[-1].split(".")[0])
         except ValueError:
-            logger.warning(f'get id from filename ({filename}) failed.')
+            logger.warning(f"get id from filename ({filename}) failed.")
             return -1

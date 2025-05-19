@@ -55,13 +55,17 @@ def test_end_to_end():
     push_consts_a = [2]
     push_consts_b = [3]
 
-    algo = mgr.algorithm(params, compile_source(shader), workgroup, spec_consts, push_consts_a)
+    algo = mgr.algorithm(
+        params, compile_source(shader), workgroup, spec_consts, push_consts_a
+    )
 
-    (mgr.sequence()
+    (
+        mgr.sequence()
         .record(kp.OpTensorSyncDevice(params))
         .record(kp.OpAlgoDispatch(algo))
         .record(kp.OpAlgoDispatch(algo, push_consts_b))
-        .eval())
+        .eval()
+    )
 
     sq = mgr.sequence()
     sq.eval_async(kp.OpTensorSyncLocal(params))
@@ -103,11 +107,13 @@ void main()
 
     algo = mgr.algorithm(params, spirv)
 
-    (mgr.sequence()
+    (
+        mgr.sequence()
         .record(kp.OpTensorSyncDevice(params))
         .record(kp.OpAlgoDispatch(algo))
         .record(kp.OpTensorSyncLocal(params))
-        .eval())
+        .eval()
+    )
 
     assert tensor_out.data().tolist() == [2.0, 4.0, 6.0]
 
@@ -171,7 +177,8 @@ def test_sequence():
 
 def test_pushconsts():
 
-    spirv = compile_source("""
+    spirv = compile_source(
+        """
           #version 450
           layout(push_constant) uniform PushConstants {
             float x;
@@ -185,7 +192,8 @@ def test_pushconsts():
               pa[1] += pcs.y;
               pa[2] += pcs.z;
           }
-    """)
+    """
+    )
 
     mgr = kp.Manager()
 
@@ -193,20 +201,23 @@ def test_pushconsts():
 
     algo = mgr.algorithm([tensor], spirv, (1, 1, 1), [], [0.1, 0.2, 0.3])
 
-    (mgr.sequence()
+    (
+        mgr.sequence()
         .record(kp.OpTensorSyncDevice([tensor]))
         .record(kp.OpAlgoDispatch(algo))
         .record(kp.OpAlgoDispatch(algo, [0.3, 0.2, 0.1]))
         .record(kp.OpAlgoDispatch(algo, [0.3, 0.2, 0.1]))
         .record(kp.OpTensorSyncLocal([tensor]))
-        .eval())
+        .eval()
+    )
 
     assert np.allclose(tensor.data(), np.array([0.7, 0.6, 0.5], dtype=np.float32))
 
 
 def test_pushconsts_int():
 
-    spirv = compile_source("""
+    spirv = compile_source(
+        """
           #version 450
           layout(push_constant) uniform PushConstants {
             int x;
@@ -220,7 +231,8 @@ def test_pushconsts_int():
               pa[1] += pcs.y;
               pa[2] += pcs.z;
           }
-    """)
+    """
+    )
 
     mgr = kp.Manager()
 
@@ -231,13 +243,15 @@ def test_pushconsts_int():
 
     algo = mgr.algorithm([tensor], spirv, (1, 1, 1), spec_consts, push_consts)
 
-    (mgr.sequence()
+    (
+        mgr.sequence()
         .record(kp.OpTensorSyncDevice([tensor]))
         .record(kp.OpAlgoDispatch(algo))
         .record(kp.OpAlgoDispatch(algo, np.array([-1, -1, -1], dtype=np.int32)))
         .record(kp.OpAlgoDispatch(algo, np.array([-1, -1, -1], dtype=np.int32)))
         .record(kp.OpTensorSyncLocal([tensor]))
-        .eval())
+        .eval()
+    )
 
     assert np.all(tensor.data() == np.array([-3, -3, -3], dtype=np.int32))
 
@@ -245,32 +259,36 @@ def test_pushconsts_int():
 def test_workgroup():
     mgr = kp.Manager(0)
 
-    tensor_a = mgr.tensor(np.zeros([16,8]))
-    tensor_b = mgr.tensor(np.zeros([16,8]))
+    tensor_a = mgr.tensor(np.zeros([16, 8]))
+    tensor_b = mgr.tensor(np.zeros([16, 8]))
 
     @ps.python2shader
-    def compute_shader_wg(gl_idx=("input", "GlobalInvocationId", ps.ivec3),
-                          gl_wg_id=("input", "WorkgroupId", ps.ivec3),
-                          gl_wg_num=("input", "NumWorkgroups", ps.ivec3),
-                          data1=("buffer", 0, ps.Array(ps.f32)),
-                          data2=("buffer", 1, ps.Array(ps.f32))):
+    def compute_shader_wg(
+        gl_idx=("input", "GlobalInvocationId", ps.ivec3),
+        gl_wg_id=("input", "WorkgroupId", ps.ivec3),
+        gl_wg_num=("input", "NumWorkgroups", ps.ivec3),
+        data1=("buffer", 0, ps.Array(ps.f32)),
+        data2=("buffer", 1, ps.Array(ps.f32)),
+    ):
         i = gl_wg_id.x * gl_wg_num.y + gl_wg_id.y
         data1[i] = f32(gl_idx.x)
         data2[i] = f32(gl_idx.y)
 
-    algo = mgr.algorithm([tensor_a, tensor_b], compute_shader_wg.to_spirv(), (16,8,1))
+    algo = mgr.algorithm([tensor_a, tensor_b], compute_shader_wg.to_spirv(), (16, 8, 1))
 
-    (mgr.sequence()
+    (
+        mgr.sequence()
         .record(kp.OpTensorSyncDevice([tensor_a, tensor_b]))
         .record(kp.OpAlgoDispatch(algo))
         .record(kp.OpTensorSyncLocal([tensor_a, tensor_b]))
-        .eval())
+        .eval()
+    )
 
     print(tensor_a.data())
     print(tensor_b.data())
 
-    assert np.all(tensor_a.data() == np.stack([np.arange(16)]*8, axis=1).ravel())
-    assert np.all(tensor_b.data() == np.stack([np.arange(8)]*16, axis=0).ravel())
+    assert np.all(tensor_a.data() == np.stack([np.arange(16)] * 8, axis=1).ravel())
+    assert np.all(tensor_b.data() == np.stack([np.arange(8)] * 16, axis=0).ravel())
 
 
 def test_mgr_utils():

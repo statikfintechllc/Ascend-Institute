@@ -11,6 +11,7 @@ logging.basicConfig(filename=LOG_FILE, level=logging.INFO)
 client = chromadb.Client()
 collection = client.create_collection("failure_logs")
 
+
 def log_failure(operation, error_message):
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     log_entry = f"{timestamp} - {operation} failed: {error_message}"
@@ -24,9 +25,10 @@ def log_failure(operation, error_message):
     )
     print(f"Logged failure: {log_entry}")
 
+
 def learn_and_retry():
     # Retry failed operations after learning from logs
-    with open(LOG_FILE, 'r') as file:
+    with open(LOG_FILE, "r") as file:
         errors = file.readlines()
 
     if errors:

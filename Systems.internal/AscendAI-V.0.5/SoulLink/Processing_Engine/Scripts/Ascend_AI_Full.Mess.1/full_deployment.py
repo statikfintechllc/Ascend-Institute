@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -18,5 +17,6 @@ def full_deployment():
     ensure_persistence()
     print("[] Deployment complete. Ascend AI is now fully operational.")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     full_deployment()

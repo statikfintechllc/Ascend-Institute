@@ -53,18 +53,24 @@ class LazyTorchTensor(gguf.LazyBase):
         return gguf.LazyNumpyTensor(
             meta=gguf.LazyNumpyTensor.meta_with_dtype_and_shape(dtype, self.shape),
             args=(self,),
-            func=(lambda s: s.numpy())
+            func=(lambda s: s.numpy()),
         )
 
     @classmethod
-    def meta_with_dtype_and_shape(cls, dtype: torch.dtype, shape: tuple[int, ...]) -> Tensor:
+    def meta_with_dtype_and_shape(
+        cls, dtype: torch.dtype, shape: tuple[int, ...]
+    ) -> Tensor:
         return torch.empty(size=shape, dtype=dtype, device="meta")
 
     @classmethod
     def from_safetensors_slice(cls, st_slice: Any) -> Tensor:
         dtype = cls._dtype_str_map[st_slice.get_dtype()]
         shape: tuple[int, ...] = tuple(st_slice.get_shape())
-        lazy = cls(meta=cls.meta_with_dtype_and_shape(dtype, shape), args=(st_slice,), func=lambda s: s[:])
+        lazy = cls(
+            meta=cls.meta_with_dtype_and_shape(dtype, shape),
+            args=(st_slice,),
+            func=lambda s: s[:],
+        )
         return cast(torch.Tensor, lazy)
 
     @classmethod
@@ -100,11 +106,13 @@ class Gemma3VisionTower:
         part_names.sort()
         return part_names
 
-    def __init__(self,
-                 dir_model: Path,
-                 fname_out: Path,
-                 ftype: gguf.LlamaFileType,
-                 is_big_endian: bool,):
+    def __init__(
+        self,
+        dir_model: Path,
+        fname_out: Path,
+        ftype: gguf.LlamaFileType,
+        is_big_endian: bool,
+    ):
         hparams = Gemma3VisionTower.load_hparams(dir_model)
         self.hparams = hparams
         self.fname_out = fname_out
@@ -119,22 +127,39 @@ class Gemma3VisionTower:
         assert text_config is not None
         assert vision_config is not None
 
-        self.gguf_writer.add_string ("clip.projector_type",              "gemma3")
-        self.gguf_writer.add_bool   ("clip.has_text_encoder",            False)
-        self.gguf_writer.add_bool   ("clip.has_vision_encoder",          True)
-        self.gguf_writer.add_bool   ("clip.has_llava_projector",         False) # legacy
-        self.gguf_writer.add_uint32 ("clip.vision.image_size",           vision_config["image_size"])
-        self.gguf_writer.add_uint32 ("clip.vision.patch_size",           vision_config["patch_size"])
-        self.gguf_writer.add_uint32 ("clip.vision.embedding_length",     vision_config["hidden_size"])
-        self.gguf_writer.add_uint32 ("clip.vision.feed_forward_length",  vision_config["intermediate_size"])
-        self.gguf_writer.add_uint32 ("clip.vision.projection_dim",       text_config["hidden_size"])
-        self.gguf_writer.add_uint32 ("clip.vision.block_count",          vision_config["num_hidden_layers"])
-        self.gguf_writer.add_uint32 ("clip.vision.attention.head_count", vision_config["num_attention_heads"])
-        self.gguf_writer.add_float32("clip.vision.attention.layer_norm_epsilon", vision_config.get("layer_norm_eps", 1e-6))
+        self.gguf_writer.add_string("clip.projector_type", "gemma3")
+        self.gguf_writer.add_bool("clip.has_text_encoder", False)
+        self.gguf_writer.add_bool("clip.has_vision_encoder", True)
+        self.gguf_writer.add_bool("clip.has_llava_projector", False)  # legacy
+        self.gguf_writer.add_uint32(
+            "clip.vision.image_size", vision_config["image_size"]
+        )
+        self.gguf_writer.add_uint32(
+            "clip.vision.patch_size", vision_config["patch_size"]
+        )
+        self.gguf_writer.add_uint32(
+            "clip.vision.embedding_length", vision_config["hidden_size"]
+        )
+        self.gguf_writer.add_uint32(
+            "clip.vision.feed_forward_length", vision_config["intermediate_size"]
+        )
+        self.gguf_writer.add_uint32(
+            "clip.vision.projection_dim", text_config["hidden_size"]
+        )
+        self.gguf_writer.add_uint32(
+            "clip.vision.block_count", vision_config["num_hidden_layers"]
+        )
+        self.gguf_writer.add_uint32(
+            "clip.vision.attention.head_count", vision_config["num_attention_heads"]
+        )
+        self.gguf_writer.add_float32(
+            "clip.vision.attention.layer_norm_epsilon",
+            vision_config.get("layer_norm_eps", 1e-6),
+        )
         # default values taken from HF tranformers code
-        self.gguf_writer.add_array  ("clip.vision.image_mean", [0.5, 0.5, 0.5])
-        self.gguf_writer.add_array  ("clip.vision.image_std",  [0.5, 0.5, 0.5])
-        self.gguf_writer.add_bool   ("clip.use_gelu", True)
+        self.gguf_writer.add_array("clip.vision.image_mean", [0.5, 0.5, 0.5])
+        self.gguf_writer.add_array("clip.vision.image_std", [0.5, 0.5, 0.5])
+        self.gguf_writer.add_bool("clip.use_gelu", True)
 
         # load tensors
         for name, data_torch in self.get_tensors(dir_model):
@@ -144,12 +169,18 @@ class Gemma3VisionTower:
             self.add_tensor(name, data_torch)
 
     def get_tensors(self, dir_model: Path) -> Iterator[tuple[str, Tensor]]:
-        part_names = Gemma3VisionTower.get_model_part_names(dir_model, "model", ".safetensors")
+        part_names = Gemma3VisionTower.get_model_part_names(
+            dir_model, "model", ".safetensors"
+        )
         tensor_names_from_parts: set[str] = set()
         for part_name in part_names:
             logger.info(f"gguf: loading model part '{part_name}'")
             from safetensors import safe_open
-            ctx = cast(ContextManager[Any], safe_open(dir_model / part_name, framework="pt", device="cpu"))
+
+            ctx = cast(
+                ContextManager[Any],
+                safe_open(dir_model / part_name, framework="pt", device="cpu"),
+            )
             with ctx as model_part:
                 tensor_names_from_parts.update(model_part.keys())
 
@@ -171,7 +202,9 @@ class Gemma3VisionTower:
         name = name.replace("multimodal_projector.", "multi_modal_projector.")
 
         # filter only vision tensors
-        if not name.startswith("vision_tower.vision_model.") and not name.startswith("multi_modal_projector."):
+        if not name.startswith("vision_tower.vision_model.") and not name.startswith(
+            "multi_modal_projector."
+        ):
             return
         # prefix
         name = name.replace("vision_tower.vision_model.encoder.layers.", "v.blk.")
@@ -181,11 +214,10 @@ class Gemma3VisionTower:
         name = name.replace(".embeddings.position_embedding.", ".position_embd.")
         name = name.replace(
             "multi_modal_projector.mm_input_projection_weight",
-            "mm.input_projection.weight"
+            "mm.input_projection.weight",
         )
         name = name.replace(
-            "multi_modal_projector.mm_soft_emb_norm.weight",
-            "mm.soft_emb_norm.weight"
+            "multi_modal_projector.mm_soft_emb_norm.weight", "mm.soft_emb_norm.weight"
         )
         name = name.replace("post_layernorm.", "post_ln.")
         # each block
@@ -228,7 +260,9 @@ class Gemma3VisionTower:
 
         # reverse shape to make it similar to the internal ggml dimension order
         shape_str = f"{{{', '.join(str(n) for n in reversed(data_torch.shape))}}}"
-        logger.info(f"{f'%-32s' % f'{name},'} {old_dtype} --> {data_qtype.name}, shape = {shape_str}")
+        logger.info(
+            f"{f'%-32s' % f'{name},'} {old_dtype} --> {data_qtype.name}, shape = {shape_str}"
+        )
 
         self.gguf_writer.add_tensor(name, data, raw_dtype=data_qtype)
 
@@ -238,28 +272,38 @@ class Gemma3VisionTower:
         self.gguf_writer.write_tensors_to_file(progress=True)
         self.gguf_writer.close()
 
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Convert Gemma 3 vision tower safetensors to GGUF format",)
+        description="Convert Gemma 3 vision tower safetensors to GGUF format",
+    )
     parser.add_argument(
-        "--outfile", type=Path, default="mmproj.gguf",
+        "--outfile",
+        type=Path,
+        default="mmproj.gguf",
         help="path to write to",
     )
     parser.add_argument(
-        "--outtype", type=str, choices=["f32", "f16", "bf16", "q8_0"], default="f16",
+        "--outtype",
+        type=str,
+        choices=["f32", "f16", "bf16", "q8_0"],
+        default="f16",
         help="output format",
     )
     parser.add_argument(
-        "--bigendian", action="store_true",
+        "--bigendian",
+        action="store_true",
         help="model is executed on big endian machine",
     )
     parser.add_argument(
-        "model", type=Path,
+        "model",
+        type=Path,
         help="directory containing model file",
         nargs="?",
     )
     parser.add_argument(
-        "--verbose", action="store_true",
+        "--verbose",
+        action="store_true",
         help="increase output verbosity",
     )
 
@@ -280,7 +324,7 @@ def main() -> None:
     dir_model = args.model
 
     if not dir_model.is_dir():
-        logger.error(f'Error: {args.model} is not a directory')
+        logger.error(f"Error: {args.model} is not a directory")
         sys.exit(1)
 
     ftype_map: dict[str, gguf.LlamaFileType] = {
@@ -302,6 +346,5 @@ def main() -> None:
         gemma3_vision_tower.write()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
-

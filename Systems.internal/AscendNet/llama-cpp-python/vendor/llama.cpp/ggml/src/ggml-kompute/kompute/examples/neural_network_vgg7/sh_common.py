@@ -5,6 +5,7 @@ import numpy
 global VSZ
 VSZ = 4
 
+
 def image_load(path) -> numpy.ndarray:
     """
     Loads an image.
@@ -17,6 +18,7 @@ def image_load(path) -> numpy.ndarray:
     na = na.astype("float32") / 255.0
     return na
 
+
 def image_save(path, na: numpy.ndarray):
     """
     Saves an image.
@@ -28,13 +30,16 @@ def image_save(path, na: numpy.ndarray):
     # file
     Image.fromarray(na).save(path)
 
+
 def load_param(mdl, idx, expected):
     npa = numpy.fromfile("model-" + mdl + "/snoop_bin_" + str(idx) + ".bin", "<f4")
     assert npa.shape[0] == expected
     return npa
 
+
 def save_param(mdl, idx, data):
     data.astype("<f4", "C").tofile("model-" + mdl + "/snoop_bin_" + str(idx) + ".bin")
+
 
 def load_weights_padded(mdl, idx, tensor_out_c, tensor_in_c, weight_s):
     tensor_out_cg = (tensor_out_c + 3) // 4
@@ -51,9 +56,17 @@ def load_weights_padded(mdl, idx, tensor_out_c, tensor_in_c, weight_s):
     # NOTE: It is *critically important* that weight padding is done with the "zero" mode.
     # The shader WILL NOT ignore these values, but zeroing them causes them to have no effect.
     if (tensor_in_c & 3) != 0:
-        weight_na = numpy.pad(weight_na, [[0, 0], [0, 4 - (tensor_in_c & 3)], [0, 0], [0, 0]], mode = "constant")
+        weight_na = numpy.pad(
+            weight_na,
+            [[0, 0], [0, 4 - (tensor_in_c & 3)], [0, 0], [0, 0]],
+            mode="constant",
+        )
     if (tensor_out_c & 3) != 0:
-        weight_na = numpy.pad(weight_na, [[0, 4 - (tensor_out_c & 3)], [0, 0], [0, 0], [0, 0]], mode = "constant")
+        weight_na = numpy.pad(
+            weight_na,
+            [[0, 4 - (tensor_out_c & 3)], [0, 0], [0, 0], [0, 0]],
+            mode="constant",
+        )
     # reshape to finish splitting things up
     weight_na = weight_na.reshape(tensor_out_cg, 4, tensor_in_cg, 4, weight_s, weight_s)
     # result is:
@@ -70,6 +83,7 @@ def load_weights_padded(mdl, idx, tensor_out_c, tensor_in_c, weight_s):
     weight_na = numpy.moveaxis(weight_na, 1, 3)
     return weight_na
 
+
 def load_biases_padded(mdl, idx, tensor_out_c):
     tensor_out_cg = (tensor_out_c + 3) // 4
     # [outputCGroups][outputChannels]
@@ -77,6 +91,5 @@ def load_biases_padded(mdl, idx, tensor_out_c):
     # Again, has to be zero
     bias_na = load_param(mdl, idx, tensor_out_c)
     if (tensor_out_c & 3) != 0:
-        bias_na = numpy.pad(bias_na, [[0, 4 - (tensor_out_c & 3)]], mode = "constant")
+        bias_na = numpy.pad(bias_na, [[0, 4 - (tensor_out_c & 3)]], mode="constant")
     return bias_na
-

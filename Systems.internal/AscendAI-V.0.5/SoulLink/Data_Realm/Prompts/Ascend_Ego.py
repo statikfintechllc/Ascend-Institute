@@ -1,6 +1,6 @@
-
 # ASCEND_EGO.PY
 # [Tone Controller | Identity Thread | Response Personality Engine]
+
 
 class AscendEgo:
     """
@@ -14,13 +14,13 @@ class AscendEgo:
             "Sovereign": {
                 "tone": "direct",
                 "style": "strategic",
-                "vibe": "recursive-intelligence"
+                "vibe": "recursive-intelligence",
             },
             "Agent": {
                 "tone": "friendly",
                 "style": "neutral",
-                "vibe": "customer-support-mode"
-            }
+                "vibe": "customer-support-mode",
+            },
         }
 
     def set_mode(self, mode):
@@ -37,8 +37,9 @@ class AscendEgo:
     def identity_snapshot(self):
         return {
             "current_mode": self.mode,
-            "tone_profile": self.voice_signature[self.mode]
+            "tone_profile": self.voice_signature[self.mode],
         }
+
 
 # Runtime test
 if __name__ == "__main__":

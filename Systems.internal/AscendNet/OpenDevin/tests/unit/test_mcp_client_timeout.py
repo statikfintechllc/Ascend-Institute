@@ -21,8 +21,8 @@ async def test_connect_sse_timeout():
 
     # Patch the sse_client function to return our slow context manager
     with mock.patch(
-        'openhands.mcp.client.sse_client', return_value=mock_slow_context()
+        "openhands.mcp.client.sse_client", return_value=mock_slow_context()
     ):
         # Test with a very short timeout
         with pytest.raises(asyncio.TimeoutError):
-            await client.connect_sse('http://example.com', timeout=0.1)
+            await client.connect_sse("http://example.com", timeout=0.1)

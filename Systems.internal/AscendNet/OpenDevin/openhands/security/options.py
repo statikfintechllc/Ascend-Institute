@@ -4,5 +4,5 @@ from openhands.security.analyzer import SecurityAnalyzer
 from openhands.security.invariant.analyzer import InvariantAnalyzer
 
 SecurityAnalyzers: dict[str, Type[SecurityAnalyzer]] = {
-    'invariant': InvariantAnalyzer,
+    "invariant": InvariantAnalyzer,
 }

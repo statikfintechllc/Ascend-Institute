@@ -1,5 +1,5 @@
-
 import requests
+
 
 def simulate_internal_api_call():
     try:

@@ -36,10 +36,10 @@ from openhands.storage.data_models.conversation_metadata import ConversationMeta
 from openhands.storage.data_models.conversation_status import ConversationStatus
 from openhands.utils.async_utils import call_sync_from_async
 
-app = APIRouter(prefix='/api/conversations/{conversation_id}')
+app = APIRouter(prefix="/api/conversations/{conversation_id}")
 
 
-@app.get('/list-files')
+@app.get("/list-files")
 async def list_files(request: Request, path: str | None = None):
     """List files in the specified path.
 
@@ -64,17 +64,17 @@ async def list_files(request: Request, path: str | None = None):
     if not request.state.conversation.runtime:
         return JSONResponse(
             status_code=status.HTTP_404_NOT_FOUND,
-            content={'error': 'Runtime not yet initialized'},
+            content={"error": "Runtime not yet initialized"},
         )
 
     runtime: Runtime = request.state.conversation.runtime
     try:
         file_list = await call_sync_from_async(runtime.list_files, path)
     except AgentRuntimeUnavailableError as e:
-        logger.error(f'Error listing files: {e}')
+        logger.error(f"Error listing files: {e}")
         return JSONResponse(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            content={'error': f'Error listing files: {e}'},
+            content={"error": f"Error listing files: {e}"},
         )
     if path:
         file_list = [os.path.join(path, f) for f in file_list]
@@ -82,7 +82,7 @@ async def list_files(request: Request, path: str | None = None):
     file_list = [f for f in file_list if f not in FILES_TO_IGNORE]
 
     async def filter_for_gitignore(file_list, base_path):
-        gitignore_path = os.path.join(base_path, '.gitignore')
+        gitignore_path = os.path.join(base_path, ".gitignore")
         try:
             read_action = FileReadAction(gitignore_path)
             observation = await call_sync_from_async(runtime.run_action, read_action)
@@ -96,18 +96,18 @@ async def list_files(request: Request, path: str | None = None):
         return file_list
 
     try:
-        file_list = await filter_for_gitignore(file_list, '')
+        file_list = await filter_for_gitignore(file_list, "")
     except AgentRuntimeUnavailableError as e:
-        logger.error(f'Error filtering files: {e}')
+        logger.error(f"Error filtering files: {e}")
         return JSONResponse(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            content={'error': f'Error filtering files: {e}'},
+            content={"error": f"Error filtering files: {e}"},
         )
 
     return file_list
 
 
-@app.get('/select-file')
+@app.get("/select-file")
 async def select_file(file: str, request: Request):
     """Retrieve the content of a specified file.
 
@@ -134,59 +134,59 @@ async def select_file(file: str, request: Request):
     try:
         observation = await call_sync_from_async(runtime.run_action, read_action)
     except AgentRuntimeUnavailableError as e:
-        logger.error(f'Error opening file {file}: {e}')
+        logger.error(f"Error opening file {file}: {e}")
         return JSONResponse(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            content={'error': f'Error opening file: {e}'},
+            content={"error": f"Error opening file: {e}"},
         )
 
     if isinstance(observation, FileReadObservation):
         content = observation.content
-        return {'code': content}
+        return {"code": content}
     elif isinstance(observation, ErrorObservation):
-        logger.error(f'Error opening file {file}: {observation}')
+        logger.error(f"Error opening file {file}: {observation}")
 
-        if 'ERROR_BINARY_FILE' in observation.message:
+        if "ERROR_BINARY_FILE" in observation.message:
             return JSONResponse(
                 status_code=status.HTTP_415_UNSUPPORTED_MEDIA_TYPE,
-                content={'error': f'Unable to open binary file: {file}'},
+                content={"error": f"Unable to open binary file: {file}"},
             )
 
         return JSONResponse(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            content={'error': f'Error opening file: {observation}'},
+            content={"error": f"Error opening file: {observation}"},
         )
 
 
-@app.get('/zip-directory')
+@app.get("/zip-directory")
 def zip_current_workspace(request: Request):
     try:
-        logger.debug('Zipping workspace')
+        logger.debug("Zipping workspace")
         runtime: Runtime = request.state.conversation.runtime
         path = runtime.config.workspace_mount_path_in_sandbox
         try:
             zip_file_path = runtime.copy_from(path)
         except AgentRuntimeUnavailableError as e:
-            logger.error(f'Error zipping workspace: {e}')
+            logger.error(f"Error zipping workspace: {e}")
             return JSONResponse(
                 status_code=500,
-                content={'error': f'Error zipping workspace: {e}'},
+                content={"error": f"Error zipping workspace: {e}"},
             )
         return FileResponse(
             path=zip_file_path,
-            filename='workspace.zip',
-            media_type='application/zip',
+            filename="workspace.zip",
+            media_type="application/zip",
             background=BackgroundTask(lambda: os.unlink(zip_file_path)),
         )
     except Exception as e:
-        logger.error(f'Error zipping workspace: {e}')
+        logger.error(f"Error zipping workspace: {e}")
         raise HTTPException(
             status_code=500,
-            detail='Failed to zip workspace',
+            detail="Failed to zip workspace",
         )
 
 
-@app.get('/git/changes')
+@app.get("/git/changes")
 async def git_changes(request: Request, conversation_id: str):
     runtime: Runtime = request.state.conversation.runtime
     conversation_store = await ConversationStoreImpl.get_instance(
@@ -198,31 +198,31 @@ async def git_changes(request: Request, conversation_id: str):
         conversation_id,
         runtime.config.workspace_mount_path_in_sandbox,
     )
-    logger.info(f'Getting git changes in {cwd}')
+    logger.info(f"Getting git changes in {cwd}")
 
     try:
         changes = await call_sync_from_async(runtime.get_git_changes, cwd)
         if changes is None:
             return JSONResponse(
                 status_code=500,
-                content={'error': 'Not a git repository'},
+                content={"error": "Not a git repository"},
             )
         return changes
     except AgentRuntimeUnavailableError as e:
-        logger.error(f'Runtime unavailable: {e}')
+        logger.error(f"Runtime unavailable: {e}")
         return JSONResponse(
             status_code=500,
-            content={'error': f'Error getting changes: {e}'},
+            content={"error": f"Error getting changes: {e}"},
         )
     except Exception as e:
-        logger.error(f'Error getting changes: {e}')
+        logger.error(f"Error getting changes: {e}")
         return JSONResponse(
             status_code=500,
-            content={'error': str(e)},
+            content={"error": str(e)},
         )
 
 
-@app.get('/git/diff')
+@app.get("/git/diff")
 async def git_diff(request: Request, path: str, conversation_id: str):
     runtime: Runtime = request.state.conversation.runtime
     conversation_store = await ConversationStoreImpl.get_instance(
@@ -239,10 +239,10 @@ async def git_diff(request: Request, path: str, conversation_id: str):
         diff = await call_sync_from_async(runtime.get_git_diff, path, cwd)
         return diff
     except AgentRuntimeUnavailableError as e:
-        logger.error(f'Error getting diff: {e}')
+        logger.error(f"Error getting diff: {e}")
         return JSONResponse(
             status_code=500,
-            content={'error': f'Error getting diff: {e}'},
+            content={"error": f"Error getting diff: {e}"},
         )
 
 
@@ -257,7 +257,7 @@ async def get_cwd(
 
     cwd = workspace_mount_path_in_sandbox
     if conversation_info and conversation_info.selected_repository:
-        repo_dir = conversation_info.selected_repository.split('/')[-1]
+        repo_dir = conversation_info.selected_repository.split("/")[-1]
         cwd = os.path.join(cwd, repo_dir)
 
     return cwd
@@ -270,7 +270,7 @@ async def _get_conversation_info(
     try:
         title = conversation.title
         if not title:
-            title = f'Conversation {conversation.conversation_id[:5]}'
+            title = f"Conversation {conversation.conversation_id[:5]}"
         return ConversationInfo(
             conversation_id=conversation.conversation_id,
             title=title,
@@ -283,7 +283,7 @@ async def _get_conversation_info(
         )
     except Exception as e:
         logger.error(
-            f'Error loading conversation {conversation.conversation_id}: {str(e)}',
-            extra={'session_id': conversation.conversation_id},
+            f"Error loading conversation {conversation.conversation_id}: {str(e)}",
+            extra={"session_id": conversation.conversation_id},
         )
         return None

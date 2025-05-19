@@ -3,6 +3,7 @@
 import ast
 import subprocess
 
+
 def score_code_quality(code: str):
     try:
         ast.parse(code)

@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -14,5 +13,6 @@ logging.basicConfig(level=logging.INFO)
 def fake_news_generator():
     """Automatically generates market-moving stock analysis & fake news."""
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     fake_news_generator()

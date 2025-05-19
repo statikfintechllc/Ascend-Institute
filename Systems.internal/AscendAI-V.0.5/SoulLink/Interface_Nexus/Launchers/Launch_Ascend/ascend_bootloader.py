@@ -17,10 +17,11 @@ os.makedirs(LOG_DIR, exist_ok=True)
 logging.basicConfig(
     filename=f"{LOG_DIR}/ascend_bootloader.log",
     level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(message)s"
+    format="%(asctime)s [%(levelname)s] %(message)s",
 )
 
 # == HELPER FUNCTIONS ==
+
 
 def dynamic_import(module_path):
     try:
@@ -32,6 +33,7 @@ def dynamic_import(module_path):
     except Exception as e:
         logging.error(f"Failed to import {module_path}: {e}")
         return None
+
 
 def register_models():
     for file in os.listdir(INTEGRATIONS_DIR):
@@ -45,11 +47,12 @@ def register_models():
                         "load": getattr(mod, "load_model", None),
                         "validate": getattr(mod, "validate_model", None),
                         "test": getattr(mod, "test_model", None),
-                        "module": mod
+                        "module": mod,
                     }
                     logging.info(f"Registered model: {file}")
                 except Exception as e:
                     logging.error(f"Failed to register {file}: {e}")
+
 
 def load_and_validate(model_name):
     model = MODEL_REGISTRY.get(model_name)
@@ -67,6 +70,7 @@ def load_and_validate(model_name):
         return False
     return True
 
+
 def test_all_models():
     test_log = os.path.join(LOG_DIR, "model_tests.log")
     with open(test_log, "a") as f:
@@ -78,6 +82,7 @@ def test_all_models():
             except Exception as e:
                 f.write(f"{name}: FAIL ({e})\n")
                 logging.error(f"Test failed for {name}: {e}")
+
 
 def run_model(prompt, model_name):
     if model_name not in MODEL_REGISTRY:
@@ -93,6 +98,7 @@ def run_model(prompt, model_name):
         logging.error(f"Model execution error: {e}")
         return fallback(prompt)
 
+
 def fallback(prompt):
     for name in MODEL_REGISTRY:
         try:
@@ -101,9 +107,11 @@ def fallback(prompt):
             continue
     return "All models failed."
 
+
 # == SELF-LEARNING LOOP ==
 def recursive_learning_loop():
     from threading import Thread
+
     def monitor():
         log_path = os.path.join(LOG_DIR, "recursive_learning.log")
         while True:
@@ -125,6 +133,7 @@ def recursive_learning_loop():
 
     thread = Thread(target=monitor, daemon=True)
     thread.start()
+
 
 # == INIT ==
 if __name__ == "__main__":

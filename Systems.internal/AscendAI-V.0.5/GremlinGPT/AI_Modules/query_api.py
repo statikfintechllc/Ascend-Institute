@@ -2,9 +2,8 @@ import requests
 import json
 from core.model_interface import ask_model
 
-HEADERS = {
-    "User-Agent": "GremlinGPT-Agent/1.0"
-}
+HEADERS = {"User-Agent": "GremlinGPT-Agent/1.0"}
+
 
 def query_api(input_data):
     """
@@ -27,7 +26,9 @@ def query_api(input_data):
         return "[query_api] Invalid input format."
 
     try:
-        response = requests.request(method, url, headers=headers, json=payload, timeout=10)
+        response = requests.request(
+            method, url, headers=headers, json=payload, timeout=10
+        )
         response.raise_for_status()
         data = response.json()
         pretty = json.dumps(data, indent=2)

@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -13,6 +12,7 @@ logging.basicConfig(level=logging.INFO)
 
 class MarketPredictor(nn.Module):
     """AI-powered neural network model for market predictions."""
+
     def __init__(self, input_size, hidden_size, output_size):
         super(MarketPredictor, self).__init__()
         self.layer1 = nn.Linear(input_size, hidden_size)
@@ -22,6 +22,7 @@ class MarketPredictor(nn.Module):
         x = self.layer2(x)
         return x
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     instance = MarketPredictor()
     print(instance)

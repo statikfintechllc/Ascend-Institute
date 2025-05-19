@@ -104,7 +104,8 @@ class LlamaChatCompletionHandler(Protocol):
     ) -> Union[
         llama_types.CreateChatCompletionResponse,
         Iterator[llama_types.CreateChatCompletionStreamResponse],
-    ]: ...
+    ]:
+        ...
 
 
 class LlamaChatCompletionHandlerNotFoundException(Exception):
@@ -186,7 +187,8 @@ class ChatFormatter(Protocol):
         *,
         messages: List[llama_types.ChatCompletionRequestMessage],
         **kwargs: Any,
-    ) -> ChatFormatterResponse: ...
+    ) -> ChatFormatterResponse:
+        ...
 
 
 class Jinja2ChatFormatter(ChatFormatter):
@@ -279,10 +281,14 @@ def _convert_text_completion_logprobs_to_chat(
                     }
                     for top_token, top_logprob in top_logprobs.items()
                 ],
-            } for (token, logprob, top_logprobs) in zip(logprobs["tokens"], logprobs["token_logprobs"], logprobs["top_logprobs"])
+            }
+            for (token, logprob, top_logprobs) in zip(
+                logprobs["tokens"], logprobs["token_logprobs"], logprobs["top_logprobs"]
+            )
         ],
         "refusal": None,
     }
+
 
 def _convert_text_completion_to_chat(
     completion: llama_types.Completion,
@@ -300,7 +306,9 @@ def _convert_text_completion_to_chat(
                     "role": "assistant",
                     "content": completion["choices"][0]["text"],
                 },
-                "logprobs": _convert_text_completion_logprobs_to_chat(completion["choices"][0]["logprobs"]),
+                "logprobs": _convert_text_completion_logprobs_to_chat(
+                    completion["choices"][0]["logprobs"]
+                ),
                 "finish_reason": completion["choices"][0]["finish_reason"],
             }
         ],
@@ -344,7 +352,9 @@ def _convert_text_completion_chunks_to_chat(
                         if chunk["choices"][0]["finish_reason"] is None
                         else {}
                     ),
-                    "logprobs": _convert_text_completion_logprobs_to_chat(chunk["choices"][0]["logprobs"]),
+                    "logprobs": _convert_text_completion_logprobs_to_chat(
+                        chunk["choices"][0]["logprobs"]
+                    ),
                     "finish_reason": chunk["choices"][0]["finish_reason"],
                 }
             ],
@@ -407,7 +417,9 @@ def _convert_completion_to_chat_function(
                             }
                         ],
                     },
-                    "logprobs": _convert_text_completion_logprobs_to_chat(completion["choices"][0]["logprobs"]),
+                    "logprobs": _convert_text_completion_logprobs_to_chat(
+                        completion["choices"][0]["logprobs"]
+                    ),
                     "finish_reason": "tool_calls",
                 }
             ],
@@ -460,7 +472,9 @@ def _convert_completion_to_chat_function(
                             {
                                 "index": 0,
                                 "finish_reason": None,
-                                "logprobs": _convert_text_completion_logprobs_to_chat(chunk["choices"][0]["logprobs"]),
+                                "logprobs": _convert_text_completion_logprobs_to_chat(
+                                    chunk["choices"][0]["logprobs"]
+                                ),
                                 "delta": {
                                     "role": None,
                                     "content": None,
@@ -497,7 +511,9 @@ def _convert_completion_to_chat_function(
                         {
                             "index": 0,
                             "finish_reason": None,
-                            "logprobs": _convert_text_completion_logprobs_to_chat(chunk["choices"][0]["logprobs"]),
+                            "logprobs": _convert_text_completion_logprobs_to_chat(
+                                chunk["choices"][0]["logprobs"]
+                            ),
                             "delta": {
                                 "role": None,
                                 "content": None,
@@ -1741,7 +1757,9 @@ def functionary_chat_handler(
                         }
                     ],
                 },
-                "logprobs": _convert_text_completion_logprobs_to_chat(completion["choices"][0]["logprobs"]),
+                "logprobs": _convert_text_completion_logprobs_to_chat(
+                    completion["choices"][0]["logprobs"]
+                ),
                 "finish_reason": "tool_calls",
             }
         ],
@@ -1995,9 +2013,9 @@ def functionary_v1_v2_chat_handler(
             grammar=grammar,
         )
         if stream is False:
-            completion_or_completion_chunks["choices"][0]["text"] = (
-                completion_or_completion_chunks["choices"][0]["text"].lstrip()
-            )
+            completion_or_completion_chunks["choices"][0][
+                "text"
+            ] = completion_or_completion_chunks["choices"][0]["text"].lstrip()
         return _convert_completion_to_chat(completion_or_completion_chunks, stream=stream)  # type: ignore
 
     def get_grammar(function_call):
@@ -2153,7 +2171,9 @@ def functionary_v1_v2_chat_handler(
                         choices=[
                             {
                                 "index": 0,
-                                "logprobs": _convert_text_completion_logprobs_to_chat(chunk["choices"][0]["logprobs"]),
+                                "logprobs": _convert_text_completion_logprobs_to_chat(
+                                    chunk["choices"][0]["logprobs"]
+                                ),
                                 "delta": {
                                     "role": None,
                                     "content": None,
@@ -2255,7 +2275,9 @@ def functionary_v1_v2_chat_handler(
                         choices=[
                             {
                                 "index": 0,
-                                "logprobs": _convert_text_completion_logprobs_to_chat(chunk["choices"][0]["logprobs"]),
+                                "logprobs": _convert_text_completion_logprobs_to_chat(
+                                    chunk["choices"][0]["logprobs"]
+                                ),
                                 "delta": {
                                     "role": "assistant",
                                     "content": None,
@@ -2293,7 +2315,9 @@ def functionary_v1_v2_chat_handler(
                                         choices=[
                                             {
                                                 "index": 0,
-                                                "logprobs": _convert_text_completion_logprobs_to_chat(chunk["choices"][0]["logprobs"]),
+                                                "logprobs": _convert_text_completion_logprobs_to_chat(
+                                                    chunk["choices"][0]["logprobs"]
+                                                ),
                                                 "delta": {
                                                     "role": "assistant",
                                                     "content": buffer.pop(0),
@@ -2316,7 +2340,9 @@ def functionary_v1_v2_chat_handler(
                                 choices=[
                                     {
                                         "index": 0,
-                                        "logprobs": _convert_text_completion_logprobs_to_chat(chunk["choices"][0]["logprobs"]),
+                                        "logprobs": _convert_text_completion_logprobs_to_chat(
+                                            chunk["choices"][0]["logprobs"]
+                                        ),
                                         "delta": {
                                             "role": "assistant",
                                             "content": (
@@ -2402,7 +2428,9 @@ def functionary_v1_v2_chat_handler(
                                 choices=[
                                     {
                                         "index": 0,
-                                        "logprobs": _convert_text_completion_logprobs_to_chat(chunk["choices"][0]["logprobs"]),
+                                        "logprobs": _convert_text_completion_logprobs_to_chat(
+                                            chunk["choices"][0]["logprobs"]
+                                        ),
                                         "delta": {
                                             "role": None,
                                             "content": None,
@@ -2636,7 +2664,9 @@ def functionary_v1_v2_chat_handler(
             choices=[
                 {
                     "index": 0,
-                    "logprobs": _convert_text_completion_logprobs_to_chat(completion["choices"][0]["logprobs"]),
+                    "logprobs": _convert_text_completion_logprobs_to_chat(
+                        completion["choices"][0]["logprobs"]
+                    ),
                     "message": {
                         "role": "assistant",
                         "content": None if content == "" else content,
@@ -2650,9 +2680,9 @@ def functionary_v1_v2_chat_handler(
 
 
 class Llava15ChatHandler:
-    DEFAULT_SYSTEM_MESSAGE: Optional[str] = (
-        "A chat between a curious human and an artificial intelligence assistant.  The assistant gives helpful, detailed, and polite answers to the human's questions."
-    )
+    DEFAULT_SYSTEM_MESSAGE: Optional[
+        str
+    ] = "A chat between a curious human and an artificial intelligence assistant.  The assistant gives helpful, detailed, and polite answers to the human's questions."
 
     CHAT_FORMAT = (
         "{% for message in messages %}"
@@ -2746,9 +2776,7 @@ class Llava15ChatHandler:
             embed = self._llava_cpp.llava_image_embed_make_with_bytes(
                 self.clip_ctx,
                 n_threads_batch,
-                (ctypes.c_uint8 * len(image_bytes)).from_buffer(
-                    bytearray(image_bytes)
-                ),
+                (ctypes.c_uint8 * len(image_bytes)).from_buffer(bytearray(image_bytes)),
                 len(image_bytes),
             )
             self._last_image_embed = embed
@@ -2820,7 +2848,6 @@ class Llava15ChatHandler:
         if self.verbose:
             print(text, file=sys.stderr)
 
-
         # Evaluate prompt
         llama.reset()
         llama._ctx.kv_cache_clear()
@@ -2836,7 +2863,9 @@ class Llava15ChatHandler:
                 llama.eval(tokens)
             else:
                 image_bytes = self.load_image(value)
-                embed = self._embed_image_bytes(image_bytes, llama.context_params.n_threads_batch)
+                embed = self._embed_image_bytes(
+                    image_bytes, llama.context_params.n_threads_batch
+                )
                 if llama.n_tokens + embed.contents.n_image_pos > llama.n_ctx():
                     raise ValueError(
                         f"Prompt exceeds n_ctx: {llama.n_tokens + embed.contents.n_image_pos} > {llama.n_ctx()}"
@@ -3355,7 +3384,6 @@ class MiniCPMv26ChatHandler(Llava15ChatHandler):
         "{% endif %}"
         "{% endif %}"
         "{% endfor %}"
-
         "{% for content in message['content'] %}"
         "{% if content.type == 'text' %}"
         "{{ content.text }}"
@@ -3490,7 +3518,9 @@ def chatml_function_calling(
     stop = (
         [stop, "<|im_end|>"]
         if isinstance(stop, str)
-        else stop + ["<|im_end|>"] if stop else ["<|im_end|>"]
+        else stop + ["<|im_end|>"]
+        if stop
+        else ["<|im_end|>"]
     )
 
     # Case 1: No tool choice by user
@@ -3768,7 +3798,9 @@ def chatml_function_calling(
                 {
                     "finish_reason": "tool_calls",
                     "index": 0,
-                    "logprobs": _convert_text_completion_logprobs_to_chat(completion["choices"][0]["logprobs"]),
+                    "logprobs": _convert_text_completion_logprobs_to_chat(
+                        completion["choices"][0]["logprobs"]
+                    ),
                     "message": {
                         "role": "assistant",
                         "content": None,

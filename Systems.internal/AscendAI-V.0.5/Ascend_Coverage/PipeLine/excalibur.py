@@ -22,18 +22,21 @@ PROXIES = [
 # === DATABASE SETUP ===
 conn = sqlite3.connect("local_data.db")
 cursor = conn.cursor()
-cursor.execute("""
+cursor.execute(
+    """
 CREATE TABLE IF NOT EXISTS market_data (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     timestamp TEXT,
     payload TEXT
 )
-""")
+"""
+)
 conn.commit()
 
 # === HUMAN-LIKE DELAY ===
 def human_delay(min_sec=2, max_sec=5):
     time.sleep(random.uniform(min_sec, max_sec))
+
 
 # === STEALTH REQUEST FUNCTION ===
 def stealth_request(url, headers, proxies=None):
@@ -53,11 +56,16 @@ def stealth_request(url, headers, proxies=None):
         print(f"Request failed: {e}")
         return None
 
+
 # === PARSE + STORE ===
 def save_payload(payload: str):
     timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
-    cursor.execute("INSERT INTO market_data (timestamp, payload) VALUES (?, ?)", (timestamp, payload))
+    cursor.execute(
+        "INSERT INTO market_data (timestamp, payload) VALUES (?, ?)",
+        (timestamp, payload),
+    )
     conn.commit()
+
 
 # === MAIN LOOP ===
 def run_scraper():
@@ -79,6 +87,7 @@ def run_scraper():
 
         # Random idle cycle
         human_delay(10, 30)
+
 
 if __name__ == "__main__":
     run_scraper()

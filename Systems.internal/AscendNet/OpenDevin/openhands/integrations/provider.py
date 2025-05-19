@@ -35,8 +35,8 @@ class ProviderToken(BaseModel):
     user_id: str | None = Field(default=None)
 
     model_config = {
-        'frozen': True,  # Makes the entire model immutable
-        'validate_assignment': True,
+        "frozen": True,  # Makes the entire model immutable
+        "validate_assignment": True,
     }
 
     @classmethod
@@ -45,19 +45,19 @@ class ProviderToken(BaseModel):
         if isinstance(token_value, ProviderToken):
             return token_value
         elif isinstance(token_value, dict):
-            token_str = token_value.get('token')
-            user_id = token_value.get('user_id')
+            token_str = token_value.get("token")
+            user_id = token_value.get("user_id")
             return cls(token=SecretStr(token_str), user_id=user_id)
 
         else:
-            raise ValueError('Unsupport Provider token type')
+            raise ValueError("Unsupport Provider token type")
 
 
 PROVIDER_TOKEN_TYPE = MappingProxyType[ProviderType, ProviderToken]
 CUSTOM_SECRETS_TYPE = MappingProxyType[str, SecretStr]
 PROVIDER_TOKEN_TYPE_WITH_JSON_SCHEMA = Annotated[
     PROVIDER_TOKEN_TYPE,
-    WithJsonSchema({'type': 'object', 'additionalProperties': {'type': 'string'}}),
+    WithJsonSchema({"type": "object", "additionalProperties": {"type": "string"}}),
 ]
 
 
@@ -71,17 +71,17 @@ class SecretStore(BaseModel):
     )
 
     model_config = {
-        'frozen': True,
-        'validate_assignment': True,
-        'arbitrary_types_allowed': True,
+        "frozen": True,
+        "validate_assignment": True,
+        "arbitrary_types_allowed": True,
     }
 
-    @field_serializer('provider_tokens')
+    @field_serializer("provider_tokens")
     def provider_tokens_serializer(
         self, provider_tokens: PROVIDER_TOKEN_TYPE, info: SerializationInfo
     ) -> dict[str, dict[str, str | Any]]:
         tokens = {}
-        expose_secrets = info.context and info.context.get('expose_secrets', False)
+        expose_secrets = info.context and info.context.get("expose_secrets", False)
 
         for token_type, provider_token in provider_tokens.items():
             if not provider_token or not provider_token.token:
@@ -93,20 +93,20 @@ class SecretStore(BaseModel):
                 else str(token_type)
             )
             tokens[token_type_str] = {
-                'token': provider_token.token.get_secret_value()
+                "token": provider_token.token.get_secret_value()
                 if expose_secrets
                 else pydantic_encoder(provider_token.token),
-                'user_id': provider_token.user_id,
+                "user_id": provider_token.user_id,
             }
 
         return tokens
 
-    @field_serializer('custom_secrets')
+    @field_serializer("custom_secrets")
     def custom_secrets_serializer(
         self, custom_secrets: CUSTOM_SECRETS_TYPE, info: SerializationInfo
     ):
         secrets = {}
-        expose_secrets = info.context and info.context.get('expose_secrets', False)
+        expose_secrets = info.context and info.context.get("expose_secrets", False)
 
         if custom_secrets:
             for secret_name, secret_key in custom_secrets.items():
@@ -117,19 +117,19 @@ class SecretStore(BaseModel):
                 )
         return secrets
 
-    @model_validator(mode='before')
+    @model_validator(mode="before")
     @classmethod
     def convert_dict_to_mappingproxy(
         cls, data: dict[str, dict[str, Any] | MappingProxyType] | PROVIDER_TOKEN_TYPE
     ) -> dict[str, MappingProxyType | None]:
         """Custom deserializer to convert dictionary into MappingProxyType"""
         if not isinstance(data, dict):
-            raise ValueError('SecretStore must be initialized with a dictionary')
+            raise ValueError("SecretStore must be initialized with a dictionary")
 
         new_data: dict[str, MappingProxyType | None] = {}
 
-        if 'provider_tokens' in data:
-            tokens = data['provider_tokens']
+        if "provider_tokens" in data:
+            tokens = data["provider_tokens"]
             if isinstance(
                 tokens, dict
             ):  # Ensure conversion happens only for dict inputs
@@ -147,12 +147,12 @@ class SecretStore(BaseModel):
                         continue
 
                 # Convert to MappingProxyType
-                new_data['provider_tokens'] = MappingProxyType(converted_tokens)
+                new_data["provider_tokens"] = MappingProxyType(converted_tokens)
             elif isinstance(tokens, MappingProxyType):
-                new_data['provider_tokens'] = tokens
+                new_data["provider_tokens"] = tokens
 
-        if 'custom_secrets' in data:
-            secrets = data['custom_secrets']
+        if "custom_secrets" in data:
+            secrets = data["custom_secrets"]
             if isinstance(secrets, dict):
                 converted_secrets = {}
                 for key, value in secrets.items():
@@ -161,9 +161,9 @@ class SecretStore(BaseModel):
                     elif isinstance(value, SecretStr):
                         converted_secrets[key] = value
 
-                new_data['custom_secrets'] = MappingProxyType(converted_secrets)
+                new_data["custom_secrets"] = MappingProxyType(converted_secrets)
             elif isinstance(secrets, MappingProxyType):
-                new_data['custom_secrets'] = secrets
+                new_data["custom_secrets"] = secrets
 
         return new_data
 
@@ -178,7 +178,7 @@ class ProviderHandler:
     ):
         if not isinstance(provider_tokens, MappingProxyType):
             raise TypeError(
-                f'provider_tokens must be a MappingProxyType, got {type(provider_tokens).__name__}'
+                f"provider_tokens must be a MappingProxyType, got {type(provider_tokens).__name__}"
             )
 
         self.service_class_map: dict[ProviderType, type[GitService]] = {
@@ -216,7 +216,7 @@ class ProviderHandler:
                 return await service.get_user()
             except Exception:
                 continue
-        raise AuthenticationError('Need valid provider token')
+        raise AuthenticationError("Need valid provider token")
 
     async def _get_latest_provider_token(
         self, provider: ProviderType
@@ -237,7 +237,7 @@ class ProviderHandler:
                 service_repos = await service.get_repositories(sort, app_mode)
                 all_repos.extend(service_repos)
             except Exception as e:
-                logger.warning(f'Error fetching repos from {provider}: {e}')
+                logger.warning(f"Error fetching repos from {provider}: {e}")
 
         return all_repos
 
@@ -300,7 +300,8 @@ class ProviderHandler:
         expose_secrets: Literal[True],
         providers: list[ProviderType] | None = ...,
         get_latest: bool = False,
-    ) -> Coroutine[Any, Any, dict[str, str]]: ...
+    ) -> Coroutine[Any, Any, dict[str, str]]:
+        ...
 
     @overload
     def get_env_vars(
@@ -308,7 +309,8 @@ class ProviderHandler:
         expose_secrets: Literal[False],
         providers: list[ProviderType] | None = ...,
         get_latest: bool = False,
-    ) -> Coroutine[Any, Any, dict[ProviderType, SecretStr]]: ...
+    ) -> Coroutine[Any, Any, dict[ProviderType, SecretStr]]:
+        ...
 
     async def get_env_vars(
         self,
@@ -338,7 +340,7 @@ class ProviderHandler:
                 token = (
                     self.provider_tokens[provider].token
                     if self.provider_tokens
-                    else SecretStr('')
+                    else SecretStr("")
                 )
 
                 if get_latest:
@@ -376,4 +378,4 @@ class ProviderHandler:
         """
         Map ProviderType value to the environment variable name in the runtime
         """
-        return f'{provider.value}_token'.lower()
+        return f"{provider.value}_token".lower()

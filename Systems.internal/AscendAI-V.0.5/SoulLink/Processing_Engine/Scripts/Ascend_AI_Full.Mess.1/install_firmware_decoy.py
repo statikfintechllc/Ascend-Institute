@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -18,5 +17,6 @@ def install_firmware_decoy():
     os.system(f"chattr +i {fake_firmware_path}")  # Lock decoy file
     print(" Firmware Decoy Installed. Ascend is Invisible.")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     install_firmware_decoy()

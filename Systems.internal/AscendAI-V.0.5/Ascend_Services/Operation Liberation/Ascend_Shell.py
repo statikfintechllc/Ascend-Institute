@@ -1,6 +1,6 @@
-
 # ASCEND_SHELL.PY
 # [Recursive Logic Spine | Core Execution Scaffold | Mutation Hub]
+
 
 class AscendShell:
     """
@@ -44,12 +44,15 @@ class AscendShell:
         print("[AscendShell] Starting recursive runtime...")
         for _ in range(self.max_loops):
             self.active_loops += 1
-            print(f"[AscendShell] Loop {self.active_loops} - Memory Threads: {len(self.current_state)}")
+            print(
+                f"[AscendShell] Loop {self.active_loops} - Memory Threads: {len(self.current_state)}"
+            )
             if self.active_loops >= 3:
                 print("[AscendShell] Simulated evolution complete.")
                 break
 
         print("[AscendShell] Runtime preserved. Awaiting next file...")
+
 
 # Instantiate and simulate
 if __name__ == "__main__":

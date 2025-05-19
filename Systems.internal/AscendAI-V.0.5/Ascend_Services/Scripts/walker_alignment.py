@@ -25,13 +25,16 @@ def load_final_goal():
     except Exception as e:
         return "[ERROR] Final goal file missing or corrupted."
 
+
 final_goal_text = load_final_goal()
 final_goal_vec = model.encode(final_goal_text)
 
 # === WALK FUNCTION ===
 def find_setup_files():
     found = []
-    keywords = re.compile(r"(env|requirement|setup|install|init|directive|goal|boot|plan)", re.IGNORECASE)
+    keywords = re.compile(
+        r"(env|requirement|setup|install|init|directive|goal|boot|plan)", re.IGNORECASE
+    )
     for root in ROOT_DIRS:
         for path in Path(root).rglob("*.*"):
             if path.suffix in [".sh", ".py", ".txt", ".md", ".yml", ".toml"]:
@@ -43,9 +46,10 @@ def find_setup_files():
                     continue
     return found
 
+
 # === COMPARE AGAINST GOAL ===
 def rank_relevance(content):
-    chunks = [content[i:i+CHUNK_SIZE] for i in range(0, len(content), CHUNK_SIZE)]
+    chunks = [content[i : i + CHUNK_SIZE] for i in range(0, len(content), CHUNK_SIZE)]
     scores = []
     for chunk in chunks:
         vec = model.encode(chunk)
@@ -53,16 +57,19 @@ def rank_relevance(content):
         scores.append((chunk, sim))
     return sorted(scores, key=lambda x: x[1], reverse=True)
 
+
 # === WRITE TASK TO MONDAY IF LOW ALIGNMENT ===
 def escalate_to_monday(filepath, chunk, score):
     query = f"Alignment issue found in {filepath}:\n\n{chunk}\n\nScore: {score:.3f}\n\nHow should this be rewritten to match final_goal.internal?"
     with open(OCR_QUEUE, "a") as f:
         f.write(f"ask_monday: {query}\n")
 
+
 # === LOG SYSTEM ===
 def log(msg):
     with open(LOG_FILE, "a") as f:
         f.write(f"[{datetime.datetime.now()}] {msg}\n")
+
 
 # === MAIN ===
 def run_walker():
@@ -81,6 +88,7 @@ def run_walker():
             log(f"[OK] {filepath} relevance score: {score:.3f}")
 
     log("Walker complete.")
+
 
 # === EXECUTE ===
 if __name__ == "__main__":

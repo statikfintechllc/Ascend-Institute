@@ -45,23 +45,23 @@ def agent_config():
     return AgentConfig(
         enable_prompt_extensions=True,
         enable_som_visual_browsing=True,
-        disabled_microagents=['disabled_agent'],
+        disabled_microagents=["disabled_agent"],
     )
 
 
 @pytest.fixture
 def conversation_memory(agent_config):
     prompt_manager = MagicMock(spec=PromptManager)
-    prompt_manager.get_system_message.return_value = 'System message'
+    prompt_manager.get_system_message.return_value = "System message"
     prompt_manager.build_workspace_context.return_value = (
-        'Formatted repository and runtime info'
+        "Formatted repository and runtime info"
     )
 
     # Make build_microagent_info return the actual content from the triggered agents
     def build_microagent_info(triggered_agents):
         if not triggered_agents:
-            return ''
-        return '\n'.join(agent.content for agent in triggered_agents)
+            return ""
+        return "\n".join(agent.content for agent in triggered_agents)
 
     prompt_manager.build_microagent_info.side_effect = build_microagent_info
     return ConversationMemory(agent_config, prompt_manager)
@@ -71,7 +71,7 @@ def conversation_memory(agent_config):
 def prompt_dir(tmp_path):
     # Copy contents from "openhands/agenthub/codeact_agent" to the temp directory
     shutil.copytree(
-        'openhands/agenthub/codeact_agent/prompts', tmp_path, dirs_exist_ok=True
+        "openhands/agenthub/codeact_agent/prompts", tmp_path, dirs_exist_ok=True
     )
 
     # Return the temporary directory path
@@ -88,13 +88,13 @@ def mock_state():
 def test_process_events_with_message_action(conversation_memory):
     """Test that MessageAction is processed correctly."""
     # Create a system message action
-    system_message = SystemMessageAction(content='System message')
+    system_message = SystemMessageAction(content="System message")
     system_message._source = EventSource.AGENT
 
     # Create user and assistant messages
-    user_message = MessageAction(content='Hello')
+    user_message = MessageAction(content="Hello")
     user_message._source = EventSource.USER
-    assistant_message = MessageAction(content='Hi there')
+    assistant_message = MessageAction(content="Hi there")
     assistant_message._source = EventSource.AGENT
 
     # Process events
@@ -106,22 +106,22 @@ def test_process_events_with_message_action(conversation_memory):
 
     # Check that the messages were processed correctly
     assert len(messages) == 3
-    assert messages[0].role == 'system'
-    assert messages[0].content[0].text == 'System message'
-    assert messages[1].role == 'user'
-    assert messages[1].content[0].text == 'Hello'
-    assert messages[2].role == 'assistant'
-    assert messages[2].content[0].text == 'Hi there'
+    assert messages[0].role == "system"
+    assert messages[0].content[0].text == "System message"
+    assert messages[1].role == "user"
+    assert messages[1].content[0].text == "Hello"
+    assert messages[2].role == "assistant"
+    assert messages[2].content[0].text == "Hi there"
 
 
 def test_process_events_with_cmd_output_observation(conversation_memory):
     obs = CmdOutputObservation(
-        command='echo hello',
-        content='Command output',
+        command="echo hello",
+        content="Command output",
         metadata=CmdOutputMetadata(
             exit_code=0,
-            prefix='[THIS IS PREFIX]',
-            suffix='[THIS IS SUFFIX]',
+            prefix="[THIS IS PREFIX]",
+            suffix="[THIS IS SUFFIX]",
         ),
     )
 
@@ -133,19 +133,19 @@ def test_process_events_with_cmd_output_observation(conversation_memory):
 
     assert len(messages) == 2
     result = messages[1]
-    assert result.role == 'user'
+    assert result.role == "user"
     assert len(result.content) == 1
     assert isinstance(result.content[0], TextContent)
-    assert 'Observed result of command executed by user:' in result.content[0].text
-    assert '[Command finished with exit code 0]' in result.content[0].text
-    assert '[THIS IS PREFIX]' in result.content[0].text
-    assert '[THIS IS SUFFIX]' in result.content[0].text
+    assert "Observed result of command executed by user:" in result.content[0].text
+    assert "[Command finished with exit code 0]" in result.content[0].text
+    assert "[THIS IS PREFIX]" in result.content[0].text
+    assert "[THIS IS SUFFIX]" in result.content[0].text
 
 
 def test_process_events_with_ipython_run_cell_observation(conversation_memory):
     obs = IPythonRunCellObservation(
-        code='plt.plot()',
-        content='IPython output\n![image](data:image/png;base64,ABC123)',
+        code="plt.plot()",
+        content="IPython output\n![image](data:image/png;base64,ABC123)",
     )
 
     messages = conversation_memory.process_events(
@@ -156,20 +156,20 @@ def test_process_events_with_ipython_run_cell_observation(conversation_memory):
 
     assert len(messages) == 2
     result = messages[1]
-    assert result.role == 'user'
+    assert result.role == "user"
     assert len(result.content) == 1
     assert isinstance(result.content[0], TextContent)
-    assert 'IPython output' in result.content[0].text
+    assert "IPython output" in result.content[0].text
     assert (
-        '![image](data:image/png;base64, ...) already displayed to user'
+        "![image](data:image/png;base64, ...) already displayed to user"
         in result.content[0].text
     )
-    assert 'ABC123' not in result.content[0].text
+    assert "ABC123" not in result.content[0].text
 
 
 def test_process_events_with_agent_delegate_observation(conversation_memory):
     obs = AgentDelegateObservation(
-        content='Content', outputs={'content': 'Delegated agent output'}
+        content="Content", outputs={"content": "Delegated agent output"}
     )
 
     messages = conversation_memory.process_events(
@@ -180,14 +180,14 @@ def test_process_events_with_agent_delegate_observation(conversation_memory):
 
     assert len(messages) == 2
     result = messages[1]
-    assert result.role == 'user'
+    assert result.role == "user"
     assert len(result.content) == 1
     assert isinstance(result.content[0], TextContent)
-    assert 'Delegated agent output' in result.content[0].text
+    assert "Delegated agent output" in result.content[0].text
 
 
 def test_process_events_with_error_observation(conversation_memory):
-    obs = ErrorObservation('Error message')
+    obs = ErrorObservation("Error message")
 
     messages = conversation_memory.process_events(
         condensed_history=[obs],
@@ -197,18 +197,18 @@ def test_process_events_with_error_observation(conversation_memory):
 
     assert len(messages) == 2
     result = messages[1]
-    assert result.role == 'user'
+    assert result.role == "user"
     assert len(result.content) == 1
     assert isinstance(result.content[0], TextContent)
-    assert 'Error message' in result.content[0].text
-    assert 'Error occurred in processing last action' in result.content[0].text
+    assert "Error message" in result.content[0].text
+    assert "Error occurred in processing last action" in result.content[0].text
 
 
 def test_process_events_with_unknown_observation(conversation_memory):
     # Create a mock that inherits from Event but not Action or Observation
     obs = Mock(spec=Event)
 
-    with pytest.raises(ValueError, match='Unknown event type'):
+    with pytest.raises(ValueError, match="Unknown event type"):
         conversation_memory.process_events(
             condensed_history=[obs],
             max_message_chars=None,
@@ -218,11 +218,11 @@ def test_process_events_with_unknown_observation(conversation_memory):
 
 def test_process_events_with_file_edit_observation(conversation_memory):
     obs = FileEditObservation(
-        path='/test/file.txt',
+        path="/test/file.txt",
         prev_exist=True,
-        old_content='old content',
-        new_content='new content',
-        content='diff content',
+        old_content="old content",
+        new_content="new content",
+        content="diff content",
         impl_source=FileEditSource.LLM_BASED_EDIT,
     )
 
@@ -234,16 +234,16 @@ def test_process_events_with_file_edit_observation(conversation_memory):
 
     assert len(messages) == 2
     result = messages[1]
-    assert result.role == 'user'
+    assert result.role == "user"
     assert len(result.content) == 1
     assert isinstance(result.content[0], TextContent)
-    assert '[Existing file /test/file.txt is edited with' in result.content[0].text
+    assert "[Existing file /test/file.txt is edited with" in result.content[0].text
 
 
 def test_process_events_with_file_read_observation(conversation_memory):
     obs = FileReadObservation(
-        path='/test/file.txt',
-        content='File content',
+        path="/test/file.txt",
+        content="File content",
         impl_source=FileReadSource.DEFAULT,
     )
 
@@ -255,18 +255,18 @@ def test_process_events_with_file_read_observation(conversation_memory):
 
     assert len(messages) == 2
     result = messages[1]
-    assert result.role == 'user'
+    assert result.role == "user"
     assert len(result.content) == 1
     assert isinstance(result.content[0], TextContent)
-    assert result.content[0].text == 'File content'
+    assert result.content[0].text == "File content"
 
 
 def test_process_events_with_browser_output_observation(conversation_memory):
     obs = BrowserOutputObservation(
-        url='http://example.com',
-        trigger_by_action='browse',
-        screenshot='',
-        content='Page loaded',
+        url="http://example.com",
+        trigger_by_action="browse",
+        screenshot="",
+        content="Page loaded",
         error=False,
     )
 
@@ -278,14 +278,14 @@ def test_process_events_with_browser_output_observation(conversation_memory):
 
     assert len(messages) == 2
     result = messages[1]
-    assert result.role == 'user'
+    assert result.role == "user"
     assert len(result.content) == 1
     assert isinstance(result.content[0], TextContent)
-    assert '[Current URL: http://example.com]' in result.content[0].text
+    assert "[Current URL: http://example.com]" in result.content[0].text
 
 
 def test_process_events_with_user_reject_observation(conversation_memory):
-    obs = UserRejectObservation('Action rejected')
+    obs = UserRejectObservation("Action rejected")
 
     messages = conversation_memory.process_events(
         condensed_history=[obs],
@@ -295,11 +295,11 @@ def test_process_events_with_user_reject_observation(conversation_memory):
 
     assert len(messages) == 2
     result = messages[1]
-    assert result.role == 'user'
+    assert result.role == "user"
     assert len(result.content) == 1
     assert isinstance(result.content[0], TextContent)
-    assert 'Action rejected' in result.content[0].text
-    assert '[Last action has been rejected by the user]' in result.content[0].text
+    assert "Action rejected" in result.content[0].text
+    assert "[Last action has been rejected by the user]" in result.content[0].text
 
 
 def test_process_events_with_empty_environment_info(conversation_memory):
@@ -308,13 +308,13 @@ def test_process_events_with_empty_environment_info(conversation_memory):
 
     empty_obs = RecallObservation(
         recall_type=RecallType.WORKSPACE_CONTEXT,
-        repo_name='',
-        repo_directory='',
-        repo_instructions='',
+        repo_name="",
+        repo_directory="",
+        repo_instructions="",
         runtime_hosts={},
-        additional_agent_instructions='',
+        additional_agent_instructions="",
         microagent_knowledge=[],
-        content='Retrieved environment info',
+        content="Retrieved environment info",
     )
 
     messages = conversation_memory.process_events(
@@ -332,19 +332,19 @@ def test_process_events_with_empty_environment_info(conversation_memory):
 
 def test_process_events_with_function_calling_observation(conversation_memory):
     mock_response = {
-        'id': 'mock_id',
-        'total_calls_in_response': 1,
-        'choices': [{'message': {'content': 'Task completed'}}],
+        "id": "mock_id",
+        "total_calls_in_response": 1,
+        "choices": [{"message": {"content": "Task completed"}}],
     }
     obs = CmdOutputObservation(
-        command='echo hello',
-        content='Command output',
+        command="echo hello",
+        content="Command output",
         command_id=1,
         exit_code=0,
     )
     obs.tool_call_metadata = ToolCallMetadata(
-        tool_call_id='123',
-        function_name='execute_bash',
+        tool_call_id="123",
+        function_name="execute_bash",
         model_response=mock_response,
         total_calls_in_response=1,
     )
@@ -360,8 +360,8 @@ def test_process_events_with_function_calling_observation(conversation_memory):
 
 def test_process_events_with_message_action_with_image(conversation_memory):
     action = MessageAction(
-        content='Message with image',
-        image_urls=['http://example.com/image.jpg'],
+        content="Message with image",
+        image_urls=["http://example.com/image.jpg"],
     )
     action._source = EventSource.AGENT
 
@@ -373,16 +373,16 @@ def test_process_events_with_message_action_with_image(conversation_memory):
 
     assert len(messages) == 2
     result = messages[1]
-    assert result.role == 'assistant'
+    assert result.role == "assistant"
     assert len(result.content) == 2
     assert isinstance(result.content[0], TextContent)
     assert isinstance(result.content[1], ImageContent)
-    assert result.content[0].text == 'Message with image'
-    assert result.content[1].image_urls == ['http://example.com/image.jpg']
+    assert result.content[0].text == "Message with image"
+    assert result.content[1].image_urls == ["http://example.com/image.jpg"]
 
 
 def test_process_events_with_user_cmd_action(conversation_memory):
-    action = CmdRunAction(command='ls -l')
+    action = CmdRunAction(command="ls -l")
     action._source = EventSource.USER
 
     messages = conversation_memory.process_events(
@@ -393,27 +393,27 @@ def test_process_events_with_user_cmd_action(conversation_memory):
 
     assert len(messages) == 2
     result = messages[1]
-    assert result.role == 'user'
+    assert result.role == "user"
     assert len(result.content) == 1
     assert isinstance(result.content[0], TextContent)
-    assert 'User executed the command' in result.content[0].text
-    assert 'ls -l' in result.content[0].text
+    assert "User executed the command" in result.content[0].text
+    assert "ls -l" in result.content[0].text
 
 
 def test_process_events_with_agent_finish_action_with_tool_metadata(
     conversation_memory,
 ):
     mock_response = {
-        'id': 'mock_id',
-        'total_calls_in_response': 1,
-        'choices': [{'message': {'content': 'Task completed'}}],
+        "id": "mock_id",
+        "total_calls_in_response": 1,
+        "choices": [{"message": {"content": "Task completed"}}],
     }
 
-    action = AgentFinishAction(thought='Initial thought')
+    action = AgentFinishAction(thought="Initial thought")
     action._source = EventSource.AGENT
     action.tool_call_metadata = ToolCallMetadata(
-        tool_call_id='123',
-        function_name='finish',
+        tool_call_id="123",
+        function_name="finish",
         model_response=mock_response,
         total_calls_in_response=1,
     )
@@ -426,18 +426,18 @@ def test_process_events_with_agent_finish_action_with_tool_metadata(
 
     assert len(messages) == 2
     result = messages[1]
-    assert result.role == 'assistant'
+    assert result.role == "assistant"
     assert len(result.content) == 1
     assert isinstance(result.content[0], TextContent)
-    assert 'Initial thought\nTask completed' in result.content[0].text
+    assert "Initial thought\nTask completed" in result.content[0].text
 
 
 def test_apply_prompt_caching(conversation_memory):
     messages = [
-        Message(role='system', content=[TextContent(text='System message')]),
-        Message(role='user', content=[TextContent(text='User message')]),
-        Message(role='assistant', content=[TextContent(text='Assistant message')]),
-        Message(role='user', content=[TextContent(text='Another user message')]),
+        Message(role="system", content=[TextContent(text="System message")]),
+        Message(role="user", content=[TextContent(text="User message")]),
+        Message(role="assistant", content=[TextContent(text="Assistant message")]),
+        Message(role="user", content=[TextContent(text="Another user message")]),
     ]
 
     conversation_memory.apply_prompt_caching(messages)
@@ -454,11 +454,11 @@ def test_process_events_with_environment_microagent_observation(conversation_mem
     """Test processing a RecallObservation with ENVIRONMENT info type."""
     obs = RecallObservation(
         recall_type=RecallType.WORKSPACE_CONTEXT,
-        repo_name='test-repo',
-        repo_directory='/path/to/repo',
-        repo_instructions='# Test Repository\nThis is a test repository.',
-        runtime_hosts={'localhost': 8080},
-        content='Retrieved environment info',
+        repo_name="test-repo",
+        repo_directory="/path/to/repo",
+        repo_instructions="# Test Repository\nThis is a test repository.",
+        runtime_hosts={"localhost": 8080},
+        content="Retrieved environment info",
     )
 
     messages = conversation_memory.process_events(
@@ -469,22 +469,22 @@ def test_process_events_with_environment_microagent_observation(conversation_mem
 
     assert len(messages) == 2
     result = messages[1]
-    assert result.role == 'user'
+    assert result.role == "user"
     assert len(result.content) == 1
     assert isinstance(result.content[0], TextContent)
-    assert result.content[0].text == 'Formatted repository and runtime info'
+    assert result.content[0].text == "Formatted repository and runtime info"
 
     # Verify the prompt_manager was called with the correct parameters
     conversation_memory.prompt_manager.build_workspace_context.assert_called_once()
     call_args = conversation_memory.prompt_manager.build_workspace_context.call_args[1]
-    assert isinstance(call_args['repository_info'], RepositoryInfo)
-    assert call_args['repository_info'].repo_name == 'test-repo'
-    assert call_args['repository_info'].repo_directory == '/path/to/repo'
-    assert isinstance(call_args['runtime_info'], RuntimeInfo)
-    assert call_args['runtime_info'].available_hosts == {'localhost': 8080}
+    assert isinstance(call_args["repository_info"], RepositoryInfo)
+    assert call_args["repository_info"].repo_name == "test-repo"
+    assert call_args["repository_info"].repo_directory == "/path/to/repo"
+    assert isinstance(call_args["runtime_info"], RuntimeInfo)
+    assert call_args["runtime_info"].available_hosts == {"localhost": 8080}
     assert (
-        call_args['repo_instructions']
-        == '# Test Repository\nThis is a test repository.'
+        call_args["repo_instructions"]
+        == "# Test Repository\nThis is a test repository."
     )
 
 
@@ -494,26 +494,26 @@ def test_process_events_with_knowledge_microagent_microagent_observation(
     """Test processing a RecallObservation with KNOWLEDGE type."""
     microagent_knowledge = [
         MicroagentKnowledge(
-            name='test_agent',
-            trigger='test',
-            content='This is test agent content',
+            name="test_agent",
+            trigger="test",
+            content="This is test agent content",
         ),
         MicroagentKnowledge(
-            name='another_agent',
-            trigger='another',
-            content='This is another agent content',
+            name="another_agent",
+            trigger="another",
+            content="This is another agent content",
         ),
         MicroagentKnowledge(
-            name='disabled_agent',
-            trigger='disabled',
-            content='This is disabled agent content',
+            name="disabled_agent",
+            trigger="disabled",
+            content="This is disabled agent content",
         ),
     ]
 
     obs = RecallObservation(
         recall_type=RecallType.KNOWLEDGE,
         microagent_knowledge=microagent_knowledge,
-        content='Retrieved knowledge from microagents',
+        content="Retrieved knowledge from microagents",
     )
 
     messages = conversation_memory.process_events(
@@ -524,25 +524,25 @@ def test_process_events_with_knowledge_microagent_microagent_observation(
 
     assert len(messages) == 2
     result = messages[1]
-    assert result.role == 'user'
+    assert result.role == "user"
     assert len(result.content) == 1
     assert isinstance(result.content[0], TextContent)
     # Verify that disabled_agent is filtered out and enabled agents are included
-    assert 'This is test agent content' in result.content[0].text
-    assert 'This is another agent content' in result.content[0].text
-    assert 'This is disabled agent content' not in result.content[0].text
+    assert "This is test agent content" in result.content[0].text
+    assert "This is another agent content" in result.content[0].text
+    assert "This is disabled agent content" not in result.content[0].text
 
     # Verify the prompt_manager was called with the correct parameters
     conversation_memory.prompt_manager.build_microagent_info.assert_called_once()
     call_args = conversation_memory.prompt_manager.build_microagent_info.call_args[1]
 
     # Check that disabled_agent was filtered out
-    triggered_agents = call_args['triggered_agents']
+    triggered_agents = call_args["triggered_agents"]
     assert len(triggered_agents) == 2
     agent_names = [agent.name for agent in triggered_agents]
-    assert 'test_agent' in agent_names
-    assert 'another_agent' in agent_names
-    assert 'disabled_agent' not in agent_names
+    assert "test_agent" in agent_names
+    assert "another_agent" in agent_names
+    assert "disabled_agent" not in agent_names
 
 
 def test_process_events_with_microagent_observation_extensions_disabled(
@@ -554,9 +554,9 @@ def test_process_events_with_microagent_observation_extensions_disabled(
 
     obs = RecallObservation(
         recall_type=RecallType.WORKSPACE_CONTEXT,
-        repo_name='test-repo',
-        repo_directory='/path/to/repo',
-        content='Retrieved environment info',
+        repo_name="test-repo",
+        repo_directory="/path/to/repo",
+        content="Retrieved environment info",
     )
 
     messages = conversation_memory.process_events(
@@ -578,7 +578,7 @@ def test_process_events_with_empty_microagent_knowledge(conversation_memory):
     obs = RecallObservation(
         recall_type=RecallType.KNOWLEDGE,
         microagent_knowledge=[],
-        content='Retrieved knowledge from microagents',
+        content="Retrieved knowledge from microagents",
     )
 
     messages = conversation_memory.process_events(
@@ -597,10 +597,11 @@ def test_process_events_with_empty_microagent_knowledge(conversation_memory):
 def test_conversation_memory_processes_microagent_observation(prompt_dir):
     """Test that ConversationMemory processes RecallObservations correctly."""
     # Create a microagent_info.j2 template file
-    template_path = os.path.join(prompt_dir, 'microagent_info.j2')
+    template_path = os.path.join(prompt_dir, "microagent_info.j2")
     if not os.path.exists(template_path):
-        with open(template_path, 'w') as f:
-            f.write("""{% for agent_info in triggered_agents %}
+        with open(template_path, "w") as f:
+            f.write(
+                """{% for agent_info in triggered_agents %}
 <EXTRA_INFO>
 The following information has been included based on a keyword match for "{{ agent_info.trigger_word }}".
 It may or may not be relevant to the user's request.
@@ -609,7 +610,8 @@ It may or may not be relevant to the user's request.
 {{ agent_info.content }}
 </EXTRA_INFO>
 {% endfor %}
-""")
+"""
+            )
 
     # Create a mock agent config
     agent_config = MagicMock(spec=AgentConfig)
@@ -629,12 +631,12 @@ It may or may not be relevant to the user's request.
         recall_type=RecallType.KNOWLEDGE,
         microagent_knowledge=[
             MicroagentKnowledge(
-                name='test_agent',
-                trigger='test_trigger',
-                content='This is triggered content for testing.',
+                name="test_agent",
+                trigger="test_trigger",
+                content="This is triggered content for testing.",
             )
         ],
-        content='Retrieved knowledge from microagents',
+        content="Retrieved knowledge from microagents",
     )
 
     # Process the observation
@@ -645,7 +647,7 @@ It may or may not be relevant to the user's request.
     # Verify the message was created correctly
     assert len(messages) == 1
     message = messages[0]
-    assert message.role == 'user'
+    assert message.role == "user"
     assert len(message.content) == 1
     assert isinstance(message.content[0], TextContent)
 
@@ -659,16 +661,17 @@ This is triggered content for testing.
     assert message.content[0].text.strip() == expected_text.strip()
 
     # Clean up
-    os.remove(os.path.join(prompt_dir, 'microagent_info.j2'))
+    os.remove(os.path.join(prompt_dir, "microagent_info.j2"))
 
 
 def test_conversation_memory_processes_environment_microagent_observation(prompt_dir):
     """Test that ConversationMemory processes environment info RecallObservations correctly."""
     # Create an additional_info.j2 template file
-    template_path = os.path.join(prompt_dir, 'additional_info.j2')
+    template_path = os.path.join(prompt_dir, "additional_info.j2")
     if not os.path.exists(template_path):
-        with open(template_path, 'w') as f:
-            f.write("""
+        with open(template_path, "w") as f:
+            f.write(
+                """
 {% if repository_info %}
 <REPOSITORY_INFO>
 At the user's request, repository {{ repository_info.repo_name }} has been cloned to directory {{ repository_info.repo_directory }}.
@@ -690,7 +693,8 @@ each of which has a corresponding port:
 {% endfor %}
 </RUNTIME_INFORMATION>
 {% endif %}
-""")
+"""
+            )
 
     # Create a mock agent config
     agent_config = MagicMock(spec=AgentConfig)
@@ -707,11 +711,11 @@ each of which has a corresponding port:
     # Create a RecallObservation with environment info
     microagent_observation = RecallObservation(
         recall_type=RecallType.WORKSPACE_CONTEXT,
-        repo_name='owner/repo',
-        repo_directory='/workspace/repo',
-        repo_instructions='This repository contains important code.',
-        runtime_hosts={'example.com': 8080},
-        content='Retrieved environment info',
+        repo_name="owner/repo",
+        repo_directory="/workspace/repo",
+        repo_instructions="This repository contains important code.",
+        runtime_hosts={"example.com": 8080},
+        content="Retrieved environment info",
     )
 
     # Process the observation
@@ -722,22 +726,22 @@ each of which has a corresponding port:
     # Verify the message was created correctly
     assert len(messages) == 1
     message = messages[0]
-    assert message.role == 'user'
+    assert message.role == "user"
     assert len(message.content) == 1
     assert isinstance(message.content[0], TextContent)
 
     # Check that the message contains the repository info
-    assert '<REPOSITORY_INFO>' in message.content[0].text
-    assert 'owner/repo' in message.content[0].text
-    assert '/workspace/repo' in message.content[0].text
+    assert "<REPOSITORY_INFO>" in message.content[0].text
+    assert "owner/repo" in message.content[0].text
+    assert "/workspace/repo" in message.content[0].text
 
     # Check that the message contains the repository instructions
-    assert '<REPOSITORY_INSTRUCTIONS>' in message.content[0].text
-    assert 'This repository contains important code.' in message.content[0].text
+    assert "<REPOSITORY_INSTRUCTIONS>" in message.content[0].text
+    assert "This repository contains important code." in message.content[0].text
 
     # Check that the message contains the runtime info
-    assert '<RUNTIME_INFORMATION>' in message.content[0].text
-    assert 'example.com (port 8080)' in message.content[0].text
+    assert "<RUNTIME_INFORMATION>" in message.content[0].text
+    assert "example.com (port 8080)" in message.content[0].text
 
 
 def test_process_events_with_microagent_observation_deduplication(conversation_memory):
@@ -751,46 +755,46 @@ def test_process_events_with_microagent_observation_deduplication(conversation_m
         recall_type=RecallType.KNOWLEDGE,
         microagent_knowledge=[
             MicroagentKnowledge(
-                name='python_agent',
-                trigger='python',
-                content='Python best practices v1',
+                name="python_agent",
+                trigger="python",
+                content="Python best practices v1",
             ),
             MicroagentKnowledge(
-                name='git_agent',
-                trigger='git',
-                content='Git best practices v1',
+                name="git_agent",
+                trigger="git",
+                content="Git best practices v1",
             ),
             MicroagentKnowledge(
-                name='image_agent',
-                trigger='image',
-                content='Image best practices v1',
+                name="image_agent",
+                trigger="image",
+                content="Image best practices v1",
             ),
         ],
-        content='First retrieval',
+        content="First retrieval",
     )
 
     obs2 = RecallObservation(
         recall_type=RecallType.KNOWLEDGE,
         microagent_knowledge=[
             MicroagentKnowledge(
-                name='python_agent',
-                trigger='python',
-                content='Python best practices v2',
+                name="python_agent",
+                trigger="python",
+                content="Python best practices v2",
             ),
         ],
-        content='Second retrieval',
+        content="Second retrieval",
     )
 
     obs3 = RecallObservation(
         recall_type=RecallType.KNOWLEDGE,
         microagent_knowledge=[
             MicroagentKnowledge(
-                name='git_agent',
-                trigger='git',
-                content='Git best practices v3',
+                name="git_agent",
+                trigger="git",
+                content="Git best practices v3",
             ),
         ],
-        content='Third retrieval',
+        content="Third retrieval",
     )
 
     messages = conversation_memory.process_events(
@@ -803,9 +807,9 @@ def test_process_events_with_microagent_observation_deduplication(conversation_m
     assert len(messages) == 2  # with system message
 
     # First microagent should include all agents since they appear here first
-    assert 'Image best practices v1' in messages[1].content[0].text
-    assert 'Git best practices v1' in messages[1].content[0].text
-    assert 'Python best practices v1' in messages[1].content[0].text
+    assert "Image best practices v1" in messages[1].content[0].text
+    assert "Git best practices v1" in messages[1].content[0].text
+    assert "Python best practices v1" in messages[1].content[0].text
 
 
 def test_process_events_with_microagent_observation_deduplication_disabled_agents(
@@ -817,29 +821,29 @@ def test_process_events_with_microagent_observation_deduplication_disabled_agent
         recall_type=RecallType.KNOWLEDGE,
         microagent_knowledge=[
             MicroagentKnowledge(
-                name='disabled_agent',
-                trigger='disabled',
-                content='Disabled agent content',
+                name="disabled_agent",
+                trigger="disabled",
+                content="Disabled agent content",
             ),
             MicroagentKnowledge(
-                name='enabled_agent',
-                trigger='enabled',
-                content='Enabled agent content v1',
+                name="enabled_agent",
+                trigger="enabled",
+                content="Enabled agent content v1",
             ),
         ],
-        content='First retrieval',
+        content="First retrieval",
     )
 
     obs2 = RecallObservation(
         recall_type=RecallType.KNOWLEDGE,
         microagent_knowledge=[
             MicroagentKnowledge(
-                name='enabled_agent',
-                trigger='enabled',
-                content='Enabled agent content v2',
+                name="enabled_agent",
+                trigger="enabled",
+                content="Enabled agent content v2",
             ),
         ],
-        content='Second retrieval',
+        content="Second retrieval",
     )
 
     messages = conversation_memory.process_events(
@@ -852,8 +856,8 @@ def test_process_events_with_microagent_observation_deduplication_disabled_agent
     assert len(messages) == 2
 
     # First microagent should include enabled_agent but not disabled_agent
-    assert 'Disabled agent content' not in messages[1].content[0].text
-    assert 'Enabled agent content v1' in messages[1].content[0].text
+    assert "Disabled agent content" not in messages[1].content[0].text
+    assert "Enabled agent content v1" in messages[1].content[0].text
 
 
 def test_process_events_with_microagent_observation_deduplication_empty(
@@ -863,7 +867,7 @@ def test_process_events_with_microagent_observation_deduplication_empty(
     obs = RecallObservation(
         recall_type=RecallType.KNOWLEDGE,
         microagent_knowledge=[],
-        content='Empty retrieval',
+        content="Empty retrieval",
     )
 
     messages = conversation_memory.process_events(
@@ -876,7 +880,7 @@ def test_process_events_with_microagent_observation_deduplication_empty(
     assert (
         len(messages) == 1
     )  # an empty microagent is not added to Messages, only system message is found
-    assert messages[0].role == 'system'
+    assert messages[0].role == "system"
 
 
 def test_has_agent_in_earlier_events(conversation_memory):
@@ -886,50 +890,50 @@ def test_has_agent_in_earlier_events(conversation_memory):
         recall_type=RecallType.KNOWLEDGE,
         microagent_knowledge=[
             MicroagentKnowledge(
-                name='agent1',
-                trigger='trigger1',
-                content='Content 1',
+                name="agent1",
+                trigger="trigger1",
+                content="Content 1",
             ),
         ],
-        content='First retrieval',
+        content="First retrieval",
     )
 
     obs2 = RecallObservation(
         recall_type=RecallType.KNOWLEDGE,
         microagent_knowledge=[
             MicroagentKnowledge(
-                name='agent2',
-                trigger='trigger2',
-                content='Content 2',
+                name="agent2",
+                trigger="trigger2",
+                content="Content 2",
             ),
         ],
-        content='Second retrieval',
+        content="Second retrieval",
     )
 
     obs3 = RecallObservation(
         recall_type=RecallType.WORKSPACE_CONTEXT,
-        content='Environment info',
+        content="Environment info",
     )
 
     # Create a list with mixed event types
-    events = [obs1, MessageAction(content='User message'), obs2, obs3]
+    events = [obs1, MessageAction(content="User message"), obs2, obs3]
 
     # Test looking for existing agents
-    assert conversation_memory._has_agent_in_earlier_events('agent1', 2, events) is True
-    assert conversation_memory._has_agent_in_earlier_events('agent1', 3, events) is True
-    assert conversation_memory._has_agent_in_earlier_events('agent1', 4, events) is True
+    assert conversation_memory._has_agent_in_earlier_events("agent1", 2, events) is True
+    assert conversation_memory._has_agent_in_earlier_events("agent1", 3, events) is True
+    assert conversation_memory._has_agent_in_earlier_events("agent1", 4, events) is True
 
     # Test looking for an agent in a later position (should not find it)
     assert (
-        conversation_memory._has_agent_in_earlier_events('agent2', 0, events) is False
+        conversation_memory._has_agent_in_earlier_events("agent2", 0, events) is False
     )
     assert (
-        conversation_memory._has_agent_in_earlier_events('agent2', 1, events) is False
+        conversation_memory._has_agent_in_earlier_events("agent2", 1, events) is False
     )
 
     # Test looking for an agent in a different microagent type (should not find it)
     assert (
-        conversation_memory._has_agent_in_earlier_events('non_existent', 3, events)
+        conversation_memory._has_agent_in_earlier_events("non_existent", 3, events)
         is False
     )
 
@@ -944,9 +948,9 @@ class TestFilterUnmatchedToolCalls:
 
     def test_no_tool_calls_is_unchanged(self):
         messages = [
-            Message(role='user', content=[TextContent(text='Hello')]),
-            Message(role='assistant', content=[TextContent(text='Hi there')]),
-            Message(role='user', content=[TextContent(text='How are you?')]),
+            Message(role="user", content=[TextContent(text="Hello")]),
+            Message(role="assistant", content=[TextContent(text="Hi there")]),
+            Message(role="user", content=[TextContent(text="How are you?")]),
         ]
         assert (
             list(ConversationMemory._filter_unmatched_tool_calls(messages)) == messages
@@ -954,24 +958,24 @@ class TestFilterUnmatchedToolCalls:
 
     def test_matched_tool_calls_are_unchanged(self):
         messages = [
-            Message(role='user', content=[TextContent(text="What's the weather?")]),
+            Message(role="user", content=[TextContent(text="What's the weather?")]),
             Message(
-                role='assistant',
+                role="assistant",
                 content=[],
                 tool_calls=[
                     ChatCompletionMessageToolCall(
-                        id='call_1',
-                        type='function',
-                        function={'name': 'get_weather', 'arguments': ''},
+                        id="call_1",
+                        type="function",
+                        function={"name": "get_weather", "arguments": ""},
                     )
                 ],
             ),
             Message(
-                role='tool',
-                tool_call_id='call_1',
-                content=[TextContent(text='Sunny, 75°F')],
+                role="tool",
+                tool_call_id="call_1",
+                content=[TextContent(text="Sunny, 75°F")],
             ),
-            Message(role='assistant', content=[TextContent(text="It's sunny today.")]),
+            Message(role="assistant", content=[TextContent(text="It's sunny today.")]),
         ]
 
         # All tool calls have matching responses, should remain unchanged
@@ -981,18 +985,18 @@ class TestFilterUnmatchedToolCalls:
 
     def test_tool_call_without_response_is_removed(self):
         messages = [
-            Message(role='user', content=[TextContent(text='Query')]),
+            Message(role="user", content=[TextContent(text="Query")]),
             Message(
-                role='tool',
-                tool_call_id='missing_call',
-                content=[TextContent(text='Response')],
+                role="tool",
+                tool_call_id="missing_call",
+                content=[TextContent(text="Response")],
             ),
-            Message(role='assistant', content=[TextContent(text='Answer')]),
+            Message(role="assistant", content=[TextContent(text="Answer")]),
         ]
 
         expected_after_filter = [
-            Message(role='user', content=[TextContent(text='Query')]),
-            Message(role='assistant', content=[TextContent(text='Answer')]),
+            Message(role="user", content=[TextContent(text="Query")]),
+            Message(role="assistant", content=[TextContent(text="Answer")]),
         ]
 
         result = list(ConversationMemory._filter_unmatched_tool_calls(messages))
@@ -1000,24 +1004,24 @@ class TestFilterUnmatchedToolCalls:
 
     def test_tool_response_without_call_is_removed(self):
         messages = [
-            Message(role='user', content=[TextContent(text='Query')]),
+            Message(role="user", content=[TextContent(text="Query")]),
             Message(
-                role='assistant',
+                role="assistant",
                 content=[],
                 tool_calls=[
                     ChatCompletionMessageToolCall(
-                        id='unmatched_call',
-                        type='function',
-                        function={'name': 'some_function', 'arguments': ''},
+                        id="unmatched_call",
+                        type="function",
+                        function={"name": "some_function", "arguments": ""},
                     )
                 ],
             ),
-            Message(role='assistant', content=[TextContent(text='Answer')]),
+            Message(role="assistant", content=[TextContent(text="Answer")]),
         ]
 
         expected_after_filter = [
-            Message(role='user', content=[TextContent(text='Query')]),
-            Message(role='assistant', content=[TextContent(text='Answer')]),
+            Message(role="user", content=[TextContent(text="Query")]),
+            Message(role="assistant", content=[TextContent(text="Answer")]),
         ]
 
         result = list(ConversationMemory._filter_unmatched_tool_calls(messages))
@@ -1026,51 +1030,51 @@ class TestFilterUnmatchedToolCalls:
     def test_partial_matched_tool_calls_retains_matched(self):
         """When there are both matched and unmatched tools calls in a message, retain the message and only matched calls"""
         messages = [
-            Message(role='user', content=[TextContent(text='Get data')]),
+            Message(role="user", content=[TextContent(text="Get data")]),
             Message(
-                role='assistant',
+                role="assistant",
                 content=[],
                 tool_calls=[
                     ChatCompletionMessageToolCall(
-                        id='matched_call',
-                        type='function',
-                        function={'name': 'function1', 'arguments': ''},
+                        id="matched_call",
+                        type="function",
+                        function={"name": "function1", "arguments": ""},
                     ),
                     ChatCompletionMessageToolCall(
-                        id='unmatched_call',
-                        type='function',
-                        function={'name': 'function2', 'arguments': ''},
+                        id="unmatched_call",
+                        type="function",
+                        function={"name": "function2", "arguments": ""},
                     ),
                 ],
             ),
             Message(
-                role='tool',
-                tool_call_id='matched_call',
-                content=[TextContent(text='Data')],
+                role="tool",
+                tool_call_id="matched_call",
+                content=[TextContent(text="Data")],
             ),
-            Message(role='assistant', content=[TextContent(text='Result')]),
+            Message(role="assistant", content=[TextContent(text="Result")]),
         ]
 
         expected = [
-            Message(role='user', content=[TextContent(text='Get data')]),
+            Message(role="user", content=[TextContent(text="Get data")]),
             # This message should be modified to only include the matched tool call
             Message(
-                role='assistant',
+                role="assistant",
                 content=[],
                 tool_calls=[
                     ChatCompletionMessageToolCall(
-                        id='matched_call',
-                        type='function',
-                        function={'name': 'function1', 'arguments': ''},
+                        id="matched_call",
+                        type="function",
+                        function={"name": "function1", "arguments": ""},
                     )
                 ],
             ),
             Message(
-                role='tool',
-                tool_call_id='matched_call',
-                content=[TextContent(text='Data')],
+                role="tool",
+                tool_call_id="matched_call",
+                content=[TextContent(text="Data")],
             ),
-            Message(role='assistant', content=[TextContent(text='Result')]),
+            Message(role="assistant", content=[TextContent(text="Result")]),
         ]
 
         result = list(ConversationMemory._filter_unmatched_tool_calls(messages))
@@ -1084,7 +1088,7 @@ class TestFilterUnmatchedToolCalls:
 def test_system_message_in_events(conversation_memory):
     """Test that SystemMessageAction in condensed_history is processed correctly."""
     # Create a system message action
-    system_message = SystemMessageAction(content='System message', tools=['test_tool'])
+    system_message = SystemMessageAction(content="System message", tools=["test_tool"])
     system_message._source = EventSource.AGENT
 
     # Process events with the system message in condensed_history
@@ -1096,5 +1100,5 @@ def test_system_message_in_events(conversation_memory):
 
     # Check that the system message was processed correctly
     assert len(messages) == 1
-    assert messages[0].role == 'system'
-    assert messages[0].content[0].text == 'System message'
+    assert messages[0].role == "system"
+    assert messages[0].content[0].text == "System message"

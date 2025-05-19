@@ -6,6 +6,7 @@ from pathlib import Path
 from core.model_interface import ask_model
 from memory.sqlite_memory import log_memory
 
+
 def self_edit(input_data):
     """
     input_data: dict with {
@@ -53,7 +54,7 @@ def self_edit(input_data):
     log_memory(
         input_text=f"Self-edit on {file_path.name}: {instruction}",
         output_text="Edit complete. Backup saved.",
-        tag="self_edit"
+        tag="self_edit",
     )
 
     return f"[self_edit] Updated {file_path.name}. Backup created: {backup_path.name}"

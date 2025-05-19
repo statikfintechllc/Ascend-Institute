@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -14,5 +13,6 @@ logging.basicConfig(level=logging.INFO)
 def stealth_network():
     """Implements an invisible AI network using P2P encryption."""
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     stealth_network()

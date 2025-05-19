@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -21,5 +20,6 @@ def load_to_memory():
     # Execute AI directly from memory
     ai_execute("mem_exec")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     load_to_memory()

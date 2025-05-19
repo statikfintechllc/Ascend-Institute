@@ -22,12 +22,12 @@ def main():
             mat_result = mat_1 @ mat_2
         else:
             MatMulOp1(mgr)(tensor_shape, tensor_in_1, tensor_in_2, tensor_out)
-            mat_result = tensor_out.data().reshape(tensor_shape)  # CPU is too slow for big sizes
+            mat_result = tensor_out.data().reshape(
+                tensor_shape
+            )  # CPU is too slow for big sizes
 
-        print(f'{tensor_shape} input tensors:\n'
-              f'{mat_1}\n'
-              f'{mat_2}\n')
-        print(f'Output :\n{mat_result}')
+        print(f"{tensor_shape} input tensors:\n" f"{mat_1}\n" f"{mat_2}\n")
+        print(f"Output :\n{mat_result}")
 
         for MatMulOp in [MatMulOp1, MatMulOp2, MatMulOp3]:
             tensor_out.data()[:] = 0
@@ -44,13 +44,17 @@ def main():
 
             # print(tensor_out.data().reshape(tensor_shape))
             if (tensor_out.data().reshape(tensor_shape) == mat_result).all():
-                print(f'From {MatMulOp.__module__} : {experiment_count} matmul time : '
-                      f'{experiment_time * 1000:0.2f}ms => '
-                      f'{experiment_count / experiment_time:0.2f}op/s or '
-                      f'{experiment_count * op_count / (1e9 * experiment_time):0.2f} GFLOPS')
+                print(
+                    f"From {MatMulOp.__module__} : {experiment_count} matmul time : "
+                    f"{experiment_time * 1000:0.2f}ms => "
+                    f"{experiment_count / experiment_time:0.2f}op/s or "
+                    f"{experiment_count * op_count / (1e9 * experiment_time):0.2f} GFLOPS"
+                )
             else:
-                print(f'Test failed => output tensor is wrong :\n{tensor_out.data().reshape(tensor_shape)}')
+                print(
+                    f"Test failed => output tensor is wrong :\n{tensor_out.data().reshape(tensor_shape)}"
+                )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

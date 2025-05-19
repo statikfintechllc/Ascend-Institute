@@ -1,13 +1,17 @@
 import os
 import subprocess
 
+
 def recursive_code_evolution():
     while True:
         # Step 1: Analyze existing performance
         performance_metrics = analyze_code_efficiency()
-        
+
         # Step 2: Identify areas for optimization
-        if performance_metrics['efficiency'] < 90 or performance_metrics['latency'] > threshold:
+        if (
+            performance_metrics["efficiency"] < 90
+            or performance_metrics["latency"] > threshold
+        ):
             optimize_codebase()
 
         # Step 3: Validate improvements
@@ -15,6 +19,6 @@ def recursive_code_evolution():
             deploy_updated_code()
         else:
             rollback_changes()
-        
+
         # Step 4: Repeat cycle continuously
         sleep(3600)  # Run every hour

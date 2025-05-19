@@ -10,16 +10,16 @@ from openhands.server.types import AppMode
 
 
 class ProviderType(Enum):
-    GITHUB = 'github'
-    GITLAB = 'gitlab'
+    GITHUB = "github"
+    GITLAB = "gitlab"
 
 
 class TaskType(str, Enum):
-    MERGE_CONFLICTS = 'MERGE_CONFLICTS'
-    FAILING_CHECKS = 'FAILING_CHECKS'
-    UNRESOLVED_COMMENTS = 'UNRESOLVED_COMMENTS'
-    OPEN_ISSUE = 'OPEN_ISSUE'
-    OPEN_PR = 'OPEN_PR'
+    MERGE_CONFLICTS = "MERGE_CONFLICTS"
+    FAILING_CHECKS = "FAILING_CHECKS"
+    UNRESOLVED_COMMENTS = "UNRESOLVED_COMMENTS"
+    OPEN_ISSUE = "OPEN_ISSUE"
+    OPEN_PR = "OPEN_PR"
 
 
 class SuggestedTask(BaseModel):
@@ -67,14 +67,14 @@ class RateLimitError(ValueError):
 
 
 class RequestMethod(Enum):
-    POST = 'post'
-    GET = 'get'
+    POST = "post"
+    GET = "get"
 
 
 class BaseGitService(ABC):
     @property
     def provider(self) -> str:
-        raise NotImplementedError('Subclasses must implement the provider property')
+        raise NotImplementedError("Subclasses must implement the provider property")
 
     # Method used to satisfy mypy for abstract class definition
     @abstractmethod
@@ -83,7 +83,8 @@ class BaseGitService(ABC):
         url: str,
         params: dict | None = None,
         method: RequestMethod = RequestMethod.GET,
-    ) -> tuple[Any, dict]: ...
+    ) -> tuple[Any, dict]:
+        ...
 
     async def execute_request(
         self,
@@ -101,17 +102,17 @@ class BaseGitService(ABC):
         self, e: HTTPStatusError
     ) -> AuthenticationError | RateLimitError | UnknownException:
         if e.response.status_code == 401:
-            return AuthenticationError(f'Invalid {self.provider} token')
+            return AuthenticationError(f"Invalid {self.provider} token")
         elif e.response.status_code == 429:
-            logger.warning(f'Rate limit exceeded on {self.provider} API: {e}')
-            return RateLimitError('GitHub API rate limit exceeded')
+            logger.warning(f"Rate limit exceeded on {self.provider} API: {e}")
+            return RateLimitError("GitHub API rate limit exceeded")
 
-        logger.warning(f'Status error on {self.provider} API: {e}')
-        return UnknownException('Unknown error')
+        logger.warning(f"Status error on {self.provider} API: {e}")
+        return UnknownException("Unknown error")
 
     def handle_http_error(self, e: HTTPError) -> UnknownException:
-        logger.warning(f'HTTP error on {self.provider} API: {e}')
-        return UnknownException('Unknown error')
+        logger.warning(f"HTTP error on {self.provider} API: {e}")
+        return UnknownException("Unknown error")
 
 
 class GitService(Protocol):

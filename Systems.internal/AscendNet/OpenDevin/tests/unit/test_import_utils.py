@@ -15,10 +15,10 @@ class Square(Shape):
     length: float
 
     def get_area(self):
-        return self.length**2
+        return self.length ** 2
 
 
 def test_get_impl():
-    ShapeImpl = get_impl(Shape, f'{Shape.__module__}.Square')
+    ShapeImpl = get_impl(Shape, f"{Shape.__module__}.Square")
     shape = ShapeImpl(5)
     assert shape.get_area() == 25

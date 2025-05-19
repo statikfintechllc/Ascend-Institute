@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -16,5 +15,6 @@ def update_emotion(n_clicks, user_input):
         return ascend_dashboard.analyze_emotion(user_input)
     return "Waiting for input..."
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     update_emotion()

@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -16,5 +15,6 @@ def hijack_competitor_traffic():
         log_event("info", "Redirecting competitor app traffic for market dominance...")
         log_event("info", "Competitor hijacking strategy activated.")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     hijack_competitor_traffic()

@@ -17,7 +17,7 @@ class MCPClient(BaseModel):
 
     session: Optional[ClientSession] = None
     exit_stack: AsyncExitStack = AsyncExitStack()
-    description: str = 'MCP client tools for server interaction'
+    description: str = "MCP client tools for server interaction"
     tools: List[BaseTool] = Field(default_factory=list)
     tool_map: Dict[str, BaseTool] = Field(default_factory=dict)
 
@@ -32,7 +32,7 @@ class MCPClient(BaseModel):
             timeout: Connection timeout in seconds. Default is 30 seconds.
         """
         if not server_url:
-            raise ValueError('Server URL is required.')
+            raise ValueError("Server URL is required.")
         if self.session:
             await self.disconnect()
 
@@ -53,19 +53,19 @@ class MCPClient(BaseModel):
             await asyncio.wait_for(connect_with_timeout(), timeout=timeout)
         except asyncio.TimeoutError:
             logger.error(
-                f'Connection to {server_url} timed out after {timeout} seconds'
+                f"Connection to {server_url} timed out after {timeout} seconds"
             )
             await self.disconnect()  # Clean up resources
             raise  # Re-raise the TimeoutError
         except Exception as e:
-            logger.error(f'Error connecting to {server_url}: {str(e)}')
+            logger.error(f"Error connecting to {server_url}: {str(e)}")
             await self.disconnect()  # Clean up resources
             raise
 
     async def _initialize_and_list_tools(self) -> None:
         """Initialize session and populate tool map."""
         if not self.session:
-            raise RuntimeError('Session not initialized.')
+            raise RuntimeError("Session not initialized.")
 
         await self.session.initialize()
         response = await self.session.list_tools()
@@ -85,13 +85,13 @@ class MCPClient(BaseModel):
             self.tools.append(server_tool)
 
         logger.info(
-            f'Connected to server with tools: {[tool.name for tool in response.tools]}'
+            f"Connected to server with tools: {[tool.name for tool in response.tools]}"
         )
 
     async def call_tool(self, tool_name: str, args: Dict):
         """Call a tool on the MCP server."""
         if tool_name not in self.tool_map:
-            raise ValueError(f'Tool {tool_name} not found.')
+            raise ValueError(f"Tool {tool_name} not found.")
         return await self.tool_map[tool_name].execute(**args)
 
     async def disconnect(self) -> None:
@@ -99,13 +99,13 @@ class MCPClient(BaseModel):
         if self.session:
             try:
                 # Close the session first
-                if hasattr(self.session, 'close'):
+                if hasattr(self.session, "close"):
                     await self.session.close()
                 # Then close the exit stack
                 await self.exit_stack.aclose()
             except Exception as e:
-                logger.error(f'Error during disconnect: {str(e)}')
+                logger.error(f"Error during disconnect: {str(e)}")
             finally:
                 self.session = None
                 self.tools = []
-                logger.info('Disconnected from MCP server')
+                logger.info("Disconnected from MCP server")

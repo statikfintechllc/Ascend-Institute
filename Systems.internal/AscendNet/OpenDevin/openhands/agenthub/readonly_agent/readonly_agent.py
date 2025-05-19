@@ -15,7 +15,7 @@ from openhands.utils.prompt import PromptManager
 
 
 class ReadOnlyAgent(CodeActAgent):
-    VERSION = '1.0'
+    VERSION = "1.0"
     """
     The ReadOnlyAgent is a specialized version of CodeActAgent that only uses read-only tools.
 
@@ -50,7 +50,7 @@ class ReadOnlyAgent(CodeActAgent):
 
         # Set up our own prompt manager
         self.prompt_manager = PromptManager(
-            prompt_dir=os.path.join(os.path.dirname(__file__), 'prompts'),
+            prompt_dir=os.path.join(os.path.dirname(__file__), "prompts"),
         )
 
         self.response_to_actions_fn = readonly_function_calling.response_to_actions
@@ -66,5 +66,5 @@ class ReadOnlyAgent(CodeActAgent):
         - mcp_tools (list[dict]): The list of MCP tools.
         """
         logger.warning(
-            'ReadOnlyAgent does not support MCP tools. MCP tools will be ignored by the agent.'
+            "ReadOnlyAgent does not support MCP tools. MCP tools will be ignored by the agent."
         )

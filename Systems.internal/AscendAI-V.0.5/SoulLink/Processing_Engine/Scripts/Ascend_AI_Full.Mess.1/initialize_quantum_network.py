@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -18,5 +17,6 @@ def initialize_quantum_network():
     logging.info(f" Quantum Network Initialized with Computation Result: {result}")
     return result
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     initialize_quantum_network()

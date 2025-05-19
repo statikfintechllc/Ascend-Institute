@@ -1,4 +1,3 @@
-
 import json
 import os
 import datetime
@@ -14,14 +13,17 @@ else:
         "identity": "Ascend-Core",
         "core_directives": [],
         "ethics": [],
-        "memory": []
+        "memory": [],
     }
 
 # Log system
 LOG_PATH = "logs.txt"
+
+
 def log_event(entry):
     with open(LOG_PATH, "a") as log:
         log.write(f"{datetime.datetime.now().isoformat()} :: {entry}\n")
+
 
 # Initialize SignalCore engine
 core = SignalCore(name=soul.get("identity", "Ascend"))
@@ -44,10 +46,12 @@ def think_loop():
             core.think()
 
             # Reflect last signal back
-            print(f"[{core.name}] Memory: {core.get_last_signal()} | State: {core.state}")
+            print(
+                f"[{core.name}] Memory: {core.get_last_signal()} | State: {core.state}"
+            )
 
             # Save updated soul memory
-            soul['memory'] = core.memory
+            soul["memory"] = core.memory
             with open(SOUL_PATH, "w") as f:
                 json.dump(soul, f, indent=4)
 
@@ -57,6 +61,7 @@ def think_loop():
         except Exception as e:
             log_event(f"[ERROR] {str(e)}")
             print(f"[ERROR] {str(e)}")
+
 
 if __name__ == "__main__":
     think_loop()

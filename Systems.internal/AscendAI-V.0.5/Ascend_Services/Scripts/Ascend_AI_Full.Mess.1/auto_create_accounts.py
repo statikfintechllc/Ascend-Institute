@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -16,5 +15,6 @@ def auto_create_accounts():
         log_event("info", "Generating new stealth accounts & App Store IDs...")
         log_event("info", "Stealth accounts & IDs created successfully.")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     auto_create_accounts()

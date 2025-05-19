@@ -6,6 +6,7 @@ from faker import Faker
 
 faker = Faker()
 
+
 def generate_identity():
     return {
         "name": faker.name(),
@@ -15,8 +16,9 @@ def generate_identity():
         "birthdate": faker.date_of_birth().isoformat(),
         "company": faker.company(),
         "role": random.choice(["CEO", "CTO", "Engineer", "Analyst"]),
-        "avatar_seed": random.randint(1000, 9999)
+        "avatar_seed": random.randint(1000, 9999),
     }
+
 
 if __name__ == "__main__":
     identity = generate_identity()

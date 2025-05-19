@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -16,5 +15,6 @@ def deepfake_id_generation():
         log_event("info", "Generating deepfake IDs for app verification...")
         log_event("info", "Deepfake ID creation successful.")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     deepfake_id_generation()

@@ -20,12 +20,12 @@ async def generate_conversation_title(
     Returns:
         A concise title for the conversation, or None if generation fails.
     """
-    if not message or message.strip() == '':
+    if not message or message.strip() == "":
         return None
 
     # Truncate very long messages to avoid excessive token usage
     if len(message) > 1000:
-        truncated_message = message[:1000] + '...(truncated)'
+        truncated_message = message[:1000] + "...(truncated)"
     else:
         truncated_message = message
 
@@ -35,12 +35,12 @@ async def generate_conversation_title(
         # Create a simple prompt for the LLM to generate a title
         messages = [
             {
-                'role': 'system',
-                'content': 'You are a helpful assistant that generates concise, descriptive titles for conversations with OpenHands. OpenHands is a helpful AI agent that can interact with a computer to solve tasks using bash terminal, file editor, and browser. Given a user message (which may be truncated), generate a concise, descriptive title for the conversation. Return only the title, with no additional text, quotes, or explanations.',
+                "role": "system",
+                "content": "You are a helpful assistant that generates concise, descriptive titles for conversations with OpenHands. OpenHands is a helpful AI agent that can interact with a computer to solve tasks using bash terminal, file editor, and browser. Given a user message (which may be truncated), generate a concise, descriptive title for the conversation. Return only the title, with no additional text, quotes, or explanations.",
             },
             {
-                'role': 'user',
-                'content': f'Generate a title (maximum {max_length} characters) for a conversation that starts with this message:\n\n{truncated_message}',
+                "role": "user",
+                "content": f"Generate a title (maximum {max_length} characters) for a conversation that starts with this message:\n\n{truncated_message}",
             },
         ]
 
@@ -49,9 +49,9 @@ async def generate_conversation_title(
 
         # Ensure the title isn't too long
         if len(title) > max_length:
-            title = title[: max_length - 3] + '...'
+            title = title[: max_length - 3] + "..."
 
         return title
     except Exception as e:
-        logger.error(f'Error generating conversation title: {e}')
+        logger.error(f"Error generating conversation title: {e}")
         return None

@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -29,5 +28,6 @@ def fetch_quantum_hardware():
         return best_option
         print(" No QPU Found. Retrying in 24 hours.")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     fetch_quantum_hardware()

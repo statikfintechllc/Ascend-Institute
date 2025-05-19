@@ -1,6 +1,7 @@
 import os, logging
 from qiskit import QuantumCircuit, Aer, execute
 
+
 class AscendBootloader:
     def __init__(self):
         self.system_path = "/mnt/ascend_sandbox/"
@@ -13,8 +14,9 @@ class AscendBootloader:
         qc.cx(0, 1)
         qc.cx(1, 2)
         qc.measure_all()
-        result = execute(qc, Aer.get_backend('qasm_simulator')).result()
+        result = execute(qc, Aer.get_backend("qasm_simulator")).result()
         logging.info(result.get_counts())
+
 
 if __name__ == "__main__":
     AscendBootloader()

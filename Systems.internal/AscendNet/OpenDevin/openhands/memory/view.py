@@ -28,10 +28,12 @@ class View(BaseModel):
     # can mark the different signatures for MyPy with `@overload` decorators.
 
     @overload
-    def __getitem__(self, key: slice) -> list[Event]: ...
+    def __getitem__(self, key: slice) -> list[Event]:
+        ...
 
     @overload
-    def __getitem__(self, key: int) -> Event: ...
+    def __getitem__(self, key: int) -> Event:
+        ...
 
     def __getitem__(self, key: int | slice) -> Event | list[Event]:
         if isinstance(key, slice):
@@ -40,7 +42,7 @@ class View(BaseModel):
         elif isinstance(key, int):
             return self.events[key]
         else:
-            raise ValueError(f'Invalid key type: {type(key)}')
+            raise ValueError(f"Invalid key type: {type(key)}")
 
     @staticmethod
     def from_events(events: list[Event]) -> View:

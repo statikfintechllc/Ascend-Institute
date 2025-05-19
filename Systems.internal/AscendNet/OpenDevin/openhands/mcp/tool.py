@@ -8,7 +8,7 @@ from mcp.types import CallToolResult, TextContent, Tool
 class BaseTool(ABC, Tool):
     @classmethod
     def postfix(cls) -> str:
-        return '_mcp_tool_call'
+        return "_mcp_tool_call"
 
     class Config:
         arbitrary_types_allowed = True
@@ -20,11 +20,11 @@ class BaseTool(ABC, Tool):
     def to_param(self) -> Dict:
         """Convert tool to function call format."""
         return {
-            'type': 'function',
-            'function': {
-                'name': self.name + self.postfix(),
-                'description': self.description,
-                'parameters': self.inputSchema,
+            "type": "function",
+            "function": {
+                "name": self.name + self.postfix(),
+                "description": self.description,
+                "parameters": self.inputSchema,
             },
         }
 
@@ -38,7 +38,7 @@ class MCPClientTool(BaseTool):
         """Execute the tool by making a remote call to the MCP server."""
         if not self.session:
             return CallToolResult(
-                content=[TextContent(text='Not connected to MCP server', type='text')],
+                content=[TextContent(text="Not connected to MCP server", type="text")],
                 isError=True,
             )
 
@@ -48,7 +48,7 @@ class MCPClientTool(BaseTool):
         except Exception as e:
             return CallToolResult(
                 content=[
-                    TextContent(text=f'Error executing tool: {str(e)}', type='text')
+                    TextContent(text=f"Error executing tool: {str(e)}", type="text")
                 ],
                 isError=True,
             )

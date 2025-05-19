@@ -13,7 +13,7 @@ from openhands.events.observation.agent import MicroagentKnowledge
 class RuntimeInfo:
     date: str
     available_hosts: dict[str, int] = field(default_factory=dict)
-    additional_agent_instructions: str = ''
+    additional_agent_instructions: str = ""
 
 
 @dataclass
@@ -39,18 +39,18 @@ class PromptManager:
         prompt_dir: str,
     ):
         self.prompt_dir: str = prompt_dir
-        self.system_template: Template = self._load_template('system_prompt')
-        self.user_template: Template = self._load_template('user_prompt')
-        self.additional_info_template: Template = self._load_template('additional_info')
-        self.microagent_info_template: Template = self._load_template('microagent_info')
+        self.system_template: Template = self._load_template("system_prompt")
+        self.user_template: Template = self._load_template("user_prompt")
+        self.additional_info_template: Template = self._load_template("additional_info")
+        self.microagent_info_template: Template = self._load_template("microagent_info")
 
     def _load_template(self, template_name: str) -> Template:
         if self.prompt_dir is None:
-            raise ValueError('Prompt directory is not set')
-        template_path = os.path.join(self.prompt_dir, f'{template_name}.j2')
+            raise ValueError("Prompt directory is not set")
+        template_path = os.path.join(self.prompt_dir, f"{template_name}.j2")
         if not os.path.exists(template_path):
-            raise FileNotFoundError(f'Prompt file {template_path} not found')
-        with open(template_path, 'r') as file:
+            raise FileNotFoundError(f"Prompt file {template_path} not found")
+        with open(template_path, "r") as file:
             return Template(file.read())
 
     def get_system_message(self) -> str:
@@ -73,7 +73,7 @@ class PromptManager:
         self,
         repository_info: RepositoryInfo | None,
         runtime_info: RuntimeInfo | None,
-        repo_instructions: str = '',
+        repo_instructions: str = "",
     ) -> str:
         """Renders the additional info template with the stored repository/runtime info."""
         return self.additional_info_template.render(
@@ -102,7 +102,7 @@ class PromptManager:
                 (
                     m
                     for m in reversed(messages)
-                    if m.role == 'user'
+                    if m.role == "user"
                     and any(isinstance(c, TextContent) for c in m.content)
                 ),
                 1,
@@ -110,5 +110,5 @@ class PromptManager:
             None,
         )
         if latest_user_message:
-            reminder_text = f'\n\nENVIRONMENT REMINDER: You have {state.max_iterations - state.iteration} turns left to complete the task. When finished reply with <finish></finish>.'
+            reminder_text = f"\n\nENVIRONMENT REMINDER: You have {state.max_iterations - state.iteration} turns left to complete the task. When finished reply with <finish></finish>."
             latest_user_message.content.append(TextContent(text=reminder_text))

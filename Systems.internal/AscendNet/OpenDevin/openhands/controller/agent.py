@@ -30,22 +30,22 @@ class Agent(ABC):
     It tracks the execution status and maintains a history of interactions.
     """
 
-    _registry: dict[str, Type['Agent']] = {}
+    _registry: dict[str, Type["Agent"]] = {}
     sandbox_plugins: list[PluginRequirement] = []
 
     def __init__(
         self,
         llm: LLM,
-        config: 'AgentConfig',
+        config: "AgentConfig",
     ):
         self.llm = llm
         self.config = config
         self._complete = False
-        self.prompt_manager: 'PromptManager' | None = None
+        self.prompt_manager: "PromptManager" | None = None
         self.mcp_tools: list[dict] = []
         self.tools: list = []
 
-    def get_system_message(self) -> 'SystemMessageAction | None':
+    def get_system_message(self) -> "SystemMessageAction | None":
         """
         Returns a SystemMessageAction containing the system message and tools.
         This will be added to the event stream as the first message.
@@ -60,14 +60,14 @@ class Agent(ABC):
         try:
             if not self.prompt_manager:
                 logger.warning(
-                    f'[{self.name}] Prompt manager not initialized before getting system message'
+                    f"[{self.name}] Prompt manager not initialized before getting system message"
                 )
                 return None
 
             system_message = self.prompt_manager.get_system_message()
 
             # Get tools if available
-            tools = getattr(self, 'tools', None)
+            tools = getattr(self, "tools", None)
 
             system_message_action = SystemMessageAction(
                 content=system_message, tools=tools, agent_class=self.name
@@ -77,7 +77,7 @@ class Agent(ABC):
 
             return system_message_action
         except Exception as e:
-            logger.warning(f'[{self.name}] Failed to generate system message: {e}')
+            logger.warning(f"[{self.name}] Failed to generate system message: {e}")
             return None
 
     @property
@@ -90,7 +90,7 @@ class Agent(ABC):
         return self._complete
 
     @abstractmethod
-    def step(self, state: 'State') -> 'Action':
+    def step(self, state: "State") -> "Action":
         """Starts the execution of the assigned instruction. This method should
         be implemented by subclasses to define the specific execution logic.
         """
@@ -112,7 +112,7 @@ class Agent(ABC):
         return self.__class__.__name__
 
     @classmethod
-    def register(cls, name: str, agent_cls: Type['Agent']) -> None:
+    def register(cls, name: str, agent_cls: Type["Agent"]) -> None:
         """Registers an agent class in the registry.
 
         Parameters:
@@ -127,7 +127,7 @@ class Agent(ABC):
         cls._registry[name] = agent_cls
 
     @classmethod
-    def get_cls(cls, name: str) -> Type['Agent']:
+    def get_cls(cls, name: str) -> Type["Agent"]:
         """Retrieves an agent class from the registry.
 
         Parameters:

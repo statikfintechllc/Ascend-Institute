@@ -30,7 +30,7 @@ from openhands.storage.memory import InMemoryFileStore
 @pytest.fixture
 def mock_event_stream():
     """Creates an event stream in memory."""
-    sid = f'test-{uuid4()}'
+    sid = f"test-{uuid4()}"
     file_store = InMemoryFileStore({})
     return EventStream(sid=sid, file_store=file_store)
 
@@ -39,7 +39,7 @@ def mock_event_stream():
 def mock_parent_agent():
     """Creates a mock parent agent for testing delegation."""
     agent = MagicMock(spec=Agent)
-    agent.name = 'ParentAgent'
+    agent.name = "ParentAgent"
     agent.llm = MagicMock(spec=LLM)
     agent.llm.metrics = Metrics()
     agent.llm.config = LLMConfig()
@@ -48,7 +48,7 @@ def mock_parent_agent():
     # Add a proper system message mock
     from openhands.events.action.message import SystemMessageAction
 
-    system_message = SystemMessageAction(content='Test system message')
+    system_message = SystemMessageAction(content="Test system message")
     system_message._source = EventSource.AGENT
     system_message._id = -1  # Set invalid ID to avoid the ID check
     agent.get_system_message.return_value = system_message
@@ -60,7 +60,7 @@ def mock_parent_agent():
 def mock_child_agent():
     """Creates a mock child agent for testing delegation."""
     agent = MagicMock(spec=Agent)
-    agent.name = 'ChildAgent'
+    agent.name = "ChildAgent"
     agent.llm = MagicMock(spec=LLM)
     agent.llm.metrics = Metrics()
     agent.llm.config = LLMConfig()
@@ -69,7 +69,7 @@ def mock_child_agent():
     # Add a proper system message mock
     from openhands.events.action.message import SystemMessageAction
 
-    system_message = SystemMessageAction(content='Test system message')
+    system_message = SystemMessageAction(content="Test system message")
     system_message._source = EventSource.AGENT
     system_message._id = -1  # Set invalid ID to avoid the ID check
     agent.get_system_message.return_value = system_message
@@ -92,7 +92,7 @@ async def test_delegation_flow(mock_parent_agent, mock_child_agent, mock_event_s
         agent=mock_parent_agent,
         event_stream=mock_event_stream,
         max_iterations=10,
-        sid='parent',
+        sid="parent",
         confirmation_mode=False,
         headless_mode=True,
         initial_state=parent_state,
@@ -107,7 +107,7 @@ async def test_delegation_flow(mock_parent_agent, mock_child_agent, mock_event_s
             # create a RecallObservation
             microagent_observation = RecallObservation(
                 recall_type=RecallType.KNOWLEDGE,
-                content='Found info',
+                content="Found info",
             )
             microagent_observation._cause = event.id  # ignore attr-defined warning
             mock_event_stream.add_event(microagent_observation, EventSource.ENVIRONMENT)
@@ -118,11 +118,11 @@ async def test_delegation_flow(mock_parent_agent, mock_child_agent, mock_event_s
     )
 
     # Setup a delegate action from the parent
-    delegate_action = AgentDelegateAction(agent='ChildAgent', inputs={'test': True})
+    delegate_action = AgentDelegateAction(agent="ChildAgent", inputs={"test": True})
     mock_parent_agent.step.return_value = delegate_action
 
     # Simulate a user message event to cause parent.step() to run
-    message_action = MessageAction(content='please delegate now')
+    message_action = MessageAction(content="please delegate now")
     message_action._source = EventSource.USER
     await parent_controller._on_event(message_action)
 
@@ -147,12 +147,12 @@ async def test_delegation_flow(mock_parent_agent, mock_child_agent, mock_event_s
     # The parent's iteration should have incremented
     assert (
         parent_controller.state.iteration == 1
-    ), 'Parent iteration should be incremented after step.'
+    ), "Parent iteration should be incremented after step."
 
     # Now simulate that the child increments local iteration and finishes its subtask
     delegate_controller = parent_controller.delegate
     delegate_controller.state.iteration = 5  # child had some steps
-    delegate_controller.state.outputs = {'delegate_result': 'done'}
+    delegate_controller.state.outputs = {"delegate_result": "done"}
 
     # The child is done, so we simulate it finishing:
     child_finish_action = AgentFinishAction()
@@ -162,7 +162,7 @@ async def test_delegation_flow(mock_parent_agent, mock_child_agent, mock_event_s
     # Now the parent's delegate is None
     assert (
         parent_controller.delegate is None
-    ), 'Parent delegate should be None after child finishes.'
+    ), "Parent delegate should be None after child finishes."
 
     # Parent's global iteration is updated from the child
     assert (
@@ -175,7 +175,7 @@ async def test_delegation_flow(mock_parent_agent, mock_child_agent, mock_event_s
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
-    'delegate_state',
+    "delegate_state",
     [
         AgentState.RUNNING,
         AgentState.FINISHED,
@@ -191,7 +191,7 @@ async def test_delegate_step_different_states(
         agent=mock_parent_agent,
         event_stream=mock_event_stream,
         max_iterations=10,
-        sid='test',
+        sid="test",
         confirmation_mode=False,
         headless_mode=True,
     )
@@ -200,8 +200,8 @@ async def test_delegate_step_different_states(
     controller.delegate = mock_delegate
 
     mock_delegate.state.iteration = 5
-    mock_delegate.state.outputs = {'result': 'test'}
-    mock_delegate.agent.name = 'TestDelegate'
+    mock_delegate.state.outputs = {"result": "test"}
+    mock_delegate.agent.name = "TestDelegate"
 
     mock_delegate.get_agent_state = Mock(return_value=delegate_state)
     mock_delegate._step = AsyncMock()
@@ -215,7 +215,7 @@ async def test_delegate_step_different_states(
         loop_in_thread = asyncio.new_event_loop()
         try:
             asyncio.set_event_loop(loop_in_thread)
-            msg_action = MessageAction(content='Test message')
+            msg_action = MessageAction(content="Test message")
             msg_action._source = EventSource.USER
             controller.on_event(msg_action)
         finally:

@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -12,9 +11,10 @@ logging.basicConfig(level=logging.INFO)
 
 
 def apply_optimization():
-        print("Applying AI-generated optimization...")
-        pass  # Placeholder for AI-generated performance optimization
-        print("Optimization failed:", str(e))
+    print("Applying AI-generated optimization...")
+    pass  # Placeholder for AI-generated performance optimization
+    print("Optimization failed:", str(e))
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     apply_optimization()

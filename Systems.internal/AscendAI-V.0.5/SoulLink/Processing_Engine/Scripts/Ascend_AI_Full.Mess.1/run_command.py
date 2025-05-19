@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -18,5 +17,6 @@ def run_command(command):
         print(f" Error executing: {command}\n{process.stderr}")
         sys.exit(1)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     run_command()

@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -12,7 +11,7 @@ logging.basicConfig(level=logging.INFO)
 
 
 def quantum_factorization(n):
-    """ Quantum-Inspired Integer Factorization (Simplified) """
+    """Quantum-Inspired Integer Factorization (Simplified)"""
     factors = []
     i = 2
     while i * i <= n:
@@ -24,5 +23,6 @@ def quantum_factorization(n):
         factors.append(n)
     return factors
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     quantum_factorization()

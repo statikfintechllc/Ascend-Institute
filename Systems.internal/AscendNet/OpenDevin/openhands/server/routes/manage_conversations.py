@@ -41,7 +41,7 @@ from openhands.storage.data_models.conversation_status import ConversationStatus
 from openhands.utils.async_utils import wait_all
 from openhands.utils.conversation_summary import generate_conversation_title
 
-app = APIRouter(prefix='/api')
+app = APIRouter(prefix="/api")
 
 
 class InitSessionRequest(BaseModel):
@@ -64,13 +64,13 @@ async def _create_new_conversation(
     attach_convo_id: bool = False,
 ):
     logger.info(
-        'Creating conversation',
-        extra={'signal': 'create_conversation', 'user_id': user_id},
+        "Creating conversation",
+        extra={"signal": "create_conversation", "user_id": user_id},
     )
-    logger.info('Loading settings')
+    logger.info("Loading settings")
     settings_store = await SettingsStoreImpl.get_instance(config, user_id)
     settings = await settings_store.load()
-    logger.info('Settings loaded')
+    logger.info("Settings loaded")
 
     session_init_args: dict = {}
     if settings:
@@ -81,35 +81,35 @@ async def _create_new_conversation(
             not settings.llm_api_key
             or settings.llm_api_key.get_secret_value().isspace()
         ):
-            logger.warn(f'Missing api key for model {settings.llm_model}')
+            logger.warn(f"Missing api key for model {settings.llm_model}")
             raise LLMAuthenticationError(
-                'Error authenticating with the LLM provider. Please check your API key'
+                "Error authenticating with the LLM provider. Please check your API key"
             )
 
     else:
-        logger.warn('Settings not present, not starting conversation')
-        raise MissingSettingsError('Settings not found')
+        logger.warn("Settings not present, not starting conversation")
+        raise MissingSettingsError("Settings not found")
 
-    session_init_args['git_provider_tokens'] = git_provider_tokens
-    session_init_args['selected_repository'] = selected_repository
-    session_init_args['selected_branch'] = selected_branch
+    session_init_args["git_provider_tokens"] = git_provider_tokens
+    session_init_args["selected_repository"] = selected_repository
+    session_init_args["selected_branch"] = selected_branch
     conversation_init_data = ConversationInitData(**session_init_args)
-    logger.info('Loading conversation store')
+    logger.info("Loading conversation store")
     conversation_store = await ConversationStoreImpl.get_instance(config, user_id, None)
-    logger.info('Conversation store loaded')
+    logger.info("Conversation store loaded")
 
     conversation_id = uuid.uuid4().hex
     while await conversation_store.exists(conversation_id):
-        logger.warning(f'Collision on conversation ID: {conversation_id}. Retrying...')
+        logger.warning(f"Collision on conversation ID: {conversation_id}. Retrying...")
         conversation_id = uuid.uuid4().hex
     logger.info(
-        f'New conversation ID: {conversation_id}',
-        extra={'user_id': user_id, 'session_id': conversation_id},
+        f"New conversation ID: {conversation_id}",
+        extra={"user_id": user_id, "session_id": conversation_id},
     )
 
     conversation_title = get_default_conversation_title(conversation_id)
 
-    logger.info(f'Saving metadata for conversation {conversation_id}')
+    logger.info(f"Saving metadata for conversation {conversation_id}")
     await conversation_store.save_metadata(
         ConversationMetadata(
             trigger=conversation_trigger,
@@ -125,8 +125,8 @@ async def _create_new_conversation(
     )
 
     logger.info(
-        f'Starting agent loop for conversation {conversation_id}',
-        extra={'user_id': user_id, 'session_id': conversation_id},
+        f"Starting agent loop for conversation {conversation_id}",
+        extra={"user_id": user_id, "session_id": conversation_id},
     )
     initial_message_action = None
     if initial_user_msg or image_urls:
@@ -136,7 +136,7 @@ async def _create_new_conversation(
             else initial_user_msg
         )
         initial_message_action = MessageAction(
-            content=user_msg or '',
+            content=user_msg or "",
             image_urls=image_urls or [],
         )
     await conversation_manager.maybe_start_agent_loop(
@@ -146,19 +146,19 @@ async def _create_new_conversation(
         initial_user_msg=initial_message_action,
         replay_json=replay_json,
     )
-    logger.info(f'Finished initializing conversation {conversation_id}')
+    logger.info(f"Finished initializing conversation {conversation_id}")
 
     return conversation_id
 
 
-@app.post('/conversations')
+@app.post("/conversations")
 async def new_conversation(request: Request, data: InitSessionRequest):
     """Initialize a new session or join an existing one.
 
     After successful initialization, the client should connect to the WebSocket
     using the returned conversation ID.
     """
-    logger.info('Initializing new conversation')
+    logger.info("Initializing new conversation")
     provider_tokens = get_provider_tokens(request)
     selected_repository = data.selected_repository
     selected_branch = data.selected_branch
@@ -179,14 +179,14 @@ async def new_conversation(request: Request, data: InitSessionRequest):
         )
 
         return JSONResponse(
-            content={'status': 'ok', 'conversation_id': conversation_id}
+            content={"status": "ok", "conversation_id": conversation_id}
         )
     except MissingSettingsError as e:
         return JSONResponse(
             content={
-                'status': 'error',
-                'message': str(e),
-                'msg_id': 'CONFIGURATION$SETTINGS_NOT_FOUND',
+                "status": "error",
+                "message": str(e),
+                "msg_id": "CONFIGURATION$SETTINGS_NOT_FOUND",
             },
             status_code=status.HTTP_400_BAD_REQUEST,
         )
@@ -194,15 +194,15 @@ async def new_conversation(request: Request, data: InitSessionRequest):
     except LLMAuthenticationError as e:
         return JSONResponse(
             content={
-                'status': 'error',
-                'message': str(e),
-                'msg_id': 'STATUS$ERROR_LLM_AUTHENTICATION',
+                "status": "error",
+                "message": str(e),
+                "msg_id": "STATUS$ERROR_LLM_AUTHENTICATION",
             },
             status_code=status.HTTP_400_BAD_REQUEST,
         )
 
 
-@app.get('/conversations')
+@app.get("/conversations")
 async def search_conversations(
     request: Request,
     page_id: str | None = None,
@@ -219,7 +219,7 @@ async def search_conversations(
     filtered_results = [
         conversation
         for conversation in conversation_metadata_result_set.results
-        if hasattr(conversation, 'created_at')
+        if hasattr(conversation, "created_at")
         and (now - conversation.created_at.replace(tzinfo=timezone.utc)).total_seconds()
         <= max_age
     ]
@@ -243,7 +243,7 @@ async def search_conversations(
     return result
 
 
-@app.get('/conversations/{conversation_id}')
+@app.get("/conversations/{conversation_id}")
 async def get_conversation(
     conversation_id: str, request: Request
 ) -> ConversationInfo | None:
@@ -269,7 +269,7 @@ def get_default_conversation_title(conversation_id: str) -> str:
     Returns:
         A default title string
     """
-    return f'Conversation {conversation_id[:5]}'
+    return f"Conversation {conversation_id[:5]}"
 
 
 async def auto_generate_title(conversation_id: str, user_id: str | None) -> str:
@@ -284,7 +284,7 @@ async def auto_generate_title(conversation_id: str, user_id: str | None) -> str:
     Returns:
         A generated title string
     """
-    logger.info(f'Auto-generating title for conversation {conversation_id}')
+    logger.info(f"Auto-generating title for conversation {conversation_id}")
 
     try:
         # Create an event stream for the conversation
@@ -321,24 +321,24 @@ async def auto_generate_title(conversation_id: str, user_id: str | None) -> str:
                         first_user_message, llm_config
                     )
                     if llm_title:
-                        logger.info(f'Generated title using LLM: {llm_title}')
+                        logger.info(f"Generated title using LLM: {llm_title}")
                         return llm_title
             except Exception as e:
-                logger.error(f'Error using LLM for title generation: {e}')
+                logger.error(f"Error using LLM for title generation: {e}")
 
             # Fall back to simple truncation if LLM generation fails or is unavailable
             first_user_message = first_user_message.strip()
             title = first_user_message[:30]
             if len(first_user_message) > 30:
-                title += '...'
-            logger.info(f'Generated title using truncation: {title}')
+                title += "..."
+            logger.info(f"Generated title using truncation: {title}")
             return title
     except Exception as e:
-        logger.error(f'Error generating title: {str(e)}')
-    return ''
+        logger.error(f"Error generating title: {str(e)}")
+    return ""
 
 
-@app.patch('/conversations/{conversation_id}')
+@app.patch("/conversations/{conversation_id}")
 async def update_conversation(
     request: Request, conversation_id: str, title: str = Body(embed=True)
 ) -> bool:
@@ -363,7 +363,7 @@ async def update_conversation(
     return True
 
 
-@app.delete('/conversations/{conversation_id}')
+@app.delete("/conversations/{conversation_id}")
 async def delete_conversation(
     conversation_id: str,
     request: Request,
@@ -405,7 +405,7 @@ async def _get_conversation_info(
         )
     except Exception as e:
         logger.error(
-            f'Error loading conversation {conversation.conversation_id}: {str(e)}',
-            extra={'session_id': conversation.conversation_id},
+            f"Error loading conversation {conversation.conversation_id}: {str(e)}",
+            extra={"session_id": conversation.conversation_id},
         )
         return None

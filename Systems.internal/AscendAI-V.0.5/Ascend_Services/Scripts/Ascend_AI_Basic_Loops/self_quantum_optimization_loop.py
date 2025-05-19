@@ -1,5 +1,6 @@
 import qiskit
 
+
 def recursive_quantum_optimization():
     while True:
         # Step 1: Identify slow computations

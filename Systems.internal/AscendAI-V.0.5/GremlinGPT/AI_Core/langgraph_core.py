@@ -7,6 +7,7 @@ from langgraph.prebuilt.tool_node import ToolNode
 from core.model_interface import ask_model
 from tools import tool_registry
 
+
 def build_gremlin_graph():
     state = StateGraph()
 
@@ -28,6 +29,7 @@ def build_gremlin_graph():
     state.set_finish_node("llm")  # Default fallback
 
     return state.compile(MemorySaver())
+
 
 def build_gremlin_graph():
     agent = GremlinAgent(tools=tool_registry)

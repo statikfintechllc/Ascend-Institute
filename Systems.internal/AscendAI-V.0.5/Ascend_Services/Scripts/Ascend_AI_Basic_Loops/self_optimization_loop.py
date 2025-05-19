@@ -3,18 +3,22 @@ from pathlib import Path
 from datetime import datetime
 
 # Optional: Uncomment if using OpenAI or local models
-# import openai  
+# import openai
+
 
 def read_code_from_directory(path):
     return [Path(f).read_text() for f in Path(path).glob("*.py")]
+
 
 def analyze_code_quality(code_list):
     # Use static analysis + benchmark logs + log weights
     return "Refactor inefficient loops, simplify logic, modularize NLP"
 
+
 def select_best_model_for_task():
     # Choose based on the type of task
     return "starcoder"  # Replace with codet5, deepseek, etc.
+
 
 def invoke_ai_model(model, prompt):
     if model == "starcoder":
@@ -24,6 +28,7 @@ def invoke_ai_model(model, prompt):
     else:
         return call_fallback_model(prompt)
 
+
 def validate_code(code):
     try:
         compile(code, "<string>", "exec")
@@ -32,11 +37,14 @@ def validate_code(code):
         log_error(e)
         return False
 
+
 def deploy_code(code):
     Path("/AscendAI_Core/core_engine.py").write_text(code)
 
+
 def rollback_and_log_failure():
     log("Rollback initiated due to failed optimization.")
+
 
 def log_evolution(code):
     log_path = Path("/AscendAI_Logs/recursive_optimizations.log")
@@ -44,16 +52,20 @@ def log_evolution(code):
     with log_path.open("a") as log_file:
         log_file.write(f"\n\nNew Optimization @ {timestamp()}:\n{code}")
 
+
 def log_error(error):
     with open("/AscendAI_Logs/optimization_errors.log", "a") as log_file:
         log_file.write(f"\n[{timestamp()}] {str(error)}")
+
 
 def log(message):
     with open("/AscendAI_Logs/system.log", "a") as log_file:
         log_file.write(f"\n[{timestamp()}] {message}")
 
+
 def timestamp():
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
 
 # === MAIN LOOP ===
 def recursive_self_optimization():
@@ -72,7 +84,8 @@ def recursive_self_optimization():
 
         except Exception as fail:
             log_error(fail)
-        
+
         # Wait before next iteration
         import time
+
         time.sleep(600)  # 10 minutes

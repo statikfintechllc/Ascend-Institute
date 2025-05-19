@@ -38,8 +38,9 @@ except:
 # 💾 Point to microagents folder
 GLOBAL_MICROAGENTS_DIR = os.path.join(
     os.path.dirname(os.path.dirname(openhands.__file__)),
-    'microagents',
+    "microagents",
 )
+
 
 class Memory:
     """
@@ -96,12 +97,12 @@ class Memory:
                     event.source == EventSource.USER
                     and event.recall_type == RecallType.WORKSPACE_CONTEXT
                 ):
-                    logger.debug('Workspace context recall')
+                    logger.debug("Workspace context recall")
                     workspace_obs: RecallObservation | NullObservation | None = None
 
                     workspace_obs = self._on_workspace_context_recall(event)
                     if workspace_obs is None:
-                        workspace_obs = NullObservation(content='')
+                        workspace_obs = NullObservation(content="")
 
                     # important: this will release the execution flow from waiting for the retrieval to complete
                     workspace_obs._cause = event.id  # type: ignore[union-attr]
@@ -116,12 +117,12 @@ class Memory:
                     or event.source == EventSource.AGENT
                 ) and event.recall_type == RecallType.KNOWLEDGE:
                     logger.debug(
-                        f'Microagent knowledge recall from {event.source} message'
+                        f"Microagent knowledge recall from {event.source} message"
                     )
                     microagent_obs: RecallObservation | NullObservation | None = None
                     microagent_obs = self._on_microagent_recall(event)
                     if microagent_obs is None:
-                        microagent_obs = NullObservation(content='')
+                        microagent_obs = NullObservation(content="")
 
                     # important: this will release the execution flow from waiting for the retrieval to complete
                     microagent_obs._cause = event.id  # type: ignore[union-attr]
@@ -129,9 +130,9 @@ class Memory:
                     self.event_stream.add_event(microagent_obs, EventSource.ENVIRONMENT)
                     return
         except Exception as e:
-            error_str = f'Error: {str(e.__class__.__name__)}'
+            error_str = f"Error: {str(e.__class__.__name__)}"
             logger.error(error_str)
-            self.send_error_message('STATUS$ERROR_MEMORY', error_str)
+            self.send_error_message("STATUS$ERROR_MEMORY", error_str)
             return
 
     def _on_workspace_context_recall(
@@ -150,12 +151,12 @@ class Memory:
         # - microagent_knowledge
 
         # Collect raw repository instructions
-        repo_instructions = ''
+        repo_instructions = ""
 
         # Retrieve the context of repo instructions from all repo microagents
         for microagent in self.repo_microagents.values():
             if repo_instructions:
-                repo_instructions += '\n\n'
+                repo_instructions += "\n\n"
             repo_instructions += microagent.content
 
         # Find any matched microagents based on the query
@@ -172,22 +173,22 @@ class Memory:
                 recall_type=RecallType.WORKSPACE_CONTEXT,
                 repo_name=self.repository_info.repo_name
                 if self.repository_info and self.repository_info.repo_name is not None
-                else '',
+                else "",
                 repo_directory=self.repository_info.repo_directory
                 if self.repository_info
                 and self.repository_info.repo_directory is not None
-                else '',
-                repo_instructions=repo_instructions if repo_instructions else '',
+                else "",
+                repo_instructions=repo_instructions if repo_instructions else "",
                 runtime_hosts=self.runtime_info.available_hosts
                 if self.runtime_info and self.runtime_info.available_hosts is not None
                 else {},
                 additional_agent_instructions=self.runtime_info.additional_agent_instructions
                 if self.runtime_info
                 and self.runtime_info.additional_agent_instructions is not None
-                else '',
+                else "",
                 microagent_knowledge=microagent_knowledge,
-                content='Added workspace context',
-                date=self.runtime_info.date if self.runtime_info is not None else '',
+                content="Added workspace context",
+                date=self.runtime_info.date if self.runtime_info is not None else "",
             )
             return obs
         return None
@@ -206,7 +207,7 @@ class Memory:
             obs = RecallObservation(
                 recall_type=RecallType.KNOWLEDGE,
                 microagent_knowledge=microagent_knowledge,
-                content='Retrieved knowledge from microagents',
+                content="Retrieved knowledge from microagents",
             )
             return obs
         return None
@@ -235,7 +236,9 @@ class Memory:
         if not recalled_content:
             try:
                 results = chroma_collection.query(query_texts=[query], n_results=3)
-                for doc, id_ in zip(results.get("documents", [])[0], results.get("ids", [])[0]):
+                for doc, id_ in zip(
+                    results.get("documents", [])[0], results.get("ids", [])[0]
+                ):
                     recalled_content.append(
                         MicroagentKnowledge(
                             name=id_,
@@ -264,7 +267,7 @@ class Memory:
         This is typically called from agent_session or setup once the workspace is cloned.
         """
         logger.info(
-            'Loading user workspace microagents: %s', [m.name for m in user_microagents]
+            "Loading user workspace microagents: %s", [m.name for m in user_microagents]
         )
         for user_microagent in user_microagents:
             if isinstance(user_microagent, KnowledgeMicroagent):
@@ -315,11 +318,11 @@ class Memory:
                 if self.loop is None:
                     self.loop = asyncio.get_running_loop()
                 asyncio.run_coroutine_threadsafe(
-                    self._send_status_message('error', message_id, message), self.loop
+                    self._send_status_message("error", message_id, message), self.loop
                 )
             except RuntimeError as e:
                 logger.error(
-                    f'Error sending status message: {e.__class__.__name__}',
+                    f"Error sending status message: {e.__class__.__name__}",
                     stack_info=False,
                 )
 

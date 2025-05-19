@@ -21,6 +21,7 @@ def init_driver():
     options.add_argument("--no-sandbox")
     return webdriver.Chrome(options=options)
 
+
 # Perform Robinhood login
 def login_robinhood(driver):
     driver.get("https://robinhood.com/login")
@@ -29,6 +30,7 @@ def login_robinhood(driver):
     driver.find_element(By.NAME, "password").send_keys(ROBINHOOD_PASSWORD + Keys.RETURN)
     time.sleep(5)
     logging.info("[Robinhood] Login attempted.")
+
 
 # Scrape portfolio value
 def get_portfolio_value(driver):
@@ -42,16 +44,18 @@ def get_portfolio_value(driver):
         logging.error(f"[Robinhood] Portfolio scrape failed: {e}")
         return 0
 
+
 # Position sizing
 def calculate_trade_size(portfolio_value, pct=1.0):
     return round(portfolio_value * (pct / 100), 2)
+
 
 # Basic RSI + MACD trading logic
 def analyze_market(symbol):
     prices = [100 + i for i in range(60)]  # Replace with real prices later
     df = pd.DataFrame({"close": prices})
-    rsi = ta.momentum.RSIIndicator(df['close']).rsi().iloc[-1]
-    macd = ta.trend.MACD(df['close']).macd().iloc[-1]
+    rsi = ta.momentum.RSIIndicator(df["close"]).rsi().iloc[-1]
+    macd = ta.trend.MACD(df["close"]).macd().iloc[-1]
 
     if rsi < 30 and macd > 0:
         return "buy"
@@ -59,12 +63,14 @@ def analyze_market(symbol):
         return "sell"
     return "hold"
 
+
 # "Execute" trade via scraping (currently logs only)
 def execute_trade(driver, symbol, action, amount):
     driver.get(f"https://robinhood.com/stocks/{symbol}")
     time.sleep(3)
     logging.info(f"[TRADE] {action.upper()} {symbol} — ${amount}")
     log_memory(f"{action.upper()} {symbol}", f"Amount: ${amount}", tag="trading")
+
 
 # GremlinGPT-callable function
 def robinhood_trade(input_data=None):

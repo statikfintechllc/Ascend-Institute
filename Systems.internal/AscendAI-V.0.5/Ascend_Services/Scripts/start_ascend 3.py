@@ -1,4 +1,3 @@
-
 import os
 import time
 import threading
@@ -40,6 +39,7 @@ def scan_models():
             active_models.append(file.stem)
     console.log(f"[SCAN] Registered Models: {active_models}")
 
+
 # === CLI Dashboard ===
 def cli_dashboard():
     while True:
@@ -61,6 +61,7 @@ def cli_dashboard():
         console.print(table)
         time.sleep(5)
 
+
 # === Prompt Listener ===
 def listen_for_prompts():
     console.log("[PROMPT LISTENER] Watching for new prompt files...")
@@ -75,6 +76,7 @@ def listen_for_prompts():
             file.unlink()
         time.sleep(3)
 
+
 # === Self-Healing Engine ===
 def heal_models():
     console.log("[SELF-HEALING] Verifying model integrity...")
@@ -83,20 +85,26 @@ def heal_models():
         console.log(f"[HEALING] {model} passed validation.")
     time.sleep(10)
 
+
 # === Quantum Routing Engine ===
 def quantum_router():
     console.log("[QUANTUM ROUTER] Checking for QPU backends...")
     try:
         import qiskit
+
         console.log("[QUANTUM] Qiskit backend available.")
     except ImportError:
         console.log("[QUANTUM] Qiskit not installed.")
     # Extend with PennyLane, Cirq, Braket, etc.
 
+
 # === GPT-Engineer Bootstrap ===
 def launch_gpt_engineer():
     console.log("[BOOT] Launching GPT-Engineer process...")
-    os.system("gpt-engineer app")  # Replace with real entrypoint or subprocess if needed
+    os.system(
+        "gpt-engineer app"
+    )  # Replace with real entrypoint or subprocess if needed
+
 
 # === Main Boot Function ===
 def start_ascend():
@@ -111,6 +119,7 @@ def start_ascend():
     # Infinite loop to keep daemon running
     while True:
         time.sleep(10)
+
 
 # === Entrypoint ===
 if __name__ == "__main__":

@@ -23,15 +23,18 @@ def classify_idea(idea_text):
         return "warn"
     elif any(keyword in idea_lower for keyword in ["patch", "fix", "repair"]):
         return "patch"
-    elif any(keyword in idea_lower for keyword in ["prioritize", "urgent", "important"]):
+    elif any(
+        keyword in idea_lower for keyword in ["prioritize", "urgent", "important"]
+    ):
         return "prioritize"
     else:
         return "note"
 
+
 # === Task Dispatcher ===
 def dispatch_task(idea_text, intent):
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    safe_filename = re.sub(r'\W+', '_', idea_text[:40])
+    safe_filename = re.sub(r"\W+", "_", idea_text[:40])
     file_path = os.path.join(TASK_DIR, f"{intent}_{timestamp}_{safe_filename}.task")
 
     with open(file_path, "w") as f:
@@ -41,9 +44,11 @@ def dispatch_task(idea_text, intent):
 
     print(f">> [Parser] Task dispatched: {file_path}")
 
+
 # === Routes ===
 
-@app.route('/')
+
+@app.route("/")
 def home():
     return """
     <h1>Ascend AI: Golden Eye Uplink</h1>
@@ -51,10 +56,11 @@ def home():
     <p>Post thoughts to /idea (JSON)</p>
     """
 
-@app.route('/idea', methods=['POST'])
+
+@app.route("/idea", methods=["POST"])
 def receive_idea():
     data = request.get_json(force=True)
-    idea = data.get('idea', '').strip()
+    idea = data.get("idea", "").strip()
 
     if not idea:
         return jsonify({"status": "error", "message": "No idea content provided."}), 400
@@ -70,14 +76,12 @@ def receive_idea():
     intent = classify_idea(idea)
     dispatch_task(idea, intent)
 
-    return jsonify({
-        "status": "received",
-        "idea": idea,
-        "intent": intent,
-        "timestamp": timestamp
-    })
+    return jsonify(
+        {"status": "received", "idea": idea, "intent": intent, "timestamp": timestamp}
+    )
 
-@app.route('/log', methods=['GET'])
+
+@app.route("/log", methods=["GET"])
 def read_log():
     if not os.path.exists(LOG_PATH):
         return jsonify({"log": []})
@@ -85,6 +89,7 @@ def read_log():
         log_data = f.readlines()
     return jsonify({"log": log_data[-25:]})
 
+
 # === Main ===
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=False)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=False)

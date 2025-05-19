@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -14,7 +13,10 @@ logging.basicConfig(level=logging.INFO)
 def redundancy_system():
     if APP_REDUNDANCY_SYSTEM:
         log_event("info", "Checking if Ascend AI has been removed from stores...")
-        log_event("info", "Redundancy system active. AI will auto-replace itself if deleted.")
+        log_event(
+            "info", "Redundancy system active. AI will auto-replace itself if deleted."
+        )
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     redundancy_system()

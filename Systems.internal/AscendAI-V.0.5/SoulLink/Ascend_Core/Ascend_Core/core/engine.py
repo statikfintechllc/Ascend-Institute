@@ -2,6 +2,7 @@ class AscendEngine:
     def __init__(self):
         from core.soul import SoulCore
         from core.controller import Controller
+
         self.soul = SoulCore()
         self.controller = Controller()
 

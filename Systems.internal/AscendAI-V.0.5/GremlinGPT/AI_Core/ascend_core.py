@@ -15,7 +15,9 @@ from AI_Core.prompt_engine import PromptEngine
 
 # === LOGGING ===
 log_path = os.path.expanduser("~/AscendNet/GremlinGPT/Logs/execution.log")
-logging.basicConfig(filename=log_path, level=logging.INFO, format='%(asctime)s - %(message)s')
+logging.basicConfig(
+    filename=log_path, level=logging.INFO, format="%(asctime)s - %(message)s"
+)
 logger = logging.getLogger("GremlinGPT")
 
 # === INIT CORE COMPONENTS ===
@@ -26,12 +28,14 @@ tasker = TaskExecution()
 modules = ModuleManager()
 prompt_gen = PromptEngine()
 
+
 def initialize_system():
     logger.info("Initializing GremlinGPT Runtime Loop")
     modules.load_all()
     memory.load_short_term()
     memory.load_long_term()
     logger.info("System initialization complete")
+
 
 def run_main_loop():
     while True:
@@ -58,7 +62,7 @@ def run_main_loop():
             memory.mark_task_failed(str(e))
             time.sleep(5)
 
+
 if __name__ == "__main__":
     initialize_system()
     run_main_loop()
-

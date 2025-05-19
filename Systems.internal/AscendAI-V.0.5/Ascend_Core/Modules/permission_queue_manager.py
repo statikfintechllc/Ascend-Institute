@@ -4,6 +4,7 @@ from datetime import datetime
 
 QUEUE_DIR = "./dashboard/requests/"
 
+
 def queue_permission_request(agent_id, action, context=""):
     req_id = str(uuid.uuid4())
     request = {
@@ -12,7 +13,7 @@ def queue_permission_request(agent_id, action, context=""):
         "action": action,
         "timestamp": datetime.utcnow().isoformat(),
         "context": context,
-        "status": "pending"
+        "status": "pending",
     }
 
     with open(f"{QUEUE_DIR}/{req_id}.json", "w") as f:

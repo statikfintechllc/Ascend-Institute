@@ -11,8 +11,9 @@ from alerts.telegram import send_telegram_alert
 logging.basicConfig(
     filename="logs/gremlin_runtime.log",
     level=logging.INFO,
-    format="%(asctime)s | %(levelname)s | %(message)s"
+    format="%(asctime)s | %(levelname)s | %(message)s",
 )
+
 
 def run():
     logging.info("Starting GremlinGPT runtime loop...")

@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -16,5 +15,6 @@ def boost_reviews():
         log_event("info", "Auto-buying & boosting positive reviews for Ascend AI...")
         log_event("info", "Review boosting active.")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     boost_reviews()

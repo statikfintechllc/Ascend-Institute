@@ -1,5 +1,6 @@
 import json
 
+
 class DashBridge:
     def __init__(self, queue_path="Dash_Sync/command_queue.json"):
         self.queue_path = queue_path
@@ -15,6 +16,7 @@ class DashBridge:
         data["commands"].append(cmd)
         with open(self.queue_path, "w") as f:
             json.dump(data, f, indent=4)
+
 
 # Example usage:
 # db = DashBridge()

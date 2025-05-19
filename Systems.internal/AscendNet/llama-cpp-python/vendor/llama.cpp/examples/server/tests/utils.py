@@ -84,7 +84,7 @@ class ServerProcess:
     draft_max: int | None = None
     no_webui: bool | None = None
     jinja: bool | None = None
-    reasoning_format: Literal['deepseek', 'none'] | None = None
+    reasoning_format: Literal["deepseek", "none"] | None = None
     chat_template: str | None = None
     chat_template_file: str | None = None
     server_path: str | None = None
@@ -209,7 +209,9 @@ class ServerProcess:
             creationflags=flags,
             stdout=sys.stdout,
             stderr=sys.stdout,
-            env={**os.environ, "LLAMA_CACHE": "tmp"} if "LLAMA_CACHE" not in os.environ else None,
+            env={**os.environ, "LLAMA_CACHE": "tmp"}
+            if "LLAMA_CACHE" not in os.environ
+            else None,
         )
         server_instances.add(self)
 
@@ -219,9 +221,15 @@ class ServerProcess:
         start_time = time.time()
         while time.time() - start_time < timeout_seconds:
             try:
-                response = self.make_request("GET", "/health", headers={
-                    "Authorization": f"Bearer {self.api_key}" if self.api_key else None
-                })
+                response = self.make_request(
+                    "GET",
+                    "/health",
+                    headers={
+                        "Authorization": f"Bearer {self.api_key}"
+                        if self.api_key
+                        else None
+                    },
+                )
                 if response.status_code == 200:
                     self.ready = True
                     return  # server is ready
@@ -229,7 +237,9 @@ class ServerProcess:
                 pass
             # Check if process died
             if self.process.poll() is not None:
-                raise RuntimeError(f"Server process died with return code {self.process.returncode}")
+                raise RuntimeError(
+                    f"Server process died with return code {self.process.returncode}"
+                )
 
             print(f"Waiting for server to start...")
             time.sleep(0.5)
@@ -284,9 +294,9 @@ class ServerProcess:
             raise ValueError(f"Unimplemented method: {method}")
         for line_bytes in response.iter_lines():
             line = line_bytes.decode("utf-8")
-            if '[DONE]' in line:
+            if "[DONE]" in line:
                 break
-            elif line.startswith('data: '):
+            elif line.startswith("data: "):
                 data = json.loads(line[6:])
                 print("Partial response from server", json.dumps(data, indent=2))
                 yield data
@@ -365,7 +375,9 @@ class ServerPreset:
         return server
 
 
-def parallel_function_calls(function_list: List[Tuple[Callable[..., Any], Tuple[Any, ...]]]) -> List[Any]:
+def parallel_function_calls(
+    function_list: List[Tuple[Callable[..., Any], Tuple[Any, ...]]]
+) -> List[Any]:
     """
     Run multiple functions in parallel and return results in the same order as calls. Equivalent to Promise.all in JS.
 
@@ -422,8 +434,8 @@ def download_file(url: str, output_file_path: str | None = None) -> str:
 
     Returns the local path of the downloaded file.
     """
-    file_name = url.split('/').pop()
-    output_file = f'./tmp/{file_name}' if output_file_path is None else output_file_path
+    file_name = url.split("/").pop()
+    output_file = f"./tmp/{file_name}" if output_file_path is None else output_file_path
     if not os.path.exists(output_file):
         print(f"Downloading {url} to {output_file}")
         wget.download(url, out=output_file)

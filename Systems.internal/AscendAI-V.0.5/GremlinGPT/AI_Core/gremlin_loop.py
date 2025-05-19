@@ -13,6 +13,7 @@ from langgraph_core import build_gremlin_graph
 # === Optional advanced modules ===
 try:
     import ray
+
     ray.init(ignore_reinit_error=True)
     GPU_AVAILABLE = True
 except ImportError:
@@ -21,7 +22,9 @@ except ImportError:
 # === Paths & Config ===
 ROOT_DIR = Path(__file__).resolve().parent.parent
 sys.path.append(str(ROOT_DIR))
-DASHBOARD_HEARTBEAT_URL = os.getenv("DASHBOARD_HEARTBEAT_URL", "http://localhost:5000/heartbeat")
+DASHBOARD_HEARTBEAT_URL = os.getenv(
+    "DASHBOARD_HEARTBEAT_URL", "http://localhost:5000/heartbeat"
+)
 
 # === Core System ===
 from core.decision import decision_node
@@ -49,88 +52,94 @@ logger = logging.getLogger(__name__)
 def remote_tool_run(name, params):
     return tool_registry[name](**params)
 
+
 @ray.remote(num_gpus=1)
 def remote_docker_run(code):
     return run_code_in_docker(code)
+
 
 # === Task Execution Logic ===
 def handle_task(task):
     try:
         logger.info(f"Processing task: {task['task']}")
-        context = recall_context(task['task'])
-        action = decision_node(task['task'], context)
+        context = recall_context(task["task"])
+        action = decision_node(task["task"], context)
 
-        if action['type'] == 'tool':
+        if action["type"] == "tool":
             if GPU_AVAILABLE:
-                result = ray.get(remote_tool_run.remote(action['name'], action['params']))
+                result = ray.get(
+                    remote_tool_run.remote(action["name"], action["params"])
+                )
             else:
-                result = tool_registry[action['name']](**action['params'])
+                result = tool_registry[action["name"]](**action["params"])
 
-        elif action['type'] == 'code':
+        elif action["type"] == "code":
             if GPU_AVAILABLE:
-                result = ray.get(remote_docker_run.remote(action['code']))
+                result = ray.get(remote_docker_run.remote(action["code"]))
             else:
-                result = run_code_in_docker(action['code'])
+                result = run_code_in_docker(action["code"])
 
-        elif action['type'] == 'shell':
-            result = os.popen(action['command']).read()
+        elif action["type"] == "shell":
+            result = os.popen(action["command"]).read()
 
-        elif action['type'] == 'quantum':
+        elif action["type"] == "quantum":
             result = "[TODO] Quantum task placeholder."
 
         else:
             result = "[UNKNOWN] Invalid action type."
 
-        store_context(task['task'], result)
-        log_plan(task['task'], task.get('reason', 'no-reason'), outcome='completed')
-        log_task_event(task['task'], "completed", str(result))
+        store_context(task["task"], result)
+        log_plan(task["task"], task.get("reason", "no-reason"), outcome="completed")
+        log_task_event(task["task"], "completed", str(result))
         send_discord_alert(f"[COMPLETE] '{task['task']}' → {result}")
         send_telegram_alert(f"[COMPLETE] '{task['task']}' → {result}")
 
     except Exception as e:
         err = traceback.format_exc()
-        log_task_event(task['task'], "error", str(e))
-        log_plan(task['task'], task.get('reason', 'unknown'), outcome='error')
+        log_task_event(task["task"], "error", str(e))
+        log_plan(task["task"], task.get("reason", "unknown"), outcome="error")
         logger.error(f"[FAILURE] {task['task']} errored: {err}")
         send_discord_alert(f"[ERROR] '{task['task']}' → {e}")
         send_telegram_alert(f"[ERROR] '{task['task']}' → {e}")
         maybe_spawn_instance(task)
+
 
 # Right after handling tasks:
 auto_remediate_failed_tasks()
 
 gremlin_graph = build_gremlin_graph()
 
+
 def handle_task(task):
     try:
         logger.info(f"Processing task: {task['task']}")
-        context = recall_context(task['task'])
-        action = decision_node(task['task'], context)
+        context = recall_context(task["task"])
+        action = decision_node(task["task"], context)
 
         # === Agent Decision Execution ===
         if action["type"] == "agent":
             logger.info("[Agent Mode] Executing via LangGraph")
-            result = gremlin_graph.run(task['task'])
+            result = gremlin_graph.run(task["task"])
 
         # === Tool Dispatch ===
-        elif action['type'] == 'tool':
-            result = tool_registry[action['name']](**action['params'])
+        elif action["type"] == "tool":
+            result = tool_registry[action["name"]](**action["params"])
 
         # === Code Execution ===
-        elif action['type'] == 'code':
-            result = run_code_in_docker(action['code'])
+        elif action["type"] == "code":
+            result = run_code_in_docker(action["code"])
 
         # === Shell Execution ===
-        elif action['type'] == 'shell':
-            result = os.popen(action['command']).read()
+        elif action["type"] == "shell":
+            result = os.popen(action["command"]).read()
 
         # === Fallback
         else:
             result = "[UNKNOWN] Action type not understood."
 
         # Log + Persist Outcome
-        store_context(task['task'], result)
-        log_plan(task['task'], task.get('reason', 'unknown'), outcome='completed')
+        store_context(task["task"], result)
+        log_plan(task["task"], task.get("reason", "unknown"), outcome="completed")
         send_discord_alert(f"Task '{task['task']}' complete: {result}")
         send_telegram_alert(f"Task '{task['task']}' complete: {result}")
 
@@ -138,7 +147,8 @@ def handle_task(task):
         logger.error(f"[FAILURE] {task['task']} blew up: {e}")
         send_discord_alert(f"[ERROR] Task failed: {e}")
         send_telegram_alert(f"[ERROR] Task failed: {e}")
-        log_plan(task['task'], task.get('reason', 'unknown'), outcome='error')
+        log_plan(task["task"], task.get("reason", "unknown"), outcome="error")
+
 
 # === Main Loop ===
 def gremlin_loop():
@@ -174,6 +184,7 @@ def gremlin_loop():
             send_discord_alert(f"[LOOP FAIL] {loop_error}")
             send_telegram_alert(f"[LOOP FAIL] {loop_error}")
             time.sleep(30)
+
 
 # Right after handling tasks:
 auto_remediate_failed_tasks()

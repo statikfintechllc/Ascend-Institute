@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -36,5 +35,6 @@ def glowing_golden_eye():
         ],
     )
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     glowing_golden_eye()

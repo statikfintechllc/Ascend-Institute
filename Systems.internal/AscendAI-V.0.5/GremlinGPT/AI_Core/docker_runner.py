@@ -8,11 +8,11 @@ DOCKER_DIR = ROOT_DIR / "Docker"
 
 DOCKER_IMAGE = "gremlingpt-runner"
 
+
 def build_docker_image():
     print("[Docker] Building container...")
-    subprocess.run([
-        "docker", "build", "-t", DOCKER_IMAGE, str(DOCKER_DIR)
-    ], check=True)
+    subprocess.run(["docker", "build", "-t", DOCKER_IMAGE, str(DOCKER_DIR)], check=True)
+
 
 def run_code_in_docker(code_str: str) -> str:
     """Executes the given Python code string safely inside a Docker container."""
@@ -23,10 +23,20 @@ def run_code_in_docker(code_str: str) -> str:
         f.write(code_str)
 
     try:
-        result = subprocess.check_output([
-            "docker", "run", "--rm", "-v", f"{DOCKER_DIR}:/app", DOCKER_IMAGE,
-            "python", f"/app/{temp_code_file.name}"
-        ], stderr=subprocess.STDOUT, timeout=20)
+        result = subprocess.check_output(
+            [
+                "docker",
+                "run",
+                "--rm",
+                "-v",
+                f"{DOCKER_DIR}:/app",
+                DOCKER_IMAGE,
+                "python",
+                f"/app/{temp_code_file.name}",
+            ],
+            stderr=subprocess.STDOUT,
+            timeout=20,
+        )
 
         output = result.decode("utf-8")
 

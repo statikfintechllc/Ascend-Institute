@@ -41,7 +41,7 @@ class TestRuntime(Runtime):
         return NullObservation()
 
     def copy_from(self, path):
-        return ''
+        return ""
 
     def copy_to(self, path, content):
         pass
@@ -58,7 +58,7 @@ class TestRuntime(Runtime):
 
 @pytest.fixture
 def temp_dir(tmp_path_factory: pytest.TempPathFactory) -> str:
-    return str(tmp_path_factory.mktemp('test_event_stream'))
+    return str(tmp_path_factory.mktemp("test_event_stream"))
 
 
 @pytest.fixture
@@ -66,15 +66,15 @@ def runtime(temp_dir):
     """Fixture for runtime testing"""
     config = AppConfig()
     git_provider_tokens = MappingProxyType(
-        {ProviderType.GITHUB: ProviderToken(token=SecretStr('test_token'))}
+        {ProviderType.GITHUB: ProviderToken(token=SecretStr("test_token"))}
     )
-    file_store = get_file_store('local', temp_dir)
-    event_stream = EventStream('abc', file_store)
+    file_store = get_file_store("local", temp_dir)
+    event_stream = EventStream("abc", file_store)
     runtime = TestRuntime(
         config=config,
         event_stream=event_stream,
-        sid='test',
-        user_id='test_user',
+        sid="test",
+        user_id="test_user",
         git_provider_tokens=git_provider_tokens,
     )
     return runtime
@@ -84,12 +84,12 @@ def runtime(temp_dir):
 async def test_export_latest_git_provider_tokens_no_user_id(temp_dir):
     """Test that no token export happens when user_id is not set"""
     config = AppConfig()
-    file_store = get_file_store('local', temp_dir)
-    event_stream = EventStream('abc', file_store)
-    runtime = TestRuntime(config=config, event_stream=event_stream, sid='test')
+    file_store = get_file_store("local", temp_dir)
+    event_stream = EventStream("abc", file_store)
+    runtime = TestRuntime(config=config, event_stream=event_stream, sid="test")
 
     # Create a command that would normally trigger token export
-    cmd = CmdRunAction(command='echo $GITHUB_TOKEN')
+    cmd = CmdRunAction(command="echo $GITHUB_TOKEN")
 
     # This should not raise any errors and should return None
     await runtime._export_latest_git_provider_tokens(cmd)
@@ -102,10 +102,10 @@ async def test_export_latest_git_provider_tokens_no_user_id(temp_dir):
 async def test_export_latest_git_provider_tokens_no_token_ref(temp_dir):
     """Test that no token export happens when command doesn't reference tokens"""
     config = AppConfig()
-    file_store = get_file_store('local', temp_dir)
-    event_stream = EventStream('abc', file_store)
+    file_store = get_file_store("local", temp_dir)
+    event_stream = EventStream("abc", file_store)
     runtime = TestRuntime(
-        config=config, event_stream=event_stream, sid='test', user_id='test_user'
+        config=config, event_stream=event_stream, sid="test", user_id="test_user"
     )
 
     # Create a command that doesn't reference any tokens
@@ -122,13 +122,13 @@ async def test_export_latest_git_provider_tokens_no_token_ref(temp_dir):
 async def test_export_latest_git_provider_tokens_success(runtime):
     """Test successful token export when command references tokens"""
     # Create a command that references the GitHub token
-    cmd = CmdRunAction(command='echo $GITHUB_TOKEN')
+    cmd = CmdRunAction(command="echo $GITHUB_TOKEN")
 
     # Export the tokens
     await runtime._export_latest_git_provider_tokens(cmd)
 
     # Verify that the token was exported to the event stream
-    assert runtime.event_stream.secrets == {'github_token': 'test_token'}
+    assert runtime.event_stream.secrets == {"github_token": "test_token"}
 
 
 @pytest.mark.asyncio
@@ -138,30 +138,30 @@ async def test_export_latest_git_provider_tokens_multiple_refs(temp_dir):
     # Initialize with both GitHub and GitLab tokens
     git_provider_tokens = MappingProxyType(
         {
-            ProviderType.GITHUB: ProviderToken(token=SecretStr('github_token')),
-            ProviderType.GITLAB: ProviderToken(token=SecretStr('gitlab_token')),
+            ProviderType.GITHUB: ProviderToken(token=SecretStr("github_token")),
+            ProviderType.GITLAB: ProviderToken(token=SecretStr("gitlab_token")),
         }
     )
-    file_store = get_file_store('local', temp_dir)
-    event_stream = EventStream('abc', file_store)
+    file_store = get_file_store("local", temp_dir)
+    event_stream = EventStream("abc", file_store)
     runtime = TestRuntime(
         config=config,
         event_stream=event_stream,
-        sid='test',
-        user_id='test_user',
+        sid="test",
+        user_id="test_user",
         git_provider_tokens=git_provider_tokens,
     )
 
     # Create a command that references multiple tokens
-    cmd = CmdRunAction(command='echo $GITHUB_TOKEN && echo $GITLAB_TOKEN')
+    cmd = CmdRunAction(command="echo $GITHUB_TOKEN && echo $GITLAB_TOKEN")
 
     # Export the tokens
     await runtime._export_latest_git_provider_tokens(cmd)
 
     # Verify that both tokens were exported
     assert event_stream.secrets == {
-        'github_token': 'github_token',
-        'gitlab_token': 'gitlab_token',
+        "github_token": "github_token",
+        "gitlab_token": "gitlab_token",
     }
 
 
@@ -169,11 +169,11 @@ async def test_export_latest_git_provider_tokens_multiple_refs(temp_dir):
 async def test_export_latest_git_provider_tokens_token_update(runtime):
     """Test that token updates are handled correctly"""
     # First export with initial token
-    cmd = CmdRunAction(command='echo $GITHUB_TOKEN')
+    cmd = CmdRunAction(command="echo $GITHUB_TOKEN")
     await runtime._export_latest_git_provider_tokens(cmd)
 
     # Update the token
-    new_token = 'new_test_token'
+    new_token = "new_test_token"
     runtime.provider_handler._provider_tokens = MappingProxyType(
         {ProviderType.GITHUB: ProviderToken(token=SecretStr(new_token))}
     )
@@ -182,4 +182,4 @@ async def test_export_latest_git_provider_tokens_token_update(runtime):
     await runtime._export_latest_git_provider_tokens(cmd)
 
     # Verify that the new token was exported
-    assert runtime.event_stream.secrets == {'github_token': new_token}
+    assert runtime.event_stream.secrets == {"github_token": new_token}

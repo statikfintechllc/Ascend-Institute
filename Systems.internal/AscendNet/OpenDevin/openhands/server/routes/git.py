@@ -18,12 +18,12 @@ from openhands.integrations.service_types import (
 from openhands.server.auth import get_access_token, get_provider_tokens, get_user_id
 from openhands.server.shared import server_config
 
-app = APIRouter(prefix='/api/user')
+app = APIRouter(prefix="/api/user")
 
 
-@app.get('/repositories', response_model=list[Repository])
+@app.get("/repositories", response_model=list[Repository])
 async def get_user_repositories(
-    sort: str = 'pushed',
+    sort: str = "pushed",
     provider_tokens: PROVIDER_TOKEN_TYPE | None = Depends(get_provider_tokens),
     access_token: SecretStr | None = Depends(get_access_token),
     user_id: str | None = Depends(get_user_id),
@@ -54,12 +54,12 @@ async def get_user_repositories(
             )
 
     return JSONResponse(
-        content='Git provider token required. (such as GitHub).',
+        content="Git provider token required. (such as GitHub).",
         status_code=status.HTTP_401_UNAUTHORIZED,
     )
 
 
-@app.get('/info', response_model=User)
+@app.get("/info", response_model=User)
 async def get_user(
     provider_tokens: PROVIDER_TOKEN_TYPE | None = Depends(get_provider_tokens),
     access_token: SecretStr | None = Depends(get_access_token),
@@ -86,17 +86,17 @@ async def get_user(
             )
 
     return JSONResponse(
-        content='Git provider token required. (such as GitHub).',
+        content="Git provider token required. (such as GitHub).",
         status_code=status.HTTP_401_UNAUTHORIZED,
     )
 
 
-@app.get('/search/repositories', response_model=list[Repository])
+@app.get("/search/repositories", response_model=list[Repository])
 async def search_repositories(
     query: str,
     per_page: int = 5,
-    sort: str = 'stars',
-    order: str = 'desc',
+    sort: str = "stars",
+    order: str = "desc",
     provider_tokens: PROVIDER_TOKEN_TYPE | None = Depends(get_provider_tokens),
     access_token: SecretStr | None = Depends(get_access_token),
 ):
@@ -123,12 +123,12 @@ async def search_repositories(
             )
 
     return JSONResponse(
-        content='GitHub token required.',
+        content="GitHub token required.",
         status_code=status.HTTP_401_UNAUTHORIZED,
     )
 
 
-@app.get('/suggested-tasks', response_model=list[SuggestedTask])
+@app.get("/suggested-tasks", response_model=list[SuggestedTask])
 async def get_suggested_tasks(
     provider_tokens: PROVIDER_TOKEN_TYPE | None = Depends(get_provider_tokens),
     access_token: SecretStr | None = Depends(get_access_token),
@@ -163,6 +163,6 @@ async def get_suggested_tasks(
             )
 
     return JSONResponse(
-        content='GitHub token required.',
+        content="GitHub token required.",
         status_code=status.HTTP_401_UNAUTHORIZED,
     )

@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -19,5 +18,6 @@ def analyze_dark_pool_sentiment():
     prediction = ai_model.predict(np.random.rand(1, 5))
     logging.info(f" Dark Pool Sentiment Score: {prediction}")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     analyze_dark_pool_sentiment()

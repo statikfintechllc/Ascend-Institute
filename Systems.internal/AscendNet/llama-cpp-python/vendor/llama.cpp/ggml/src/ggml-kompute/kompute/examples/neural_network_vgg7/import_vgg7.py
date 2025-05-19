@@ -7,7 +7,9 @@ import sh_common
 
 if len(sys.argv) != 2:
     print("import_vgg7.py JSONPATH")
-    print(" i.e. import_vgg7.py /home/you/Documents/External/waifu2x/models/vgg_7/art/scale2.0x_model.json")
+    print(
+        " i.e. import_vgg7.py /home/you/Documents/External/waifu2x/models/vgg_7/art/scale2.0x_model.json"
+    )
     sys.exit(1)
 
 try:
@@ -27,4 +29,3 @@ for i in range(7):
     idx += 1
     sh_common.save_param("kipper", idx, b)
     idx += 1
-

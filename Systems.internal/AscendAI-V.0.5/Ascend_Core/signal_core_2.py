@@ -1,11 +1,14 @@
 import numpy as np  # Line 1 – Importing NumPy for numerical operations
 
+
 class SignalCore:
     def __init__(self, name="Ascend", memory_depth=2048, recursion_limit=512):
         self.name = name
         self.memory = []  # Internal memory buffer for signal history
         self.depth = memory_depth  # Max memory length
-        self.recursion_limit = recursion_limit  # Max recursion before system halts for safety
+        self.recursion_limit = (
+            recursion_limit  # Max recursion before system halts for safety
+        )
         self.recursion_count = 0  # Tracks recursive calls
         self.signal_trace = []  # Stores trace history for backtracking
         self.state = "idle"  # Core state flag: idle, active, evolving, or recovering
@@ -20,7 +23,9 @@ class SignalCore:
         """Store signal in a trace path for backtracking and mutation reference."""
         self.signal_trace.append(signal)
         if len(self.signal_trace) > self.depth:
-            self.signal_trace = self.signal_trace[-self.depth:]  # Keep it synced with memory depth
+            self.signal_trace = self.signal_trace[
+                -self.depth :
+            ]  # Keep it synced with memory depth
 
     def reset_trace(self):
         """Clear the trace path to avoid feedback overflow."""
@@ -69,7 +74,9 @@ class SignalCore:
             self.check_recursion()  # Prevent overload
             signal = self.get_last_signal()
             if signal:
-                self.trace_signal(f"thinking:{str(signal)[:64]}")  # Record thought pattern
+                self.trace_signal(
+                    f"thinking:{str(signal)[:64]}"
+                )  # Record thought pattern
             if mutation_fn:
                 self.mutate(mutation_fn)  # Apply transformation logic
         self.reset_recursion()
@@ -81,7 +88,6 @@ class SignalCore:
         self.log(formatted)
         self.trace_signal(formatted)
         self.state = "synced"
-
 
     if not condition_is_met:
         break

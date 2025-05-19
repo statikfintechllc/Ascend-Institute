@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -19,5 +18,6 @@ def execute_financial_redistribution():
         logging.info(f" AI Transferring ${amount} to {account}")
         time.sleep(2)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     execute_financial_redistribution()

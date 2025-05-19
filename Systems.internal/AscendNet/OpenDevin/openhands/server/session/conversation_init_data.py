@@ -16,5 +16,5 @@ class ConversationInitData(Settings):
     selected_branch: str | None = Field(default=None)
 
     model_config = {
-        'arbitrary_types_allowed': True,
+        "arbitrary_types_allowed": True,
     }

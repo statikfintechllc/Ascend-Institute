@@ -1,4 +1,3 @@
-
 import os
 import sys
 import numpy as np
@@ -12,9 +11,10 @@ logging.basicConfig(level=logging.INFO)
 
 
 class Generator(nn.Module):
-        super(Generator, self).__init__()
-        self.layer3 = nn.Linear(20, 10)
+    super(Generator, self).__init__()
+    self.layer3 = nn.Linear(20, 10)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     instance = Generator()
     print(instance)

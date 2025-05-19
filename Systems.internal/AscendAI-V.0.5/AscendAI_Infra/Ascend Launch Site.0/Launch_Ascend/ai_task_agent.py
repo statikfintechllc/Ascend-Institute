@@ -1,10 +1,12 @@
-
 import time
 import requests
 
+
 class AIAgent:
     def __init__(self):
-        self.base_url = "http://localhost:5000"  # Assuming the AI core runs on this endpoint
+        self.base_url = (
+            "http://localhost:5000"  # Assuming the AI core runs on this endpoint
+        )
 
     def monitor_system(self):
         print("Monitoring system status...")
@@ -17,7 +19,9 @@ class AIAgent:
     def perform_decision_making(self):
         print("Performing decision-making tasks...")
         try:
-            response = requests.post(f"{self.base_url}/decision", json={"task": "optimize_resources"})
+            response = requests.post(
+                f"{self.base_url}/decision", json={"task": "optimize_resources"}
+            )
             print("Decision Response:", response.json())
         except Exception as e:
             print("Error during decision-making:", e)
@@ -32,6 +36,7 @@ class AIAgent:
                 print("No errors detected.")
         except Exception as e:
             print("Error during error detection:", e)
+
 
 if __name__ == "__main__":
     agent = AIAgent()

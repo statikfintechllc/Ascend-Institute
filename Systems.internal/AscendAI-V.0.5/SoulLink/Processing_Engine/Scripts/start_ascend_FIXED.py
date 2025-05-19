@@ -26,10 +26,12 @@ console = Console()
 active_models = []
 running_threads = {}
 
+
 def log(message):
     with open(LOG_PATH, "a") as log_file:
         log_file.write(f"[{time.ctime()}] {message}\n")
     console.log(message)
+
 
 # === Load Models ===
 def scan_models():
@@ -39,6 +41,7 @@ def scan_models():
         if "model" in file.name.lower():
             active_models.append(file.stem)
     log(f"[SCAN] Registered Models: {active_models}")
+
 
 # === Dashboard ===
 def cli_dashboard():
@@ -54,18 +57,23 @@ def cli_dashboard():
         console.print(table)
         time.sleep(5)
 
+
 # === Agent Launcher ===
 def launch_agent(script_name):
     def agent_thread():
         log(f"[AGENT START] {script_name}")
         try:
-            subprocess.run(["python3", str(AGENT_SCRIPT_PATH / script_name)], check=True)
+            subprocess.run(
+                ["python3", str(AGENT_SCRIPT_PATH / script_name)], check=True
+            )
         except subprocess.CalledProcessError as e:
             log(f"[AGENT ERROR] {script_name}: {e}")
+
     t = threading.Thread(target=agent_thread)
     t.daemon = True
     t.start()
     running_threads[script_name] = t
+
 
 # === Prompt Reactor ===
 def react_to_prompts():
@@ -80,6 +88,7 @@ def react_to_prompts():
             prompt_file.unlink()
         time.sleep(2)
 
+
 # === Load SoulMap (Optional) ===
 def load_soulmap():
     if SOULMAP_PATH.exists():
@@ -88,6 +97,7 @@ def load_soulmap():
         log(f"[SOULMAP] Loaded: {soul.get('identity', 'Unknown')}")
     else:
         log("[SOULMAP] Not Found")
+
 
 # === Main Entry ===
 def main():
@@ -106,6 +116,7 @@ def main():
     # Keep main alive
     while True:
         time.sleep(10)
+
 
 if __name__ == "__main__":
     main()
