@@ -1,6 +1,6 @@
-
 # EXECUTION_LOOP.PY
 # [Recursive Runtime Loop | Autonomous Execution Heartbeat]
+
 
 class ExecutionLoop:
     """
@@ -23,7 +23,7 @@ class ExecutionLoop:
         memory_snapshot = {
             "cycle": self.loop_count,
             "signal": signal,
-            "memory_state": len(self.runtime_memory)
+            "memory_state": len(self.runtime_memory),
         }
         self.runtime_memory.append(memory_snapshot)
         print(f"[ExecutionLoop] Tick {self.loop_count}: Signal = {signal}")
@@ -45,8 +45,9 @@ class ExecutionLoop:
         return {
             "loop_active": self.active,
             "loops_completed": self.loop_count,
-            "memory_snapshots": self.runtime_memory[-3:]
+            "memory_snapshots": self.runtime_memory[-3:],
         }
+
 
 # Autonomous trigger
 if __name__ == "__main__":

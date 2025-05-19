@@ -12,6 +12,7 @@ from tools.reward_model import evaluate_result, log_reward
 from memory.log_history import log_event
 from backend.globals import logger
 
+
 def execute_tool(task):
     task_type = task.get("type")
     target = task.get("target", "")
@@ -23,12 +24,16 @@ def execute_tool(task):
         if task_type == "scrape":
             dom = asyncio.run(get_dom_html(target))
             preview = dom[:100]
-            log_event("exec", task_type, {"preview": preview}, status="success", meta=meta)
+            log_event(
+                "exec", task_type, {"preview": preview}, status="success", meta=meta
+            )
             return {"scraped": preview}
 
         elif task_type == "signal_scan":
             signals = generate_signals()
-            log_event("exec", task_type, {"signals": signals}, status="success", meta=meta)
+            log_event(
+                "exec", task_type, {"signals": signals}, status="success", meta=meta
+            )
             return signals
 
         elif task_type == "nlp":
@@ -40,12 +45,16 @@ def execute_tool(task):
                 "timestamp": datetime.utcnow().isoformat(),
             }
             package_embedding(target, vec, meta_embed)
-            log_event("exec", task_type, {"embedded": True}, status="success", meta=meta_embed)
+            log_event(
+                "exec", task_type, {"embedded": True}, status="success", meta=meta_embed
+            )
             return {"embedding": vector_list}
 
         elif task_type == "self_train":
             inject_feedback()
-            log_event("exec", task_type, {"triggered": True}, status="success", meta=meta)
+            log_event(
+                "exec", task_type, {"triggered": True}, status="success", meta=meta
+            )
             return {"trained": True}
 
         elif task_type == "shell":
@@ -53,12 +62,24 @@ def execute_tool(task):
             preview = output[:500]
             reward = evaluate_result("shell", preview)
             log_reward(reward)
-            log_event("exec", task_type, {"shell_preview": preview}, status="success", meta=reward)
+            log_event(
+                "exec",
+                task_type,
+                {"shell_preview": preview},
+                status="success",
+                meta=reward,
+            )
             return {"shell_result": preview}
 
         else:
             logger.error(f"[TOOL] Unknown task type: {task_type}")
-            log_event("exec", task_type, {"error": "Unknown task type"}, status="error", meta=meta)
+            log_event(
+                "exec",
+                task_type,
+                {"error": "Unknown task type"},
+                status="error",
+                meta=meta,
+            )
             raise ValueError("Unknown task type")
 
     except Exception as e:

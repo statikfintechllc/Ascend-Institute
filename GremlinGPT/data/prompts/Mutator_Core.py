@@ -1,9 +1,9 @@
-
 # MUTATOR_CORE.PY
 # [Self-Rewriting Logic Engine | Adaptive Mutation Stack]
 
 import hashlib
 import datetime
+
 
 class MutatorCore:
     """
@@ -33,15 +33,18 @@ class MutatorCore:
         return mutated
 
     def _log_mutation(self, original, mutated, reason):
-        self.mutation_log.append({
-            "timestamp": datetime.datetime.utcnow().isoformat(),
-            "original_hash": hashlib.md5(original.encode()).hexdigest(),
-            "mutated_hash": hashlib.md5(mutated.encode()).hexdigest(),
-            "reason": reason
-        })
+        self.mutation_log.append(
+            {
+                "timestamp": datetime.datetime.utcnow().isoformat(),
+                "original_hash": hashlib.md5(original.encode()).hexdigest(),
+                "mutated_hash": hashlib.md5(mutated.encode()).hexdigest(),
+                "reason": reason,
+            }
+        )
 
     def show_log(self):
         return self.mutation_log
+
 
 # Sample Execution
 if __name__ == "__main__":

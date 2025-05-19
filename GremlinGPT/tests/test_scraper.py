@@ -5,6 +5,7 @@ from scraper.page_simulator import store_scrape_to_memory
 
 TEST_URL = "https://example.com"
 
+
 def test_scraper_pipeline():
     html = asyncio.run(get_dom_html(TEST_URL))
     assert "<html" in html.lower()
@@ -13,4 +14,3 @@ def test_scraper_pipeline():
     assert "text" in parsed and len(parsed["text"]) > 0
 
     store_scrape_to_memory(TEST_URL, html)
-

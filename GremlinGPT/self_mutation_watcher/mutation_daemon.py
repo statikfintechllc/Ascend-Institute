@@ -8,12 +8,14 @@ SCAN_INTERVAL_MIN = 5
 NOTIFY_DASHBOARD = True
 DASHBOARD_ENDPOINT = "http://localhost:5050/api/mutation/ping"
 
+
 def notify_dashboard(message):
     try:
         if NOTIFY_DASHBOARD:
             requests.post(DASHBOARD_ENDPOINT, json={"message": message})
     except Exception as e:
         logger.warning(f"[WATCHER] Dashboard notification failed: {e}")
+
 
 def mutation_loop():
     logger.info("[WATCHER] Mutation Daemon Started.")
@@ -24,6 +26,7 @@ def mutation_loop():
         except Exception as e:
             logger.error(f"[WATCHER] Loop error: {e}")
         time.sleep(SCAN_INTERVAL_MIN * 60)
+
 
 def run_daemon():
     t = threading.Thread(target=mutation_loop, daemon=True)

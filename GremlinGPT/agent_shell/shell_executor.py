@@ -10,7 +10,22 @@ from memory.vector_store.embedder import package_embedding
 LOG_PATH = Path("~/AscendNet/GremlinGPT/logs/shell_log.jsonl")
 LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
 
-SAFE_COMMANDS = ["ls", "pwd", "whoami", "echo", "ps", "top", "df", "free", "uptime", "uname", "cat", "grep", "find"]
+SAFE_COMMANDS = [
+    "ls",
+    "pwd",
+    "whoami",
+    "echo",
+    "ps",
+    "top",
+    "df",
+    "free",
+    "uptime",
+    "uname",
+    "cat",
+    "grep",
+    "find",
+]
+
 
 def run_shell_command(cmd: str) -> str:
     parsed = shlex.split(cmd)
@@ -22,13 +37,18 @@ def run_shell_command(cmd: str) -> str:
         result = subprocess.run(parsed, capture_output=True, text=True, timeout=10)
         output = result.stdout.strip() or result.stderr.strip()
         package_embedding(cmd + "\n" + output, source="shell")
-        
+
         with open(LOG_PATH, "a") as log:
-            log.write(json.dumps({
-                "timestamp": datetime.now().isoformat(),
-                "command": cmd,
-                "output": output
-            }) + "\n")
+            log.write(
+                json.dumps(
+                    {
+                        "timestamp": datetime.now().isoformat(),
+                        "command": cmd,
+                        "output": output,
+                    }
+                )
+                + "\n"
+            )
 
         return output
     except Exception as e:

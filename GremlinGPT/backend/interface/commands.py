@@ -2,6 +2,7 @@ from agent_core.task_queue import enqueue_task
 from backend.globals import CFG
 from loguru import logger
 
+
 def parse_command(cmd_text):
     if "scrape" in cmd_text:
         return {"type": "scrape", "target": cmd_text.split()[-1]}
@@ -10,6 +11,7 @@ def parse_command(cmd_text):
     elif "train" in cmd_text:
         return {"type": "self_train"}
     return {"type": "unknown", "payload": cmd_text}
+
 
 def execute_command(cmd):
     if cmd["type"] in ["scrape", "signal_scan", "self_train"]:

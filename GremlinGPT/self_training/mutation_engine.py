@@ -1,6 +1,7 @@
 import random
 from datetime import datetime
 
+
 def mutate_dataset(dataset):
     mutated = []
     for entry in dataset:
@@ -17,17 +18,19 @@ def mutate_dataset(dataset):
             suffixes = [
                 " #mutated",
                 f" #patch_{random.randint(100, 999)}",
-                f" #delta_{datetime.utcnow().timestamp():.0f}"
+                f" #delta_{datetime.utcnow().timestamp():.0f}",
             ]
             fix = original + random.choice(suffixes)
             mutation_type = "suffix_noise"
 
-        mutated.append({
-            "input": original,
-            "mutation": fix,
-            "label": "mutated",
-            "mutation_type": mutation_type,
-            "timestamp": datetime.utcnow().isoformat()
-        })
+        mutated.append(
+            {
+                "input": original,
+                "mutation": fix,
+                "label": "mutated",
+                "mutation_type": mutation_type,
+                "timestamp": datetime.utcnow().isoformat(),
+            }
+        )
 
     return mutated

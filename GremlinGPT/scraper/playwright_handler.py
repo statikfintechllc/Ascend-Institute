@@ -3,6 +3,7 @@ from backend.globals import CFG
 
 PROFILE = CFG["scraper"]["browser_profile"]
 
+
 async def get_dom_html(url):
     async with async_playwright() as p:
         browser = await p.chromium.launch_persistent_context(PROFILE, headless=True)
@@ -11,4 +12,3 @@ async def get_dom_html(url):
         content = await page.content()
         await browser.close()
         return content
-

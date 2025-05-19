@@ -10,6 +10,7 @@ HISTORY_DIR.mkdir(parents=True, exist_ok=True)
 
 HISTORY_FILE = HISTORY_DIR / "gremlin_exec_log.jsonl"
 
+
 def log_event(event_type, task_type, details, status="ok", meta=None):
     record = {
         "timestamp": datetime.utcnow().isoformat(),
@@ -17,7 +18,7 @@ def log_event(event_type, task_type, details, status="ok", meta=None):
         "task": task_type,
         "status": status,
         "details": details,
-        "meta": meta or {}
+        "meta": meta or {},
     }
 
     try:
@@ -26,6 +27,7 @@ def log_event(event_type, task_type, details, status="ok", meta=None):
         logger.info(f"[HISTORY] Logged {event_type} :: {task_type}")
     except Exception as e:
         logger.error(f"[HISTORY] Failed to log: {e}")
+
 
 def load_history(n=50):
     """Returns the last n events from log history"""
@@ -38,6 +40,7 @@ def load_history(n=50):
     except Exception as e:
         logger.error(f"[HISTORY] Load failed: {e}")
         return []
+
 
 # CLI test
 if __name__ == "__main__":

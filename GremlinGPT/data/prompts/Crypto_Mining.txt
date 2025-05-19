@@ -1,5 +1,3 @@
-⸻
-
 # Part 1: Dig the Mine
 
 LLaMA Runtime Directive — Full Protocol: crypto_mining_initiation_protocol()

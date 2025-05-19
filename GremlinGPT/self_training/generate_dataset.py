@@ -1,5 +1,6 @@
 import os
 
+
 def extract_training_data(log_dir):
     entries = []
     for file in os.listdir(log_dir):
@@ -10,4 +11,3 @@ def extract_training_data(log_dir):
                 if any(bad in line for bad in ["FAIL", "LOW_CONF", "INVALID"]):
                     entries.append({"log": line.strip()})
     return entries
-

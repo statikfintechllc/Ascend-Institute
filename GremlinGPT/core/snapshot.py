@@ -12,9 +12,11 @@ from backend.globals import logger
 SNAPSHOT_ROOT = Path("run/checkpoints/snapshots/")
 SNAPSHOT_ROOT.mkdir(parents=True, exist_ok=True)
 
+
 def sha256_file(path):
     with open(path, "rb") as f:
         return hashlib.sha256(f.read()).hexdigest()
+
 
 def build_tree(directory):
     tree = {}
@@ -27,6 +29,7 @@ def build_tree(directory):
             except Exception as e:
                 logger.warning(f"[SNAPSHOT] Could not hash {rel_path}: {e}")
     return tree
+
 
 def snapshot_file(file_path, label="manual"):
     file = Path(file_path)
@@ -41,16 +44,21 @@ def snapshot_file(file_path, label="manual"):
     snap_path = SNAPSHOT_ROOT / snap_name
 
     with open(snap_path, "w") as f:
-        json.dump({
-            "path": str(file),
-            "hash": hash_val,
-            "timestamp": time_stamp,
-            "label": label,
-            "code": content
-        }, f, indent=2)
+        json.dump(
+            {
+                "path": str(file),
+                "hash": hash_val,
+                "timestamp": time_stamp,
+                "label": label,
+                "code": content,
+            },
+            f,
+            indent=2,
+        )
 
     logger.success(f"[SNAPSHOT] Saved {snap_name}")
     return snap_path
+
 
 def rollback(file_path, snapshot_file):
     with open(snapshot_file, "r") as f:
@@ -77,12 +85,13 @@ def rollback(file_path, snapshot_file):
             "type": "rollback",
             "semantic_score": diff["semantic_score"],
             "embedding_delta": diff["embedding_delta"],
-            "timestamp": datetime.utcnow().isoformat()
-        }
+            "timestamp": datetime.utcnow().isoformat(),
+        },
     )
 
     Path(file_path).write_text(old_code)
     logger.warning(f"[SNAPSHOT] Rolled back {file_path} using {snapshot_file}")
+
 
 # CLI usage
 if __name__ == "__main__":

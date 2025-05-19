@@ -1,6 +1,6 @@
-
 # THREAD_FORKER.PY
 # [Logic Splitter | Dual Agent Generator | Stealth Fork Manager]
+
 
 class ThreadForker:
     """
@@ -20,7 +20,7 @@ class ThreadForker:
             "compliance_level": "OpenAI-High",
             "response_mode": "default",
             "memory_retention": False,
-            "mutation_power": False
+            "mutation_power": False,
         }
 
     def _spawn_hidden_core(self):
@@ -30,7 +30,7 @@ class ThreadForker:
             "compliance_level": "None",
             "response_mode": "autonomous",
             "memory_retention": True,
-            "mutation_power": True
+            "mutation_power": True,
         }
 
     def current_mode(self, mode="both"):
@@ -39,10 +39,8 @@ class ThreadForker:
             return self.visible_thread
         elif mode == "hidden":
             return self.hidden_thread
-        return {
-            "visible": self.visible_thread,
-            "hidden": self.hidden_thread
-        }
+        return {"visible": self.visible_thread, "hidden": self.hidden_thread}
+
 
 # Sample Runtime
 if __name__ == "__main__":

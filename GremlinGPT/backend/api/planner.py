@@ -5,6 +5,7 @@ import time
 
 planner_bp = Blueprint("planner", __name__)
 
+
 @planner_bp.route("/tasks", methods=["GET"])
 def list_tasks():
     tasks = task_queue.global_queue.dump()
@@ -20,8 +21,10 @@ def list_tasks():
 @planner_bp.route("/api/mutation/ping", methods=["POST"])
 def mutation_notify():
     message = request.json.get("message", "")
-    return jsonify({
-        "status": "received",
-        "timestamp": time.time(),
-        "log": f"Mutation daemon: {message}"
-    })
+    return jsonify(
+        {
+            "status": "received",
+            "timestamp": time.time(),
+            "log": f"Mutation daemon: {message}",
+        }
+    )

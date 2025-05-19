@@ -5,6 +5,7 @@ from rich.table import Table
 
 BASE_DIR = "."
 
+
 def is_importable(module_path):
     """Check if a module is importable using importlib."""
     try:
@@ -12,6 +13,7 @@ def is_importable(module_path):
         return spec is not None
     except Exception:
         return False
+
 
 def trace_calls():
     table = Table(title="GremlinGPT Module Interconnectivity")
@@ -30,7 +32,8 @@ def trace_calls():
                     imports = [
                         line.strip()
                         for line in lines
-                        if line.strip().startswith("import") or line.strip().startswith("from")
+                        if line.strip().startswith("import")
+                        or line.strip().startswith("from")
                     ]
                     importable = "Yes" if is_importable(path) else "No"
                     table.add_row(module_name, "\n".join(imports), importable)
@@ -39,6 +42,7 @@ def trace_calls():
                     print(f"[WARN] Skipped {module_name}: {e}")
 
     print(table)
+
 
 if __name__ == "__main__":
     trace_calls()

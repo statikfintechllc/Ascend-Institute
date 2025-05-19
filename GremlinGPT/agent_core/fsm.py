@@ -15,6 +15,7 @@ FSM_STATE = "IDLE"
 console = Console()
 task_queue = TaskQueue(retry_limit=G.AGENT["task_retry_limit"])
 
+
 def fsm_loop():
     global FSM_STATE
     FSM_STATE = "RUNNING"
@@ -46,6 +47,7 @@ def fsm_loop():
     FSM_STATE = "IDLE"
     console.log("[FSM] Queue cleared.")
 
+
 def run_schedule():
     run_daemon()  # Persistent mutation daemon thread
     schedule.every(30).seconds.do(fsm_loop)
@@ -54,6 +56,7 @@ def run_schedule():
     while True:
         schedule.run_pending()
         time.sleep(1)
+
 
 if __name__ == "__main__":
     task_queue.enqueue({"type": "scrape"})

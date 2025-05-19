@@ -8,6 +8,7 @@ from backend.globals import logger
 EXEC_LOG_DIR = Path("run/logs/executions/")
 EXEC_LOG_DIR.mkdir(parents=True, exist_ok=True)
 
+
 def run_python_sandbox(code, timeout=5):
     exec_id = str(uuid.uuid4())
     output_path = EXEC_LOG_DIR / f"{exec_id}.out"
@@ -26,7 +27,7 @@ def run_python_sandbox(code, timeout=5):
             stderr=subprocess.PIPE,
             timeout=timeout,
             text=True,
-            check=False
+            check=False,
         )
 
         # Save output to log
@@ -41,7 +42,7 @@ def run_python_sandbox(code, timeout=5):
             "stdout": result.stdout.strip(),
             "stderr": result.stderr.strip(),
             "success": result.returncode == 0,
-            "log_path": str(output_path)
+            "log_path": str(output_path),
         }
 
     except subprocess.TimeoutExpired:
@@ -54,8 +55,9 @@ def run_python_sandbox(code, timeout=5):
 
     finally:
         # Clean up the temp script
-        if 'script_path' in locals() and os.path.exists(script_path):
+        if "script_path" in locals() and os.path.exists(script_path):
             os.remove(script_path)
+
 
 # CLI test mode
 if __name__ == "__main__":

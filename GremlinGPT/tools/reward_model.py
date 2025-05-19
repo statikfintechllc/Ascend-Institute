@@ -11,6 +11,7 @@ LOG_HISTORY_DIR = Path("data/logs/")
 REWARD_LOG = LOG_HISTORY_DIR / "rewards.jsonl"
 REWARD_LOG.parent.mkdir(parents=True, exist_ok=True)
 
+
 def evaluate_result(task_type, output_text, reference_text=None):
     """
     Assign reward/confidence based on output:
@@ -48,8 +49,9 @@ def evaluate_result(task_type, output_text, reference_text=None):
         "reward": round(reward, 4),
         "reason": reason,
         "timestamp": datetime.utcnow().isoformat(),
-        "output": output_text[:300]
+        "output": output_text[:300],
     }
+
 
 def log_reward(record):
     try:
@@ -58,6 +60,7 @@ def log_reward(record):
         logger.info(f"[REWARD] Logged: {record['task']} [{record['reason']}]")
     except Exception as e:
         logger.error(f"[REWARD] Failed to log reward: {e}")
+
 
 def top_rewarded_tasks(n=5):
     records = []
@@ -70,6 +73,7 @@ def top_rewarded_tasks(n=5):
         return []
 
     return sorted(records, key=lambda r: r["reward"], reverse=True)[:n]
+
 
 if __name__ == "__main__":
     out = "Successfully scraped 5 stock tickers from Webull."

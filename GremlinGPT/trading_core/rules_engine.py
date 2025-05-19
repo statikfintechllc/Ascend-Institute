@@ -5,4 +5,3 @@ def apply_signal_rules(stock):
         return {"signal": "Watch"}
     else:
         return None
-

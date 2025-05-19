@@ -10,6 +10,7 @@ from backend.globals import logger
 KERNEL_TAG = "kernel_writer"
 SOURCE_ROOT = Path("GremlinGPT")
 
+
 def read_file(path):
     try:
         with open(path, "r") as f:
@@ -17,6 +18,7 @@ def read_file(path):
     except Exception as e:
         logger.error(f"[KERNEL] Failed to read {path}: {e}")
         return None
+
 
 def write_file(path, content):
     try:
@@ -27,6 +29,7 @@ def write_file(path, content):
     except Exception as e:
         logger.error(f"[KERNEL] Failed to write {path}: {e}")
         return False
+
 
 def apply_patch(file_path, new_code, reason="mutation"):
     original = read_file(file_path)
@@ -51,8 +54,8 @@ def apply_patch(file_path, new_code, reason="mutation"):
             "reason": reason,
             "semantic_score": diff["semantic_score"],
             "embedding_delta": diff["embedding_delta"],
-            "timestamp": datetime.utcnow().isoformat()
-        }
+            "timestamp": datetime.utcnow().isoformat(),
+        },
     )
 
     success = write_file(file_path, new_code)
@@ -61,9 +64,11 @@ def apply_patch(file_path, new_code, reason="mutation"):
 
     return success
 
+
 def patch_from_text(target_file, injected_code, reason="human"):
     path = SOURCE_ROOT / target_file
     return apply_patch(str(path), injected_code, reason)
+
 
 def patch_from_file(target_file, patch_file):
     try:
@@ -73,6 +78,7 @@ def patch_from_file(target_file, patch_file):
     except Exception as e:
         logger.error(f"[KERNEL] Failed patch from file: {e}")
         return False
+
 
 if __name__ == "__main__":
     test_file = "agent_core/tool_executor.py"

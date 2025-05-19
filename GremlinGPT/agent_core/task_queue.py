@@ -4,11 +4,13 @@ import uuid
 task_queue = deque()
 task_status = {}
 
+
 def enqueue_task(task):
     task_id = str(uuid.uuid4())
     task["id"] = task_id
     task_queue.append(task)
     task_status[task_id] = "queued"
+
 
 def fetch_task(task_type=None):
     for _ in range(len(task_queue)):
@@ -19,9 +21,10 @@ def fetch_task(task_type=None):
         task_queue.append(task)
     return None
 
+
 def get_all_tasks():
     return [{"id": k, "status": v} for k, v in task_status.items()]
 
+
 def update_task_status(task_id, status):
     task_status[task_id] = status
-
