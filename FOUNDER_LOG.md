@@ -14,12 +14,16 @@ Not on fiber internet with a dev team holding my hand.
 I built it with:
 
 A cracked iPhone.
+(got a new one)
 
 A Microsoft Go 3 with 4GB of RAM — a literal potato.
+(Recently upgraded to: Ryzen 9900x, 2x 3060 msi 12gb, 128gb ddr5, 6tb nvme)
 
 A broken external drive.
+(yup, toasted)
 
 A half-dead charger held together by tape.
+(Moved to better cord and a real computer)
 
 No dev team.
 
