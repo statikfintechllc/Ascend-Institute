@@ -14,8 +14,8 @@ REWARD_LOG.parent.mkdir(parents=True, exist_ok=True)
 def evaluate_result(task_type, output_text, reference_text=None):
     """
     Assign reward/confidence based on output:
-    - Use semantic similarity if reference provided
-    - Length/success heuristics otherwise
+    - Uses semantic similarity and vector norms
+    - Heuristic fallbacks for basic scoring
     """
 
     reward = 0.0
@@ -24,7 +24,8 @@ def evaluate_result(task_type, output_text, reference_text=None):
 
     if reference_text:
         similarity = semantic_similarity(output_text, reference_text)
-        confidence = similarity
+        delta = np.linalg.norm(np.array([similarity]) - np.array([1.0]))
+        confidence = max(0.0, 1.0 - delta)
         reward = similarity
         reason = "semantic_match"
     else:
@@ -68,10 +69,8 @@ def top_rewarded_tasks(n=5):
     except FileNotFoundError:
         return []
 
-    # Sort by reward descending
     return sorted(records, key=lambda r: r["reward"], reverse=True)[:n]
 
-# Test mode
 if __name__ == "__main__":
     out = "Successfully scraped 5 stock tickers from Webull."
     ref = "Extract a list of tickers from a market page."
