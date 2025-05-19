@@ -1,12 +1,16 @@
+# trainer.py
+
+import time
+import json
+from loguru import logger
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
+from backend.globals import CFG
 from self_training.generate_dataset import extract_training_data
 from self_training.mutation_engine import mutate_dataset
-from backend.globals import CFG
-from loguru import logger
-import time
 
-LOG_DIR = "data/logs/"
+LOG_DIR = CFG["paths"].get("data_dir", "data/") + "logs/"
+OUTPUT_PATH = CFG["paths"].get("data_dir", "data/") + "nlp_training_sets/mutated_dataset.json"
 
 class LogEventHandler(FileSystemEventHandler):
     def on_modified(self, event):
@@ -17,16 +21,15 @@ class LogEventHandler(FileSystemEventHandler):
 def trigger_retrain():
     raw = extract_training_data(LOG_DIR)
     mutated = mutate_dataset(raw)
-    with open("data/nlp_training_sets/mutated_dataset.json", "w") as f:
-        import json
+    with open(OUTPUT_PATH, "w") as f:
         json.dump(mutated, f, indent=2)
-    logger.info("[TRAINER] Mutation + data regeneration complete.")
+    logger.info(f"[TRAINER] Mutation + data regeneration complete → {OUTPUT_PATH}")
 
 def watch_logs():
     observer = Observer()
     observer.schedule(LogEventHandler(), path=LOG_DIR, recursive=False)
     observer.start()
-    logger.info("[TRAINER] Watching logs for retraining...")
+    logger.info(f"[TRAINER] Watching logs at: {LOG_DIR}")
     try:
         while True:
             time.sleep(10)
@@ -36,4 +39,3 @@ def watch_logs():
 
 if __name__ == "__main__":
     watch_logs()
-
