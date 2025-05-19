@@ -10,7 +10,11 @@ dependencies:
   - lxml
   - aiohttp
   - requests
+  - tqdm
+  - rich
+  - loguru
+  - flask  # Required for API interop with dashboard
+  - flask-socketio  # Real-time messaging
   - pip:
       - undetected-chromedriver
       - websockets
-

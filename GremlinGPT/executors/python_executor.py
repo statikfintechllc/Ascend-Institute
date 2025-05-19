@@ -1,5 +1,3 @@
-# executors/python_executor.py
-
 import subprocess
 import tempfile
 import uuid
@@ -12,17 +10,18 @@ EXEC_LOG_DIR.mkdir(parents=True, exist_ok=True)
 
 def run_python_sandbox(code, timeout=5):
     exec_id = str(uuid.uuid4())
-    script_path = EXEC_LOG_DIR / f"{exec_id}.py"
     output_path = EXEC_LOG_DIR / f"{exec_id}.out"
 
     try:
-        # Write temp code file
-        with open(script_path, "w") as f:
-            f.write(code)
+        # Use a safe temporary file for execution
+        with tempfile.NamedTemporaryFile(mode="w+", suffix=".py", delete=False) as tmp:
+            tmp.write(code)
+            tmp.flush()
+            script_path = tmp.name
 
-        # Run in subprocess with timeout
+        # Execute safely with timeout
         result = subprocess.run(
-            ["python3", str(script_path)],
+            ["python3", script_path],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             timeout=timeout,
@@ -30,12 +29,12 @@ def run_python_sandbox(code, timeout=5):
             check=False
         )
 
-        # Save combined output
+        # Save output to log
         with open(output_path, "w") as out:
             out.write("STDOUT:\n" + result.stdout + "\n")
             out.write("STDERR:\n" + result.stderr + "\n")
 
-        logger.info(f"[EXECUTOR] Finished: {script_path.name}")
+        logger.info(f"[EXECUTOR] Finished: {Path(script_path).name}")
         return {
             "id": exec_id,
             "returncode": result.returncode,
@@ -46,16 +45,19 @@ def run_python_sandbox(code, timeout=5):
         }
 
     except subprocess.TimeoutExpired:
-        logger.error(f"[EXECUTOR] Timeout for code block")
+        logger.error("[EXECUTOR] Timeout during execution")
         return {"id": exec_id, "success": False, "error": "Timeout"}
+
     except Exception as e:
         logger.error(f"[EXECUTOR] Execution failed: {e}")
         return {"id": exec_id, "success": False, "error": str(e)}
+
     finally:
-        if script_path.exists():
+        # Clean up the temp script
+        if 'script_path' in locals() and os.path.exists(script_path):
             os.remove(script_path)
 
-# Example usage
+# CLI test mode
 if __name__ == "__main__":
     test_code = "print('Hello from Gremlin sandbox!')"
     result = run_python_sandbox(test_code)
