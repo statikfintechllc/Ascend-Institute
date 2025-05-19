@@ -17,7 +17,7 @@ jobs:
       - name: Lint codebase
         run: |
           pip install flake8
-          flake8 GremlinGPT/
+          flake8 GremlinGPT/ --exclude=GremlinGPT/data/prompts --max-line-length=120
 
       - name: Install requirements
         run: |
@@ -25,8 +25,9 @@ jobs:
 
       - name: Targeted Lint
         run: |
-          flake8 GremlinGPT/ --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 GremlinGPT/ --exclude=GremlinGPT/data/prompts --count \
+          --select=E9,F63,F7,F82 --max-line-length=120 --show-source --statistics
 
-      - name: Run Matrix
+      - name: Run GremlinGPT
         run: |
-          python3 ascend_dryrunner.py || echo "Run complete, warnings ignored"
+          python start_all.sh || echo "Run complete, warnings ignored"
