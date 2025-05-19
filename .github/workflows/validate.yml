@@ -50,6 +50,21 @@ jobs:
           python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from_pretrained('bert-base-uncased'); AutoModel.from_pretrained('bert-base-uncased')"
           python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
 
+      - name: Inject flake8 config for Black compatibility
+        shell: bash
+        run: |
+          cat <<EOF > setup.cfg
+          [flake8]
+          max-line-length = 88
+          exclude =
+              __pycache__,
+              .git,
+              .venv,
+              build,
+              dist,
+              GremlinGPT/data/prompts
+          EOF
+          
       - name: Run Black (auto-fix mode)
         shell: zsh {0}
         run: |
