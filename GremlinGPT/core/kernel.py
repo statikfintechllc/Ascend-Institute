@@ -1,6 +1,5 @@
 # core/kernel.py
 
-import os
 from datetime import datetime
 from pathlib import Path
 from memory.vector_store.embedder import embed_text, package_embedding
@@ -42,7 +41,6 @@ def apply_patch(file_path, new_code, reason="mutation"):
     diff_text = "\n".join(diff["diff_lines"])
     vector = embed_text(diff_text)
 
-    # Save to memory
     package_embedding(
         text=diff_text,
         vector=vector,
@@ -76,7 +74,6 @@ def patch_from_file(target_file, patch_file):
         logger.error(f"[KERNEL] Failed patch from file: {e}")
         return False
 
-# Sample usage (CLI-like)
 if __name__ == "__main__":
     test_file = "agent_core/tool_executor.py"
     test_patch = """
