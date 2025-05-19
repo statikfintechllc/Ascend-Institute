@@ -74,7 +74,9 @@ def patch_from_file(target_file, patch_file):
     try:
         with open(patch_file, "r") as f:
             new_code = f.read()
-        return patch_from_text(target_file, new_code, reason=f"patch:{patch_file}")
+        return patch_from_text(
+            target_file, new_code, reason=f"patch:{patch_file}"
+        )
     except Exception as e:
         logger.error(f"[KERNEL] Failed patch from file: {e}")
         return False

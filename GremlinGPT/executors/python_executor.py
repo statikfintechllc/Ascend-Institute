@@ -15,7 +15,9 @@ def run_python_sandbox(code, timeout=5):
 
     try:
         # Use a safe temporary file for execution
-        with tempfile.NamedTemporaryFile(mode="w+", suffix=".py", delete=False) as tmp:
+        with tempfile.NamedTemporaryFile(
+            mode="w+", suffix=".py", delete=False
+        ) as tmp:
             tmp.write(code)
             tmp.flush()
             script_path = tmp.name

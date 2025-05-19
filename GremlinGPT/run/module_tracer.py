@@ -9,7 +9,9 @@ BASE_DIR = "."
 def is_importable(module_path):
     """Check if a module is importable using importlib."""
     try:
-        spec = importlib.util.spec_from_file_location("temp_module", module_path)
+        spec = importlib.util.spec_from_file_location(
+            "temp_module", module_path
+        )
         return spec is not None
     except Exception:
         return False

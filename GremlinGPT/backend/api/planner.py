@@ -14,7 +14,9 @@ def list_tasks():
         G.add_node(idx, label=t["type"])
         if idx > 0:
             G.add_edge(idx - 1, idx)
-    serialized = [{"name": t["type"], "state": "queued", "subtasks": []} for t in tasks]
+    serialized = [
+        {"name": t["type"], "state": "queued", "subtasks": []} for t in tasks
+    ]
     return jsonify({"tasks": serialized})
 
 

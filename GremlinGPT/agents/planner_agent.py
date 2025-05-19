@@ -18,7 +18,9 @@ def analyze_rewards():
     top = top_rewarded_tasks(n=5)
     logger.info(f"[{AGENT_NAME}] Top reward signals:")
     for t in top:
-        logger.info(f"  - {t['task']} [Score: {t['reward']}] Reason: {t['reason']}")
+        logger.info(
+            f"  - {t['task']} [Score: {t['reward']}] Reason: {t['reason']}"
+        )
     return top
 
 
@@ -27,17 +29,22 @@ def plan_next_task():
     history_types = [r["task"] for r in top]
 
     if history_types:
-        choice = random.choices(history_types, weights=[r["reward"] for r in top], k=1)[
-            0
-        ]
-        logger.debug(f"[{AGENT_NAME}] Selected based on reward heuristic: {choice}")
+        choice = random.choices(
+            history_types, weights=[r["reward"] for r in top], k=1
+        )[0]
+        logger.debug(
+            f"[{AGENT_NAME}] Selected based on reward heuristic: {choice}"
+        )
     else:
         choice = "scrape"
         logger.debug(f"[{AGENT_NAME}] Default fallback task used: {choice}")
 
     planned = {
         "type": choice,
-        "meta": {"source": AGENT_NAME, "timestamp": datetime.utcnow().isoformat()},
+        "meta": {
+            "source": AGENT_NAME,
+            "timestamp": datetime.utcnow().isoformat(),
+        },
     }
 
     # Semantic memory embedding of the planned task

@@ -25,14 +25,22 @@ def execute_tool(task):
             dom = asyncio.run(get_dom_html(target))
             preview = dom[:100]
             log_event(
-                "exec", task_type, {"preview": preview}, status="success", meta=meta
+                "exec",
+                task_type,
+                {"preview": preview},
+                status="success",
+                meta=meta,
             )
             return {"scraped": preview}
 
         elif task_type == "signal_scan":
             signals = generate_signals()
             log_event(
-                "exec", task_type, {"signals": signals}, status="success", meta=meta
+                "exec",
+                task_type,
+                {"signals": signals},
+                status="success",
+                meta=meta,
             )
             return signals
 
@@ -46,14 +54,22 @@ def execute_tool(task):
             }
             package_embedding(target, vec, meta_embed)
             log_event(
-                "exec", task_type, {"embedded": True}, status="success", meta=meta_embed
+                "exec",
+                task_type,
+                {"embedded": True},
+                status="success",
+                meta=meta_embed,
             )
             return {"embedding": vector_list}
 
         elif task_type == "self_train":
             inject_feedback()
             log_event(
-                "exec", task_type, {"triggered": True}, status="success", meta=meta
+                "exec",
+                task_type,
+                {"triggered": True},
+                status="success",
+                meta=meta,
             )
             return {"trained": True}
 
@@ -84,5 +100,7 @@ def execute_tool(task):
 
     except Exception as e:
         logger.error(f"[TOOL] Execution error for {task_type}: {e}")
-        log_event("exec", task_type, {"error": str(e)}, status="failure", meta=meta)
+        log_event(
+            "exec", task_type, {"error": str(e)}, status="failure", meta=meta
+        )
         return {"error": str(e), "success": False}

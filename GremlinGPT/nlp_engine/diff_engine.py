@@ -16,7 +16,11 @@ def diff_texts(old: str, new: str):
     )
     sem_score = semantic_similarity(old, new)
     delta = float(np.linalg.norm(encode_text(old) - encode_text(new)))
-    return {"diff_lines": lines, "semantic_score": sem_score, "embedding_delta": delta}
+    return {
+        "diff_lines": lines,
+        "semantic_score": sem_score,
+        "embedding_delta": delta,
+    }
 
 
 def diff_files(file_a: str, file_b: str):

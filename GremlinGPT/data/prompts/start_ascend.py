@@ -14,7 +14,9 @@ for name in MODEL_REGISTRY:
     heal_model(name)
 
 # === Start CLI Dashboard ===
-threading.Thread(target=lambda: launch_dashboard(MODEL_REGISTRY), daemon=True).start()
+threading.Thread(
+    target=lambda: launch_dashboard(MODEL_REGISTRY), daemon=True
+).start()
 
 # === Launch Prompt Listener ===
 threading.Thread(target=listen_for_prompts, daemon=True).start()

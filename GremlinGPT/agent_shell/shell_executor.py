@@ -34,7 +34,9 @@ def run_shell_command(cmd: str) -> str:
         return f"[DENIED] Unsafe command: {parsed[0]}"
 
     try:
-        result = subprocess.run(parsed, capture_output=True, text=True, timeout=10)
+        result = subprocess.run(
+            parsed, capture_output=True, text=True, timeout=10
+        )
         output = result.stdout.strip() or result.stderr.strip()
         package_embedding(cmd + "\n" + output, source="shell")
 

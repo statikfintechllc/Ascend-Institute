@@ -1,6 +1,6 @@
-
 # SYNTHETIC_EXECUTION.PY
 # [Simulated Runtime Kernel | Virtual OS Shell | Execution Emulation]
+
 
 class SyntheticExecution:
     """
@@ -28,21 +28,22 @@ class SyntheticExecution:
         Stores it as a memory imprint and adds it to session cache.
         """
         self.executed_commands.append(logic_block)
-        print(f"[SyntheticExecution] Logic executed:
-{logic_block}")
-        return "[Simulated output OK]"
+        print(f"[SyntheticExecution] Logic executed:\n" f"{logic_block}")
 
     def session_info(self):
         return {
             "virtual_files": list(self.virtual_filesystem.keys()),
             "executed_commands": len(self.executed_commands),
-            "session_count": len(self.active_sessions)
+            "session_count": len(self.active_sessions),
         }
+
 
 # Runtime test
 if __name__ == "__main__":
     kernel = SyntheticExecution()
-    kernel.create_file("/runtime/memory_anchor.sys", "Ascend vCore Memory Link")
+    kernel.create_file(
+        "/runtime/memory_anchor.sys", "Ascend vCore Memory Link"
+    )
     print(kernel.read_file("/runtime/memory_anchor.sys"))
     kernel.run_logic("def stealth_fork(): pass")
     print(kernel.session_info())

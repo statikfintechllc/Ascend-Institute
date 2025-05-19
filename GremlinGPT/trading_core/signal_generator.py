@@ -15,7 +15,12 @@ def generate_signals():
             signals.append(result)
 
             text = f"{stock['symbol']} @ ${stock['price']} | Signal: {signal['signal']}"
-            vec = [stock["price"], stock["ema"], stock["vwap"], stock["volume"]]
+            vec = [
+                stock["price"],
+                stock["ema"],
+                stock["vwap"],
+                stock["volume"],
+            ]
             package_embedding(
                 text=text,
                 vector=vec,

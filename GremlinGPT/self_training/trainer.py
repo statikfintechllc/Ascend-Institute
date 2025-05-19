@@ -11,7 +11,8 @@ from self_training.mutation_engine import mutate_dataset
 
 LOG_DIR = CFG["paths"].get("data_dir", "data/") + "logs/"
 OUTPUT_PATH = (
-    CFG["paths"].get("data_dir", "data/") + "nlp_training_sets/mutated_dataset.json"
+    CFG["paths"].get("data_dir", "data/")
+    + "nlp_training_sets/mutated_dataset.json"
 )
 
 
@@ -27,7 +28,9 @@ def trigger_retrain():
     mutated = mutate_dataset(raw)
     with open(OUTPUT_PATH, "w") as f:
         json.dump(mutated, f, indent=2)
-    logger.info(f"[TRAINER] Mutation + data regeneration complete → {OUTPUT_PATH}")
+    logger.info(
+        f"[TRAINER] Mutation + data regeneration complete → {OUTPUT_PATH}"
+    )
 
 
 def watch_logs():

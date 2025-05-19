@@ -18,7 +18,9 @@ async def run_scraper():
             try:
                 dom = await get_dom_html(task["target"])
                 store_scrape_to_memory(task["target"], dom)
-                logger.success(f"[SCRAPER] Stored DOM snapshot from {task['target']}")
+                logger.success(
+                    f"[SCRAPER] Stored DOM snapshot from {task['target']}"
+                )
             except Exception as e:
                 logger.error(f"[SCRAPER] Error scraping {task['target']}: {e}")
         else:

@@ -41,6 +41,7 @@ class FunctionReconstructor:
 if __name__ == "__main__":
     recon = FunctionReconstructor()
     recon.register_function(
-        "initialize_ascend", "def initialize_ascend():\n    print('Ascend launched.')"
+        "initialize_ascend",
+        "def initialize_ascend():\n    print('Ascend launched.')",
     )
     print(recon.simulate_repair("secure_tunnel", "network obfuscation"))

@@ -28,7 +28,9 @@ class MutatorCore:
         """
         mutated = f"# Mutated on {datetime.datetime.utcnow().isoformat()}\n"
         mutated += f"# Instruction: {instruction}\n"
-        mutated += original_function.replace("pass", "# TODO: Mutated logic injected")
+        mutated += original_function.replace(
+            "pass", "# TODO: Mutated logic injected"
+        )
         self._log_mutation(original_function, mutated, instruction)
         return mutated
 

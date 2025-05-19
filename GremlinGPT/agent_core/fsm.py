@@ -61,5 +61,7 @@ def run_schedule():
 if __name__ == "__main__":
     task_queue.enqueue({"type": "scrape"})
     task_queue.enqueue({"type": "signal_scan"})
-    task_queue.enqueue({"type": "nlp", "text": "What is support and resistance?"})
+    task_queue.enqueue(
+        {"type": "nlp", "text": "What is support and resistance?"}
+    )
     run_schedule()
