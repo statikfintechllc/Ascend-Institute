@@ -3,13 +3,11 @@
 import time
 import schedule
 from rich.console import Console
-
 from agent_core.task_queue import TaskQueue
 from agent_core.tool_executor import execute_tool
 from agent_core.heuristics import evaluate_task
 from agent_core.error_log import log_error
 from backend import globals as G
-
 from self_mutation_watcher.watcher import scan_and_diff
 from self_mutation_watcher.mutation_daemon import run_daemon
 
