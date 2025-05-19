@@ -50,8 +50,8 @@ jobs:
           python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from_pretrained('bert-base-uncased'); AutoModel.from_pretrained('bert-base-uncased')"
           python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
 
-      - name: Inject flake8 config for Black compatibility
-        shell: bash
+      - name: Inject flake8 config (for Black compatibility)
+        shell: zsh {0}
         run: |
           cat <<EOF > setup.cfg
           [flake8]
@@ -64,7 +64,7 @@ jobs:
               dist,
               GremlinGPT/data/prompts
           EOF
-          
+
       - name: Run Black (auto-fix mode)
         shell: zsh {0}
         run: |
@@ -89,14 +89,14 @@ jobs:
         run: |
           source $CONDA/etc/profile.d/conda.sh
           conda activate gremlin-nlp
-          flake8 GremlinGPT/ --exclude=GremlinGPT/data/prompts
+          flake8 GremlinGPT/
 
       - name: Targeted Lint (fail on critical issues only)
         shell: zsh {0}
         run: |
           source $CONDA/etc/profile.d/conda.sh
           conda activate gremlin-nlp
-          flake8 GremlinGPT/ --exclude=GremlinGPT/data/prompts --count \
+          flake8 GremlinGPT/ --count \
             --select=E9,F63,F7,F82 --show-source --statistics
 
       - name: Run GremlinGPT
