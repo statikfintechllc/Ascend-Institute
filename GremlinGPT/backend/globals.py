@@ -21,6 +21,7 @@ def load_memory_config():
 CFG = load_config()
 MEM = load_memory_config()
 
+
 # Expand paths
 def resolve_path(p):
     p = p.replace("$ROOT", str(BASE_DIR))
