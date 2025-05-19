@@ -1,4 +1,3 @@
-import os
 import json
 from datetime import datetime
 from loguru import logger
@@ -32,4 +31,3 @@ def clear_trigger():
     if TRIGGER_FILE.exists():
         TRIGGER_FILE.unlink()
         logger.info("[FEEDBACK] Retrain trigger cleared.")
-
