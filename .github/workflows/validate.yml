@@ -17,11 +17,17 @@ jobs:
           python-version: 3.11
           auto-activate-base: true
 
+      - name: Check directory contents for debugging
+        run: |
+          cd GremlinGPT/conda_envs
+          pwd
+          ls -la
+
       - name: Run create_envs.sh to build Conda env
         run: |
           cd GremlinGPT/conda_envs
           chmod +x create_envs.sh
-          ./create_envs.sh
+          bash create_envs.sh
 
       - name: Activate Conda env and install linters
         run: |
