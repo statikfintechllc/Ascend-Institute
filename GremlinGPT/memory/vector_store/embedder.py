@@ -15,7 +15,10 @@ os.makedirs(MEMORY_DIR, exist_ok=True)
 memory_vectors = {}
 
 def embed_text(text):
-    return model.encode(text, convert_to_numpy=True)
+    vec = model.encode(text, convert_to_numpy=True)
+    norm = np.linalg.norm(vec)
+    logger.debug(f"[EMBEDDER] Embedding norm: {norm:.4f}")
+    return vec
 
 def package_embedding(text, vector, meta):
     emb_id = str(uuid.uuid4())
@@ -44,4 +47,3 @@ def _write_to_disk(embedding):
     path = os.path.join(index_path, f"{embedding['id']}.json")
     with open(path, "w") as f:
         json.dump(embedding, f, indent=2)
-
