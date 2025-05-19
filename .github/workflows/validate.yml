@@ -19,11 +19,7 @@ jobs:
           auto-update-conda: true
           python-version: 3.11
           auto-activate-base: true
-
-      - name: Initialize Conda for Zsh
-        shell: zsh -l {0}
-        run: |
-          ~/miniconda3/bin/conda init zsh
+          activate-environment: gremlin-nlp
 
       - name: Check directory contents for debugging
         shell: zsh -l {0}
@@ -37,19 +33,17 @@ jobs:
         run: |
           cd GremlinGPT/conda_envs
           chmod +x create_envs.sh
-          zsh create_envs.sh
+          ./create_envs.sh
 
-      - name: Activate Conda env and install linters
+      - name: Install linters
         shell: zsh -l {0}
         run: |
-          source ~/miniconda3/etc/profile.d/conda.sh
           conda activate gremlin-nlp
           pip install flake8 black
 
       - name: Bootstrap NLP models
         shell: zsh -l {0}
         run: |
-          source ~/miniconda3/etc/profile.d/conda.sh
           conda activate gremlin-nlp
           python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from_pretrained('bert-base-uncased'); AutoModel.from_pretrained('bert-base-uncased')"
           python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
@@ -57,21 +51,18 @@ jobs:
       - name: Run Black (non-blocking diff check)
         shell: zsh -l {0}
         run: |
-          source ~/miniconda3/etc/profile.d/conda.sh
           conda activate gremlin-nlp
           black GremlinGPT/ --check --diff || echo "Black found formatting issues"
 
       - name: Lint codebase
         shell: zsh -l {0}
         run: |
-          source ~/miniconda3/etc/profile.d/conda.sh
           conda activate gremlin-nlp
           flake8 GremlinGPT/ --exclude=GremlinGPT/data/prompts
 
       - name: Targeted Lint (fail on critical issues only)
         shell: zsh -l {0}
         run: |
-          source ~/miniconda3/etc/profile.d/conda.sh
           conda activate gremlin-nlp
           flake8 GremlinGPT/ --exclude=GremlinGPT/data/prompts --count \
           --select=E9,F63,F7,F82 --show-source --statistics
@@ -79,7 +70,6 @@ jobs:
       - name: Run GremlinGPT
         shell: zsh -l {0}
         run: |
-          source ~/miniconda3/etc/profile.d/conda.sh
           conda activate gremlin-nlp
           chmod +x GremlinGPT/start_all.sh
           ./GremlinGPT/start_all.sh || echo "Run complete, warnings ignored"
