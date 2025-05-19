@@ -3,7 +3,6 @@ from flask_socketio import SocketIO
 from backend.router import register_routes
 from loguru import logger
 import eventlet
-import os
 
 eventlet.monkey_patch()
 
@@ -23,4 +22,3 @@ def index():
 if __name__ == '__main__':
     logger.info("[BACKEND] Starting GremlinGPT backend server.")
     socketio.run(app, host="0.0.0.0", port=5050)
-
