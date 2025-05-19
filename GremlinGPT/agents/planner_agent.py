@@ -1,5 +1,3 @@
-# agents/planner_agent.py
-
 from agent_core.task_queue import global_queue
 from tools.reward_model import top_rewarded_tasks
 from memory.vector_store import embedder
@@ -11,26 +9,26 @@ AGENT_NAME = "planner_agent"
 
 def inspect_task_queue():
     current = global_queue.dump()
-    logger.info(f"[{AGENT_NAME}] Found {len(current)} task(s) queued.")
+    logger.info(f"[{AGENT_NAME}] Found {len(current)} task(s) in queue.")
     return current
 
 def analyze_rewards():
     top = top_rewarded_tasks(n=5)
-    logger.info(f"[{AGENT_NAME}] Top historical rewards:")
+    logger.info(f"[{AGENT_NAME}] Top reward signals:")
     for t in top:
-        logger.info(f"  - {t['task']} ({t['reward']}) => {t['reason']}")
+        logger.info(f"  - {t['task']} [Score: {t['reward']}] Reason: {t['reason']}")
     return top
 
 def plan_next_task():
-    """Plans next task based on reward feedback and heuristics."""
     top = analyze_rewards()
     history_types = [r["task"] for r in top]
 
-    # Select one with weighted randomness
     if history_types:
         choice = random.choices(history_types, weights=[r["reward"] for r in top], k=1)[0]
+        logger.debug(f"[{AGENT_NAME}] Selected based on reward heuristic: {choice}")
     else:
         choice = "scrape"
+        logger.debug(f"[{AGENT_NAME}] Default fallback task used: {choice}")
 
     planned = {
         "type": choice,
@@ -39,7 +37,21 @@ def plan_next_task():
             "timestamp": datetime.utcnow().isoformat()
         }
     }
-    logger.info(f"[{AGENT_NAME}] Planning next task: {choice}")
+
+    # Semantic memory embedding of the planned task
+    vector = embedder.embed_text(f"Planned task: {choice}")
+    embedder.package_embedding(
+        text=f"Planned task: {choice}",
+        vector=vector,
+        meta={
+            "agent": AGENT_NAME,
+            "task_type": choice,
+            "reason": "reward-guided",
+            "timestamp": planned["meta"]["timestamp"]
+        }
+    )
+
+    logger.info(f"[{AGENT_NAME}] Planned next task: {choice}")
     return planned
 
 def enqueue_next():
@@ -48,7 +60,7 @@ def enqueue_next():
     logger.success(f"[{AGENT_NAME}] Enqueued task: {task['type']}")
 
 def planner_loop(cycles=3):
-    logger.info(f"[{AGENT_NAME}] Starting planner loop for {cycles} cycles.")
+    logger.info(f"[{AGENT_NAME}] Starting planner loop with {cycles} cycles.")
     for _ in range(cycles):
         enqueue_next()
 
