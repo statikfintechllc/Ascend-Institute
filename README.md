@@ -1,6 +1,7 @@
 # Ascend Institute for Autonomous Sovereignty & Human Financial Liberation
 
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/YourUser/AscendAI/actions)
+[![Build Status](https://img.shields.io/badge/build-Building-brightgreen)](https://github.com/statikfinteckllc/AscendAI/actions)
+[![Founder's Log](https://img.shields.io/badge/Founder's%20Log-Manifesto-blueviolet)](./FOUNDER_LOG.md)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue)](LICENSE)
 [![Contributors](https://img.shields.io/github/contributors/statikfintechllc/AscendAI)](https://github.com/statikfintechllc/AscendAI/graphs/contributors)
 
@@ -69,6 +70,7 @@ GremlinGPT is a modular AI system designed to bootstrap itself into a local doma
 
 ## Table of Contents
 
+- [Founder's Log & Manifesto](./FOUNDER_LOG.md)
 - [Overview](#overview)
 - [System Features](#system-features)
 - [Architecture](#architecture)
@@ -79,6 +81,18 @@ GremlinGPT is a modular AI system designed to bootstrap itself into a local doma
 - [Recovery & Snapshots](#recovery--snapshots)
 - [Troubleshooting](#troubleshooting)
 - [System Infrastructure](#system_infrastructure)
+
+⸻
+
+## 📝 Founder's Log & Manifesto
+
+> I built an AI system that builds itself.  
+> Not in a lab.  
+> Not at a venture-backed startup.  
+> Not on fiber internet with a dev team holding my hand...
+
+Curious about the journey, the pain, and the philosophy behind AscendAI?  
+Read more in the [FOUNDER_LOG.md](./FOUNDER_LOG.md).
 
 ⸻
 
