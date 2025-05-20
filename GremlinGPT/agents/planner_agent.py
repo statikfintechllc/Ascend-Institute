@@ -1,6 +1,6 @@
 # agents/planner_agent.py
 
-from agent_core.task_queue import global_queue
+from agent_core.task_queue import global_queue, reprioritize
 from tools.reward_model import top_rewarded_tasks
 from memory.vector_store import embedder
 from backend.globals import logger
@@ -19,14 +19,31 @@ def analyze_rewards(threshold=0.4):
     logger.info(f"[{AGENT_NAME}] Top reward signals:")
     for t in top:
         logger.info(f"  - {t['task']} [Score: {t['reward']}] Reason: {t['reason']}")
-    # Filter low confidence signals to reprocess
     weak_signals = [t for t in top if t['reward'] < threshold]
     return top, weak_signals
 
+def adjust_priorities(weak_signals):
+    """
+    Reprioritize queued tasks that match weak signal types.
+    """
+    queue = global_queue.dump()
+    affected_types = {w['task'] for w in weak_signals}
+    count = 0
+
+    for level in queue:
+        for task in queue[level]:
+            tid = task.get("id")
+            if task["type"] in affected_types:
+                if reprioritize(tid, "high"):
+                    logger.debug(f"[{AGENT_NAME}] Boosted priority of task {tid}")
+                    count += 1
+    if count:
+        logger.info(f"[{AGENT_NAME}] Reprioritized {count} tasks due to low confidence.")
+
 def plan_next_task():
     top, weak = analyze_rewards()
+    adjust_priorities(weak)
 
-    # Prefer retrying low-reward tasks with intelligent fallback
     if weak:
         choice = weak[0]["task"]
         reason = "reprocessing_low_confidence"
@@ -50,11 +67,10 @@ def plan_next_task():
         }
     }
 
-    # Semantic memory embedding of the planned task
-    text_desc = f"Planned task: {choice} via {reason}"
-    vector = embedder.embed_text(text_desc)
+    desc = f"Planned task: {choice} via {reason}"
+    vector = embedder.embed_text(desc)
     embedder.package_embedding(
-        text=text_desc,
+        text=desc,
         vector=vector,
         meta={
             "agent": AGENT_NAME,

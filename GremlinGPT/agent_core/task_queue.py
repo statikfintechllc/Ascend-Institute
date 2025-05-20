@@ -88,6 +88,28 @@ def enqueue_task(task):
     logger.debug(f"[TASK_QUEUE] Enqueued ({priority}): {task['type']} ({task_id})")
     _save_snapshot()
 
+def reprioritize(task_id, new_priority):
+    """
+    Move a task to a new priority bucket by task ID.
+    """
+    if new_priority not in task_queue:
+        logger.error(f"[TASK_QUEUE] Invalid target priority: {new_priority}")
+        return False
+
+    for level in ["high", "normal", "low"]:
+        for task in list(task_queue[level]):
+            if task.get("id") == task_id:
+                task_queue[level].remove(task)
+                task["priority"] = new_priority
+                task_queue[new_priority].append(task)
+                task_meta[task_id]["priority"] = new_priority
+                task_status[task_id] = "reprioritized"
+                logger.info(f"[TASK_QUEUE] Task {task_id} moved to {new_priority}")
+                _save_snapshot()
+                return True
+
+    logger.warning(f"[TASK_QUEUE] Task ID {task_id} not found in any queue.")
+    return False
 
 def fetch_task(task_type=None):
     for level in ["high", "normal", "low"]:

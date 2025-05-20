@@ -3,6 +3,8 @@ import hashlib
 import json
 from datetime import datetime
 from pathlib import Path
+import uuid
+
 from nlp_engine.diff_engine import diff_texts
 from memory.vector_store.embedder import embed_text, package_embedding
 from backend.globals import logger
@@ -29,7 +31,7 @@ def build_tree(directory):
     return tree
 
 
-def snapshot_file(file_path, label="manual"):
+def snapshot_file(file_path, label="manual", return_meta=False):
     file = Path(file_path)
     if not file.exists():
         logger.error(f"[SNAPSHOT] {file} does not exist.")
@@ -38,6 +40,7 @@ def snapshot_file(file_path, label="manual"):
     content = file.read_text()
     hash_val = hashlib.sha256(content.encode()).hexdigest()
     time_stamp = datetime.utcnow().isoformat()
+    lineage_id = str(uuid.uuid4())
     snap_name = f"{file.stem}_{label}_{time_stamp}.snap"
     snap_path = SNAPSHOT_ROOT / snap_name
 
@@ -46,14 +49,29 @@ def snapshot_file(file_path, label="manual"):
         "hash": hash_val,
         "timestamp": time_stamp,
         "label": label,
+        "lineage_id": lineage_id,
         "code": content,
     }
 
     try:
         with open(snap_path, "w") as f:
             json.dump(snapshot_data, f, indent=2)
+
         logger.success(f"[SNAPSHOT] Saved snapshot: {snap_name}")
-        return snap_path
+
+        # Also embed the snapshot into memory
+        vector = embed_text(content)
+        meta = {
+            "origin": "snapshot_system",
+            "file": str(file),
+            "type": "code_snapshot",
+            "label": label,
+            "lineage_id": lineage_id,
+            "timestamp": time_stamp,
+        }
+        package_embedding(text=content, vector=vector, meta=meta)
+
+        return (snap_path, meta) if return_meta else snap_path
     except Exception as e:
         logger.error(f"[SNAPSHOT] Save failed: {e}")
         return None
@@ -68,6 +86,7 @@ def rollback(file_path, snapshot_file):
         return False
 
     old_code = data["code"]
+    lineage_id = data.get("lineage_id", str(uuid.uuid4()))
     current_code = Path(file_path).read_text()
 
     if old_code == current_code:
@@ -87,6 +106,7 @@ def rollback(file_path, snapshot_file):
             "type": "rollback",
             "semantic_score": diff["semantic_score"],
             "embedding_delta": diff["embedding_delta"],
+            "lineage_id": lineage_id,
             "timestamp": datetime.utcnow().isoformat(),
         },
     )
@@ -112,6 +132,6 @@ def verify_snapshot(file_path, snapshot_path):
 # CLI usage
 if __name__ == "__main__":
     src = "agent_core/tool_executor.py"
-    snap = snapshot_file(src, label="test")
+    snap, meta = snapshot_file(src, label="test", return_meta=True)
     if snap and not verify_snapshot(src, snap):
         rollback(src, snap)

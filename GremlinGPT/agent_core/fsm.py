@@ -3,7 +3,7 @@ import schedule
 from rich.console import Console
 from datetime import datetime
 
-from agent_core.task_queue import TaskQueue
+from agent_core.task_queue import TaskQueue, reprioritize, promote_old_tasks
 from agent_core.tool_executor import execute_tool
 from agent_core.heuristics import evaluate_task
 from agent_core.error_log import log_error
@@ -20,16 +20,16 @@ task_queue = TaskQueue(retry_limit=G.AGENT["task_retry_limit"])
 tick_delay = G.CFG.get("loop", {}).get("fsm_tick_delay", 0.5)
 
 
-def promote_old_tasks():
-    # Placeholder for task aging/promotions logic
-    pass
-
-
 def fsm_loop():
     global FSM_STATE
     FSM_STATE = "RUNNING"
     tick_time = datetime.utcnow().isoformat()
     console.log(f"[FSM] Tick start @ {tick_time}")
+
+    try:
+        promote_old_tasks()
+    except Exception as e:
+        console.log(f"[FSM] Priority escalation failed: {e}")
 
     while not task_queue.is_empty():
         task = task_queue.get_next()
@@ -38,11 +38,6 @@ def fsm_loop():
             break
 
         log_event("fsm", "task_start", {"task": task}, status="begin")
-
-        try:
-            promote_old_tasks()
-        except Exception as e:
-            console.log(f"[FSM] Priority escalation failed: {e}")
 
         try:
             if evaluate_task(task):
@@ -57,6 +52,13 @@ def fsm_loop():
             task_queue.retry(task)
             log_event("fsm", "task_error", {"task": task, "error": str(e)}, status="fail")
 
+            # Priority escalation for repeatedly failing tasks
+            tid = task.get("id")
+            retries = task_queue.task_meta.get(tid, {}).get("retries", 0)
+            if retries >= 2:
+                reprioritize(tid, "high")
+                console.log(f"[FSM] Reprioritized failing task {tid} to HIGH")
+
         try:
             scan_and_diff()
         except Exception as e:
@@ -65,7 +67,7 @@ def fsm_loop():
 
         time.sleep(tick_delay)
 
-    # Autonomous refill if queue was drained
+    # Autonomous planner injection
     if task_queue.is_empty():
         console.log("[FSM] Queue empty — invoking planner to enqueue new task.")
         try:

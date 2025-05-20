@@ -1,4 +1,6 @@
-from agent_core.task_queue import enqueue_task
+# backend/interface/commands.py
+
+from agent_core.task_queue import enqueue_task, reprioritize
 from backend.globals import CFG
 from loguru import logger
 
@@ -22,15 +24,18 @@ def execute_command(cmd):
     else:
         return {"status": "error", "message": "Unknown command."}
 
+
 def update_task_priority(task_id, new_priority):
-    from agent_core.task_queue import task_queue, task_meta, task_status
-    for level in task_queue:
-        for task in list(task_queue[level]):
-            if task["id"] == task_id:
-                task_queue[level].remove(task)
-                task["priority"] = new_priority
-                task_meta[task_id]["priority"] = new_priority
-                task_queue[new_priority].append(task)
-                task_status[task_id] = "reprioritized"
-                return True
-    return False
+    """
+    Adjust the priority of a task using task_queue.reprioritize.
+    """
+    try:
+        result = reprioritize(task_id, new_priority)
+        if result:
+            logger.info(f"[COMMAND] Task {task_id} reprioritized to {new_priority}")
+        else:
+            logger.warning(f"[COMMAND] Failed to reprioritize task: {task_id}")
+        return result
+    except Exception as e:
+        logger.error(f"[COMMAND] Priority update failed: {e}")
+        return False

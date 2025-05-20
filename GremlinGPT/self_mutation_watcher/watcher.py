@@ -1,8 +1,14 @@
+# self_mutation_watcher/watcher.py
+
 import hashlib
 from pathlib import Path
 from datetime import datetime
+from difflib import unified_diff
+
 from memory.vector_store.embedder import embed_text, package_embedding
 from self_training.feedback_loop import inject_feedback
+from core.kernel import apply_patch
+from agents.planner_agent import enqueue_next
 from loguru import logger
 
 WATCH_PATHS = [
@@ -35,33 +41,7 @@ def save_snapshot(file_path, content):
     snap_path.write_text(content)
 
 
-def scan_and_diff():
-    logger.info("[WATCHER] Scanning for code changes...")
-    for file_path in WATCH_PATHS:
-        with open(file_path, "r") as f:
-            current = f.read()
-        previous = load_snapshot(file_path)
-        if current != previous:
-            logger.success(f"[WATCHER] Change detected in {file_path}")
-            diff = generate_diff(previous, current)
-            vector = embed_text(diff)
-            package_embedding(
-                text=diff,
-                vector=vector,
-                meta={
-                    "origin": "self_mutation_watcher",
-                    "file": file_path,
-                    "type": "code_diff",
-                    "timestamp": datetime.utcnow().isoformat(),
-                },
-            )
-            inject_feedback()
-            save_snapshot(file_path, current)
-
-
 def generate_diff(old, new):
-    from difflib import unified_diff
-
     lines = list(
         unified_diff(
             old.splitlines(),
@@ -72,6 +52,44 @@ def generate_diff(old, new):
         )
     )
     return "\n".join(lines)
+
+
+def scan_and_diff():
+    logger.info("[WATCHER] Scanning for code changes...")
+    for file_path in WATCH_PATHS:
+        try:
+            with open(file_path, "r") as f:
+                current = f.read()
+
+            previous = load_snapshot(file_path)
+            if current != previous:
+                logger.success(f"[WATCHER] Detected change in: {file_path}")
+                diff = generate_diff(previous, current)
+                vector = embed_text(diff)
+
+                package_embedding(
+                    text=diff,
+                    vector=vector,
+                    meta={
+                        "origin": "self_mutation_watcher",
+                        "file": file_path,
+                        "type": "code_diff",
+                        "line_count": len(diff.splitlines()),
+                        "timestamp": datetime.utcnow().isoformat(),
+                    },
+                )
+
+                inject_feedback()
+
+                # Auto-apply current version as patch for traceability
+                apply_patch(file_path, current, reason="mutation_observed")
+
+                # Schedule planner to re-infer a new task
+                enqueue_next()
+
+                save_snapshot(file_path, current)
+        except Exception as e:
+            logger.error(f"[WATCHER] Failed to process {file_path}: {e}")
 
 
 if __name__ == "__main__":
