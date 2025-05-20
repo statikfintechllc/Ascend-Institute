@@ -1,8 +1,8 @@
 # Ascend Institute for Autonomous Sovereignty & Human Financial Liberation
 
-[![Build Status](https://img.shields.io/badge/build-Building-brightgreen)](https://github.com/statikfinteckllc/AscendAI/actions)
-[![Founder's Log](https://img.shields.io/badge/Founder's%20Log-Manifesto-blueviolet)](./FOUNDER_LOG.md)
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue)](LICENSE)
+[![Build Status](https://img.shields.io/badge/build-Alpha-DarkRed)](https://github.com/statikfinteckllc/AscendAI/actions)
+[![Founder's Log](https://img.shields.io/badge/Founder's%20Log-Manifesto-Golden)](./FOUNDER_LOG.md)
+[![License](https://img.shields.io/badge/license-Apache%202.0-Red)](LICENSE)
 [![Contributors](https://img.shields.io/github/contributors/statikfintechllc/AscendAI)](https://github.com/statikfintechllc/AscendAI/graphs/contributors)
 
 ⸻
