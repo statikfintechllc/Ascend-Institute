@@ -35,7 +35,15 @@
 >
 > **Welcome to the world’s first AI agent that’s as much a ChatGPT artifact as it is a sovereign codebase.**
 
----
+### 🚧 Project Status: Unrun Code, Maximum Vision
+
+This project has never been run in production.
+It was entirely architected, designed, and written without a single dry run—built on first principles, recursion, and refusal to quit.
+
+If you’re reading this, you could be the first to execute the code “in the wild.”
+Join the journey. [Read the Founder's Log](./FOUNDER_LOG.md) for the full story.
+
+⸻
 
 **AscendAI** is a self-building, self-healing recursive AI agent system.  
 Designed for full-stack autonomy across devices, markets, and networks.  
