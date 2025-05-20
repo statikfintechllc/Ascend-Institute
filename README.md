@@ -27,6 +27,20 @@ Learns from you, your system, your energy.
 
 ⸻
 
+## How GremlinGPT Was Built
+
+Every line of GremlinGPT, from its core scripts to its documentation, was generated with the help of ChatGPT’s Data Analyst mode (by OpenAI). This includes:
+- All system and agent scripts
+- README and project documentation
+- Self-training logic and feedback loops
+- Example prompts and launch instructions
+
+GremlinGPT is a living demonstration of what’s possible when you use AI to build AI, end-to-end.
+
+*Yes, even this note was drafted with a little help from ChatGPT.*
+
+⸻
+
 > **WARNING**: This is a high-function, recursive agent framework designed for full autonomy.  
 > Do not deploy unsupervised unless you know what you're doing — or you're the CEO.
 
