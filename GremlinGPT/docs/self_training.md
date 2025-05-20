@@ -24,6 +24,9 @@ The goal is to create a system that:
 | `generate_dataset.py`         | Builds new fine-tune dataset from memory     |
 | `trainer.py`                  | Executes the local NLP retraining loop       |
 | `diff_engine.py`              | Compares embeddings and source deltas        |
+| `planner_agent.py`            | Responds to retrained signals with new task strategies |
+| `embedder.py`                 | Tags and embeds diff/feedback data           |
+| `tool_executor.py`            | Executes retraining triggers and sends feedback loops |
 
 ---
 
@@ -130,10 +133,16 @@ Gremlin supports a pluggable reward evaluation engine:
 
 ## Mutation Execution
 
-In future builds, Gremlin will use:
-	•	kernel.py to rewrite its own agents
-	•	snapshot.py to apply or revert logic trees
-	•	loop.py to automate evolution
+Current FSM watches for changes via watcher.py. When diffs are detected:
+- `diff_engine.py` computes semantic deltas
+- `embedder.py` embeds diff + metadata
+- `feedback_loop.py` raises retrain flag
+- `trainer.py` rebuilds the transformer checkpoint
+
+Planned additions:
+- `kernel.py` will apply its own rewrites
+- `snapshot.py` will rollback unsafe mutations
+- `loop.py` will persistently evolve internal logic
 
 ⸻
 

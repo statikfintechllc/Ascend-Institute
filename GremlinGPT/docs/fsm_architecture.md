@@ -29,6 +29,7 @@ The FSM is fully autonomous, offline, and tightly integrated with the agent plan
 ```text
 [IDLE] -> [RUNNING] -> [WAITING] -> [IDLE]
 ```
+[RUNNING] state now conditionally invokes enqueue_next() from planner_agent.py if queue depletes mid-loop.
 Transitions are driven by task availability and completion status. The FSM pulls from the TaskQueue, evaluates each task via heuristics, and invokes tools accordingly.
 
 ⸻
@@ -51,9 +52,16 @@ This can run:
 ###	4.	Logging + Retry
 If execution fails, log to error_log.py
 Retry up to configured limit from config.toml
-###	5.	Memory Update
-Vectorized embeddings are created and tagged in embedder.py
-Stored in local_index/ + metadata.db
+5. Memory Update
+	•	encode() output is embedded via package_embedding()
+	•	Metadata includes:
+	•	Task type
+	•	Semantic context flags
+	•	Mutation tag (if applicable)
+	•	Timestamp
+	•	Stored in:
+	•	memory/local_index/documents/
+	•	Referenced by metadata.db
 
 ⸻
 
@@ -113,6 +121,25 @@ If fsm.py, heuristics.py, or rules_engine.py changes:
 }
 ```
 FSM picks it up → runs scraper_loop → stores DOM HTML → embeds it → logs task result
+
+## Self-Planning Logic
+
+When task queue is depleted, FSM automatically:
+- Calls planner_agent.enqueue_next()
+- Uses reward_model to select most effective task types
+- Embeds new plan into memory for tracking and feedback
+
+This closes the loop: execution → evaluation → planning → new task → execution.
+
+## Mutation Awareness
+
+Changes to FSM logic (fsm.py), heuristics, or task rules trigger:
+- Code diff via watcher.py
+- Diff embedded and stored in vector memory
+- feedback_loop creates retrain_trigger.json
+- trainer.py loads mutated logs and regenerates NLP dataset
+
+FSM then continues execution with updated heuristics or structure.
 
 ⸻
 

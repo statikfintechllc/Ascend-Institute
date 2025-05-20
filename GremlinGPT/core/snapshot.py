@@ -1,5 +1,3 @@
-# core/snapshot.py
-
 import os
 import hashlib
 import json
@@ -35,7 +33,7 @@ def snapshot_file(file_path, label="manual"):
     file = Path(file_path)
     if not file.exists():
         logger.error(f"[SNAPSHOT] {file} does not exist.")
-        return
+        return None
 
     content = file.read_text()
     hash_val = hashlib.sha256(content.encode()).hexdigest()
@@ -43,36 +41,40 @@ def snapshot_file(file_path, label="manual"):
     snap_name = f"{file.stem}_{label}_{time_stamp}.snap"
     snap_path = SNAPSHOT_ROOT / snap_name
 
-    with open(snap_path, "w") as f:
-        json.dump(
-            {
-                "path": str(file),
-                "hash": hash_val,
-                "timestamp": time_stamp,
-                "label": label,
-                "code": content,
-            },
-            f,
-            indent=2,
-        )
+    snapshot_data = {
+        "path": str(file),
+        "hash": hash_val,
+        "timestamp": time_stamp,
+        "label": label,
+        "code": content,
+    }
 
-    logger.success(f"[SNAPSHOT] Saved {snap_name}")
-    return snap_path
+    try:
+        with open(snap_path, "w") as f:
+            json.dump(snapshot_data, f, indent=2)
+        logger.success(f"[SNAPSHOT] Saved snapshot: {snap_name}")
+        return snap_path
+    except Exception as e:
+        logger.error(f"[SNAPSHOT] Save failed: {e}")
+        return None
 
 
 def rollback(file_path, snapshot_file):
-    with open(snapshot_file, "r") as f:
-        data = json.load(f)
+    try:
+        with open(snapshot_file, "r") as f:
+            data = json.load(f)
+    except Exception as e:
+        logger.error(f"[SNAPSHOT] Failed to read snapshot: {e}")
+        return False
 
     old_code = data["code"]
-    new_code = Path(file_path).read_text()
+    current_code = Path(file_path).read_text()
 
-    if old_code == new_code:
+    if old_code == current_code:
         logger.info("[SNAPSHOT] File already matches snapshot.")
-        return
+        return True
 
-    # Embed diff before overwrite
-    diff = diff_texts(new_code, old_code)
+    diff = diff_texts(current_code, old_code)
     diff_text = "\n".join(diff["diff_lines"])
     vector = embed_text(diff_text)
 
@@ -80,7 +82,7 @@ def rollback(file_path, snapshot_file):
         text=diff_text,
         vector=vector,
         meta={
-            "origin": "snapshot",
+            "origin": "snapshot_system",
             "file": file_path,
             "type": "rollback",
             "semantic_score": diff["semantic_score"],
@@ -90,11 +92,26 @@ def rollback(file_path, snapshot_file):
     )
 
     Path(file_path).write_text(old_code)
-    logger.warning(f"[SNAPSHOT] Rolled back {file_path} using {snapshot_file}")
+    logger.warning(f"[SNAPSHOT] Rolled back: {file_path} → {snapshot_file}")
+    return True
+
+
+def verify_snapshot(file_path, snapshot_path):
+    try:
+        with open(snapshot_path, "r") as f:
+            data = json.load(f)
+        expected_hash = data["hash"]
+        current = Path(file_path).read_text()
+        current_hash = hashlib.sha256(current.encode()).hexdigest()
+        return current_hash == expected_hash
+    except Exception as e:
+        logger.error(f"[SNAPSHOT] Verification failed: {e}")
+        return False
 
 
 # CLI usage
 if __name__ == "__main__":
     src = "agent_core/tool_executor.py"
     snap = snapshot_file(src, label="test")
-    rollback(src, snap)
+    if snap and not verify_snapshot(src, snap):
+        rollback(src, snap)

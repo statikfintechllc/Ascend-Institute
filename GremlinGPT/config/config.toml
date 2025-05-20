@@ -48,3 +48,11 @@ embedding_format = "float32"
 auto_index = true
 index_chunk_size = 500
 
+[loop]
+self_training_enabled = true
+planner_enabled = true
+mutation_watch_enabled = true
+fsm_tick_delay = 0.5
+planner_interval = 10
+mutation_watch_interval = 5
+

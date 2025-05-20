@@ -17,6 +17,7 @@ def execute_tool(task):
     task_type = task.get("type")
     target = task.get("target", "")
     meta = task.get("meta", {})
+    timestamp = datetime.utcnow().isoformat()
 
     try:
         logger.info(f"[TOOL] Executing task: {task_type}")
@@ -24,83 +25,62 @@ def execute_tool(task):
         if task_type == "scrape":
             dom = asyncio.run(get_dom_html(target))
             preview = dom[:100]
-            log_event(
-                "exec",
-                task_type,
-                {"preview": preview},
-                status="success",
-                meta=meta,
-            )
-            return {"scraped": preview}
+            result = {"scraped": preview}
+            reward = evaluate_result(task_type, preview)
+            log_reward(reward)
+            vector = encode(preview)
+            package_embedding(preview, vector, {"task": task_type, "timestamp": timestamp})
+            log_event("exec", task_type, {"preview": preview}, status="success", meta=reward)
+            return result
 
         elif task_type == "signal_scan":
             signals = generate_signals()
-            log_event(
-                "exec",
-                task_type,
-                {"signals": signals},
-                status="success",
-                meta=meta,
-            )
-            return signals
+            result = {"signals": signals}
+            reward = evaluate_result(task_type, str(signals))
+            log_reward(reward)
+            vector = encode(str(signals))
+            package_embedding(str(signals), vector, {"task": task_type, "timestamp": timestamp})
+            log_event("exec", task_type, {"signals": signals}, status="success", meta=reward)
+            return result
 
         elif task_type == "nlp":
             vec = encode(target)
             vector_list = vec.tolist()
-            meta_embed = {
+            package_embedding(target, vec, {
                 "origin": "tool_executor",
-                "task_type": "nlp",
-                "timestamp": datetime.utcnow().isoformat(),
-            }
-            package_embedding(target, vec, meta_embed)
-            log_event(
-                "exec",
-                task_type,
-                {"embedded": True},
-                status="success",
-                meta=meta_embed,
-            )
-            return {"embedding": vector_list}
+                "task_type": task_type,
+                "timestamp": timestamp
+            })
+            result = {"embedding": vector_list}
+            reward = evaluate_result(task_type, target)
+            log_reward(reward)
+            log_event("exec", task_type, {"embedded": True}, status="success", meta=reward)
+            return result
 
         elif task_type == "self_train":
             inject_feedback()
-            log_event(
-                "exec",
-                task_type,
-                {"triggered": True},
-                status="success",
-                meta=meta,
-            )
-            return {"trained": True}
+            result = {"trained": True}
+            log_event("exec", task_type, result, status="success", meta={"timestamp": timestamp})
+            return result
 
         elif task_type == "shell":
             output = run_shell_command(task["command"])
             preview = output[:500]
-            reward = evaluate_result("shell", preview)
+            reward = evaluate_result(task_type, preview)
             log_reward(reward)
-            log_event(
-                "exec",
-                task_type,
-                {"shell_preview": preview},
-                status="success",
-                meta=reward,
-            )
-            return {"shell_result": preview}
+            vector = encode(preview)
+            package_embedding(preview, vector, {"task": task_type, "timestamp": timestamp})
+            result = {"shell_result": preview}
+            log_event("exec", task_type, result, status="success", meta=reward)
+            return result
 
         else:
-            logger.error(f"[TOOL] Unknown task type: {task_type}")
-            log_event(
-                "exec",
-                task_type,
-                {"error": "Unknown task type"},
-                status="error",
-                meta=meta,
-            )
-            raise ValueError("Unknown task type")
+            error_msg = f"Unknown task type: {task_type}"
+            logger.error(f"[TOOL] {error_msg}")
+            log_event("exec", task_type, {"error": error_msg}, status="error", meta=meta)
+            raise ValueError(error_msg)
 
     except Exception as e:
         logger.error(f"[TOOL] Execution error for {task_type}: {e}")
-        log_event(
-            "exec", task_type, {"error": str(e)}, status="failure", meta=meta
-        )
+        log_event("exec", task_type, {"error": str(e)}, status="failure", meta=meta)
         return {"error": str(e), "success": False}

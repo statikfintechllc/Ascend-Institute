@@ -17,6 +17,7 @@ It is structured to support:
 - Semantic similarity search
 - Rich tagging and metadata
 - Modular backend choice (Chroma or FAISS)
+- Embeddings are stored as float32 arrays, optimized for FAISS similarity search.
 
 ---
 
@@ -77,6 +78,23 @@ Metadata supports:
 	•	Semantic type (e.g. “code_diff”)
 	•	Timestamp
 	•	Agent ID (if applicable)
+
+Example:
+{
+  "id": "abc123",
+  "text": "Planned task: scrape SEC filings",
+  "embedding": [0.123, 0.991, ...],
+  "meta": {
+    "agent": "planner_agent",
+    "task_type": "scrape",
+    "timestamp": "2025-05-18T13:22:01Z"
+  },
+  "tags": {
+    "source": "planner",
+    "model": "MiniLM",
+    "replaceable": true
+  }
+}
 
 ⸻
 

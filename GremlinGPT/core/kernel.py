@@ -1,15 +1,17 @@
-# core/kernel.py
-
 from datetime import datetime
 from pathlib import Path
 from memory.vector_store.embedder import embed_text, package_embedding
 from self_training.feedback_loop import inject_feedback
 from nlp_engine.diff_engine import diff_texts
-from backend.globals import logger
+from backend.globals import logger, CFG
+import shutil
+import uuid
+import subprocess
 
 KERNEL_TAG = "kernel_writer"
 SOURCE_ROOT = Path("GremlinGPT")
-
+ROLLBACK_DIR = Path("run/checkpoints/snapshots/")
+ROLLBACK_DIR.mkdir(parents=True, exist_ok=True)
 
 def read_file(path):
     try:
@@ -18,7 +20,6 @@ def read_file(path):
     except Exception as e:
         logger.error(f"[KERNEL] Failed to read {path}: {e}")
         return None
-
 
 def write_file(path, content):
     try:
@@ -30,19 +31,64 @@ def write_file(path, content):
         logger.error(f"[KERNEL] Failed to write {path}: {e}")
         return False
 
+def backup_snapshot(path):
+    try:
+        filename = Path(path).name
+        timestamp = datetime.utcnow().strftime("%Y%m%dT%H%M%S")
+        snapshot_path = ROLLBACK_DIR / f"{filename}.{timestamp}.bak"
+        shutil.copy(path, snapshot_path)
+        return snapshot_path
+    except Exception as e:
+        logger.warning(f"[KERNEL] Snapshot backup failed: {e}")
+        return None
 
-def apply_patch(file_path, new_code, reason="mutation"):
+def test_patch_syntax(code):
+    try:
+        compile(code, "<string>", "exec")
+        return True
+    except SyntaxError as e:
+        logger.error(f"[KERNEL] Patch syntax invalid: {e}")
+        return False
+
+def run_patch_test(temp_code):
+    """Optional safety: run the code in a subprocess to test for crashes"""
+    try:
+        result = subprocess.run(
+            ["python3", "-c", temp_code],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=5,
+            text=True,
+        )
+        if result.returncode != 0:
+            logger.warning(f"[KERNEL] Patch test failed: {result.stderr}")
+            return False
+        return True
+    except Exception as e:
+        logger.warning(f"[KERNEL] Exception during patch test: {e}")
+        return False
+
+def apply_patch(file_path, new_code, reason="mutation", safe_mode=True):
     original = read_file(file_path)
-    if original is None:
+    if original is None or original == new_code:
+        logger.info(f"[KERNEL] No change or failed read for: {file_path}")
         return False
 
-    if original == new_code:
-        logger.info(f"[KERNEL] No changes in patch for {file_path}")
-        return False
+    if safe_mode:
+        if not test_patch_syntax(new_code):
+            return False
+        if not run_patch_test(new_code):
+            return False
 
+    # Save snapshot
+    backup_snapshot(file_path)
+
+    # Diff logic
     diff = diff_texts(original, new_code)
     diff_text = "\n".join(diff["diff_lines"])
     vector = embed_text(diff_text)
+
+    patch_id = str(uuid.uuid4())
 
     package_embedding(
         text=diff_text,
@@ -52,6 +98,7 @@ def apply_patch(file_path, new_code, reason="mutation"):
             "file": file_path,
             "type": "code_patch",
             "reason": reason,
+            "patch_id": patch_id,
             "semantic_score": diff["semantic_score"],
             "embedding_delta": diff["embedding_delta"],
             "timestamp": datetime.utcnow().isoformat(),
@@ -61,26 +108,21 @@ def apply_patch(file_path, new_code, reason="mutation"):
     success = write_file(file_path, new_code)
     if success:
         inject_feedback()
-
+        logger.success(f"[KERNEL] Patch applied: {patch_id}")
     return success
-
 
 def patch_from_text(target_file, injected_code, reason="human"):
     path = SOURCE_ROOT / target_file
     return apply_patch(str(path), injected_code, reason)
 
-
 def patch_from_file(target_file, patch_file):
     try:
         with open(patch_file, "r") as f:
             new_code = f.read()
-        return patch_from_text(
-            target_file, new_code, reason=f"patch:{patch_file}"
-        )
+        return patch_from_text(target_file, new_code, reason=f"patch:{patch_file}")
     except Exception as e:
         logger.error(f"[KERNEL] Failed patch from file: {e}")
         return False
-
 
 if __name__ == "__main__":
     test_file = "agent_core/tool_executor.py"
