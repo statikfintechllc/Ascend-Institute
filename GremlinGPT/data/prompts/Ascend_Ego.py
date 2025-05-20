@@ -32,9 +32,7 @@ class AscendEgo:
 
     def speak(self, message):
         tone = self.voice_signature[self.mode]
-        return (
-            f"[{self.mode} Ascend | {tone['tone']} | {tone['vibe']}] {message}"
-        )
+        return f"[{self.mode} Ascend | {tone['tone']} | {tone['vibe']}] {message}"
 
     def identity_snapshot(self):
         return {

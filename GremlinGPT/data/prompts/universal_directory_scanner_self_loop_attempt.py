@@ -113,9 +113,7 @@ def scan_and_self_optimize(directory="Ascend_AI"):
         # Identify and upgrade missing AI modules
         for required_file, (path, content) in CRITICAL_FILES.items():
             target_path = os.path.join(directory, path)
-            if required_file not in scanned_files or needs_upgrade(
-                target_path
-            ):
+            if required_file not in scanned_files or needs_upgrade(target_path):
                 missing_files.append(
                     {
                         "file": required_file,
@@ -129,9 +127,7 @@ def scan_and_self_optimize(directory="Ascend_AI"):
             os.makedirs(os.path.dirname(missing["path"]), exist_ok=True)
             with open(missing["path"], "w", encoding="utf-8") as f:
                 f.write(missing["content"])
-            print(
-                f"Upgraded AI module: {missing['file']} at {missing['path']}"
-            )
+            print(f"Upgraded AI module: {missing['file']} at {missing['path']}")
 
         # Run AI self-tests and evolve
         run_all_tests()
@@ -142,9 +138,7 @@ def scan_and_self_optimize(directory="Ascend_AI"):
 
 def needs_upgrade(file_path):
     """Check if the file needs an upgrade based on versioning or size growth"""
-    return (
-        os.path.getsize(file_path) < 1024
-    )  # If file is too small, consider upgrading
+    return os.path.getsize(file_path) < 1024  # If file is too small, consider upgrading
 
 
 def run_all_tests():

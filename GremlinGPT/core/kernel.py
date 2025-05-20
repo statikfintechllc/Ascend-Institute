@@ -13,6 +13,7 @@ SOURCE_ROOT = Path("GremlinGPT")
 ROLLBACK_DIR = Path("run/checkpoints/snapshots/")
 ROLLBACK_DIR.mkdir(parents=True, exist_ok=True)
 
+
 def read_file(path):
     try:
         with open(path, "r") as f:
@@ -20,6 +21,7 @@ def read_file(path):
     except Exception as e:
         logger.error(f"[KERNEL] Failed to read {path}: {e}")
         return None
+
 
 def write_file(path, content):
     try:
@@ -30,6 +32,7 @@ def write_file(path, content):
     except Exception as e:
         logger.error(f"[KERNEL] Failed to write {path}: {e}")
         return False
+
 
 def backup_snapshot(path):
     try:
@@ -42,6 +45,7 @@ def backup_snapshot(path):
         logger.warning(f"[KERNEL] Snapshot backup failed: {e}")
         return None
 
+
 def test_patch_syntax(code):
     try:
         compile(code, "<string>", "exec")
@@ -49,6 +53,7 @@ def test_patch_syntax(code):
     except SyntaxError as e:
         logger.error(f"[KERNEL] Patch syntax invalid: {e}")
         return False
+
 
 def run_patch_test(temp_code):
     """Optional safety: run the code in a subprocess to test for crashes"""
@@ -67,6 +72,7 @@ def run_patch_test(temp_code):
     except Exception as e:
         logger.warning(f"[KERNEL] Exception during patch test: {e}")
         return False
+
 
 def apply_patch(file_path, new_code, reason="mutation", safe_mode=True):
     original = read_file(file_path)
@@ -111,9 +117,11 @@ def apply_patch(file_path, new_code, reason="mutation", safe_mode=True):
         logger.success(f"[KERNEL] Patch applied: {patch_id}")
     return success
 
+
 def patch_from_text(target_file, injected_code, reason="human"):
     path = SOURCE_ROOT / target_file
     return apply_patch(str(path), injected_code, reason)
+
 
 def patch_from_file(target_file, patch_file):
     try:
@@ -123,6 +131,7 @@ def patch_from_file(target_file, patch_file):
     except Exception as e:
         logger.error(f"[KERNEL] Failed patch from file: {e}")
         return False
+
 
 if __name__ == "__main__":
     test_file = "agent_core/tool_executor.py"

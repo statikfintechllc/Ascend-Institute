@@ -12,9 +12,11 @@ MEMORY_JSON = "config/memory_settings.json"
 def load_config():
     return toml.load(CONFIG_PATH)
 
+
 def load_memory_config():
     with open(MEMORY_JSON) as f:
         return json.load(f)
+
 
 CFG = load_config()
 MEM = load_memory_config()
@@ -22,8 +24,10 @@ MEM = load_memory_config()
 # Root and derived paths
 BASE_DIR = Path(os.path.expanduser(CFG["paths"]["base_dir"])).resolve()
 
+
 def resolve_path(p):
     return os.path.expanduser(p.replace("$ROOT", str(BASE_DIR)))
+
 
 DATA_DIR = resolve_path(CFG["paths"]["data_dir"])
 MODELS_DIR = resolve_path(CFG["paths"]["models_dir"])
@@ -40,7 +44,7 @@ HARDWARE = {
     "use_cpu": CFG["hardware"].get("use_cpu", True),
     "use_gpu": CFG["hardware"].get("use_gpu", False),
     "gpu_device": CFG["hardware"].get("gpu_device", [0]),
-    "multi_gpu": CFG["hardware"].get("multi_gpu", False)
+    "multi_gpu": CFG["hardware"].get("multi_gpu", False),
 }
 
 # NLP and embedding settings
@@ -49,21 +53,21 @@ NLP = {
     "embedder_model": CFG["nlp"]["embedder_model"],
     "transformer_model": CFG["nlp"]["transformer_model"],
     "embedding_dim": CFG["nlp"]["embedding_dim"],
-    "confidence_threshold": CFG["nlp"]["confidence_threshold"]
+    "confidence_threshold": CFG["nlp"]["confidence_threshold"],
 }
 
 # Agent task settings
 AGENT = {
     "max_tasks": CFG["agent"]["max_tasks"],
     "task_retry_limit": CFG["agent"]["task_retry_limit"],
-    "log_agent_output": CFG["agent"]["log_agent_output"]
+    "log_agent_output": CFG["agent"]["log_agent_output"],
 }
 
 # Scraping configuration
 SCRAPER = {
     "profile": CFG["scraper"]["browser_profile"],
     "interval": CFG["scraper"]["scrape_interval_sec"],
-    "max_concurrent": CFG["scraper"]["max_concurrent_scrapers"]
+    "max_concurrent": CFG["scraper"]["max_concurrent_scrapers"],
 }
 
 # Memory engine config
@@ -71,7 +75,7 @@ MEMORY = {
     "vector_backend": CFG["memory"]["vector_backend"],
     "embedding_format": CFG["memory"]["embedding_format"],
     "auto_index": CFG["memory"]["auto_index"],
-    "index_chunk_size": CFG["memory"]["index_chunk_size"]
+    "index_chunk_size": CFG["memory"]["index_chunk_size"],
 }
 
 # Runtime system flags
@@ -80,7 +84,7 @@ SYSTEM = {
     "mode": CFG["system"]["mode"],
     "offline": CFG["system"]["offline"],
     "debug": CFG["system"]["debug"],
-    "log_level": CFG["system"]["log_level"]
+    "log_level": CFG["system"]["log_level"],
 }
 
 # Loop control and timing
@@ -88,13 +92,16 @@ LOOP = {
     "fsm_tick_delay": CFG.get("loop", {}).get("fsm_tick_delay", 0.5),
     "planner_interval": CFG.get("loop", {}).get("planner_interval", 60),
     "mutation_enabled": CFG.get("loop", {}).get("mutation_enabled", True),
-    "self_training_enabled": CFG.get("loop", {}).get("self_training_enabled", True)
+    "self_training_enabled": CFG.get("loop", {}).get("self_training_enabled", True),
 }
 
 # Agent role-specific identities (optional future use)
-ROLES = CFG.get("roles", {
-    "planner": "planner_agent",
-    "executor": "tool_executor",
-    "trainer": "feedback_loop",
-    "kernel": "code_mutator"
-})
+ROLES = CFG.get(
+    "roles",
+    {
+        "planner": "planner_agent",
+        "executor": "tool_executor",
+        "trainer": "feedback_loop",
+        "kernel": "code_mutator",
+    },
+)

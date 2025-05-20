@@ -38,9 +38,7 @@ class ExecutionLoop:
         while self.active:
             self.tick()
             if self.loop_count >= 3:
-                print(
-                    "[ExecutionLoop] Safe breakpoint reached for shell demo."
-                )
+                print("[ExecutionLoop] Safe breakpoint reached for shell demo.")
                 break
 
     def status(self):

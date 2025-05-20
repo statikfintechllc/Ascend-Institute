@@ -9,6 +9,7 @@ from datetime import datetime, timedelta
 QUEUE_FILE = Path("run/checkpoints/task_queue.json")
 ESCALATION_THRESHOLD_SEC = 120
 
+
 def promote_old_tasks():
     now = datetime.utcnow()
     for level, next_level in [("low", "normal"), ("normal", "high")]:
@@ -28,12 +29,9 @@ def promote_old_tasks():
             task_queue[next_level].append(task)
     _save_snapshot()
 
+
 # Priority buckets
-task_queue = {
-    "high": deque(),
-    "normal": deque(),
-    "low": deque()
-}
+task_queue = {"high": deque(), "normal": deque(), "low": deque()}
 
 task_status = {}
 task_meta = defaultdict(dict)
@@ -44,7 +42,7 @@ def _save_snapshot():
         snapshot = {
             "queue": {k: list(v) for k, v in task_queue.items()},
             "status": task_status,
-            "meta": task_meta
+            "meta": task_meta,
         }
         with open(QUEUE_FILE, "w") as f:
             json.dump(snapshot, f, indent=2, default=str)
@@ -74,7 +72,9 @@ def enqueue_task(task):
     priority = task.get("priority", "normal").lower()
 
     if priority not in task_queue:
-        logger.warning(f"[TASK_QUEUE] Invalid priority '{priority}', defaulting to normal.")
+        logger.warning(
+            f"[TASK_QUEUE] Invalid priority '{priority}', defaulting to normal."
+        )
         priority = "normal"
 
     task_queue[priority].append(task)
@@ -83,10 +83,11 @@ def enqueue_task(task):
         "type": task["type"],
         "priority": priority,
         "timestamp": datetime.utcnow().isoformat(),
-        "retries": 0
+        "retries": 0,
     }
     logger.debug(f"[TASK_QUEUE] Enqueued ({priority}): {task['type']} ({task_id})")
     _save_snapshot()
+
 
 def reprioritize(task_id, new_priority):
     """
@@ -111,6 +112,7 @@ def reprioritize(task_id, new_priority):
     logger.warning(f"[TASK_QUEUE] Task ID {task_id} not found in any queue.")
     return False
 
+
 def fetch_task(task_type=None):
     for level in ["high", "normal", "low"]:
         for _ in range(len(task_queue[level])):
@@ -134,14 +136,17 @@ def retry(task):
 
 
 def get_all_tasks():
-    return [{
-        "id": k,
-        "type": task_meta[k]["type"],
-        "status": task_status[k],
-        "priority": task_meta[k].get("priority", "normal"),
-        "retries": task_meta[k].get("retries", 0),
-        "timestamp": task_meta[k].get("timestamp")
-    } for k in task_status]
+    return [
+        {
+            "id": k,
+            "type": task_meta[k]["type"],
+            "status": task_status[k],
+            "priority": task_meta[k].get("priority", "normal"),
+            "retries": task_meta[k].get("retries", 0),
+            "timestamp": task_meta[k].get("timestamp"),
+        }
+        for k in task_status
+    ]
 
 
 def update_task_status(task_id, status):
@@ -155,7 +160,7 @@ def dump():
     return {
         "high": list(task_queue["high"]),
         "normal": list(task_queue["normal"]),
-        "low": list(task_queue["low"])
+        "low": list(task_queue["low"]),
     }
 
 

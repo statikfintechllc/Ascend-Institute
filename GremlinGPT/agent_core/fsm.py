@@ -50,7 +50,9 @@ def fsm_loop():
         except Exception as e:
             log_error(task, e)
             task_queue.retry(task)
-            log_event("fsm", "task_error", {"task": task, "error": str(e)}, status="fail")
+            log_event(
+                "fsm", "task_error", {"task": task, "error": str(e)}, status="fail"
+            )
 
             # Priority escalation for repeatedly failing tasks
             tid = task.get("id")

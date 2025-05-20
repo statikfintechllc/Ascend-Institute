@@ -57,6 +57,7 @@ def extract_dom_structure(html):
 
     return result
 
+
 # CLI/Debug Usage
 if __name__ == "__main__":
     with open("example_page.html", "r") as f:

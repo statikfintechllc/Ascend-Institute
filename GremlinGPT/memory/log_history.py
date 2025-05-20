@@ -44,10 +44,6 @@ def load_history(n=50):
 
 # CLI test
 if __name__ == "__main__":
-    log_event(
-        "exec", "scrape", {"outcome": "5 tickers pulled"}, status="success"
-    )
-    log_event(
-        "exec", "nlp", {"answer": "support/resistance identified"}, status="ok"
-    )
+    log_event("exec", "scrape", {"outcome": "5 tickers pulled"}, status="success")
+    log_event("exec", "nlp", {"answer": "support/resistance identified"}, status="ok")
     print(load_history(2))

@@ -85,7 +85,9 @@ def analyze_mutation_diff():
                 score = semantic_similarity(previous, current)
                 lineage_id = str(uuid.uuid4())
 
-                logger.info(f"[WATCHER] Semantic similarity for {path}: {round(score, 4)}")
+                logger.info(
+                    f"[WATCHER] Semantic similarity for {path}: {round(score, 4)}"
+                )
 
                 vector = embed_text(diff)
                 package_embedding(
@@ -104,14 +106,18 @@ def analyze_mutation_diff():
                 log_to_dataset(previous, current, score, path, lineage_id)
 
                 if score < 0.6:
-                    enqueue_task({
-                        "type": "self_train",
-                        "meta": {
-                            "reason": f"semantic_delta::{path}",
-                            "lineage_id": lineage_id
+                    enqueue_task(
+                        {
+                            "type": "self_train",
+                            "meta": {
+                                "reason": f"semantic_delta::{path}",
+                                "lineage_id": lineage_id,
+                            },
                         }
-                    })
-                    logger.warning(f"[WATCHER] Significant mutation — self_train scheduled.")
+                    )
+                    logger.warning(
+                        f"[WATCHER] Significant mutation — self_train scheduled."
+                    )
 
                 if score < 0.4:
                     rollback_file(path, previous, lineage_id, score)

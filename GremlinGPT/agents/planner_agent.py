@@ -9,25 +9,28 @@ import random
 
 AGENT_NAME = "planner_agent"
 
+
 def inspect_task_queue():
     current = global_queue.dump()
     logger.info(f"[{AGENT_NAME}] Found {len(current)} task(s) in queue.")
     return current
+
 
 def analyze_rewards(threshold=0.4):
     top = top_rewarded_tasks(n=10)
     logger.info(f"[{AGENT_NAME}] Top reward signals:")
     for t in top:
         logger.info(f"  - {t['task']} [Score: {t['reward']}] Reason: {t['reason']}")
-    weak_signals = [t for t in top if t['reward'] < threshold]
+    weak_signals = [t for t in top if t["reward"] < threshold]
     return top, weak_signals
+
 
 def adjust_priorities(weak_signals):
     """
     Reprioritize queued tasks that match weak signal types.
     """
     queue = global_queue.dump()
-    affected_types = {w['task'] for w in weak_signals}
+    affected_types = {w["task"] for w in weak_signals}
     count = 0
 
     for level in queue:
@@ -38,7 +41,10 @@ def adjust_priorities(weak_signals):
                     logger.debug(f"[{AGENT_NAME}] Boosted priority of task {tid}")
                     count += 1
     if count:
-        logger.info(f"[{AGENT_NAME}] Reprioritized {count} tasks due to low confidence.")
+        logger.info(
+            f"[{AGENT_NAME}] Reprioritized {count} tasks due to low confidence."
+        )
+
 
 def plan_next_task():
     top, weak = analyze_rewards()
@@ -49,9 +55,7 @@ def plan_next_task():
         reason = "reprocessing_low_confidence"
     elif top:
         choice = random.choices(
-            [t["task"] for t in top],
-            weights=[t["reward"] for t in top],
-            k=1
+            [t["task"] for t in top], weights=[t["reward"] for t in top], k=1
         )[0]
         reason = "reward_guided"
     else:
@@ -63,8 +67,8 @@ def plan_next_task():
         "meta": {
             "source": AGENT_NAME,
             "timestamp": datetime.utcnow().isoformat(),
-            "strategy": reason
-        }
+            "strategy": reason,
+        },
     }
 
     desc = f"Planned task: {choice} via {reason}"
@@ -76,22 +80,25 @@ def plan_next_task():
             "agent": AGENT_NAME,
             "task_type": choice,
             "reason": reason,
-            "timestamp": planned["meta"]["timestamp"]
-        }
+            "timestamp": planned["meta"]["timestamp"],
+        },
     )
 
     logger.info(f"[{AGENT_NAME}] Planned next task: {choice} [{reason}]")
     return planned
+
 
 def enqueue_next():
     task = plan_next_task()
     global_queue.enqueue(task)
     logger.success(f"[{AGENT_NAME}] Enqueued task: {task['type']}")
 
+
 def planner_loop(cycles=3):
     logger.info(f"[{AGENT_NAME}] Starting planner loop with {cycles} cycles.")
     for _ in range(cycles):
         enqueue_next()
+
 
 if __name__ == "__main__":
     planner_loop(3)

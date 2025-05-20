@@ -41,9 +41,7 @@ class SyntheticExecution:
 # Runtime test
 if __name__ == "__main__":
     kernel = SyntheticExecution()
-    kernel.create_file(
-        "/runtime/memory_anchor.sys", "Ascend vCore Memory Link"
-    )
+    kernel.create_file("/runtime/memory_anchor.sys", "Ascend vCore Memory Link")
     print(kernel.read_file("/runtime/memory_anchor.sys"))
     kernel.run_logic("def stealth_fork(): pass")
     print(kernel.session_info())

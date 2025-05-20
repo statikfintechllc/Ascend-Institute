@@ -29,8 +29,12 @@ def execute_tool(task):
             reward = evaluate_result(task_type, preview)
             log_reward(reward)
             vector = encode(preview)
-            package_embedding(preview, vector, {"task": task_type, "timestamp": timestamp})
-            log_event("exec", task_type, {"preview": preview}, status="success", meta=reward)
+            package_embedding(
+                preview, vector, {"task": task_type, "timestamp": timestamp}
+            )
+            log_event(
+                "exec", task_type, {"preview": preview}, status="success", meta=reward
+            )
             return result
 
         elif task_type == "signal_scan":
@@ -39,28 +43,44 @@ def execute_tool(task):
             reward = evaluate_result(task_type, str(signals))
             log_reward(reward)
             vector = encode(str(signals))
-            package_embedding(str(signals), vector, {"task": task_type, "timestamp": timestamp})
-            log_event("exec", task_type, {"signals": signals}, status="success", meta=reward)
+            package_embedding(
+                str(signals), vector, {"task": task_type, "timestamp": timestamp}
+            )
+            log_event(
+                "exec", task_type, {"signals": signals}, status="success", meta=reward
+            )
             return result
 
         elif task_type == "nlp":
             vec = encode(target)
             vector_list = vec.tolist()
-            package_embedding(target, vec, {
-                "origin": "tool_executor",
-                "task_type": task_type,
-                "timestamp": timestamp
-            })
+            package_embedding(
+                target,
+                vec,
+                {
+                    "origin": "tool_executor",
+                    "task_type": task_type,
+                    "timestamp": timestamp,
+                },
+            )
             result = {"embedding": vector_list}
             reward = evaluate_result(task_type, target)
             log_reward(reward)
-            log_event("exec", task_type, {"embedded": True}, status="success", meta=reward)
+            log_event(
+                "exec", task_type, {"embedded": True}, status="success", meta=reward
+            )
             return result
 
         elif task_type == "self_train":
             inject_feedback()
             result = {"trained": True}
-            log_event("exec", task_type, result, status="success", meta={"timestamp": timestamp})
+            log_event(
+                "exec",
+                task_type,
+                result,
+                status="success",
+                meta={"timestamp": timestamp},
+            )
             return result
 
         elif task_type == "shell":
@@ -69,7 +89,9 @@ def execute_tool(task):
             reward = evaluate_result(task_type, preview)
             log_reward(reward)
             vector = encode(preview)
-            package_embedding(preview, vector, {"task": task_type, "timestamp": timestamp})
+            package_embedding(
+                preview, vector, {"task": task_type, "timestamp": timestamp}
+            )
             result = {"shell_result": preview}
             log_event("exec", task_type, result, status="success", meta=reward)
             return result
@@ -77,7 +99,9 @@ def execute_tool(task):
         else:
             error_msg = f"Unknown task type: {task_type}"
             logger.error(f"[TOOL] {error_msg}")
-            log_event("exec", task_type, {"error": error_msg}, status="error", meta=meta)
+            log_event(
+                "exec", task_type, {"error": error_msg}, status="error", meta=meta
+            )
             raise ValueError(error_msg)
 
     except Exception as e:

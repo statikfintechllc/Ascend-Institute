@@ -10,12 +10,14 @@ from memory.vector_store.embedder import embed_text, package_embedding
 from agents.planner_agent import enqueue_next
 from backend.globals import logger
 
+
 def is_valid_python(code):
     try:
         ast.parse(code)
         return True
     except SyntaxError:
         return False
+
 
 def mutate_dataset(dataset):
     mutated = []
@@ -38,11 +40,13 @@ def mutate_dataset(dataset):
             fix = original.replace("low", "high")
             mutation_type = "signal_boost"
         else:
-            suffix = random.choice([
-                " #mutated",
-                f" #patch_{random.randint(100,999)}",
-                f" #delta_{int(datetime.utcnow().timestamp())}"
-            ])
+            suffix = random.choice(
+                [
+                    " #mutated",
+                    f" #patch_{random.randint(100,999)}",
+                    f" #delta_{int(datetime.utcnow().timestamp())}",
+                ]
+            )
             fix = original + suffix
             mutation_type = "suffix_noise"
 
@@ -73,27 +77,31 @@ def mutate_dataset(dataset):
                 "label": mutation_type,
                 "timestamp": datetime.utcnow().isoformat(),
                 "semantic_score": round(score, 4),
-                "safe": safe
-            }
+                "safe": safe,
+            },
         )
 
         # Route problematic mutations to planner
         if score < 0.5 or not safe:
-            logger.warning(f"[MUTATOR] Routed task for planner: score={score}, safe={safe}")
+            logger.warning(
+                f"[MUTATOR] Routed task for planner: score={score}, safe={safe}"
+            )
             enqueue_next()
 
         # Store mutation result
-        mutated.append({
-            "input": original,
-            "mutation": fix,
-            "label": "mutated",
-            "mutation_type": mutation_type,
-            "timestamp": datetime.utcnow().isoformat(),
-            "safe": safe,
-            "semantic_score": round(score, 4),
-            "tokens": tokens,
-            "pos_tags": pos_tags,
-            "context_flags": context_notes
-        })
+        mutated.append(
+            {
+                "input": original,
+                "mutation": fix,
+                "label": "mutated",
+                "mutation_type": mutation_type,
+                "timestamp": datetime.utcnow().isoformat(),
+                "safe": safe,
+                "semantic_score": round(score, 4),
+                "tokens": tokens,
+                "pos_tags": pos_tags,
+                "context_flags": context_notes,
+            }
+        )
 
     return mutated
