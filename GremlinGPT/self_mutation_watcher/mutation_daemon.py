@@ -125,7 +125,6 @@ def analyze_mutation_diff():
         except Exception as e:
             logger.error(f"[WATCHER] Semantic diff scoring failed for {path}: {e}")
 
-
 def mutation_loop():
     logger.info("[WATCHER] Mutation Daemon Started.")
     while True:
