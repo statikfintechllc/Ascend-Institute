@@ -1,7 +1,0 @@
-#!/usr/bin/env python3
-
-#run
-chmod +x AS_SK_C4.py
-
-#run
- ./AS_SK_C4.py

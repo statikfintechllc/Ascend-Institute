@@ -1,3 +1,0 @@
-# Ignore all SVG charts except the latest traffic-chart.svg
-assets/traffic-chart-*.svg
-!assets/traffic-chart.svg

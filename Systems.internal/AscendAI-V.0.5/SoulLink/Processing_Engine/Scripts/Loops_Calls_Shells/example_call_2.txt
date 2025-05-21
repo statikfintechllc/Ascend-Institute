@@ -1,8 +1,0 @@
-import subprocess
-
-def call_codet5_model(prompt):
-    result = subprocess.run(
-        ["python", "codet5_infer.py", "--prompt", prompt],
-        capture_output=True, text=True
-    )
-    return result.stdout.strip()

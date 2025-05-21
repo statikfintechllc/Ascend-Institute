@@ -1,8 +1,0 @@
-# StarCoder Model Integration Placeholder
-
-def call_local_starcoder(prompt: str) -> str:
-    """
-    This placeholder assumes future integration with LMStudio, Ollama, or local API.
-    Modify this to call the actual StarCoder instance when ready.
-    """
-    return "# StarCoder response for: " + prompt

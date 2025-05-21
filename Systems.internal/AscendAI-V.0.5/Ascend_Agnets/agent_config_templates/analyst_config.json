@@ -1,7 +1,0 @@
-{
-  "name": "Analyst",
-  "task": "summarization, prediction",
-  "max_input_length": 2048,
-  "verbosity": "moderate",
-  "panic_threshold": 0.75
-}

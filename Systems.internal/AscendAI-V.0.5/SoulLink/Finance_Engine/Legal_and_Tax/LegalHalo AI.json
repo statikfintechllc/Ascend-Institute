@@ -1,5 +1,0 @@
-{"type": "agent", "script": "compliance/legalhalo_guard.py", "intent": "Intercept all outbound tasks and validate against compliance frameworks", "risk": "medium", "origin": "llama", "requires_approval": false}
-{"type": "shell", "command": "pip install pydantic openlaw taxcalc finance-codecs", "intent": "Install compliance and financial law packages", "risk": "low", "origin": "llama", "requires_approval": false}
-{"type": "agent", "script": "compliance/ethics_audit_logger.py", "intent": "Log ethical and legal justifications for all autonomous actions", "risk": "medium", "origin": "llama", "requires_approval": false}
-{"type": "note", "intent": "Define SEC-compliant behavior templates for financial trades, tax logs, and AI-guided decisioning systems", "risk": "medium", "origin": "llama", "requires_approval": true}
-{"type": "agent", "script": "dashboard/legal_docgen.py", "intent": "Autogenerate legal blurbs, usage policies, and audit trails from system activity", "risk": "low", "origin": "llama", "requires_approval": false}
