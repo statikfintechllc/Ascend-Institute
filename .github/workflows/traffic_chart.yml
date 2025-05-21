@@ -25,6 +25,7 @@ jobs:
 
       - name: Delete old traffic charts
         run: |
+          mkdir -p assets
           find assets/ -name "traffic-chart-*.svg" ! -name "traffic-chart.svg" -delete || true
 
       - name: Generate Chart
