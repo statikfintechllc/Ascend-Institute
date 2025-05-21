@@ -2,7 +2,6 @@ from collections import deque, defaultdict
 import uuid
 import json
 from pathlib import Path
-from datetime import datetime
 from backend.globals import logger
 from datetime import datetime, timedelta
 
@@ -12,6 +11,8 @@ ESCALATION_THRESHOLD_SEC = 120
 
 def promote_old_tasks():
     now = datetime.utcnow()
+    threshold = timedelta(seconds=ESCALATION_THRESHOLD_SEC)
+
     for level, next_level in [("low", "normal"), ("normal", "high")]:
         to_promote = []
         for task in list(task_queue[level]):
@@ -19,7 +20,7 @@ def promote_old_tasks():
             if not tid or tid not in task_meta:
                 continue
             timestamp = datetime.fromisoformat(task_meta[tid]["timestamp"])
-            if (now - timestamp).total_seconds() > ESCALATION_THRESHOLD_SEC:
+            if now - timestamp > threshold:
                 to_promote.append(task)
                 task_queue[level].remove(task)
                 task_meta[tid]["priority"] = next_level

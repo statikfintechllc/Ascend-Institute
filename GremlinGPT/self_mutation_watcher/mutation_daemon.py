@@ -116,7 +116,7 @@ def analyze_mutation_diff():
                         }
                     )
                     logger.warning(
-                        f"[WATCHER] Significant mutation — self_train scheduled."
+                        (f"[WATCHER] Significant mutation — self_train scheduled."
                     )
 
                 if score < 0.4:

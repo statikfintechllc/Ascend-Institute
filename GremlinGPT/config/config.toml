@@ -2,6 +2,7 @@
 name = "GremlinGPT"
 mode = "bootstrap"
 offline = true
+enable_patch_test = true
 debug = true
 log_level = "INFO"
 

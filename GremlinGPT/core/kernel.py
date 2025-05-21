@@ -10,7 +10,8 @@ import subprocess
 
 KERNEL_TAG = "kernel_writer"
 SOURCE_ROOT = Path("GremlinGPT")
-ROLLBACK_DIR = Path("run/checkpoints/snapshots/")
+
+ROLLBACK_DIR = Path(CFG["paths"].get("checkpoints_dir", "run/checkpoints/")) / "snapshots"
 ROLLBACK_DIR.mkdir(parents=True, exist_ok=True)
 
 
@@ -56,7 +57,6 @@ def test_patch_syntax(code):
 
 
 def run_patch_test(temp_code):
-    """Optional safety: run the code in a subprocess to test for crashes"""
     try:
         result = subprocess.run(
             ["python3", "-c", temp_code],
@@ -80,20 +80,20 @@ def apply_patch(file_path, new_code, reason="mutation", safe_mode=True):
         logger.info(f"[KERNEL] No change or failed read for: {file_path}")
         return False
 
-    if safe_mode:
+    # Respect global safety flag
+    patch_testing_enabled = CFG["system"].get("enable_patch_test", True)
+
+    if safe_mode and patch_testing_enabled:
         if not test_patch_syntax(new_code):
             return False
         if not run_patch_test(new_code):
             return False
 
-    # Save snapshot
     backup_snapshot(file_path)
 
-    # Diff logic
     diff = diff_texts(original, new_code)
     diff_text = "\n".join(diff["diff_lines"])
     vector = embed_text(diff_text)
-
     patch_id = str(uuid.uuid4())
 
     package_embedding(
