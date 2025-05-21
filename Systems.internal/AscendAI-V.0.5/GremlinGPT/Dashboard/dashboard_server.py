@@ -67,9 +67,7 @@ def home():
 
 @app.route('/idea', methods=['POST'])
 def receive_idea():
-# Very basic token check
 AUTH_TOKEN = os.environ.get("DASHBOARD_AUTH_TOKEN", "changeme")
-
 data = request.get_json(force=True)
 token = request.headers.get("Authorization", "").replace("Bearer ", "").strip()
 

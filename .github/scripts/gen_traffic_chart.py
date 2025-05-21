@@ -33,7 +33,9 @@ if not clones or not views:
     clone_counts = [0]
     view_counts = [0]
 else:
-    dates = [datetime.datetime.strptime(d["timestamp"][:10], "%Y-%m-%d") for d in clones]
+    dates = [
+        datetime.datetime.strptime(d["timestamp"][:10], "%Y-%m-%d") for d in clones
+    ]
     clone_counts = [d["count"] for d in clones]
     view_counts = [d["count"] for d in views]
 
