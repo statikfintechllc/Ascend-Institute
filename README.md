@@ -7,6 +7,25 @@
 
 ---
 
+## Table of Contents
+
+1. [Support This Project](#support-this-project)  
+2. [How GremlinGPT Was Built](#how-gremlingpt-was-built)  
+3. [Funding & Infrastructure Goals](#funding--infrastructure-goals)  
+   - [Phase 1 Funding Target: $50,000](#phase-1-funding-target-50000)  
+   - [If You Are](#if-you-are)  
+4. [Partner With Us](#partner-with-us)  
+   - [If You Believe](#if-you-believe)  
+5. [How to Support Right Now](#how-to-support-right-now)  
+6. [What Is AscendAI?](#what-is-ascendai)  
+7. [GremlinGPT](#gremlingpt)  
+8. [Collaborators Wanted — Join the Loop](#collaborators-wanted--join-the-loop)  
+9. [Support](#support)  
+10. [Final Notes](#final-notes)  
+11. [License](#license)
+
+---
+
 ## Support This Project
 
 **Sponsor via:**
