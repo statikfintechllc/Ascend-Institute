@@ -94,7 +94,7 @@ You might just mutate the next major agent.
 
 ⸻
 
-**AscendAI** is a self-building, self-healing recursive AI agent system.  
+**AscendAI** is a self-building, self-healing recursive AI agent system in the making.  
 Designed for full-stack autonomy across devices, markets, and networks.  
 It evolves itself, obeys its CEO, and writes its own future.
 It starts as an Egg, and becomes your AscendAI, booted from the Gremlin.
@@ -116,16 +116,14 @@ Licensed under Apache 2.0 © 2025 StatikFinTech, LLC. See LICENSE for details.
 
 ⸻
 
-## FINAL GOAL: Ascend-AI | Sovereign Core | Ghost Protocol
-
-# GremlinGPT
+## GremlinGPT
 
 **Autonomous. Offline. Self-Evolving.**  
 GremlinGPT is a modular AI system designed to bootstrap itself into a local domain-specific LLM through iterative reasoning, mutation, feedback, and retraining — without the cloud.
 
 ⸻
 
-COLLABORATORS WANTED — JOIN THE LOOP
+## COLLABORATORS WANTED — JOIN THE LOOP
 
 We are seeking one of the following:
 	•	A recursive logic architect who speaks Python like poetry
