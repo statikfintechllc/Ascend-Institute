@@ -1,3 +1,21 @@
+# Ignore everything
+**
+
+# But don't ignore root-level files
+!.gitignore
+!README.md
+!LICENSE
+!SECURITY.md
+!CONTRIBUTING.md
+!Code_of_Conduct.md
+!FOUNDER_LOG.md
+!setup.cfg
+
+# Keep documentation only
+!GremlinGPT/docs/**
+
+# Optional: allow interface or architecture outlines (not code)
+!Systems.internal/**
 # === MODEL FILES ===
 /models/*
 !models/README.md
