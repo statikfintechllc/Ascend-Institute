@@ -5,11 +5,6 @@
 [![License](https://img.shields.io/badge/license-Apache%202.0-red?logo=apache&color=red)](LICENSE)
 [![Contributors](https://img.shields.io/github/contributors/statikfintechllc/AscendAI?color=red)](https://github.com/statikfintechllc/AscendAI/graphs/contributors)
 
-## 📈 Live Repo Traffic
-
-[![Live Traffic Chart](https://github.com/statikfintechllc/AscendAI/raw/main/assets/traffic-chart.svg)](https://github.com/statikfintechllc/AscendAI/raw/main/assets/traffic-chart.svg)
-> Click for live traffic (updates daily)
-
 ⸻
 
 ## Support This Project
