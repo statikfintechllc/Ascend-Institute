@@ -86,7 +86,7 @@ def analyze_mutation_diff():
                 lineage_id = str(uuid.uuid4())
 
                 logger.info(
-                    f"[WATCHER] Semantic similarity for {path}: {round(score, 4)}"
+                    f"[WATCHER] Semantic similarity for {path}: " f"{round(score, 4)}"
                 )
 
                 vector = embed_text(diff)
@@ -116,7 +116,9 @@ def analyze_mutation_diff():
                         }
                     )
                     logger.warning(
-                        f"[WATCHER] Significant mutation — self_train scheduled."
+                        f"[WATCHER] mutation_event=significant | "
+                        f"action=self_train | file={path} | "
+                        f"score={round(score, 4)}"
                     )
 
                 if score < 0.4:
