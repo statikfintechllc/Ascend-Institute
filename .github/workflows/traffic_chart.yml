@@ -1,0 +1,42 @@
+name: Update Traffic Chart
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"   # Every 5 minutes
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  update-chart:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install requirements
+        run: pip install matplotlib requests
+
+      - name: Delete old traffic charts
+        run: |
+          mkdir -p assets
+          find assets/ -name "traffic-chart-*.svg" ! -name "traffic-chart.svg" -delete || true
+
+      - name: Generate Chart
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python .github/scripts/gen_traffic_chart.py
+
+      - name: Commit and Push Chart
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "github-actions"
+          git add assets/traffic-chart.svg
+          git commit -m "Update traffic chart [skip ci]" || echo "No changes to commit"
+          git push
