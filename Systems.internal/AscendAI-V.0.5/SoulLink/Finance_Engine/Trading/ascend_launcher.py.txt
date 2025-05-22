@@ -1,0 +1,18 @@
+import subprocess
+import time
+from state_manager import StateManager
+
+def launch_all():
+    sm = StateManager()
+    current_state = sm.get_state()["mode"]
+
+    if current_state == "INIT":
+        sm.update_state("SIMULATION")
+        subprocess.Popen(["python3", "phantom_trader.py"])
+    elif current_state == "SIMULATION":
+        subprocess.Popen(["python3", "synthetic_execution.py"])
+    else:
+        print("Unknown state:", current_state)
+
+if __name__ == "__main__":
+    launch_all()

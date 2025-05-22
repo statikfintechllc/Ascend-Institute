@@ -1,0 +1,20 @@
+We need to start all APIs and the dashboard automatically when the system boots.
+
+📌 4.1 Create AI Startup Script (S:\startup.sh)
+
+#!/bin/bash
+
+# Start AI APIs
+python /mnt/s/AI_Core/api_core.py &
+python /mnt/s/AI_Security/security_api.py &
+python /mnt/s/AI_Networking/network_api.py &
+python /mnt/s/Quantum/quantum_api.py &
+python /mnt/s/AI_Logs/logs_api.py &
+
+# Start Dashboard
+python /mnt/s/AI_Dashboard/dashboard.py &
+
+
+Make it executable:
+
+chmod +x /mnt/s/startup.sh

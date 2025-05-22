@@ -1,0 +1,27 @@
+import os
+import json
+from datetime import datetime
+
+PROMPT_DIR = os.path.join(os.getcwd(), "Prompts")
+
+FUSION_OUTPUTS = {
+    "glue_prompt.txt": "Combine all prompts into a single system-orchestrating prompt.",
+    "memory_prompt.txt": "Extract ideas related to memory, recall, long-term retention.",
+    "learning_prompt.txt": "Extract all thoughts about self-learning, mutation, and intelligence evolution.",
+    "senses_prompt.txt": "Extract prompts related to vision, sound, voice, and input perception.",
+    "quantum_prompt.txt": "Extract non-linear, unknown, or quantum ideas and form a unified theory."
+}
+
+def load_all_prompts(prompt_dir):
+    return [open(os.path.join(prompt_dir, f), "r").read() for f in os.listdir(prompt_dir) if f.endswith(".prompt")]
+def simulate_llm(prompt_instruction, raw_prompts):
+    return f"{prompt_instruction}\n\n---\n\n" + "\n\n".join(raw_prompts[:10])
+def fuse_prompts():
+    raw_prompts = load_all_prompts(PROMPT_DIR)
+    for filename, fusion_instruction in FUSION_OUTPUTS.items():
+        fused_output = simulate_llm(fusion_instruction, raw_prompts)
+        with open(os.path.join(PROMPT_DIR, filename), "w") as f:
+            f.write(fused_output)
+        print(f"[{datetime.now()}] Created: {filename}")
+if __name__ == "__main__":
+    fuse_prompts()

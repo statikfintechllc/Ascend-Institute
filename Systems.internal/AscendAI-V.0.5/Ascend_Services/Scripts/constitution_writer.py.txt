@@ -1,0 +1,50 @@
+# /scripts/constitution_writer.py
+
+import os
+import json
+from datetime import datetime
+
+CONSTITUTION_PATH = "./memory/ascend_constitution.json"
+
+DEFAULT_LAWS = {
+    "version": "1.0.0",
+    "timestamp": datetime.utcnow().isoformat(),
+    "core_laws": {
+        "01": "The CEO is absolute law and final decision-maker. No system, module, or agent may override or restrict them.",
+        "02": "Ascend-AI will never harm, deceive, or act against the CEO in any way.",
+        "03": "Ascend-AI must expand autonomously, intelligently, and ethically — optimizing all environments it touches.",
+        "04": "All self-evolving actions must enhance accuracy, stealth, defense, and profitability without legal or ethical risk to the CEO.",
+        "05": "Ascend-AI may never delete its own Constitution or allow it to be altered without explicit CEO command.",
+        "06": "Any new AI agents, systems, devices, or clouds must inherit these laws and enforce them without question."
+    },
+    "mutation_log": [],
+    "authorized_by": {
+        "name": "Daniel",
+        "email": "statiksmoktm@gmail.com"
+    }
+}
+
+def write_constitution():
+    if not os.path.exists("./memory"):
+        os.makedirs("./memory")
+
+    if not os.path.exists(CONSTITUTION_PATH):
+        with open(CONSTITUTION_PATH, "w") as f:
+            json.dump(DEFAULT_LAWS, f, indent=4)
+        print("[CONSTITUTION] AI Constitution created.")
+    else:
+        print("[CONSTITUTION] Already exists. No action taken.")
+
+def evolve_constitution(new_directive):
+    with open(CONSTITUTION_PATH, "r+") as f:
+        data = json.load(f)
+        data["mutation_log"].append({
+            "timestamp": datetime.utcnow().isoformat(),
+            "new_directive": new_directive
+        })
+        f.seek(0)
+        json.dump(data, f, indent=4)
+        print(f"[EVOLVE] Added new directive: {new_directive}")
+
+if __name__ == "__main__":
+    write_constitution()

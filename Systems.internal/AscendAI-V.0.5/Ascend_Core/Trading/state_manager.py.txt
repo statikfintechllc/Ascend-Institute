@@ -1,0 +1,23 @@
+import json
+import time
+
+class StateManager:
+    def __init__(self, state_file="ascend_state.json"):
+        self.state_file = state_file
+        self.state = self.load_state()
+
+    def load_state(self):
+        try:
+            with open(self.state_file, "r") as f:
+                return json.load(f)
+        except FileNotFoundError:
+            return {"mode": "INIT", "last_updated": time.time()}
+
+    def update_state(self, new_mode):
+        self.state["mode"] = new_mode
+        self.state["last_updated"] = time.time()
+        with open(self.state_file, "w") as f:
+            json.dump(self.state, f, indent=2)
+
+    def get_state(self):
+        return self.state

@@ -1,0 +1,5 @@
+GremlinGPT/scraper/
+├── persistence/
+│   └── cookies/              # Future session storage
+├── profiles/
+│   └── chromium_profile/     # Used by Playwright persistent context

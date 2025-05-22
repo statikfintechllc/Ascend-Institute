@@ -1,0 +1,16 @@
+from flask import Flask, jsonify
+
+app = Flask(__name__)
+
+@app.route('/network_status', methods=['GET'])
+def network_status():
+    return jsonify({"result": "[Networking] AI Network is stable."})
+
+if __name__ == '__main__':
+    app.run(port=5003)
+
+
+
+Run-
+
+python /mnt/s/AI_Networking/network_api.py &

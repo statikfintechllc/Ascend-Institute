@@ -1,0 +1,22 @@
+{
+    "map_id": "entropy_control_grid",
+    "mutation_entropy": "balanced",
+    "variability_window": {
+        "min": 0.03,
+        "max": 0.11
+    },
+    "pattern_disruption": true,
+    "repeat_avoidance": true,
+    "stealth_noise_level": "low",
+    "logic_mutation_rules": {
+        "max_duplicate_blocks": 1,
+        "obfuscate_if_reused": true,
+        "alternate_function_structures": true
+    },
+    "decoy_noise": {
+        "injected_per_cycle": 1,
+        "syntax_lookalikes": true,
+        "harmless_nonsense": true
+    },
+    "entropy_seed": "ascend-core-thread"
+}

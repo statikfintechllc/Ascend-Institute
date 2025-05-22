@@ -1,0 +1,23 @@
+LLaMA Integration Instructions for Fractal Echo AutoBot:
+
+1. Extend Data Pipelines:
+   - Load SPY, IWM, and penny stock data from Ascend’s shared memory or DB.
+   - Use LLaMA's NLP to label fractal patterns based on candle behavior.
+
+2. Embed AutoBot as a Module:
+   - Wrap `run_autobot()` in a persistent background coroutine (async/await).
+   - Bind results to Ascend's Dashboard output layer via socket/webhook.
+
+3. Pattern Memory:
+   - Store fractal matches in vector DB.
+   - Train LLaMA to classify “early echo” vs “late stage fade”.
+
+4. Automation Extensions:
+   - Use `pyautogui` to control live charts/trade entries.
+   - Trigger dashboard alerts or Discord posts using NLP-generated summaries.
+
+5. Sync Webhooks:
+   - Fractal Echo AutoBot posts to /alerts/fractals on your server
+   - Discord/Slack/TradingView hooks can be layered on top
+
+This AutoBot is a logic spine. Use LLaMA to give it a voice, memory, and execution reach.

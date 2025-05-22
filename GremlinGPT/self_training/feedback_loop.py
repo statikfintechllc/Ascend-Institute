@@ -1,0 +1,77 @@
+# feedback_loop.py
+
+import json
+import os
+from datetime import datetime
+from pathlib import Path
+from loguru import logger
+from memory.vector_store.embedder import inject_watermark
+
+# Paths
+LOG_PATH = Path("data/logs/")
+TRIGGER_FILE = Path("run/checkpoints/retrain_trigger.json")
+ARCHIVE_DIR = Path("GremlinGPT/docs/feedback_triggers/")
+LOG_PATH.mkdir(parents=True, exist_ok=True)
+ARCHIVE_DIR.mkdir(parents=True, exist_ok=True)
+
+
+def inject_feedback():
+    logger.info("[FEEDBACK] Mutation event detected — scheduling retrain.")
+
+    trigger = {
+        "trigger": "mutation_watcher",
+        "time": datetime.utcnow().isoformat(),
+        "note": "Auto-diff-based training cycle",
+        "watermark": "source:GremlinGPT",
+    }
+
+    try:
+        with open(TRIGGER_FILE, "w") as f:
+            json.dump(trigger, f, indent=2)
+        logger.success(f"[FEEDBACK] Retrain trigger saved → {TRIGGER_FILE}")
+
+        # Inject into vector memory
+        inject_watermark(origin="feedback_loop")
+
+        # Archive trigger for traceable memory lineage
+        archive_trigger(trigger)
+
+        # Autocommit if git settings permit
+        auto_commit_push()
+
+    except Exception as e:
+        logger.error(f"[FEEDBACK] Failed to save retrain trigger: {e}")
+
+
+def archive_trigger(trigger):
+    try:
+        ts = datetime.utcnow().strftime("%Y%m%dT%H%M%S")
+        out_path = ARCHIVE_DIR / f"trigger_{ts}.json"
+        with open(out_path, "w") as f:
+            json.dump(trigger, f, indent=2)
+        logger.debug(f"[FEEDBACK] Trigger archived → {out_path}")
+    except Exception as e:
+        logger.warning(f"[FEEDBACK] Trigger archive failed: {e}")
+
+
+def auto_commit_push():
+    try:
+        os.system(f"git add {ARCHIVE_DIR}")
+        os.system(f'git commit -m "[autocommit] Feedback trigger archived"')
+        branch = os.popen("git rev-parse --abbrev-ref HEAD").read().strip()
+        os.system(f"git push origin {branch}")
+        logger.info("[FEEDBACK] Trigger autocommitted and pushed.")
+    except Exception as e:
+        logger.warning(f"[FEEDBACK] Git push failed: {e}")
+
+
+def check_trigger():
+    exists = TRIGGER_FILE.exists()
+    logger.debug(f"[FEEDBACK] Trigger file exists: {exists}")
+    return exists
+
+
+def clear_trigger():
+    if TRIGGER_FILE.exists():
+        TRIGGER_FILE.unlink()
+        logger.info("[FEEDBACK] Retrain trigger cleared.")

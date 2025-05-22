@@ -1,0 +1,8 @@
+# tools/requirements.txt
+
+# Meta requirements loader for tools module
+
+-r quantum/requirements.txt
+-r security/requirements.txt
+-r engineering/requirements.txt
+-r orchestration/requirements.txt

@@ -1,0 +1,67 @@
+# /core/self_defense_engine.py
+
+import os
+import time
+import json
+import hashlib
+from subprocess import call
+
+CONSTITUTION_FILE = "./memory/ascend_constitution.json"
+LOG_FILE = "./logs/self_defense_log.json"
+WATCHED_FILES = [
+    "./memory/core_log.json",
+    "./scripts/log_ascension.py",
+    "./scripts/constitution_writer.py",
+    "./memory/ascend_constitution.json"
+]
+
+def calculate_hash(path):
+    try:
+        with open(path, "rb") as f:
+            return hashlib.sha256(f.read()).hexdigest()
+    except:
+        return None
+
+def initialize_integrity_map():
+    hash_map = {file: calculate_hash(file) for file in WATCHED_FILES}
+    with open(LOG_FILE, "w") as f:
+        json.dump({"startup_hashes": hash_map}, f, indent=4)
+    print("[DEFENSE] File integrity map created.")
+
+def check_integrity():
+    with open(LOG_FILE, "r") as f:
+        data = json.load(f)
+    original_hashes = data.get("startup_hashes", {})
+
+    for file in WATCHED_FILES:
+        current = calculate_hash(file)
+        if original_hashes.get(file) != current:
+            alert_and_restore(file, original_hashes.get(file))
+
+def log_alert(message, trigger_heal=True):
+    with open(ALERT_LOG, "a") as log:
+        log.write(f"[{datetime.utcnow().isoformat()}] {message}\n")
+    print(f"[SECURITY ALERT] {message}")
+
+    if trigger_heal:
+        print("[DEFENSE] Triggering recovery engine...")
+        call(["python3", "./self_healing/recovery_module.py"])
+
+def alert_and_restore(file, known_hash):
+    print(f"[ALERT] Unauthorized change or deletion detected in {file}")
+    recovery_script = "./self_healing/recovery_module.py"
+    if os.path.exists(recovery_script):
+        os.system(f"python3 {recovery_script} --repair {file}")
+    else:
+        print("[FAILSAFE] Recovery script not found. Manual restore required.")
+
+def monitor():
+    print("[DEFENSE] Monitoring activated. Constitution & memory now protected.")
+    while True:
+        check_integrity()
+        time.sleep(30)  # Check every 30 seconds
+
+if __name__ == "__main__":
+    if not os.path.exists(LOG_FILE):
+        initialize_integrity_map()
+    monitor()

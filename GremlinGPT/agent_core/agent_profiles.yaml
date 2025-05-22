@@ -1,0 +1,11 @@
+agents:
+  default:
+    retry_limit: 333
+    tools:
+      - scrape
+      - signal_scan
+      - nlp
+      - self_train
+    profile: "gremlin_v1"
+    notes: "Bootstrap agent. Evolves recursively."
+

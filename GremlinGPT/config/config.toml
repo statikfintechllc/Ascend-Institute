@@ -1,0 +1,59 @@
+[system]
+name = "GremlinGPT"
+mode = "bootstrap"
+offline = true
+enable_patch_test = true
+debug = true
+log_level = "INFO"
+
+[ngrok]
+enabled = true
+authtoken = "REPLACE_ME"
+region = "us"
+subdomain = ""
+
+[paths]
+base_dir = "~/GremlinGPT/"
+data_dir = "$ROOT/data/"
+models_dir = "$ROOT/models/"
+checkpoints_dir = "$ROOT/run/checkpoints/"
+log_file = "$ROOT/run/logs/runtime.log"
+
+[hardware]
+use_ram = true
+use_cpu = true
+use_gpu = true
+multi_gpu = true
+gpu_device = [0, 1, 2]
+
+[nlp]
+tokenizer_model = "bert-base-uncased"
+embedder_model = "all-MiniLM-L6-v2"
+transformer_model = "bert-base-uncased"
+embedding_dim = 384
+confidence_threshold = 0.7
+
+[agent]
+max_tasks = 33
+task_retry_limit = 333
+log_agent_output = true
+
+[scraper]
+browser_profile = "./scraper/profiles/chromium_profile/"
+scrape_interval_sec = 15
+max_concurrent_scrapers = 9
+
+[memory]
+vector_backend = "chromadb"
+embedding_format = "float32"
+auto_index = true
+index_chunk_size = 500
+
+[loop]
+self_training_enabled = true
+planner_enabled = true
+mutation_watch_enabled = true
+fsm_tick_delay = 0.5
+planner_interval = 10
+mutation_watch_interval = 5
+

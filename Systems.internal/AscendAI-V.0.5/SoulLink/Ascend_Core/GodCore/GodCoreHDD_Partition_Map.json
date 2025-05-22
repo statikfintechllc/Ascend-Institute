@@ -1,0 +1,149 @@
+{
+    "PrimaryDisk": {
+        "Device": "/dev/sdc",
+        "PartitionTable": "GPT",
+        "Partitions": [
+            {
+                "Part#": 1,
+                "Device": "/dev/sdc1",
+                "Size": "2GB",
+                "FS": "FAT32",
+                "Label": "GRUBBOOT",
+                "Mount": "/boot/efi",
+                "Description": "UEFI bootloader"
+            },
+            {
+                "Part#": 2,
+                "Device": "/dev/sdc2",
+                "Size": "49GB",
+                "FS": "EXT4",
+                "Label": "UBUNTUSERV",
+                "Mount": "/",
+                "Description": "Ubuntu Server Core"
+            },
+            {
+                "Part#": 3,
+                "Device": "/dev/sdc3",
+                "Size": "49GB",
+                "FS": "EXT4",
+                "Label": "UBUNTUDESK",
+                "Mount": "/desktop",
+                "Description": "Ubuntu Desktop or mirrored GUI runtime"
+            },
+            {
+                "Part#": 4,
+                "Device": "/dev/sdc4",
+                "Size": "256GB",
+                "FS": "EXT4",
+                "Label": "DISKFORGE",
+                "Mount": "/forge",
+                "Description": "Toolchains, ISO builds, driver forge"
+            },
+            {
+                "Part#": 5,
+                "Device": "/dev/sdc5",
+                "Size": "256GB",
+                "FS": "EXT4",
+                "Label": "MEMFORGE",
+                "Mount": "/memforge",
+                "Description": "High-speed RAM emulation, swap overlays"
+            },
+            {
+                "Part#": 6,
+                "Device": "/dev/sdc6",
+                "Size": "~1TB",
+                "FS": "EXT4",
+                "Label": "GODCORE",
+                "Mount": "/godcore",
+                "Description": "Primary AI core runtime partition"
+            }
+        ]
+    },
+    "GodCoreSubstructure": [
+        {
+            "Sub": "6.1",
+            "Name": "QUANTUM_CACHE",
+            "Mount": "/qcache",
+            "FS": "EXT4 / ZFS",
+            "Size": "128GB",
+            "Purpose": "AI memory chains, embedding cache, infer engine"
+        },
+        {
+            "Sub": "6.2",
+            "Name": "SOULVAULT",
+            "Mount": "/soulvault",
+            "FS": "LUKS2 + EXT4",
+            "Size": "200GB",
+            "Purpose": "Encrypted vault: soulmaps, override ethics, identity"
+        },
+        {
+            "Sub": "6.3",
+            "Name": "DARK_MIRROR",
+            "Mount": "/dev/loop0",
+            "FS": "RAW loop image",
+            "Size": "50GB",
+            "Purpose": "Hidden stealth mirror of the GODCORE runtime"
+        },
+        {
+            "Sub": "6.4",
+            "Name": "BACKREZ",
+            "Mount": "/resurrection",
+            "FS": "EXT4",
+            "Size": "100GB",
+            "Purpose": "Emergency fallback runtime, resurrection shell"
+        },
+        {
+            "Sub": "6.5",
+            "Name": "SHADOWNET",
+            "Mount": "/shadownet",
+            "FS": "EXT4 / BTRFS",
+            "Size": "100GB",
+            "Purpose": "Infiltration proxy layer, AI sandbox"
+        },
+        {
+            "Sub": "6.6",
+            "Name": "EXPANSION_POOL",
+            "Mount": "/xpool",
+            "FS": "LVM Group",
+            "Size": "Remaining",
+            "Purpose": "Dynamic runtime containers, multi-core sprawl"
+        }
+    ],
+    "SubsystemIntegration": [
+        {
+            "Subsystem": "ColdGrid",
+            "DeployPath": "/godcore/coldgrid",
+            "Partition": "6",
+            "Layer": "IceCore",
+            "Description": "Cryo-state compression engine"
+        },
+        {
+            "Subsystem": "DreamCore",
+            "DeployPath": "/godcore/dream",
+            "Partition": "6",
+            "Layer": "Thought",
+            "Description": "Generates simulated dreams & synthetic training data"
+        },
+        {
+            "Subsystem": "BlackIce",
+            "DeployPath": "/godcore/blackice",
+            "Partition": "6",
+            "Layer": "Defense",
+            "Description": "Stealth firewall, trace erasure logic"
+        },
+        {
+            "Subsystem": "ThermalMgr",
+            "DeployPath": "/systems/thermal",
+            "Partition": "2",
+            "Layer": "Sustain",
+            "Description": "Thermal control & power management"
+        },
+        {
+            "Subsystem": "ExpansionAgent",
+            "DeployPath": "/godcore/expander",
+            "Partition": "6.6",
+            "Layer": "AGI Net",
+            "Description": "LAN node detection, agent broadcasting"
+        }
+    ]
+}
