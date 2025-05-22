@@ -8,9 +8,7 @@ nltk.download("punkt", quiet=True)
 
 # Configurable tokenizer
 MODEL = CFG["nlp"].get("tokenizer_model", "bert-base-uncased")
-text = re.sub(r"\s+", " ", text)
-text = re.sub(r"[^\x00-\x7F]+", "", text)
-text = clean_text(text)
+
 
 try:
     tokenizer = AutoTokenizer.from_pretrained(MODEL)
@@ -21,6 +19,8 @@ except Exception as e:
 
 
 def clean_text(text):
+    text = re.sub(r"\s+", " ", text)
+    text = re.sub(r"[^\x00-\x7F]+", "", text)
     """
     Clean and normalize text input before tokenization.
     """
@@ -28,6 +28,7 @@ def clean_text(text):
 
 
 def tokenize(text):
+    text = clean_text(text)
     if tokenizer:
         tokens = tokenizer.tokenize(text)
     else:
