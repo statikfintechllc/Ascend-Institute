@@ -87,6 +87,7 @@ GremlinGPT/
 │   ├── stt_scrapper.py
 │   ├── tws_scrapper.py
 │   ├── source_router.py
+│   ├── web_knowledge_scraper.py
 │   ├── dom_navigator.py
 │   ├── page_simulator.py
 │   ├── ask_monday_handler.py
