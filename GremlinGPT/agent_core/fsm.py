@@ -1,4 +1,17 @@
-# agent_core/fsm.py
+#!/usr/bin/env python3
+
+# GremlinGPT v5 :: Module Integrity Directive
+# This script is a component of the GremlinGPT system, under Alpha expansion.
+# It must:
+#   - Integrate seamlessly into the architecture defined in the full outline
+#   - Operate autonomously and communicate cross-module via defined protocols
+#   - Be production-grade, repair-capable, and state-of-the-art in logic
+#   - Support learning, persistence, mutation, and traceability
+#   - Not remove or weaken logic (stubs may be replaced, but never deleted)
+#   - Leverage appropriate dependencies, imports, and interlinks to other systems
+#   - Return enhanced — fully wired, no placeholders, no guesswork
+# Objective:
+#   Receive, reinforce, and return each script as a living part of the Gremlin:
 
 import os
 import time
@@ -6,36 +19,41 @@ import shutil
 import schedule
 from rich.console import Console
 from datetime import datetime
+
 from agent_core.task_queue import TaskQueue, reprioritize, promote_old_tasks
 from agent_core.tool_executor import execute_tool
 from agent_core.heuristics import evaluate_task
 from agent_core.error_log import log_error
+
 from agents.planner_agent import enqueue_next
 from backend import globals as G
 from memory.vector_store.embedder import inject_watermark
 from memory.log_history import log_event
 from self_mutation_watcher.watcher import scan_and_diff
 from self_mutation_watcher.mutation_daemon import run_daemon
-from tools.generate_dataset import generate_datasets
+from self_training.generate_dataset import generate_datasets
 
 FSM_STATE = "IDLE"
 console = Console()
-task_queue = TaskQueue(retry_limit=G.AGENT["task_retry_limit"])
+task_queue = TaskQueue(retry_limit=G.AGENT.get("task_retry_limit", 2))
 tick_delay = G.CFG.get("loop", {}).get("fsm_tick_delay", 0.5)
+DATASET_PATH = "data/nlp_training_sets/auto_generated.jsonl"
+ARCHIVE_DIR = "docs/"
+LOG_CRASH_PATH = "run/logs/fsm_crash.log"
 
 
 def archive_dataset(output_path):
     if not os.path.exists(output_path):
         return
     timestamp = datetime.utcnow().strftime("%Y%m%dT%H%M%S")
-    archive_name = f"GremlinGPT/docs/dataset_dump_{timestamp}.jsonl"
+    archive_name = os.path.join(ARCHIVE_DIR, f"dataset_dump_{timestamp}.jsonl")
     shutil.copyfile(output_path, archive_name)
     console.log(f"[FSM] Dataset backup created → {archive_name}")
 
 
-def auto_commit(backup_file):
+def auto_commit(file_path):
     try:
-        os.system(f"git add {backup_file}")
+        os.system(f"git add {file_path}")
         os.system(f'git commit -m "[autocommit] Dataset updated by FSM loop"')
         console.log("[FSM] Autocommit completed.")
     except Exception as e:
@@ -60,6 +78,7 @@ def fsm_loop():
     FSM_STATE = "RUNNING"
     tick_time = datetime.utcnow().isoformat()
     console.log(f"[FSM] Tick start @ {tick_time}")
+    log_event("fsm", "tick_start", {"timestamp": tick_time})
 
     try:
         promote_old_tasks()
@@ -116,17 +135,21 @@ def fsm_loop():
         except Exception as e:
             console.log(f"[FSM] Watermark injection failed: {e}")
 
-        dataset_path = "data/nlp_training_sets/auto_generated.jsonl"
         try:
-            generate_datasets(root_dir=".", output_file=dataset_path)
+            generate_datasets(root_dir=".", output_file=DATASET_PATH)
             console.log("[FSM] Training dataset updated.")
-            archive_dataset(dataset_path)
-            auto_commit(f"GremlinGPT/docs/dataset_dump_*.jsonl")
+            archive_dataset(DATASET_PATH)
+            auto_commit(DATASET_PATH)
 
             if G.CFG.get("git", {}).get("auto_push", False):
                 auto_push()
+
         except Exception as e:
             console.log(f"[FSM] Dataset generation failed: {e}")
+            with open(LOG_CRASH_PATH, "a") as logf:
+                logf.write(
+                    f"{datetime.utcnow().isoformat()} :: Dataset Error: {str(e)}\n"
+                )
 
     FSM_STATE = "IDLE"
     console.log("[FSM] Queue cleared.")

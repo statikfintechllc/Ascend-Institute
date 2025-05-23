@@ -13,20 +13,26 @@
 # Objective:
 #   Receive, reinforce, and return each script as a living part of the Gremlin:
 
-# scraper/page_simulator.py
+# scraper/tws_scraper.py
 
-from scraper.dom_navigator import extract_dom_structure
-from memory.vector_store.embedder import embed_text, package_embedding
 from loguru import logger
+from datetime import datetime
 
 
-def store_scrape_to_memory(url, html):
-    structure = extract_dom_structure(html)
-    summary_text = f"[{url}]\n{structure['text']}"
-    vector = embed_text(summary_text)
-    package_embedding(
-        text=summary_text,
-        vector=vector,
-        meta={"origin": url, "type": "scrape_snapshot"},
-    )
-    logger.info(f"[SCRAPER] Stored scrape vector for: {url}")
+def safe_scrape_tws():
+    try:
+        # Placeholder logic — replace with real IBKR API or socket read
+        logger.info("[TWS] Simulated scrape.")
+        return [
+            {
+                "symbol": "SIMTWS",
+                "price": 0.87,
+                "volume": 1000000,
+                "ema": 0.83,
+                "vwap": 0.84,
+                "timestamp": datetime.utcnow().isoformat(),
+            }
+        ]
+    except Exception as e:
+        logger.warning(f"[TWS] Scrape failed: {e}")
+        return []

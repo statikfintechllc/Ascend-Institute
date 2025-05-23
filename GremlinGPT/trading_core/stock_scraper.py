@@ -1,3 +1,20 @@
+#!/usr/bin/env python3
+
+# GremlinGPT v5 :: Module Integrity Directive
+# This script is a component of the GremlinGPT system, under Alpha expansion.
+# It must:
+#   - Integrate seamlessly into the architecture defined in the full outline
+#   - Operate autonomously and communicate cross-module via defined protocols
+#   - Be production-grade, repair-capable, and state-of-the-art in logic
+#   - Support learning, persistence, mutation, and traceability
+#   - Not remove or weaken logic (stubs may be replaced, but never deleted)
+#   - Leverage appropriate dependencies, imports, and interlinks to other systems
+#   - Return enhanced — fully wired, no placeholders, no guesswork
+# Objective:
+#   Receive, reinforce, and return each script as a living part of the Gremlin:
+
+# trading_core/stock_scraper.py
+
 import random
 import math
 from datetime import datetime
@@ -38,12 +55,16 @@ def simulate_technical_indicators(price, volatility):
     return ema, vwap, rsi, macd
 
 
-def get_live_penny_stocks(limit=6):
+from scraper.source_router import route_scraping
+
+
+def get_live_penny_stocks():
     """
-    Simulated scanner: returns `limit` penny stock dicts w/ enhanced features.
+    Dynamic penny stock source aggregator.
+    Tries TWS and STT and browser.
+    Falls back to browser scraping.
     """
-    selected = random.sample(PENNY_UNIVERSE, limit)
-    results = []
+    return route_scraping()
 
     for symbol in selected:
         base = round(random.uniform(0.10, 4.00), 2)

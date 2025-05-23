@@ -84,9 +84,14 @@ GremlinGPT/
 │
 ├── scraper/
 │   ├── scraper_loop.py
+│   ├── stt_scrapper.py
+│   ├── tws_scrapper.py
+│   ├── source_router.py
 │   ├── dom_navigator.py
 │   ├── page_simulator.py
+│   ├── ask_monday_handler.py
 │   ├── playwright_handler.py
+│   ├── source_router.py
 │   ├── persistence/
 │   │   └── cookies/
 │   └── profiles/
@@ -147,8 +152,10 @@ GremlinGPT/
 │   └── test_dashboard.py
 │
 ├── docs/
+│   ├── README.md
 │   ├── full_structure_tree.txt
 │   ├── system_call_graph.md
+│   ├── self_training.md
 │   ├── system_overview.md
 │   ├── fsm_architecture.md
 │   ├── memory_pipeline.md
