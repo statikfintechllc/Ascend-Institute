@@ -14,6 +14,7 @@ GremlinGPT/data/prompts/*
 *.gguf
 *.pth
 *.ckpt
+*Systems.internal
 
 # === LOGS AND OUTPUT FILES ===
 *.log
