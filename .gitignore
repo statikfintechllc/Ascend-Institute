@@ -2,6 +2,12 @@
 !GremlinGPT/
 !GremlinGPT/**
 
+# Ignore everything in GremlinGPT/data/prompts/
+GremlinGPT/data/prompts/*
+
+# Except the README.md file
+!GremlinGPT/data/prompts/README.md
+
 # === MODEL FILES ===
 /models/*
 !models/README.md
