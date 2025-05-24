@@ -1,9 +1,9 @@
 <div align="center">
-  <a href="https://github.com/statikfintechllc/AscendAI/blob/main/LICENSE.md">
-    <img src="https://img.shields.io/badge/Fair%20Use-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT Dual"/>
+  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/LICENSE.md">
+    <img src="https://img.shields.io/badge/FAIR%20USE-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Fair Use License"/>
   </a>
-  <a href="https://github.com/statikfintechllc/AscendAI/blob/main/LICENSE.md">
-    <img src="https://img.shields.io/badge/GremlinGPT%20v1.0-red?style=for-the-badge&logo=dragon&logoColor=gold" alt="License v1.0.2"/>
+  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/LICENSE.md">
+    <img src="https://img.shields.io/badge/GREMLINGPT%20v1.0-red?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
   </a>
 </div>
 
