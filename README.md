@@ -8,9 +8,6 @@
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/GREMLINGPT%20v1.0-red?style=for-the-badge&logo=dragon&logoColor=white" alt="GremlinGPT License"/>
   </a>
-
-  <br/><br/>
-
   <a href="https://github.com/statikfintechllc/AscendAI/actions">
     <img src="https://img.shields.io/badge/build-Alpha-darkred?logo=github&color=darkred" alt="Build Status"/>
   </a>
@@ -20,9 +17,6 @@
   <a href="https://github.com/statikfintechllc/AscendAI/graphs/contributors">
     <img src="https://img.shields.io/github/contributors/statikfintechllc/AscendAI?color=red" alt="Contributors"/>
   </a>
-
-</div>
-
 ---
 ## Table of Contents
 
