@@ -6,6 +6,7 @@
   <a href="LICENSE.md">
     <img src="https://img.shields.io/badge/GREMLINGPT%20v1.0-red?style=for-the-badge&logo=dragon&logoColor=white" alt="GremlinGPT License"/>
   </a>
+  
 </div>
 
 <p align="center"><strong>GremlinGPT Dual License v1.0</strong></p>
