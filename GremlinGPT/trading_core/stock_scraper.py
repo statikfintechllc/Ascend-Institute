@@ -32,8 +32,16 @@ ORIGIN = "stock_scraper"
 
 # Simulated fallback stock universe
 PENNY_UNIVERSE = [
-    "BBIG", "GNS", "MULN", "CEI", "COSM",
-    "SNDL", "ZOM", "TRKA", "NILE", "AITX"
+    "BBIG",
+    "GNS",
+    "MULN",
+    "CEI",
+    "COSM",
+    "SNDL",
+    "ZOM",
+    "TRKA",
+    "NILE",
+    "AITX",
 ]
 
 
@@ -73,7 +81,9 @@ def simulate_fallback():
             "watermark": WATERMARK,
         }
 
-        logger.debug(f"[SCRAPER] Mocked stock data: {symbol} @ ${price} (Vol: {volume})")
+        logger.debug(
+            f"[SCRAPER] Mocked stock data: {symbol} @ ${price} (Vol: {volume})"
+        )
         results.append(stock_data)
 
     return results
@@ -85,7 +95,9 @@ def get_live_penny_stocks():
     """
     try:
         scraped = route_scraping()
-        if isinstance(scraped, list) and all("symbol" in s and "price" in s for s in scraped):
+        if isinstance(scraped, list) and all(
+            "symbol" in s and "price" in s for s in scraped
+        ):
             logger.info(f"[SCRAPER] Loaded {len(scraped)} live penny stocks.")
             return scraped
         else:

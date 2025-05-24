@@ -67,7 +67,7 @@ class MiniMultiHeadAttention:
             output: (seq_len, embed_dim)
             weights: (num_heads, seq_len, seq_len)
         """
-      # seq_len = X.shape[0] # Unused currently
+        # seq_len = X.shape[0] # Unused currently
         head_outputs = []
         all_weights = []
 
@@ -109,9 +109,9 @@ class MiniMultiHeadAttention:
         # Log to system memory and logs
         log_event(MODULE, "attention_forward", info)
         summary = (
-    f"Attention pass: {self.num_heads} heads | "
-    f"in={input_tensor.shape} out={output_tensor.shape}"
-)
+            f"Attention pass: {self.num_heads} heads | "
+            f"in={input_tensor.shape} out={output_tensor.shape}"
+        )
         vector = embed_text(summary)
         package_embedding(text=summary, vector=vector, meta=info)
 

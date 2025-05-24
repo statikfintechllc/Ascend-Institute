@@ -125,10 +125,7 @@ def mutation_loop():
             )
 
             if DATASET_OUT.exists():
-                backup = archive_json_log(
-                    str(DATASET_OUT),
-                    prefix="dataset_dump"
-                )
+                backup = archive_json_log(str(DATASET_OUT), prefix="dataset_dump")
                 auto_commit(backup)
                 if G.CFG.get("git", {}).get("auto_push", False):
                     auto_push()

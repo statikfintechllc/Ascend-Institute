@@ -27,10 +27,7 @@ from datetime import datetime
 from scraper.scraper_loop import get_dom_html
 from scraper.ask_monday_handler import handle as handle_ask_monday
 from nlp_engine.transformer_core import encode
-from memory.vector_store.embedder import (
-    package_embedding,
-    inject_watermark
-)
+from memory.vector_store.embedder import package_embedding, inject_watermark
 from trading_core.signal_generator import generate_signals
 from self_training.feedback_loop import inject_feedback
 from agent_shell.shell_executor import run_shell_command
@@ -57,12 +54,12 @@ def execute_tool(task):
             log_reward(reward)
             vector = encode(preview)
             package_embedding(
-                preview,
-                vector,
-                {"task": task_type, "timestamp": timestamp}
+                preview, vector, {"task": task_type, "timestamp": timestamp}
             )
             inject_watermark(origin="tool::scrape")
-            log_event("exec", task_type, {"preview": preview}, status="success", meta=reward)
+            log_event(
+                "exec", task_type, {"preview": preview}, status="success", meta=reward
+            )
             return result
 
         # ─────────────────────────────────────────────
@@ -73,12 +70,12 @@ def execute_tool(task):
             log_reward(reward)
             vector = encode(str(signals))
             package_embedding(
-                str(signals),
-                vector,
-                {"task": task_type, "timestamp": timestamp}
+                str(signals), vector, {"task": task_type, "timestamp": timestamp}
             )
             inject_watermark(origin="tool::signal_scan")
-            log_event("exec", task_type, {"signals": signals}, status="success", meta=reward)
+            log_event(
+                "exec", task_type, {"signals": signals}, status="success", meta=reward
+            )
             return result
 
         # ─────────────────────────────────────────────
@@ -97,7 +94,9 @@ def execute_tool(task):
                 },
             )
             inject_watermark(origin="tool::nlp")
-            log_event("exec", task_type, {"embedded": True}, status="success", meta=reward)
+            log_event(
+                "exec", task_type, {"embedded": True}, status="success", meta=reward
+            )
             return result
 
         # ─────────────────────────────────────────────
@@ -112,7 +111,13 @@ def execute_tool(task):
             inject_feedback()
             inject_watermark(origin="tool::self_train")
             result = {"trained": True}
-            log_event("exec", task_type, result, status="success", meta={"timestamp": timestamp})
+            log_event(
+                "exec",
+                task_type,
+                result,
+                status="success",
+                meta={"timestamp": timestamp},
+            )
             return result
 
         # ─────────────────────────────────────────────
@@ -123,9 +128,7 @@ def execute_tool(task):
             log_reward(reward)
             vector = encode(preview)
             package_embedding(
-                preview,
-                vector,
-                {"task": task_type, "timestamp": timestamp}
+                preview, vector, {"task": task_type, "timestamp": timestamp}
             )
             inject_watermark(origin="tool::shell")
             result = {"shell_result": preview}
@@ -136,7 +139,9 @@ def execute_tool(task):
         else:
             error_msg = f"Unknown task type: {task_type}"
             logger.error(f"[TOOL] {error_msg}")
-            log_event("exec", task_type, {"error": error_msg}, status="error", meta=meta)
+            log_event(
+                "exec", task_type, {"error": error_msg}, status="error", meta=meta
+            )
             raise ValueError(error_msg)
 
     except Exception as e:
