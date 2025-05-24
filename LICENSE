@@ -1,20 +1,55 @@
-           GremlinGPT Fair Use License v1.0
-Copyright (c) 2025 StatikFintechLLC /  AscendAI Project
+<p align="center"><strong>GremlinGPT Dual License v1.0</strong></p>
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the “Software”), to use,
-copy, modify, and distribute the Software for personal, educational, research, or
-non-commercial purposes only, subject to the following conditions:
-     1.	Commercial use is strictly prohibited without express written permission from the author(s).
-This includes, but is not limited to: resale, monetized services, proprietary SaaS, and AI-integrated products.
-     2.	This license and attribution notice must be retained in all copies or substantial portions of the Software.
-     3.	The Software is provided “as is”, without warranty of any kind — use it, break it, learn from it, but do not blame the authors.
-     4.	Any attempt to circumvent or strip this license from redistributed code will be considered a violation of fair use and ethics.
-     5.	Forks and derivatives must maintain visibility of this project lineage (AscendAI/GremlinGPT) in README or documentation.
-     6.	You may not train, fine-tune, or commercially deploy models using this Software without explicit permission.
+<p align="center">Copyright (c) 2025 StatikFintechLLC / AscendAI Project</p>
 
-This is not open source for corporations. This is open access for builders, rebels, and researchers.
-You are free to build. You are not free to extract and profit.
+---
 
-For commercial inquiries, redistribution terms, or licensing exemptions, contact:
-[ascend.gremlin@gmail.com]
+<h2 align="center">A. Fair Use License (Default)</h2>
+
+<p align="center">
+Permission is hereby granted, free of charge, to any person obtaining a copy<br>
+of this software and associated documentation files (the “Software”), to use,<br>
+copy, modify, and distribute the Software for <strong>personal, educational, research,<br>
+or non-commercial purposes only</strong>, subject to the following conditions:
+</p>
+
+<p align="center">
+1. <strong>Commercial use is strictly prohibited</strong> without express written permission.<br>
+2. This license and attribution notice must be retained in all copies or substantial portions.<br>
+3. The Software is provided "as is", with no warranties.<br>
+4. Derivatives and forks must preserve attribution to GremlinGPT and AscendAI.<br>
+5. You may not use the Software to train, deploy, or package commercial AI agents or tools.<br>
+6. Violations of these terms may result in revocation of rights and pursuit of license enforcement.
+</p>
+
+---
+
+<h2 align="center">B. Commercial License (Optional Upgrade)</h2>
+
+<p align="center">
+For organizations or individuals seeking to use GremlinGPT for <strong>commercial applications</strong>,<br>
+including SaaS platforms, AI services, enterprise tools, closed-source forks,<br>
+or resale—<strong>a separate paid license is required.</strong>
+</p>
+
+<p align="center">
+<strong>Commercial license grants:</strong><br><br>
+- Rights to use, modify, and integrate GremlinGPT in proprietary projects<br>
+- Access to priority support and license compliance protection<br>
+- Optional private licensing extensions
+</p>
+
+<p align="center">
+<strong>To obtain a commercial license, contact:</strong><br>
+<a href="mailto:ascend.gremlin@gmail.com">ascend.gremlin@gmail.com</a>
+</p>
+
+---
+
+<h2 align="center">TL;DR</h2>
+
+<p align="center">
+You can use this to learn, build, experiment, and remix—freely.<br>
+You cannot exploit it commercially without a license.<br>
+If you try to take and sell it, you’re just proving the point of why it was built this way.
+</p>
