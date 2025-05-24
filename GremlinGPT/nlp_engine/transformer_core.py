@@ -45,18 +45,16 @@ def encode_text(text):
     Encodes text into a semantic vector using the transformer model.
     Returns a numpy array representation.
     """
+    if not tokenizer or not model:
+        logger.warning("[TRANSFORMER] No model loaded. Returning zeros.")
+        return torch.zeros(768).numpy()
 
-
-if not tokenizer or not model:
-    logger.warning("[TRANSFORMER] No model loaded. Returning zeros.")
-    return torch.zeros(768).numpy()
-
-try:
-    inputs = tokenizer(text, return_tensors="pt", truncation=True, padding=True)
-    with torch.no_grad():
-        outputs = model(**inputs)
-    vector = outputs.last_hidden_state.mean(dim=1).squeeze().numpy()
-    return vector
-except Exception as e:
-    logger.error(f"[TRANSFORMER] Encoding failed: {e}")
-    return torch.zeros(768).numpy()
+    try:
+        inputs = tokenizer(text, return_tensors="pt", truncation=True, padding=True)
+        with torch.no_grad():
+            outputs = model(**inputs)
+        vector = outputs.last_hidden_state.mean(dim=1).squeeze().numpy()
+        return vector
+    except Exception as e:
+        logger.error(f"[TRANSFORMER] Encoding failed: {e}")
+        return torch.zeros(768).numpy()
