@@ -50,6 +50,8 @@ GremlinGPT/
 │   ├── globals.py
 │   ├── interface/
 │   │   └── commands.py
+│   ├── utils/
+│   │   └── git_ops.py
 │   └── api/
 │       ├── chat_handler.py
 │       ├── memory_api.py
