@@ -11,7 +11,7 @@
 
 ## Table of Contents
 
-- [Founder's Log & Manifesto](#founders-log--manifesto)
+- [Founder's Log & Manifesto](#founders-log-&-manifesto)
 - [Overview](#overview)
 - [System Features](#system-features)
 - [Architecture](#architecture)
