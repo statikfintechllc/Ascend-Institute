@@ -204,27 +204,6 @@ def analyze_mutation_diff():
             logger.error(f"[WATCHER] Semantic diff scoring failed for {path}: {e}")
 
 
-def mutation_loop():
-    logger.info("[WATCHER] Mutation Daemon Started.")
-    while True:
-        try:
-            scan_and_diff()
-            analyze_mutation_diff()
-            notify_dashboard("Self-mutation scan complete.")
-            enqueue_next()
-            logger.info("[WATCHER] Planner task injected post-mutation.")
-
-            if DATASET_OUT.exists():
-                backup = archive_dataset(DATASET_OUT)
-                auto_commit(backup)
-                if G.CFG.get("git", {}).get("auto_push", False):
-                    auto_push()
-
-        except Exception as e:
-            logger.error(f"[WATCHER] Loop error: {e}")
-        time.sleep(SCAN_INTERVAL_MIN * 60)
-
-
 def run_daemon():
     t = threading.Thread(target=mutation_loop, daemon=True)
     t.start()
