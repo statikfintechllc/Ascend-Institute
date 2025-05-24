@@ -11,17 +11,16 @@
 
 ## Table of Contents
 
-- [Founder's Log & Manifesto](./FOUNDER_LOG.md)
+- [Founder's Log & Manifesto](#founders-log--manifesto)
 - [Overview](#overview)
 - [System Features](#system-features)
 - [Architecture](#architecture)
 - [Installation](#installation)
 - [Running the System](#running-the-system)
 - [System Components](#system-components)
-- [Technical Notes](#technical-notes)
 - [Recovery & Snapshots](#recovery--snapshots)
 - [Troubleshooting](#troubleshooting)
-- [System Infrastructure](#system_infrastructure)
+- [System Infrastructure](#system-infrastructure)
 
 ⸻
 
