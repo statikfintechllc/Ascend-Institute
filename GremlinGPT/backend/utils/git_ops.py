@@ -52,4 +52,4 @@ def auto_commit(file_path: str, message: str = "[autocommit] Update via git_ops"
         os.system(f'git commit -m "{message}"')
         logger.success(f"[git_ops] Git commit successful.")
     except Exception as e:
-        logger.warning(f"[git_ops] Git commit failed: {e}")
+        logger.warning(f"{git_ops} Git commit failed: {e}")
