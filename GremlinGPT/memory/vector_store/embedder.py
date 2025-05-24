@@ -25,11 +25,13 @@
 import os
 import shutil
 import uuid
+import json
+from datetime import datetime
+
 import numpy as np
 from sentence_transformers import SentenceTransformer
 from backend.globals import MEM
 from loguru import logger
-import json
 
 model = SentenceTransformer(MEM["embedding"]["model"])
 
@@ -79,7 +81,7 @@ def auto_commit(file_path):
     if not file_path:
         return
     os.system(f"git add {file_path}")
-    os.system(f'git commit -m "[autocommit] Planner log update"')
+    os.system(f'git commit -m "[autocommit] Planner log update: {file_path}"')
 
 
 def get_all_embeddings(limit=10):
