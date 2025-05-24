@@ -17,6 +17,7 @@
   <a href="https://github.com/statikfintechllc/AscendAI/graphs/contributors">
     <img src="https://img.shields.io/github/contributors/statikfintechllc/AscendAI?color=red" alt="Contributors"/>
   </a>
+  </div>
 ---
 ## Table of Contents
 
