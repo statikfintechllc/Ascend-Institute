@@ -1,18 +1,29 @@
+<h1 align="center">Ascend Institute for Autonomous Sovereignty & Human Financial Liberation</h1>
+
 <div align="center">
 
-[![FAIR USE](https://img.shields.io/badge/FAIR%20USE-black?style=for-the-badge&logo=dragon&logoColor=white)](LICENSE)  
-[![GREMLINGPT v1.0](https://img.shields.io/badge/GREMLINGPT%20v1.0-red?style=for-the-badge&logo=dragon&logoColor=white)](LICENSE)
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/FAIR%20USE-black?style=for-the-badge&logo=dragon&logoColor=white" alt="Fair Use License"/>
+  </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/GREMLINGPT%20v1.0-red?style=for-the-badge&logo=dragon&logoColor=white" alt="GremlinGPT License"/>
+  </a>
+
+  <br/><br/>
+
+  <a href="https://github.com/statikfintechllc/AscendAI/actions">
+    <img src="https://img.shields.io/badge/build-Alpha-darkred?logo=github&color=darkred" alt="Build Status"/>
+  </a>
+  <a href="./FOUNDER_LOG.md">
+    <img src="https://img.shields.io/badge/Founder's%20Log-Manifesto-FFD700?logo=github&color=FFD700" alt="Founder's Log"/>
+  </a>
+  <a href="https://github.com/statikfintechllc/AscendAI/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/statikfintechllc/AscendAI?color=red" alt="Contributors"/>
+  </a>
 
 </div>
 
-# Ascend Institute for Autonomous Sovereignty & Human Financial Liberation
-
-[![Build Status](https://img.shields.io/badge/build-Alpha-darkred?logo=github&color=darkred)](https://github.com/statikfintechllc/AscendAI/actions)
-[![Founder's Log](https://img.shields.io/badge/Founder's%20Log-Manifesto-FFD700?logo=github&color=FFD700)](./FOUNDER_LOG.md)
-[![Contributors](https://img.shields.io/github/contributors/statikfintechllc/AscendAI?color=red)](https://github.com/statikfintechllc/AscendAI/graphs/contributors)
-
 ---
-
 ## Table of Contents
 
 1. [Support This Project](#support-this-project)  
