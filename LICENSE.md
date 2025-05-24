@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://img.shields.io/badge/Fair%20Use-GremlinGPT%20v1.0-red?style=for-the-badge&logo=openai&logoColor=white" alt="GremlinGPT Fair Use License">
+</p>
+
 <p align="center"><strong>GremlinGPT Dual License v1.0</strong></p>
 
 <p align="center">Copyright (c) 2025 StatikFintechLLC / AscendAI Project</p>
