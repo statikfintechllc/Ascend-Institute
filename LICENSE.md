@@ -1,12 +1,5 @@
 <div align="center">
-
-  <a href="https://github.com/AscendAI/AscendAI/blob/main/LICENSE.md">
-    <img src="https://img.shields.io/badge/FAIR%20USE-black?style=for-the-badge&logo=dragon&logoColor=white" alt="Fair Use License"/>
-  </a>
-  <a href="https://github.com/AscendAI/AscendAI/blob/main/LICENSE.md">
-    <img src="https://img.shields.io/badge/GREMLINGPT%20v1.0-red?style=for-the-badge&logo=dragon&logoColor=white" alt="GremlinGPT License"/>
-  </a>
-  
+  <img src="https://img.shields.io/badge/GremlinGPT%20Dual%20License%20v1.0-black?style=for-the-badge&labelColor=red&color=black&logo=dragon&logoColor=gold&label=" alt="GremlinGPT Dual License v1.0"/>
 </div>
 
 <p align="center"><strong>GremlinGPT Dual License v1.0</strong></p>
