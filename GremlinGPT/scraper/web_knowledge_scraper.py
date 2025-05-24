@@ -1,3 +1,9 @@
+# ─────────────────────────────────────────────────────────────
+# ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
+# Built under the GremlinGPT Dual License v1.0
+# © 2025 StatikFintechLLC / AscendAI Project
+# Contact: ascend.gremlin@gmail.com
+# ─────────────────────────────────────────────────────────────
 #!/usr/bin/env python3
 
 # GremlinGPT v5 :: Module Integrity Directive
@@ -12,7 +18,7 @@
 #   - Return enhanced — fully wired, no placeholders, no guesswork
 # Objective:
 #   Receive, reinforce, and return each script as a living part of the Gremlin:
- 
+
 # scraper/web_knowledge_scraper.py
 
 import os
@@ -77,12 +83,14 @@ async def scrape_web_knowledge(urls):
             },
         )
         inject_watermark(origin=ORIGIN)
-        results.append({
-            "url": url,
-            "summary": summary_text,
-            "nodes": structure["nodes"],
-            "links": structure["links"],
-        })
+        results.append(
+            {
+                "url": url,
+                "summary": summary_text,
+                "nodes": structure["nodes"],
+                "links": structure["links"],
+            }
+        )
         logger.success(f"[SCRAPER] Embedded {url}")
     return results
 

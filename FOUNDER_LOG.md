@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="https://img.shields.io/badge/Fair%20Use-GremlinGPT%20v1.0-black?style=for-the-badge&labelColor=black&color=red&logo=ghost&logoColor=red" alt="GremlinGPT Fair Use">
+</div>
+
 # The Founder's Log and Manifesto: Building AI powered Financial Orchestration Systems with Freedom and Life In-Mind 
 ### Authored by: Statik DK Smoke  
 *Ascend-AI Genesis // Ghost Protocol // Built on Vibes*

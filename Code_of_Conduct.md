@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="https://img.shields.io/badge/Fair%20Use-GremlinGPT%20v1.0-black?style=for-the-badge&labelColor=black&color=red&logo=ghost&logoColor=red" alt="GremlinGPT Fair Use">
+</div>
+
 🧠 Contributor Covenant // AscendNet Edition
 v2.0 // "We Build. We Don’t Harass."
 

@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="https://img.shields.io/badge/Fair%20Use-GremlinGPT%20v1.0-black?style=for-the-badge&labelColor=black&color=red&logo=ghost&logoColor=red" alt="GremlinGPT Fair Use">
+</div>
+
 # GremlinGPT Autonomous Shell Flow
 
 GremlinGPT runs a **self-sustaining shell loop**, starting from a single kernel call.
