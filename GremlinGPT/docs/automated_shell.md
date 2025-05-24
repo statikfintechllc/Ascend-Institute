@@ -2,80 +2,167 @@
   <img src="https://img.shields.io/badge/Fair%20Use-GremlinGPT%20v1.0-black?style=for-the-badge&labelColor=black&color=red&logo=ghost&logoColor=red" alt="GremlinGPT Fair Use">
 </div>
 
-# GremlinGPT Autonomous Shell Flow
 
-GremlinGPT runs a **self-sustaining shell loop**, starting from a single kernel call.
+⸻
 
----
+# GremlinGPT Autonomous Shell Flow — v1.0.2
 
-## Boot Flow
+GremlinGPT operates a self-mutating, autonomously routed shell loop with embedded vector memory, semantic safety, and live planner feedback—beginning from a single kernel call.
 
-1. `core/loop.py` launches persistent FSM + retrain trigger check
-2. `fsm.py` dequeues tasks from memory
-3. `tool_executor.py` calls tools or dispatches `python_executor.py`
-	•	tool_executor.py also supports "shell" task type for executing commands via shell_executor.py
-	•	Output is logged, scored, and embedded
-4. Task results are scored by `reward_model.py`
-5. Execution logs are stored in `log_history.py`
-6. If diffs or failures are detected:
-   - `watcher.py` logs diff
-   - `embedder.py` packages it
-   - `feedback_loop.py` triggers retrain
-7. `planner_agent.py` reviews memory + reward history and queues the next task
-7.5. If no tasks are queued, planner_agent.py generates next task using reward memory and NLP vector similarity.
-8. The cycle repeats
+⸻
 
----
+## Boot Sequence Overview
 
-## Mutation Safety Protocol
+### Primary Loop Path
+	1.	core/loop.py starts:
+	•	FSM loop (fsm.py)
+	•	Mutation Daemon (mutation_daemon.py)
+	•	Dataset generation
+	2.	fsm.py:
+	•	Dequeues tasks from memory
+	•	Executes or escalates based on confidence or error rates
+	3.	tool_executor.py:
+	•	Executes tools like:
+	•	nlp
+	•	signal_scan
+	•	scrape_live
+	•	shell
+	•	Calls shell_executor.py for raw commands
+	•	Embeds results with embedder.py
+	•	Logs events to log_history.py
+	4.	reward_model.py:
+	•	Scores result quality
+	•	Drives planner incentives
+	5.	planner_agent.py:
+	•	Reviews recent reward memory
+	•	Enqueues next task autonomously using vector similarity
+	•	Embeds task rationale and injects watermark
+	6.	If a file is changed or mutated:
+	•	watcher.py detects code deltas
+	•	diff_engine.py computes AST + semantic diff
+	•	embedder.py packages delta into memory
+	•	feedback_loop.py triggers retraining + watermark
+	7.	If confidence drops:
+	•	mutation_daemon.py may rollback low-semantic mutations
+	•	trainer.py retrains model with mutation lineage
+	8.	The system cycles forward based on memory, embeddings, reward, and watermark lineage.
 
-To prevent logic degradation:
-- Mutated code is verified for syntax (`ast.parse`)
-- Semantic similarity must exceed 0.6
-- If unsafe, original code is restored
-- Snapshots are stored in `run/checkpoints/snapshots/`
+⸻
 
----
+## Autonomous Mutation Safety
 
-## Kernel Mutation Path
+### GremlinGPT only accepts mutations that meet all criteria:
+Check
+Rule
+Syntax
+Verified with ast.parse()
+Semantic Safety
+Must pass 0.60 threshold (cosine similarity)
+Patch Test
+Executes code snippet with run_patch_test()
+Watermarking
+All patches logged with traceable watermark
+Snapshot
+Rolled back if semantic degradation detected
 
-When a rewrite is planned:
+Snapshots are versioned in:
+run/checkpoints/snapshots/
 
-- `kernel.py` is invoked by planner or dashboard
-- Applies code patch to target module
-- Calls `snapshot.py` to embed and version the old file
-- All changes are embedded and logged
-- Triggers mutation retrain from `feedback_loop.py`
+⸻
 
----
+## Mutation Path (Kernel)
 
-## Execution Environment
+### When planner chooses to patch code:
+	1.	planner_agent.py invokes kernel.py
+	2.	kernel.py:
+	•	Validates mutation syntax
+	•	Backs up original via snapshot.py
+	•	Writes mutation to file
+	•	Computes semantic + vector delta
+	•	Calls package_embedding() and stores patch lineage
+	•	Injects watermark
+	3.	Triggers training via feedback_loop.py
 
-| Environment        | Role                           |
-|--------------------|--------------------------------|
-| gremlin-orchestrator | Loop, planner, kernel         |
-| gremlin-nlp        | Embedding + scoring             |
-| gremlin-memory     | Storage + vector store          |
-| gremlin-scraper    | Playwright & DOM tools          |
-| gremlin-dashboard  | Frontend + backend UI/API       |
+⸻
 
----
+## Scraper Integration (Live + DOM)
 
-## Start the Shell
+### GremlinGPT supports dynamic data ingestion via:
+Source
+Module
+TWS or STT running
+psutil_check()
+Browser scraping
+playwright_handler.py
+DOM memory mapping
+dom_navigator.py
+Storage
+store_stock_snapshot() embeds each asset vector
+Signal scan
+signal_generator.py applies vector reward rules
+Live data auto-refreshes every 5 seconds.
+
+⸻
+
+## Memory & Watermarking
+
+### All embeddings pass through:
+	•	embed_text(): vectorize NLP/code/state
+	•	package_embedding(): persist with metadata
+	•	inject_watermark(): tag memory lineage
+
+### Watermarks ensure:
+	•	Memory traceability
+	•	Autonomous lineage validation
+	•	Mutation accountability
+
+⸻
+
+## Execution Environment Map
+
+Component
+Role
+gremlin-orchestrator
+FSM loop, kernel patcher
+gremlin-nlp
+Transformers, scoring, NER
+gremlin-memory
+Vector storage, retrieval
+gremlin-scraper
+DOM ingestion, live stock streams
+gremlin-dashboard
+Full-stack UI + REST interface
+
+⸻
+
+### Startup Flow
 
 ```bash
 conda activate gremlin-orchestrator && \
 python3 core/loop.py
 ```
+### Reboot from Last Known State
 
-Restart From Snapshot
 ```bash
 reboot_recover.sh
 ```
 
 ⸻
 
-Logs Stored
-	•	data/logs/history/gremlin_exec_log.jsonl
-	•	data/logs/rewards.jsonl
-	•	run/logs/runtime.log
+## Core Logs + Datasets
+
+Purpose
+File
+Execution Events
+data/logs/history/gremlin_exec_log.jsonl
+Reward Scores
+data/logs/rewards.jsonl
+Mutation Embeds
+data/nlp_training_sets/live_mutations.jsonl
+Portfolio
+data/portfolio.json, trade_history.jsonl
+Snapshot Metadata
+run/checkpoints/snapshots/
+Runtime
+run/logs/runtime.log
+

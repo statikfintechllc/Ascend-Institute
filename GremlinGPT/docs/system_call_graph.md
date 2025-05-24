@@ -2,42 +2,64 @@
   <img src="https://img.shields.io/badge/Fair%20Use-GremlinGPT%20v1.0-black?style=for-the-badge&labelColor=black&color=red&logo=ghost&logoColor=red" alt="GremlinGPT Fair Use">
 </div>
 
-                      generate_dataset.py
-                                 ▲
-                                 │
-                            trainer.py
-                                 ▲
-                                 │
-                          transformer_core.py
-                                 ▲
-                                 │
-     tokenizer.py   ←──  fsm.py  ──→  tool_executor.py  ──→  signal_generator.py  ─→  rules_engine.py
-                                 │                         │                         │
-                                 │                         └──→  scraper_loop.py  ──→  playwright_handler.py
-          task_queue.py  ←───────┘                                                   └──→  page_simulator.py
-              ▲                                                                             ▲
-              │                                                                             │
-         planner.py  ─────→  router.py  ─→  chat_handler.py  ─→  commands.py                │
-                                │                           └→  tokenizer.py                │
-                                │                           └→  embedder.py  ─→  semantic_score.py
-                                │
-                                └→  memory_api.py  ─→  embedder.py
-                                                        ▲
-                                                        │
-          TradingPanel.js  ─→  mutation_engine.py  ─→  dom_navigator.py
-              ▲
-              │
-    frontend/app.js  ─→  ChatInterface.js
-                   └→  TaskTreeView.js  ─→  embedder.py
-                   └→  MemoryGraph.js   ─→  memory_api.py
+# GremlinGPT System Flow (v1.0.2)
 
-     ^Missing Shell Execution and Active Mutation Loop
---------------------------------------------------------------------------------
+## Full Pipeline Graph — Autonomous + NLP-Aware + Mutation-Safe
+                                                   ┌────────────────────┐
+                     generate_dataset.py           │   ChatInterface.js │
+                             ▲                     └────────────────────┘
+                             │                             ▲
+                        trainer.py                         │
+                             ▲                             │
+              ┌────────── transformer_core.py ◄────────────┘
+              │                  ▲
+         pos_tagger.py           │              parse_nlp()
+              ▲                  │                    ▲
+      tokenizer.py ◄─────────────┴─────┐        semantic_score.py
+              ▲                        │                 ▲
+          commands.py ◄──── chat_handler.py ──────► embedder.py ◄─────┐
+              │                  ▲                  ▲                 │
+              │                  │            feedback_loop.py        │
+              │                  │                  ▲                 │
+              ▼                  ▼                  │                 │
+       planner_agent.py ◄────── router.py ◄─────────┘                 │
+              │                  ▲                                    │
+              │             server.py                                 │
+              ▼                                                      │
+        task_queue.py ◄───────────── fsm.py ◄─────────────┐          │
+              ▲                     │                     │          │
+              │                     ▼                     ▼          │
+  update_position()         tool_executor.py ───────→ shell_executor.py
+              ▲                     │                     ▲          │
+  portfolio_tracker.py              │                     │          │
+              ▲                     ▼                     │          │
+  TradingPanel.js ─────────→ signal_generator.py          │          │
+                                  │                       │          │
+                                  ▼                       │          │
+                         rules_engine.py         log_event + retry  │
+                                  ▲                                 │
+                    get_live_penny_stocks()                         │
+                                  ▲                                 │
+                        stock_scraper.py ◄──── scraper_loop.py ◄────┘
+                                  ▲                    ▲
+                                  │                    │
+                    psutil → tws_handler.py     playwright_handler.py
+                                  ▲                    ▲
+                                  └───── dom_navigator.py ◄──── page_simulator.py
+
+                                          │
+                                          ▼
+                                  vector_store/memory
 
 
-GremlinGPT Full Script Call Graph
+⸻
 
-Nodes:
+## GremlinGPT Full Script Call Graph (fully extended-beta)
+
+#### GremlinGPT v1.0.2 — Full Script Call Graph
+
+## Nodes
+
 - server.py
 - router.py
 - scheduler.py
@@ -72,8 +94,12 @@ Nodes:
 - TaskTreeView.js
 - TradingPanel.js
 - app.js
+- shell_executor.py
+- python_executor.py
+- portfolio_tracker.py
 
-Connections:
+## Connections
+
 - server.py → router.py
 - router.py → chat_handler.py, planner.py, scraping_api.py, memory_api.py
 - chat_handler.py → commands.py, tokenizer.py, transformer_core.py, embedder.py
@@ -82,7 +108,9 @@ Connections:
 - memory_api.py → embedder.py
 - scraping_api.py → task_queue.py
 - fsm.py → task_queue.py, tool_executor.py, heuristics.py
-- tool_executor.py → scraper_loop.py, feedback_loop.py, transformer_core.py, signal_generator.py
+- tool_executor.py → scraper_loop.py, feedback_loop.py, transformer_core.py, signal_generator.py, shell_executor.py
+- shell_executor.py → subprocess, logger, memory
+- python_executor.py → subprocess, vector memory
 - feedback_loop.py → embedder.py
 - trainer.py → feedback_loop.py, mutation_engine.py, generate_dataset.py
 - scraper_loop.py → playwright_handler.py, page_simulator.py
@@ -91,58 +119,168 @@ Connections:
 - TradingPanel.js → planner.py
 - TaskTreeView.js → fsm.py, embedder.py
 - MemoryGraph.js → memory_api.py
+- commands.py → embedder.py, parse_nlp(), route inference
+- parse_nlp() → tokenizer.py, pos_tagger.py, transformer_core.py
+- portfolio_tracker.py → embedder.py, feedback, logger, TradingPanel.js
 
-      ^Missing Shell Execution and Active Mutation Loop
---------------------------------------------------------------------------------
+⸻
 
-FULL GRAPH
+## GremlinGPT v1.0.2 – Full Module Call Graph
+---
+→ backend/server.py
 
-# Module Call Graph
-
-### → backend/server.py
-    ↳ router.py
-    ↳ api/chat_handler.py
-        ↳ tokenizer.py
-        ↳ transformer_core.py
-        ↳ embedder.py
-    ↳ api/planner.py
-        ↳ signal_generator.py
-            ↳ rules_engine.py
-            ↳ stock_scraper.py
-        ↳ task_queue.py
-
-### → fsm.py
-    ↳ task_queue.py
-    ↳ tool_executor.py
-        ↳ get_dom_html()
-        ↳ transformer_core.encode()
-        ↳ feedback_loop.inject_feedback()
-    ↳ heuristics.py
-
-### → scraper_loop.py
-    ↳ playwright_handler.py
-    ↳ dom_navigator.py
-    ↳ page_simulator.py
-        ↳ embedder.py
-
-### → trainer.py
-    ↳ watchdog
-    ↳ generate_dataset.py
-    ↳ mutation_engine.py
-    ↳ feedback_loop.py
-
-### → frontend/app.js
-    ↳ ChatInterface.js → /api/chat
-    ↳ TaskTreeView.js → /api/agent/tasks
-    ↳ MemoryGraph.js → /api/memory/graph
-    ↳ TradingPanel.js → /api/trading/signals
-
-^Missing Shell Execution and Active Mutation Loop
---------------------------------------------------------------------------------
-
-# GremlinGPT v4 — System Call Graph
+Handles app instantiation and routing.
+	•	↳ backend/router.py
+	•	↳ backend/api/chat_handler.py
+	•	↳ nlp_engine/tokenizer.py
+	•	↳ nlp_engine/transformer_core.py
+	•	↳ memory/vector_store/embedder.py
+	•	↳ backend/api/planner.py
+	•	↳ trading_core/signal_generator.py
+	•	↳ trading_core/rules_engine.py
+	•	↳ trading_core/stock_scraper.py
+	•	↳ agent_core/task_queue.py
+	•	↳ backend/api/scraping_api.py
+	•	↳ agent_core/task_queue.py
+	•	↳ backend/api/memory_api.py
+	•	↳ memory/vector_store/embedder.py
 
 ---
+
+→ agent_core/fsm.py
+
+Main task loop and execution controller.
+	•	↳ agent_core/task_queue.py
+	•	↳ agent_core/tool_executor.py
+	•	↳ scraper/scraper_loop.py
+	•	↳ scraper/playwright_handler.py
+	•	↳ scraper/page_simulator.py
+	•	↳ scraper/dom_navigator.py
+	•	↳ memory/vector_store/embedder.py
+	•	↳ nlp_engine/transformer_core.py
+	•	↳ self_training/feedback_loop.py
+	•	↳ trading_core/signal_generator.py
+	•	↳ agent_shell/shell_executor.py
+	•	↳ agent_core/heuristics.py
+	•	↳ self_mutation_watcher/watcher.py
+	•	↳ agents/planner_agent.py
+	•	↳ memory/vector_store/embedder.py
+
+---
+
+→ core/kernel.py
+
+Code patching + safe mutation handler.
+	•	↳ nlp_engine/diff_engine.py
+	•	↳ memory/vector_store/embedder.py
+	•	↳ self_training/feedback_loop.py
+	•	↳ core/snapshot.py
+
+---
+
+→ core/loop.py
+
+Startup & scheduling.
+	•	↳ self_training/feedback_loop.py
+	•	↳ agent_core/fsm.py
+
+---
+
+→ scraper/scraper_loop.py
+
+HTML & data scraping flow.
+	•	↳ scraper/playwright_handler.py
+	•	↳ scraper/page_simulator.py
+	•	↳ scraper/dom_navigator.py
+	•	↳ memory/vector_store/embedder.py
+
+---
+
+→ self_mutation_watcher/mutation_daemon.py
+
+Autonomous mutation observer.
+	•	↳ self_mutation_watcher/watcher.py
+	•	↳ agents/planner_agent.py
+	•	↳ memory/vector_store/embedder.py
+	•	↳ nlp_engine/semantic_score.py
+	•	↳ agent_core/task_queue.py
+
+---
+
+→ self_training/trainer.py
+
+Watches logs and regenerates training datasets.
+	•	↳ watchdog
+	•	↳ self_training/generate_dataset.py
+	•	↳ self_training/mutation_engine.py
+	•	↳ self_training/feedback_loop.py
+
+---
+
+→ self_training/generate_dataset.py
+
+Searches logs/files for anomalies to train on.
+
+---
+
+→ nlp_engine/parser.py
+
+Tokenization, POS tagging, routing, code parsing.
+	•	↳ nlp_engine/tokenizer.py
+	•	↳ nlp_engine/pos_tagger.py
+	•	↳ memory/vector_store/embedder.py
+
+---
+
+→ nlp_engine/transformer_core.py
+
+Encodes sentence embeddings.
+	•	↳ transformers.AutoModel
+	•	↳ torch.no_grad()
+
+---
+
+→ agent_shell/shell_executor.py
+
+Runs shell commands, captures stdout/stderr.
+	•	↳ subprocess.run()
+	•	↳ memory/vector_store/embedder.py
+
+---
+
+→ tools/reward_model.py
+
+Scores task outputs based on effectiveness.
+	•	↳ nlp_engine/semantic_score.py
+	•	↳ memory/vector_store/embedder.py
+
+---
+
+→ frontend/app.js
+
+Main UI framework entrypoint.
+	•	↳ ChatInterface.js → /api/chat
+	•	↳ TaskTreeView.js → /api/agent/tasks
+	•	↳ MemoryGraph.js → /api/memory/graph
+	•	↳ TradingPanel.js → /api/trading/signals
+
+---
+
+→ trading_core/portfolio_tracker.py
+
+Manages and logs position history.
+	•	↳ memory/vector_store/embedder.py
+	•	↳ backend/globals.py
+
+---
+
+→ tests/test_nlp.py, test_scraper.py, etc.
+
+Unit + memory integration tests.
+
+---
+
+# GremlinGPT Full Script Call Graph (fully extended-beta)
 
 ## GremlinGPT/agent_core/error_log.py
 

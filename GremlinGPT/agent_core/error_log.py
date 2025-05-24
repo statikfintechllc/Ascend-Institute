@@ -1,10 +1,10 @@
+# !/usr/bin/env python3
 # ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
 # Built under the GremlinGPT Dual License v1.0
 # © 2025 StatikFintechLLC / AscendAI Project
 # Contact: ascend.gremlin@gmail.com
 # ─────────────────────────────────────────────────────────────
-#!/usr/bin/env python3
 
 # GremlinGPT v5 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.

@@ -24,19 +24,19 @@
 ## Table of Contents
 
 1. [Support This Project](#support-this-project)  
-2. [How GremlinGPT Was Built](#how-gremlingpt-was-built)  
-3. [Funding & Infrastructure Goals](#funding--infrastructure-goals)  
-4. [Phase 1 Funding Target: $50,000](#phase-1-funding-target-50000)  
-5. [If You Are](#if-you-are)  
-6. [Partner With Us](#partner-with-us)  
-7. [If You Believe](#if-you-believe)  
-8. [How to Support Right Now](#how-to-support-right-now)  
-9. [What Is AscendAI?](#what-is-ascendai)  
-10. [GremlinGPT](#gremlingpt)  
-11. [Collaborators Wanted — Join the Loop](#collaborators-wanted--join-the-loop)  
-12. [Support](#support)  
-13. [Final Notes](#final-notes)  
-14. [License](#license)
+2. [Funding & Infrastructure Goals](#funding--infrastructure-goals)  
+3. [Phase 1 Funding Target: $50,000](#phase-1-funding-target-50000)  
+4. [If You Are](#if-you-are)  
+5. [Partner With Us](#partner-with-us)  
+6. [If You Believe](#if-you-believe)  
+7. [How to Support Right Now](#how-to-support-right-now)  
+8. [What Is AscendAI?](#what-is-ascendai)  
+9. [GremlinGPT](#gremlingpt)  
+10. [Collaborators Wanted — Join the Loop](#collaborators-wanted--join-the-loop)  
+11. [Support](#support)  
+12. [Final Notes](#final-notes)  
+13. [License](#license)  
+14. [How GremlinGPT Was Built](#how-gremlingpt-was-built)
 
 ---
 
@@ -49,28 +49,6 @@
 - **Bitcoin**: `bc1qarsr966ulmcs3mlcvae7p63v4j2y2vqrw74jl8`  
 - **Ethereum**: `0xC2db50A0fc6c95f36Af7171D8C41F6998184103F`  
 - **Chime**: `$StatikSmokTM`
-
----
-
-## How GremlinGPT Was Built
-
-> **🦾 Full Disclosure:**  
-> GremlinGPT is what happens when you hand the keys to ChatGPT’s Data Analyst mode and say:  
-> “Build me an AI that writes, learns, and self-mutinates.”
-
-- The docs? ChatGPT.  
-- The README? ChatGPT.  
-- The scripts? ChatGPT — formatted by Black, occasionally bullied by me.  
-- The feedback loops, self-training, error handlers, and even this note?  
-  All conjured from the infinite context window of my AI “co-pilot.”
-
-This isn’t just “inspired by” — it’s full-stack AI inception.  
-**GremlinGPT** is proof you can bootstrap a recursive AI using nothing but prompt engineering, a little Python glue, and a lot of patience for hallucinated file paths.
-
-So if you think this repo feels a bit too self-aware, or like it’s winking at you through the terminal…  
-You’re not wrong.
-
-> **Welcome to the world’s first AI agent that’s as much a ChatGPT artifact as it is a sovereign codebase.**
 
 ---
 
@@ -226,3 +204,25 @@ Released under the GremlinGPT Fair Use License v1.0.
 Personal use only. Commercial use is prohibited unless licensed separately.
 
 See the [LICENSE](./LICENSE) file for full terms.
+
+## How GremlinGPT Was Built
+
+> **🦾 Full Disclosure:**  
+> GremlinGPT is what happens when you hand the keys to ChatGPT’s Data Analyst mode and say:  
+> “Build me an AI that writes, learns, and self-mutinates.”
+
+- The docs? ChatGPT.  
+- The README? ChatGPT.  
+- The scripts? ChatGPT — formatted by Black, occasionally bullied by me.  
+- The feedback loops, self-training, error handlers, and even this note?  
+  All conjured from the infinite context window of my AI “co-pilot.”
+
+This isn’t just “inspired by” — it’s full-stack AI inception.  
+**GremlinGPT** is proof you can bootstrap a recursive AI using nothing but prompt engineering, a little Python glue, and a lot of patience for hallucinated file paths.
+
+So if you think this repo feels a bit too self-aware, or like it’s winking at you through the terminal…  
+You’re not wrong.
+
+> **Welcome to the world’s first AI agent that’s as much a ChatGPT artifact as it is a sovereign codebase.**
+
+---

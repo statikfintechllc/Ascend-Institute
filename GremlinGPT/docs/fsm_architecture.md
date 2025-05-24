@@ -2,7 +2,7 @@
   <img src="https://img.shields.io/badge/Fair%20Use-GremlinGPT%20v1.0-black?style=for-the-badge&labelColor=black&color=red&logo=ghost&logoColor=red" alt="GremlinGPT Fair Use">
 </div>
 
-# FSM Architecture: GremlinGPT v4
+# FSM Architecture: GremlinGPT v1.0.2
 
 ---
 
@@ -33,19 +33,23 @@ The FSM is fully autonomous, offline, and tightly integrated with the agent plan
 ```text
 [IDLE] -> [RUNNING] -> [WAITING] -> [IDLE]
 ```
+
 [RUNNING] state now conditionally invokes enqueue_next() from planner_agent.py if queue depletes mid-loop.
 Transitions are driven by task availability and completion status. The FSM pulls from the TaskQueue, evaluates each task via heuristics, and invokes tools accordingly.
 
 ⸻
 
 ## Loop Flow
-###	1.	Queue Read
+
+1.	Queue Read
 Pull next task from task_queue.get_next()
 If queue is empty, FSM idles.
-###	2.	Heuristic Evaluation
+
+2.	Heuristic Evaluation
 Run task through evaluate_task(task)
 Skip if conditions or context don’t pass.
-###	3.	Dispatch
+
+3.	Dispatch
 Call execute_tool(task)
 This can run:
 	•	scraper_loop
@@ -53,9 +57,11 @@ This can run:
 	•	nlp_engine.encode
 	•	inject_feedback()
 	•	run_shell_command()
-###	4.	Logging + Retry
+
+4.	Logging + Retry
 If execution fails, log to error_log.py
 Retry up to configured limit from config.toml
+
 5. Memory Update
 	•	encode() output is embedded via package_embedding()
 	•	Metadata includes:
