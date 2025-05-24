@@ -55,7 +55,7 @@ jobs:
         run: |
           cat <<EOF > setup.cfg
           [flake8]
-          max-line-length = 88
+          max-line-length = 120
           exclude =
               __pycache__,
               .git,
@@ -70,7 +70,7 @@ jobs:
         run: |
           source $CONDA/etc/profile.d/conda.sh
           conda activate gremlin-nlp
-          black GremlinGPT/
+          black GremlinGPT/ --line-length 120
 
       - name: Commit style fixes
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
