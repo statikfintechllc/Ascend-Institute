@@ -13,8 +13,16 @@ dependencies:
   - tqdm
   - rich
   - loguru
-  - flask  # Required for API interop with dashboard
-  - flask-socketio  # Real-time messaging
+  - flask
+  - flask-socketio
+  - pillow
+  - pytesseract
+  - pyautogui
+  - pyperclip
+  - platformdirs  # For cross-platform path safety
+  - psutil         # For app detection (e.g., TWS, STT)
   - pip:
       - undetected-chromedriver
       - websockets
+      - pyngrok
+      - qrcode

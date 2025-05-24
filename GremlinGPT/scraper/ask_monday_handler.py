@@ -29,65 +29,41 @@ import pyperclip
 import pytesseract
 import subprocess
 import platform
-from PIL import ImageGrab
+from PIL import ImageGrab, Image
 from datetime import datetime
+from pathlib import Path
 
-# === DYNAMIC PATHS ===
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-BASE_DIR = os.path.abspath(os.path.join(ROOT_DIR, ".."))
+from backend.globals import logger
+from memory.vector_store.embedder import embed_text, package_embedding, inject_watermark
+from memory.log_history import log_event
 
-TASK_FILE = os.path.join(BASE_DIR, "task_queue", "ask_monday.task")
-LOG_FILE = os.path.join(BASE_DIR, "logs", "chat_log.txt")
-MEMORY_DIR = os.path.join(BASE_DIR, "memory", "chat_responses")
-SCREENSHOT_DIR = os.path.join(BASE_DIR, "logs", "screenshots")
+WATERMARK = "source:GremlinGPT"
+ORIGIN = "ask_monday_handler"
 
-os.makedirs(MEMORY_DIR, exist_ok=True)
-os.makedirs(SCREENSHOT_DIR, exist_ok=True)
-
-# === UTILITY ===
-def log(message):
-    with open(LOG_FILE, "a") as f:
-        f.write(f"[{datetime.now()}] {message}\n")
+SCREENSHOT_DIR = Path("data/logs/screenshots")
+SCREENSHOT_DIR.mkdir(parents=True, exist_ok=True)
+MEMORY_DIR = Path("data/logs/chat_responses")
+MEMORY_DIR.mkdir(parents=True, exist_ok=True)
 
 
-# === TASK PARSER ===
-def extract_task():
-    if not os.path.exists(TASK_FILE):
-        return None
-
-    with open(TASK_FILE, "r") as f:
-        lines = f.readlines()
-
-    if not lines:
-        return None
-
-    current = lines[0].replace("ask_monday: ", "").strip()
-    with open(TASK_FILE, "w") as f:
-        f.writelines(lines[1:])  # remove first line
-
-    return current
-
-
-# === CHATGPT LAUNCH ===
 def launch_chatgpt():
-    system = platform.system()
+    """Launch native ChatGPT client based on platform."""
     try:
-        if system == "Darwin":  # macOS
+        system = platform.system()
+        if system == "Darwin":
             subprocess.Popen(["open", "-a", "ChatGPT"])
         elif system == "Linux":
-            subprocess.Popen(["chatgpt"])  # Customize if needed
+            subprocess.Popen(["chatgpt"])
         elif system == "Windows":
             subprocess.Popen(["start", "", "ChatGPT"], shell=True)
         else:
-            raise Exception("Unsupported OS for ChatGPT launch.")
+            raise RuntimeError("Unsupported OS for launching ChatGPT.")
         time.sleep(5)
-        pyautogui.click()  # Focus window
-        time.sleep(1)
+        pyautogui.click()
     except Exception as e:
-        log(f"[ERROR] Failed to launch ChatGPT app: {e}")
+        logger.error(f"[ASK] Failed to launch ChatGPT: {e}")
 
 
-# === INTERACTION ===
 def paste_and_enter(text):
     pyperclip.copy(text)
     pyautogui.hotkey("ctrl", "v")
@@ -97,57 +73,67 @@ def paste_and_enter(text):
 
 def scroll_and_capture():
     time.sleep(10)
-    screenshots = []
-
+    images = []
     for i in range(3):
-        img = ImageGrab.grab(bbox=None)  # full screen
-        path = os.path.join(
-            SCREENSHOT_DIR,
-            f"response_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{i}.png",
-        )
-        img.save(path)
-        screenshots.append(path)
+        screenshot = ImageGrab.grab()
+        path = SCREENSHOT_DIR / f"monday_response_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{i}.png"
+        screenshot.save(path)
+        images.append(path)
         pyautogui.scroll(-500)
-        time.sleep(2)
+        time.sleep(1.5)
+    return images
 
-    return screenshots
 
-
-def ocr_images(paths):
-    text_blocks = []
-    for p in paths:
+def ocr_images(image_paths):
+    blocks = []
+    for p in image_paths:
         try:
-            img = ImageGrab.open(p)
+            img = Image.open(p)
             text = pytesseract.image_to_string(img)
-            text_blocks.append(text.strip())
+            blocks.append(text.strip())
         except Exception as e:
-            text_blocks.append("[OCR ERROR]")
-    return "\n---\n".join(text_blocks)
+            logger.warning(f"[ASK] OCR failed for {p}: {e}")
+            blocks.append("[OCR ERROR]")
+    return "\n---\n".join(blocks)
 
 
-# === FINAL STORAGE ===
-def save_response(original, result):
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    fname = os.path.join(MEMORY_DIR, f"chat_response_{timestamp}.md")
-    with open(fname, "w") as f:
-        f.write(f"# Prompt:\n{original}\n\n# Response:\n{result}\n")
-    log(f"Saved ChatGPT response to {fname}")
+def save_to_memory(prompt, response):
+    timestamp = datetime.utcnow().isoformat()
+    vector = embed_text(response)
+    summary = f"ChatGPT external response to: {prompt[:100]}"
+    package_embedding(
+        text=summary,
+        vector=vector,
+        meta={
+            "origin": ORIGIN,
+            "timestamp": timestamp,
+            "prompt": prompt,
+            "response_len": len(response),
+            "watermark": WATERMARK,
+        },
+    )
+    inject_watermark(origin=ORIGIN)
+    log_event("ask", "monday_query", {"prompt": prompt}, status="external")
+    logger.success(f"[ASK] ChatGPT result embedded and stored.")
 
 
-# === MAIN ===
-def main():
-    query = extract_task()
-    if not query:
-        log("No 'ask_monday' tasks found.")
-        return
-
-    log(f"Asking Monday: {query}")
+def ask_monday(prompt):
+    logger.info(f"[ASK] Asking ChatGPT: {prompt}")
     launch_chatgpt()
-    paste_and_enter(query)
+    paste_and_enter(prompt)
     images = scroll_and_capture()
     response = ocr_images(images)
-    save_response(query, response)
+    save_to_memory(prompt, response)
+    return {"prompt": prompt, "response": response}
 
 
+# FSM-compatible entry point
+def handle(task):
+    prompt = task.get("target") or task.get("text") or "What is your task?"
+    return ask_monday(prompt)
+
+
+# Standalone testing
 if __name__ == "__main__":
-    main()
+    example = "Explain EMA crossover for penny stocks under 10 dollars."
+    ask_monday(example)
