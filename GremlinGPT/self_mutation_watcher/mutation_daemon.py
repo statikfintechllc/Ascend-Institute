@@ -111,13 +111,27 @@ def archive_dataset(output_path):
     return archive_name
 
 
-def auto_commit(file_path):
-    try:
-        os.system(f"git add {file_path}")
-        os.system(f'git commit -m "[autocommit] Mutation dataset updated"')
-        logger.info("[WATCHER] Autocommit completed.")
-    except Exception as e:
-        logger.warning(f"[WATCHER] Git commit failed: {e}")
+def mutation_loop():
+    logger.info("[WATCHER] Mutation Daemon Started.")
+    while True:
+        try:
+            scan_and_diff()
+            analyze_mutation_diff()
+            notify_dashboard("Self-mutation scan complete.")
+            enqueue_next()
+            logger.info(
+                f"[WATCHER] Planner task injected post-mutation at {datetime.utcnow().isoformat()}"
+            )
+
+            if DATASET_OUT.exists():
+                backup = archive_dataset(DATASET_OUT)
+                auto_commit(backup)
+                if G.CFG.get("git", {}).get("auto_push", False):
+                    auto_push()
+
+        except Exception as e:
+            logger.error(f"[WATCHER] Loop error: {e}")
+        time.sleep(SCAN_INTERVAL_MIN * 60)
 
 
 def auto_push():

@@ -52,15 +52,17 @@ async def route_scraping_async():
             logger.info(f"[SCRAPER] Active sources: {apps}")
 
             if apps["tws"]:
-                result = safe_scrape_tws()  # still sync
+                result = safe_scrape_tws()
             elif apps["stt"]:
                 result = safe_scrape_stt()
             else:
-                result = await safe_scrape_web()  # fully async fallback
+                result = await safe_scrape_web()
 
-            # Store structured summary
             for item in result:
-                summary = f"[{item.get('symbol', 'N/A')}] Price: {item.get('price')} Volume: {item.get('volume')}"
+                summary = (
+                    f"[{item.get('symbol', 'N/A')}] Price: {item.get('price')} "
+                    f"Volume: {item.get('volume')}"
+                )
                 store_scrape_to_memory("auto_scraper", summary)
 
             return result

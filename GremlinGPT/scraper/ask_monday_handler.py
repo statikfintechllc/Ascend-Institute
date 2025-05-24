@@ -22,6 +22,17 @@
 
 # scraper/ask_monday_handler.py
 
+# ─────────────────────────────────────────────────────────────
+# ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
+# Built under the GremlinGPT Dual License v1.0
+# © 2025 StatikFintechLLC / AscendAI Project
+# Contact: ascend.gremlin@gmail.com
+# ─────────────────────────────────────────────────────────────
+
+# !/usr/bin/env python3
+
+# GremlinGPT v5 :: Module Integrity Directive
+
 import os
 import time
 import pyautogui
@@ -40,9 +51,11 @@ from memory.log_history import log_event
 WATERMARK = "source:GremlinGPT"
 ORIGIN = "ask_monday_handler"
 
-SCREENSHOT_DIR = Path("data/logs/screenshots")
+# Ensure platform-correct screenshot path (now using os.path.expanduser for flexibility)
+SCREENSHOT_DIR = Path(os.path.expanduser("data/logs/screenshots"))
 SCREENSHOT_DIR.mkdir(parents=True, exist_ok=True)
-MEMORY_DIR = Path("data/logs/chat_responses")
+
+MEMORY_DIR = Path(os.path.expanduser("data/logs/chat_responses"))
 MEMORY_DIR.mkdir(parents=True, exist_ok=True)
 
 
@@ -114,7 +127,10 @@ def save_to_memory(prompt, response):
     )
     inject_watermark(origin=ORIGIN)
     log_event("ask", "monday_query", {"prompt": prompt}, status="external")
-    logger.success(f"[ASK] ChatGPT result embedded and stored.")
+    filename = MEMORY_DIR / f"chat_response_{timestamp.replace(':', '').replace('-', '')}.md"
+    with open(filename, "w") as f:
+        f.write(f"# Prompt:\n{prompt}\n\n# Response:\n{response}\n")
+    logger.success(f"[ASK] ChatGPT result embedded and saved: {filename}")
 
 
 def ask_monday(prompt):

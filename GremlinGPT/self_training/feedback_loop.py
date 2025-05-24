@@ -79,7 +79,7 @@ def archive_trigger(trigger):
 def auto_commit_push():
     try:
         os.system(f"git add {ARCHIVE_DIR}")
-        os.system(f'git commit -m "[autocommit] Feedback trigger archived"')
+        os.system('git commit -m "[autocommit] Feedback trigger archived"')
         branch = os.popen("git rev-parse --abbrev-ref HEAD").read().strip()
         os.system(f"git push origin {branch}")
         logger.info("[FEEDBACK] Trigger autocommitted and pushed.")
