@@ -1,16 +1,21 @@
+# ================================
+# GremlinGPT — Core Configuration
+# Version: 1.0.2 (v4)
+# ================================
+
 [system]
 name = "GremlinGPT"
-mode = "bootstrap"
-offline = true
-enable_patch_test = true
+mode = "bootstrap"              # Default boot mode
+offline = true                  # No external internet
+enable_patch_test = true        # Run syntax + runtime check before kernel patches
 debug = true
 log_level = "INFO"
 
 [ngrok]
 enabled = true
-authtoken = "REPLACE_ME"
+authtoken = "REPLACE_ME"        # ngrok authtoken
 region = "us"
-subdomain = ""
+subdomain = ""                  # Optional custom subdomain (Pro)
 
 [paths]
 base_dir = "~/GremlinGPT/"
@@ -18,6 +23,11 @@ data_dir = "$ROOT/data/"
 models_dir = "$ROOT/models/"
 checkpoints_dir = "$ROOT/run/checkpoints/"
 log_file = "$ROOT/run/logs/runtime.log"
+snapshot_dir = "$ROOT/run/checkpoints/snapshots/"
+vector_store_path = "$ROOT/memory/vector_store/faiss/"
+metadata_db = "$ROOT/memory/local_index/metadata.db"
+logs_dir = "$ROOT/data/logs/"
+training_sets_dir = "$ROOT/data/nlp_training_sets/"
 
 [hardware]
 use_ram = true
@@ -32,22 +42,29 @@ embedder_model = "all-MiniLM-L6-v2"
 transformer_model = "bert-base-uncased"
 embedding_dim = 384
 confidence_threshold = 0.7
+semantic_boost = true
+similarity_threshold = 0.75
 
 [agent]
 max_tasks = 33
 task_retry_limit = 333
 log_agent_output = true
+default_priority = "medium"
 
 [scraper]
 browser_profile = "./scraper/profiles/chromium_profile/"
 scrape_interval_sec = 15
 max_concurrent_scrapers = 9
+fallback_enabled = true         # Playwright fallback if app not found
+watch_processes = ["TWS", "StocksToTrade"]
 
 [memory]
-vector_backend = "chromadb"
+vector_backend = "chromadb"     # Options: "faiss", "chromadb"
 embedding_format = "float32"
 auto_index = true
 index_chunk_size = 500
+snapshot_interval_min = 30
+allow_replaceable = true
 
 [loop]
 self_training_enabled = true
@@ -56,4 +73,29 @@ mutation_watch_enabled = true
 fsm_tick_delay = 0.5
 planner_interval = 10
 mutation_watch_interval = 5
+log_interval = 15
 
+[training]
+retrain_trigger_file = "$ROOT/run/checkpoints/retrain_trigger.json"
+log_watch_dir = "$ROOT/data/logs/"
+training_output = "$ROOT/data/nlp_training_sets/mutated_dataset.json"
+overwrite_model = false
+allow_mutation = true
+
+[shell]
+enable_shell_tasks = true
+shell_log_path = "$ROOT/data/logs/shell_exec.log"
+default_timeout_sec = 10
+restrict_commands = ["rm", "shutdown", "reboot"]
+
+[trading]
+max_watchlist = 25
+min_confidence_signal = 0.6
+tax_region = "US"
+simulate_if_offline = true
+
+[dashboard]
+auto_launch_browser = false
+enable_qr_code = true
+poll_interval_ms = 500
+allow_remote_control = true
