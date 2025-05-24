@@ -1,5 +1,10 @@
 <div align="center">
-  <img src="https://img.shields.io/badge/GremlinGPT%20Dual%20License%20v1.0-black?style=for-the-badge&labelColor=red&color=black&logo=dragon&logoColor=gold&label=" alt="GremlinGPT Dual License v1.0"/>
+  <a href="https://github.com/statikfintechllc/AscendAI/blob/main/LICENSE.md">
+    <img src="https://img.shields.io/badge/Fair%20Use-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT Dual"/>
+  </a>
+  <a href="https://github.com/statikfintechllc/AscendAI/blob/main/LICENSE.md">
+    <img src="https://img.shields.io/badge/GremlinGPT%20v1.0-red?style=for-the-badge&logo=dragon&logoColor=gold" alt="License v1.0.2"/>
+  </a>
 </div>
 
 <p align="center"><strong>GremlinGPT Dual License v1.0</strong></p>
