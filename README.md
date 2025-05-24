@@ -206,12 +206,9 @@ Unseen. Unbroken. Unrivaled. Gremlins Ascend.
 
 ---
 
-## License
+## License:
 
-This project is licensed under the **Apache License 2.0**.
-
-You are free to use, modify, and distribute this software —  
-but you must retain attribution and cannot use the name “Ascend-AI”  
-or “Statik” to promote derived products without permission.
+Released under the GremlinGPT Fair Use License v1.0.
+Personal use only. Commercial use is prohibited unless licensed separately.
 
 See the [LICENSE](./LICENSE) file for full terms.
