@@ -2,7 +2,7 @@
   <img src="https://img.shields.io/badge/Fair%20Use-GremlinGPT%20v1.0-black?style=for-the-badge&labelColor=black&color=red&logo=ghost&logoColor=red" alt="GremlinGPT Fair Use">
 </div>
 
-# GremlinGPT Linux Service (Systemd)
+# GremlinGPT v1.0.2 Linux Service (Systemd)
 
 This unit file installs GremlinGPT as a **persistent autonomous Linux service**.
 

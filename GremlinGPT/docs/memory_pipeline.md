@@ -2,7 +2,7 @@
   <img src="https://img.shields.io/badge/Fair%20Use-GremlinGPT%20v1.0-black?style=for-the-badge&labelColor=black&color=red&logo=ghost&logoColor=red" alt="GremlinGPT Fair Use">
 </div>
 
-# Memory Pipeline — GremlinGPT v4
+# Memory Pipeline — GremlinGPT v1.0.2
 
 ---
 
@@ -10,44 +10,51 @@
 
 The memory subsystem is GremlinGPT’s **vectorized long-term memory**, storing:
 
-- Web scrapes
-- Signal events
-- Task plans and outcomes
+- Web scrapes and DOM content
+- Trading signal outputs
+- Task plans, priorities, outcomes
 - Code diffs and NLP deltas
-- Retrain triggers and feedback logs
+- Retrain triggers and mutation feedback
 
-It is structured to support:
-- Fast retrieval
-- Semantic similarity search
-- Rich tagging and metadata
-- Modular backend choice (Chroma or FAISS)
-- Embeddings are stored as float32 arrays, optimized for FAISS similarity search.
+Memory is designed for:
+- Fast semantic retrieval
+- Continuous learning via vector deltas
+- High-granularity tagging and lineage tracking
+- Configurable backend (FAISS or ChromaDB)
+
+Embeddings are 384-d float32 vectors optimized for CPU-based FAISS indexing by default.
 
 ---
 
 ## Architecture
 
-	•	The architecture consists of multiple components:
-	•	Raw Task Input
-	•	SBERT / MiniLM (sentence-transformers)
-	•	Embedder
-	•	package_embedding(text)
-	•	Tag + Vectorize + Store
-	•	Chroma VectorDB (configurable)
-	•	FAISS Local Index (default: CPU-fast)
-	•	metadata.db (sqlite)
+The memory stack flows as:
 
+Raw Text → SBERT MiniLM → embed_text() → package_embedding()
+→ Tags + Metadata
+→ Vector Store (FAISS/Chroma)
+→ metadata.db (SQLite) + /documents/
 
 ---
 
-## Storage Configuration
+### Core Layers:
 
-Controlled via:
+- `embed_text()` – encodes raw input
+- `package_embedding()` – stores vector + metadata
+- `inject_watermark()` – tags memory state transitions
+- `faiss_index/` or `chroma_db/` – vector backend
+- `metadata.db` – searchable context + lineage
 
-- `config/memory_settings.json`
-- `[memory]` block in `config/config.toml`
+---
 
-### Examples:
+## Configuration
+
+Memory behavior is controlled by:
+
+- `config/config.toml` → `[memory]`
+- `config/memory_settings.json` → overrides for dev/debug
+
+### Sample `memory_settings.json`
 ```json
 {
   "vector_backend": "faiss",
@@ -58,32 +65,20 @@ Controlled via:
     "metadata_db": "./memory/local_index/metadata.db"
   }
 }
-```
+
 
 ⸻
 
-## Embedding + Tagging
+## Embedding & Tagging
 
-All embeddings include:
-	•	384-d vector (MiniLM)
-	•	Source text
-	•	Metadata
-	•	Tags for:
-```json
-{
-  "source": "bootstrap-prebuilt",
-  "model": "MiniLM",
-  "replaceable": true
-}
-```
+Every memory entry contains:
+	•	embedding: 384-dim vector from MiniLM-L6-v2
+	•	text: Source text or summary
+	•	meta: Dictionary with semantic keys
+	•	tags: Purpose + model lineage
 
-Metadata supports:
-	•	File origin
-	•	Semantic type (e.g. “code_diff”)
-	•	Timestamp
-	•	Agent ID (if applicable)
+### Example:
 
-Example:
 {
   "id": "abc123",
   "text": "Planned task: scrape SEC filings",
@@ -100,109 +95,147 @@ Example:
   }
 }
 
+
 ⸻
 
 ## Embedder Logic
 
-memory/vector_store/embedder.py
-	•	Loads SentenceTransformer (MiniLM-L6-v2)
-	•	Converts all string/text to normalized embeddings
-	•	Stores .json files under local_index/documents/
-	•	Indexes embeddings and metadata to FAISS or Chroma
+### Located in memory/vector_store/embedder.py
+	•	Loads MiniLM-L6-v2 using SentenceTransformer
+	•	Normalizes and embeds all NLP or task payloads
+	•	Saves .json vectors to local_index/documents/
+	•	Stores FAISS index or Chroma collection as defined
+
+### Functions:
+	•	embed_text(text)
+	•	package_embedding(text, vector, meta)
+	•	inject_watermark(origin="...")
 
 ⸻
 
-## Auto-Indexing
+## Auto Indexing
 
-If auto_index = true in config:
-	•	All scrapes
-	•	All planner steps
-	•	All diffs from watcher.py
-	•	All signal outputs
-
-Are immediately embedded and stored.
-
-Chunking can be configured by index_chunk_size.
+### If auto_index = true in config, the following sources are automatically embedded:
+	•	DOM content from scraper_loop.py
+	•	Signals from signal_generator.py
+	•	Task plans from planner_agent.py
+	•	Mutations and diffs from watcher.py
+	•	Shell outputs and NLP commands
 
 ⸻
 
 ## Semantic Search
 
-Search queries use:
-	•	Vector cosine similarity (semantic_score.py)
-	•	Filtered by similarity_threshold (default: 0.75)
-	•	Optionally enhanced with semantic_boost if enabled
+### Semantic queries run against vector memory using:
+	•	Cosine similarity via semantic_score.py
+	•	Threshold from similarity_threshold (default: 0.75)
+	•	Optionally enhanced via semantic_boost flag
 
-All search results can:
-	•	Trigger new tasks
-	•	Feed retraining dataset generation
-	•	Auto-tag with lineage back to original input
+### Matched results can:
+	•	Trigger tasks (e.g. re-scrape)
+	•	Seed new planner steps
+	•	Feed generate_dataset.py for self-train loops
 
 ⸻
 
 ## Backends
 
-GremlinGPT supports:
 Backend
 Type
 Use Case
 FAISS
 CPU
-Default local vector store
+Default, fast local index
 Chroma
-Python
-Flexible storage API w/ JSON persistence
+JSON
+Dev-friendly + persistent
 
-Backend is selected at runtime via config.toml.
+### Selected in config.toml under [memory]:
+
+[memory]
+vector_backend = "faiss"
+embedding_dim = 384
+auto_index = true
 
 ⸻
 
-## Mutation Awareness
 
-Memory stores code diffs (from watcher.py) as:
-```json
+⸻
+
+Mutation Awareness
+
+When FSM, planner, or kernel is mutated:
+	•	Code diff is generated via diff_engine.py
+	•	Stored in memory like this:
+
 {
   "type": "code_diff",
   "origin": "self_mutation_watcher",
   "text": "<unified diff>",
   "embedding": [ ... ],
-  "meta": { ... }
+  "meta": {
+    "semantic_score": 0.41,
+    "lineage_id": "uuid",
+    "timestamp": "..."
+  }
 }
-```
-Used later in generate_dataset.py to build finetuning data.
+
+These diffs are critical for generating self_train tasks and for dataset building in generate_dataset.py.
 
 ⸻
 
 ## Snapshot & Rollback
 
-Memory snapshot system:
-	•	Saves vector + metadata periodically
-	•	Controlled by snapshot_interval_min
-	•	Supports reboot_recover.sh restoration
-	•	Old backups are rotated automatically
+### The memory system supports temporal rollbacks via snapshotting:
+	•	Periodic dumps of vector and metadata states
+	•	Controlled by snapshot_interval_min in config.toml
+	•	Supports reboot_recover.sh for failover or crash recovery
+	•	Old backups are auto-rotated
 
 ⸻
 
-## Usage in Other Modules
+## Integrated Modules
 
 Module
 Role
 chat_handler.py
-Retrieves memory threads
-planner.py
-Reads embeddings to plan
+Retrieves context from memory
+planner_agent.py
+Picks next task via reward + memory scan
 diff_engine.py
-Stores change deltas
+Stores semantic and code deltas
 feedback_loop.py
-Pulls vector logs for NLP retraining
+Logs retrain triggers to memory
+tool_executor.py
+Embeds all tool results and signals
+mutation_daemon.py
+Monitors code for drift and vector deltas
+
+⸻
+
+## Logging & Watermarking
+
+### Watermarking is used to:
+	•	Tag mutation-aware embeddings
+	•	Mark FSM transitions or kernel patch events
+	•	Leave source:GremlinGPT lineage metadata
+
+### Each inject_watermark() call adds:
+
+{
+  "origin": "fsm_loop",
+  "timestamp": "2025-05-18T13:26:44Z",
+  "watermark": "source:GremlinGPT"
+}
 
 ⸻
 
 ## Conclusion
 
-The memory engine is what enables GremlinGPT to:
-	•	Learn from experience
-	•	Re-plan based on past failures
-	•	Upgrade itself based on historical context
+### The memory engine enables GremlinGPT to:
+	•	Learn from past actions
+	•	Replan based on reward history
+	•	React to environment changes
+	•	Train itself from mutation logs
 
-It’s not just a database — it’s a brain that stores the past and feeds the future.
+### This isn’t just storage — it’s long-term cognition, replayable reasoning, and evolutionary state tracking.

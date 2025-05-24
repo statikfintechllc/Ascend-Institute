@@ -4,7 +4,7 @@
 
 # GremlinGPT: System Overview
 
-**Version**: 4.0  
+**Version**: 1.0.2 
 **Type**: Autonomous, Offline, Self-Evolving AI  
 **Host**: Linux Ubuntu (zsh-compatible)  
 **Execution**: Conda-based, multi-GPU optional  
@@ -16,37 +16,38 @@
 
 GremlinGPT is a locally hosted recursive intelligence system that:
 
-- Scrapes data, learns from results, and evolves without human oversight
-- Operates fully offline with no cloud dependencies
-- Grows its own NLP engine using feedback and self-repair
-- Can plan, refactor, and upgrade its own code autonomously
+- Scrapes data, learns from results, and evolves without human oversight  
+- Operates fully offline with no cloud dependencies  
+- Grows its own NLP engine using feedback and self-repair  
+- Can plan, refactor, and upgrade its own code autonomously  
 
 ---
 
 ## Modules and Responsibilities
 
-### 1. `frontend/` (PWA Interface)
-- Chat with FSM-driven agents
-- Display agent task tree and memory vectors
-- Monitor stock signals in real time
-- Fully offline-capable via Service Worker
+1. `frontend/` (PWA Interface)
+- Chat with FSM-driven agents  
+- Display agent task tree and memory vectors  
+- Monitor stock signals in real time  
+- Fully offline-capable via Service Worker  
 
-### 2. `backend/`
-- Flask + SocketIO API server
-- Routes requests to planner, memory, scraper, FSM, etc.
-- Interfaces with `planner_agent.py` and `fsm.py`
-- Can be tunneled externally via `ngrok_launcher.py`
+2. `backend/`
+- Flask + SocketIO API server  
+- Routes requests to planner, memory, scraper, FSM, etc.  
+- Interfaces with `planner_agent.py` and `fsm.py`  
+- Can be tunneled externally via `ngrok_launcher.py`  
 
-### 3. `agent_core/`
-- Finite State Machine (`fsm.py`) to drive task evaluation
-- `task_queue.py` for persistent queueing
-- `tool_executor.py` to dispatch actions to NLP, trading, scraping, shell, etc.
+3. `agent_core/`
+- `fsm.py`: Finite State Machine to drive task logic  
+- `task_queue.py`: Persistent queueing and retry handling  
+- `tool_executor.py`: Dispatches tool tasks (scraper, NLP, trading, shell, etc.)  
+- `heuristics.py`: Conditions for task execution  
 
-### 4. `nlp_engine/`
-- Bootstrapped transformer models and tokenizer
-- Custom diff engine to analyze mutations
-- POS tagging and semantic scoring via SBERT
-- All NLP outputs are tagged with:
+4. `nlp_engine/`
+- Bootstrapped transformer models and tokenizer  
+- Custom diff engine to analyze mutations  
+- POS tagging, semantic scoring (SBERT, MiniLM)  
+- All outputs tagged like:
 ```json
 {
   "source": "bootstrap-prebuilt",
@@ -54,95 +55,107 @@ GremlinGPT is a locally hosted recursive intelligence system that:
   "replaceable": true
 }
 ```
-
-### 5. `memory/`
+5. memory/
 	•	Local vector store using FAISS/Chroma
-	•	Embedding packaging + tagging
-	•	Auto-indexing of scrapes, outputs, plans, deltas
-	•	Snapshot and rollback infrastructure included
+	•	embedder.py: Handles vectorization and metadata
+	•	Auto-indexes scrapes, signals, code diffs, and planner outputs
+	•	snapshot.py: Periodic memory snapshots for recovery
 
-### 6. `self_training/`
-	•	Monitors diffs in core logic (FSM, rules, agents)
-	•	Generates embedding deltas + diff logs
-	•	Injects feedback into retrain queue
-	•	Triggers NLP mutation and log-based dataset generation
+6. self_training/
+	•	watcher.py: Tracks file changes
+	•	diff_engine.py: Measures semantic drift
+	•	generate_dataset.py: Builds training sets
+	•	feedback_loop.py: Raises retrain triggers
+	•	trainer.py: Executes NLP retrain locally
 
-### 7. `trading_core/`
+7. trading_core/
 	•	Scans for penny stocks under $10
-	•	Uses EMA/VWAP for intraday pattern recognition
-	•	Generates signals and embeds them into memory
-	•	Signals feed into reward scoring and planner
+	•	Uses VWAP/EMA logic to find momentum setups
+	•	signal_generator.py pushes structured alerts
+	•	Signals are embedded and fed to the reward model
 
-### 8. `scraper/`
-	•	Browser automation via Playwright
-	•	DOM graph navigation and page capture
-	•	Stores structured HTML + snapshots
-	•	Tied directly to memory for analysis
+8. scraper/
+	•	Automated scraping with Playwright
+	•	Extracts DOM graph and page summaries
+	•	Uses page_simulator.py + dom_navigator.py for HTML analysis
+	•	Outputs embedded vectors for memory and training
 
-### 9. `planner_agent.py`
-	•	Uses graph state + logs + vector space to plan next actions
-	•	Reads task history, memory tags, and results
-	•	Enqueues task trees for FSM execution
+9. planner_agent.py
+	•	Builds new task trees based on:
+	•	Prior reward scores
+	•	Memory similarity
+	•	Current execution context
+	•	Injects tasks to FSM automatically
 
-### 10. `agent_shell/`
-	•	Executes secure Linux commands via subprocess
-	•	Wraps results in structured memory packages
-	•	Callable from planner tasks (e.g. {"type": "shell", "command": "df -h"})
+10. agent_shell/
+	•	shell_executor.py: Runs safe subprocess commands
+	•	Stores structured output with memory trace
+	•	Can be triggered by planner (e.g. "type": "shell")
 
 ⸻
 
 ## Execution Model
-	•	start_all.sh spins up all environments and FSM loop
-	•	ngrok_launcher.py runs automatically if enabled in config.toml
-	•	watcher.py diff-scans key modules and stores changes in memory
-	•	feedback_loop.py links code changes → NLP retraining
-	•	fsm.py continuously pulls from queue and dispatches tools
-	•	planner_agent.py injects tasks based on logs and signal memory
+	•	start_all.sh: Boots entire system
+	•	ngrok_launcher.py: Opens external tunnel if enabled
+	•	fsm.py: Core autonomous loop
+	•	planner_agent.py: Injects tasks from memory and logs
+	•	watcher.py: Monitors mutation
+	•	feedback_loop.py: Retrains NLP engine via vector deltas
+	•	tool_executor.py: Runs NLP/Signal/Scrape/Shell pipelines
 
 ⸻
 
 ## System Resilience
-	•	reboot_recover.sh restores last snapshot and memory index
-	•	All embeddings, task trees, and logs are serialized to disk
-	•	Git-style rollback support built into core/snapshot.py
-	•	Each mutation, reward, or crash is logged with diff + score
+	•	reboot_recover.sh: Restores last memory snapshot
+	•	core/snapshot.py: Stores vectorized diffs and state checkpoints
+	•	Git-like rollback for broken FSM/logic mutations
+	•	Each reward, crash, or code change is archived with traceability
 
 ⸻
 
 ## Key Technologies
-	•	Python 3.10 (Conda-managed)
-	•	Flask + SocketIO + Dash + Plotly
-	•	FAISS + Chroma for vector search
-	•	HuggingFace Transformers, SentenceTransformer, spaCy, nltk
-	•	Playwright, BeautifulSoup, LXML
-	•	PyYAML, Click, Watchdog, NetworkX, Loguru
+	•	Language: Python 3.10
+	•	Frontend: React + SocketIO + Dash + PWA
+	•	Vector Search: FAISS (default) or Chroma
+	•	NLP: SentenceTransformers (MiniLM), HuggingFace, spaCy
+	•	Scraping: Playwright, BeautifulSoup, LXML
+	•	Monitoring: psutil, Watchdog, Loguru
+	•	Persistence: SQLite, JSONL, Checkpoint Snapshots
 
 ⸻
 
 ## Runtime Requirements
-	•	Linux Ubuntu (tested), zsh or bash shell
-	•	~8GB RAM min, GPU acceleration optional
-	•	3+ conda environments:
-	•	gremlin-nlp, gremlin-dashboard, gremlin-orchestrator, etc.
+	•	Linux (tested: Ubuntu 22.04+)
+	•	zsh or bash shell
+	•	~8GB RAM minimum
+	•	Optional GPU (CUDA/ROCm)
+	•	Conda environments:
+	•	gremlin-nlp
+	•	gremlin-orchestrator
+	•	gremlin-dashboard
 
 ⸻
 
-## Accessing the Dashboard on Mobile
-	1.	Ensure ngrok is enabled in config.toml
-	2.	Run start_all.sh
-	3.	Copy printed public URL (e.g. https://abc123.ngrok.io)
-	4.	Open on your phone and “Add to Home Screen” (PWA)
-	5.	You now have full control of GremlinGPT on mobile
+Mobile Dashboard Access
+	1.	Set [ngrok.enabled] = true in config.toml
+	2.	Run:
+```bash
+bash run/start_all.sh
+```
+3.	Scan printed ngrok URL or open it on phone
+	4.	Install PWA by “Add to Home Screen”
+	5.	GremlinGPT is now mobile-ready and remotely accessible
 
 ⸻
 
 ## Conclusion
 
-GremlinGPT v4 is not just an AI agent — it is an autonomous, evolving intelligence capable of:
-	•	Self-directed growth
-	•	Self-repair
-	•	Embedded mutation and recovery
-	•	Modular upgrades
-	•	Zero external dependencies
+GremlinGPT v1.0.2 is not a chatbot.
+It is an autonomous intelligence kernel that:
+	•	Rewrites its logic
+	•	Learns from errors
+	•	Recovers from failures
+	•	Evolves toward better reasoning
 
-Built not to run a prompt — but to rewrite itself.
+Built not to simply respond to a prompt —
+but to write the next one itself.

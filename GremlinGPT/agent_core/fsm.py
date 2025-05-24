@@ -1,9 +1,9 @@
-# ─────────────────────────────────────────────────────────────
+#─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
 # Built under the GremlinGPT Dual License v1.0
 # © 2025 StatikFintechLLC / AscendAI Project
 # Contact: ascend.gremlin@gmail.com
-# ─────────────────────────────────────────────────────────────
+#─────────────────────────────────────────────────────────────
 #!/usr/bin/env python3
 
 # GremlinGPT v5 :: Module Integrity Directive
@@ -21,7 +21,6 @@
 
 import os
 import time
-import shutil
 import schedule
 from rich.console import Console
 from datetime import datetime
@@ -33,6 +32,7 @@ from agent_core.error_log import log_error
 
 from agents.planner_agent import enqueue_next
 from backend import globals as G
+from backend.utils.git_ops import archive_json_log, auto_commit
 from memory.vector_store.embedder import inject_watermark
 from memory.log_history import log_event
 from self_mutation_watcher.watcher import scan_and_diff
@@ -44,27 +44,7 @@ console = Console()
 task_queue = TaskQueue(retry_limit=G.AGENT.get("task_retry_limit", 2))
 tick_delay = G.CFG.get("loop", {}).get("fsm_tick_delay", 0.5)
 DATASET_PATH = "data/nlp_training_sets/auto_generated.jsonl"
-ARCHIVE_DIR = "docs/"
 LOG_CRASH_PATH = "run/logs/fsm_crash.log"
-
-
-def archive_dataset(output_path):
-    if not os.path.exists(output_path):
-        return
-    timestamp = datetime.utcnow().strftime("%Y%m%dT%H%M%S")
-    archive_name = os.path.join(ARCHIVE_DIR, f"dataset_dump_{timestamp}.jsonl")
-    shutil.copyfile(output_path, archive_name)
-    console.log(f"[FSM] Dataset backup created → {archive_name}")
-
-
-def auto_commit(file_path):
-    try:
-        os.system(f"git add {file_path}")
-        os.system(f'git commit -m "[autocommit] Dataset updated by FSM loop"')
-        console.log("[FSM] Autocommit completed.")
-    except Exception as e:
-        console.log(f"[FSM] Git autocommit failed: {e}")
-
 
 def auto_push():
     try:
@@ -77,7 +57,6 @@ def auto_push():
             console.log(f"[FSM] Git push failed with exit code: {result}")
     except Exception as e:
         console.log(f"[FSM] Git push error: {e}")
-
 
 def fsm_loop():
     global FSM_STATE
@@ -110,10 +89,7 @@ def fsm_loop():
         except Exception as e:
             log_error(task, e)
             task_queue.retry(task)
-            log_event(
-                "fsm", "task_error", {"task": task, "error": str(e)}, status="fail"
-            )
-
+            log_event("fsm", "task_error", {"task": task, "error": str(e)}, status="fail")
             tid = task.get("id")
             retries = task_queue.task_meta.get(tid, {}).get("retries", 0)
             if retries >= 2:
@@ -144,23 +120,20 @@ def fsm_loop():
         try:
             generate_datasets(root_dir=".", output_file=DATASET_PATH)
             console.log("[FSM] Training dataset updated.")
-            archive_dataset(DATASET_PATH)
-            auto_commit(DATASET_PATH)
+            archive_path = archive_json_log(DATASET_PATH, prefix="dataset_dump")
+            if archive_path:
+                auto_commit(archive_path, message="[autocommit] Dataset updated by FSM loop")
 
             if G.CFG.get("git", {}).get("auto_push", False):
                 auto_push()
-
         except Exception as e:
             console.log(f"[FSM] Dataset generation failed: {e}")
             with open(LOG_CRASH_PATH, "a") as logf:
-                logf.write(
-                    f"{datetime.utcnow().isoformat()} :: Dataset Error: {str(e)}\n"
-                )
+                logf.write(f"{datetime.utcnow().isoformat()} :: Dataset Error: {str(e)}\n")
 
     FSM_STATE = "IDLE"
     console.log("[FSM] Queue cleared.")
     log_event("fsm", "loop_complete", {}, status="idle")
-
 
 def run_schedule():
     run_daemon()
@@ -169,7 +142,6 @@ def run_schedule():
     while True:
         schedule.run_pending()
         time.sleep(1)
-
 
 if __name__ == "__main__":
     task_queue.enqueue({"type": "scrape"})

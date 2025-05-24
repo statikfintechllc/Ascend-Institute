@@ -1,3 +1,5 @@
+# GremlinGPT v1.0.2
+
 GremlinGPT/
 ├── README.md
 ├── install.sh
@@ -50,6 +52,8 @@ GremlinGPT/
 │   ├── globals.py
 │   ├── interface/
 │   │   └── commands.py
+│   ├── utils/
+│   │   └── git_ops.py
 │   └── api/
 │       ├── chat_handler.py
 │       ├── memory_api.py
