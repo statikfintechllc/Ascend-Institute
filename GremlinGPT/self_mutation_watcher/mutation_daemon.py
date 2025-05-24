@@ -44,6 +44,7 @@ from memory.vector_store.embedder import embed_text, package_embedding
 from nlp_engine.semantic_score import semantic_similarity
 from agent_core.task_queue import enqueue_task
 from backend import globals as G
+from backend.utils.git_ops import auto_commit
 
 SCAN_INTERVAL_MIN = 5
 NOTIFY_DASHBOARD = True
@@ -124,7 +125,10 @@ def mutation_loop():
             )
 
             if DATASET_OUT.exists():
-                backup = archive_dataset(DATASET_OUT)
+                backup = archive_json_log(
+                    str(DATASET_OUT),
+                    prefix="dataset_dump"
+                )
                 auto_commit(backup)
                 if G.CFG.get("git", {}).get("auto_push", False):
                     auto_push()

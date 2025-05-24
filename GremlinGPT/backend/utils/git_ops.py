@@ -13,6 +13,8 @@
 #   - Shared by FSM, Planner, and other modules
 #   - Must remain side-effect free unless explicitly invoked
 
+# backend/utils/git_ops.py
+
 import os
 import shutil
 from datetime import datetime
