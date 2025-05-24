@@ -11,7 +11,7 @@
 ————
 
 # GremlinGPT v1.0.2
-
+```text
 GremlinGPT/
 ├── README.md
 ├── install.sh
@@ -183,3 +183,4 @@ GremlinGPT/
 │   └── automated_shell.md
 │
 └── test_system_start.sh
+```
