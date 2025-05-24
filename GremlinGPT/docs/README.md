@@ -24,7 +24,7 @@
 
 ⸻
 
-## 📝 Founder's Log & Manifesto
+## Founder's Log & Manifesto
 
 > I built an AI system that builds itself.  
 > Not in a lab.  
