@@ -1,19 +1,27 @@
 <div align="center">
-  <img src="https://img.shields.io/badge/Fair%20Use-GremlinGPT%20v1.0-black?style=for-the-badge&labelColor=black&color=red&logo=ghost&logoColor=red" alt="GremlinGPT Fair Use">
+
+  <a href="LICENSE.md">
+    <img src="https://img.shields.io/badge/FAIR%20USE-black?style=for-the-badge&logo=dragon&logoColor=white" alt="Fair Use License"/>
+  </a>
+  <a href="LICENSE.md">
+    <img src="https://img.shields.io/badge/GREMLINGPT%20v1.0-red?style=for-the-badge&logo=dragon&logoColor=white" alt="GremlinGPT License"/>
+  </a>
+  
 </div>
 
-🧠 Contributor Covenant // AscendNet Edition
-v2.0 // "We Build. We Don’t Harass."
+# 🧠 Contributor Covenant // AscendNet Edition
 
-Our Pledge
+## v.1.0. // "We Build. We Don’t Harass."
+
+### Our Pledge
 We, the maladjusted minds behind AscendNet, pledge to build this AI-obsessed, code-mutating experiment in a way that’s free from harassment, dogma, and drama. Regardless of whether you’re bootstrapping from a microwave or pushing PRs from a 96-core bunker, you’re welcome here.
 
 We pledge to interact like semi-functional humans, or at least like socially aware cyborgs. This means no harassment, no discrimination, and no being a jerk.
 
-Our Standards
+### Our Standards
 Want to contribute? Great. Here’s the vibe:
 
-Expected behavior:
+## Expected behavior:
 
 Treat others like they're debugging code with a migraine. Go easy.
 
@@ -25,7 +33,7 @@ Take responsibility when you break things. Apologize. Learn. Update your worldvi
 
 Remember the mission: Build smart systems. Don’t act like a broken one.
 
-Unacceptable behavior:
+## Unacceptable behavior:
 
 Creepy comments. Crude memes. Sexualized anything. Gross.
 
@@ -46,10 +54,10 @@ Nuke your access if needed.
 
 Deliver ban-hammer justice — gently or violently, depending on vibes.
 
-Scope
+## Scope
 This code applies in all spaces: commits, issues, PRs, Discord, signal fires, dead drops — wherever AscendNet exists. If you represent the project publicly, the rules follow you like a tracking cookie.
 
-Enforcement Contact
+## Enforcement Contact
 Got a problem? We’re here:
 
 📱 Text: +1 (785) 443-6288
@@ -81,5 +89,5 @@ Impact: Consistently toxic. A walking StackOverflow meltdown.
 
 Consequence: Goodbye forever. Your access is revoked, and the logs are scrubbed.
 
-Attribution
+### Attribution
 Based on the Contributor Covenant, version 2.0 — lovingly rewritten by weirdos who talk to AI more than people.
