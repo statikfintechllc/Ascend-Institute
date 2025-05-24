@@ -11,7 +11,7 @@
 
 ## Table of Contents
 
-- [Founder's Log & Manifesto](#founders-log-&-manifesto)
+- [Founder's Log & Manifesto](#founders-log--manifesto)
 - [Overview](#overview)
 - [System Features](#system-features)
 - [Architecture](#architecture)
@@ -32,7 +32,7 @@
 > Not on fiber internet with a dev team holding my hand...
 
 Curious about the journey, the pain, and the philosophy behind AscendAI?  
-Read more in the [FOUNDER_LOG.md]((https://github.com/statikfintechllc/AscendAI/actions)).
+Read more in the [FOUNDER_LOG.md](https://github.com/statikfintechllc/AscendAI/actions).
 
 ⸻
 
