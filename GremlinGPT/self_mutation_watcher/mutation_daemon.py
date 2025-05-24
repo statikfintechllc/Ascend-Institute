@@ -42,6 +42,7 @@ from self_mutation_watcher.watcher import (
 from agents.planner_agent import enqueue_next
 from memory.vector_store.embedder import embed_text, package_embedding
 from nlp_engine.semantic_score import semantic_similarity
+from backend.utils.git_ops import archive_json_log
 from agent_core.task_queue import enqueue_task
 from backend import globals as G
 from backend.utils.git_ops import auto_commit
