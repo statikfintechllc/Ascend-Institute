@@ -33,6 +33,7 @@ from scraper.playwright_scraper import safe_scrape_web
 from scraper.page_simulator import store_scrape_to_memory
 
 _last_scraped = []
+_async_lock = asyncio.Lock()  # Protects async operations
 
 
 def detect_apps():
@@ -43,30 +44,43 @@ def detect_apps():
     }
 
 
-def route_scraping():
-    try:
-        apps = detect_apps()
-        logger.info(f"[SCRAPER] Active sources: {apps}")
+async def route_scraping_async():
+    """Asynchronous version of scraping router."""
+    async with _async_lock:
+        try:
+            apps = detect_apps()
+            logger.info(f"[SCRAPER] Active sources: {apps}")
 
-        if apps["tws"]:
-            return safe_scrape_tws()
-        elif apps["stt"]:
-            return safe_scrape_stt()
-        else:
-            return safe_scrape_web()
-    except Exception as e:
-        logger.warning(f"[SCRAPER] Routing failed: {e}")
-        return []
+            if apps["tws"]:
+                result = safe_scrape_tws()  # still sync
+            elif apps["stt"]:
+                result = safe_scrape_stt()
+            else:
+                result = await safe_scrape_web()  # fully async fallback
+
+            # Store structured summary
+            for item in result:
+                summary = f"[{item.get('symbol', 'N/A')}] Price: {item.get('price')} Volume: {item.get('volume')}"
+                store_scrape_to_memory("auto_scraper", summary)
+
+            return result
+
+        except Exception as e:
+            logger.warning(f"[SCRAPER] Async routing failed: {e}")
+            return []
 
 
 def periodic_refresh(interval_sec=5):
     global _last_scraped
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+
     while True:
         try:
-            data = route_scraping()
-            _last_scraped = data
+            result = loop.run_until_complete(route_scraping_async())
+            _last_scraped = result
         except Exception as e:
-            logger.error(f"[SCRAPER] Loop error: {e}")
+            logger.error(f"[SCRAPER] Periodic async loop error: {e}")
         time.sleep(interval_sec)
 
 

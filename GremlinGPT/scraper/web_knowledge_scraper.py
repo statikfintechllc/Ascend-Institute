@@ -37,7 +37,6 @@ from memory.vector_store.embedder import embed_text, package_embedding, inject_w
 WATERMARK = "source:GremlinGPT"
 ORIGIN = "web_knowledge_scraper"
 
-
 HEADERS = {
     "User-Agent": "GremlinGPT/4.0 (+https://gremlingpt.ai/bot)",
     "Accept-Language": "en-US,en;q=0.9",
@@ -59,6 +58,7 @@ async def fetch_html(session, url):
 
 async def scrape_web_knowledge(urls):
     results = []
+
     async with aiohttp.ClientSession(headers=HEADERS) as session:
         tasks = [fetch_html(session, url) for url in urls]
         pages = await asyncio.gather(*tasks)
@@ -67,7 +67,17 @@ async def scrape_web_knowledge(urls):
         if not html:
             continue
 
+        # Parse structured DOM metadata
         structure = extract_dom_structure(html)
+
+        # If fallback needed, parse text manually
+        if not structure.get("text"):
+            soup = BeautifulSoup(html, "lxml")
+            fallback_text = soup.get_text(separator="\n", strip=True)[:1500]
+            structure["text"] = fallback_text
+            logger.warning(f"[SCRAPER] Fallback HTML parsing used for {url}")
+
+        domain = urlparse(url).netloc.replace("www.", "")
         summary_text = f"[{url}]\n{structure['text']}"
         vector = embed_text(summary_text)
 
@@ -76,6 +86,7 @@ async def scrape_web_knowledge(urls):
             vector=vector,
             meta={
                 "origin": ORIGIN,
+                "domain": domain,
                 "timestamp": datetime.utcnow().isoformat(),
                 "url": url,
                 "tags": structure.get("tags", {}),
@@ -83,20 +94,26 @@ async def scrape_web_knowledge(urls):
                 "watermark": WATERMARK,
             },
         )
+
         inject_watermark(origin=ORIGIN)
+
         results.append(
             {
                 "url": url,
                 "summary": summary_text,
-                "nodes": structure["nodes"],
-                "links": structure["links"],
+                "nodes": structure.get("nodes", []),
+                "links": structure.get("links", []),
             }
         )
+
         logger.success(f"[SCRAPER] Embedded {url}")
+
     return results
 
 
 def run_search_and_scrape(urls):
+    log_dir = "run/logs"
+    os.makedirs(log_dir, exist_ok=True)
     return asyncio.run(scrape_web_knowledge(urls))
 
 
