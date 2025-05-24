@@ -1,5 +1,12 @@
 <div align="center">
-  <img src="https://img.shields.io/badge/Fair%20Use-GremlinGPT%20v1.0-black?style=for-the-badge&labelColor=black&color=red&logo=ghost&logoColor=red" alt="GremlinGPT Fair Use">
+
+  <a href="LICENSE.md">
+    <img src="https://img.shields.io/badge/FAIR%20USE-black?style=for-the-badge&logo=dragon&logoColor=white" alt="Fair Use License"/>
+  </a>
+  <a href="LICENSE.md">
+    <img src="https://img.shields.io/badge/GREMLINGPT%20v1.0-red?style=for-the-badge&logo=dragon&logoColor=white" alt="GremlinGPT License"/>
+  </a>
+  
 </div>
 
 # GremlinGPT: The real Autonomous Agent v1.0.2
