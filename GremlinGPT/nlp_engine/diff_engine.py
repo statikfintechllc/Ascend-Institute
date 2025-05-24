@@ -26,7 +26,7 @@ from difflib import unified_diff
 from nlp_engine.semantic_score import semantic_similarity
 from nlp_engine.transformer_core import encode_text
 import numpy as np
-from typing import Dict, List
+from typing import Dict
 
 
 def diff_texts(old: str, new: str, debug: bool = False) -> Dict:
