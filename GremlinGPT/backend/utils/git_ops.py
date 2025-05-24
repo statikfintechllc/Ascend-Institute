@@ -5,7 +5,7 @@
 # Contact: ascend.gremlin@gmail.com
 # ─────────────────────────────────────────────────────────────
 
-# !/usr/bin/env python3
+#!/usr/bin/env python3
 
 # GremlinGPT v5 :: Utility Module
 # Purpose:
@@ -50,6 +50,6 @@ def auto_commit(file_path: str, message: str = "[autocommit] Update via git_ops"
     try:
         os.system(f"git add {file_path}")
         os.system(f'git commit -m "{message}"')
-        logger.success(f"[git_ops] Git commit successful.")
+        logger.success("[git_ops] Git commit successful.")
     except Exception as e:
-        logger.warning(f"{git_ops} Git commit failed: {e}")
+        logger.warning(f"[git_ops] Git commit failed: {e}")
