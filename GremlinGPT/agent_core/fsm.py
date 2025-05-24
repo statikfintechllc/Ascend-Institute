@@ -1,9 +1,9 @@
-#─────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
 # Built under the GremlinGPT Dual License v1.0
 # © 2025 StatikFintechLLC / AscendAI Project
 # Contact: ascend.gremlin@gmail.com
-#─────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────
 
 # !/usr/bin/env python3
 
@@ -47,6 +47,7 @@ tick_delay = G.CFG.get("loop", {}).get("fsm_tick_delay", 0.5)
 DATASET_PATH = "data/nlp_training_sets/auto_generated.jsonl"
 LOG_CRASH_PATH = "run/logs/fsm_crash.log"
 
+
 def auto_push():
     try:
         branch = os.popen("git rev-parse --abbrev-ref HEAD").read().strip()
@@ -58,6 +59,7 @@ def auto_push():
             console.log(f"[FSM] Git push failed with exit code: {result}")
     except Exception as e:
         console.log(f"[FSM] Git push error: {e}")
+
 
 def fsm_loop():
     global FSM_STATE
@@ -90,7 +92,9 @@ def fsm_loop():
         except Exception as e:
             log_error(task, e)
             task_queue.retry(task)
-            log_event("fsm", "task_error", {"task": task, "error": str(e)}, status="fail")
+            log_event(
+                "fsm", "task_error", {"task": task, "error": str(e)}, status="fail"
+            )
             tid = task.get("id")
             retries = task_queue.task_meta.get(tid, {}).get("retries", 0)
             if retries >= 2:
@@ -123,18 +127,23 @@ def fsm_loop():
             console.log("[FSM] Training dataset updated.")
             archive_path = archive_json_log(DATASET_PATH, prefix="dataset_dump")
             if archive_path:
-                auto_commit(archive_path, message="[autocommit] Dataset updated by FSM loop")
+                auto_commit(
+                    archive_path, message="[autocommit] Dataset updated by FSM loop"
+                )
 
             if G.CFG.get("git", {}).get("auto_push", False):
                 auto_push()
         except Exception as e:
             console.log(f"[FSM] Dataset generation failed: {e}")
             with open(LOG_CRASH_PATH, "a") as logf:
-                logf.write(f"{datetime.utcnow().isoformat()} :: Dataset Error: {str(e)}\n")
+                logf.write(
+                    f"{datetime.utcnow().isoformat()} :: Dataset Error: {str(e)}\n"
+                )
 
     FSM_STATE = "IDLE"
     console.log("[FSM] Queue cleared.")
     log_event("fsm", "loop_complete", {}, status="idle")
+
 
 def run_schedule():
     run_daemon()
@@ -143,6 +152,7 @@ def run_schedule():
     while True:
         schedule.run_pending()
         time.sleep(1)
+
 
 if __name__ == "__main__":
     task_queue.enqueue({"type": "scrape"})

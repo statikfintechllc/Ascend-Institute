@@ -1,9 +1,9 @@
-#─────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
 # Built under the GremlinGPT Dual License v1.0
 # © 2025 StatikFintechLLC / AscendAI Project
 # Contact: ascend.gremlin@gmail.com
-#─────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────
 
 # !/usr/bin/env python3
 
@@ -19,6 +19,7 @@ from datetime import datetime
 from backend.globals import logger
 
 DEFAULT_ARCHIVE_DIR = "docs/"
+
 
 def archive_json_log(source_path: str, prefix: str = "log") -> str:
     """
@@ -40,6 +41,7 @@ def archive_json_log(source_path: str, prefix: str = "log") -> str:
     except Exception as e:
         logger.error(f"[git_ops] Archive failed: {e}")
         return ""
+
 
 def auto_commit(file_path: str, message: str = "[autocommit] Update via git_ops"):
     """
