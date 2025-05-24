@@ -4,7 +4,8 @@
 # © 2025 StatikFintechLLC / AscendAI Project
 # Contact: ascend.gremlin@gmail.com
 #─────────────────────────────────────────────────────────────
-#!/usr/bin/env python3
+
+# !/usr/bin/env python3
 
 # GremlinGPT v5 :: Utility Module
 # Purpose:
