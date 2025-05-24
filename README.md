@@ -202,7 +202,7 @@ Unseen. Unbroken. Unrivaled. Gremlins Ascend.
 Released under the GremlinGPT Fair Use License v1.0.
 Personal use only. Commercial use is prohibited unless licensed separately.
 
-See the [LICENSE](./LICENSE) file for full terms.
+See the [LICENSE](href="https://github.com/statikfintechllc/AscendAI/blob/master/LICENSE.md") file for full terms.
 
 ## How GremlinGPT Was Built
 
