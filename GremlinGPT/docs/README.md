@@ -33,7 +33,7 @@
 > Not on fiber internet with a dev team holding my hand...
 
 Curious about the journey, the pain, and the philosophy behind AscendAI?  
-Read more in the [FOUNDER_LOG.md](./FOUNDER_LOG.md).
+Read more in the [FOUNDER_LOG.md]((https://github.com/statikfintechllc/AscendAI/actions)).
 
 ⸻
 
