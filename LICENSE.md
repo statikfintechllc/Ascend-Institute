@@ -1,6 +1,6 @@
-<p align="center">
-  <img src="https://img.shields.io/badge/Fair%20Use-GremlinGPT%20v1.0-red?style=for-the-badge&logo=openai&logoColor=white" alt="GremlinGPT Fair Use License">
-</p>
+<div align="center">
+  <img src="https://img.shields.io/badge/Fair%20Use-GremlinGPT%20v1.0-black?style=for-the-badge&labelColor=black&color=red&logo=ghost&logoColor=red" alt="GremlinGPT Fair Use">
+</div>
 
 <p align="center"><strong>GremlinGPT Dual License v1.0</strong></p>
 
