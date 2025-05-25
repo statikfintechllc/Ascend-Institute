@@ -25,7 +25,7 @@
 
 ## Phase 1: Core Engine & Execution
   •  FastTrack to file:
-    -  [How is v1.0.3 being built?](#read_and_inact_on_your_system)  
+    -  [How is v1.0.3 being built?](#read-and-inact-on-your-system)  
 
 ### Send these first:
     1. agent_core/fsm.py  
