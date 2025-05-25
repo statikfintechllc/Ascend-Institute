@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 
 REPO = os.environ.get("REPO")
-TOKEN = os.environ.get("GITHUB_TOKEN")
+TOKEN = os.environ.get("Ascend_Gremlin")
 HEADERS = {"Authorization": f"token {TOKEN}"}
 
 def fetch(endpoint):
