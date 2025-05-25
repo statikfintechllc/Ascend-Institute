@@ -22,7 +22,7 @@
 </div>
   
 ---
-## AscendAI Traffic
+<h1 align="center">AscendAI Traffic</h1>
 
 <h1 align="center">![Traffic Graph](traffic_graph.png)
 [Live Traffic Dashboard](docs/traffic.html)</h1>
