@@ -22,7 +22,12 @@ def get_last_n_days_iso(n=14):
         for i in reversed(range(n))
     ]
 
-def plot_github_style_merged(clones, views, outfile):
+def plot_github_style_merged(
+    clones, views, outfile,
+    clones_today, unique_clones_today, views_today, unique_views_today,
+    clones_14d, unique_clones_14d, views_14d, unique_views_14d,
+    clones_lifetime, unique_clones_lifetime, views_lifetime, unique_views_lifetime
+):
     plt.style.use('dark_background')
     last_14_days = get_last_n_days_iso(14)
     clones_dict = {item["timestamp"][:10]: item for item in clones}
@@ -45,7 +50,19 @@ def plot_github_style_merged(clones, views, outfile):
     ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
     plt.xticks(rotation=30)
     ax.grid(True, color='#444444', linestyle='--', linewidth=0.5, alpha=0.5)
-    plt.tight_layout()
+
+    # Add totals as text on the plot
+    totals_str = (
+        f"Today: Clones: {clones_today:,} | Unique Cloners: {unique_clones_today:,} | "
+        f"Views: {views_today:,} | Unique Visitors: {unique_views_today:,}\n"
+        f"14d: Clones: {clones_14d:,} | Unique Cloners: {unique_clones_14d:,} | "
+        f"Views: {views_14d:,} | Unique Visitors: {unique_views_14d:,}\n"
+        f"Lifetime: Clones: {clones_lifetime:,} | Unique Cloners: {unique_clones_lifetime:,} | "
+        f"Views: {views_lifetime:,} | Unique Visitors: {unique_views_lifetime:,}"
+    )
+    fig.text(0.5, 0.01, totals_str, ha='center', va='bottom', color='#FFD700', fontsize=12, wrap=True)
+
+    plt.tight_layout(rect=[0,0.04,1,0.97])  # Leave space at bottom for totals
     plt.savefig(outfile, bbox_inches='tight')
     plt.close()
 
@@ -54,7 +71,7 @@ def main(repo):
     views_data = fetch("traffic/views")
     with open("docs/traffic_data.json", "w") as f:
         json.dump({"clones": clones_data["clones"], "views": views_data["views"]}, f, indent=2)
-    plot_github_style_merged(clones_data["clones"], views_data["views"], "docs/traffic_graph.png")
+
     # Lifetime (from root keys)
     clones_lifetime = clones_data.get("count", 0)
     unique_clones_lifetime = clones_data.get("uniques", 0)
@@ -74,6 +91,14 @@ def main(repo):
     unique_clones_14d = sum([item["uniques"] for item in clones_data["clones"]])
     views_14d = sum([item["count"] for item in views_data["views"]])
     unique_views_14d = sum([item["uniques"] for item in views_data["views"]])
+
+    plot_github_style_merged(
+        clones_data["clones"], views_data["views"], "docs/traffic_graph.png",
+        clones_today, unique_clones_today, views_today, unique_views_today,
+        clones_14d, unique_clones_14d, views_14d, unique_views_14d,
+        clones_lifetime, unique_clones_lifetime, views_lifetime, unique_views_lifetime
+    )
+
     # Write all to JSON
     with open("docs/traffic_totals.json", "w") as f:
         json.dump({
