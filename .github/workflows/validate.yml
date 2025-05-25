@@ -105,5 +105,6 @@ jobs:
         run: |
           source $CONDA/etc/profile.d/conda.sh
           conda activate gremlin-nlp
+          cd GremlinGPT
           chmod +x start_all.sh
           ./start_all.sh || echo "Run complete, warnings ignored"
