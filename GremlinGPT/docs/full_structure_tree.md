@@ -37,7 +37,11 @@ GremlinGPT/
 │   ├── module_tracer.py
 │   ├── ngrok_launcher.py
 │   ├── logs/
-│   │   └── runtime.log
+│   │   ├── runtime.log
+│   │   ├── fsm.out
+│   │   ├── backend.out
+│   │   ├── scraper.out
+│   │   └── trainer.out
 │   └── checkpoints/
 │       ├── state_snapshot.json
 │       └── snapshots/
