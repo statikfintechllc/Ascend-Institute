@@ -9,7 +9,7 @@
   <canvas id="trafficChart" width="800" height="400"></canvas>
   <script>
     async function fetchData() {
-      const resp = await fetch('../traffic_data.json?' + Date.now());
+      const resp = await fetch('traffic_data.json?' + Date.now());
       const data = await resp.json();
       const t = data.traffic;
       return {

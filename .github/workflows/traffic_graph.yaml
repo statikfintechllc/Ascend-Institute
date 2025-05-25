@@ -22,15 +22,15 @@ jobs:
 
       - name: Fetch and update traffic data
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT_GITHUB }}
+          PAT_GITHUB: ${{ secrets.PAT_GITHUB }}
           REPO: statikfintechllc/AscendAI
         run: |
-          python .github/scripts/fetch_traffic.py "$REPO"
-          
+          python .github/scripts/fetch_traffic.py
+
       - name: Commit and push if changed
         run: |
           git config user.name 'GitHub Action'
           git config user.email 'action@github.com'
-          git add traffic_data.json traffic_graph.png
+          git add docs/traffic_data.json docs/traffic_graph.png
           git diff --cached --quiet || git commit -m "Update traffic data and graph"
           git push

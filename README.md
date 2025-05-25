@@ -25,11 +25,10 @@
 
 <h1 align="center">AscendAI Traffic</h1>
 <p align="center">
-  <img src="traffic_graph.png" alt="Traffic Graph" />
+  <img src="docs/traffic_graph.png" alt="Traffic Graph" />
   <br/>
   <a href="docs/traffic.html">Live Traffic Dashboard</a>
 </p>
-**Debugging live Feed link, I have to break git to add this feature, its not stock nor allowed**
 
 ## Table of Contents
 
