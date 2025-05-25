@@ -3,6 +3,16 @@
 <head>
   <title>AscendAI Live Traffic</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      background: #222;
+      color: #eee;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0; padding: 2em;
+    }
+    h2 { color: #FFD700; }
+    canvas { background: #222; border: 1px solid #333; }
+  </style>
 </head>
 <body>
   <h2>AscendAI GitHub Traffic (Live)</h2>
@@ -12,10 +22,14 @@
       const resp = await fetch('traffic_data.json?' + Date.now());
       const data = await resp.json();
       const t = data.traffic;
+      // Calculate interval (delta) for each point
+      function deltas(arr) {
+        return arr.map((v,i) => i === 0 ? v : v - arr[i-1]);
+      }
       return {
         labels: t.map(e => e.timestamp),
-        views: t.map(e => e.views),
-        clones: t.map(e => e.clones)
+        views: deltas(t.map(e => e.views)),
+        clones: deltas(t.map(e => e.clones))
       };
     }
     async function drawChart() {
@@ -27,9 +41,41 @@
         data: {
           labels: d.labels,
           datasets: [
-            { label: 'Views', data: d.views, borderColor: 'blue', fill: false },
-            { label: 'Clones', data: d.clones, borderColor: 'green', fill: false }
+            {
+              label: 'Views (interval)',
+              data: d.views,
+              borderColor: '#FFD700',
+              backgroundColor: 'rgba(255,215,0,0.2)',
+              fill: false,
+              tension: 0.2,
+              pointRadius: 2,
+              borderWidth: 2
+            },
+            {
+              label: 'Clones (interval)',
+              data: d.clones,
+              borderColor: '#FF3131',
+              backgroundColor: 'rgba(255,49,49,0.2)',
+              fill: false,
+              tension: 0.2,
+              pointRadius: 2,
+              borderWidth: 2
+            }
           ]
+        },
+        options: {
+          plugins: {
+            legend: { labels: { color: '#eee' } }
+          },
+          scales: {
+            x: {
+              ticks: { color: '#eee', maxRotation: 50, minRotation: 30 }
+            },
+            y: {
+              ticks: { color: '#eee' },
+              grid: { color: '#444' }
+            }
+          }
         }
       });
     }
