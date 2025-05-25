@@ -31,6 +31,7 @@ from memory.vector_store.embedder import package_embedding, inject_watermark
 from trading_core.signal_generator import generate_signals
 from self_training.feedback_loop import inject_feedback
 from agent_shell.shell_executor import run_shell_command
+from executors.python_executor import run_python_sandbox
 from tools.reward_model import evaluate_result, log_reward
 from memory.log_history import log_event
 from backend.globals import logger
@@ -61,6 +62,34 @@ def execute_tool(task):
                 "exec", task_type, {"preview": preview}, status="success", meta=reward
             )
             return result
+
+# ─────────────────────────────────────────────
+        elif task_type == "python":
+            logger.info("[TOOL] Executing Python code block.")
+
+            code = task.get("code") or task.get("target") or ""
+            exec_result = run_python_sandbox(code)
+
+            preview = exec_result.get("stdout", "")[:500] + "\n" + exec_result.get("stderr", "")[:500]
+            reward = evaluate_result(task_type, preview)
+            log_reward(reward)
+
+            vector = encode(preview)
+            package_embedding(
+                preview,
+                vector,
+                {
+                    "task": task_type,
+                    "timestamp": timestamp,
+                    "exec_id": exec_result.get("id"),
+                    "success": exec_result.get("success"),
+                    "watermark": "source:GremlinGPT",
+                },
+            )
+            inject_watermark(origin="tool::python_exec")
+
+            log_event("exec", task_type, exec_result, status="success" if exec_result["success"] else "failure", meta=reward)
+            return exec_result
 
         # ─────────────────────────────────────────────
         elif task_type == "signal_scan":
