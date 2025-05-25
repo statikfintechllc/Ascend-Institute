@@ -1,5 +1,98 @@
 <h1 align="center">Ascend Institute for Autonomous Sovereignty & Human Financial Liberation</h1>
 
+---
+## Phase 1: Core Engine & Execution
+
+### Send these first:
+    1. agent_core/fsm.py  
+    2. agent_core/task_queue.py  
+    3. agent_core/tool_executor.py *(already prepped, will verify once fsm is in)*  
+    4. agents/planner_agent.py  
+    5. core/loop.py  
+    6. core/kernel.py  
+    7. core/snapshot.py  
+
+---
+
+## Phase 2: NLP & Semantic Logic
+
+### Then:
+    1. nlp_engine/transformer_core.py  
+    2. nlp_engine/tokenizer.py  
+    3. nlp_engine/semantic_score.py  
+    4. nlp_engine/diff_engine.py  
+    5. nlp_engine/mini_attention.py  
+
+---
+
+## Phase 3: Memory & Persistence
+
+### Followed by:
+    1. memory/vector_store/embedder.py 
+    2. memory/log_history.py  
+
+---
+
+## Phase 4: Self-Training & Mutation
+
+### Then:
+    1. self_training/feedback_loop.py  
+    2. self_training/generate_dataset.py  
+    3. self_training/trainer.py  
+    4. self_mutation_watcher/watcher.py  
+    5. self_mutation_watcher/mutation_daemon.py  
+
+---
+
+## Phase 5: Scraping Intelligence
+
+### Then:
+    1. scraper/source_router.py  
+    2. scraper/scraper_loop.py  
+    3. scraper/page_simulator.py  
+    4. scraper/playwright_handler.py  
+    5. scraper/web_knowledge_scraper.py  
+    6. scraper/ask_monday_handler.py  
+
+---
+
+## Phase 6: Trading & Signals
+
+### Then:
+    1. trading_core/stock_scraper.py  
+    2. trading_core/signal_generator.py  
+    3. trading_core/rules_engine.py  
+    4. trading_core/portfolio_tracker.py  
+
+---
+
+## Phase 7: Shell + Executors
+
+### Then:
+    1. executors/python_executor.py *(already refactored)*  
+    2. agent_shell/shell_executor.py  
+
+---
+
+## Phase 8: Interfaces + API
+
+### Finally:
+    1. backend/api/chat_handler.py  
+    2. backend/api/memory_api.py  
+    3. backend/api/planner.py  
+    4. backend/api/scraping_api.py  
+    5. backend/router.py  
+    6. backend/server.py  
+
+---
+
+### Once we complete this sequence, I’ll provide:  
+    1. Verified `start_all.sh`  
+    2. Self-healing FSM loop  
+    3. Final `README.md`  
+    4. `system_call_graph.md` updated to **v1.0.3**
+---
+
 <div align="center">
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/LICENSE.md">
     <img src="https://img.shields.io/badge/FAIR%20USE-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Fair Use License"/>
