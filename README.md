@@ -23,104 +23,6 @@
 
 ---
 
-## Phase 1: Core Engine & Execution
-  •  FastTrack to file:
-    -  [How is v1.0.3 being built?](#read-and-inact-on-your-system)  
-
-### Send these first:
-    1. agent_core/fsm.py  
-    2. agent_core/task_queue.py  
-    3. agent_core/tool_executor.py *(already prepped, will verify once fsm is in)*  
-    4. agents/planner_agent.py  
-    5. core/loop.py  
-    6. core/kernel.py  
-    7. core/snapshot.py  
-
----
-
-## Phase 2: NLP & Semantic Logic
-
-### Then:
-    1. nlp_engine/transformer_core.py  
-    2. nlp_engine/tokenizer.py  
-    3. nlp_engine/semantic_score.py  
-    4. nlp_engine/diff_engine.py  
-    5. nlp_engine/mini_attention.py  
-
----
-
-## Phase 3: Memory & Persistence
-
-### Followed by:
-    1. memory/vector_store/embedder.py 
-    2. memory/log_history.py  
-
----
-
-## Phase 4: Self-Training & Mutation
-
-### Then:
-    1. self_training/feedback_loop.py  
-    2. self_training/generate_dataset.py  
-    3. self_training/trainer.py  
-    4. self_mutation_watcher/watcher.py  
-    5. self_mutation_watcher/mutation_daemon.py  
-
----
-
-## Phase 5: Scraping Intelligence
-
-### Then:
-    1. scraper/source_router.py  
-    2. scraper/scraper_loop.py  
-    3. scraper/page_simulator.py  
-    4. scraper/playwright_handler.py  
-    5. scraper/web_knowledge_scraper.py  
-    6. scraper/ask_monday_handler.py  
-
----
-
-## Phase 6: Trading & Signals
-
-### Then:
-    1. trading_core/stock_scraper.py  
-    2. trading_core/signal_generator.py  
-    3. trading_core/rules_engine.py  
-    4. trading_core/portfolio_tracker.py  
-
----
-
-## Phase 7: Shell + Executors
-
-### Then:
-    1. executors/python_executor.py *(already refactored)*  
-    2. agent_shell/shell_executor.py  
-
----
-
-## Phase 8: Interfaces + API
-
-### Finally:
-    1. backend/api/chat_handler.py  
-    2. backend/api/memory_api.py  
-    3. backend/api/planner.py  
-    4. backend/api/scraping_api.py  
-    5. backend/router.py  
-    6. backend/server.py  
-
----
-
-### Once we complete this sequence, I’ll provide:  
-    1. Verified `start_all.sh`  
-    2. Self-healing FSM loop  
-    3. Final `README.md`  
-    4. `system_call_graph.md` updated to **v1.0.3**
-  
-## Read and Inact on your system:
-  - **[GremlinGPT.v1.0.3.Build.Prompt](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/GremlinGPT.v1.0.3.Build.Prompt.md)** file
-
----
-
 <h1 align="center">AscendAI Traffic</h1>
 <p align="center">
   <img src="docs/traffic_graph.png" alt="Traffic Graph" />
@@ -133,19 +35,30 @@
 
 1. [Support This Project](#support-this-project)  
 2. [Funding & Infrastructure Goals](#funding--infrastructure-goals)  
-3. [Demos](#demos)  
-4. [Phase 1 Funding Target: $10,000](#phase-1-funding-target-10000)  
-5. [If You Are](#if-you-are)  
-6. [Partner With Us](#partner-with-us)  
-7. [If You Believe](#if-you-believe)  
-8. [How to Support Right Now](#how-to-support-right-now)  
-9. [What Is AscendAI?](#what-is-ascendai)  
-10. [GremlinGPT](#gremlingpt)  
-11. [Collaborators Wanted — Join the Loop](#collaborators-wanted--join-the-loop)  
-12. [Support](#support)  
-13. [Final Notes](#final-notes)  
-14. [License](#license)  
-15. [How GremlinGPT Was Built](#how-gremlingpt-was-built)
+3. [Phase 1 Funding Target: $10,000](#phase-1-funding-target-10000)
+4. [If You Are](#if-you-are)  
+5. [Partner With Us](#partner-with-us)  
+6. [If You Believe](#if-you-believe)  
+7. [How to Support Right Now](#how-to-support-right-now)  
+8. [What Is AscendAI?](#what-is-ascendai)  
+9. [GremlinGPT](#gremlingpt)
+  9.a. [Review Layout](#gremlingpt's-layout)
+  9.b. [Documentation](#gremlingpt's-documentation)
+10. [Demos](#demos)
+11. [What is GremlinGPT v1.0.3](wjat-is-gremlingpt-v1.0.3)
+  11.a. [Phase 1: Core Engine & Execution](phase-1:-core-engine-&-executions)
+  11.b. 
+  11.c. 
+  11.d. 
+  11.e. 
+  11.f. 
+  11.g. 
+  11.h. 
+12. [Collaborators Wanted — Join the Loop](#collaborators-wanted--join-the-loop)
+13. [Support](#support)
+14. [Final Notes](#final-notes)
+15. [License](#license)
+16. [How GremlinGPT Was Built](#how-gremlingpt-was-built)
 
 ---
 
@@ -176,22 +89,6 @@ To reach full deployment — stable memory growth, continuous mutation, and mult
 - Persistent vector DB and self-hosted embedding server  
 - Secure DevOps pipeline for offline + encrypted agents  
 - Infra credit for cloud-agnostic deployments (if applicable)
-
----
-
-## Demos
-
-**Environment Setup**
-![Environment](demos/Environment.png)
-
-**Installed the temporary NLP Backend**
-![Install NLP](demos/NLP_Prebuilt_Temp_Install.png)
-
-**Started Backend (Envs Active)**
-![Start Backend](demos/Start_Backend_with_Environment_Activation.png)
-
-**Stopped Backend (Envs Persisting)**
-![Stop Backend](demos/Stop_Backend_Environment_Stays_Active.png)
 
 ---
 
@@ -279,11 +176,126 @@ GremlinGPT is a modular AI system designed to bootstrap itself into a local doma
 
 All without the cloud.
 
-### FastTrack to GremlinGPT's Layout:
+### GremlinGPT's Layout:
    -  **[GremlinGPT v1.0.2 AI System](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT)**
 
-### FastTrack to GremlinGPT's Documentation:
+### GremlinGPT's Documentation:
    -  **[What is GremlinGPT v1.0.2](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs)**
+
+---
+
+## Demos
+
+**Environment Setup**
+![Environment](https://github.com/statikfintechllc/AscendAI/blob/master/demos/Environment.png)
+
+**Installed the temporary NLP Backend**
+![Install NLP](https://github.com/statikfintechllc/AscendAI/blob/master/demos/NLP_Prebuilt_Temp_Install.png)
+
+**Started Backend (Envs Active)**
+![Start Backend](https://github.com/statikfintechllc/AscendAI/blob/master/demos/Start_Backend_with_Environment_Activation.png)
+
+**Stopped Backend (Envs Persisting)**
+![Stop Backend](https://github.com/statikfintechllc/AscendAI/blob/master/demos/Stop_Backend_Environment_Stays_Active.png)
+
+---
+
+## What is GremlinGPT v1.0.3
+**The full revamp of v1.0.2, Not just a wrapper. Autonomous.**
+
+## Phase 1: Core Engine & Execution 
+
+  ### Sending these first:
+    1. agent_core/fsm.py  
+    2. agent_core/task_queue.py  
+    3. agent_core/tool_executor.py *(already prepped, will verify once fsm is in)*  
+    4. agents/planner_agent.py  
+    5. core/loop.py  
+    6. core/kernel.py  
+    7. core/snapshot.py  
+
+---
+
+## Phase 2: NLP & Semantic Logic
+
+  ### Then:
+    1. nlp_engine/transformer_core.py  
+    2. nlp_engine/tokenizer.py  
+    3. nlp_engine/semantic_score.py  
+    4. nlp_engine/diff_engine.py  
+    5. nlp_engine/mini_attention.py  
+
+---
+
+## Phase 3: Memory & Persistence
+
+  ### Followed by:
+    1. memory/vector_store/embedder.py 
+    2. memory/log_history.py  
+
+---
+
+## Phase 4: Self-Training & Mutation
+
+  ### Then:
+    1. self_training/feedback_loop.py  
+    2. self_training/generate_dataset.py  
+    3. self_training/trainer.py  
+    4. self_mutation_watcher/watcher.py  
+    5. self_mutation_watcher/mutation_daemon.py  
+
+---
+
+## Phase 5: Scraping Intelligence
+
+  ### Then:
+    1. scraper/source_router.py  
+    2. scraper/scraper_loop.py  
+    3. scraper/page_simulator.py  
+    4. scraper/playwright_handler.py  
+    5. scraper/web_knowledge_scraper.py  
+    6. scraper/ask_monday_handler.py  
+
+---
+
+## Phase 6: Trading & Signals
+
+  ### Then:
+    1. trading_core/stock_scraper.py  
+    2. trading_core/signal_generator.py  
+    3. trading_core/rules_engine.py  
+    4. trading_core/portfolio_tracker.py  
+
+---
+
+## Phase 7: Shell + Executors
+
+  ### Then:
+    1. executors/python_executor.py *(already refactored)*  
+    2. agent_shell/shell_executor.py  
+
+---
+
+## Phase 8: Interfaces + API
+
+  ### Finally:
+    1. backend/api/chat_handler.py  
+    2. backend/api/memory_api.py  
+    3. backend/api/planner.py  
+    4. backend/api/scraping_api.py  
+    5. backend/router.py  
+    6. backend/server.py  
+
+---
+
+  ### Once we complete this sequence, I will provide:  
+    1. Verified `start_all.sh`  
+    2. Self-healing FSM loop  
+    3. Final `README.md`  
+    4. `system_call_graph.md` updated to **v1.0.3**
+  
+### Read and Inact on your system:
+  - **[GremlinGPT.v1.0.3.Build.Prompt](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/GremlinGPT.v1.0.3.Build.Prompt.md)**
 
 ---
 
