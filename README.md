@@ -24,12 +24,14 @@
 ---
 
 <h1 align="center">AscendAI Traffic</h1>
-
 <p align="center">
   <img src="docs/traffic_graph.png" alt="Traffic Graph" />
   <br/>
   <a href="docs/traffic_graph.png">Live Traffic Dashboard</a>
 </p>
+
+<!--- Traffic Totals (auto-generated, do not edit below this line) --->
+<!--- include docs/traffic_totals.md --->
 
 ## Table of Contents
 
