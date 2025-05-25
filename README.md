@@ -24,7 +24,7 @@
 ---
 
 ## Phase 1: Core Engine & Execution
-    - See [GremlinGPT.v1.0.3.Build.Prompt](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/GremlinGPT.v1.0.3.Build.Prompt.md) file
+  - See:[GremlinGPT.v1.0.3.Build.Prompt](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/GremlinGPT.v1.0.3.Build.Prompt.md) file
 
 ### Send these first:
     1. agent_core/fsm.py  
