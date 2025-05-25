@@ -133,18 +133,19 @@
 
 1. [Support This Project](#support-this-project)  
 2. [Funding & Infrastructure Goals](#funding--infrastructure-goals)  
-3. [Phase 1 Funding Target: $50,000](#phase-1-funding-target-50000)  
-4. [If You Are](#if-you-are)  
-5. [Partner With Us](#partner-with-us)  
-6. [If You Believe](#if-you-believe)  
-7. [How to Support Right Now](#how-to-support-right-now)  
-8. [What Is AscendAI?](#what-is-ascendai)  
-9. [GremlinGPT](#gremlingpt)  
-10. [Collaborators Wanted — Join the Loop](#collaborators-wanted--join-the-loop)  
-11. [Support](#support)  
-12. [Final Notes](#final-notes)  
-13. [License](#license)  
-14. [How GremlinGPT Was Built](#how-gremlingpt-was-built)
+3. [Demos](#demos)  
+4. [Phase 1 Funding Target: $10,000](#phase-1-funding-target-10000)  
+5. [If You Are](#if-you-are)  
+6. [Partner With Us](#partner-with-us)  
+7. [If You Believe](#if-you-believe)  
+8. [How to Support Right Now](#how-to-support-right-now)  
+9. [What Is AscendAI?](#what-is-ascendai)  
+10. [GremlinGPT](#gremlingpt)  
+11. [Collaborators Wanted — Join the Loop](#collaborators-wanted--join-the-loop)  
+12. [Support](#support)  
+13. [Final Notes](#final-notes)  
+14. [License](#license)  
+15. [How GremlinGPT Was Built](#how-gremlingpt-was-built)
 
 ---
 
@@ -167,7 +168,7 @@
 This system has outgrown its shell.  
 To reach full deployment — stable memory growth, continuous mutation, and multi-agent orchestration — we need infrastructure.
 
-### Phase 1 Funding Target: **$50,000**
+### Phase 1 Funding Target: **$10,000**
 
 **Funds will be used to secure:**
 
@@ -178,7 +179,23 @@ To reach full deployment — stable memory growth, continuous mutation, and mult
 
 ---
 
-### If You Are:
+## Demos
+
+**Environment Setup**
+![Environment](demos/Environment.png)
+
+**Installed the temporary NLP Backend**
+![Install NLP](demos/NLP_Prebuilt_Temp_Install.png)
+
+**Started Backend (Envs Active)**
+![Start Backend](demos/Start_Backend_with_Environment_Activation.png)
+
+**Stopped Backend (Envs Persisting)**
+![Stop Backend](demos/Stop_Backend_Environment_Stays_Active.png)
+
+---
+
+## If You Are:
 
 - A founder with cloud real estate and idle GPUs  
 - A data center operator who understands sovereign AI  
