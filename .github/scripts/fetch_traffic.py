@@ -2,6 +2,7 @@ import os
 import requests
 import json
 import matplotlib.pyplot as plt
+import numpy as np
 from datetime import datetime
 
 REPO = os.environ.get("REPO")
@@ -25,6 +26,25 @@ def append_history(datafile, key, new_data):
         json.dump(hist, f, indent=2)
     return hist
 
+def plot_traffic(hist, outfile):
+    timestamps = [x['timestamp'] for x in hist["traffic"]]
+    views_list = [x['views'] for x in hist["traffic"]]
+    clones_list = [x['clones'] for x in hist["traffic"]]
+
+    # Calculate deltas for activity per interval
+    views_deltas = np.diff(views_list, prepend=views_list[0]) if len(views_list) > 0 else []
+    clones_deltas = np.diff(clones_list, prepend=clones_list[0]) if len(clones_list) > 0 else []
+
+    plt.figure(figsize=(10, 4))
+    plt.plot(timestamps, views_deltas, label="Views")
+    plt.plot(timestamps, clones_deltas, label="Clones")
+    plt.xticks(rotation=45)
+    plt.legend()
+    plt.tight_layout()
+    plt.title("AscendAI GitHub Traffic (Interval Deltas)")
+    plt.savefig(outfile)
+    plt.close()
+
 def main(repo):
     clones = fetch("traffic/clones")
     views = fetch("traffic/views")
@@ -37,21 +57,7 @@ def main(repo):
         "uniques_views": views.get("uniques", 0)
     }
     hist = append_history("docs/traffic_data.json", "traffic", snapshot)
-
-    # Generate graph
-    timestamps = [x['timestamp'] for x in hist["traffic"]]
-    views_list = [x['views'] for x in hist["traffic"]]
-    clones_list = [x['clones'] for x in hist["traffic"]]
-
-    plt.figure(figsize=(10,4))
-    plt.plot(timestamps, views_list, label="Views")
-    plt.plot(timestamps, clones_list, label="Clones")
-    plt.xticks(rotation=45)
-    plt.legend()
-    plt.tight_layout()
-    plt.title("AscendAI GitHub Traffic Over Time")
-    plt.savefig("docs/traffic_graph.png")
-    plt.close()
+    plot_traffic(hist, "docs/traffic_graph.png")
 
 if __name__ == "__main__":
     main(REPO)
