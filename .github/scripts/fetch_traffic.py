@@ -60,7 +60,7 @@ def main(repo):
     unique_clones_lifetime = clones_data.get("uniques", 0)
     views_lifetime = views_data.get("count", 0)
     unique_views_lifetime = views_data.get("uniques", 0)
-    # Today: last available day in the last 14 days (may not be exactly "today" if no data yet)
+    # Today (last available day in the last 14)
     last_14_days = get_last_n_days_iso(14)
     clones_dict = {item["timestamp"][:10]: item for item in clones_data["clones"]}
     views_dict = {item["timestamp"][:10]: item for item in views_data["views"]}
@@ -74,7 +74,7 @@ def main(repo):
     unique_clones_14d = sum([item["uniques"] for item in clones_data["clones"]])
     views_14d = sum([item["count"] for item in views_data["views"]])
     unique_views_14d = sum([item["uniques"] for item in views_data["views"]])
-    # Write all to JSON for dashboard
+    # Write all to JSON
     with open("docs/traffic_totals.json", "w") as f:
         json.dump({
             "day": {
