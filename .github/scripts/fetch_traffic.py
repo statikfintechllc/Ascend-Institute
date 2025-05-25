@@ -1,9 +1,11 @@
-import os, requests, json
+import os
+import requests
+import json
 import matplotlib.pyplot as plt
 from datetime import datetime
 
 REPO = os.environ.get("REPO")
-TOKEN = os.environ.get("GIT_GITHUB")
+TOKEN = os.environ.get("PAT_GITHUB")
 HEADERS = {"Authorization": f"token {TOKEN}"}
 
 def fetch(endpoint):
@@ -34,23 +36,22 @@ def main(repo):
         "views": views.get("count", 0),
         "uniques_views": views.get("uniques", 0)
     }
-    hist = append_history("traffic_data.json", "traffic", snapshot)
+    hist = append_history("docs/traffic_data.json", "traffic", snapshot)
 
     # Generate graph
     timestamps = [x['timestamp'] for x in hist["traffic"]]
-    views = [x['views'] for x in hist["traffic"]]
-    clones = [x['clones'] for x in hist["traffic"]]
+    views_list = [x['views'] for x in hist["traffic"]]
+    clones_list = [x['clones'] for x in hist["traffic"]]
 
     plt.figure(figsize=(10,4))
-    plt.plot(timestamps, views, label="Views")
-    plt.plot(timestamps, clones, label="Clones")
+    plt.plot(timestamps, views_list, label="Views")
+    plt.plot(timestamps, clones_list, label="Clones")
     plt.xticks(rotation=45)
     plt.legend()
     plt.tight_layout()
     plt.title("AscendAI GitHub Traffic Over Time")
-    plt.savefig("traffic_graph.png")
+    plt.savefig("docs/traffic_graph.png")
     plt.close()
 
 if __name__ == "__main__":
-    import sys
-    main(sys.argv[1])
+    main(REPO)
