@@ -279,6 +279,12 @@ GremlinGPT is a modular AI system designed to bootstrap itself into a local doma
 
 All without the cloud.
 
+### FastTrack to GremlinGPT's Layout:
+   -  **[GremlinGPT v1.0.2 AI System](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT)**
+
+### FastTrack to GremlinGPT's Documentation:
+   -  **[What is GremlinGPT v1.0.2](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs)**
+
 ---
 
 ## Collaborators Wanted — Join the Loop
