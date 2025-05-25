@@ -24,7 +24,7 @@
 ---
 
 ## Phase 1: Core Engine & Execution
-  - See:[GremlinGPT.v1.0.3.Build.Prompt](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/GremlinGPT.v1.0.3.Build.Prompt.md) file
+  - See:1. [How is v1.0.3 being built?](#see)  
 
 ### Send these first:
     1. agent_core/fsm.py  
@@ -115,6 +115,9 @@
     3. Final `README.md`  
     4. `system_call_graph.md` updated to **v1.0.3**
   
+## See:
+  - **[GremlinGPT.v1.0.3.Build.Prompt](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/GremlinGPT.v1.0.3.Build.Prompt.md)** file
+
 ---
 
 <h1 align="center">AscendAI Traffic</h1>
