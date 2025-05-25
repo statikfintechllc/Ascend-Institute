@@ -25,9 +25,9 @@
 
 <h1 align="center">AscendAI Traffic</h1>
 <p align="center">
-  <img src="docs/traffic_graph.png" alt="Traffic Graph" />
+  <img src="https://raw.githubusercontent.com/statikfintechllc/AscendAI/main/docs/traffic_graph.png" alt="Traffic Graph" />
   <br/>
-  <a href="docs/traffic_graph.png">Live Traffic Dashboard</a>
+  <a href="https://raw.githubusercontent.com/statikfintechllc/AscendAI/main/docs/traffic_graph.png">Live Traffic Dashboard</a>
 </p>
 
 <!-- Auto-generated GitHub traffic totals -->
