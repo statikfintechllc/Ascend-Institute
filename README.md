@@ -29,6 +29,7 @@
   <br/>
   <a href="docs/traffic.html">Live Traffic Dashboard</a>
 </p>
+<h1 align="center">**Debugging**</h1>
 
 ## Table of Contents
 
