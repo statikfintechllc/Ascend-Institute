@@ -1,1 +1,40 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AscendAI Live Traffic</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h2>AscendAI GitHub Traffic (Live)</h2>
+  <canvas id="trafficChart" width="800" height="400"></canvas>
+  <script>
+    async function fetchData() {
+      const resp = await fetch('../traffic_data.json?' + Date.now());
+      const data = await resp.json();
+      const t = data.traffic;
+      return {
+        labels: t.map(e => e.timestamp),
+        views: t.map(e => e.views),
+        clones: t.map(e => e.clones)
+      };
+    }
+    async function drawChart() {
+      const ctx = document.getElementById('trafficChart').getContext('2d');
+      const d = await fetchData();
+      window.trafficChart?.destroy();
+      window.trafficChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: d.labels,
+          datasets: [
+            { label: 'Views', data: d.views, borderColor: 'blue', fill: false },
+            { label: 'Clones', data: d.clones, borderColor: 'green', fill: false }
+          ]
+        }
+      });
+    }
+    drawChart();
+    setInterval(drawChart, 60000); // update every minute
+  </script>
+</body>
+</html>
