@@ -27,7 +27,7 @@
 <p align="center">
   <img src="docs/traffic_graph.png" alt="Traffic Graph" />
   <br/>
-  <a href="docs/traffic.html">Live Traffic Dashboard</a>
+  <a href="docs/traffic_graph.png">Live Traffic Dashboard</a>
 </p>
 <h1 align="center">**Debugging**</h1>
 
