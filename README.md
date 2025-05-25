@@ -11,7 +11,8 @@
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
     <img src="https://img.shields.io/badge/build-Alpha-darkred?logo=github&color=darkred" alt="Build Status"/>
   </a>
-  <a href="./FOUNDER_LOG.md">
+  <a 
+href="https://github.com/statikfintechllc/AscendAI/blob/master/FOUNDER_LOG.md">
     <img src="https://img.shields.io/badge/Founder's%20Log-Manifesto-FFD700?logo=github&color=FFD700" alt="Founder's Log"/>
   </a>
   <a href="https://github.com/statikfintechllc">
@@ -20,7 +21,8 @@
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/FOUNDER_STATEMENT.md">
     <img src="https://img.shields.io/badge/build-Alpha-darkred?logo=github&color=darkred" alt="Build Status"/>
   </a>
-  <a href="./FOUNDER_STATEMENT.md">
+  <a 
+href="https://github.com/statikfintechllc/AscendAI/blob/master/FOUNDER_STATEMENT.md">
     <img src="https://img.shields.io/badge/Founder's%20Log-Statement-FFD700?logo=github&color=FFD700" alt="Founder's Log"/>
   </a>
   </div>
