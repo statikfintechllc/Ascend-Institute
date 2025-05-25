@@ -24,7 +24,8 @@
 ---
 
 ## Phase 1: Core Engine & Execution
-  - See:1. [How is v1.0.3 being built?](#see)  
+  •  FastTrack to file:
+    -  [How is v1.0.3 being built?](#read_and_inact_on_your_system)  
 
 ### Send these first:
     1. agent_core/fsm.py  
@@ -115,7 +116,7 @@
     3. Final `README.md`  
     4. `system_call_graph.md` updated to **v1.0.3**
   
-## See:
+## Read and Inact on your system:
   - **[GremlinGPT.v1.0.3.Build.Prompt](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/GremlinGPT.v1.0.3.Build.Prompt.md)** file
 
 ---
