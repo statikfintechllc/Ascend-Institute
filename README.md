@@ -35,30 +35,31 @@
 
 1. [Support This Project](#support-this-project)  
 2. [Funding & Infrastructure Goals](#funding--infrastructure-goals)  
-3. [Phase 1 Funding Target: $10,000](#phase-1-funding-target-10000)
+3. [Phase 1 Funding Target: $10,000](#phase-1-funding-target-10000)  
 4. [If You Are](#if-you-are)  
 5. [Partner With Us](#partner-with-us)  
 6. [If You Believe](#if-you-believe)  
 7. [How to Support Right Now](#how-to-support-right-now)  
 8. [What Is AscendAI?](#what-is-ascendai)  
-9. [GremlinGPT](#gremlingpt)
-  9.a. [Review Layout](#gremlingpt's-layout)
-  9.b. [Documentation](#gremlingpt's-documentation)
-10. [Demos](#demos)
-11. [What is GremlinGPT v1.0.3](wjat-is-gremlingpt-v1.0.3)
-  11.a. [Phase 1: Core Engine & Execution](phase-1-core-engine--executions)
-  11.b. 
-  11.c. 
-  11.d. 
-  11.e. 
-  11.f. 
-  11.g. 
-  11.h. 
-12. [Collaborators Wanted — Join the Loop](#collaborators-wanted--join-the-loop)
-13. [Support](#support)
-14. [Final Notes](#final-notes)
-15. [License](#license)
-16. [How GremlinGPT Was Built](#how-gremlingpt-was-built)
+9. [GremlinGPT](#gremlingpt)  
+    - [Review Layout](#review-layout)  
+    - [Documentation](#documentation)  
+10. [Demos](#demos)  
+11. [What is GremlinGPT v1.0.3](#what-is-gremlingpt-v103)  
+    - [Phase 1: Core Engine & Execution](#phase-1-core-engine--execution)  
+    - [Phase 2: NLP & Semantic Logic](#phase-2-nlp--semantic-logic)  
+    - [Phase 3: Memory & Persistence](#phase-3-memory--persistence)  
+    - [Phase 4: Self-Training & Mutation](#phase-4-self-training--mutation)  
+    - [Phase 5: Scraping Intelligence](#phase-5-scraping-intelligence)  
+    - [Phase 6: Trading & Signals](#phase-6-trading--signals)  
+    - [Phase 7: Shell + Executors](#phase-7-shell--executors)  
+    - [Phase 8: Interfaces + API](#phase-8-interfaces--api)  
+    - [Finalization & System Inaction](#finalization--system-inaction)  
+12. [Collaborators Wanted — Join the Loop](#collaborators-wanted--join-the-loop)  
+13. [Support](#support)  
+14. [Final Notes](#final-notes)  
+15. [License](#license)  
+16. [How GremlinGPT Was Built](#how-gremlingpt-was-built)  
 
 ---
 
