@@ -30,9 +30,5 @@ def register_routes(app):
     app.add_url_rule("/api/memory/graph", view_func=memory_api.graph, methods=["GET"])
     app.add_url_rule("/api/scrape", view_func=scraping_api.scrape_url, methods=["POST"])
     app.add_url_rule("/api/agent/tasks", view_func=planner.list_tasks, methods=["GET"])
-    app.add_url_rule(
-        "/api/trading/signals", view_func=planner.get_signals, methods=["GET"]
-    )
-    app.add_url_rule(
-        "/api/tasks/priority", view_func=planner.set_task_priority, methods=["POST"]
-    )  # NEW
+    app.add_url_rule("/api/trading/signals", view_func=planner.get_signals, methods=["GET"])
+    app.add_url_rule("/api/tasks/priority", view_func=planner.set_task_priority, methods=["POST"])  # NEW

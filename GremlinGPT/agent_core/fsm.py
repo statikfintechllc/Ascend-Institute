@@ -92,9 +92,7 @@ def fsm_loop():
         except Exception as e:
             log_error(task, e)
             task_queue.retry(task)
-            log_event(
-                "fsm", "task_error", {"task": task, "error": str(e)}, status="fail"
-            )
+            log_event("fsm", "task_error", {"task": task, "error": str(e)}, status="fail")
             tid = task.get("id")
             retries = task_queue.task_meta.get(tid, {}).get("retries", 0)
             if retries >= 2:
@@ -127,18 +125,14 @@ def fsm_loop():
             console.log("[FSM] Training dataset updated.")
             archive_path = archive_json_log(DATASET_PATH, prefix="dataset_dump")
             if archive_path:
-                auto_commit(
-                    archive_path, message="[autocommit] Dataset updated by FSM loop"
-                )
+                auto_commit(archive_path, message="[autocommit] Dataset updated by FSM loop")
 
             if G.CFG.get("git", {}).get("auto_push", False):
                 auto_push()
         except Exception as e:
             console.log(f"[FSM] Dataset generation failed: {e}")
             with open(LOG_CRASH_PATH, "a") as logf:
-                logf.write(
-                    f"{datetime.utcnow().isoformat()} :: Dataset Error: {str(e)}\n"
-                )
+                logf.write(f"{datetime.utcnow().isoformat()} :: Dataset Error: {str(e)}\n")
 
     FSM_STATE = "IDLE"
     console.log("[FSM] Queue cleared.")

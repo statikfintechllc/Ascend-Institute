@@ -32,6 +32,7 @@ from loguru import logger
 CONFIG_PATH = "config/config.toml"
 MEMORY_JSON = "config/memory_settings.json"
 
+
 # Load config files
 def load_config():
     return toml.load(CONFIG_PATH)

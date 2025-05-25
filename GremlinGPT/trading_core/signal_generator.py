@@ -42,10 +42,7 @@ def generate_signals():
             result = {**stock, **signal}
             signals.append(result)
 
-            summary = (
-                f"{stock['symbol']} @ ${stock['price']:.2f} | "
-                f"Signal: {', '.join(signal['signal'])}"
-            )
+            summary = f"{stock['symbol']} @ ${stock['price']:.2f} | " f"Signal: {', '.join(signal['signal'])}"
 
             vector = embed_text(summary)
 

@@ -97,9 +97,7 @@ def enqueue_task(task):
     priority = task.get("priority", "normal").lower()
 
     if priority not in task_queue:
-        logger.warning(
-            f"[TASK_QUEUE] Invalid priority '{priority}', defaulting to normal."
-        )
+        logger.warning(f"[TASK_QUEUE] Invalid priority '{priority}', defaulting to normal.")
         priority = "normal"
 
     task_queue[priority].append(task)
