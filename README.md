@@ -188,16 +188,16 @@ All without the cloud.
 ## Demos
 
 **Environment Setup**
-![Environment](https://github.com/statikfintechllc/AscendAI/blob/master/demos/Environment.png)
+![Environment](https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/demos/Environment.png)
 
 **Installed the temporary NLP Backend**
-![Install NLP](https://github.com/statikfintechllc/AscendAI/blob/master/demos/NLP_Prebuilt_Temp_Install.png)
+![Install NLP](https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/demos/NLP_Prebuilt_Temp_Install.png)
 
 **Started Backend (Envs Active)**
-![Start Backend](https://github.com/statikfintechllc/AscendAI/blob/master/demos/Start_Backend_with_Environment_Activation.png)
+![Start Backend](https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/demos/Start_Backend_with_Environment_Activation.png)
 
 **Stopped Backend (Envs Persisting)**
-![Stop Backend](https://github.com/statikfintechllc/AscendAI/blob/master/demos/Stop_Backend_Environment_Stays_Active.png)
+![Stop Backend](https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/demos/Stop_Backend_Environment_Stays_Active.png)
 
 ---
 
