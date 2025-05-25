@@ -9,11 +9,13 @@ REPO = os.environ.get("REPO")
 TOKEN = os.environ.get("PAT_GITHUB")
 HEADERS = {"Authorization": f"token {TOKEN}"}
 
+
 def fetch(endpoint):
     url = f"https://api.github.com/repos/{REPO}/{endpoint}"
     r = requests.get(url, headers=HEADERS)
     r.raise_for_status()
     return r.json()
+
 
 def get_last_n_days_iso(n=14):
     today = datetime.utcnow().date()
@@ -21,6 +23,7 @@ def get_last_n_days_iso(n=14):
         (today - timedelta(days=i)).strftime("%Y-%m-%d")
         for i in reversed(range(n))
     ]
+
 
 def plot_github_style_merged(
     clones, views, outfile,
@@ -51,7 +54,6 @@ def plot_github_style_merged(
     plt.xticks(rotation=30)
     ax.grid(True, color='#444444', linestyle='--', linewidth=0.5, alpha=0.5)
 
-    # Add totals as text on the plot
     totals_str = (
         f"Today: Clones: {clones_today:,} | Unique Cloners: {unique_clones_today:,} | "
         f"Views: {views_today:,} | Unique Visitors: {unique_views_today:,}\n"
@@ -60,33 +62,35 @@ def plot_github_style_merged(
         f"Lifetime: Clones: {clones_lifetime:,} | Unique Cloners: {unique_clones_lifetime:,} | "
         f"Views: {views_lifetime:,} | Unique Visitors: {unique_views_lifetime:,}"
     )
-    fig.text(0.5, 0.01, totals_str, ha='center', va='bottom', color='#FFD700', fontsize=12, wrap=True)
-
-    plt.tight_layout(rect=[0,0.04,1,0.97])  # Leave space at bottom for totals
+    fig.text(0.5, -0.08, totals_str, ha='center', va='bottom', color='#FFD700', fontsize=12, wrap=True)
+    
+    plt.tight_layout(rect=[0,0.17,1,0.97])
     plt.savefig(outfile, bbox_inches='tight')
     plt.close()
+
 
 def main(repo):
     clones_data = fetch("traffic/clones")
     views_data = fetch("traffic/views")
+
     with open("docs/traffic_data.json", "w") as f:
         json.dump({"clones": clones_data["clones"], "views": views_data["views"]}, f, indent=2)
 
-    # Lifetime (from root keys)
     clones_lifetime = clones_data.get("count", 0)
     unique_clones_lifetime = clones_data.get("uniques", 0)
     views_lifetime = views_data.get("count", 0)
     unique_views_lifetime = views_data.get("uniques", 0)
-    # Today (last available day in the last 14)
+
     last_14_days = get_last_n_days_iso(14)
     clones_dict = {item["timestamp"][:10]: item for item in clones_data["clones"]}
     views_dict = {item["timestamp"][:10]: item for item in views_data["views"]}
     latest_day = last_14_days[-1]
+
     clones_today = clones_dict.get(latest_day, {}).get("count", 0)
     unique_clones_today = clones_dict.get(latest_day, {}).get("uniques", 0)
     views_today = views_dict.get(latest_day, {}).get("count", 0)
     unique_views_today = views_dict.get(latest_day, {}).get("uniques", 0)
-    # 14d Totals
+
     clones_14d = sum([item["count"] for item in clones_data["clones"]])
     unique_clones_14d = sum([item["uniques"] for item in clones_data["clones"]])
     views_14d = sum([item["count"] for item in views_data["views"]])
@@ -99,7 +103,6 @@ def main(repo):
         clones_lifetime, unique_clones_lifetime, views_lifetime, unique_views_lifetime
     )
 
-    # Write all to JSON
     with open("docs/traffic_totals.json", "w") as f:
         json.dump({
             "day": {
@@ -121,6 +124,16 @@ def main(repo):
                 "uniqueViews": unique_views_lifetime
             }
         }, f, indent=2)
+
+    with open("docs/traffic_totals.md", "w") as f:
+        f.write(f"""
+**GitHub Traffic Totals**
+
+- **Today:** Clones: {clones_today:,} | Unique Cloners: {unique_clones_today:,} | Views: {views_today:,} | Unique Visitors: {unique_views_today:,}
+- **Last 14 days:** Clones: {clones_14d:,} | Unique Cloners: {unique_clones_14d:,} | Views: {views_14d:,} | Unique Visitors: {unique_views_14d:,}
+- **Lifetime:** Clones: {clones_lifetime:,} | Unique Cloners: {unique_clones_lifetime:,} | Views: {views_lifetime:,} | Unique Visitors: {unique_views_lifetime:,}
+""")
+
 
 if __name__ == "__main__":
     main(REPO)
