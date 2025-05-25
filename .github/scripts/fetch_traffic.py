@@ -63,8 +63,7 @@ def plot_github_style_merged(
         f"Views: {views_lifetime:,} | Unique Visitors: {unique_views_lifetime:,}"
     )
     fig.text(0.5, -0.08, totals_str, ha='center', va='bottom', color='#FFD700', fontsize=12, wrap=True)
-    
-    plt.tight_layout(rect=[0,0.17,1,0.97])
+    plt.tight_layout(rect=[0, 0.15, 1, 0.97])
     plt.savefig(outfile, bbox_inches='tight')
     plt.close()
 
