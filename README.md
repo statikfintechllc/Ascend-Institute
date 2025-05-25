@@ -22,10 +22,13 @@
 </div>
   
 ---
-<h1 align="center">AscendAI Traffic</h1>
 
-<h1 align="center">[Traffic Graph](traffic_graph.png)
-[Live Traffic Dashboard](docs/traffic.html)</h1>
+<h1 align="center">AscendAI Traffic</h1>
+<p align="center">
+  <img src="traffic_graph.png" alt="Traffic Graph" />
+  <br/>
+  <a href="docs/traffic.html">Live Traffic Dashboard</a>
+</p>
 
 ## Table of Contents
 
