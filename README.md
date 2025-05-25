@@ -24,6 +24,7 @@
 ---
 
 <h1 align="center">AscendAI Traffic</h1>
+
 <p align="center">
   <img src="docs/traffic_graph.png" alt="Traffic Graph" />
   <br/>
