@@ -17,8 +17,6 @@ def fetch(endpoint):
 
 def plot_github_style_merged(clones, views, outfile):
     plt.style.use('dark_background')
-
-    # Extract daily stats
     dates = [datetime.strptime(item["timestamp"], "%Y-%m-%dT%H:%M:%SZ") for item in clones]
     clones_counts = [item["count"] for item in clones]
     unique_clones_counts = [item["uniques"] for item in clones]
@@ -26,8 +24,6 @@ def plot_github_style_merged(clones, views, outfile):
     unique_views_counts = [item["uniques"] for item in views]
 
     fig, ax = plt.subplots(figsize=(12, 5))
-
-    # Plot all four series
     ax.plot(dates, clones_counts, color='#FF3131', marker='o', label='Clones', linewidth=2)
     ax.plot(dates, unique_clones_counts, color='#46D160', marker='o', label='Unique Cloners', linewidth=2)
     ax.plot(dates, views_counts, color='#FFD700', marker='o', label='Views', linewidth=2)
@@ -42,7 +38,7 @@ def plot_github_style_merged(clones, views, outfile):
     plt.xticks(rotation=30)
     ax.grid(True, color='#444444', linestyle='--', linewidth=0.5, alpha=0.5)
     plt.tight_layout()
-    plt.savefig(outfile, bbox_inches='2')
+    plt.savefig(outfile, bbox_inches='tight')
     plt.close()
 
 def main(REPO):
@@ -55,6 +51,14 @@ def main(REPO):
 
     # Plot merged graph
     plot_github_style_merged(clones_data["clones"], views_data["views"], "docs/traffic_graph.png")
+
+    # Print current totals for display below the graph (optionally use in HTML)
+    clones_total = sum([item["count"] for item in clones_data["clones"]])
+    unique_clones_total = sum([item["uniques"] for item in clones_data["clones"]])
+    views_total = sum([item["count"] for item in views_data["views"]])
+    unique_views_total = sum([item["uniques"] for item in views_data["views"]])
+    print(f"Clones (14d): {clones_total:,} | Unique Cloners (14d): {unique_clones_total:,}")
+    print(f"Views (14d): {views_total:,} | Unique Visitors (14d): {unique_views_total:,}")
 
 if __name__ == "__main__":
     main(REPO)
