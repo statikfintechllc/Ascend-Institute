@@ -22,6 +22,11 @@
 </div>
   
 ---
+## AscendAI Traffic
+
+<h1 align="center">![Traffic Graph](traffic_graph.png)
+[Live Traffic Dashboard](docs/traffic.html)</h1>
+
 ## Table of Contents
 
 1. [Support This Project](#support-this-project)  
