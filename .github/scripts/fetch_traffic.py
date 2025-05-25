@@ -22,7 +22,7 @@ def append_history(datafile, key, new_data):
         hist = {key: []}
     hist.setdefault(key, []).append(new_data)
     with open(datafile, 'w') as f:
-        json.dump(hist, f)
+        json.dump(hist, f, indent=2)
     return hist
 
 def main(repo):
