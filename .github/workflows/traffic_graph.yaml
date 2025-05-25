@@ -2,7 +2,7 @@ name: Update Traffic Graph
 
 on:
   schedule:
-    - cron: "*/5 * * * *"   # Every 10 minutes (1 min is not supported by GitHub)
+    - cron: "*/5 * * * *"   # Every 5 minutes (1 min is not supported by GitHub)
   workflow_dispatch:
 
 jobs:
@@ -22,7 +22,7 @@ jobs:
 
       - name: Fetch and update traffic data
         env:
-          GITHUB_TOKEN: ${{ secrets.Ascend_Gremlin }}
+          GITHUB_TOKEN: ${{ secrets.PAT_GITHUB }}
           REPO: statikfintechllc/AscendAI
         run: |
           python .github/scripts/fetch_traffic.py "$REPO"
