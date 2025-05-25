@@ -32,7 +32,6 @@
 
 <pre><code>
 <!-- Auto-generated GitHub traffic totals -->
-{include docs/traffic_caption.txt}
 </code></pre>
 
 ## Table of Contents
