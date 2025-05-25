@@ -21,7 +21,7 @@
     <img src="https://img.shields.io/badge/build-Alpha-darkred?logo=github&color=darkred" alt="Build Status"/>
   </a>
   <a href="./FOUNDER_STATEMENT.md">
-    <img src="https://img.shields.io/badge/Founder's%20Statement-FFD700?logo=github&color=FFD700" alt="Founder's Statement"/>
+    <img src="https://img.shields.io/badge/Founder's%20Log-Statement-FFD700?logo=github&color=FFD700" alt="Founder's Log"/>
   </a>
   </div>
   
