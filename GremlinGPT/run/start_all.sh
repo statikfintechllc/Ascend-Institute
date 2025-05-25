@@ -33,11 +33,11 @@ conda activate gremlin-orchestrator && \
 # Launch dashboard backend
 echo "[*] Starting backend server..."
 conda activate gremlin-dashboard
-  nohub python backend/server.py &
+  nohup python backend/server.py &
 
 # Launch ngrok tunnel if enabled
 echo "[*] Checking ngrok..."
-  nohub python run/ngrok_launcher.py
+  nohup python run/ngrok_launcher.py
 
 echo "[START] All subsystems running."
 
