@@ -30,8 +30,10 @@
   <a href="docs/traffic_graph.png">Live Traffic Dashboard</a>
 </p>
 
-<!--- Traffic Totals (auto-generated, do not edit below this line) --->
-<!--- include docs/traffic_totals.md --->
+<pre><code>
+<!-- Auto-generated GitHub traffic totals -->
+{include docs/traffic_caption.txt}
+</code></pre>
 
 ## Table of Contents
 
