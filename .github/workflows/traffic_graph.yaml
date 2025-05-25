@@ -2,7 +2,7 @@ name: Update Traffic Graph
 
 on:
   schedule:
-    - cron: "*/5 * * * *"   # Every 5 minutes (1 min is not supported by GitHub)
+    - cron: "*/5 * * * *"   # Every 5 minutes
   workflow_dispatch:
 
 jobs:
