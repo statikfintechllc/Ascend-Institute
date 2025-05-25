@@ -3,6 +3,7 @@ import requests
 import json
 import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.dates as mdates
 from datetime import datetime
 
 REPO = os.environ.get("REPO")
@@ -27,21 +28,28 @@ def append_history(datafile, key, new_data):
     return hist
 
 def plot_traffic(hist, outfile):
-    timestamps = [x['timestamp'] for x in hist["traffic"]]
-    views_list = [x['views'] for x in hist["traffic"]]
-    clones_list = [x['clones'] for x in hist["traffic"]]
+    plt.style.use('dark_background')
+    timestamps = [datetime.strptime(x['timestamp'], "%Y-%m-%d %H:%M") for x in hist["traffic"]]
+    views = [x['views'] for x in hist["traffic"]]
+    clones = [x['clones'] for x in hist["traffic"]]
 
     # Calculate deltas for activity per interval
-    views_deltas = np.diff(views_list, prepend=views_list[0]) if len(views_list) > 0 else []
-    clones_deltas = np.diff(clones_list, prepend=clones_list[0]) if len(clones_list) > 0 else []
+    views_delta = np.diff(views, prepend=views[0]) if len(views) > 0 else []
+    clones_delta = np.diff(clones, prepend=clones[0]) if len(clones) > 0 else []
 
-    plt.figure(figsize=(10, 4))
-    plt.plot(timestamps, views_deltas, label="Views")
-    plt.plot(timestamps, clones_deltas, label="Clones")
-    plt.xticks(rotation=45)
-    plt.legend()
+    fig, ax = plt.subplots(figsize=(10, 4))
+    ax.plot(timestamps, views_delta, color='#FFD700', marker='o', label='Views (interval)', linewidth=2)   # Gold
+    ax.plot(timestamps, clones_delta, color='#FF3131', marker='o', label='Clones (interval)', linewidth=2) # Red
+
+    ax.set_xlabel("Time (UTC)")
+    ax.set_ylabel("Count")
+    ax.set_title("AscendAI GitHub Traffic (per 5 minutes)")
+    ax.legend()
+    ax.xaxis.set_major_locator(mdates.AutoDateLocator())
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m-%d %H:%M'))
+    plt.xticks(rotation=30)
+    ax.grid(True, color='#444444', linestyle='--', linewidth=0.5, alpha=0.5)
     plt.tight_layout()
-    plt.title("AscendAI GitHub Traffic (Interval Deltas)")
     plt.savefig(outfile)
     plt.close()
 
