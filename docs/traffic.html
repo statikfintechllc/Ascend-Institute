@@ -4,53 +4,47 @@
   <title>AscendAI Live Traffic</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    body {
-      background: #222;
-      color: #eee;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      margin: 0; padding: 2em;
-    }
+    body { background: #222; color: #eee; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 2em; }
     h2 { color: #FFD700; }
-    .totals {
-      display: flex;
-      gap: 2em;
-      justify-content: center;
-      margin: 1.5em 0 2em 0;
-      font-size: 1.2em;
-      color: #eee;
-    }
-    .totals span {
-      background: #181818;
-      border-radius: 8px;
-      padding: 0.5em 1.2em;
-      font-weight: bold;
-      display: inline-block;
-      min-width: 130px;
-      text-align: center;
-    }
-    .totals .clones { color: #FF3131; }
-    .totals .unique-clones { color: #46D160; }
-    .totals .views { color: #FFD700; }
-    .totals .unique-views { color: #2188ff; }
+    .totals, .totals-extra { display: flex; gap: 2em; justify-content: center; margin: 1.5em 0 2em 0; font-size: 1.2em; color: #eee; flex-wrap: wrap;}
+    .totals span, .totals-extra span { background: #181818; border-radius: 8px; padding: 0.5em 1.2em; font-weight: bold; display: inline-block; min-width: 130px; text-align: center; }
+    .clones { color: #FF3131; }
+    .unique-clones { color: #46D160; }
+    .views { color: #FFD700; }
+    .unique-views { color: #2188ff; }
     canvas { background: #222; border: 1px solid #333; }
+    .totals-label { font-weight: normal; color: #aaa; min-width: 85px; }
   </style>
 </head>
 <body>
   <h2>AscendAI GitHub Traffic (Live)</h2>
+  <div class="totals-extra" id="totals-today">
+    <span class="totals-label">Today</span>
+    <span class="clones">Clones: <span id="clonesToday">--</span></span>
+    <span class="unique-clones">Unique Cloners: <span id="uniqueClonesToday">--</span></span>
+    <span class="views">Views: <span id="viewsToday">--</span></span>
+    <span class="unique-views">Unique Visitors: <span id="uniqueViewsToday">--</span></span>
+  </div>
   <div class="totals">
+    <span class="totals-label">14d</span>
     <span class="clones">Clones: <span id="clonesTotal">--</span></span>
     <span class="unique-clones">Unique Cloners: <span id="uniqueClonesTotal">--</span></span>
     <span class="views">Views: <span id="viewsTotal">--</span></span>
     <span class="unique-views">Unique Visitors: <span id="uniqueViewsTotal">--</span></span>
+  </div>
+  <div class="totals-extra" id="totals-lifetime">
+    <span class="totals-label">Lifetime</span>
+    <span class="clones">Clones: <span id="clonesLifetime">--</span></span>
+    <span class="unique-clones">Unique Cloners: <span id="uniqueClonesLifetime">--</span></span>
+    <span class="views">Views: <span id="viewsLifetime">--</span></span>
+    <span class="unique-views">Unique Visitors: <span id="uniqueViewsLifetime">--</span></span>
   </div>
   <canvas id="trafficChart" width="800" height="400"></canvas>
   <script>
     async function fetchData() {
       const resp = await fetch('traffic_data.json?' + Date.now());
       const data = await resp.json();
-      // { clones: [{timestamp, count, uniques}], views: [{timestamp, count, uniques}] }
       const labels = data.clones.map(e => e.timestamp);
-
       return {
         labels,
         clones: data.clones.map(e => e.count),
@@ -59,22 +53,34 @@
         uniqueViews: data.views.map(e => e.uniques)
       };
     }
-
+    async function fetchTotals() {
+      const resp = await fetch('traffic_totals.json?' + Date.now());
+      return await resp.json();
+    }
     function sum(arr) {
       return arr.reduce((a, b) => a + b, 0);
     }
-
-    async function updateTotals(d) {
-      document.getElementById('clonesTotal').textContent = sum(d.clones).toLocaleString();
-      document.getElementById('uniqueClonesTotal').textContent = sum(d.uniqueClones).toLocaleString();
-      document.getElementById('viewsTotal').textContent = sum(d.views).toLocaleString();
-      document.getElementById('uniqueViewsTotal').textContent = sum(d.uniqueViews).toLocaleString();
+    async function updateTotals(d, totals) {
+      // 14d (range)
+      document.getElementById('clonesTotal').textContent = (totals?.range14d?.clones ?? sum(d.clones)).toLocaleString();
+      document.getElementById('uniqueClonesTotal').textContent = (totals?.range14d?.uniqueClones ?? sum(d.uniqueClones)).toLocaleString();
+      document.getElementById('viewsTotal').textContent = (totals?.range14d?.views ?? sum(d.views)).toLocaleString();
+      document.getElementById('uniqueViewsTotal').textContent = (totals?.range14d?.uniqueViews ?? sum(d.uniqueViews)).toLocaleString();
+      // Today
+      document.getElementById('clonesToday').textContent = (totals?.day?.clones ?? '--').toLocaleString();
+      document.getElementById('uniqueClonesToday').textContent = (totals?.day?.uniqueClones ?? '--').toLocaleString();
+      document.getElementById('viewsToday').textContent = (totals?.day?.views ?? '--').toLocaleString();
+      document.getElementById('uniqueViewsToday').textContent = (totals?.day?.uniqueViews ?? '--').toLocaleString();
+      // Lifetime
+      document.getElementById('clonesLifetime').textContent = (totals?.lifetime?.clones ?? '--').toLocaleString();
+      document.getElementById('uniqueClonesLifetime').textContent = (totals?.lifetime?.uniqueClones ?? '--').toLocaleString();
+      document.getElementById('viewsLifetime').textContent = (totals?.lifetime?.views ?? '--').toLocaleString();
+      document.getElementById('uniqueViewsLifetime').textContent = (totals?.lifetime?.uniqueViews ?? '--').toLocaleString();
     }
-
     async function drawChart() {
+      const [d, totals] = await Promise.all([fetchData(), fetchTotals()]);
+      await updateTotals(d, totals);
       const ctx = document.getElementById('trafficChart').getContext('2d');
-      const d = await fetchData();
-      await updateTotals(d);
       window.trafficChart?.destroy();
       window.trafficChart = new Chart(ctx, {
         type: 'line',
@@ -141,7 +147,7 @@
       });
     }
     drawChart();
-    setInterval(drawChart, 60000); // update every minute
+    setInterval(drawChart, 60000);
   </script>
 </body>
 </html>
