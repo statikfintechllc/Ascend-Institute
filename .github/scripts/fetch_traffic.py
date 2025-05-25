@@ -45,7 +45,7 @@ def plot_github_style_merged(clones, views, outfile):
     plt.savefig(outfile, bbox_inches='2')
     plt.close()
 
-def main(repo):
+def main(REPO):
     clones_data = fetch("traffic/clones")
     views_data = fetch("traffic/views")
 
