@@ -30,9 +30,7 @@
   <a href="docs/traffic_graph.png">Live Traffic Dashboard</a>
 </p>
 
-<pre><code>
 <!-- Auto-generated GitHub traffic totals -->
-</code></pre>
 
 ## Table of Contents
 
