@@ -2,7 +2,6 @@ import os
 import requests
 import json
 import matplotlib.pyplot as plt
-import numpy as np
 import matplotlib.dates as mdates
 from datetime import datetime
 
@@ -16,42 +15,46 @@ def fetch(endpoint):
     r.raise_for_status()
     return r.json()
 
-def append_history(datafile, key, new_data):
-    try:
-        with open(datafile, 'r') as f:
-            hist = json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError):
-        hist = {key: []}
-    hist.setdefault(key, []).append(new_data)
-    with open(datafile, 'w') as f:
-        json.dump(hist, f, indent=2)
-    return hist
-
-def plot_traffic(hist, outfile):
-    import matplotlib.pyplot as plt
-    import matplotlib.dates as mdates
-    from datetime import datetime
-
+def plot_github_style_merged(clones, views, outfile):
     plt.style.use('dark_background')
-    timestamps = [datetime.strptime(x['timestamp'], "%Y-%m-%d %H:%M") for x in hist["traffic"]]
-    views = [x['views'] for x in hist["traffic"]]
-    clones = [x['clones'] for x in hist["traffic"]]
 
-    fig, ax = plt.subplots(figsize=(10, 4))
-    ax.plot(timestamps, views, color='#FFD700', marker='o', label='Views (14-day rolling total)', linewidth=2)
-    ax.plot(timestamps, clones, color='#FF3131', marker='o', label='Clones (14-day rolling total)', linewidth=2)
+    # Extract daily stats
+    dates = [datetime.strptime(item["timestamp"], "%Y-%m-%dT%H:%M:%SZ") for item in clones]
+    clones_counts = [item["count"] for item in clones]
+    unique_clones_counts = [item["uniques"] for item in clones]
+    views_counts = [item["count"] for item in views]
+    unique_views_counts = [item["uniques"] for item in views]
 
-    ax.set_xlabel("Time (UTC)")
-    ax.set_ylabel("14-day Total")
-    ax.set_title("AscendAI GitHub Traffic (14-day rolling totals)")
+    fig, ax = plt.subplots(figsize=(12, 5))
+
+    # Plot all four series
+    ax.plot(dates, clones_counts, color='#FF3131', marker='o', label='Clones', linewidth=2)
+    ax.plot(dates, unique_clones_counts, color='#46D160', marker='o', label='Unique Cloners', linewidth=2)
+    ax.plot(dates, views_counts, color='#FFD700', marker='o', label='Views', linewidth=2)
+    ax.plot(dates, unique_views_counts, color='#2188ff', marker='o', label='Unique Visitors', linewidth=2)
+
+    ax.set_xlabel("Date")
+    ax.set_ylabel("Count")
+    ax.set_title("AscendAI GitHub Traffic (Last 14 Days)")
     ax.legend()
-    ax.xaxis.set_major_locator(mdates.AutoDateLocator())
-    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m-%d %H:%M'))
+    ax.xaxis.set_major_locator(mdates.DayLocator())
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d'))
     plt.xticks(rotation=30)
     ax.grid(True, color='#444444', linestyle='--', linewidth=0.5, alpha=0.5)
     plt.tight_layout()
-    plt.savefig(outfile, bbox_inches='tight')
+    plt.savefig(outfile, bbox_inches='2')
     plt.close()
+
+def main(repo):
+    clones_data = fetch("traffic/clones")
+    views_data = fetch("traffic/views")
+
+    # Save raw for JS/live chart if needed
+    with open("docs/traffic_data.json", "w") as f:
+        json.dump({"clones": clones_data["clones"], "views": views_data["views"]}, f, indent=2)
+
+    # Plot merged graph
+    plot_github_style_merged(clones_data["clones"], views_data["views"], "docs/traffic_graph.png")
 
 if __name__ == "__main__":
     main(REPO)
