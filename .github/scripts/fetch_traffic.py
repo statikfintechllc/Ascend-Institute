@@ -3,7 +3,7 @@ import requests
 import json
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
-from datetime import datetime
+from datetime import datetime, timedelta
 
 REPO = os.environ.get("REPO")
 TOKEN = os.environ.get("PAT_GITHUB")
@@ -17,37 +17,30 @@ def fetch(endpoint):
     return r.json()
 
 
+def get_last_n_days_iso(n=14):
+    # Returns list of ISO date strings for the last n days, oldest first
+    today = datetime.utcnow().date()
+    return [
+        (today - timedelta(days=i)).strftime("%Y-%m-%d")
+        for i in reversed(range(n))
+    ]
+
 def plot_github_style_merged(clones, views, outfile):
     plt.style.use('dark_background')
 
-    # 1. Collect all unique dates from both series
-    all_dates = sorted(set([item["timestamp"] for item in clones] + [item["timestamp"] for item in views]))
+    # 1. Make sure we have a full list of the last 14 days (ISO date only)
+    last_14_days = get_last_n_days_iso(14)
 
-    # 2. Build dicts for quick lookup
-    clones_dict = {item["timestamp"]: item for item in clones}
-    views_dict = {item["timestamp"]: item for item in views}
+    # 2. Build dicts keyed by ISO date (YYYY-MM-DD)
+    clones_dict = {item["timestamp"][:10]: item for item in clones}
+    views_dict = {item["timestamp"][:10]: item for item in views}
 
-    # 3. Build aligned lists (fill missing dates with zeros)
-    dates = [datetime.strptime(ts, "%Y-%m-%dT%H:%M:%SZ") for ts in all_dates]
-    clones_counts = []
-    unique_clones_counts = []
-    views_counts = []
-    unique_views_counts = []
-    for ts in all_dates:
-        c = clones_dict.get(ts, {})
-        v = views_dict.get(ts, {})
-        clones_counts.append(c.get("count", 0))
-        unique_clones_counts.append(c.get("uniques", 0))
-        views_counts.append(v.get("count", 0))
-        unique_views_counts.append(v.get("uniques", 0))
-
-    # Only show the last 14 days (if more available)
-    if len(dates) > 14:
-        dates = dates[-14:]
-        clones_counts = clones_counts[-14:]
-        unique_clones_counts = unique_clones_counts[-14:]
-        views_counts = views_counts[-14:]
-        unique_views_counts = unique_views_counts[-14:]
+    # 3. Build aligned lists for each day in last_14_days
+    dates = [datetime.strptime(d, "%Y-%m-%d") for d in last_14_days]
+    clones_counts = [clones_dict.get(d, {}).get("count", 0) for d in last_14_days]
+    unique_clones_counts = [clones_dict.get(d, {}).get("uniques", 0) for d in last_14_days]
+    views_counts = [views_dict.get(d, {}).get("count", 0) for d in last_14_days]
+    unique_views_counts = [views_dict.get(d, {}).get("uniques", 0) for d in last_14_days]
 
     fig, ax = plt.subplots(figsize=(12, 5))
     ax.plot(dates, clones_counts, color='#FF3131', marker='o', label='Clones', linewidth=2)
