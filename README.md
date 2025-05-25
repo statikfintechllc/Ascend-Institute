@@ -46,7 +46,7 @@
   9.b. [Documentation](#gremlingpt's-documentation)
 10. [Demos](#demos)
 11. [What is GremlinGPT v1.0.3](wjat-is-gremlingpt-v1.0.3)
-  11.a. [Phase 1: Core Engine & Execution](phase-1:-core-engine-&-executions)
+  11.a. [Phase 1: Core Engine & Execution](phase-1-core-engine-&-executions)
   11.b. 
   11.c. 
   11.d. 
