@@ -22,7 +22,7 @@ jobs:
 
       - name: Fetch and update traffic data
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.Ascend_Gremlin }}
           REPO: statikfintechllc/AscendAI
         run: |
           python .github/scripts/fetch_traffic.py "$REPO"
