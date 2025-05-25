@@ -4,7 +4,6 @@ import json
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from datetime import datetime
-from collections import defaultdict
 
 REPO = os.environ.get("REPO")
 TOKEN = os.environ.get("PAT_GITHUB")
@@ -28,12 +27,27 @@ def plot_github_style_merged(clones, views, outfile):
     clones_dict = {item["timestamp"]: item for item in clones}
     views_dict = {item["timestamp"]: item for item in views}
 
-    # 3. Build aligned lists
+    # 3. Build aligned lists (fill missing dates with zeros)
     dates = [datetime.strptime(ts, "%Y-%m-%dT%H:%M:%SZ") for ts in all_dates]
-    clones_counts = [clones_dict.get(ts, {}).get("count", 0) for ts in all_dates]
-    unique_clones_counts = [clones_dict.get(ts, {}).get("uniques", 0) for ts in all_dates]
-    views_counts = [views_dict.get(ts, {}).get("count", 0) for ts in all_dates]
-    unique_views_counts = [views_dict.get(ts, {}).get("uniques", 0) for ts in all_dates]
+    clones_counts = []
+    unique_clones_counts = []
+    views_counts = []
+    unique_views_counts = []
+    for ts in all_dates:
+        c = clones_dict.get(ts, {})
+        v = views_dict.get(ts, {})
+        clones_counts.append(c.get("count", 0))
+        unique_clones_counts.append(c.get("uniques", 0))
+        views_counts.append(v.get("count", 0))
+        unique_views_counts.append(v.get("uniques", 0))
+
+    # Only show the last 14 days (if more available)
+    if len(dates) > 14:
+        dates = dates[-14:]
+        clones_counts = clones_counts[-14:]
+        unique_clones_counts = unique_clones_counts[-14:]
+        views_counts = views_counts[-14:]
+        unique_views_counts = unique_views_counts[-14:]
 
     fig, ax = plt.subplots(figsize=(12, 5))
     ax.plot(dates, clones_counts, color='#FF3131', marker='o', label='Clones', linewidth=2)
@@ -54,7 +68,7 @@ def plot_github_style_merged(clones, views, outfile):
     plt.close()
 
 
-def main(REPO):
+def main(repo):
     clones_data = fetch("traffic/clones")
     views_data = fetch("traffic/views")
 
