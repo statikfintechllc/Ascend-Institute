@@ -42,40 +42,52 @@
   <canvas id="trafficChart" width="800" height="400"></canvas>
   <script>
     async function fetchData() {
-      const resp = await fetch('traffic_data.json?' + Date.now());
-      const data = await resp.json();
-      const labels = data.clones.map(e => e.timestamp);
-      return {
-        labels,
-        clones: data.clones.map(e => e.count),
-        uniqueClones: data.clones.map(e => e.uniques),
-        views: data.views.map(e => e.count),
-        uniqueViews: data.views.map(e => e.uniques)
-      };
+      try {
+        const resp = await fetch('traffic_data.json?' + Date.now());
+        const data = await resp.json();
+        const labels = data.clones.map(e => e.timestamp.slice(5,10)); // MM-DD for compactness
+        return {
+          labels,
+          clones: data.clones.map(e => e.count),
+          uniqueClones: data.clones.map(e => e.uniques),
+          views: data.views.map(e => e.count),
+          uniqueViews: data.views.map(e => e.uniques)
+        };
+      } catch (e) {
+        return {labels: [], clones: [], uniqueClones: [], views: [], uniqueViews: []};
+      }
     }
     async function fetchTotals() {
-      const resp = await fetch('traffic_totals.json?' + Date.now());
-      return await resp.json();
+      try {
+        const resp = await fetch('traffic_totals.json?' + Date.now());
+        return await resp.json();
+      } catch (e) {
+        return {};
+      }
     }
     function sum(arr) {
       return arr.reduce((a, b) => a + b, 0);
     }
+    function safeNum(x) { return (typeof x === "number" && !isNaN(x)) ? x : 0; }
+    function setVal(id, val) {
+      document.getElementById(id).textContent = (typeof val === "number" ? val.toLocaleString() : (val || '--'));
+    }
     async function updateTotals(d, totals) {
       // 14d (range)
-      document.getElementById('clonesTotal').textContent = (totals?.range14d?.clones ?? sum(d.clones)).toLocaleString();
-      document.getElementById('uniqueClonesTotal').textContent = (totals?.range14d?.uniqueClones ?? sum(d.uniqueClones)).toLocaleString();
-      document.getElementById('viewsTotal').textContent = (totals?.range14d?.views ?? sum(d.views)).toLocaleString();
-      document.getElementById('uniqueViewsTotal').textContent = (totals?.range14d?.uniqueViews ?? sum(d.uniqueViews)).toLocaleString();
+      setVal('clonesTotal', safeNum(totals?.range14d?.clones) || sum(d.clones));
+      setVal('uniqueClonesTotal', safeNum(totals?.range14d?.uniqueClones) || sum(d.uniqueClones));
+      setVal('viewsTotal', safeNum(totals?.range14d?.views) || sum(d.views));
+      setVal('uniqueViewsTotal', safeNum(totals?.range14d?.uniqueViews) || sum(d.uniqueViews));
       // Today
-      document.getElementById('clonesToday').textContent = (totals?.day?.clones ?? '--').toLocaleString();
-      document.getElementById('uniqueClonesToday').textContent = (totals?.day?.uniqueClones ?? '--').toLocaleString();
-      document.getElementById('viewsToday').textContent = (totals?.day?.views ?? '--').toLocaleString();
-      document.getElementById('uniqueViewsToday').textContent = (totals?.day?.uniqueViews ?? '--').toLocaleString();
+      setVal('clonesToday', safeNum(totals?.day?.clones));
+      setVal('uniqueClonesToday', safeNum(totals?.day?.uniqueClones));
+      setVal('viewsToday', safeNum(totals?.day?.views));
+      setVal('uniqueViewsToday', safeNum(totals?.day?.uniqueViews));
       // Lifetime
-      document.getElementById('clonesLifetime').textContent = (totals?.lifetime?.clones ?? '--').toLocaleString();
-      document.getElementById('uniqueClonesLifetime').textContent = (totals?.lifetime?.uniqueClones ?? '--').toLocaleString();
-      document.getElementById('viewsLifetime').textContent = (totals?.lifetime?.views ?? '--').toLocaleString();
-      document.getElementById('uniqueViewsLifetime').textContent = (totals?.lifetime?.uniqueViews ?? '--').toLocaleString();
+      setVal('clonesLifetime', safeNum(totals?.lifetime?.clones));
+      setVal('uniqueClonesLifetime', safeNum(totals?.lifetime?.uniqueClones));
+      setVal('viewsLifetime', safeNum(totals?.lifetime?.views));
+      setVal('uniqueViewsLifetime', safeNum(totals?.lifetime?.uniqueViews));
     }
     async function drawChart() {
       const [d, totals] = await Promise.all([fetchData(), fetchTotals()]);
