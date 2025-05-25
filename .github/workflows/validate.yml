@@ -1,9 +1,16 @@
-name: GremlinGPT Validation & Lint
+name: GremlinGPT Autonomous Self-Healing & Lint
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+  schedule:
+    - cron: "0 * * * *" # every hour
+    - cron: "30 2 * * *" # plus a daily deep check at 02:30 UTC
+  workflow_dispatch:
 
 jobs:
-  validate:
+  validate-and-self-heal:
     runs-on: ubuntu-latest
 
     steps:
@@ -30,23 +37,23 @@ jobs:
       - name: Create Conda environments
         shell: zsh {0}
         run: |
+          eval "$($CONDA/bin/conda shell.zsh hook)"
           cd GremlinGPT/conda_envs
           chmod +x create_envs.sh
           ./create_envs.sh
 
-      - name: Install linters in gremlin-nlp
+      - name: Install core dependencies
         shell: zsh {0}
         run: |
-          source $CONDA/etc/profile.d/conda.sh
+          eval "$($CONDA/bin/conda shell.zsh hook)"
           conda activate gremlin-nlp
-          pip install flake8 black
+          pip install flake8 black transformers sentence-transformers
 
       - name: Bootstrap NLP models
         shell: zsh {0}
         run: |
-          source $CONDA/etc/profile.d/conda.sh
+          eval "$($CONDA/bin/conda shell.zsh hook)"
           conda activate gremlin-nlp
-          pip install transformers sentence-transformers
           python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from_pretrained('bert-base-uncased'); AutoModel.from_pretrained('bert-base-uncased')"
           python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
 
@@ -68,15 +75,15 @@ jobs:
       - name: Run Black (auto-fix mode)
         shell: zsh {0}
         run: |
-          source $CONDA/etc/profile.d/conda.sh
+          eval "$($CONDA/bin/conda shell.zsh hook)"
           conda activate gremlin-nlp
           black GremlinGPT/ --line-length 120
 
       - name: Commit style fixes
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: github.event_name != 'pull_request'
         shell: zsh {0}
         run: |
-          source $CONDA/etc/profile.d/conda.sh
+          eval "$($CONDA/bin/conda shell.zsh hook)"
           conda activate gremlin-nlp
           git config user.email "ci@gremlingpt.ai"
           git config user.name "GremlinBot"
@@ -87,22 +94,17 @@ jobs:
       - name: Lint codebase
         shell: zsh {0}
         run: |
-          source $CONDA/etc/profile.d/conda.sh
+          eval "$($CONDA/bin/conda shell.zsh hook)"
           conda activate gremlin-nlp
           flake8 GremlinGPT/
 
       - name: Targeted Lint (fail on critical issues only)
         shell: zsh {0}
         run: |
-          source $CONDA/etc/profile.d/conda.sh
+          eval "$($CONDA/bin/conda shell.zsh hook)"
           conda activate gremlin-nlp
           flake8 GremlinGPT/ --count \
             --select=E9,F63,F7,F82 --show-source --statistics
-            
-      - name: Init Conda for shell
-        shell: zsh {0}
-        run: |
-          eval "$($CONDA/bin/conda shell.zsh hook)"
 
       - name: Run GremlinGPT
         shell: zsh {0}
@@ -111,4 +113,27 @@ jobs:
           conda activate gremlin-nlp
           cd GremlinGPT/run
           chmod +x start_all.sh
-          ./start_all.sh || echo "Run complete"
+          ./start_all.sh || echo "Run complete, warnings ignored"
+
+      - name: Detect and auto-fix missing or broken scripts
+        shell: zsh {0}
+        continue-on-error: true
+        run: |
+          # Check for start_all.sh and recreate a stub if missing
+          if [ ! -f GremlinGPT/run/start_all.sh ]; then
+            echo "#!/bin/zsh\necho 'Stub: start_all.sh recreated by workflow. Please implement logic.'" > GremlinGPT/run/start_all.sh
+            chmod +x GremlinGPT/run/start_all.sh
+            echo "Recreated missing start_all.sh"
+          fi
+
+      - name: Self-report & notify on critical errors
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number || context.payload.pull_request?.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "🚨 Autonomous workflow detected a failure and attempted self-healing. Please review logs and fix any manual issues if needed."
+            })
