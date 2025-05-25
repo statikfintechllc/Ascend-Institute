@@ -29,6 +29,7 @@
   <br/>
   <a href="docs/traffic.html">Live Traffic Dashboard</a>
 </p>
+**Debugging live Feed link, I have to break git to add this feature, its not stock nor allowed**
 
 ## Table of Contents
 
