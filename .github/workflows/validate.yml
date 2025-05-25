@@ -99,10 +99,16 @@ jobs:
           flake8 GremlinGPT/ --count \
             --select=E9,F63,F7,F82 --show-source --statistics
             
+      - name: Init Conda for shell
+        shell: zsh {0}
+        run: |
+          eval "$($CONDA/bin/conda shell.zsh hook)"
+
       - name: Run GremlinGPT
         shell: zsh {0}
         run: |
+          eval "$($CONDA/bin/conda shell.zsh hook)"
           conda activate gremlin-nlp
-          cd GremlinGPT
+          cd GremlinGPT/run
           chmod +x start_all.sh
-          ./start_all.sh || echo "Run complete, warnings ignored"
+          ./start_all.sh || echo "Run complete"
