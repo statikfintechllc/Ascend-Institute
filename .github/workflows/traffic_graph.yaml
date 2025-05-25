@@ -1,0 +1,36 @@
+name: Update Traffic Graph
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"   # Every 10 minutes (1 min is not supported by GitHub)
+  workflow_dispatch:
+
+jobs:
+  update-traffic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests matplotlib
+
+      - name: Fetch and update traffic data
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: statikfintechllc/AscendAI
+        run: |
+          python .github/scripts/fetch_traffic.py "$REPO"
+          
+      - name: Commit and push if changed
+        run: |
+          git config user.name 'GitHub Action'
+          git config user.email 'action@github.com'
+          git add traffic_data.json traffic_graph.png
+          git diff --cached --quiet || git commit -m "Update traffic data and graph"
+          git push
