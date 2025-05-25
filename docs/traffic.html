@@ -11,30 +11,70 @@
       margin: 0; padding: 2em;
     }
     h2 { color: #FFD700; }
+    .totals {
+      display: flex;
+      gap: 2em;
+      justify-content: center;
+      margin: 1.5em 0 2em 0;
+      font-size: 1.2em;
+      color: #eee;
+    }
+    .totals span {
+      background: #181818;
+      border-radius: 8px;
+      padding: 0.5em 1.2em;
+      font-weight: bold;
+      display: inline-block;
+      min-width: 130px;
+      text-align: center;
+    }
+    .totals .clones { color: #FF3131; }
+    .totals .unique-clones { color: #46D160; }
+    .totals .views { color: #FFD700; }
+    .totals .unique-views { color: #2188ff; }
     canvas { background: #222; border: 1px solid #333; }
   </style>
 </head>
 <body>
   <h2>AscendAI GitHub Traffic (Live)</h2>
+  <div class="totals">
+    <span class="clones">Clones: <span id="clonesTotal">--</span></span>
+    <span class="unique-clones">Unique Cloners: <span id="uniqueClonesTotal">--</span></span>
+    <span class="views">Views: <span id="viewsTotal">--</span></span>
+    <span class="unique-views">Unique Visitors: <span id="uniqueViewsTotal">--</span></span>
+  </div>
   <canvas id="trafficChart" width="800" height="400"></canvas>
   <script>
     async function fetchData() {
       const resp = await fetch('traffic_data.json?' + Date.now());
       const data = await resp.json();
-      const t = data.traffic;
-      // Calculate interval (delta) for each point
-      function deltas(arr) {
-        return arr.map((v,i) => i === 0 ? v : v - arr[i-1]);
-      }
+      // { clones: [{timestamp, count, uniques}], views: [{timestamp, count, uniques}] }
+      const labels = data.clones.map(e => e.timestamp);
+
       return {
-        labels: t.map(e => e.timestamp),
-        views: deltas(t.map(e => e.views)),
-        clones: deltas(t.map(e => e.clones))
+        labels,
+        clones: data.clones.map(e => e.count),
+        uniqueClones: data.clones.map(e => e.uniques),
+        views: data.views.map(e => e.count),
+        uniqueViews: data.views.map(e => e.uniques)
       };
     }
+
+    function sum(arr) {
+      return arr.reduce((a, b) => a + b, 0);
+    }
+
+    async function updateTotals(d) {
+      document.getElementById('clonesTotal').textContent = sum(d.clones).toLocaleString();
+      document.getElementById('uniqueClonesTotal').textContent = sum(d.uniqueClones).toLocaleString();
+      document.getElementById('viewsTotal').textContent = sum(d.views).toLocaleString();
+      document.getElementById('uniqueViewsTotal').textContent = sum(d.uniqueViews).toLocaleString();
+    }
+
     async function drawChart() {
       const ctx = document.getElementById('trafficChart').getContext('2d');
       const d = await fetchData();
+      await updateTotals(d);
       window.trafficChart?.destroy();
       window.trafficChart = new Chart(ctx, {
         type: 'line',
@@ -42,23 +82,43 @@
           labels: d.labels,
           datasets: [
             {
-              label: 'Views (interval)',
-              data: d.views,
-              borderColor: '#FFD700',
-              backgroundColor: 'rgba(255,215,0,0.2)',
-              fill: false,
-              tension: 0.2,
-              pointRadius: 2,
-              borderWidth: 2
-            },
-            {
-              label: 'Clones (interval)',
+              label: 'Clones',
               data: d.clones,
               borderColor: '#FF3131',
               backgroundColor: 'rgba(255,49,49,0.2)',
               fill: false,
               tension: 0.2,
-              pointRadius: 2,
+              pointRadius: 3,
+              borderWidth: 2
+            },
+            {
+              label: 'Unique Cloners',
+              data: d.uniqueClones,
+              borderColor: '#46D160',
+              backgroundColor: 'rgba(70,209,96,0.2)',
+              fill: false,
+              tension: 0.2,
+              pointRadius: 3,
+              borderWidth: 2
+            },
+            {
+              label: 'Views',
+              data: d.views,
+              borderColor: '#FFD700',
+              backgroundColor: 'rgba(255,215,0,0.2)',
+              fill: false,
+              tension: 0.2,
+              pointRadius: 3,
+              borderWidth: 2
+            },
+            {
+              label: 'Unique Visitors',
+              data: d.uniqueViews,
+              borderColor: '#2188ff',
+              backgroundColor: 'rgba(33,136,255,0.2)',
+              fill: false,
+              tension: 0.2,
+              pointRadius: 3,
               borderWidth: 2
             }
           ]
@@ -72,6 +132,7 @@
               ticks: { color: '#eee', maxRotation: 50, minRotation: 30 }
             },
             y: {
+              beginAtZero: true,
               ticks: { color: '#eee' },
               grid: { color: '#444' }
             }
