@@ -17,6 +17,12 @@
   <a href="https://github.com/statikfintechllc/AscendAI/graphs/contributors">
     <img src="https://img.shields.io/github/contributors/statikfintechllc/AscendAI?color=red" alt="Contributors"/>
   </a>
+  <a href="https://github.com/statikfintechllc/AscendAI/actions">
+    <img src="https://img.shields.io/badge/build-Alpha-darkred?logo=github&color=darkred" alt="Build Status"/>
+  </a>
+  <a href="./FOUNDER_STATEMENT.md">
+    <img src="https://img.shields.io/badge/Founder's%20Statement-FFD700?logo=github&color=FFD700" alt="Founder's Statement"/>
+  </a>
   </div>
   
 ---
