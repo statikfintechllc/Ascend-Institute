@@ -42,22 +42,22 @@ h1, h2, h3, h4, h5 {
 
 .glass h2, .glass h3 {
   color: #FFD700;
-  text-shadow: 0 0 4px crimson, 0 0 10px gold;
+  text-shadow: 0 0 5px crimson, 0 0 10px gold;
 }
 
 .glass a {
   color: #FF6A00;
-  text-shadow: 0 0 2px crimson;
+  text-shadow: 0 0 3px crimson;
 }
 
 .glass a:hover {
   color: #FFD700;
-  text-shadow: 0 0 8px red;
+  text-shadow: 0 0 10px red;
 }
 
 /* Make headings glow on hover */
 h1:hover, h2:hover, h3:hover {
-  text-shadow: 0 0 4px #FFD700, 0 0 20px red;
+  text-shadow: 0 0 5px #FFD700, 0 0 20px red;
 }
 
 /* Hyperlink style */
