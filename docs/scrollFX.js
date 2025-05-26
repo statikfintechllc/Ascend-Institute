@@ -14,18 +14,25 @@ document.addEventListener('DOMContentLoaded', function () {
       .replace(/^\-+|\-+$/g, '');           // trim leading/trailing hyphens
   }
 
-  // Assign reliable IDs to all headers
+  // Assign reliable IDs to all headers if missing
   document.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(header => {
     if (!header.id) {
       header.id = githubSlug(header.textContent);
     }
   });
 
-  // Check for broken TOC links
+  // TOC anchor link handling (prevent crash on bad targets)
   document.querySelectorAll('a[href^="#"]').forEach(link => {
-    const targetId = link.getAttribute('href');
-    if (!document.querySelector(targetId)) {
-      console.warn(Broken TOC link: ${targetId});
+    const targetId = link.getAttribute('href').slice(1);
+    const target = document.getElementById(targetId);
+    if (target) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+        history.pushState(null, null, `#${targetId}`);
+      });
+    } else {
+      console.warn(`Broken TOC link: #${targetId}`);
     }
   });
 
