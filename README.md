@@ -1,5 +1,7 @@
 <h1 align="center">Ascend Institute for Autonomous Sovereignty & Human Financial Liberation</h1>
+
 ---
+
 <div align="center">
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/LICENSE.md">
     <img src="https://img.shields.io/badge/FAIR%20USE-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Fair Use License"/>
