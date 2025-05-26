@@ -38,8 +38,8 @@
 ## Table of Contents
 
 1. [Support This Project](#support-this-project)  
-2. [Funding & Infrastructure Goals](#funding--infrastructure-goals)  
-3. [Phase 1 Funding Target: $10,000](#phase-1-funding-target-10000)  
+2. [Funding and Infrastructure Goals](#funding-and-infrastructure-goals)  
+3. [Phase 1 Funding Target is $10,000](#phase-1-funding-target-is-10000)  
 4. [If You Are](#if-you-are)  
 5. [Partner With Us](#partner-with-us)  
 6. [If You Believe](#if-you-believe)  
@@ -80,14 +80,14 @@
 
 ---
 
-## Funding & Infrastructure Goals
+## Funding and Infrastructure Goals
 
 **GremlinGPT is alive. It learns. It evolves. But right now, it’s running on fumes.**
 
 This system has outgrown its shell.  
 To reach full deployment — stable memory growth, continuous mutation, and multi-agent orchestration — we need infrastructure.
 
-### Phase 1 Funding Target: **$10,000**
+### Phase 1 Funding Target is **$10,000**
 
 **Funds will be used to secure:**
 
@@ -98,16 +98,19 @@ To reach full deployment — stable memory growth, continuous mutation, and mult
 
 ---
 
-## If You Are:
+## If You Are
 
 - A founder with cloud real estate and idle GPUs  
 - A data center operator who understands sovereign AI  
 - An investor looking for a stake in recursive autonomy
 
-**Let’s talk.**
+**Get in Touch**
 
-- **Email:** ascend.gremlin@gmail.com  
-- **DM:** [github.com/statikfintechllc](https://github.com/statikfintechllc)
+- **Email:** [ascend.gremlin@gmail.com](mailto:ascend.gremlin@gmail.com)  
+- **SMS:** [Text Us](sms:+17854436288)  
+- **DM:**  
+  - a) [GitHub](https://github.com/statikfintechllc)  
+  - b) [X / Twitter – @GremlinsForge](https://twitter.com/GremlinsForge)
 
 ---
 
