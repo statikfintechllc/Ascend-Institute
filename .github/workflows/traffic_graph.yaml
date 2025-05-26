@@ -38,7 +38,7 @@ jobs:
         run: |
           git config user.name 'GitHub Action'
           git config user.email 'action@github.com'
-          git add docs/traffic_data.json docs/traffic_graph.png docs/traffic_totals.json docs/index.html docs/traffic_totals.json docs/dashboard.html
+          git add traffic_data.json traffic_graph.png traffic_totals.json traffic_totals.json dashboard.html
           git diff --cached --quiet || git commit -m "Update traffic data and graph"
           git pull --rebase
           git push
