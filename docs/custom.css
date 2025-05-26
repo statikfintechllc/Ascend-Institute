@@ -186,6 +186,10 @@ hr {
   background-size: cover;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: linear-gradient(black, #0a0a0a);
   background-attachment: fixed;
