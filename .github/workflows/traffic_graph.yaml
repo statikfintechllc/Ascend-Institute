@@ -38,7 +38,23 @@ jobs:
         run: |
           git config user.name 'GitHub Action'
           git config user.email 'action@github.com'
-          git add traffic_data.json traffic_graph.png traffic_totals.json traffic_totals.json dashboard.html
+          git add docs/traffic_data.json docs/traffic_graph.png docs/traffic_totals.json docs/traffic_totals.json docs/dashboard.html
           git diff --cached --quiet || git commit -m "Update traffic data and graph"
           git pull --rebase
           git push
+
+      - name: Deploy standalone dashboard to gh-pages
+        run: |
+          mkdir -p public
+          cp docs/dashboard.html public/index.html
+          cp docs/traffic_graph.png public/
+          cp docs/traffic_totals.json public/
+
+          cd public
+          git init
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git checkout -b gh-pages
+          git add .
+          git commit -m "Deploy dashboard to gh-pages"
+          git push --force "https://${{ secrets.PAT_GITHUB }}@github.com/${{ github.repository }}.git" gh-pages
