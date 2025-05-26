@@ -1,20 +1,6 @@
-{
-  "day": {
-    "clones": 309,
-    "uniqueClones": 25,
-    "views": 924,
-    "uniqueViews": 32
-  },
-  "range14d": {
-    "clones": 1198,
-    "uniqueClones": 220,
-    "views": 3346,
-    "uniqueViews": 183
-  },
-  "lifetime": {
-    "clones": 1198,
-    "uniqueClones": 220,
-    "views": 3359,
-    "uniqueViews": 185
-  }
-}
+
+**GitHub Traffic Totals**
+
+- **Today (2025-05-25):** Clones: 362 | Unique Cloners: 25 | Views: 1,077 | Unique Visitors: 33
+- **Last 14 days:** Clones: 1,251 | Unique Cloners: 220 | Views: 3,499 | Unique Visitors: 184
+- **Lifetime:** Clones: 1,251 | Unique Cloners: 220 | Views: 3,512 | Unique Visitors: 186
