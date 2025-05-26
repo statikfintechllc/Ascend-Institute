@@ -17,13 +17,17 @@
 
 <!-- Markdown content will be embedded here -->
 <main>
-  <div class="markdown-body">
-    <!-- Ctrl+C from README.md -->
-    <h1>Ascend Institute for...</h1>
-    <p>Support this project...</p>
-    <!-- etc. -->
-  </div>
+  <div id="readme" class="markdown-body"></div>
 </main>
+
+<script>
+  fetch('README.md')
+    .then(res => res.text())
+    .then(md => {
+      document.getElementById('readme').innerText = md;
+      // Markdown parser like marked.js can render this properly (optional)
+    });
+</script>
   
 <!-- Scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
