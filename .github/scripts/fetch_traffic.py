@@ -20,41 +20,34 @@ def fetch(endpoint):
 def plot_github_style_merged(clones, views, outfile):
     plt.style.use('dark_background')
 
-    # Parse data into dictionaries
     clones_dict = {item["timestamp"][:10]: item for item in clones}
     views_dict = {item["timestamp"][:10]: item for item in views}
 
-    # Get overlapping dates in payload
     valid_dates = sorted(set(clones_dict.keys()) & set(views_dict.keys()))
-    last_14_days = valid_dates[-14:]  # latest 14 shared dates
+    last_14_days = valid_dates[-14:]
     dates = [datetime.strptime(d, "%Y-%m-%d") for d in last_14_days]
 
-    # Aligned values for plot
     clones_counts = [clones_dict[d]["count"] for d in last_14_days]
     unique_clones_counts = [clones_dict[d]["uniques"] for d in last_14_days]
     views_counts = [views_dict[d]["count"] for d in last_14_days]
     unique_views_counts = [views_dict[d]["uniques"] for d in last_14_days]
 
-    # Most recent day (last available in data)
     latest_day = last_14_days[-1]
     clones_today = clones_dict[latest_day]["count"]
     unique_clones_today = clones_dict[latest_day]["uniques"]
     views_today = views_dict[latest_day]["count"]
     unique_views_today = views_dict[latest_day]["uniques"]
 
-    # 14-day totals
     clones_14d = sum(clones_counts)
     unique_clones_14d = sum(unique_clones_counts)
     views_14d = sum(views_counts)
     unique_views_14d = sum(unique_views_counts)
 
-    # Lifetime totals from payload
     clones_lifetime = sum(item["count"] for item in clones)
     unique_clones_lifetime = sum(item["uniques"] for item in clones)
     views_lifetime = sum(item["count"] for item in views)
     unique_views_lifetime = sum(item["uniques"] for item in views)
 
-    # ─────────────── PLOT ───────────────
     fig, ax = plt.subplots(figsize=(12, 5))
     ax.plot(dates, clones_counts, color='#FF3131', marker='o', label='Clones', linewidth=2)
     ax.plot(dates, unique_clones_counts, color='#46D160', marker='o', label='Unique Cloners', linewidth=2)
@@ -78,6 +71,7 @@ def plot_github_style_merged(clones, views, outfile):
         f"Lifetime: Clones: {clones_lifetime:,} | Unique Cloners: {unique_clones_lifetime:,} | "
         f"Views: {views_lifetime:,} | Unique Visitors: {unique_views_lifetime:,}"
     )
+
     fig.text(0.5, -0.08, totals_str, ha='center', va='bottom', color='#FFD700', fontsize=12, wrap=True)
     plt.tight_layout(rect=[0, 0.15, 1, 0.97])
     plt.savefig(outfile, bbox_inches='tight')
@@ -143,17 +137,18 @@ def main(repo):
 - **Last 14 days:** Clones: {totals["clones_14d"]:,} | Unique Cloners: {totals["unique_clones_14d"]:,} | Views: {totals["views_14d"]:,} | Unique Visitors: {totals["unique_views_14d"]:,}
 - **Lifetime:** Clones: {totals["clones_lifetime"]:,} | Unique Cloners: {totals["unique_clones_lifetime"]:,} | Views: {totals["views_lifetime"]:,} | Unique Visitors: {totals["unique_views_lifetime"]:,}
 """)
-    # Inject totals into HTML widget
-with open("docs/dashboard.html", "r") as f:
-    html = f.read()
 
-with open("docs/traffic_totals.md", "r") as f:
-    totals = f.read()
+    # Inject totals into dashboard HTML
+    with open("docs/dashboard.html", "r") as f:
+        html = f.read()
 
-html = html.replace("{{TRAFFIC_TOTALS}}", totals.strip())
+    with open("docs/traffic_totals.md", "r") as f:
+        totals_md = f.read()
 
-with open("docs/dashboard.html", "w") as f:
-    f.write(html)
+    html = html.replace("{{TRAFFIC_TOTALS}}", totals_md.strip())
+
+    with open("docs/dashboard.html", "w") as f:
+        f.write(html)
 
 
 if __name__ == "__main__":
