@@ -24,6 +24,7 @@
     <img src="https://img.shields.io/badge/Founder's%20Log-Statement-darkred?labelColor=black" alt="Founder's Log"/>
   </a>
 </div>
+> GremlinGPT has already been reviewed and starred by contributors from live AI infra labs (including Atrium).
 
 <h1 align="center">AscendAI Traffic</h1>
 <h1 align="center">
@@ -33,8 +34,6 @@
 </div>
   
 <h1 align="center">**Reset: 10:00pm CST**</h1>
-
-> GremlinGPT has already been reviewed and starred by contributors from live AI infra labs (including Atrium).
 
 ---
 
