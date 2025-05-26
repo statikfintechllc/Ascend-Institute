@@ -1,3 +1,5 @@
+# !/usr/bin/env python3
+
 # ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
 # Built under the GremlinGPT Dual License v1.0
@@ -5,22 +7,8 @@
 # Contact: ascend.gremlin@gmail.com
 # ─────────────────────────────────────────────────────────────
 
-# !/usr/bin/env python3
-
-# GremlinGPT v5 :: Module Integrity Directive
+# GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
-# It must:
-#   - Integrate seamlessly into the architecture defined in the full outline
-#   - Operate autonomously and communicate cross-module via defined protocols
-#   - Be production-grade, repair-capable, and state-of-the-art in logic
-#   - Support learning, persistence, mutation, and traceability
-#   - Not remove or weaken logic (stubs may be replaced, but never deleted)
-#   - Leverage appropriate dependencies, imports, and interlinks to other systems
-#   - Return enhanced — fully wired, no placeholders, no guesswork
-# Objective:
-#   Receive, reinforce, and return each script as a living part of the Gremlin:
-
-# core/loop.py
 
 import time
 from agent_core import fsm
@@ -46,7 +34,7 @@ def boot_loop():
                 log_event("loop", "trigger", {"origin": "feedback"}, status="queued")
                 clear_trigger()
 
-            # Core execution
+            # Core FSM execution
             fsm.fsm_loop()
 
             log_event("loop", "fsm_cycle", {"tick": cycle_count}, status="complete")
