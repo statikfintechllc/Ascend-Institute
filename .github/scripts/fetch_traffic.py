@@ -100,13 +100,15 @@ def main(repo):
 
     os.makedirs("docs", exist_ok=True)
 
-    with open("docs/traffic_data.json", "w") as f:
-        json.dump({"clones": clones_data["clones"], "views": views_data["views"]}, f, indent=2)
-
     totals = plot_github_style_merged(
         clones_data["clones"], views_data["views"], "docs/traffic_graph.png"
     )
 
+    # write traffic_data.json
+    with open("docs/traffic_data.json", "w") as f:
+        json.dump({"clones": clones_data["clones"], "views": views_data["views"]}, f, indent=2)
+
+    # write traffic_totals.json
     with open("docs/traffic_totals.json", "w") as f:
         json.dump({
             "day": {
@@ -129,26 +131,26 @@ def main(repo):
             }
         }, f, indent=2)
 
-    with open("docs/traffic_totals.md", "w") as f:
-        f.write(f"""
+    # inline totals string (no fs dependency)
+    totals_md = f"""
 **GitHub Traffic Totals**
 
 - **Today ({totals['latest_day']}):** Clones: {totals["clones_today"]:,} | Unique Cloners: {totals["unique_clones_today"]:,} | Views: {totals["views_today"]:,} | Unique Visitors: {totals["unique_views_today"]:,}
 - **Last 14 days:** Clones: {totals["clones_14d"]:,} | Unique Cloners: {totals["unique_clones_14d"]:,} | Views: {totals["views_14d"]:,} | Unique Visitors: {totals["unique_views_14d"]:,}
 - **Lifetime:** Clones: {totals["clones_lifetime"]:,} | Unique Cloners: {totals["unique_clones_lifetime"]:,} | Views: {totals["views_lifetime"]:,} | Unique Visitors: {totals["unique_views_lifetime"]:,}
-""")
+""".strip()
 
-    # Inject totals into dashboard HTML
-    with open("docs/dashboard.html", "r") as f:
-        html = f.read()
+    with open("docs/traffic_totals.md", "w") as f:
+        f.write(totals_md)
 
-    with open("docs/traffic_totals.md", "r") as f:
-        totals_md = f.read()
-
-    html = html.replace("{{TRAFFIC_TOTALS}}", totals_md.strip())
-
-    with open("docs/dashboard.html", "w") as f:
-        f.write(html)
+    # update HTML dashboard
+    dashboard_path = "docs/dashboard.html"
+    if os.path.exists(dashboard_path):
+        with open(dashboard_path, "r") as f:
+            html = f.read()
+        html = html.replace("{{TRAFFIC_TOTALS}}", totals_md)
+        with open(dashboard_path, "w") as f:
+            f.write(html)
 
 
 if __name__ == "__main__":
