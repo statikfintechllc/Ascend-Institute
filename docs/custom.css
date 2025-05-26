@@ -1,0 +1,30 @@
+body {
+  background-color: #000000; /* black background */
+  color: #CCCCCC; /* silver-ish text */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+  color: #FFD700; /* gold headers */
+}
+
+a {
+  color: #FF4500; /* orange links */
+}
+
+a:hover {
+  color: #00FF00; /* green on hover just to flex */
+}
+
+code, pre {
+  background-color: #1A1A1A;
+  color: #FF0000; /* red for code text */
+}
+
+table {
+  border-color: #FFD700;
+}
+
+img {
+  border: 2px solid #FFD700;
+}
