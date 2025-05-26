@@ -1,3 +1,5 @@
+# !/usr/bin/env python3
+
 # ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
 # Built under the GremlinGPT Dual License v1.0
@@ -5,22 +7,8 @@
 # Contact: ascend.gremlin@gmail.com
 # ─────────────────────────────────────────────────────────────
 
-# !/usr/bin/env python3
-
-# GremlinGPT v5 :: Module Integrity Directive
+# GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
-# It must:
-#   - Integrate seamlessly into the architecture defined in the full outline
-#   - Operate autonomously and communicate cross-module via defined protocols
-#   - Be production-grade, repair-capable, and state-of-the-art in logic
-#   - Support learning, persistence, mutation, and traceability
-#   - Not remove or weaken logic (stubs may be replaced, but never deleted)
-#   - Leverage appropriate dependencies, imports, and interlinks to other systems
-#   - Return enhanced — fully wired, no placeholders, no guesswork
-# Objective:
-#   Receive, reinforce, and return each script as a living part of the Gremlin:
-
-# agent_core/task_queue.py
 
 from collections import deque, defaultdict
 import uuid
@@ -31,6 +19,11 @@ from datetime import datetime, timedelta
 
 QUEUE_FILE = Path("run/checkpoints/task_queue.json")
 ESCALATION_THRESHOLD_SEC = 120
+
+# Priority buckets
+task_queue = {"high": deque(), "normal": deque(), "low": deque()}
+task_status = {}
+task_meta = defaultdict(dict)
 
 
 def promote_old_tasks():
@@ -49,17 +42,9 @@ def promote_old_tasks():
                 task_queue[level].remove(task)
                 task_meta[tid]["priority"] = next_level
                 logger.info(f"[ESCALATION] Promoted task {tid} to {next_level}")
-
         for task in to_promote:
             task_queue[next_level].append(task)
     _save_snapshot()
-
-
-# Priority buckets
-task_queue = {"high": deque(), "normal": deque(), "low": deque()}
-
-task_status = {}
-task_meta = defaultdict(dict)
 
 
 def _save_snapshot():
@@ -113,9 +98,6 @@ def enqueue_task(task):
 
 
 def reprioritize(task_id, new_priority):
-    """
-    Move a task to a new priority bucket by task ID.
-    """
     if new_priority not in task_queue:
         logger.error(f"[TASK_QUEUE] Invalid target priority: {new_priority}")
         return False
@@ -179,7 +161,6 @@ def update_task_status(task_id, status):
 
 
 def dump():
-    """Returns all queued tasks, grouped by priority"""
     return {
         "high": list(task_queue["high"]),
         "normal": list(task_queue["normal"]),
