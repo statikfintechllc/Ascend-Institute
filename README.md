@@ -1,5 +1,5 @@
 <link rel="stylesheet" type="text/css" href="docs/custom.css"> 
-<script src="docs/scrollFX.js"></script>
+<link src="docs/scrollFX.js">
 <link rel="icon" href="favicon.ico">
 <meta property="og:title" content="AscendAI – Sovereign Stack">
 <meta property="og:description" content="GremlinGPT, Financial Autonomy, and Self-Hosting Liberation.">
