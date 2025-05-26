@@ -107,7 +107,7 @@ To reach full deployment — stable memory growth, continuous mutation, and mult
 **Get in Touch**
 
 - **Email:** [ascend.gremlin@gmail.com](mailto:ascend.gremlin@gmail.com)  
-- **SMS:** [Text Us](sms:+17854436288)  
+- **Text Us:** [+1 (785) 443-6288](sms:+17854436288)
 - **DM:**  
   - a) [GitHub](https://github.com/statikfintechllc)  
   - b) [X / Twitter – @GremlinsForge](https://twitter.com/GremlinsForge)
