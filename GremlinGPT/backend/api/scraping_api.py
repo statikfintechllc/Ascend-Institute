@@ -38,7 +38,9 @@ def scrape_url():
         return jsonify({"error": "No URL provided"}), 400
 
     timestamp = datetime.utcnow().isoformat()
-    _, lineage_meta = snapshot_file("scraper/scraper_loop.py", label="api_scrape_request", return_meta=True)
+    _, lineage_meta = snapshot_file(
+        "scraper/scraper_loop.py", label="api_scrape_request", return_meta=True
+    )
 
     # Embed request for vector trace
     vector = encode(url)

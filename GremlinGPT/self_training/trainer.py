@@ -36,7 +36,9 @@ from datetime import datetime
 import numpy as np
 
 LOG_DIR = CFG["paths"].get("data_dir", "data/") + "logs/"
-OUTPUT_PATH = CFG["paths"].get("data_dir", "data/") + "nlp_training_sets/mutated_dataset.json"
+OUTPUT_PATH = (
+    CFG["paths"].get("data_dir", "data/") + "nlp_training_sets/mutated_dataset.json"
+)
 WATERMARK = "source:GremlinGPT"
 TAG = "trainer_module"
 
