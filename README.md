@@ -329,6 +329,8 @@ We are seeking one of the following:
   (paging @elonmusk, @openai, @deepmind, @anthropic, @metaai, @mistralAI, @cohere)  
 - Or just **anyone who gets it** and knows what’s coming
 
+**See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/Open_Funding_Proposal.md):**
+
 ---
 
 If you know how to think in layers, act in silence, and write code that rewrites itself —  
