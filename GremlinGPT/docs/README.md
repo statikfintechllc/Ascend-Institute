@@ -33,7 +33,7 @@
 </p>
 
 <!-- Auto-generated GitHub traffic totals -->
-<h1 align="center">**Reset: 10:00pm CST**</h1>
+<h1 style="font-size:1.6rem" align="center">**Reset: 10:00pm CST**</h1>
 
 ---
 
