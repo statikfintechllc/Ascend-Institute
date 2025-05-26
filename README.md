@@ -8,7 +8,6 @@
   </a>
 </div>
 <h1 align="center">Ascend Institute for Autonomous Sovereignty & Human Financial Liberation</h1>
-
 <div align="center">
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
     <img src="https://img.shields.io/badge/build-v1.0.2-darkred?labelColor=black" alt="Build Status"/>
