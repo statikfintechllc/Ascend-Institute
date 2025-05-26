@@ -31,7 +31,7 @@
 </p>
 
 <!-- Auto-generated GitHub traffic totals -->
-
+<h1 align="center">**Resets at 10:00pm CST**</h1>
 ## Table of Contents
 
 1. [Support This Project](#support-this-project)  
@@ -209,6 +209,7 @@ All without the cloud.
 ## Phase 1: Core Engine & Execution 
 
   ### Sending these first:
+  
     1. agent_core/fsm.py  
     2. agent_core/task_queue.py  
     3. agent_core/tool_executor.py *(already prepped, will verify once fsm is in)*  
@@ -222,6 +223,7 @@ All without the cloud.
 ## Phase 2: NLP & Semantic Logic
 
   ### Then:
+ 
     1. nlp_engine/transformer_core.py  
     2. nlp_engine/tokenizer.py  
     3. nlp_engine/semantic_score.py  
@@ -233,6 +235,7 @@ All without the cloud.
 ## Phase 3: Memory & Persistence
 
   ### Followed by:
+
     1. memory/vector_store/embedder.py 
     2. memory/log_history.py  
 
@@ -241,6 +244,7 @@ All without the cloud.
 ## Phase 4: Self-Training & Mutation
 
   ### Then:
+ 
     1. self_training/feedback_loop.py  
     2. self_training/generate_dataset.py  
     3. self_training/trainer.py  
@@ -252,6 +256,7 @@ All without the cloud.
 ## Phase 5: Scraping Intelligence
 
   ### Then:
+  
     1. scraper/source_router.py  
     2. scraper/scraper_loop.py  
     3. scraper/page_simulator.py  
@@ -264,6 +269,7 @@ All without the cloud.
 ## Phase 6: Trading & Signals
 
   ### Then:
+ 
     1. trading_core/stock_scraper.py  
     2. trading_core/signal_generator.py  
     3. trading_core/rules_engine.py  
@@ -274,6 +280,7 @@ All without the cloud.
 ## Phase 7: Shell + Executors
 
   ### Then:
+
     1. executors/python_executor.py *(already refactored)*  
     2. agent_shell/shell_executor.py  
 
@@ -282,6 +289,7 @@ All without the cloud.
 ## Phase 8: Interfaces + API
 
   ### Finally:
+
     1. backend/api/chat_handler.py  
     2. backend/api/memory_api.py  
     3. backend/api/planner.py  
@@ -292,6 +300,7 @@ All without the cloud.
 ---
 
   ### Once we complete this sequence, I will provide:  
+
     1. Verified `start_all.sh`  
     2. Self-healing FSM loop  
     3. Final `README.md`  
