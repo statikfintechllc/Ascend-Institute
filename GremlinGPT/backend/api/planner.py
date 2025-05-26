@@ -80,4 +80,6 @@ def set_task_priority():
         return jsonify({"error": "Missing 'id' or 'priority'"}), 400
 
     success = reprioritize(task_id, new_priority)
-    return jsonify({"updated": success, "task_id": task_id, "new_priority": new_priority})
+    return jsonify(
+        {"updated": success, "task_id": task_id, "new_priority": new_priority}
+    )

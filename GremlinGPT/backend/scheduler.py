@@ -40,15 +40,21 @@ def start_scheduler():
 
     if LOOP.get("self_training_enabled", True):
         schedule.every(retrain_interval).minutes.do(trigger_retrain)
-        logger.success(f"[SCHEDULER] Self-training scheduled every {retrain_interval} min")
+        logger.success(
+            f"[SCHEDULER] Self-training scheduled every {retrain_interval} min"
+        )
 
     if LOOP.get("planner_enabled", True):
         schedule.every(plan_interval).seconds.do(enqueue_next)
-        logger.success(f"[SCHEDULER] Planner enqueue scheduled every {plan_interval} sec")
+        logger.success(
+            f"[SCHEDULER] Planner enqueue scheduled every {plan_interval} sec"
+        )
 
     if LOOP.get("mutation_watch_enabled", True):
         schedule.every(mutation_interval).seconds.do(scan_and_diff)
-        logger.success(f"[SCHEDULER] Mutation scan scheduled every {mutation_interval} sec")
+        logger.success(
+            f"[SCHEDULER] Mutation scan scheduled every {mutation_interval} sec"
+        )
 
     while True:
         try:
