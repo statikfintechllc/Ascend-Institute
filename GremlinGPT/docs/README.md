@@ -8,7 +8,7 @@
 	
 </div>
 
-# GremlinGPT: The real Autonomous Agent v1.0.2
+<h1 align= "center">GremlinGPT: The real Autonomous Agent v1.0.2</h1>
 
 ## Table of Contents
 
