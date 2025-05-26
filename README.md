@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="docs/custom.css">
 <h1 align="center">Ascend Institute for Autonomous Sovereignty & Human Financial Liberation</h1>
 
 ---
