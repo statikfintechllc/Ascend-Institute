@@ -44,10 +44,18 @@
   fetch('README.md')
     .then(res => res.text())
     .then(md => {
-      // Inject parsed markdown into DOM
+      // Inject parsed markdown
       document.getElementById('readme').innerHTML = marked.parse(md);
 
-      // Fix internal anchor navigation
+      // Ensure headers have IDs for TOC to anchor correctly
+      document.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(header => {
+        if (!header.id) {
+          const text = header.textContent.trim().toLowerCase().replace(/[^\w]+/g, '-');
+          header.id = text;
+        }
+      });
+
+      // Smooth scroll for internal anchor links (TOC)
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
           e.preventDefault();
@@ -69,7 +77,7 @@
         backgroundColor: 0x000000
       });
 
-      // Load scroll FX
+      // Load scroll effects after everything else
       const fxScript = document.createElement('script');
       fxScript.src = 'docs/scrollFX.js';
       document.body.appendChild(fxScript);
