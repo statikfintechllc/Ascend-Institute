@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   const sections = document.querySelectorAll(
-    'h2, h3, h4, p, ul, ol, img, code, pre, .glass'
+    'h1, h2, h3, h4, h5, h6, p, ul, ol, img, code, pre, .glass'
   );
 
   const reveal = (el) => {
