@@ -1,41 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AscendAI Traffic</title>
   <style>
     body {
       background: #0f0f0f;
       color: #f1f1f1;
-      font-family: monospace;
+      font-family: monospace, monospace;
       text-align: center;
-      padding: 10px;
+      padding: 20px;
+    }
+    h2 {
+      color: #FFD700;
+      margin-bottom: 16px;
     }
     img {
       max-width: 100%;
-      border: 2px solid #444;
-      border-radius: 4px;
+      border: 2px solid #333;
+      border-radius: 5px;
+      box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
     }
     .caption {
+      margin-top: 12px;
+      background: #1a1a1a;
+      padding: 10px;
+      border: 1px solid #333;
+      border-radius: 5px;
       color: #FFD700;
-      font-size: 0.85em;
-      margin-top: 8px;
+      font-size: 0.95em;
+      white-space: pre-wrap;
+      text-align: left;
+      display: inline-block;
+      max-width: 95%;
     }
   </style>
 </head>
 <body>
-  <h2>AscendAI Traffic (Live)</h2>
-  <img src="traffic_graph.png?cachebust=1" alt="GitHub Traffic Graph">
+  <h2>AscendAI GitHub Traffic (Live)</h2>
+  <img src="traffic_graph.png?cachebust=1" alt="GitHub Traffic Graph" />
   <div class="caption">
-    <pre>
-<!-- AUTO-GENERATED TOTALS -->
-**GitHub Traffic Totals**
-
-- **Today (2025-05-25):** Clones: 362 | Unique Cloners: 25 | Views: 1,077 | Unique Visitors: 33
-- **Last 14 days:** Clones: 1,251 | Unique Cloners: 220 | Views: 3,499 | Unique Visitors: 184
-- **Lifetime:** Clones: 1,251 | Unique Cloners: 220 | Views: 3,512 | Unique Visitors: 186
-    </pre>
+{{TRAFFIC_TOTALS}}
   </div>
 </body>
 </html>
