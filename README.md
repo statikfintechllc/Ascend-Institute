@@ -1,22 +1,3 @@
-<link rel="stylesheet" type="text/css" href="docs/custom.css">
-<link src="docs/scrollFX.js">
-<link rel="icon" href="favicon.ico">
-<meta property="og:title" content="AscendAI – Sovereign Stack">
-<meta property="og:description" content="GremlinGPT, Financial Autonomy, and Self-Hosting Liberation.">
-<meta property="og:image" content="https://statikfintechllc.github.io/assets/og-image.png">
-<meta property="og:url" content="https://statikfintechllc.github.io/AscendAI/">
-<div id="vanta-bg" style="height:100vh; position:fixed; z-index:-1; width:100%; top:0; left:0;"></div>
-<link src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js">
-<link src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js">
-<link
-  VANTA.NET({
-    el: "#vanta-bg",
-    mouseControls: true,
-    touchControls: true,
-    gyroControls: false,
-    color: 0xff0000,
-    backgroundColor: 0x000000
-  });>
 <h1 align="center">Ascend Institute for Autonomous Sovereignty & Human Financial Liberation</h1>
 
 ---
