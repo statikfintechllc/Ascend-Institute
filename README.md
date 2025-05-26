@@ -9,17 +9,19 @@
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/LICENSE.md">
     <img src="https://img.shields.io/badge/GREMLINGPT%20v1.0-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
   </a>
+  <br/>
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
-    <img src="https://img.shields.io/badge/build-v1.0.2-darkred?style=for-the-badge&labelColor=black&logo=dragon&logoColor=gold" alt="Build Status"/>
+    <img src="https://img.shields.io/badge/build-v1.0.2-darkred?labelColor=black" alt="Build Status"/>
   </a>
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/FOUNDER_LOG.md">
-    <img src="https://img.shields.io/badge/Founder's%20Log-Manifesto-darkred?style=for-the-badge&labelColor=black&logo=dragon&logoColor=gold" alt="Founder's Log"/>
+    <img src="https://img.shields.io/badge/Founder's%20Log-Manifesto-darkred?labelColor=black" alt="Founder's Log"/>
   </a>
+  <br/>
   <a href="https://github.com/statikfintechllc">
-    <img src="https://img.shields.io/badge/contributors-2-darkred?style=for-the-badge&labelColor=black&logo=dragon&logoColor=gold" alt="Contributors"/>
+    <img src="https://img.shields.io/badge/contributors-2-darkred?labelColor=black" alt="Contributors"/>
   </a>
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/FOUNDER_STATEMENT.md">
-    <img src="https://img.shields.io/badge/Founder's%20Log-Statement-darkred?style=for-the-badge&labelColor=black&logo=dragon&logoColor=gold" alt="Founder's Log"/>
+    <img src="https://img.shields.io/badge/Founder's%20Log-Statement-darkred?labelColor=black" alt="Founder's Log"/>
   </a>
 </div>
 
