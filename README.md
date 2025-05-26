@@ -25,7 +25,7 @@
   </a>
 </div>
 
-> GremlinGPT has already been reviewed and starred by contributors from live AI infra labs (including Atrium).
+> GremlinGPT has already been reviewed and starred by live AI infra: Atrium.
 
 <h1 align="center">AscendAI Traffic</h1>
 <h1 align="center">
