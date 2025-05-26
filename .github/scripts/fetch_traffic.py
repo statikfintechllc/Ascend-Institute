@@ -101,14 +101,14 @@ def main(repo):
 
     os.makedirs("docs", exist_ok=True)
 
-    with open("traffic_data.json", "w") as f:
+    with open("docs/traffic_data.json", "w") as f:
         json.dump({"clones": clones_data["clones"], "views": views_data["views"]}, f, indent=2)
 
     totals_md, totals_dict = plot_github_style_merged(
         clones_data["clones"], views_data["views"], "docs/traffic_graph.png"
     )
 
-    with open("traffic_totals.json", "w") as f:
+    with open("docs/traffic_totals.json", "w") as f:
         json.dump({
             "day": {
                 "clones": totals_dict["clones_today"],
