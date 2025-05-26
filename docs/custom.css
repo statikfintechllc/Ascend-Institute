@@ -20,6 +20,11 @@ body {
   display: none !important;
 }
 
+.markdown-body p > img[alt*="badge"] {
+  margin: 0 0.25rem 0 0 !important;
+  vertical-align: middle;
+}
+
 /* Header styling */
 h1, h2, h3, h4, h5 {
   color: gold;
