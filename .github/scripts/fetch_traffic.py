@@ -100,15 +100,13 @@ def main(repo):
 
     os.makedirs("docs", exist_ok=True)
 
+    with open("docs/traffic_data.json", "w") as f:
+        json.dump({"clones": clones_data["clones"], "views": views_data["views"]}, f, indent=2)
+
     totals = plot_github_style_merged(
         clones_data["clones"], views_data["views"], "docs/traffic_graph.png"
     )
 
-    # write traffic_data.json
-    with open("docs/traffic_data.json", "w") as f:
-        json.dump({"clones": clones_data["clones"], "views": views_data["views"]}, f, indent=2)
-
-    # write traffic_totals.json
     with open("docs/traffic_totals.json", "w") as f:
         json.dump({
             "day": {
@@ -131,7 +129,6 @@ def main(repo):
             }
         }, f, indent=2)
 
-    # inline totals string (no fs dependency)
     totals_md = f"""
 **GitHub Traffic Totals**
 
@@ -143,7 +140,6 @@ def main(repo):
     with open("docs/traffic_totals.md", "w") as f:
         f.write(totals_md)
 
-    # update HTML dashboard
     dashboard_path = "docs/dashboard.html"
     if os.path.exists(dashboard_path):
         with open(dashboard_path, "r") as f:
