@@ -5,6 +5,7 @@
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/LICENSE.md">
     <img src="https://img.shields.io/badge/GREMLINGPT%20v1.0-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
   </a>
+	
 <h1 align= "center">GremlinGPT: The real Autonomous Agent v1.0.2</h1>
 
 <div align="center">
