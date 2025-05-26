@@ -15,8 +15,6 @@
       max-width: 960px;
       margin: 4rem auto;
       padding: 1rem;
-      background: rgba(0, 0, 0, 0.1);
-      border-radius: 12px;
     }
   </style>
 </head>
@@ -35,7 +33,6 @@
 <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
-  // Set Markdown rendering options
   marked.setOptions({
     headerIds: true,
     headerPrefix: ''
@@ -44,30 +41,30 @@
   fetch('README.md')
     .then(res => res.text())
     .then(md => {
-      // Inject parsed markdown
-      document.getElementById('readme').innerHTML = marked.parse(md);
+      const container = document.getElementById('readme');
+      container.innerHTML = marked.parse(md);
 
-      // Ensure headers have IDs for TOC to anchor correctly
-      document.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(header => {
+      // Assign clean IDs to headers
+      container.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(header => {
         if (!header.id) {
           const text = header.textContent.trim().toLowerCase().replace(/[^\w]+/g, '-');
           header.id = text;
         }
       });
 
-      // Smooth scroll for internal anchor links (TOC)
+      // Smooth scroll TOC links
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-          e.preventDefault();
           const target = document.querySelector(this.getAttribute('href'));
           if (target) {
+            e.preventDefault();
             target.scrollIntoView({ behavior: 'smooth' });
             history.pushState(null, null, this.getAttribute('href'));
           }
         });
       });
 
-      // Activate VANTA background
+      // Background animation
       VANTA.NET({
         el: "#vanta-bg",
         mouseControls: true,
@@ -77,9 +74,12 @@
         backgroundColor: 0x000000
       });
 
-      // Load scroll effects after everything else
+      // Append scroll FX
       const fxScript = document.createElement('script');
       fxScript.src = 'docs/scrollFX.js';
       document.body.appendChild(fxScript);
     });
 </script>
+
+</body>
+</html>
