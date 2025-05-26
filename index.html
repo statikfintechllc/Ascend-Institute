@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>AscendAI – Sovereign Stack</title>
   <link rel="stylesheet" type="text/css" href="docs/custom.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-dark.min.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <meta property="og:title" content="AscendAI – Sovereign Stack">
   <meta property="og:description" content="GremlinGPT, Financial Autonomy, and Self-Hosting Liberation.">
@@ -15,20 +16,11 @@
 <!-- VANTA Background -->
 <div id="vanta-bg" style="height:100vh; position:fixed; z-index:-1; width:100%; top:0; left:0;"></div>
 
-<!-- Markdown content will be embedded here -->
+<!-- Markdown content will be rendered here -->
 <main>
   <div id="readme" class="markdown-body"></div>
 </main>
 
-<script>
-  fetch('README.md')
-    .then(res => res.text())
-    .then(md => {
-      document.getElementById('readme').innerText = md;
-      // Markdown parser like marked.js can render this properly (optional)
-    });
-</script>
-  
 <!-- Scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
@@ -42,7 +34,17 @@
     backgroundColor: 0x000000
   });
 </script>
-<script src="docs/scrollFX.js"></script>
 
+<!-- Markdown renderer -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+  fetch('README.md')
+    .then(res => res.text())
+    .then(md => {
+      document.getElementById('readme').innerHTML = marked.parse(md);
+    });
+</script>
+
+<script src="docs/scrollFX.js"></script>
 </body>
 </html>
