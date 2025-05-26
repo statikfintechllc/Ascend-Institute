@@ -124,7 +124,7 @@ We’re open to building aligned partnerships with:
 
 ---
 
-### If You Believe:
+## If You Believe:
 
 - Autonomy is earned, not sold  
 - Intelligence should be self-bootstrapped, not leased  
@@ -184,10 +184,10 @@ GremlinGPT is a modular AI system designed to bootstrap itself into a local doma
 
 All without the cloud.
 
-### GremlinGPT's Layout:
+## GremlinGPT's Layout:
    -  **[GremlinGPT v1.0.2 AI System](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT)**
 
-### GremlinGPT's Documentation:
+## GremlinGPT's Documentation:
    -  **[What is GremlinGPT v1.0.2](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs)**
 
 ---
@@ -304,14 +304,14 @@ All without the cloud.
 
 ---
 
-  ### Once we complete this sequence, I will provide:  
+  ## Once we complete this sequence, I will provide:  
 
     1. Verified `start_all.sh`  
     2. Self-healing FSM loop  
     3. Final `README.md`  
     4. `system_call_graph.md` updated to **v1.0.3**
   
-### Read and Inact on your system:
+## Read and Inact on your system:
   - **[GremlinGPT.v1.0.3.Build.Prompt](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/GremlinGPT.v1.0.3.Build.Prompt.md)**
 
 ---
