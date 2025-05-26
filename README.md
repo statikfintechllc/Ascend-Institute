@@ -50,17 +50,17 @@
     - [GremlinGPT's Documentation](#gremlingpts-documentation)  
 10. [Demos](#demos)  
 11. [What is GremlinGPT v1.0.3](#what-is-gremlingpt-v103)  
-    - [Phase 1: Core Engine & Execution](#phase-1-core-engine--execution)  
-    - [Phase 2: NLP & Semantic Logic](#phase-2-nlp--semantic-logic)  
-    - [Phase 3: Memory & Persistence](#phase-3-memory--persistence)  
-    - [Phase 4: Self-Training & Mutation](#phase-4-self-training--mutation)  
-    - [Phase 5: Scraping Intelligence](#phase-5-scraping-intelligence)  
-    - [Phase 6: Trading & Signals](#phase-6-trading--signals)  
-    - [Phase 7: Shell + Executors](#phase-7-shell--executors)  
-    - [Phase 8: Interfaces + API](#phase-8-interfaces--api)  
-    - [Finalization & System Inaction](#once-completed-i-will-provide)
-    - [Do What I'm Doing](#read-and-inact-on-your-system)
-12. [Collaborators Wanted — Join the Loop](#collaborators-wanted--join-the-loop)  
+    - [Phase 1 is Core Engine and Execution](#phase-1-is-core-engine-and-execution)  
+    - [Phase 2 is NLP and Semantic Logic](#phase-2-is-nlp-and-semantic-logic)  
+    - [Phase 3 is Memory and Persistence](#phase-3-is-memory-and-persistence)  
+    - [Phase 4 is Self Training and Mutation](#phase-4-is-self-training-and-mutation)  
+    - [Phase 5 is Scraping Intelligence](#phase-5-is-scraping-intelligence)  
+    - [Phase 6 is Trading and Signals](#phase-6-trading-and-signals)  
+    - [Phase 7 is Shell and Executors](#phase-7-is-shell-and-executors)  
+    - [Phase 8 is Interfaces and API](#phase-8-interfaces--api)  
+    - [Once Completed I will provide](#once-completed-i-will-provide)
+    - [Read and Inact on Your System](#read-and-inact-on-your-system)
+12. [Collaborators Wanted to Join the Loop](#collaborators-wanted-to-join-the-loop)  
 13. [Support](#support)  
 14. [Final Notes](#final-notes)  
 15. [License](#license)  
@@ -211,7 +211,7 @@ All without the cloud.
 ## What is GremlinGPT v1.0.3
 **The full revamp of v1.0.2, Not just a wrapper. Autonomous.**
 
-## Phase 1: Core Engine & Execution 
+## Phase 1 is Core Engine and Execution 
 
   ### Sending these first:
   
@@ -225,7 +225,7 @@ All without the cloud.
 
 ---
 
-## Phase 2: NLP & Semantic Logic
+## Phase 2 is NLP and Semantic Logic
 
   ### Then:
  
@@ -237,7 +237,7 @@ All without the cloud.
 
 ---
 
-## Phase 3: Memory & Persistence
+## Phase 3 is Memory and Persistence
 
   ### Followed by:
 
@@ -246,7 +246,7 @@ All without the cloud.
 
 ---
 
-## Phase 4: Self-Training & Mutation
+## Phase 4 is Self Training and Mutation
 
   ### Then:
  
@@ -258,7 +258,7 @@ All without the cloud.
 
 ---
 
-## Phase 5: Scraping Intelligence
+## Phase 5 is Scraping Intelligence
 
   ### Then:
   
@@ -271,7 +271,7 @@ All without the cloud.
 
 ---
 
-## Phase 6: Trading & Signals
+## Phase 6 is Trading and Signals
 
   ### Then:
  
@@ -282,7 +282,7 @@ All without the cloud.
 
 ---
 
-## Phase 7: Shell + Executors
+## Phase 7 is Shell and Executors
 
   ### Then:
 
@@ -291,7 +291,7 @@ All without the cloud.
 
 ---
 
-## Phase 8: Interfaces + API
+## Phase 8 is Interfaces and API
 
   ### Finally:
 
@@ -304,19 +304,19 @@ All without the cloud.
 
 ---
 
-  ## Once we complete this sequence, I will provide:  
+  ## Once we complete this sequence I will provide  
 
     1. Verified `start_all.sh`  
     2. Self-healing FSM loop  
     3. Final `README.md`  
     4. `system_call_graph.md` updated to **v1.0.3**
   
-## Read and Inact on your system:
+## Read and Inact on Your System
   - **[GremlinGPT.v1.0.3.Build.Prompt](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/GremlinGPT.v1.0.3.Build.Prompt.md)**
 
 ---
 
-## Collaborators Wanted — Join the Loop
+## Collaborators Wanted to Join the Loop
 
 We are seeking one of the following:
 
@@ -358,7 +358,7 @@ Unseen. Unbroken. Unrivaled. Gremlins Ascend.
 
 ---
 
-## License:
+## License
 
 Released under the GremlinGPT Fair Use License v1.0.
 Personal use only. Commercial use is prohibited unless licensed separately.
