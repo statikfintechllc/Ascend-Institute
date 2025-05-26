@@ -78,6 +78,8 @@
 - **Ethereum**: `0xC2db50A0fc6c95f36Af7171D8C41F6998184103F`  
 - **Chime**: `$StatikSmokTM`
 
+**See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/Open_Funding_Proposal.md)**
+
 ---
 
 ## Funding and Infrastructure Goals
@@ -111,6 +113,8 @@ To reach full deployment — stable memory growth, continuous mutation, and mult
 - **DM:**  
   - a) [GitHub: statikfintechllc](https://github.com/statikfintechllc)  
   - b) [X: @GremlinsForge](https://twitter.com/GremlinsForge)
+
+**See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/Open_Funding_Proposal.md)**
 
 ---
 
