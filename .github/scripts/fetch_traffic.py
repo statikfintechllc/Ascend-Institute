@@ -130,14 +130,6 @@ def main(repo):
             }
         }, f, indent=2)
 
-    with open("docs/dashboard.html", "r") as f:
-        html = f.read()
-
-    html = html.replace("{{TRAFFIC_TOTALS}}", totals_md.strip())
-
-    with open("docs/dashboard.html", "w") as f:
-        f.write(html)
-
 
 if __name__ == "__main__":
     main(REPO)
