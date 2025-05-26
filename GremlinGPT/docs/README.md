@@ -1,5 +1,3 @@
-<h1 align= "center">GremlinGPT: The real Autonomous Agent v1.0.2</h1>
-
 <div align="center">
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/LICENSE.md">
     <img src="https://img.shields.io/badge/FAIR%20USE-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Fair Use License"/>
@@ -7,7 +5,9 @@
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/LICENSE.md">
     <img src="https://img.shields.io/badge/GREMLINGPT%20v1.0-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
   </a>
-  <br/>
+<h1 align= "center">GremlinGPT: The real Autonomous Agent v1.0.2</h1>
+
+<div align="center">
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
     <img src="https://img.shields.io/badge/build-v1.0.2-darkred?labelColor=black" alt="Build Status"/>
   </a>
