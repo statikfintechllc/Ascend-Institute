@@ -49,9 +49,7 @@ def adjust_priorities(weak_signals):
                     logger.debug(f"[{AGENT_NAME}] Boosted priority of task {tid}")
                     count += 1
     if count:
-        logger.info(
-            f"[{AGENT_NAME}] Reprioritized {count} tasks due to low confidence."
-        )
+        logger.info(f"[{AGENT_NAME}] Reprioritized {count} tasks due to low confidence.")
 
 
 def plan_next_task():
@@ -62,9 +60,7 @@ def plan_next_task():
         choice = weak[0]["task"]
         reason = "reprocessing_low_confidence"
     elif top:
-        choice = random.choices(
-            [t["task"] for t in top], weights=[t["reward"] for t in top], k=1
-        )[0]
+        choice = random.choices([t["task"] for t in top], weights=[t["reward"] for t in top], k=1)[0]
         reason = "reward_guided"
     else:
         choice = "scrape"
@@ -96,9 +92,7 @@ def plan_next_task():
     embedder.inject_watermark(origin=AGENT_NAME)
 
     if os.path.exists("data/nlp_training_sets/auto_generated.jsonl"):
-        archive_path = archive_json_log(
-            "data/nlp_training_sets/auto_generated.jsonl", prefix="planlog"
-        )
+        archive_path = archive_json_log("data/nlp_training_sets/auto_generated.jsonl", prefix="planlog")
         if archive_path:
             auto_commit(archive_path, message="[autocommit] Planner log update")
 
