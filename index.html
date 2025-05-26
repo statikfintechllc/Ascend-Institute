@@ -39,7 +39,7 @@
       const readmeEl = document.getElementById('readme');
       readmeEl.innerHTML = marked.parse(md);
 
-      // Now that content is rendered, load Vanta + scrollFX
+      // Activate background
       VANTA.NET({
         el: "#vanta-bg",
         mouseControls: true,
@@ -49,6 +49,7 @@
         backgroundColor: 0x000000
       });
 
+      // Load scroll effects after render
       const fxScript = document.createElement('script');
       fxScript.src = 'docs/scrollFX.js';
       document.body.appendChild(fxScript);
