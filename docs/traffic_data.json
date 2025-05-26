@@ -57,7 +57,7 @@
     },
     {
       "timestamp": "2025-05-26T00:00:00Z",
-      "count": 261,
+      "count": 312,
       "uniques": 24
     }
   ],
@@ -129,8 +129,8 @@
     },
     {
       "timestamp": "2025-05-26T00:00:00Z",
-      "count": 832,
-      "uniques": 5
+      "count": 936,
+      "uniques": 6
     }
   ]
 }
