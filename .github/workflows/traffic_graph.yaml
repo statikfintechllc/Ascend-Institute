@@ -28,7 +28,7 @@ jobs:
           python .github/scripts/fetch_traffic.py
       
       - name: Build dashboard.html from template
-          run: python scripts/build_dashboard_html.py
+        run: python scripts/build_dashboard_html.py
 
       - name: Set up PAT-based push authentication
         run: |
