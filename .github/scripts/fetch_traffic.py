@@ -154,6 +154,10 @@ def main(repo):
 
     with open("docs/dashboard.html", "w") as f:
         f.write(html)
+    # Copy dashboard to index.html for GitHub Pages root
+    with open("docs/dashboard.html", "r") as src:
+        with open("docs/index.html", "w") as dst:
+            dst.write(src.read())
 
 
 if __name__ == "__main__":
