@@ -38,8 +38,11 @@
   fetch('README.md')
     .then(res => res.text())
     .then(md => {
-      const readmeEl = document.getElementById('readme');
-      readmeEl.innerHTML = marked.parse(md);
+      const readmeEl = marked.setOptions({
+  headerIds: true,
+  headerPrefix: ''
+});
+document.getElementById('readme').innerHTML = marked.parse(md);
 
       // Activate background
       VANTA.NET({
