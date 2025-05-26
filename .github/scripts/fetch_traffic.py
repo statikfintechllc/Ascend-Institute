@@ -143,21 +143,21 @@ def main(repo):
 - **Last 14 days:** Clones: {totals["clones_14d"]:,} | Unique Cloners: {totals["unique_clones_14d"]:,} | Views: {totals["views_14d"]:,} | Unique Visitors: {totals["unique_views_14d"]:,}
 - **Lifetime:** Clones: {totals["clones_lifetime"]:,} | Unique Cloners: {totals["unique_clones_lifetime"]:,} | Views: {totals["views_lifetime"]:,} | Unique Visitors: {totals["unique_views_lifetime"]:,}
 """)
-        # Inject totals into HTML widget
-    with open("docs/dashboard.html", "r") as f:
-        html = f.read()
-        
-    with open("docs/traffic_totals.json", "r") as f:
-        totals = f.read()
+   # Use in-memory markdown string
+totals = totals_md
 
-    html = html.replace("{{TRAFFIC_TOTALS}}", totals.strip())
+# Inject into dashboard.html
+with open("docs/dashboard.html", "r") as f:
+    html = f.read()
 
-    with open("docs/dashboard.html", "w") as f:
-        f.write(html)
-    # Copy dashboard to index.html for GitHub Pages root
-    with open("docs/dashboard.html", "r") as src:
-        with open("docs/index.html", "w") as dst:
-            dst.write(src.read())
+html = html.replace("{{TRAFFIC_TOTALS}}", totals.strip())
+
+with open("docs/dashboard.html", "w") as f:
+    f.write(html)
+
+# Export to index.html for GitHub Pages
+with open("docs/index.html", "w") as f:
+    f.write(html)
 
 
 if __name__ == "__main__":
