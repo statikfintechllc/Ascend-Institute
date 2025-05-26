@@ -26,9 +26,6 @@ jobs:
           REPO: statikfintechllc/AscendAI
         run: |
           python .github/scripts/fetch_traffic.py
-      
-      - name: Build dashboard.html from template
-        run: python scripts/build_dashboard_html.py
 
       - name: Set up PAT-based push authentication
         run: |
@@ -38,7 +35,8 @@ jobs:
         run: |
           git config user.name 'GitHub Action'
           git config user.email 'action@github.com'
-          git add docs/traffic_data.json docs/traffic_graph.png docs/traffic_totals.json docs/traffic_totals.json
+          git add docs/traffic_data.json docs/traffic_graph.png docs/traffic_totals.json
           git diff --cached --quiet || git commit -m "Update traffic data and graph"
           git pull --rebase
           git push
+
