@@ -200,11 +200,3 @@ h1, h2 {
 * {
   transition: all 0.3s ease-in-out;
 }
-
-main {
-  max-width: 960px;
-  margin: 4rem auto;
-  padding: 1rem;
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-}
