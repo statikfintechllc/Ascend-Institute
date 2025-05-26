@@ -36,6 +36,7 @@
 </div>
   
 <h1 align="center">**Reset: 10:00pm CST**</h1>
+
 ## Table of Contents
 
 1. [Support This Project](#support-this-project)  
