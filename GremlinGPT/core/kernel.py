@@ -1,3 +1,5 @@
+# !/usr/bin/env python3
+
 # ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
 # Built under the GremlinGPT Dual License v1.0
@@ -5,22 +7,8 @@
 # Contact: ascend.gremlin@gmail.com
 # ─────────────────────────────────────────────────────────────
 
-# !/usr/bin/env python3
-
 # GremlinGPT v5 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
-# It must:
-#   - Integrate seamlessly into the architecture defined in the full outline
-#   - Operate autonomously and communicate cross-module via defined protocols
-#   - Be production-grade, repair-capable, and state-of-the-art in logic
-#   - Support learning, persistence, mutation, and traceability
-#   - Not remove or weaken logic (stubs may be replaced, but never deleted)
-#   - Leverage appropriate dependencies, imports, and interlinks to other systems
-#   - Return enhanced — fully wired, no placeholders, no guesswork
-# Objective:
-#   Receive, reinforce, and return each script as a living part of the Gremlin:
-
-# core/kernel.py
 
 from datetime import datetime
 from pathlib import Path
@@ -34,7 +22,6 @@ import subprocess
 
 KERNEL_TAG = "kernel_writer"
 SOURCE_ROOT = Path("GremlinGPT")
-
 ROLLBACK_DIR = Path(CFG["paths"].get("checkpoints_dir", "run/checkpoints/")) / "snapshots"
 ROLLBACK_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -104,7 +91,6 @@ def apply_patch(file_path, new_code, reason="mutation", safe_mode=True):
         logger.info(f"[KERNEL] No change or failed read for: {file_path}")
         return False
 
-    # Respect global safety flag
     patch_testing_enabled = CFG["system"].get("enable_patch_test", True)
 
     if safe_mode and patch_testing_enabled:
@@ -135,14 +121,7 @@ def apply_patch(file_path, new_code, reason="mutation", safe_mode=True):
         },
     )
 
-    # === Inject GremlinGPT Watermark (in-memory trace) ===
-    diff_meta = {
-        "watermark": "source:GremlinGPT",
-        "patch_id": patch_id,
-        "file": file_path,
-        "timestamp": datetime.utcnow().isoformat(),
-    }
-    logger.debug(f"[KERNEL] Watermark embedded: {diff_meta}")
+    logger.debug(f"[KERNEL] Watermark embedded: {{'patch_id': '{patch_id}', 'file': '{file_path}'}}")
 
     success = write_file(file_path, new_code)
     if success:
