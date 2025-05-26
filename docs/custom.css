@@ -21,7 +21,7 @@ h1, h2, h3, h4, h5 {
 
 /* Glassmorphism effect on README */
 .glass {
-  background: rgba(0, 0, 0, 0.05); /* more see-through */
+  background: rgba(0, 0, 0, 0.01); /* more see-through */
   border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow: 0 0 40px rgba(255, 215, 0, 0.1), 0 0 10px rgba(255, 0, 0, 0.05);
   backdrop-filter: blur(12px); /* deeper blur */
@@ -41,22 +41,22 @@ h1, h2, h3, h4, h5 {
 
 .glass h2, .glass h3 {
   color: #FFD700;
-  text-shadow: 0 0 5px crimson, 0 0 10px gold;
+  text-shadow: 0 0 4px crimson, 0 0 10px gold;
 }
 
 .glass a {
   color: #FF6A00;
-  text-shadow: 0 0 3px crimson;
+  text-shadow: 0 0 2px crimson;
 }
 
 .glass a:hover {
   color: #FFD700;
-  text-shadow: 0 0 10px red;
+  text-shadow: 0 0 8px red;
 }
 
 /* Make headings glow on hover */
 h1:hover, h2:hover, h3:hover {
-  text-shadow: 0 0 5px #FFD700, 0 0 20px red;
+  text-shadow: 0 0 4px #FFD700, 0 0 20px red;
 }
 
 /* Hyperlink style */
