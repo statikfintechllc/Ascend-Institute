@@ -1,5 +1,3 @@
-/* custom.css — Sovereign FinTech style */
-
 body {
   background-color: #000;
   color: #ddd;
@@ -7,15 +5,12 @@ body {
   line-height: 1.6;
   padding: 2rem;
   margin: 0;
-  background-attachment: dynamic;
+  background-attachment: fixed;
   background-image: linear-gradient(180deg, #000 0%, #111 100%);
   overflow-x: hidden;
 }
 
-.markdown-body .anchor {
-  display: none !important;
-}
-
+.markdown-body .anchor,
 .markdown-body hr {
   display: none !important;
 }
@@ -25,19 +20,23 @@ body {
   vertical-align: middle;
 }
 
-/* Header styling */
+/* Headers */
 h1, h2, h3, h4, h5 {
   color: gold;
   text-shadow: 1px 1px 2px red, 0 0 10px #FFD700;
   transition: all 0.3s ease;
 }
 
-/* Glassmorphism effect on README */
+h1:hover, h2:hover, h3:hover {
+  text-shadow: 0 0 5px #FFD700, 0 0 20px red;
+}
+
+/* Glass effect */
 .glass {
-  background: rgba(0, 0, 0, 0.01); /* more see-through */
+  background: rgba(0, 0, 0, 0.01);
   border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow: 0 0 40px rgba(255, 215, 0, 0.1), 0 0 10px rgba(255, 0, 0, 0.05);
-  backdrop-filter: blur(6px); /* deeper blur */
+  backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   padding: 2rem;
   border-radius: 16px;
@@ -67,12 +66,6 @@ h1, h2, h3, h4, h5 {
   text-shadow: 0 0 10px red;
 }
 
-/* Make headings glow on hover */
-h1:hover, h2:hover, h3:hover {
-  text-shadow: 0 0 5px #FFD700, 0 0 20px red;
-}
-
-/* Hyperlink style */
 a {
   color: orangered;
   text-decoration: none;
@@ -85,7 +78,7 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Code & Pre */
+/* Code Blocks */
 code {
   background: #111;
   color: crimson;
@@ -102,33 +95,30 @@ pre {
   box-shadow: 0 0 10px #ff000040;
 }
 
-/* Table styling */
+/* Tables */
 table {
   width: 100%;
   border-collapse: collapse;
 }
-
 table, th, td {
   border: 1px solid #444;
 }
-
 th, td {
   padding: 10px;
   text-align: left;
 }
 
-/* Image border enhancements */
+/* Images */
 img {
   border: 2px solid #666;
   border-radius: 8px;
   transition: all 0.3s ease;
 }
-
 img:hover {
   box-shadow: 0 0 10px #FFD700;
 }
 
-/* Section reveal animations */
+/* Section animation */
 section, div, article {
   opacity: 0;
   transform: translateY(40px);
@@ -142,7 +132,7 @@ section, div, article {
   }
 }
 
-/* Badge shadows */
+/* Badge + HR FX */
 .badge, img[src*="badge"] {
   box-shadow: 2px 2px 6px #111, 0 0 5px #B22222;
   transition: all 0.3s ease;
@@ -153,7 +143,6 @@ section, div, article {
   box-shadow: 0 0 8px #FFD700, 0 0 15px #DC143C;
 }
 
-/* Glowing horizontal rule */
 hr {
   border: 0;
   height: 2px;
@@ -161,59 +150,33 @@ hr {
   margin: 2rem 0;
 }
 
-/* Scrollbar Neon */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
-
 ::-webkit-scrollbar-track {
   background: #000;
 }
-
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(#FF0000, #FFD700);
   border-radius: 5px;
   box-shadow: 0 0 5px gold, 0 0 10px red;
 }
 
-/* Bonus: parallax header prep */
-.parallax {
-  background-image: url('your-future-bg.jpg'); /* replace with your image */
-  min-height: 300px;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background: linear-gradient(black, #0a0a0a);
-  background-attachment: fixed;
-  background-size: cover;
-}
-
-h1, h2 {
-  position: relative;
-  z-index: 2;
-}
-
+/* Back layer */
 ::before {
   content: "";
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background-image: url('yourParallaxTexture.png'); /* upload an abstract tech graphic */
+  background-image: url('yourParallaxTexture.png');
   background-size: cover;
   background-attachment: fixed;
   opacity: 0.05;
   z-index: -1;
   pointer-events: none;
 }
-/* Smooth transitions everywhere */
+
 * {
   transition: all 0.3s ease-in-out;
 }
