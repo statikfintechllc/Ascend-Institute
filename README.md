@@ -1,4 +1,5 @@
-<link rel="stylesheet" type="text/css" href="docs/custom.css"> <script src="docs/scrollFX.js"></script>
+<link rel="stylesheet" type="text/css" href="docs/custom.css"> 
+<link-script src="docs/scrollFX.js"></link-script>
 
 <h1 align="center">Ascend Institute for Autonomous Sovereignty & Human Financial Liberation</h1>
 
