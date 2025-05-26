@@ -1,6 +1,10 @@
 <link rel="stylesheet" type="text/css" href="docs/custom.css"> 
-<link-script src="docs/scrollFX.js"></link-script>
-
+<script src="docs/scrollFX.js"></script>
+<link rel="icon" href="favicon.ico">
+<meta property="og:title" content="AscendAI – Sovereign Stack">
+<meta property="og:description" content="GremlinGPT, Financial Autonomy, and Self-Hosting Liberation.">
+<meta property="og:image" content="https://statikfintechllc.github.io/assets/og-image.png">
+<meta property="og:url" content="https://statikfintechllc.github.io/AscendAI/">
 <h1 align="center">Ascend Institute for Autonomous Sovereignty & Human Financial Liberation</h1>
 
 ---
