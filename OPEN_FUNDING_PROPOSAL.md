@@ -1,3 +1,11 @@
+<div align="center">
+  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/LICENSE.md">
+    <img src="https://img.shields.io/badge/FAIR%20USE-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Fair Use License"/>
+  </a>
+  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/LICENSE.md">
+    <img src="https://img.shields.io/badge/GREMLINGPT%20v1.0-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
+  </a>
+  
 # GremlinGPT – Open Funding Proposal
 
 **Project:** GremlinGPT v1.0.3  
@@ -48,10 +56,12 @@ The initial funding target will allow GremlinGPT to:
 | **Ethereum**  | `0xC2db50A0fc6c95f36Af7171D8C41F6998184103F` |
 | **Chime**     | `$StatikSmokTM` |
 
-Want equity, private access, or to sponsor hardware directly?  
-**Email:** ascend.gremlin@gmail.com  
-**DM:** https://github.com/statikfintechllc
-
+**Want equity, private access, or to sponsor hardware directly? Reach Out to:**
+- **Email:** [ascend.gremlin@gmail.com](mailto:ascend.gremlin@gmail.com)  
+- **Text Us:** [+1 (785) 443-6288](sms:+17854436288)  
+- **DM:**  
+  - a) [GitHub: statikfintechllc](https://github.com/statikfintechllc)  
+  - b) [X: @GremlinsForge](https://twitter.com/GremlinsForge)
 ---
 
 ## Why Now?
