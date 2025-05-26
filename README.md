@@ -31,7 +31,7 @@
 </p>
 
 <!-- Auto-generated GitHub traffic totals -->
-<h1 align="center">**Resets at 10:00pm CST**</h1>
+<h1 align="center">**Resets Daily at 10:00pm CST**</h1>
 ## Table of Contents
 
 1. [Support This Project](#support-this-project)  
