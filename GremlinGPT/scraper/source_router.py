@@ -59,10 +59,7 @@ async def route_scraping_async():
                 result = await safe_scrape_web()
 
             for item in result:
-                summary = (
-                    f"[{item.get('symbol', 'N/A')}] Price: {item.get('price')} "
-                    f"Volume: {item.get('volume')}"
-                )
+                summary = f"[{item.get('symbol', 'N/A')}] Price: {item.get('price')} " f"Volume: {item.get('volume')}"
                 store_scrape_to_memory("auto_scraper", summary)
 
             return result

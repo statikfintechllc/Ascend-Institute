@@ -66,9 +66,7 @@ def diff_files(file_a: str, file_b: str) -> Dict:
     Computes structured diff and semantic analysis between two file paths.
     """
     try:
-        with open(file_a, "r", encoding="utf-8") as f1, open(
-            file_b, "r", encoding="utf-8"
-        ) as f2:
+        with open(file_a, "r", encoding="utf-8") as f1, open(file_b, "r", encoding="utf-8") as f2:
             return diff_texts(f1.read(), f2.read())
     except Exception as e:
         return {

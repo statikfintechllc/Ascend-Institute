@@ -56,8 +56,7 @@ def trace_calls():
                     imports = [
                         line.strip()
                         for line in lines
-                        if line.strip().startswith("import")
-                        or line.strip().startswith("from")
+                        if line.strip().startswith("import") or line.strip().startswith("from")
                     ]
                     importable = "Yes" if is_importable(path) else "No"
                     table.add_row(module_name, "\n".join(imports), importable)
