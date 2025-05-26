@@ -135,7 +135,7 @@ def main(repo):
             }
         }, f, indent=2)
 
-    with open("docs/traffic_totals.md", "w") as f:
+    with open("docs/traffic_totals.json", "w") as f:
         f.write(f"""
 **GitHub Traffic Totals**
 
@@ -147,11 +147,8 @@ def main(repo):
     with open("docs/dashboard.html", "r") as f:
         html = f.read()
         
-try:
-    with open("docs/traffic_totals.md", "r") as f:
+    with open("docs/traffic_totals.json", "r") as f:
         totals = f.read()
-except FileNotFoundError:
-    totals = "{{TRAFFIC_TOTALS}}"  # fallback placeholder to keep replace logic intact
 
     html = html.replace("{{TRAFFIC_TOTALS}}", totals.strip())
 
