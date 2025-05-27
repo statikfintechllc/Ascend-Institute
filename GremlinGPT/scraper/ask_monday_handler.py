@@ -1,3 +1,5 @@
+# !/usr/bin/env python3
+
 # ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
 # Built under the GremlinGPT Dual License v1.0
@@ -5,33 +7,8 @@
 # Contact: ascend.gremlin@gmail.com
 # ─────────────────────────────────────────────────────────────
 
-# !/usr/bin/env python3
-
-# GremlinGPT v5 :: Module Integrity Directive
+# GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
-# It must:
-#   - Integrate seamlessly into the architecture defined in the full outline
-#   - Operate autonomously and communicate cross-module via defined protocols
-#   - Be production-grade, repair-capable, and state-of-the-art in logic
-#   - Support learning, persistence, mutation, and traceability
-#   - Not remove or weaken logic (stubs may be replaced, but never deleted)
-#   - Leverage appropriate dependencies, imports, and interlinks to other systems
-#   - Return enhanced — fully wired, no placeholders, no guesswork
-# Objective:
-#   Receive, reinforce, and return each script as a living part of the Gremlin:
-
-# scraper/ask_monday_handler.py
-
-# ─────────────────────────────────────────────────────────────
-# ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
-# Built under the GremlinGPT Dual License v1.0
-# © 2025 StatikFintechLLC / AscendAI Project
-# Contact: ascend.gremlin@gmail.com
-# ─────────────────────────────────────────────────────────────
-
-# !/usr/bin/env python3
-
-# GremlinGPT v5 :: Module Integrity Directive
 
 import os
 import time
@@ -51,7 +28,6 @@ from memory.log_history import log_event
 WATERMARK = "source:GremlinGPT"
 ORIGIN = "ask_monday_handler"
 
-# Ensure platform-correct screenshot path (now using os.path.expanduser for flexibility)
 SCREENSHOT_DIR = Path(os.path.expanduser("data/logs/screenshots"))
 SCREENSHOT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -89,10 +65,7 @@ def scroll_and_capture():
     images = []
     for i in range(3):
         screenshot = ImageGrab.grab()
-        path = (
-            SCREENSHOT_DIR
-            / f"monday_response_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{i}.png"
-        )
+        path = SCREENSHOT_DIR / f"monday_response_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{i}.png"
         screenshot.save(path)
         images.append(path)
         pyautogui.scroll(-500)
@@ -130,9 +103,8 @@ def save_to_memory(prompt, response):
     )
     inject_watermark(origin=ORIGIN)
     log_event("ask", "monday_query", {"prompt": prompt}, status="external")
-    filename = (
-        MEMORY_DIR / f"chat_response_{timestamp.replace(':', '').replace('-', '')}.md"
-    )
+
+    filename = MEMORY_DIR / f"chat_response_{timestamp.replace(':', '').replace('-', '')}.md"
     with open(filename, "w") as f:
         f.write(f"# Prompt:\n{prompt}\n\n# Response:\n{response}\n")
     logger.success(f"[ASK] ChatGPT result embedded and saved: {filename}")
@@ -154,7 +126,7 @@ def handle(task):
     return ask_monday(prompt)
 
 
-# Standalone testing
+# Standalone test
 if __name__ == "__main__":
     example = "Explain EMA crossover for penny stocks under 10 dollars."
     ask_monday(example)
