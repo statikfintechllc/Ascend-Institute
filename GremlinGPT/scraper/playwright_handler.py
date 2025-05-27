@@ -41,6 +41,31 @@ async def get_dom_html(url):
         logger.error(f"[{ORIGIN.upper()}] Timeout loading page: {url}")
         return "<html><body><h1>Timeout Error</h1></body></html>"
 
+    try:
+        timestamp = datetime.utcnow().isoformat()
+        logger.info(f"[{ORIGIN.upper()}] [{timestamp}] Launching browser for: {url}")
+        async with async_playwright() as p:
+            browser = await p.chromium.launch_persistent_context(
+                profile_path, headless=True
+            )
+            page = await browser.new_page()
+            await page.goto(url, timeout=30000)
+            content = await page.content()
+            await browser.close()
+
+            logger.success(f"[{ORIGIN.upper()}] [{timestamp}] DOM fetched for: {url}")
+            return content
+
+    except TimeoutError:
+        timestamp = datetime.utcnow().isoformat()
+        logger.error(f"[{ORIGIN.upper()}] [{timestamp}] Timeout loading page: {url}")
+        return "<html><body><h1>Timeout Error</h1></body></html>"
+
+    except Exception as e:
+        timestamp = datetime.utcnow().isoformat()
+        logger.error(f"[{ORIGIN.upper()}] [{timestamp}] Browser session failed for {url}: {e}")
+        return f"<html><body><h1>Error: {e}</h1></body></html>"
+
     except Exception as e:
         logger.error(f"[{ORIGIN.upper()}] Browser session failed for {url}: {e}")
         return f"<html><body><h1>Error: {e}</h1></body></html>"
