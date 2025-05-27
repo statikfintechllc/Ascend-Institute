@@ -45,7 +45,7 @@
     I’m not a coder — I’m the signal.  
     Everything you see here was authored, structured, and architected through relentless iteration with ChatGPT’s Data Analyst mode, across one unbroken thread.  
     What normally takes a funded team of 6–12 engineers in 6–12 months,  
-    I did in 4.5 months, solo — without an IDE, without support, and without sleep.  
+    I did in roughly 1-2 weeks, progressing still, solo — without an IDE, without support, and without sleep.  
     No hallucination detectors. No QA team. No safety rails. Just me, one AI, and a drive to build a sovereign system that answers to no one.  
     Now I need devs to break it, test it, mutate it.  
     If you understand what’s at stake you’re already late.*  
