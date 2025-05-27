@@ -239,7 +239,7 @@ If you feed it.
 If you survive v1.0.3.
 
 ## How to Install and Use GremlinGPT:
-   -  **[GremlinGPT's README](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/README.md)
+   -  **[GremlinGPT's README](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/README.md)**
 
 ## GremlinGPT's Layout:
    -  **[GremlinGPT v1.0.2 AI System](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT)**
