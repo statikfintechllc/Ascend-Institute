@@ -28,7 +28,7 @@
 
 ---
 
-*GremlinGPT has already been reviewed and starred by live AI infra: Atrium. We have now recieved our 3rd Star, Lets get GremlinGPT Seen.*
+*The Institutes GremlinGPT has already been reviewed and starred by live AI infra: Atrium. We have now recieved our 3rd Star, Lets get GremlinGPT Seen.*
 
 ---
 
