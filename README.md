@@ -93,7 +93,7 @@
 - **Ethereum**: `0xC2db50A0fc6c95f36Af7171D8C41F6998184103F`  
 - **Chime**: `$StatikSmokTM`
 
-**See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/Open_Funding_Proposal.md)**
+**See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/OPEN_FUNDING_PROPOSAL.md)**
 
 ---
 
@@ -129,7 +129,7 @@ To reach full deployment — stable memory growth, continuous mutation, and mult
   - a) [GitHub: statikfintechllc](https://github.com/statikfintechllc)  
   - b) [X: @GremlinsForge](https://twitter.com/GremlinsForge)
 
-**See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/Open_Funding_Proposal.md)**
+**See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/OPEN_FUNDING_PROPOSAL.md)**
 
 ---
 
@@ -163,7 +163,7 @@ We’re open to building aligned partnerships with:
 - BTC: `bc1qarsr966ulmcs3mlcvae7p63v4j2y2vqrw74jl8`  
 - ETH: `0xC2db50A0fc6c95f36Af7171D8C41F6998184103F`
 
-**See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/Open_Funding_Proposal.md)**
+**See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/OPEN_FUNDING_PROPOSAL.md)**
 
 **2. Share the Vision**
 
@@ -489,7 +489,7 @@ We are seeking one of the following:
   (paging @elonmusk, @openai, @deepmind, @anthropic, @metaai, @mistralAI, @cohere)  
 - Or just **anyone who gets it** and knows what’s coming
 
-**See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/Open_Funding_Proposal.md)**
+**See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/OPEN_FUNDING_PROPOSAL.md)**
 
 ---
 
