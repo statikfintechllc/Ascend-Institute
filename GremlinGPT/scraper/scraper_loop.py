@@ -1,3 +1,5 @@
+# !/usr/bin/env python3
+
 # ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
 # Built under the GremlinGPT Dual License v1.0
@@ -5,52 +7,48 @@
 # Contact: ascend.gremlin@gmail.com
 # ─────────────────────────────────────────────────────────────
 
-# !/usr/bin/env python3
-
-# GremlinGPT v5 :: Module Integrity Directive
+# GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
-# It must:
-#   - Integrate seamlessly into the architecture defined in the full outline
-#   - Operate autonomously and communicate cross-module via defined protocols
-#   - Be production-grade, repair-capable, and state-of-the-art in logic
-#   - Support learning, persistence, mutation, and traceability
-#   - Not remove or weaken logic (stubs may be replaced, but never deleted)
-#   - Leverage appropriate dependencies, imports, and interlinks to other systems
-#   - Return enhanced — fully wired, no placeholders, no guesswork
-# Objective:
-#   Receive, reinforce, and return each script as a living part of the Gremlin:
-
-# scraper/scraper_loop.py
 
 import asyncio
 import time
 from scraper.playwright_handler import get_dom_html
 from scraper.page_simulator import store_scrape_to_memory
-from backend.globals import CFG
+from backend.globals import CFG, logger
 from agent_core.task_queue import fetch_task
-from loguru import logger
+from memory.log_history import log_event
+from datetime import datetime
+
+MODULE = "scraper_loop"
 
 
 async def run_scraper():
-    logger.info("[SCRAPER] Loop started.")
+    logger.info(f"[{MODULE.upper()}] Autonomous loop engaged.")
+    interval = CFG["scraper"].get("scrape_interval_sec", 10)
+
     while True:
         loop_start = time.time()
+        tick_time = datetime.utcnow().isoformat()
+        log_event(MODULE, "tick_start", {"timestamp": tick_time})
+
         task = fetch_task("scrape")
 
         if task:
-            logger.info(f"[SCRAPER] New task: {task}")
+            logger.info(f"[{MODULE.upper()}] Acquired task: {task}")
             try:
                 dom = await get_dom_html(task["target"])
                 store_scrape_to_memory(task["target"], dom)
-                logger.success(f"[SCRAPER] Stored DOM snapshot from {task['target']}")
+                logger.success(f"[{MODULE.upper()}] Stored scrape snapshot from {task['target']}")
+                log_event(MODULE, "task_complete", {"target": task["target"]}, status="success")
             except Exception as e:
-                logger.error(f"[SCRAPER] Error scraping {task['target']}: {e}")
+                logger.error(f"[{MODULE.upper()}] Scrape failed: {e}")
+                log_event(MODULE, "task_error", {"error": str(e)}, status="fail")
         else:
-            logger.debug("[SCRAPER] No scrape task available.")
+            logger.debug(f"[{MODULE.upper()}] No pending scrape task.")
 
         elapsed = time.time() - loop_start
-        logger.debug(f"[SCRAPER] Loop cycle completed in {elapsed:.2f} sec.")
-        await asyncio.sleep(CFG["scraper"]["scrape_interval_sec"])
+        logger.debug(f"[{MODULE.upper()}] Cycle completed in {elapsed:.2f} sec.")
+        await asyncio.sleep(interval)
 
 
 if __name__ == "__main__":
