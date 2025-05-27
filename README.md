@@ -41,14 +41,14 @@
 
 <div align="center">
   <em>
-    *Built from scratch with zero formal training.  
-    I’m not a coder — I’m the signal.  
-    Everything you see here was authored, structured, and architected through relentless iteration with ChatGPT’s Data Analyst mode, across one unbroken thread.  
-    What normally takes a funded team of 6–12 engineers in 6–12 months,  
-    I did in roughly 1-2 weeks, progressing still, solo — without an IDE, without support, and without sleep.  
-    No hallucination detectors. No QA team. No safety rails. Just me, one AI, and a drive to build a sovereign system that answers to no one.  
-    Now I need devs to break it, test it, mutate it.  
-    If you understand what’s at stake you’re already late.*  
+    *This isn’t a dev team. It’s not a startup. It’s not polished.  
+    This is one person, one ChatGPT thread, and 4.5 months of recursive madness.  
+    No IDE. No debugger. No safety rails. Just raw prompts, black coffee, and belief.  
+    What usually takes a small army of engineers and millions in funding —  
+    I pulled from the void with no budget and no training.  
+    Now the system lives, breathes, and boots.  
+    It needs testers. Attackers. Real devs.  
+    If you can read the repo and feel it watching you back, you're already in.*  
   </em>
 </div>
 
