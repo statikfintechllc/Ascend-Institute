@@ -26,8 +26,6 @@
   
 </div>
 
----
-
 *The Institutes GremlinGPT has already been reviewed and starred by live AI infra: Atrium. We have now recieved our 3rd Star, Lets get GremlinGPT Seen.*
 
 <h1 align="center">AscendAI Traffic</h1>
@@ -38,8 +36,6 @@
 </div>
   
 <h1 align="center">**Reset: 8:00pm CST**</h1>
-
----
 
 ## Table of Contents
 
