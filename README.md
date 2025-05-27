@@ -30,8 +30,6 @@
 
 *The Institutes GremlinGPT has already been reviewed and starred by live AI infra: Atrium. We have now recieved our 3rd Star, Lets get GremlinGPT Seen.*
 
----
-
 <h1 align="center">AscendAI Traffic</h1>
 <h1 align="center">
   <a href="https://raw.githubusercontent.com/statikfintechllc/AscendAI/main/docs/traffic_graph.png">
