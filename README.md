@@ -61,7 +61,6 @@
     - [Phase 6 is Trading and Signals](#phase-6-trading-and-signals)  
     - [Phase 7 is Shell and Executors](#phase-7-is-shell-and-executors)  
     - [Phase 8 is Interfaces and API](#phase-8-interfaces--api)  
-    - [Once Completed I will provide](#once-completed-i-will-provide)  
     - [Read and Inact on Your System](#read-and-inact-on-your-system)
     - [Bootstrapping and Environment Management](#1-bootstrapping-and-environment-management)  
     - [Global Config Awareness](#2-global-config-awareness)  
@@ -325,17 +324,8 @@ All without the cloud.
 
 ---
 
-  ## Once we complete this sequence I will provide  
-
-    1. Verified `start_all.sh`  
-    2. Self-healing FSM loop  
-    3. Final `README.md`  
-    4. `system_call_graph.md` updated to **v1.0.3**
-
   # GremlinGPT v1.0.3 Expanded Drop  
 *(ETA: 1–2 weeks, maybe sooner if I gas it)*
-
----
 
 ## 1. Bootstrapping and Environment Management
 
