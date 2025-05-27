@@ -1,3 +1,5 @@
+# !/usr/bin/env python3
+
 # ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
 # Built under the GremlinGPT Dual License v1.0
@@ -5,74 +7,82 @@
 # Contact: ascend.gremlin@gmail.com
 # ─────────────────────────────────────────────────────────────
 
-# !/usr/bin/env python3
-
-# GremlinGPT v5 :: Module Integrity Directive
+# GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
-# It must:
-#   - Integrate seamlessly into the architecture defined in the full outline
-#   - Operate autonomously and communicate cross-module via defined protocols
-#   - Be production-grade, repair-capable, and state-of-the-art in logic
-#   - Support learning, persistence, mutation, and traceability
-#   - Not remove or weaken logic (stubs may be replaced, but never deleted)
-#   - Leverage appropriate dependencies, imports, and interlinks to other systems
-#   - Return enhanced — fully wired, no placeholders, no guesswork
-# Objective:
-#   Receive, reinforce, and return each script as a living part of the Gremlin:
-
-# backend/interface/commands.py
 
 from agent_core.task_queue import enqueue_task, reprioritize
 from backend.globals import CFG
-from loguru import logger
 from nlp_engine.parser import parse_nlp
-from memory.vector_store.embedder import embed_text, package_embedding, inject_watermark
+from loguru import logger
 from datetime import datetime
+from memory.vector_store.embedder import (
+    embed_text,
+    package_embedding,
+    inject_watermark,
+)
 
 WATERMARK = "source:GremlinGPT"
 ORIGIN = "commands_interface"
 
 
 def parse_command(cmd_text):
+    """
+    Interprets freeform command text into structured task dictionaries.
+    Uses NLP, pattern matching, and command routing heuristics.
+    """
     parsed = parse_nlp(cmd_text)
     route = parsed.get("route", "unknown")
 
-    if "scrape" in cmd_text:
+    lowered = cmd_text.lower()
+
+    # Explicit command mappings
+    if "scrape" in lowered and "http" in lowered:
         return {"type": "scrape", "target": cmd_text.split()[-1]}
-    elif "scan" in cmd_text:
+
+    elif "scan" in lowered or "signal" in lowered:
         return {"type": "signal_scan"}
-    elif "train" in cmd_text:
+
+    elif "train" in lowered or "retrain" in lowered:
         return {"type": "self_train"}
-    elif route == "code":
+
+    elif "shell" in lowered or route == "code":
         return {"type": "shell", "command": cmd_text}
+
     elif route == "finance":
         return {"type": "nlp", "text": cmd_text}
+
     else:
         return {"type": "unknown", "payload": cmd_text}
 
 
 def execute_command(cmd):
-    if cmd["type"] in ["scrape", "signal_scan", "self_train", "nlp", "shell"]:
+    """
+    Executes or enqueues task, and logs trace to vector memory for lineage.
+    """
+    task_type = cmd.get("type")
+
+    if task_type in {"scrape", "signal_scan", "self_train", "nlp", "shell"}:
         enqueue_task(cmd)
 
         if CFG["agent"].get("log_agent_output", True):
-            logger.info(f"[COMMAND] Queued: {cmd}")
+            logger.info(f"[COMMAND] Task enqueued: {cmd}")
 
-        # === Embed the command for memory tracking ===
-        text = cmd.get("target") or cmd.get("text") or str(cmd)
-        summary = f"Command executed: {cmd['type']}"
+        # Prepare trace
+        summary = f"Command executed: {task_type}"
+        trace_text = cmd.get("target") or cmd.get("text") or cmd.get("command") or str(cmd)
+        vector = embed_text(trace_text)
 
-        vector = embed_text(text)
         package_embedding(
             text=summary,
             vector=vector,
             meta={
-                "type": cmd["type"],
+                "type": task_type,
                 "timestamp": datetime.utcnow().isoformat(),
                 "source": ORIGIN,
                 "watermark": WATERMARK,
             },
         )
+
         inject_watermark(origin=ORIGIN)
 
         return {"status": "queued", "task": cmd}
@@ -84,15 +94,16 @@ def execute_command(cmd):
 
 def update_task_priority(task_id, new_priority):
     """
-    Adjust the priority of a task using task_queue.reprioritize.
+    Adjusts task priority in runtime queue.
     """
     try:
         result = reprioritize(task_id, new_priority)
         if result:
-            logger.info(f"[COMMAND] Task {task_id} reprioritized to {new_priority}")
+            logger.info(f"[COMMAND] Reprioritized task {task_id} → {new_priority}")
         else:
-            logger.warning(f"[COMMAND] Failed to reprioritize task: {task_id}")
+            logger.warning(f"[COMMAND] Failed to reprioritize: {task_id}")
         return result
     except Exception as e:
-        logger.error(f"[COMMAND] Priority update failed: {e}")
+        logger.error(f"[COMMAND] Priority update error: {e}")
         return False
+
