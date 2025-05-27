@@ -37,6 +37,23 @@
   
 <h1 align="center">**Reset: 8:00pm CST**</h1>
 
+---
+
+<div align="center">
+  <em>
+    *Built from scratch with zero formal training.  
+    I’m not a coder — I’m the signal.  
+    Everything you see here was authored, structured, and architected through relentless iteration with ChatGPT’s Data Analyst mode, across one unbroken thread.  
+    What normally takes a funded team of 6–12 engineers in 6–12 months,  
+    I did in 4.5 months, solo — without an IDE, without support, and without sleep.  
+    No hallucination detectors. No QA team. No safety rails. Just me, one AI, and a drive to build a sovereign system that answers to no one.  
+    Now I need devs to break it, test it, mutate it.  
+    If you understand what’s at stake you’re already late.*  
+  </em>
+</div>
+
+---
+
 ## Table of Contents
 
 1. [Support This Project](#support-this-project)  
