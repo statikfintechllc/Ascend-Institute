@@ -1,3 +1,5 @@
+# !/usr/bin/env python3
+
 # ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
 # Built under the GremlinGPT Dual License v1.0
@@ -5,70 +7,70 @@
 # Contact: ascend.gremlin@gmail.com
 # ─────────────────────────────────────────────────────────────
 
-# !/usr/bin/env python3
-
-# GremlinGPT v5 :: Module Integrity Directive
+# GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
-# It must:
-#   - Integrate seamlessly into the architecture defined in the full outline
-#   - Operate autonomously and communicate cross-module via defined protocols
-#   - Be production-grade, repair-capable, and state-of-the-art in logic
-#   - Support learning, persistence, mutation, and traceability
-#   - Not remove or weaken logic (stubs may be replaced, but never deleted)
-#   - Leverage appropriate dependencies, imports, and interlinks to other systems
-#   - Return enhanced — fully wired, no placeholders, no guesswork
-# Objective:
-#   Receive, reinforce, and return each script as a living part of the Gremlin:
-
-# scraper/source_router.py
 
 import asyncio
 import psutil
 import threading
 import time
+from datetime import datetime
 from loguru import logger
+
 from scraper.tws_scraper import safe_scrape_tws
 from scraper.stt_scraper import safe_scrape_stt
 from scraper.playwright_scraper import safe_scrape_web
 from scraper.page_simulator import store_scrape_to_memory
+from memory.log_history import log_event
 
+MODULE = "source_router"
 _last_scraped = []
-_async_lock = asyncio.Lock()  # Protects async operations
+_async_lock = asyncio.Lock()  # Protect async scraping
 
 
 def detect_apps():
-    procs = [p.name().lower() for p in psutil.process_iter()]
-    return {
-        "tws": any("tws" in p for p in procs),
-        "stt": any("stockstotrade" in p for p in procs),
-    }
+    try:
+        procs = [p.name().lower() for p in psutil.process_iter()]
+        return {
+            "tws": any("tws" in p for p in procs),
+            "stt": any("stockstotrade" in p for p in procs),
+        }
+    except Exception as e:
+        logger.warning(f"[{MODULE}] App detection failed: {e}")
+        return {"tws": False, "stt": False}
 
 
 async def route_scraping_async():
-    """Asynchronous version of scraping router."""
+    """Autonomous source router across available platforms."""
     async with _async_lock:
         try:
+            tick = datetime.utcnow().isoformat()
             apps = detect_apps()
-            logger.info(f"[SCRAPER] Active sources: {apps}")
+            logger.info(f"[{MODULE.upper()}] Detected: {apps}")
+            log_event(MODULE, "detection", {"apps": apps, "timestamp": tick})
 
             if apps["tws"]:
                 result = safe_scrape_tws()
+                source = "TWS"
             elif apps["stt"]:
                 result = safe_scrape_stt()
+                source = "STT"
             else:
                 result = await safe_scrape_web()
+                source = "WEB"
 
             for item in result:
-                summary = (
+                content = (
                     f"[{item.get('symbol', 'N/A')}] Price: {item.get('price')} "
                     f"Volume: {item.get('volume')}"
                 )
-                store_scrape_to_memory("auto_scraper", summary)
+                store_scrape_to_memory(source, content)
 
+            logger.success(f"[{MODULE.upper()}] Scraped from: {source}")
             return result
 
         except Exception as e:
-            logger.warning(f"[SCRAPER] Async routing failed: {e}")
+            logger.warning(f"[{MODULE}] Routing failed: {e}")
             return []
 
 
@@ -79,10 +81,11 @@ def periodic_refresh(interval_sec=5):
 
     while True:
         try:
+            logger.debug(f"[{MODULE}] Refresh triggered.")
             result = loop.run_until_complete(route_scraping_async())
             _last_scraped = result
         except Exception as e:
-            logger.error(f"[SCRAPER] Periodic async loop error: {e}")
+            logger.error(f"[{MODULE}] Refresh error: {e}")
         time.sleep(interval_sec)
 
 
@@ -91,6 +94,6 @@ def get_live_snapshot():
 
 
 def start_scraper_loop():
-    logger.info("[SCRAPER] Starting refresh loop.")
+    logger.info(f"[{MODULE}] Launching async scrape monitor.")
     t = threading.Thread(target=periodic_refresh, daemon=True)
     t.start()
