@@ -31,12 +31,14 @@ def list_tasks():
     for level in ["high", "normal", "low"]:
         for task in queue_data[level]:
             count += 1
-            flat_list.append({
-                "name": task["type"],
-                "state": "queued",
-                "priority": level,
-                "meta": task.get("meta", {}),
-            })
+            flat_list.append(
+                {
+                    "name": task["type"],
+                    "state": "queued",
+                    "priority": level,
+                    "meta": task.get("meta", {}),
+                }
+            )
 
     logger.info(f"[PLANNER_API] Found {count} tasks in queue.")
     log_event("planner_api", "task_list_fetch", {"count": count}, status="ok")
@@ -58,12 +60,14 @@ def mutation_notify():
     logger.debug(f"[PLANNER_API] Mutation ping: {message}")
     log_event("planner_api", "mutation_ping", {"message": message}, status="pong")
 
-    return jsonify({
-        "status": "received",
-        "timestamp": datetime.utcnow().isoformat(),
-        "log": f"Mutation daemon: {message}",
-        "watermark": "source:GremlinGPT"
-    })
+    return jsonify(
+        {
+            "status": "received",
+            "timestamp": datetime.utcnow().isoformat(),
+            "log": f"Mutation daemon: {message}",
+            "watermark": "source:GremlinGPT",
+        }
+    )
 
 
 @planner_bp.route("/api/tasks/priority", methods=["POST"])
@@ -78,9 +82,24 @@ def set_task_priority():
         return jsonify({"error": "Missing 'id' or 'priority'"}), 400
 
     success = reprioritize(task_id, new_priority)
-    log_event("planner_api", "priority_update", {
-        "task_id": task_id,
-        "new_priority": new_priority,
-        "success": success,
-    }, status="updated" if success
+    log_event(
+        "planner_api",
+        "priority_update",
+        {
+            "task_id": task_id,
+            "new_priority": new_priority,
+            "success": success,
+        },
+        status="updated" if success else "failed",
+    )
 
+    return (
+        jsonify(
+            {
+                "status": "updated" if success else "failed",
+                "task_id": task_id,
+                "new_priority": new_priority,
+            }
+        ),
+        200 if success else 500,
+    )
