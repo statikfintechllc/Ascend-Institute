@@ -108,10 +108,7 @@ class MiniMultiHeadAttention:
 
         # Log to system memory and logs
         log_event(MODULE, "attention_forward", info)
-        summary = (
-            f"Attention pass: {self.num_heads} heads | "
-            f"in={input_tensor.shape} out={output_tensor.shape}"
-        )
+        summary = f"Attention pass: {self.num_heads} heads | " f"in={input_tensor.shape} out={output_tensor.shape}"
         vector = embed_text(summary)
         package_embedding(text=summary, vector=vector, meta=info)
 

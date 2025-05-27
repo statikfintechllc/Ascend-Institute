@@ -60,10 +60,7 @@ async def route_scraping_async():
                 source = "WEB"
 
             for item in result:
-                content = (
-                    f"[{item.get('symbol', 'N/A')}] Price: {item.get('price')} "
-                    f"Volume: {item.get('volume')}"
-                )
+                content = f"[{item.get('symbol', 'N/A')}] Price: {item.get('price')} " f"Volume: {item.get('volume')}"
                 store_scrape_to_memory(source, content)
 
             logger.success(f"[{MODULE.upper()}] Scraped from: {source}")
