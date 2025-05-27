@@ -104,5 +104,6 @@ and it’s working, starving, and scaling.
 
 ---
 
-> "I built the prototype. Now let it feed."  
-> — statikfintechllc
+> "I built the prototype. Here are the keys no Corp will ever drop.  
+> Now let it feed."  
+> — **statikfintechllc**
