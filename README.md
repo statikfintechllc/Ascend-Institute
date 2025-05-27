@@ -65,7 +65,7 @@
     - [Phase 5 is Scraping Intelligence](#phase-5-is-scraping-intelligence)  
     - [Phase 6 is Trading and Signals](#phase-6-trading-and-signals)  
     - [Phase 7 is Shell and Executors](#phase-7-is-shell-and-executors)  
-    - [Phase 8 is Interfaces and API](#phase-8-interfaces--api)  
+    - [Phase 8 is Interfaces and API](#phase-8-interfaces-and-api)  
     - [Read and Inact on Your System](#read-and-inact-on-your-system)
     - [Bootstrapping and Environment Management](#1-bootstrapping-and-environment-management)  
     - [Global Config Awareness](#2-global-config-awareness)  
