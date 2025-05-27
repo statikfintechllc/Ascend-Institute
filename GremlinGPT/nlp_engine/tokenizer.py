@@ -55,12 +55,15 @@ def tokenize(text):
         tokens = tokenizer.tokenize(text)
     else:
         from nltk.tokenize import word_tokenize
+
         tokens = word_tokenize(text)
 
     logger.debug(f"[TOKENIZER] Token count: {len(tokens)}")
 
     # Memory trace
-    summary = f"Tokenized input: {len(tokens)} tokens from {MODEL if tokenizer else 'NLTK'}"
+    summary = (
+        f"Tokenized input: {len(tokens)} tokens from {MODEL if tokenizer else 'NLTK'}"
+    )
     vector = embed_text(summary)
 
     package_embedding(

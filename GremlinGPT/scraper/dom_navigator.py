@@ -49,11 +49,13 @@ def extract_dom_structure(html):
         for elem in soup.find_all(tag):
             content = elem.get_text(strip=True)
             if len(content) > 20:
-                nodes.append({
-                    "type": tag,
-                    "text": content[:500],
-                    "length": len(content),
-                })
+                nodes.append(
+                    {
+                        "type": tag,
+                        "text": content[:500],
+                        "length": len(content),
+                    }
+                )
 
     # Full-body plaintext with safety limits
     full_text = soup.get_text(separator="\n", strip=True)

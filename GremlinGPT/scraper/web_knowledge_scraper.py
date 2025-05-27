@@ -80,14 +80,18 @@ async def scrape_web_knowledge(urls):
 
         package_embedding(text=summary, vector=vector, meta=metadata)
         inject_watermark(origin=ORIGIN)
-        log_event("scraper", "knowledge_fetch", {"url": url, "summary_len": len(summary)})
+        log_event(
+            "scraper", "knowledge_fetch", {"url": url, "summary_len": len(summary)}
+        )
 
-        results.append({
-            "url": url,
-            "summary": summary,
-            "nodes": structure.get("nodes", []),
-            "links": structure.get("links", []),
-        })
+        results.append(
+            {
+                "url": url,
+                "summary": summary,
+                "nodes": structure.get("nodes", []),
+                "links": structure.get("links", []),
+            }
+        )
 
         logger.success(f"[{ORIGIN}] Embedded: {url}")
 

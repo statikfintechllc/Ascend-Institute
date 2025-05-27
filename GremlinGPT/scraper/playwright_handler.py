@@ -26,7 +26,9 @@ async def get_dom_html(url):
     try:
         logger.info(f"[{ORIGIN.upper()}] Launching browser for: {url}")
         async with async_playwright() as p:
-            browser = await p.chromium.launch_persistent_context(profile_path, headless=True)
+            browser = await p.chromium.launch_persistent_context(
+                profile_path, headless=True
+            )
             page = await browser.new_page()
             await page.goto(url, timeout=30000)
             content = await page.content()
