@@ -38,17 +38,17 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/LICENSE.md">
 </div>
 
 <h1 align="center">AscendAI Traffic</h1>
-<h1 align="center">
+<div align="center">
   <a href="https://raw.githubusercontent.com/statikfintechllc/AscendAI/main/docs/traffic_graph.png">
   <img src="https://raw.githubusercontent.com/statikfintechllc/AscendAI/main/docs/traffic_graph.png" alt="Traffic Graph" />
   </a>
 </div>
   
-<dv1 align="center">
+<div align="center">
   <em>
-  Reset: 8:00pm CST
+Reset: 8:00pm CST
   </em>
-</dv1>
+</div>
 
 ---
 
