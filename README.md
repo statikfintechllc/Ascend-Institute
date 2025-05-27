@@ -63,8 +63,6 @@
     - [Phase 8 is Interfaces and API](#phase-8-interfaces--api)  
     - [Once Completed I will provide](#once-completed-i-will-provide)  
     - [Read and Inact on Your System](#read-and-inact-on-your-system)
-      
-**Expanded:**  
     - [Bootstrapping and Environment Management](#1-bootstrapping-and-environment-management)  
     - [Global Config Awareness](#2-global-config-awareness)  
     - [Memory and NLP Enhancements](#3-memory-and-nlp-enhancements)  
@@ -73,6 +71,7 @@
     - [API and Interface Layer](#6-api-and-interface-layer)  
     - [Logging and Observability](#7-logging-and-observability)  
     - [Documentation and Tests](#8-documentation-and-tests)
+    
 12. [Collaborators Wanted to Join the Loop](#collaborators-wanted-to-join-the-loop)  
 13. [Support](#support)  
 14. [Final Notes](#final-notes)  
