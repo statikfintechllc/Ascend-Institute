@@ -29,6 +29,8 @@
 
 > GremlinGPT has already been reviewed and starred by live AI infra: Atrium.
 
+---
+
 <h1 align="center">AscendAI Traffic</h1>
 <h1 align="center">
   <a href="https://raw.githubusercontent.com/statikfintechllc/AscendAI/main/docs/traffic_graph.png">
