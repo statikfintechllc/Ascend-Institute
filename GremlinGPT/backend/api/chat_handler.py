@@ -1,3 +1,5 @@
+# !/usr/bin/env python3
+
 # ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
 # Built under the GremlinGPT Dual License v1.0
@@ -5,22 +7,8 @@
 # Contact: ascend.gremlin@gmail.com
 # ─────────────────────────────────────────────────────────────
 
-# !/usr/bin/env python3
-
-# GremlinGPT v5 :: Module Integrity Directive
-# This script is a component of the GremlinGPT system, under Alpha expansion.
-# It must:
-#   - Integrate seamlessly into the architecture defined in the full outline
-#   - Operate autonomously and communicate cross-module via defined protocols
-#   - Be production-grade, repair-capable, and state-of-the-art in logic
-#   - Support learning, persistence, mutation, and traceability
-#   - Not remove or weaken logic (stubs may be replaced, but never deleted)
-#   - Leverage appropriate dependencies, imports, and interlinks to other systems
-#   - Return enhanced — fully wired, no placeholders, no guesswork
-# Objective:
-#   Receive, reinforce, and return each script as a living part of the Gremlin:
-
-# backend/api/chat_handler.py
+# # GremlinGPT v5 :: Module Integrity Directive
+# This script is a component of the GremlinGPT system, under Alpha expansion. v5 :: Module Integrity Directive
 
 from flask import request, jsonify
 from backend.interface import commands
@@ -28,12 +16,18 @@ from nlp_engine.tokenizer import tokenize
 from nlp_engine.transformer_core import encode
 from agent_core.task_queue import enqueue_task
 from memory.vector_store.embedder import package_embedding
+from memory.log_history import log_event
 from loguru import logger
+from datetime import datetime
 
 
 def chat():
     data = request.get_json()
-    user_input = data.get("text", "")
+    user_input = data.get("text", "").strip()
+
+    if not user_input:
+        logger.warning("[CHAT] Empty input received.")
+        return jsonify({"error": "Empty input"}), 400
 
     tokens = tokenize(user_input)
     vector = encode(user_input)
@@ -44,12 +38,19 @@ def chat():
     package_embedding(
         text=user_input,
         vector=vector,
-        meta={"from": "chat", "type": task["type"], "user_intent": user_input},
+        meta={
+            "origin": "chat_handler",
+            "type": task.get("type", "unknown"),
+            "timestamp": datetime.utcnow().isoformat(),
+            "user_input": user_input,
+            "watermark": "source:GremlinGPT",
+        },
     )
 
-    # Use enqueue_task directly if unrecognized for fallback logging
+    log_event("chat", "parsed", {"input": user_input, "task_type": task["type"]})
+
     if task["type"] == "unknown":
-        logger.warning(f"[CHAT] Unrecognized input: {user_input}")
+        logger.warning(f"[CHAT] Fallback NLP task for unrecognized command: {user_input}")
         enqueue_task({"type": "nlp", "text": user_input})
 
     return jsonify(
@@ -59,3 +60,4 @@ def chat():
             "result": result,
         }
     )
+
