@@ -1,3 +1,5 @@
+# !/usr/bin/env python3
+
 # ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
 # Built under the GremlinGPT Dual License v1.0
@@ -5,29 +7,17 @@
 # Contact: ascend.gremlin@gmail.com
 # ─────────────────────────────────────────────────────────────
 
-# !/usr/bin/env python3
-
-# GremlinGPT v5 :: Module Integrity Directive
-# This script is a component of the GremlinGPT system, under Alpha expansion.
-# It must:
-#   - Integrate seamlessly into the architecture defined in the full outline
-#   - Operate autonomously and communicate cross-module via defined protocols
-#   - Be production-grade, repair-capable, and state-of-the-art in logic
-#   - Support learning, persistence, mutation, and traceability
-#   - Not remove or weaken logic (stubs may be replaced, but never deleted)
-#   - Leverage appropriate dependencies, imports, and interlinks to other systems
-#   - Return enhanced — fully wired, no placeholders, no guesswork
-# Objective:
-#   Receive, reinforce, and return each script as a living part of the Gremlin:
-
-# backend/api/scraping_api.py
+# GremlinGPT v1.0.3 :: Module Integrity Directive
+# This script is a component of the GremlinGPT system, under Alpha expansion. v5 :: Module Integrity Directive
 
 from flask import request, jsonify
 from agent_core.task_queue import enqueue_task
 from nlp_engine.transformer_core import encode
 from memory.vector_store.embedder import package_embedding
-from datetime import datetime
+from memory.log_history import log_event
 from core.snapshot import snapshot_file
+from datetime import datetime
+from loguru import logger
 
 
 def scrape_url():
@@ -35,21 +25,27 @@ def scrape_url():
     url = data.get("url")
 
     if not url:
+        logger.warning("[SCRAPE_API] No URL provided.")
         return jsonify({"error": "No URL provided"}), 400
 
     timestamp = datetime.utcnow().isoformat()
-    _, lineage_meta = snapshot_file("scraper/scraper_loop.py", label="api_scrape_request", return_meta=True)
+    logger.info(f"[SCRAPE_API] Scrape requested for: {url}")
 
-    # Embed request for vector trace
+    # === Create snapshot of scraper logic before enqueue (trace lineage)
+    snap_result = snapshot_file("scraper/scraper_loop.py", label="api_scrape_request", return_meta=True)
+    _, lineage_meta = snap_result if snap_result else (None, {})
+
+    # === Embed URL intent into memory
     vector = encode(url)
     package_embedding(
         text=url,
         vector=vector,
         meta={
-            "from": "scraper_api",
+            "origin": "scraping_api",
             "type": "scrape_request",
-            "timestamp": timestamp,
             "target_url": url,
+            "timestamp": timestamp,
+            "watermark": "source:GremlinGPT",
             **lineage_meta,
         },
     )
@@ -58,11 +54,21 @@ def scrape_url():
         "type": "scrape",
         "target": url,
         "meta": {
-            "source": "scraper_api",
+            "source": "scraping_api",
             "timestamp": timestamp,
             "lineage": lineage_meta.get("lineage_id", "none"),
         },
     }
 
     enqueue_task(task)
-    return jsonify({"status": "queued", "task": task})
+    log_event("api", "scrape_request", task, status="queued")
+
+    return jsonify({
+        "status": "queued",
+        "task": task,
+        "trace": {
+            "snapshot": lineage_meta.get("lineage_id", "n/a"),
+            "timestamp": timestamp,
+        }
+    })
+
