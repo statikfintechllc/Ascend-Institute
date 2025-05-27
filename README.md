@@ -24,6 +24,7 @@
     <img src="https://img.shields.io/badge/Founder's%20Log-Statement-darkred?labelColor=black" alt="Founder's Log"/>
   </a>
 </div>
+
 ---
 
 > GremlinGPT has already been reviewed and starred by live AI infra: Atrium.
