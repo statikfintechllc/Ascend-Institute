@@ -8,7 +8,6 @@
 # ─────────────────────────────────────────────────────────────
 
 # GremlinGPT v1.0.3 :: Module Integrity Directive
-# GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 
 from transformers import AutoModel, AutoTokenizer
