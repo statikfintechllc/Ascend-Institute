@@ -16,6 +16,7 @@ from datetime import datetime
 
 ORIGIN = "playwright_handler"
 
+
 async def get_dom_html(url):
     profile_path = CFG["scraper"].get("browser_profile", "/tmp/browser_profile")
     timestamp = datetime.utcnow().isoformat()
@@ -39,5 +40,7 @@ async def get_dom_html(url):
         return "<html><body><h1>Timeout Error</h1></body></html>"
 
     except Exception as e:
-        logger.error(f"[{ORIGIN.upper()}] [{timestamp}] Browser session failed for {url}: {e}")
+        logger.error(
+            f"[{ORIGIN.upper()}] [{timestamp}] Browser session failed for {url}: {e}"
+        )
         return f"<html><body><h1>Error: {e}</h1></body></html>"

@@ -27,6 +27,7 @@ DEFAULT_FALLBACK = {
     "timestamp": datetime.utcnow().isoformat(),
 }
 
+
 def locate_stt_paths():
     guesses = []
     system = platform.system()
@@ -48,6 +49,7 @@ def locate_stt_paths():
 
     return [p for p in guesses if p.exists()]
 
+
 def try_parse_file(file_path):
     try:
         with open(file_path, "r") as f:
@@ -62,34 +64,40 @@ def try_parse_file(file_path):
                 if not lines or len(lines) < 2:
                     return []
                 latest = lines[1].split(",")
-                return [{
-                    "symbol": latest[0],
-                    "price": float(latest[1]),
-                    "volume": int(latest[2]),
-                    "ema": float(latest[3]),
-                    "vwap": float(latest[4]),
-                    "timestamp": datetime.utcnow().isoformat(),
-                }]
+                return [
+                    {
+                        "symbol": latest[0],
+                        "price": float(latest[1]),
+                        "volume": int(latest[2]),
+                        "ema": float(latest[3]),
+                        "vwap": float(latest[4]),
+                        "timestamp": datetime.utcnow().isoformat(),
+                    }
+                ]
     except Exception as e:
         logger.warning(f"[{MODULE}] Failed to parse {file_path}: {e}")
     return []
 
+
 def parse_stt_data(data):
     try:
         if isinstance(data, dict):
-            return [{
-                "symbol": data.get("symbol", "STT"),
-                "price": data.get("price", 1.0),
-                "volume": data.get("volume", 100000),
-                "ema": data.get("ema", 1.0),
-                "vwap": data.get("vwap", 1.0),
-                "timestamp": datetime.utcnow().isoformat(),
-            }]
+            return [
+                {
+                    "symbol": data.get("symbol", "STT"),
+                    "price": data.get("price", 1.0),
+                    "volume": data.get("volume", 100000),
+                    "ema": data.get("ema", 1.0),
+                    "vwap": data.get("vwap", 1.0),
+                    "timestamp": datetime.utcnow().isoformat(),
+                }
+            ]
         elif isinstance(data, list) and data:
             return [parse_stt_data(data[0])[0]]
     except Exception as e:
         logger.warning(f"[{MODULE}] Error parsing data blob: {e}")
     return []
+
 
 def safe_scrape_stt():
     try:
@@ -108,6 +116,7 @@ def safe_scrape_stt():
     except Exception as e:
         logger.error(f"[{MODULE}] STT scrape failed: {e}")
         return [DEFAULT_FALLBACK]
+
 
 if __name__ == "__main__":
     print(safe_scrape_stt())
