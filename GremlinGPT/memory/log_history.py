@@ -1,3 +1,5 @@
+# !/usr/bin/env python3
+
 # ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
 # Built under the GremlinGPT Dual License v1.0
@@ -5,22 +7,8 @@
 # Contact: ascend.gremlin@gmail.com
 # ─────────────────────────────────────────────────────────────
 
-# !/usr/bin/env python3
-
-# GremlinGPT v5 :: Module Integrity Directive
+# GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
-# It must:
-#   - Integrate seamlessly into the architecture defined in the full outline
-#   - Operate autonomously and communicate cross-module via defined protocols
-#   - Be production-grade, repair-capable, and state-of-the-art in logic
-#   - Support learning, persistence, mutation, and traceability
-#   - Not remove or weaken logic (stubs may be replaced, but never deleted)
-#   - Leverage appropriate dependencies, imports, and interlinks to other systems
-#   - Return enhanced — fully wired, no placeholders, no guesswork
-# Objective:
-#   Receive, reinforce, and return each script as a living part of the Gremlin:
-
-# memory/log_history.py
 
 import json
 from pathlib import Path
@@ -34,6 +22,9 @@ HISTORY_FILE = HISTORY_DIR / "gremlin_exec_log.jsonl"
 
 
 def log_event(event_type, task_type, details, status="ok", meta=None):
+    """
+    Stores an event in the Gremlin execution history log with semantic metadata.
+    """
     record = {
         "timestamp": datetime.utcnow().isoformat(),
         "event_type": event_type,
@@ -52,7 +43,9 @@ def log_event(event_type, task_type, details, status="ok", meta=None):
 
 
 def load_history(n=50):
-    """Returns the last n events from log history"""
+    """
+    Loads the last n historical events from memory.
+    """
     try:
         with open(HISTORY_FILE, "r") as f:
             lines = f.readlines()
@@ -64,7 +57,7 @@ def load_history(n=50):
         return []
 
 
-# CLI test
+# === CLI Test Harness ===
 if __name__ == "__main__":
     log_event("exec", "scrape", {"outcome": "5 tickers pulled"}, status="success")
     log_event("exec", "nlp", {"answer": "support/resistance identified"}, status="ok")
