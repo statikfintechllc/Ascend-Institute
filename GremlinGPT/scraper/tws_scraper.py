@@ -1,4 +1,4 @@
-# !/usr/bin/env python3
+#!/usr/bin/env python3
 
 # ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
@@ -10,7 +10,6 @@
 # GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 
-import os
 import json
 from datetime import datetime
 from pathlib import Path
@@ -67,18 +66,15 @@ def try_parse_file(file_path):
             elif file_path.suffix == ".csv":
                 lines = raw.splitlines()
                 if len(lines) > 1:
-                    headers = lines[0].split(",")
                     values = lines[1].split(",")
-                    return [
-                        {
-                            "symbol": values[0],
-                            "price": float(values[1]),
-                            "volume": int(values[2]),
-                            "ema": float(values[3]),
-                            "vwap": float(values[4]),
-                            "timestamp": datetime.utcnow().isoformat(),
-                        }
-                    ]
+                    return [{
+                        "symbol": values[0],
+                        "price": float(values[1]),
+                        "volume": int(values[2]),
+                        "ema": float(values[3]),
+                        "vwap": float(values[4]),
+                        "timestamp": datetime.utcnow().isoformat(),
+                    }]
     except Exception as e:
         logger.warning(f"[{MODULE}] Could not parse {file_path}: {e}")
     return []
@@ -87,16 +83,14 @@ def try_parse_file(file_path):
 def parse_tws_json(data):
     try:
         if isinstance(data, dict):
-            return [
-                {
-                    "symbol": data.get("symbol", "TWS"),
-                    "price": data.get("price", 1.0),
-                    "volume": data.get("volume", 100000),
-                    "ema": data.get("ema", 1.0),
-                    "vwap": data.get("vwap", 1.0),
-                    "timestamp": datetime.utcnow().isoformat(),
-                }
-            ]
+            return [{
+                "symbol": data.get("symbol", "TWS"),
+                "price": data.get("price", 1.0),
+                "volume": data.get("volume", 100000),
+                "ema": data.get("ema", 1.0),
+                "vwap": data.get("vwap", 1.0),
+                "timestamp": datetime.utcnow().isoformat(),
+            }]
         elif isinstance(data, list) and data:
             return [parse_tws_json(data[0])[0]]
     except Exception as e:
