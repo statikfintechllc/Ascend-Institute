@@ -38,7 +38,7 @@
   </a>
 </div>
   
-<h1 align="center">**Reset: 10:00pm CST**</h1>
+<h1 align="center">**Reset: 7:00pm CST**</h1>
 
 ---
 
