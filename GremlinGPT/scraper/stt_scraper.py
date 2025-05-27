@@ -1,4 +1,4 @@
-# !/usr/bin/env python3
+#!/usr/bin/env python3
 
 # ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
@@ -12,6 +12,7 @@
 
 import os
 import json
+import platform
 from datetime import datetime
 from pathlib import Path
 from loguru import logger
@@ -26,25 +27,26 @@ DEFAULT_FALLBACK = {
     "timestamp": datetime.utcnow().isoformat(),
 }
 
-
 def locate_stt_paths():
-    """
-    Attempt to locate StocksToTrade install or data logs across OS environments.
-    Returns list of potential data files or directories.
-    """
     guesses = []
+    system = platform.system()
+    logger.debug(f"[{MODULE}] OS detected: {system}")
 
     try:
         home = Path.home()
-        guesses += list(home.glob("**/StocksToTrade*/logs/*.json"))
+        if system == "Windows":
+            guesses += list(home.glob("**/AppData/Local/StocksToTrade*/logs/*.json"))
+        else:
+            guesses += list(home.glob("**/StocksToTrade*/logs/*.json"))
+
         guesses += list(home.glob("**/StocksToTrade*/data/*.csv"))
         guesses += list(Path("/tmp").glob("**/stt*.json"))
         guesses += list(Path("/var/log").glob("**/stt*.log"))
+
     except Exception as e:
         logger.warning(f"[{MODULE}] Path scan failed: {e}")
 
     return [p for p in guesses if p.exists()]
-
 
 def try_parse_file(file_path):
     try:
@@ -59,45 +61,35 @@ def try_parse_file(file_path):
                 lines = raw.splitlines()
                 if not lines or len(lines) < 2:
                     return []
-                headers = lines[0].split(",")
                 latest = lines[1].split(",")
-                return [
-                    {
-                        "symbol": latest[0],
-                        "price": float(latest[1]),
-                        "volume": int(latest[2]),
-                        "ema": float(latest[3]),
-                        "vwap": float(latest[4]),
-                        "timestamp": datetime.utcnow().isoformat(),
-                    }
-                ]
+                return [{
+                    "symbol": latest[0],
+                    "price": float(latest[1]),
+                    "volume": int(latest[2]),
+                    "ema": float(latest[3]),
+                    "vwap": float(latest[4]),
+                    "timestamp": datetime.utcnow().isoformat(),
+                }]
     except Exception as e:
         logger.warning(f"[{MODULE}] Failed to parse {file_path}: {e}")
     return []
 
-
 def parse_stt_data(data):
-    """
-    Extracts structured result from STT-formatted dict
-    """
     try:
         if isinstance(data, dict):
-            return [
-                {
-                    "symbol": data.get("symbol", "STT"),
-                    "price": data.get("price", 1.0),
-                    "volume": data.get("volume", 100000),
-                    "ema": data.get("ema", 1.0),
-                    "vwap": data.get("vwap", 1.0),
-                    "timestamp": datetime.utcnow().isoformat(),
-                }
-            ]
+            return [{
+                "symbol": data.get("symbol", "STT"),
+                "price": data.get("price", 1.0),
+                "volume": data.get("volume", 100000),
+                "ema": data.get("ema", 1.0),
+                "vwap": data.get("vwap", 1.0),
+                "timestamp": datetime.utcnow().isoformat(),
+            }]
         elif isinstance(data, list) and data:
             return [parse_stt_data(data[0])[0]]
     except Exception as e:
         logger.warning(f"[{MODULE}] Error parsing data blob: {e}")
     return []
-
 
 def safe_scrape_stt():
     try:
@@ -117,7 +109,5 @@ def safe_scrape_stt():
         logger.error(f"[{MODULE}] STT scrape failed: {e}")
         return [DEFAULT_FALLBACK]
 
-
-# CLI Test
 if __name__ == "__main__":
     print(safe_scrape_stt())
