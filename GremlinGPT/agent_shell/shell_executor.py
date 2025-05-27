@@ -1,3 +1,5 @@
+# !/usr/bin/env python3
+
 # ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
 # Built under the GremlinGPT Dual License v1.0
@@ -5,22 +7,8 @@
 # Contact: ascend.gremlin@gmail.com
 # ─────────────────────────────────────────────────────────────
 
-# !/usr/bin/env python3
-
 # GremlinGPT v5 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
-# It must:
-#   - Integrate seamlessly into the architecture defined in the full outline
-#   - Operate autonomously and communicate cross-module via defined protocols
-#   - Be production-grade, repair-capable, and state-of-the-art in logic
-#   - Support learning, persistence, mutation, and traceability
-#   - Not remove or weaken logic (stubs may be replaced, but never deleted)
-#   - Leverage appropriate dependencies, imports, and interlinks to other systems
-#   - Return enhanced — fully wired, no placeholders, no guesswork
-# Objective:
-#   Receive, reinforce, and return each script as a living part of the Gremlin:
-
-# agent_shell/shell_executor.py
 
 import subprocess
 import shlex
@@ -28,8 +16,9 @@ import json
 from datetime import datetime
 from pathlib import Path
 from memory.vector_store.embedder import package_embedding
+from backend.globals import logger
 
-LOG_PATH = Path("~/AscendNet/GremlinGPT/logs/shell_log.jsonl")
+LOG_PATH = Path("run/logs/shell_log.jsonl")
 LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
 
 SAFE_COMMANDS = [
@@ -52,19 +41,32 @@ SAFE_COMMANDS = [
 def run_shell_command(cmd: str) -> str:
     parsed = shlex.split(cmd)
 
+    if not parsed:
+        logger.warning("[SHELL] Empty or invalid command.")
+        return "[DENIED] Empty command"
+
     if parsed[0] not in SAFE_COMMANDS:
+        logger.warning(f"[SHELL] Unsafe command blocked: {parsed[0]}")
         return f"[DENIED] Unsafe command: {parsed[0]}"
 
     try:
         result = subprocess.run(parsed, capture_output=True, text=True, timeout=10)
         output = result.stdout.strip() or result.stderr.strip()
-        package_embedding(cmd + "\n" + output, source="shell")
+
+        meta = {
+            "origin": "shell_executor",
+            "command": cmd,
+            "timestamp": datetime.utcnow().isoformat(),
+            "watermark": "source:GremlinGPT",
+        }
+
+        package_embedding(cmd + "\n" + output, meta=meta)
 
         with open(LOG_PATH, "a") as log:
             log.write(
                 json.dumps(
                     {
-                        "timestamp": datetime.now().isoformat(),
+                        "timestamp": meta["timestamp"],
                         "command": cmd,
                         "output": output,
                     }
@@ -72,6 +74,9 @@ def run_shell_command(cmd: str) -> str:
                 + "\n"
             )
 
+        logger.info(f"[SHELL] Executed: {cmd}")
         return output
+
     except Exception as e:
+        logger.error(f"[SHELL] Execution error: {e}")
         return f"[ERROR] {e}"
