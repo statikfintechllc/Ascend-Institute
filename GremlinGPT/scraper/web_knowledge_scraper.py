@@ -1,3 +1,5 @@
+# !/usr/bin/env python3
+
 # ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
 # Built under the GremlinGPT Dual License v1.0
@@ -5,22 +7,8 @@
 # Contact: ascend.gremlin@gmail.com
 # ─────────────────────────────────────────────────────────────
 
-# !/usr/bin/env python3
-
-# GremlinGPT v5 :: Module Integrity Directive
+# GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
-# It must:
-#   - Integrate seamlessly into the architecture defined in the full outline
-#   - Operate autonomously and communicate cross-module via defined protocols
-#   - Be production-grade, repair-capable, and state-of-the-art in logic
-#   - Support learning, persistence, mutation, and traceability
-#   - Not remove or weaken logic (stubs may be replaced, but never deleted)
-#   - Leverage appropriate dependencies, imports, and interlinks to other systems
-#   - Return enhanced — fully wired, no placeholders, no guesswork
-# Objective:
-#   Receive, reinforce, and return each script as a living part of the Gremlin:
-
-# scraper/web_knowledge_scraper.py
 
 import os
 import asyncio
@@ -33,12 +21,14 @@ from loguru import logger
 
 from scraper.dom_navigator import extract_dom_structure
 from memory.vector_store.embedder import embed_text, package_embedding, inject_watermark
+from memory.log_history import log_event
 
 WATERMARK = "source:GremlinGPT"
 ORIGIN = "web_knowledge_scraper"
 
 HEADERS = {
-    "User-Agent": "GremlinGPT/4.0 (+https://gremlingpt.ai/bot)",
+    "User-Agent": "GremlinGPT/5.0 (+https://gremlingpt.ai/bot)",
+    "Accept": "text/html,application/xhtml+xml",
     "Accept-Language": "en-US,en;q=0.9",
 }
 
@@ -48,16 +38,15 @@ async def fetch_html(session, url):
         async with session.get(url, timeout=15) as response:
             if response.status == 200:
                 return await response.text()
-            else:
-                logger.warning(f"[SCRAPER] Non-200 for {url}: {response.status}")
-                return ""
+            logger.warning(f"[{ORIGIN}] Non-200 for {url}: {response.status}")
     except Exception as e:
-        logger.error(f"[SCRAPER] Failed to fetch {url}: {e}")
-        return ""
+        logger.error(f"[{ORIGIN}] Failed to fetch {url}: {e}")
+    return ""
 
 
 async def scrape_web_knowledge(urls):
     results = []
+    timestamp = datetime.utcnow().isoformat()
 
     async with aiohttp.ClientSession(headers=HEADERS) as session:
         tasks = [fetch_html(session, url) for url in urls]
@@ -67,54 +56,57 @@ async def scrape_web_knowledge(urls):
         if not html:
             continue
 
-        # Parse structured DOM metadata
         structure = extract_dom_structure(html)
 
-        # If fallback needed, parse text manually
         if not structure.get("text"):
             soup = BeautifulSoup(html, "lxml")
             fallback_text = soup.get_text(separator="\n", strip=True)[:1500]
             structure["text"] = fallback_text
-            logger.warning(f"[SCRAPER] Fallback HTML parsing used for {url}")
+            logger.warning(f"[{ORIGIN}] Fallback parsing used for {url}")
 
         domain = urlparse(url).netloc.replace("www.", "")
-        summary_text = f"[{url}]\n{structure['text']}"
-        vector = embed_text(summary_text)
+        summary = f"[{url}]\n{structure['text']}"
+        vector = embed_text(summary)
 
-        package_embedding(
-            text=summary_text,
-            vector=vector,
-            meta={
-                "origin": ORIGIN,
-                "domain": domain,
-                "timestamp": datetime.utcnow().isoformat(),
-                "url": url,
-                "tags": structure.get("tags", {}),
-                "length": len(summary_text),
-                "watermark": WATERMARK,
-            },
-        )
+        metadata = {
+            "origin": ORIGIN,
+            "timestamp": timestamp,
+            "url": url,
+            "domain": domain,
+            "tags": structure.get("tags", {}),
+            "length": len(summary),
+            "watermark": WATERMARK,
+        }
 
+        package_embedding(text=summary, vector=vector, meta=metadata)
         inject_watermark(origin=ORIGIN)
+        log_event("scraper", "knowledge_fetch", {"url": url, "summary_len": len(summary)})
 
-        results.append(
-            {
-                "url": url,
-                "summary": summary_text,
-                "nodes": structure.get("nodes", []),
-                "links": structure.get("links", []),
-            }
-        )
+        results.append({
+            "url": url,
+            "summary": summary,
+            "nodes": structure.get("nodes", []),
+            "links": structure.get("links", []),
+        })
 
-        logger.success(f"[SCRAPER] Embedded {url}")
+        logger.success(f"[{ORIGIN}] Embedded: {url}")
 
     return results
 
 
 def run_search_and_scrape(urls):
-    log_dir = "run/logs"
-    os.makedirs(log_dir, exist_ok=True)
-    return asyncio.run(scrape_web_knowledge(urls))
+    try:
+        os.makedirs("run/logs", exist_ok=True)
+        results = asyncio.run(scrape_web_knowledge(urls))
+
+        with open("run/logs/sample_scrape.json", "w") as f:
+            json.dump(results, f, indent=2)
+
+        logger.info(f"[{ORIGIN}] Scrape batch complete.")
+        return results
+    except Exception as e:
+        logger.error(f"[{ORIGIN}] Execution error: {e}")
+        return []
 
 
 if __name__ == "__main__":
@@ -122,7 +114,4 @@ if __name__ == "__main__":
         "https://finance.yahoo.com/",
         "https://www.investing.com/news/stock-market-news",
     ]
-    data = run_search_and_scrape(test_urls)
-    with open("run/logs/sample_scrape.json", "w") as f:
-        json.dump(data, f, indent=2)
-    print("[SCRAPER] Sample scrape complete.")
+    run_search_and_scrape(test_urls)
