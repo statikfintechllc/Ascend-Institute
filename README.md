@@ -61,8 +61,18 @@
     - [Phase 6 is Trading and Signals](#phase-6-trading-and-signals)  
     - [Phase 7 is Shell and Executors](#phase-7-is-shell-and-executors)  
     - [Phase 8 is Interfaces and API](#phase-8-interfaces--api)  
-    - [Once Completed I will provide](#once-completed-i-will-provide)
+    - [Once Completed I will provide](#once-completed-i-will-provide)  
     - [Read and Inact on Your System](#read-and-inact-on-your-system)
+      
+**Expanded:**  
+    - [Bootstrapping and Environment Management](#1-bootstrapping-and-environment-management)  
+    - [Global Config Awareness](#2-global-config-awareness)  
+    - [Memory and NLP Enhancements](#3-memory-and-nlp-enhancements)  
+    - [Task and Loop Management](#4-task-and-loop-management)  
+    - [Scraper Layer](#5-scraper-layer)  
+    - [API and Interface Layer](#6-api-and-interface-layer)  
+    - [Logging and Observability](#7-logging-and-observability)  
+    - [Documentation and Tests](#8-documentation-and-tests)
 12. [Collaborators Wanted to Join the Loop](#collaborators-wanted-to-join-the-loop)  
 13. [Support](#support)  
 14. [Final Notes](#final-notes)  
@@ -322,7 +332,155 @@ All without the cloud.
     2. Self-healing FSM loop  
     3. Final `README.md`  
     4. `system_call_graph.md` updated to **v1.0.3**
-  
+
+  # GremlinGPT v1.0.3 Expanded Drop  
+*(ETA: 1–2 weeks, maybe sooner if I gas it)*
+
+---
+
+## 1. Bootstrapping and Environment Management
+
+**Objective:**  
+> Ensure environment setup, installation, and reboot scripts correctly reflect modular subcomponents.
+
+**Key Files:**  
+- `install.sh`  
+- `reboot_recover.sh`  
+- `conda_envs/create_envs.sh`  
+- `run/start_all.sh`, `stop_all.sh`, `reboot_recover.sh`
+
+**Adjustments:**  
+> Ensure all services (FSM, backend, scraper, dashboard) start in sequence  
+> Validate each `*.yml` env in `conda_envs/` aligns with its module’s dependencies  
+> Add dependency checks and auto-repair logic to `install.sh`
+
+---
+
+## 2. Global Config Awareness
+
+**Objective:**  
+Make all modules respect centralized config.
+
+**Key Files:**  
+- `backend/globals.py`  
+- `config/config.toml`  
+- `config/dashboard_config.yaml`  
+- All `.py` files using `CFG`, `G`, `MEM`
+
+**Adjustments:**  
+> Normalize access to paths, ports, model names, and memory policies  
+> Replace all hardcoded `Path()` logic with dynamic config values
+
+---
+
+## 3. Memory and NLP Enhancements
+
+**Objective:**  
+> Support dynamic, extensible embeddings, feedback, and semantic tracing.
+
+**Key Files:**  
+- `memory/vector_store/embedder.py`  
+- `memory/log_history.py`  
+- `tools/reward_model.py`  
+- `nlp_engine/transformer_core.py`, `tokenizer.py`, `parser.py`  
+- `self_training/feedback_loop.py`, `generate_dataset.py`
+
+**Adjustments:**  
+> Support for multiple vector backends (FAISS, Chroma, in-memory fallback)  
+> Embed vector metadata (origin, `lineage_id`, etc.)  
+> Add fallback logic for tokenizer/transformer load failures
+
+---
+
+## 4. Task and Loop Management
+
+**Objective:**  
+> Align task lifecycle with agent-core and mutation systems.
+
+**Key Files:**  
+- `agent_core/fsm.py`, `task_queue.py`, `tool_executor.py`, `heuristics.py`  
+- `core/loop.py`, `kernel.py`, `snapshot.py`  
+- `agents/planner_agent.py`  
+- `executors/python_executor.py`
+
+**Adjustments:**  
+> Normalize FSM loop interval, error handling, snapshot+rollback  
+> Extend task types to include shell, scrape, planner, mutation  
+> Ensure kernel validates and applies `snapshot.py` patches
+
+---
+
+## 5. Scraper Layer
+
+**Objective:**  
+> Generalize for dynamic platforms (web, TWS, STT, etc.).
+
+**Key Files:**  
+- `scraper/source_router.py`, `scraper_loop.py`  
+- `scraper/tws_scraper.py`, `stt_scraper.py`  
+- `scraper/web_knowledge_scraper.py`, `dom_navigator.py`  
+- `scraper/playwright_handler.py`
+
+**Adjustments:**  
+> Auto-discover system paths for TWS/STT data or sockets  
+> Throttle/sanitize requests with adaptive headers  
+> Normalize DOM memory snapshots with `extract_dom_structure`
+
+---
+
+## 6. API and Interface Layer
+
+**Objective:**  
+> Expose clean APIs and ensure dashboard integrations are solid.
+
+**Key Files:**  
+- `backend/api/chat_handler.py`, `planner.py`, `scraping_api.py`, `memory_api.py`  
+- `frontend/components/*`  
+- `backend/server.py`, `router.py`, `scheduler.py`  
+- `docs/system_overview.md`, `docs/fsm_architecture.md`
+
+**Adjustments:**  
+> Normalize API route patterns and response schemas  
+> Inject memory tracepoints from frontend inputs  
+> Update docs with new endpoints and FSM-to-dashboard flows
+
+---
+
+## 7. Logging and Observability
+
+**Objective:**  
+> Enable full traceability and introspection.
+
+**Key Files:**  
+- `memory/log_history.py`, `backend/globals.py`, `core/kernel.py`  
+- `run/module_tracer.py`, `logs/*`  
+- `frontend/components/MemoryGraph.js`
+
+**Adjustments:**  
+> Add log level control (debug, info, error) via config  
+> Store logs in vector memory for querying  
+> Crash recovery pulls from logs/checkpoints
+
+---
+
+## 8. Documentation and Tests
+
+**Objective:**  
+> Ensure coherence with code changes and long-term maintainability.
+
+**Key Files:**  
+- `docs/full_structure_tree.txt`, `fsm_architecture.md`, `system_overview.md`  
+- `tests/test_*.py`
+
+**Adjustments:**  
+> Update diagrams to match refactored directory structure  
+> Expand test coverage to include all FSM states and planner outputs  
+> Add regression cases for rollback, NLP fallback, tool sandbox
+
+---
+
+> *GremlinGPT doesn’t just evolve. It plans the evolution.*
+
 ## Read and Inact on Your System
   - **[GremlinGPT.v1.0.3.Build.Prompt](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/GremlinGPT.v1.0.3.Build.Prompt.md)**
 
