@@ -57,7 +57,7 @@ def auto_commit(file_path: str, message: str = "[autocommit] Update via git_ops"
             logger.warning(f"[git_ops] File not found: {file_path}")
             return
 
-        os.system(f"git add \"{path}\"")
+        os.system(f'git add "{path}"')
         os.system(f'git commit -m "{message}"')
         logger.success(f"[git_ops] Git commit successful for: {path.name}")
 

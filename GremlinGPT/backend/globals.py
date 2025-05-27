@@ -132,9 +132,12 @@ LOOP = {
 
 
 # === AGENT ROLE ASSIGNMENTS ===
-ROLES = CFG.get("roles", {
-    "planner": "planner_agent",
-    "executor": "tool_executor",
-    "trainer": "feedback_loop",
-    "kernel": "code_mutator",
-})
+ROLES = CFG.get(
+    "roles",
+    {
+        "planner": "planner_agent",
+        "executor": "tool_executor",
+        "trainer": "feedback_loop",
+        "kernel": "code_mutator",
+    },
+)

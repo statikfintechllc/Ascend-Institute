@@ -106,4 +106,3 @@ def update_task_priority(task_id, new_priority):
     except Exception as e:
         logger.error(f"[COMMAND] Priority update error: {e}")
         return False
-

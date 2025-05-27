@@ -33,6 +33,7 @@ LOG_DIR = CFG.get("paths", {}).get("log_dir", "run/logs")
 os.makedirs(LOG_DIR, exist_ok=True)
 logger.add(f"{LOG_DIR}/runtime.log", rotation="1 MB")
 
+
 # Base API Checkpoint
 @app.route("/")
 def index():
