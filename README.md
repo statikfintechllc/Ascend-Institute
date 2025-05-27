@@ -23,6 +23,7 @@
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/FOUNDER_STATEMENT.md">
     <img src="https://img.shields.io/badge/Founder's%20Log-Statement-darkred?labelColor=black" alt="Founder's Log"/>
   </a>
+  
 </div>
 
 ---
