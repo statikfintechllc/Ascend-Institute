@@ -1,3 +1,5 @@
+# !/usr/bin/env python3
+
 # ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
 # Built under the GremlinGPT Dual License v1.0
@@ -5,37 +7,35 @@
 # Contact: ascend.gremlin@gmail.com
 # ─────────────────────────────────────────────────────────────
 
-# !/usr/bin/env python3
-
-# GremlinGPT v5 :: Module Integrity Directive
+# GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
-# It must:
-#   - Integrate seamlessly into the architecture defined in the full outline
-#   - Operate autonomously and communicate cross-module via defined protocols
-#   - Be production-grade, repair-capable, and state-of-the-art in logic
-#   - Support learning, persistence, mutation, and traceability
-#   - Not remove or weaken logic (stubs may be replaced, but never deleted)
-#   - Leverage appropriate dependencies, imports, and interlinks to other systems
-#   - Return enhanced — fully wired, no placeholders, no guesswork
-# Objective:
-#   Receive, reinforce, and return each script as a living part of the Gremlin:
-
-# backend/state_manager.py
 
 import json
-from backend.globals import CFG
 import os
+from pathlib import Path
+from backend.globals import CFG, logger
+from datetime import datetime
 
-STATE_FILE = CFG["paths"]["checkpoints_dir"] + "state_snapshot.json"
+STATE_FILE = Path(CFG["paths"].get("checkpoints_dir", "run/checkpoints/")) / "state_snapshot.json"
+STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
 
 
 def load_state():
-    if os.path.exists(STATE_FILE):
-        with open(STATE_FILE, "r") as f:
-            return json.load(f)
+    if STATE_FILE.exists():
+        try:
+            with open(STATE_FILE, "r") as f:
+                state = json.load(f)
+                logger.debug(f"[STATE] Loaded state snapshot with keys: {list(state.keys())}")
+                return state
+        except Exception as e:
+            logger.error(f"[STATE] Failed to load snapshot: {e}")
     return {}
 
 
 def save_state(state):
-    with open(STATE_FILE, "w") as f:
-        json.dump(state, f, indent=2)
+    try:
+        with open(STATE_FILE, "w") as f:
+            json.dump(state, f, indent=2)
+        logger.info(f"[STATE] Snapshot saved @ {datetime.utcnow().isoformat()}")
+    except Exception as e:
+        logger.error(f"[STATE] Failed to save snapshot: {e}")
