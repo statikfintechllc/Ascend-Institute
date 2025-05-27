@@ -1,6 +1,7 @@
 <link rel="stylesheet" type="text/css" href="docs/custom.css">
 <div align="center">
-  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/LICENSE.md">
+  <a
+href="https://github.com/statikfintechllc/AscendAI/blob/master/LICENSE.md">
     <img src="https://img.shields.io/badge/FAIR%20USE-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Fair Use License"/>
   </a>
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/LICENSE.md">
