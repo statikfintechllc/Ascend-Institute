@@ -43,15 +43,16 @@
 2. [Funding and Infrastructure Goals](#funding-and-infrastructure-goals)  
 3. [Phase 1 Funding Target is $10,000](#phase-1-funding-target-is-10000)  
 4. [If You Are](#if-you-are)  
-5. [Partner With Us](#partner-with-us)  
+5. [Partner With Us](#partner-with-us) 
 6. [If You Believe](#if-you-believe)  
 7. [How to Support Right Now](#how-to-support-right-now)  
 8. [What Is AscendAI?](#what-is-ascendai)  
-9. [GremlinGPT](#gremlingpt)  
+9. [GremlinGPT](#gremlingpt)
+    - [How to Install and Use GremlinGPT](#how-to-install-and-use-gremlingpt)
     - [GremlinGPT's Layout](#gremlingpts-layout)  
     - [GremlinGPT's Documentation](#gremlingpts-documentation)  
-10. [Demos](#demos)  
-11. [What is GremlinGPT v1.0.3](#what-is-gremlingpt-v103)  
+11. [Demos](#demos)  
+12. [What is GremlinGPT v1.0.3](#what-is-gremlingpt-v103)  
     - [Phase 1 is Core Engine and Execution](#phase-1-is-core-engine-and-execution)  
     - [Phase 2 is NLP and Semantic Logic](#phase-2-is-nlp-and-semantic-logic)  
     - [Phase 3 is Memory and Persistence](#phase-3-is-memory-and-persistence)  
@@ -70,11 +71,11 @@
     - [Logging and Observability](#7-logging-and-observability)  
     - [Documentation and Tests](#8-documentation-and-tests)
     
-12. [Collaborators Wanted to Join the Loop](#collaborators-wanted-to-join-the-loop)  
-13. [Support](#support)  
-14. [Final Notes](#final-notes)  
-15. [License](#license)  
-16. [How GremlinGPT Was Built](#how-gremlingpt-was-built)  
+13. [Collaborators Wanted to Join the Loop](#collaborators-wanted-to-join-the-loop)  
+14. [Support](#support)  
+15. [Final Notes](#final-notes)  
+16. [License](#license)  
+17. [How GremlinGPT Was Built](#how-gremlingpt-was-built)  
 
 ---
 
@@ -207,6 +208,8 @@ If you let it.
 If you feed it.  
 If you survive v1.0.3.
 
+## How to Install and Use GremlinGPT:
+   -  **[GremlinGPT's README](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/README.md)
 
 ## GremlinGPT's Layout:
    -  **[GremlinGPT v1.0.2 AI System](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT)**
