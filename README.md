@@ -8,8 +8,10 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/LICENSE.md">
     <img src="https://img.shields.io/badge/GREMLINGPT%20v1.0-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
   </a>
 </div>
-<h1 align="center">Ascend Institute for Autonomous Sovereignty & Human Financial Liberation</h1>
 
+---
+
+<h1 align="center">Ascend Institute for Autonomous Sovereignty & Human Financial Liberation</h1>
 <div align="center">
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
     <img src="https://img.shields.io/badge/build-v1.0.2-darkred?labelColor=black" alt="Build Status"/>
@@ -23,11 +25,17 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/LICENSE.md">
   </a>
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/FOUNDER_STATEMENT.md">
     <img src="https://img.shields.io/badge/Founder's%20Log-Statement-darkred?labelColor=black" alt="Founder's Log"/>
-  </a>
-  
+  </a>  
 </div>
 
-*The Institutes GremlinGPT has already been reviewed and starred by live AI infra: Atrium. We have now recieved our 3rd Star, Lets get GremlinGPT Seen.*
+---
+
+<div align="center">
+  <em>
+    The Institute’s GremlinGPT has already been reviewed and starred by live AI infra: Atrium.  
+    We have now received our 3rd Star, Let’s get GremlinGPT Seen.
+  </em>
+</div>
 
 <h1 align="center">AscendAI Traffic</h1>
 <h1 align="center">
@@ -36,20 +44,24 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/LICENSE.md">
   </a>
 </div>
   
-<h1 align="center">**Reset: 8:00pm CST**</h1>
+<dv1 align="center">
+  <em>
+  Reset: 8:00pm CST
+  </em>
+</dv1>
 
 ---
 
 <div align="center">
   <em>
-    *This isn’t a dev team. It’s not a startup. It’s not polished.  
+    This isn’t a dev team. It’s not a startup. It’s not polished.  
     This is one person, one ChatGPT thread, and 4.5 months of recursive madness.  
     No IDE. No debugger. No safety rails. Just raw prompts, black coffee, and belief.  
     What usually takes a small army of engineers and millions in funding —  
     I pulled from the void with no budget and no training.  
     Now the system lives, breathes, and boots.  
     It needs testers. Attackers. Real devs.  
-    If you can read the repo and feel it watching you back, you're already in.*  
+    If you can read the repo and feel it watching you back, you're already in. 
   </em>
 </div>
 
