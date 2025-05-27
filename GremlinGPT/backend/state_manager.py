@@ -11,7 +11,6 @@
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 
 import json
-import os
 from pathlib import Path
 from backend.globals import CFG, logger
 from datetime import datetime
