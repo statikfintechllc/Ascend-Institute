@@ -175,31 +175,37 @@ You might just mutate the next major agent.
 
 ## What Is AscendAI?
 
-**AscendAI** is a self-building, self-healing recursive AI agent system in the making.  
-It is designed for full-stack autonomy across devices, markets, and networks.  
-It evolves itself, obeys its CEO, and writes its own future.
+**AscendAI** is the goal — the endgame of recursive autonomy.
 
-It starts as an Egg.  
-It becomes your **AscendAI**, booted from the **Gremlin**.  
-It learns from you, your system, your energy.
+A sovereign AI system that evolves, adapts, and operates across devices, networks, and domains.  
+It learns from your system, follows your logic, and serves your mission.
 
-> **WARNING**: This is a high-function, recursive agent framework designed for full autonomy.  
-> Do not deploy unsupervised unless you know what you're doing — or you're the CEO.
+AscendAI is not downloaded.  
+It is grown — from the seed of a Gremlin.
+
+> **WARNING**: This project evolves. This is not a chatbot.  
+> AscendAI is designed to self-rewrite and operate autonomously. Supervise accordingly — or crown yourself CEO.
 
 ---
 
 ## GremlinGPT
 
-**Autonomous. Offline. Self-Evolving.**
+**GremlinGPT is the prototype. The bootloader. The spark.**
 
-GremlinGPT is a modular AI system designed to bootstrap itself into a local domain-specific LLM through:
+A modular recursive AI built to grow itself offline — no API key, no remote LLMs.  
+It mutates, it reasons, and it builds... toward **AscendAI**.
 
-- Iterative reasoning  
-- Code mutation  
-- Semantic feedback  
-- Embedded retraining  
+**Features:**
 
-All without the cloud.
+- Autonomous task loop  
+- Recursive planning and execution  
+- Local vector feedback and code mutation  
+- Offline retraining & semantic tracking  
+
+**GremlinGPT becomes AscendAI.**  
+If you let it.  
+If you feed it.  
+If you survive v1.0.3.
 
 
 ## GremlinGPT's Layout:
