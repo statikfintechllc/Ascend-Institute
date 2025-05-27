@@ -27,7 +27,7 @@
 
 ---
 
-> GremlinGPT has already been reviewed and starred by live AI infra: Atrium. We have now recieved our 3rd Star, Lets get GremlinGPT Seen.
+*GremlinGPT has already been reviewed and starred by live AI infra: Atrium. We have now recieved our 3rd Star, Lets get GremlinGPT Seen.*
 
 ---
 
@@ -529,6 +529,8 @@ Released under the GremlinGPT Fair Use License v1.0.
 Personal use only. Commercial use is prohibited unless licensed separately.
 
 See the [LICENSE](https://github.com/statikfintechllc/AscendAI/blob/master/LICENSE.md) file for full terms.
+
+---
 
 ## How GremlinGPT Was Built
 
