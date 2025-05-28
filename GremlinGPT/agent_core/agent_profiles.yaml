@@ -1,11 +1,59 @@
 agents:
+
   default:
+    profile: "gremlin_v1"
     retry_limit: 333
     tools:
       - scrape
       - signal_scan
       - nlp
       - self_train
-    profile: "gremlin_v1"
     notes: "Bootstrap agent. Evolves recursively."
 
+  planner_agent:
+    profile: "planner_genesis"
+    retry_limit: 5
+    tools:
+      - plan
+      - reprioritize
+      - enqueue
+    notes: "Plans next steps and schedules work into the task queue."
+
+  executor_agent:
+    profile: "executor_core"
+    retry_limit: 10
+    tools:
+      - python
+      - shell
+      - scrape
+      - nlp
+    notes: "Executes logic and code-related tasks with isolation sandbox."
+
+  trainer_agent:
+    profile: "trainer_loop_v1"
+    retry_limit: 3
+    tools:
+      - self_train
+      - feedback_loop
+      - generate_dataset
+    notes: "Triggers feedback ingestion and self-learning tasks."
+
+  signal_scanner:
+    profile: "marketscan_alpha"
+    retry_limit: 2
+    tools:
+      - signal_scan
+    notes: "Dedicated scanner for stock signals and patterns."
+
+  mutator_agent:
+    profile: "code_mutator"
+    retry_limit: 3
+    tools:
+      - diff_scan
+      - mutate_code
+    notes: "Monitors and mutates source files based on heuristics."
+
+meta:
+  format_version: 1.0
+  created: "2025-05-27"
+  origin: "GremlinGPT v1.0.3 :: Agent Role Definition"
