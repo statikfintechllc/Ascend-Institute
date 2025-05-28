@@ -9,7 +9,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.
   </a>
 </div>
 
-# Memory Pipeline — GremlinGPT v1.0.2
+# Memory Pipeline — GremlinGPT v1.0.3
 
 ---
 
