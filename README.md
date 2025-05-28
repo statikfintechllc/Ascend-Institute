@@ -46,7 +46,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/LICENSE.md">
   
 <div align="center">
   <em>
-Reset: 8:00pm CST
+Reset: 7:00pm CST
   </em>
 </div>
 
