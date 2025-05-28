@@ -11,7 +11,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.
 
 # GremlinGPT: System Overview
 
-**Version**: 1.0.2 
+**Version**: 1.0.3
 **Type**: Autonomous, Offline, Self-Evolving AI  
 **Host**: Linux Ubuntu (zsh-compatible)  
 **Execution**: Conda-based, multi-GPU optional  
