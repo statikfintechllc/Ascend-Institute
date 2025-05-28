@@ -9,7 +9,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.
   </a>
 </div>
 
-# FSM Architecture: GremlinGPT v1.0.2
+# FSM Architecture: GremlinGPT v1.0.3
 
 ---
 
