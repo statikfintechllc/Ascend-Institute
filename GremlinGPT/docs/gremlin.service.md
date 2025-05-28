@@ -9,7 +9,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.
   </a>
 </div>
 
-# GremlinGPT v1.0.2 Linux Service (Systemd)
+# GremlinGPT v1.0.3 Linux Service (Systemd)
 
 This unit file installs GremlinGPT as a **persistent autonomous Linux service**.
 
