@@ -9,7 +9,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.
   </a>
 </div>
 
-# Self-Training Architecture — GremlinGPT v1.0.2
+# Self-Training Architecture — GremlinGPT v1.0.3
 
 ---
 
