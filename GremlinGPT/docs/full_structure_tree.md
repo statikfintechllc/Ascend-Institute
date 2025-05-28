@@ -9,7 +9,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.
   </a>
 </div>
 
-# GremlinGPT v1.0.2
+# GremlinGPT v1.0.3
 ```text
 GremlinGPT/
 ├── README.md
