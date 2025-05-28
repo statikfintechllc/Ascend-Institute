@@ -37,9 +37,7 @@ def resolve_agent_role(task_type):
     """
     for agent_name, profile in AGENTS.items():
         if "tools" in profile and task_type in profile["tools"]:
-            logger.debug(
-                f"[AGENT_PROFILE] Task type '{task_type}' assigned to agent '{agent_name}'"
-            )
+            logger.debug(f"[AGENT_PROFILE] Task type '{task_type}' assigned to agent '{agent_name}'")
             return agent_name
     logger.debug(f"[AGENT_PROFILE] Task type '{task_type}' assigned to default agent")
     return "default"

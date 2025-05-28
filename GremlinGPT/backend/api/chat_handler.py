@@ -50,9 +50,7 @@ def chat():
     log_event("chat", "parsed", {"input": user_input, "task_type": task["type"]})
 
     if task["type"] == "unknown":
-        logger.warning(
-            f"[CHAT] Fallback NLP task for unrecognized command: {user_input}"
-        )
+        logger.warning(f"[CHAT] Fallback NLP task for unrecognized command: {user_input}")
         enqueue_task({"type": "nlp", "text": user_input})
 
     return jsonify(

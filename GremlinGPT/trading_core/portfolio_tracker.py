@@ -100,9 +100,7 @@ def update_position(symbol, price, shares, action="buy"):
     if action == "buy":
         total_shares = existing["shares"] + shares
         avg_price = (
-            (existing["shares"] * existing["price"] + shares * price) / total_shares
-            if total_shares > 0
-            else price
+            (existing["shares"] * existing["price"] + shares * price) / total_shares if total_shares > 0 else price
         )
     elif action == "sell":
         total_shares = max(0, existing["shares"] - shares)
@@ -163,7 +161,5 @@ def get_portfolio_summary(current_prices: dict):
         "unrealized_gain": round(total_value - total_cost, 2),
     }
 
-    logger.info(
-        f"[PORTFOLIO] Summary generated. Total value: ${summary['total']['value']:.2f}"
-    )
+    logger.info(f"[PORTFOLIO] Summary generated. Total value: ${summary['total']['value']:.2f}")
     return summary
