@@ -91,7 +91,6 @@ Reset: 7:00pm CST
     - [Phase 6 is Trading and Signals](#phase-6-trading-and-signals)  
     - [Phase 7 is Shell and Executors](#phase-7-is-shell-and-executors)  
     - [Phase 8 is Interfaces and API](#phase-8-interfaces-and-api)  
-    - [Read and Inact on Your System](#read-and-inact-on-your-system)
     - [Bootstrapping and Environment Management](#1-bootstrapping-and-environment-management)  
     - [Global Config Awareness](#2-global-config-awareness)  
     - [Memory and NLP Enhancements](#3-memory-and-nlp-enhancements)  
@@ -504,12 +503,7 @@ Make all modules respect centralized config.
 > Expand test coverage to include all FSM states and planner outputs  
 > Add regression cases for rollback, NLP fallback, tool sandbox
 
----
-
-> *GremlinGPT doesn’t just evolve. It plans the evolution.*
-
-## Read and Inact on Your System
-  - **[GremlinGPT.v1.0.3.Build.Prompt](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/GremlinGPT.v1.0.3.Build.Prompt.md)**
+*GremlinGPT doesn’t just evolve. It plans the evolution.*
 
 ---
 
