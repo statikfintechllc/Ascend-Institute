@@ -6,23 +6,38 @@
 # Contact: ascend.gremlin@gmail.com
 # ─────────────────────────────────────────────────────────────
 
-# GremlinGPT v5 :: Module Integrity Directive
+# GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
-# It must:
-#   - Integrate seamlessly into the architecture defined in the full outline
-#   - Operate autonomously and communicate cross-module via defined protocols
-#   - Be production-grade, repair-capable, and state-of-the-art in logic
-#   - Support learning, persistence, mutation, and traceability
-#   - Not remove or weaken logic (stubs may be replaced, but never deleted)
-#   - Leverage appropriate dependencies, imports, and interlinks to other systems
-#   - Return enhanced — fully wired, no placeholders, no guesswork
-# Objective:
-#   Receive, reinforce, and return each script as a living part of the Gremlin:
-
-# agent_core/error_log.py
 
 from loguru import logger
+from datetime import datetime
+from backend.globals import CFG
+from pathlib import Path
+import json
+import os
+
+ERROR_LOG_FILE = Path(CFG["paths"]["log_dir"]) / "task_errors.jsonl"
+ERROR_LOG_FILE.parent.mkdir(parents=True, exist_ok=True)
 
 
 def log_error(task, error):
-    logger.error(f"[ERROR_LOG] Task {task['type']} failed. Reason: {error}")
+    """
+    Logs structured error for a failed task.
+    Supports console + file persistence.
+    """
+    record = {
+        "timestamp": datetime.utcnow().isoformat(),
+        "task_type": task.get("type", "unknown"),
+        "task_payload": task,
+        "error": str(error),
+    }
+
+    # Log to terminal
+    logger.error(f"[ERROR_LOG] Task '{record['task_type']}' failed — {error}")
+
+    # Append to file
+    try:
+        with open(ERROR_LOG_FILE, "a") as f:
+            f.write(json.dumps(record) + "\n")
+    except Exception as e:
+        logger.warning(f"[ERROR_LOG] Failed to persist error log: {e}")
