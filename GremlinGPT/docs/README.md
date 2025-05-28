@@ -9,7 +9,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.
   </a>
 </div>
 	
-<h1 align= "center">GremlinGPT: The real Autonomous Agent v1.0.2</h1>
+<h1 align= "center">GremlinGPT: The real Autonomous Agent v1.0.3</h1>
 
 <div align="center">
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
