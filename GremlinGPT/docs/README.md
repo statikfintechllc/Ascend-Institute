@@ -1,10 +1,13 @@
+<link rel="stylesheet" type="text/css" href="docs/custom.css">
 <div align="center">
-  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/LICENSE.md">
+  <a
+href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md">
     <img src="https://img.shields.io/badge/FAIR%20USE-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Fair Use License"/>
   </a>
-  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/LICENSE.md">
+  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md">
     <img src="https://img.shields.io/badge/GREMLINGPT%20v1.0-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
   </a>
+</div>
 	
 <h1 align= "center">GremlinGPT: The real Autonomous Agent v1.0.2</h1>
 
@@ -12,14 +15,14 @@
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
     <img src="https://img.shields.io/badge/build-v1.0.2-darkred?labelColor=black" alt="Build Status"/>
   </a>
-  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/FOUNDER_LOG.md">
+  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/FOUNDER_LOG.md">
     <img src="https://img.shields.io/badge/Founder's%20Log-Manifesto-darkred?labelColor=black" alt="Founder's Log"/>
   </a>
   <br/>
   <a href="https://github.com/statikfintechllc">
     <img src="https://img.shields.io/badge/contributors-2-darkred?labelColor=black" alt="Contributors"/>
   </a>
-  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/FOUNDER_STATEMENT.md">
+  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/FOUNDER_STATEMENT.md">
     <img src="https://img.shields.io/badge/Founder's%20Log-Statement-darkred?labelColor=black" alt="Founder's Log"/>
   </a>
 </div>
@@ -60,7 +63,7 @@
 > Not on fiber internet with a dev team holding my hand...
 
 Curious about the journey, the pain, and the philosophy behind AscendAI?  
-Read more in the [FOUNDER_LOG.md](https://github.com/statikfintechllc/AscendAI/blob/master/FOUNDER_LOG.md)
+Read more in the [FOUNDER_LOG.md](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/FOUNDER_LOG.md)
 
 ⸻
 
