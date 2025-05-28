@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
 # Built under the GremlinGPT Dual License v1.0
@@ -5,10 +6,7 @@
 # Contact: ascend.gremlin@gmail.com
 # ─────────────────────────────────────────────────────────────
 
-# !/usr/bin/env python3
-
-# GremlinGPT v5 :: Module Integrity Directive
-# This script is a component of the GremlinGPT system, under Alpha expansion.
+# GremlinGPT v1.0.3 :: agent_core/tool_executor.py
 
 import asyncio
 from datetime import datetime
@@ -23,7 +21,6 @@ from executors.python_executor import run_python_sandbox
 from tools.reward_model import evaluate_result, log_reward
 from memory.log_history import log_event
 from backend.globals import logger
-
 
 def execute_tool(task):
     task_type = task.get("type")
@@ -50,14 +47,11 @@ def execute_tool(task):
         # ─────────────────────────────────────────────
         elif task_type == "python":
             logger.info("[TOOL] Executing Python code block.")
-
             code = task.get("code") or task.get("target") or ""
             exec_result = run_python_sandbox(code)
-
             preview = exec_result.get("stdout", "")[:500] + "\n" + exec_result.get("stderr", "")[:500]
             reward = evaluate_result(task_type, preview)
             log_reward(reward)
-
             vector = encode(preview)
             package_embedding(
                 preview,
@@ -71,7 +65,6 @@ def execute_tool(task):
                 },
             )
             inject_watermark(origin="tool::python_exec")
-
             log_event(
                 "exec",
                 task_type,

@@ -124,6 +124,7 @@ GremlinGPT/
 │   ├── heuristics.py
 │   ├── tool_executor.py
 │   ├── agent_profiles.yaml
+│   ├── agent_profiles.py
 │   └── error_log.py
 │
 ├── trading_core/
