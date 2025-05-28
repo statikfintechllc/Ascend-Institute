@@ -1,10 +1,10 @@
 <link rel="stylesheet" type="text/css" href="docs/custom.css">
 <div align="center">
   <a
-href="https://github.com/statikfintechllc/AscendAI/blob/master/LICENSE.md">
+href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md">
     <img src="https://img.shields.io/badge/FAIR%20USE-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Fair Use License"/>
   </a>
-  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/LICENSE.md">
+  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md">
     <img src="https://img.shields.io/badge/GREMLINGPT%20v1.0-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
   </a>
 </div>
@@ -23,7 +23,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/LICENSE.md">
   <a href="https://github.com/statikfintechllc">
     <img src="https://img.shields.io/badge/contributors-2-darkred?labelColor=black" alt="Contributors"/>
   </a>
-  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/FOUNDER_STATEMENT.md">
+  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/FOUNDER_STATEMENT.md">
     <img src="https://img.shields.io/badge/Founder's%20Log-Statement-darkred?labelColor=black" alt="Founder's Log"/>
   </a>  
 </div>
@@ -562,7 +562,7 @@ Unseen. Unbroken. Unrivaled. Gremlins Ascend.
 Released under the GremlinGPT Fair Use License v1.0.
 Personal use only. Commercial use is prohibited unless licensed separately.
 
-See the [LICENSE](https://github.com/statikfintechllc/AscendAI/blob/master/LICENSE.md) file for full terms.
+See the [LICENSE](https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md) file for full terms.
 
 ---
 
