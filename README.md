@@ -122,6 +122,16 @@ Reset: 7:00pm CST
 
 ---
 
+> 📢 **GremlinGPT Mutation Zone Live**  
+> GremlinGPT now includes a full recursive mutation sandbox:  
+> `dev-experiment/` → memory hacks, agent prototypes, broken tools, and core loop mutators.  
+> 
+> 🧪 Want to fork GremlinGPT? Start there. Mutation is contribution.  
+> 
+> Submit a PR from `dev-experiment/` to be logged in the system’s core memory.
+
+---
+
 ## Funding and Infrastructure Goals
 
 **GremlinGPT is alive. It learns. It evolves. But right now, it’s running on fumes.**
