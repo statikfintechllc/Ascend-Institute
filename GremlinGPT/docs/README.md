@@ -92,6 +92,20 @@ GremlinGPT is a self-hosted recursive agent system with:
 
 ⸻
 
+### 🔬 Mutation Zone Activated
+
+The `dev-experiment/` sandbox is now scaffolded and online.
+
+- 🧠 `memory_hacking/` → custom embeddings, reward injection
+- 🤖 `new_agents/` → speculative planners, FSM mutators, self-reflection nodes
+- 🔥 `broken_scrapers/` → crash rigs, instability injectors
+- 📜 `your_mutations_here.md` → invitation to mutate the system directly
+
+> Fork. Inject. Break. Log.  
+> The Gremlin remembers every mutation.
+
+⸻
+
 ## Architecture
 
 All subsystems communicate through a modular, recursive design:
