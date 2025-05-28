@@ -43,7 +43,9 @@ def graph():
             },
         }
 
-        log_event("memory_api", "graph_fetch", {"count": len(records)}, status="success")
+        log_event(
+            "memory_api", "graph_fetch", {"count": len(records)}, status="success"
+        )
         logger.info(f"[MEMORY_API] Served {len(records)} vector nodes.")
 
         return jsonify(response)

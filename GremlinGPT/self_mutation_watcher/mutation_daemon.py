@@ -121,7 +121,9 @@ def mutation_loop():
             analyze_mutation_diff()
             notify_dashboard("Self-mutation scan complete.")
             enqueue_next()
-            logger.info(f"[WATCHER] Planner task injected post-mutation at {datetime.utcnow().isoformat()}")
+            logger.info(
+                f"[WATCHER] Planner task injected post-mutation at {datetime.utcnow().isoformat()}"
+            )
 
             if DATASET_OUT.exists():
                 backup = archive_json_log(str(DATASET_OUT), prefix="dataset_dump")
@@ -158,7 +160,9 @@ def analyze_mutation_diff():
                 score = semantic_similarity(previous, current)
                 lineage_id = str(uuid.uuid4())
 
-                logger.info(f"[WATCHER] Semantic similarity for {path}: {round(score, 4)}")
+                logger.info(
+                    f"[WATCHER] Semantic similarity for {path}: {round(score, 4)}"
+                )
 
                 vector = embed_text(diff)
                 package_embedding(

@@ -65,7 +65,10 @@ def scroll_and_capture():
     images = []
     for i in range(3):
         screenshot = ImageGrab.grab()
-        path = SCREENSHOT_DIR / f"monday_response_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{i}.png"
+        path = (
+            SCREENSHOT_DIR
+            / f"monday_response_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{i}.png"
+        )
         screenshot.save(path)
         images.append(path)
         pyautogui.scroll(-500)
@@ -104,7 +107,9 @@ def save_to_memory(prompt, response):
     inject_watermark(origin=ORIGIN)
     log_event("ask", "monday_query", {"prompt": prompt}, status="external")
 
-    filename = MEMORY_DIR / f"chat_response_{timestamp.replace(':', '').replace('-', '')}.md"
+    filename = (
+        MEMORY_DIR / f"chat_response_{timestamp.replace(':', '').replace('-', '')}.md"
+    )
     with open(filename, "w") as f:
         f.write(f"# Prompt:\n{prompt}\n\n# Response:\n{response}\n")
     logger.success(f"[ASK] ChatGPT result embedded and saved: {filename}")

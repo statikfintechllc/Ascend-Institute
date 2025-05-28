@@ -15,7 +15,10 @@ from pathlib import Path
 from backend.globals import CFG, logger
 from datetime import datetime
 
-STATE_FILE = Path(CFG["paths"].get("checkpoints_dir", "run/checkpoints/")) / "state_snapshot.json"
+STATE_FILE = (
+    Path(CFG["paths"].get("checkpoints_dir", "run/checkpoints/"))
+    / "state_snapshot.json"
+)
 STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
 
 
@@ -24,7 +27,9 @@ def load_state():
         try:
             with open(STATE_FILE, "r") as f:
                 state = json.load(f)
-                logger.debug(f"[STATE] Loaded state snapshot with keys: {list(state.keys())}")
+                logger.debug(
+                    f"[STATE] Loaded state snapshot with keys: {list(state.keys())}"
+                )
                 return state
         except Exception as e:
             logger.error(f"[STATE] Failed to load snapshot: {e}")
