@@ -38,7 +38,9 @@ async def run_scraper():
             try:
                 dom = await get_dom_html(task["target"])
                 store_scrape_to_memory(task["target"], dom)
-                logger.success(f"[{MODULE.upper()}] Stored scrape snapshot from {task['target']}")
+                logger.success(
+                    f"[{MODULE.upper()}] Stored scrape snapshot from {task['target']}"
+                )
                 log_event(
                     MODULE,
                     "task_complete",
