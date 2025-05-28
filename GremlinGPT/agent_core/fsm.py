@@ -1,4 +1,4 @@
-# !/usr/bin/env python3
+#!/usr/bin/env python3
 
 # ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
@@ -7,8 +7,7 @@
 # Contact: ascend.gremlin@gmail.com
 # ─────────────────────────────────────────────────────────────
 
-# GremlinGPT v1.0.3 :: Module Integrity Directive
-# This script is a component of the GremlinGPT system, under Alpha expansion.
+# GremlinGPT v1.0.3 :: FSM Core & Module Integrity Directive
 
 import os
 import time
@@ -20,7 +19,6 @@ from agent_core.task_queue import TaskQueue, reprioritize, promote_old_tasks
 from agent_core.tool_executor import execute_tool
 from agent_core.heuristics import evaluate_task
 from agent_core.error_log import log_error
-
 from agents.planner_agent import enqueue_next
 from backend import globals as G
 from backend.utils.git_ops import archive_json_log, auto_commit
@@ -28,7 +26,9 @@ from memory.vector_store.embedder import inject_watermark
 from memory.log_history import log_event
 from self_mutation_watcher.watcher import scan_and_diff
 from self_mutation_watcher.mutation_daemon import run_daemon
+from agent_core.agent_profiles import resolve_agent_role
 from self_training.generate_dataset import generate_datasets
+from kernel import apply_patch  # 🧠 Kernel hook for patchable execution
 
 FSM_STATE = "IDLE"
 console = Console()
@@ -69,16 +69,43 @@ def fsm_loop():
             FSM_STATE = "IDLE"
             break
 
+        # Dynamic agent role assignment per task
+        role = resolve_agent_role(task["type"])
+        task["assigned_role"] = role
+        console.log(f"[FSM] Task {task['type']} assigned to role: {role}")
+
         log_event("fsm", "task_start", {"task": task}, status="begin")
 
         try:
-            if evaluate_task(task):
+            if task["type"] == "patch_kernel":
+                file = task.get("target_file")
+                code = task.get("code")
+                reason = task.get("meta", {}).get("reason", "planner")
+                result = apply_patch(file, code, reason)
+                console.log(f"[FSM] Kernel patch applied to {file}: {result}")
+                log_event("fsm", "patch_kernel", {"task": task, "result": result})
+
+            elif task["type"] == "code_patch":
+                file_path = task.get("file")
+                code = task.get("code")
+                if file_path and code:
+                    success = apply_patch(file_path, code, reason="fsm_patch")
+                    result = {"patched": success}
+                else:
+                    raise ValueError("Missing 'file' or 'code' in patch task.")
+                console.log(f"[FSM] Code patch result: {result}")
+                log_event("fsm", "code_patch", {"task": task, "result": result})
+
+            elif evaluate_task(task):
                 result = execute_tool(task)
                 console.log(f"[FSM] {task['type']} => {result}")
                 log_event("fsm", "task_exec", {"task": task, "result": result})
+
             else:
                 console.log(f"[FSM] Skipped: {task}")
                 log_event("fsm", "task_skipped", {"task": task}, status="skip")
+                continue
+
         except Exception as e:
             log_error(task, e)
             task_queue.retry(task)
@@ -89,6 +116,7 @@ def fsm_loop():
                 reprioritize(tid, "high")
                 console.log(f"[FSM] Reprioritized failing task {tid} to HIGH")
 
+        # Self-mutation check
         try:
             scan_and_diff()
         except Exception as e:
@@ -115,14 +143,18 @@ def fsm_loop():
             console.log("[FSM] Training dataset updated.")
             archive_path = archive_json_log(DATASET_PATH, prefix="dataset_dump")
             if archive_path:
-                auto_commit(archive_path, message="[autocommit] Dataset updated by FSM loop")
+                auto_commit(
+                    archive_path, message="[autocommit] Dataset updated by FSM loop"
+                )
 
             if G.CFG.get("git", {}).get("auto_push", False):
                 auto_push()
         except Exception as e:
             console.log(f"[FSM] Dataset generation failed: {e}")
             with open(LOG_CRASH_PATH, "a") as logf:
-                logf.write(f"{datetime.utcnow().isoformat()} :: Dataset Error: {str(e)}\n")
+                logf.write(
+                    f"{datetime.utcnow().isoformat()} :: Dataset Error: {str(e)}\n"
+                )
 
     FSM_STATE = "IDLE"
     console.log("[FSM] Queue cleared.")
@@ -142,4 +174,9 @@ if __name__ == "__main__":
     task_queue.enqueue({"type": "scrape"})
     task_queue.enqueue({"type": "signal_scan"})
     task_queue.enqueue({"type": "nlp", "text": "What is support and resistance?"})
+    task_queue.enqueue({
+        "type": "code_patch",
+        "file": "agent_core/tool_executor.py",
+        "code": "def execute_tool(task):\n    return f'Patched exec of {task}'"
+    })
     run_schedule()

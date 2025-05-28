@@ -53,6 +53,50 @@ agents:
       - mutate_code
     notes: "Monitors and mutates source files based on heuristics."
 
+profiles:
+
+  gremlin_v1:
+    description: "Bootstrap/primary agent. Handles core recursion, bootstrapping, and general tasks."
+    default_tools: ["scrape", "signal_scan", "nlp", "self_train"]
+    max_concurrent_tasks: 2
+    isolation: "medium"
+    priority: "normal"
+
+  planner_genesis:
+    description: "Planner. Responsible for next-step logic, task scheduling, and work queue management."
+    default_tools: ["plan", "reprioritize", "enqueue"]
+    max_concurrent_tasks: 1
+    isolation: "high"
+    priority: "high"
+
+  executor_core:
+    description: "Executor. Runs code and logic tasks in a sandboxed environment."
+    default_tools: ["python", "shell", "scrape", "nlp"]
+    max_concurrent_tasks: 3
+    isolation: "very_high"
+    priority: "critical"
+
+  trainer_loop_v1:
+    description: "Self-trainer. Monitors logs, triggers feedback loops, builds datasets."
+    default_tools: ["self_train", "feedback_loop", "generate_dataset"]
+    max_concurrent_tasks: 1
+    isolation: "medium"
+    priority: "normal"
+
+  marketscan_alpha:
+    description: "Market scanner for real-time signal and pattern detection."
+    default_tools: ["signal_scan"]
+    max_concurrent_tasks: 1
+    isolation: "low"
+    priority: "high"
+
+  code_mutator:
+    description: "Mutator. Watches and mutates source code based on diffs and heuristics."
+    default_tools: ["diff_scan", "mutate_code"]
+    max_concurrent_tasks: 1
+    isolation: "critical"
+    priority: "high"
+
 meta:
   format_version: 1.0
   created: "2025-05-27"

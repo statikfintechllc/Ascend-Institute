@@ -1,5 +1,4 @@
-# !/usr/bin/env python3
-
+#!/usr/bin/env python3
 # ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
 # Built under the GremlinGPT Dual License v1.0
@@ -7,8 +6,7 @@
 # Contact: ascend.gremlin@gmail.com
 # ─────────────────────────────────────────────────────────────
 
-# GremlinGPT v1.0.3 :: Module Integrity Directive
-# This script is a component of the GremlinGPT system, under Alpha expansion.
+# GremlinGPT v1.0.3 :: kernel.py
 
 from datetime import datetime
 from pathlib import Path
@@ -25,7 +23,6 @@ SOURCE_ROOT = Path("GremlinGPT")
 ROLLBACK_DIR = Path(CFG["paths"].get("checkpoints_dir", "run/checkpoints/")) / "snapshots"
 ROLLBACK_DIR.mkdir(parents=True, exist_ok=True)
 
-
 def read_file(path):
     try:
         with open(path, "r") as f:
@@ -33,7 +30,6 @@ def read_file(path):
     except Exception as e:
         logger.error(f"[KERNEL] Failed to read {path}: {e}")
         return None
-
 
 def write_file(path, content):
     try:
@@ -45,18 +41,17 @@ def write_file(path, content):
         logger.error(f"[KERNEL] Failed to write {path}: {e}")
         return False
 
-
 def backup_snapshot(path):
     try:
         filename = Path(path).name
         timestamp = datetime.utcnow().strftime("%Y%m%dT%H%M%S")
         snapshot_path = ROLLBACK_DIR / f"{filename}.{timestamp}.bak"
         shutil.copy(path, snapshot_path)
+        logger.info(f"[KERNEL] Snapshot: {snapshot_path}")
         return snapshot_path
     except Exception as e:
         logger.warning(f"[KERNEL] Snapshot backup failed: {e}")
         return None
-
 
 def test_patch_syntax(code):
     try:
@@ -65,7 +60,6 @@ def test_patch_syntax(code):
     except SyntaxError as e:
         logger.error(f"[KERNEL] Patch syntax invalid: {e}")
         return False
-
 
 def run_patch_test(temp_code):
     try:
@@ -77,13 +71,12 @@ def run_patch_test(temp_code):
             text=True,
         )
         if result.returncode != 0:
-            logger.warning(f"[KERNEL] Patch test failed: {result.stderr}")
+            logger.warning(f"[KERNEL] Patch test failed: {result.stderr.strip()}")
             return False
         return True
     except Exception as e:
         logger.warning(f"[KERNEL] Exception during patch test: {e}")
         return False
-
 
 def apply_patch(file_path, new_code, reason="mutation", safe_mode=True):
     original = read_file(file_path)
@@ -115,8 +108,8 @@ def apply_patch(file_path, new_code, reason="mutation", safe_mode=True):
             "type": "code_patch",
             "reason": reason,
             "patch_id": patch_id,
-            "semantic_score": diff["semantic_score"],
-            "embedding_delta": diff["embedding_delta"],
+            "semantic_score": diff.get("semantic_score", 0),
+            "embedding_delta": diff.get("embedding_delta", 0),
             "timestamp": datetime.utcnow().isoformat(),
         },
     )
@@ -127,13 +120,13 @@ def apply_patch(file_path, new_code, reason="mutation", safe_mode=True):
     if success:
         inject_feedback()
         logger.success(f"[KERNEL] Patch applied: {patch_id}")
+    else:
+        logger.error(f"[KERNEL] Patch failed for: {file_path}")
     return success
-
 
 def patch_from_text(target_file, injected_code, reason="human"):
     path = SOURCE_ROOT / target_file
     return apply_patch(str(path), injected_code, reason)
-
 
 def patch_from_file(target_file, patch_file):
     try:
@@ -143,7 +136,6 @@ def patch_from_file(target_file, patch_file):
     except Exception as e:
         logger.error(f"[KERNEL] Failed patch from file: {e}")
         return False
-
 
 if __name__ == "__main__":
     test_file = "agent_core/tool_executor.py"
