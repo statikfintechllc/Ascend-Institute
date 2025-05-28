@@ -241,11 +241,11 @@ If you survive v1.0.3.
    -  **[GremlinGPT's README](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/README.md)**
 
 ## GremlinGPT's Layout:
-   -  **[GremlinGPT v1.0.2 AI System](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT)**
+   -  **[GremlinGPT v1.0.3 AI System](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT)**
 
 
 ## GremlinGPT's Documentation:
-   -  **[What is GremlinGPT v1.0.2](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs)**
+   -  **[What is GremlinGPT v1.0.3](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs)**
 
 ---
 
