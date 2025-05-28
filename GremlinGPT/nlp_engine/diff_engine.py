@@ -66,9 +66,7 @@ def diff_files(file_a: str, file_b: str) -> Dict:
     Handles encoding errors safely.
     """
     try:
-        with open(file_a, "r", encoding="utf-8") as f1, open(
-            file_b, "r", encoding="utf-8"
-        ) as f2:
+        with open(file_a, "r", encoding="utf-8") as f1, open(file_b, "r", encoding="utf-8") as f2:
             content_a = f1.read()
             content_b = f2.read()
             return diff_texts(content_a, content_b)
