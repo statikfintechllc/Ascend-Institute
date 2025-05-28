@@ -14,7 +14,6 @@ from datetime import datetime
 from backend.globals import CFG
 from pathlib import Path
 import json
-import os
 
 ERROR_LOG_FILE = Path(CFG["paths"]["log_dir"]) / "task_errors.jsonl"
 ERROR_LOG_FILE.parent.mkdir(parents=True, exist_ok=True)
