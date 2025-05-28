@@ -9,7 +9,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.
   </a>
 </div>
 
-# Trading Signals — GremlinGPT v1.0.2 (v4)
+# Trading Signals — GremlinGPT v1.0.3
 
 ---
 
