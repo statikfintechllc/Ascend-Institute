@@ -1,3 +1,5 @@
+# File: .github/workflows/self_heal_and_lint.yml
+
 name: GremlinGPT Autonomous Self-Healing & Lint
 
 on:
@@ -5,8 +7,8 @@ on:
     branches: [main, develop]
   pull_request:
   schedule:
-    - cron: "0 * * * *" # every hour
-    - cron: "30 2 * * *" # plus a daily deep check at 02:30 UTC
+    - cron: "0 * * * *"
+    - cron: "30 2 * * *"
   workflow_dispatch:
 
 jobs:
@@ -69,7 +71,8 @@ jobs:
               .venv,
               build,
               dist,
-              GremlinGPT/data/prompts
+              GremlinGPT/data/prompts,
+              GremlinGPT/dev-experiment
           EOF
 
       - name: Run Black (auto-fix mode)
@@ -77,7 +80,7 @@ jobs:
         run: |
           eval "$($CONDA/bin/conda shell.zsh hook)"
           conda activate gremlin-nlp
-          black GremlinGPT/ --line-length 120
+          black GremlinGPT/ --line-length 120 --exclude GremlinGPT/dev-experiment
 
       - name: Commit style fixes
         if: github.event_name != 'pull_request'
@@ -96,14 +99,14 @@ jobs:
         run: |
           eval "$($CONDA/bin/conda shell.zsh hook)"
           conda activate gremlin-nlp
-          flake8 GremlinGPT/
+          flake8 GremlinGPT/ --exclude=GremlinGPT/dev-experiment
 
       - name: Targeted Lint (fail on critical issues only)
         shell: zsh {0}
         run: |
           eval "$($CONDA/bin/conda shell.zsh hook)"
           conda activate gremlin-nlp
-          flake8 GremlinGPT/ --count \
+          flake8 GremlinGPT/ --exclude=GremlinGPT/dev-experiment --count \
             --select=E9,F63,F7,F82 --show-source --statistics
 
       - name: Run GremlinGPT
@@ -119,7 +122,6 @@ jobs:
         shell: zsh {0}
         continue-on-error: true
         run: |
-          # Check for start_all.sh and recreate a stub if missing
           if [ ! -f GremlinGPT/run/start_all.sh ]; then
             echo "#!/bin/zsh\necho 'Stub: start_all.sh recreated by workflow. Please implement logic.'" > GremlinGPT/run/start_all.sh
             chmod +x GremlinGPT/run/start_all.sh
