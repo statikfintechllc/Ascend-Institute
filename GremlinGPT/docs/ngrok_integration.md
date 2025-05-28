@@ -9,7 +9,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.
   </a>
 </div>
 
-# GremlinGPT v1.0.2 – ngrok Integration Guide
+# GremlinGPT v1.0.3 – ngrok Integration Guide
 
 This document explains how `ngrok` is integrated into the GremlinGPT system and how to use it to access your dashboard securely from anywhere — including mobile devices.
 
