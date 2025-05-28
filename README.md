@@ -16,7 +16,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
     <img src="https://img.shields.io/badge/build-v1.0.2-darkred?labelColor=black" alt="Build Status"/>
   </a>
-  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/FOUNDER_LOG.md">
+  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/FOUNDER_LOG.md">
     <img src="https://img.shields.io/badge/Founder's%20Log-Manifesto-darkred?labelColor=black" alt="Founder's Log"/>
   </a>
   <br/>
@@ -119,7 +119,7 @@ Reset: 7:00pm CST
 - **Ethereum**: `0xC2db50A0fc6c95f36Af7171D8C41F6998184103F`  
 - **Chime**: `$StatikSmokTM`
 
-**See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/OPEN_FUNDING_PROPOSAL.md)**
+**See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/About\Us/OPEN_FUNDING_PROPOSAL.md)**
 
 ---
 
