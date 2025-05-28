@@ -109,7 +109,9 @@ def fsm_loop():
         except Exception as e:
             log_error(task, e)
             task_queue.retry(task)
-            log_event("fsm", "task_error", {"task": task, "error": str(e)}, status="fail")
+            log_event(
+                "fsm", "task_error", {"task": task, "error": str(e)}, status="fail"
+            )
             tid = task.get("id")
             retries = task_queue.task_meta.get(tid, {}).get("retries", 0)
             if retries >= 2:
@@ -174,9 +176,11 @@ if __name__ == "__main__":
     task_queue.enqueue({"type": "scrape"})
     task_queue.enqueue({"type": "signal_scan"})
     task_queue.enqueue({"type": "nlp", "text": "What is support and resistance?"})
-    task_queue.enqueue({
-        "type": "code_patch",
-        "file": "agent_core/tool_executor.py",
-        "code": "def execute_tool(task):\n    return f'Patched exec of {task}'"
-    })
+    task_queue.enqueue(
+        {
+            "type": "code_patch",
+            "file": "agent_core/tool_executor.py",
+            "code": "def execute_tool(task):\n    return f'Patched exec of {task}'",
+        }
+    )
     run_schedule()

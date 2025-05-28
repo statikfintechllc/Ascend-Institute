@@ -14,6 +14,7 @@ from backend.globals import logger
 
 AGENT_PROFILE_PATH = os.path.abspath("agent_core/agent_profiles.yaml")
 
+
 def load_agent_profiles():
     try:
         with open(AGENT_PROFILE_PATH, "r") as f:
@@ -25,7 +26,9 @@ def load_agent_profiles():
         logger.error(f"[AGENT_PROFILE] Failed to load profiles: {e}")
         return {}, {}
 
+
 AGENTS, PROFILES = load_agent_profiles()
+
 
 def resolve_agent_role(task_type):
     """
@@ -34,10 +37,13 @@ def resolve_agent_role(task_type):
     """
     for agent_name, profile in AGENTS.items():
         if "tools" in profile and task_type in profile["tools"]:
-            logger.debug(f"[AGENT_PROFILE] Task type '{task_type}' assigned to agent '{agent_name}'")
+            logger.debug(
+                f"[AGENT_PROFILE] Task type '{task_type}' assigned to agent '{agent_name}'"
+            )
             return agent_name
     logger.debug(f"[AGENT_PROFILE] Task type '{task_type}' assigned to default agent")
     return "default"
+
 
 def get_agent_profile(agent_name):
     """
@@ -45,17 +51,20 @@ def get_agent_profile(agent_name):
     """
     return AGENTS.get(agent_name, AGENTS.get("default", {}))
 
+
 def get_profile_details(profile_name):
     """
     Returns the extended profile (role/capabilities/isolation/priority) for a profile name.
     """
     return PROFILES.get(profile_name, {})
 
+
 def all_agents():
     """
     Returns all agent names.
     """
     return list(AGENTS.keys())
+
 
 def agent_supports_task(agent_name, task_type):
     """

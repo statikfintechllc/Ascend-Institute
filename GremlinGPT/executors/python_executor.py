@@ -18,6 +18,7 @@ from backend.globals import logger
 EXEC_LOG_DIR = Path("run/logs/executions/")
 EXEC_LOG_DIR.mkdir(parents=True, exist_ok=True)
 
+
 def run_python_sandbox(code, timeout=5, env=None):
     """
     Runs the given Python code string in a safe sandbox.
@@ -79,6 +80,7 @@ def run_python_sandbox(code, timeout=5, env=None):
     finally:
         if "script_path" in locals() and os.path.exists(script_path):
             os.remove(script_path)
+
 
 # CLI test mode
 if __name__ == "__main__":

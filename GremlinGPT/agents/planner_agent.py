@@ -19,10 +19,12 @@ import os
 
 AGENT_NAME = "planner_agent"
 
+
 def inspect_task_queue():
     current = global_queue.dump()
     logger.info(f"[{AGENT_NAME}] Found {len(current)} task(s) in queue.")
     return current
+
 
 def analyze_rewards(threshold=0.4):
     top = top_rewarded_tasks(n=10)
@@ -31,6 +33,7 @@ def analyze_rewards(threshold=0.4):
         logger.info(f"  - {t['task']} [Score: {t['reward']}] Reason: {t['reason']}")
     weak_signals = [t for t in top if t["reward"] < threshold]
     return top, weak_signals
+
 
 def adjust_priorities(weak_signals):
     queue = global_queue.dump()
@@ -44,7 +47,10 @@ def adjust_priorities(weak_signals):
                     logger.debug(f"[{AGENT_NAME}] Boosted priority of task {tid}")
                     count += 1
     if count:
-        logger.info(f"[{AGENT_NAME}] Reprioritized {count} tasks due to low confidence.")
+        logger.info(
+            f"[{AGENT_NAME}] Reprioritized {count} tasks due to low confidence."
+        )
+
 
 def plan_next_task():
     try:
@@ -110,15 +116,18 @@ def plan_next_task():
             },
         }
 
+
 def enqueue_next():
     task = plan_next_task()
     global_queue.enqueue(task)
     logger.success(f"[{AGENT_NAME}] Enqueued task: {task['type']}")
 
+
 def planner_loop(cycles=3):
     logger.info(f"[{AGENT_NAME}] Starting planner loop with {cycles} cycles.")
     for _ in range(cycles):
         enqueue_next()
+
 
 if __name__ == "__main__":
     planner_loop(3)

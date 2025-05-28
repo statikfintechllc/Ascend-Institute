@@ -32,7 +32,9 @@ def scrape_url():
     logger.info(f"[SCRAPE_API] Scrape requested for: {url}")
 
     # === Create snapshot of scraper logic before enqueue (trace lineage)
-    snap_result = snapshot_file("scraper/scraper_loop.py", label="api_scrape_request", return_meta=True)
+    snap_result = snapshot_file(
+        "scraper/scraper_loop.py", label="api_scrape_request", return_meta=True
+    )
     _, lineage_meta = snap_result if snap_result else (None, {})
 
     # === Embed URL intent into memory

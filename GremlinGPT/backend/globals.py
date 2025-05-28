@@ -95,7 +95,9 @@ AGENT = {
 
 # === SCRAPER CONFIG ===
 SCRAPER = {
-    "profile": CFG["scraper"].get("browser_profile", "scraper/profiles/chromium_profile"),
+    "profile": CFG["scraper"].get(
+        "browser_profile", "scraper/profiles/chromium_profile"
+    ),
     "interval": CFG["scraper"].get("scrape_interval_sec", 30),
     "max_concurrent": CFG["scraper"].get("max_concurrent_scrapers", 1),
 }
