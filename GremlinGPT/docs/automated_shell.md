@@ -11,7 +11,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.
 
 ⸻
 
-# GremlinGPT Autonomous Shell Flow — v1.0.2
+# GremlinGPT Autonomous Shell Flow — v1.0.3
 
 GremlinGPT operates a self-mutating, autonomously routed shell loop with embedded vector memory, semantic safety, and live planner feedback—beginning from a single kernel call.
 
