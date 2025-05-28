@@ -172,6 +172,33 @@ GremlinGPT/
 │   ├── test_nlp.py
 │   └── test_dashboard.py
 │
+├── dev-experiment/
+│   ├── memory_hacking/
+│   │   ├── inject_custom_embeddings.py
+│   │   ├── override_reward_trace.py
+│   │   ├── memory_probe_tool.py
+│   │   └── README.md
+│   │
+│   ├── new_agents/
+│   │   ├── planning/
+│   │   │   ├── speculative_planner.py
+│   │   │   └── scratchpad_agent.py
+│   │   ├── self_reflection/
+│   │   │   ├── hallucination_guard.py
+│   │   │   └── anomaly_analyzer.py
+│   │   ├── loop_extensions/
+│   │   │   ├── fsm_tick_debugger.py
+│   │   │   └── dynamic_interval_mutator.py
+│   │   └── README.md
+│   │
+│   ├── broken_scrapers/
+│   │   ├── discord_leaks_scraper.py
+│   │   ├── legacy_twitter_collector.py
+│   │   ├── unstable_playwright_agent.py
+│   │   └── README.md
+│   │
+│   └── your_mutations_here.md
+│
 ├── docs/
 │   ├── README.md
 │   ├── full_structure_tree.txt
