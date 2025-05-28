@@ -31,6 +31,8 @@ def evaluate_task(task):
 
     decision = cpu < 80 and mem < 85 and entropy > 0.1
 
-    logger.debug(f"[HEURISTICS] Task={task.get('type')} | CPU={cpu} | MEM={mem} | RNG={entropy:.2f} | Decision={decision}")
-    
+    logger.debug(
+        f"[HEURISTICS] Task={task.get('type')} | CPU={cpu} | MEM={mem} | RNG={entropy:.2f} | Decision={decision}"
+    )
+
     return decision
