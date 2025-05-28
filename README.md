@@ -119,7 +119,7 @@ Reset: 7:00pm CST
 - **Ethereum**: `0xC2db50A0fc6c95f36Af7171D8C41F6998184103F`  
 - **Chime**: `$StatikSmokTM`
 
-**See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/About\Us/OPEN_FUNDING_PROPOSAL.md)**
+**See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/OPEN_FUNDING_PROPOSAL.md)**
 
 ---
 
