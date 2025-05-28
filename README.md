@@ -367,7 +367,8 @@ If you survive v1.0.3.
     3. backend/api/planner.py  
     4. backend/api/scraping_api.py  
     5. backend/router.py  
-    6. backend/server.py  # We are Here, now im running back through to ensure we are ready for Exp. Drop.
+    6. backend/server.py 
+> We are Here, now im running back through to ensure we are ready for Exp. Drop.
 
 ---
 
