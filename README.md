@@ -82,8 +82,9 @@ Reset: 7:00pm CST
     - [How to Install and Use GremlinGPT](#how-to-install-and-use-gremlingpt)
     - [GremlinGPT's Layout](#gremlingpts-layout)  
     - [GremlinGPT's Documentation](#gremlingpts-documentation)  
-11. [Demos](#demos)  
-12. [What is GremlinGPT v1.0.3](#what-is-gremlingpt-v103)  
+11. [GremlinGPT vs the Other Guys](#gremlingpt-vs-the-other-guys)
+12. [Demos](#demos)
+13. [What is GremlinGPT v1.0.3](#what-is-gremlingpt-v103)  
     - [Phase 1 is Core Engine and Execution](#phase-1-is-core-engine-and-execution)  
     - [Phase 2 is NLP and Semantic Logic](#phase-2-is-nlp-and-semantic-logic)  
     - [Phase 3 is Memory and Persistence](#phase-3-is-memory-and-persistence)  
@@ -101,11 +102,11 @@ Reset: 7:00pm CST
     - [Logging and Observability](#7-logging-and-observability)  
     - [Documentation and Tests](#8-documentation-and-tests)
     
-13. [Collaborators Wanted to Join the Loop](#collaborators-wanted-to-join-the-loop)  
-14. [Support](#support)  
-15. [Final Notes](#final-notes)  
-16. [License](#license)  
-17. [How GremlinGPT Was Built](#how-gremlingpt-was-built)  
+14. [Collaborators Wanted to Join the Loop](#collaborators-wanted-to-join-the-loop)  
+15. [Support](#support)  
+16. [Final Notes](#final-notes)  
+17. [License](#license)  
+18. [How GremlinGPT Was Built](#how-gremlingpt-was-built)  
 
 ---
 
@@ -276,6 +277,16 @@ If you survive v1.0.3.
 
 ## GremlinGPT's Documentation:
    -  **[What is GremlinGPT v1.0.3](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs)**
+
+---
+
+## GremlinGPT vs. the Other Guys
+
+| Project         | Size      | Files | Modularity | True Local | Dashboard | Fork-ready | Easy to Audit |
+|-----------------|-----------|-------|------------|------------|-----------|------------|--------------|
+| GremlinGPT      | 4.2 MB    | 184   | ✅         | ✅         | ✅        | ✅         | ✅           |
+| OpenDevin       | 55 MB     | 1,900 | ❌         | ?          | Partial   | ⚠️         | ⚠️           |
+| llama-cpp-python| 166 MB    | 1,892 | ⚠️         | Model-only | ❌        | ⚠️         | ⚠️           |
 
 ---
 
