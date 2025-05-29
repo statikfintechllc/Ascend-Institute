@@ -7,8 +7,7 @@
 # Contact: ascend.gremlin@gmail.com
 # ─────────────────────────────────────────────────────────────
 
-# GremlinGPT v1.0.3 :: Module Integrity Directive
-# This script is a component of the GremlinGPT system, under Alpha expansion.
+# GremlinGPT v1.0.3 :: Memory Embedder & Vector Store Core
 
 import os
 import shutil
@@ -94,4 +93,48 @@ def get_embedding_by_id(emb_id):
 def _write_to_disk(embedding):
     path = os.path.join(LOCAL_INDEX_PATH, f"{embedding['id']}.json")
     with open(path, "w") as f:
+        json.dump(embedding, f, indent=2)
 
+def _load_from_disk():
+    # Rebuild memory_vectors from disk on startup or error recovery
+    for fname in os.listdir(LOCAL_INDEX_PATH):
+        if fname.endswith(".json"):
+            with open(os.path.join(LOCAL_INDEX_PATH, fname), "r") as f:
+                try:
+                    emb = json.load(f)
+                    memory_vectors[emb["id"]] = emb
+                except Exception as e:
+                    logger.warning(f"[EMBEDDER] Failed to load {fname}: {e}")
+
+# --- Dashboard & API Graph Support ---
+
+def get_memory_graph():
+    """Return a graph of memory nodes (embeddings) and simple relations."""
+    if not memory_vectors:
+        _load_from_disk()
+    nodes = []
+    edges = []
+    # Each embedding is a node; simple example: edges link by "source" meta
+    for emb in memory_vectors.values():
+        node = {
+            "id": emb["id"],
+            "label": emb["meta"].get("label", emb["text"][:24] + "..."),
+            "group": emb["tags"].get("source", "system"),
+        }
+        nodes.append(node)
+        # Example edge: link by shared source or related meta keys
+        if "source_id" in emb["meta"]:
+            edges.append({"from": emb["meta"]["source_id"], "to": emb["id"]})
+    return {"nodes": nodes, "edges": edges}
+
+# --- Self-repair utility ---
+
+def repair_index():
+    """Scan disk and rebuild in-memory vectors for system continuity."""
+    memory_vectors.clear()
+    _load_from_disk()
+    logger.info("[EMBEDDER] Memory index repaired.")
+
+# --- Module load-time check ---
+if not memory_vectors:
+    _load_from_disk()
