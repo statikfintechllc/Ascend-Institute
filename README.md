@@ -69,7 +69,7 @@ Reset: 7:00pm CST
 
 ## Table of Contents
 
-1. [GremlinGPT v1.0.3 Build Status](#gremlingpt-v1.0.3-build-status)
+1. [GremlinGPT v1.0.3 Build Status](#gremlingpt-v1-0-3-build-status)
 2. [Support This Project](#support-this-project)  
 3. [Funding and Infrastructure Goals](#funding-and-infrastructure-goals)  
 4. [Phase 1 Funding Target is $10,000](#phase-1-funding-target-is-10000)  
