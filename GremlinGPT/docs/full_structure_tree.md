@@ -53,6 +53,9 @@ GremlinGPT/
 │   ├── app.js
 │   ├── service-worker.js
 │   ├── manifest.json
+│   ├── components/
+│   │   ├── App_Icon_&_Loading_&_Inference_Image.png
+│   │   └── Background_Image_For_App.png
 │   └── components/
 │       ├── ChatInterface.js
 │       ├── TaskTreeView.js
