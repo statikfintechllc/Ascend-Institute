@@ -69,15 +69,16 @@ Reset: 7:00pm CST
 
 ## Table of Contents
 
-1. [Support This Project](#support-this-project)  
-2. [Funding and Infrastructure Goals](#funding-and-infrastructure-goals)  
-3. [Phase 1 Funding Target is $10,000](#phase-1-funding-target-is-10000)  
-4. [If You Are](#if-you-are)  
-5. [Partner With Us](#partner-with-us) 
-6. [If You Believe](#if-you-believe)  
-7. [How to Support Right Now](#how-to-support-right-now)  
-8. [What Is AscendAI?](#what-is-ascendai)  
-9. [GremlinGPT](#gremlingpt)
+1. [GremlinGPT v1.0.3 Build Status](#gremlingpt-v1.0.3-build-status)
+2. [Support This Project](#support-this-project)  
+3. [Funding and Infrastructure Goals](#funding-and-infrastructure-goals)  
+4. [Phase 1 Funding Target is $10,000](#phase-1-funding-target-is-10000)  
+5. [If You Are](#if-you-are)  
+6. [Partner With Us](#partner-with-us) 
+7. [If You Believe](#if-you-believe)  
+8. [How to Support Right Now](#how-to-support-right-now)  
+9. [What Is AscendAI?](#what-is-ascendai)  
+10. [GremlinGPT](#gremlingpt)
     - [How to Install and Use GremlinGPT](#how-to-install-and-use-gremlingpt)
     - [GremlinGPT's Layout](#gremlingpts-layout)  
     - [GremlinGPT's Documentation](#gremlingpts-documentation)  
@@ -105,6 +106,50 @@ Reset: 7:00pm CST
 15. [Final Notes](#final-notes)  
 16. [License](#license)  
 17. [How GremlinGPT Was Built](#how-gremlingpt-was-built)  
+
+---
+
+## GremlinGPT v1.0.3 Build Status:
+
+Area
+Status
+Needed actions
+API endpoints
+~80%
+Final cross-wiring, full error/output
+FSM/Agent
+~90%
+Full dashboard control, daemon/recursion, mutation self-repair
+Task queue
+~90%
+Full API injection/control, crash recover, reprioritize
+Memory/embedder
+~90%
+Expose recall, embedding, self-repair API
+Trading/signals
+~90%
+Persist, batch, API, embed, doc
+Estimator
+~90%
+Batch, trace, memory, dashboard
+Scraper
+~90%
+API all subsystems, dashboard-ready
+Frontend
+~80%
+Ensure all views & actions work
+Logging
+~90%
+Consistent, to-disk, error-trap
+Docs
+~80%
+Complete API/system/agent docs
+Startup/integration
+~80%
+Scripts, systemd, auto-recover
+Testing
+0-70%
+E2E validation, dashboard control
 
 ---
 
