@@ -25,6 +25,7 @@ ORIGIN = "signal_generator"
 
 # --- Main Signal Generator (API-facing) ---
 
+
 def generate_signals(limit=50, embed=True):
     """
     Generate and return actionable trading signals, persist embeddings, and support dashboard API.
@@ -81,23 +82,28 @@ def generate_signals(limit=50, embed=True):
         logger.error(f"[SIGNAL_GENERATOR] Error: {e}")
         return []
 
+
 # --- Optional: For self-healing/mutation, dashboard, or agent tasks ---
+
 
 def get_signal_history(limit=100):
     """
     Return signal embedding history for dashboard/graph.
     """
     from memory.vector_store.embedder import get_all_embeddings
+
     signals = []
     for emb in get_all_embeddings(limit):
-        if emb['meta'].get('origin') == ORIGIN:
+        if emb["meta"].get("origin") == ORIGIN:
             signals.append(emb)
     return signals
+
 
 def repair_signal_index():
     """
     Self-repair for embeddings relevant to signals.
     """
     from memory.vector_store.embedder import repair_index
+
     repair_index()
     logger.info("[SIGNAL_GENERATOR] Signal embedding index repaired.")

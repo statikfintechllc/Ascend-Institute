@@ -32,11 +32,13 @@ memory_vectors = {}
 
 # --- Core Embedding Functions ---
 
+
 def embed_text(text):
     vec = model.encode(text, convert_to_numpy=True)
     norm = np.linalg.norm(vec)
     logger.debug(f"[EMBEDDER] Embedding norm: {norm:.4f}")
     return vec
+
 
 def package_embedding(text, vector, meta):
     emb_id = str(uuid.uuid4())
@@ -57,11 +59,13 @@ def package_embedding(text, vector, meta):
     logger.info(f"[EMBEDDER] Stored embedding: {emb_id}")
     return embedding
 
+
 def inject_watermark(origin="unknown"):
     text = f"Watermark from {origin} @ {datetime.utcnow().isoformat()}"
     vector = embed_text(text)
     meta = {"origin": origin, "timestamp": datetime.utcnow().isoformat()}
     return package_embedding(text, vector, meta)
+
 
 def archive_plan(vector_path="data/nlp_training_sets/auto_generated.jsonl"):
     if not os.path.exists(vector_path):
@@ -71,17 +75,20 @@ def archive_plan(vector_path="data/nlp_training_sets/auto_generated.jsonl"):
     shutil.copyfile(vector_path, archive)
     return archive
 
+
 def auto_commit(file_path):
     if not file_path:
         return
     os.system(f"git add {file_path}")
     os.system(f'git commit -m "[autocommit] Planner log update: {file_path}"')
 
+
 def get_all_embeddings(limit=50):
     # Return all loaded or cached vectors; auto-refresh if empty
     if not memory_vectors:
         _load_from_disk()
     return list(memory_vectors.values())[:limit]
+
 
 def get_embedding_by_id(emb_id):
     # Return a single embedding by ID
@@ -90,10 +97,12 @@ def get_embedding_by_id(emb_id):
     _load_from_disk()
     return memory_vectors.get(emb_id, None)
 
+
 def _write_to_disk(embedding):
     path = os.path.join(LOCAL_INDEX_PATH, f"{embedding['id']}.json")
     with open(path, "w") as f:
         json.dump(embedding, f, indent=2)
+
 
 def _load_from_disk():
     # Rebuild memory_vectors from disk on startup or error recovery
@@ -106,7 +115,9 @@ def _load_from_disk():
                 except Exception as e:
                     logger.warning(f"[EMBEDDER] Failed to load {fname}: {e}")
 
+
 # --- Dashboard & API Graph Support ---
+
 
 def get_memory_graph():
     """Return a graph of memory nodes (embeddings) and simple relations."""
@@ -127,13 +138,16 @@ def get_memory_graph():
             edges.append({"from": emb["meta"]["source_id"], "to": emb["id"]})
     return {"nodes": nodes, "edges": edges}
 
+
 # --- Self-repair utility ---
+
 
 def repair_index():
     """Scan disk and rebuild in-memory vectors for system continuity."""
     memory_vectors.clear()
     _load_from_disk()
     logger.info("[EMBEDDER] Memory index repaired.")
+
 
 # --- Module load-time check ---
 if not memory_vectors:

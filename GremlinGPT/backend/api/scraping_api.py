@@ -26,6 +26,7 @@ import traceback
 
 # --- Main Scraper Router ---
 
+
 def scrape_url(url, method="auto", extra=None):
     """
     Main entry point for dashboard/API. Dispatches to best scraper.
@@ -81,6 +82,7 @@ def scrape_url(url, method="auto", extra=None):
 
 # --- Specialized async/route scraping (source_router, dashboard live) ---
 
+
 def scrape_router(snapshot=False, periodic=False):
     """
     Run the source_router for full snapshot or periodic live scraping.
@@ -89,6 +91,7 @@ def scrape_router(snapshot=False, periodic=False):
     :return: result dict
     """
     from scraper.source_router import get_live_snapshot, start_scraper_loop
+
     if snapshot:
         return get_live_snapshot()
     elif periodic:
@@ -111,5 +114,5 @@ __all__ = [
     "ask_monday_handle",
     "simulate_page",
     "extract_dom_structure",
-    "route_scraping_async"
+    "route_scraping_async",
 ]

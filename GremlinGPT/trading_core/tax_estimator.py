@@ -15,6 +15,7 @@ from datetime import datetime
 
 DEFAULT_TAX_RATE = 0.15  # Can be made dynamic via config or input
 
+
 def estimate_tax(position, tax_rate=None, log=True, persist=False):
     """
     Estimate tax for a single position.
@@ -31,7 +32,11 @@ def estimate_tax(position, tax_rate=None, log=True, persist=False):
         side = position.get("side", "long")
         open_date = position.get("open_date")
         close_date = position.get("close_date")
-        meta = {k: v for k, v in position.items() if k not in {"symbol", "price", "shares", "side", "open_date", "close_date"}}
+        meta = {
+            k: v
+            for k, v in position.items()
+            if k not in {"symbol", "price", "shares", "side", "open_date", "close_date"}
+        }
 
         total_value = shares * price
         rate = float(tax_rate) if tax_rate is not None else DEFAULT_TAX_RATE
@@ -52,7 +57,9 @@ def estimate_tax(position, tax_rate=None, log=True, persist=False):
         }
 
         if log:
-            logger.info(f"[TAX_ESTIMATE] {symbol}: value=${total_value:.2f}, tax=${tax:.2f} at {rate*100:.1f}%")
+            logger.info(
+                f"[TAX_ESTIMATE] {symbol}: value=${total_value:.2f}, tax=${tax:.2f} at {rate*100:.1f}%"
+            )
 
         if persist:
             _persist_tax_estimate(result)
@@ -63,13 +70,18 @@ def estimate_tax(position, tax_rate=None, log=True, persist=False):
         logger.error(f"[TAX_ESTIMATE] Error for {position}: {e}")
         return {"error": str(e), "position": position}
 
+
 def estimate_batch(positions, tax_rate=None, log=True, persist=False):
     """
     Estimate taxes for a batch of positions.
     :param positions: list of position dicts
     :return: list of estimate results
     """
-    return [estimate_tax(pos, tax_rate=tax_rate, log=log, persist=persist) for pos in positions]
+    return [
+        estimate_tax(pos, tax_rate=tax_rate, log=log, persist=persist)
+        for pos in positions
+    ]
+
 
 def _persist_tax_estimate(result):
     """
@@ -77,13 +89,10 @@ def _persist_tax_estimate(result):
     """
     try:
         from memory.vector_store.embedder import package_embedding, embed_text
+
         text = f"TAX {result['symbol']} {result['shares']} @ {result['price']} = Tax ${result['tax']} ({result['tax_rate']*100:.1f}%)"
         vector = embed_text(text)
-        package_embedding(
-            text=text,
-            vector=vector,
-            meta=result
-        )
+        package_embedding(text=text, vector=vector, meta=result)
         logger.debug(f"[TAX_ESTIMATE] Persisted embedding for {result['symbol']}")
     except Exception as e:
         logger.warning(f"[TAX_ESTIMATE] Persist failed: {e}")

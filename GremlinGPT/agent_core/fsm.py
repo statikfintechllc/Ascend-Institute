@@ -188,13 +188,17 @@ if __name__ == "__main__":
 
 # --- Dashboard & API Control Hooks ---
 
+
 def get_fsm_status():
     """Return the current FSM state and task queue."""
     return {
         "state": FSM_STATE,
-        "queue_length": task_queue.size() if hasattr(task_queue, 'size') else len(getattr(task_queue, 'tasks', [])),
-        "queue": getattr(task_queue, 'tasks', [])
+        "queue_length": task_queue.size()
+        if hasattr(task_queue, "size")
+        else len(getattr(task_queue, "tasks", [])),
+        "queue": getattr(task_queue, "tasks", []),
     }
+
 
 def step_fsm():
     """Advance FSM by a single task (without full loop)."""
@@ -233,12 +237,14 @@ def step_fsm():
         FSM_STATE = "ERROR"
         return {"error": str(e), "task": task}
 
+
 def reset_fsm():
     """Reset FSM state and clear the task queue."""
     global FSM_STATE, task_queue
     FSM_STATE = "IDLE"
     task_queue = TaskQueue(retry_limit=G.AGENT.get("task_retry_limit", 2))
     return {"reset": True}
+
 
 def inject_task(task):
     """Inject a new task into the FSM's task queue."""
