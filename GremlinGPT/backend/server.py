@@ -13,6 +13,7 @@
 from flask import Flask
 from flask_socketio import SocketIO
 from backend.router import register_routes
+from backend.api.api_endpoints import api_blueprint
 from loguru import logger
 from backend.globals import CFG
 import eventlet
@@ -22,6 +23,7 @@ eventlet.monkey_patch()
 
 # App and SocketIO Initialization
 app = Flask(__name__)
+app.register_blueprint(api_blueprint)
 app.config["SECRET_KEY"] = CFG.get("backend", {}).get("secret_key", "gremlin_secret")
 socketio = SocketIO(app, cors_allowed_origins="*", async_mode="eventlet")
 
