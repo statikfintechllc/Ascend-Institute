@@ -111,45 +111,20 @@ Reset: 7:00pm CST
 
 ## GremlinGPT v1.0.3 Build Status:
 
-Area
-Status
-Needed actions
-API endpoints
-~80%
-Final cross-wiring, full error/output
-FSM/Agent
-~90%
-Full dashboard control, daemon/recursion, mutation self-repair
-Task queue
-~90%
-Full API injection/control, crash recover, reprioritize
-Memory/embedder
-~90%
-Expose recall, embedding, self-repair API
-Trading/signals
-~90%
-Persist, batch, API, embed, doc
-Estimator
-~90%
-Batch, trace, memory, dashboard
-Scraper
-~90%
-API all subsystems, dashboard-ready
-Frontend
-~80%
-Ensure all views & actions work
-Logging
-~90%
-Consistent, to-disk, error-trap
-Docs
-~80%
-Complete API/system/agent docs
-Startup/integration
-~80%
-Scripts, systemd, auto-recover
-Testing
-0-70%
-E2E validation, dashboard control
+| **Area**              | **Status** | **Needed Actions**                                                             |
+|-----------------------|------------|--------------------------------------------------------------------------------|
+| **API endpoints**     | ~80%       | Final cross-wiring, full error/output                                          |
+| **FSM/Agent**         | ~90%       | Full dashboard control, daemon/recursion, mutation self-repair                |
+| **Task queue**        | ~90%       | Full API injection/control, crash recover, reprioritize                        |
+| **Memory/embedder**   | ~90%       | Expose recall, embedding, self-repair API                                      |
+| **Trading/signals**   | ~90%       | Persist, batch, API, embed, doc                                                |
+| **Estimator**         | ~90%       | Batch, trace, memory, dashboard                                                |
+| **Scraper**           | ~90%       | API all subsystems, dashboard-ready                                            |
+| **Frontend**          | ~80%       | Ensure all views & actions work                                                |
+| **Logging**           | ~90%       | Consistent, to-disk, error-trap                                                |
+| **Docs**              | ~80%       | Complete API/system/agent docs                                                 |
+| **Startup/integration**| ~80%      | Scripts, systemd, auto-recover                                                 |
+| **Testing**           | 0–70%      | E2E validation, dashboard control                                              |
 
 ---
 
