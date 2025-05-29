@@ -3,12 +3,12 @@ import requests
 import json
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
-from datetime import datetime, timedelta
+from datetime import datetime
 
 REPO = os.environ.get("REPO")
 TOKEN = os.environ.get("PAT_GITHUB")
 HEADERS = {"Authorization": f"token {TOKEN}"}
-
+LIFETIME_FILE = "docs/traffic_lifetime.json"
 
 def fetch(endpoint):
     url = f"https://api.github.com/repos/{REPO}/{endpoint}"
@@ -16,45 +16,51 @@ def fetch(endpoint):
     r.raise_for_status()
     return r.json()
 
+def load_existing_lifetime():
+    if os.path.exists(LIFETIME_FILE):
+        with open(LIFETIME_FILE, "r") as f:
+            return json.load(f)
+    return {
+        "clones": 0,
+        "uniqueClones": 0,
+        "views": 0,
+        "uniqueViews": 0
+    }
+
+def save_lifetime(updated):
+    with open(LIFETIME_FILE, "w") as f:
+        json.dump(updated, f, indent=2)
 
 def plot_github_style_merged(clones, views, outfile):
     plt.style.use('dark_background')
 
-    # Parse data into dictionaries
     clones_dict = {item["timestamp"][:10]: item for item in clones}
     views_dict = {item["timestamp"][:10]: item for item in views}
-
-    # Get overlapping dates in payload
     valid_dates = sorted(set(clones_dict.keys()) & set(views_dict.keys()))
-    last_14_days = valid_dates[-14:]  # latest 14 shared dates
+    last_14_days = valid_dates[-14:]
     dates = [datetime.strptime(d, "%Y-%m-%d") for d in last_14_days]
 
-    # Aligned values for plot
     clones_counts = [clones_dict[d]["count"] for d in last_14_days]
     unique_clones_counts = [clones_dict[d]["uniques"] for d in last_14_days]
     views_counts = [views_dict[d]["count"] for d in last_14_days]
     unique_views_counts = [views_dict[d]["uniques"] for d in last_14_days]
 
-    # Most recent day (last available in data)
     latest_day = last_14_days[-1]
     clones_today = clones_dict[latest_day]["count"]
     unique_clones_today = clones_dict[latest_day]["uniques"]
     views_today = views_dict[latest_day]["count"]
     unique_views_today = views_dict[latest_day]["uniques"]
 
-    # 14-day totals
     clones_14d = sum(clones_counts)
     unique_clones_14d = sum(unique_clones_counts)
     views_14d = sum(views_counts)
     unique_views_14d = sum(unique_views_counts)
 
-    # Lifetime totals from payload
     clones_lifetime = sum(item["count"] for item in clones)
     unique_clones_lifetime = sum(item["uniques"] for item in clones)
     views_lifetime = sum(item["count"] for item in views)
     unique_views_lifetime = sum(item["uniques"] for item in views)
 
-    # ─────────────── PLOT ───────────────
     fig, ax = plt.subplots(figsize=(12, 5))
     ax.plot(dates, clones_counts, color='#FF3131', marker='o', label='Clones', linewidth=2)
     ax.plot(dates, unique_clones_counts, color='#46D160', marker='o', label='Unique Cloners', linewidth=2)
@@ -99,7 +105,6 @@ def plot_github_style_merged(clones, views, outfile):
         "unique_views_lifetime": unique_views_lifetime
     }
 
-
 def main(repo):
     clones_data = fetch("traffic/clones")
     views_data = fetch("traffic/views")
@@ -112,6 +117,15 @@ def main(repo):
     totals = plot_github_style_merged(
         clones_data["clones"], views_data["views"], "docs/traffic_graph.png"
     )
+
+    existing_lifetime = load_existing_lifetime()
+    merged_lifetime = {
+        "clones": max(totals["clones_lifetime"], existing_lifetime.get("clones", 0)),
+        "uniqueClones": max(totals["unique_clones_lifetime"], existing_lifetime.get("uniqueClones", 0)),
+        "views": max(totals["views_lifetime"], existing_lifetime.get("views", 0)),
+        "uniqueViews": max(totals["unique_views_lifetime"], existing_lifetime.get("uniqueViews", 0)),
+    }
+    save_lifetime(merged_lifetime)
 
     with open("docs/traffic_totals.json", "w") as f:
         json.dump({
@@ -127,12 +141,7 @@ def main(repo):
                 "views": totals["views_14d"],
                 "uniqueViews": totals["unique_views_14d"]
             },
-            "lifetime": {
-                "clones": totals["clones_lifetime"],
-                "uniqueClones": totals["unique_clones_lifetime"],
-                "views": totals["views_lifetime"],
-                "uniqueViews": totals["unique_views_lifetime"]
-            }
+            "lifetime": merged_lifetime
         }, f, indent=2)
 
     with open("docs/traffic_totals.md", "w") as f:
@@ -141,9 +150,8 @@ def main(repo):
 
 - **Today ({totals['latest_day']}):** Clones: {totals["clones_today"]:,} | Unique Cloners: {totals["unique_clones_today"]:,} | Views: {totals["views_today"]:,} | Unique Visitors: {totals["unique_views_today"]:,}
 - **Last 14 days:** Clones: {totals["clones_14d"]:,} | Unique Cloners: {totals["unique_clones_14d"]:,} | Views: {totals["views_14d"]:,} | Unique Visitors: {totals["unique_views_14d"]:,}
-- **Lifetime:** Clones: {totals["clones_lifetime"]:,} | Unique Cloners: {totals["unique_clones_lifetime"]:,} | Views: {totals["views_lifetime"]:,} | Unique Visitors: {totals["unique_views_lifetime"]:,}
+- **Lifetime:** Clones: {merged_lifetime["clones"]:,} | Unique Cloners: {merged_lifetime["uniqueClones"]:,} | Views: {merged_lifetime["views"]:,} | Unique Visitors: {merged_lifetime["uniqueViews"]:,}
 """)
-
 
 if __name__ == "__main__":
     main(REPO)
