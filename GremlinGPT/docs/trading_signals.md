@@ -1,11 +1,10 @@
 <link rel="stylesheet" type="text/css" href="docs/custom.css">
 <div align="center">
-  <a
-href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md">
+  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md">
     <img src="https://img.shields.io/badge/FAIR%20USE-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Fair Use License"/>
   </a>
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md">
-    <img src="https://img.shields.io/badge/GREMLINGPT%20v1.0-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
+    <img src="https://img.shields.io/badge/GREMLINGPT%20v1.0.3-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
   </a>
 </div>
 
@@ -15,75 +14,63 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.
 
 ## Overview
 
-The `trading_core/` subsystem is a modular, offline engine designed for **penny stock discovery, analysis, and signal generation**. It runs autonomously, writes to memory, and directly influences planning and retraining loops.
+The `trading_core/` subsystem is a modular, fully local engine for **penny stock discovery, signal analysis, and event generation**.  
+It operates autonomously, writes all signals to vector memory, and directly integrates with GremlinGPT’s agent loop, planning, and self-training pipelines.
 
-The goal is to create **precise, explainable, and actionable market signals** under $10 USD per share, enriched with embedded metadata and confidence scores.
+Goal: **Produce precise, explainable, and actionable trading signals (sub-$10/share) — every signal tagged, traceable, and used for AI self-reinforcement.**
 
 ---
 
 ## Modules
 
-| File                     | Description                                        |
-|--------------------------|----------------------------------------------------|
-| `signal_generator.py`    | Detects trade signals using rule-based heuristics  |
-| `stock_scraper.py`       | Retrieves live stock data (offline, simulated, or live) |
-| `rules_engine.py`        | Applies pattern logic (EMA, VWAP, volume)          |
-| `portfolio_tracker.py`   | Stores and tracks position memory                  |
-| `tax_estimator.py`       | Estimates capital gains on trades (US-compliant)   |
+| File                        | Description                                        |
+|-----------------------------|----------------------------------------------------|
+| `signal_generator.py`       | Generates and embeds trading signals (core logic)  |
+| `stock_scraper.py`          | Fetches live/simulated penny stock data            |
+| `rules_engine.py`           | Detects EMA/VWAP/volume breakouts                  |
+| `portfolio_tracker.py`      | Stores and logs open/closed positions              |
+| `tax_estimator.py`          | Calculates U.S. capital gains and tax estimates    |
 
 ---
 
 ## Pipeline Flow
 
+```plaintext
 [stock_scraper.py]
-↓
+    ↓
 [rules_engine.py]
-↓
+    ↓
 [signal_generator.py]
-↓
-[embedder.py → memory vector store]
+    ↓
+[memory/vector_store/embedder.py]
+    ↓
+[memory/local_index/metadata.db] + [vector_store/faiss/] or [chroma/]
+```
 
 ---
 
-## Signal Detection Logic
-
-Signals are triggered when:
-
-- **Price < $10.00 USD**
-- **EMA crossover (e.g. EMA5 > EMA20)**
-- **VWAP gap-up or premarket breakout**
-- **Volume > configured threshold**
-- **NLP/sentiment boost via memory correlation**
-
-Each signal object looks like:
-
-```json
-{
-  "symbol": "PLTR",
-  "type": "vwap_gap_up",
-  "price": 7.45,
-  "volume": 9320000,
-  "confidence": 0.81,
-  "timestamp": "2025-05-18T13:22:00Z"
-}
-```
-
-Signal confidence is derived from weighted factors:
-	•	Price trend
-	•	Volume percentile
-	•	Time-of-day heuristics
-	•	NLP reinforcement if matched via scrape memory
-
-⸻
-
 ## Embedding Signals Into Memory
 
-Signals are embedded through the vector pipeline:
-	1.	semantic_score.py — Vectorization (MiniLM)
-	2.	package_embedding() — Stores vector + metadata
-	3.	Stored in memory/vector_store/faiss/ or Chroma backend
+### Process Overview
 
-Metadata sample:
+Each signal is embedded and stored via the following steps:
+
+1. **Vectorization**  
+   - Encoded using MiniLM  
+   - Modules involved: `semantic_score.py`, `embedder.py`  
+
+2. **Tagging and Persistence**  
+   - Passed to `package_embedding()`  
+   - Stored with relevant metadata and labels  
+
+3. **Storage Backends**  
+   - Default: `memory/vector_store/faiss/`  
+   - Optional: ChromaDB backend  
+
+---
+
+### Sample Signal Metadata
+
 ```json
 {
   "type": "signal",
@@ -94,57 +81,71 @@ Metadata sample:
 }
 ```
 
-Accessible via:
-	•	MemoryGraph (frontend dashboard)
-	•	planner_agent.py (for next-task generation)
-	•	generate_dataset.py (training corpus)
+---
 
-⸻
+### Signal Access Points
 
-Real-Time Refresh
+- **MemoryGraph**: Visualized in the UI dashboard  
+- **`agents/planner_agent.py`**: Used for decision-making logic  
+- **`self_training/generate_dataset.py`**: Used in retraining pipelines  
 
-Frontend: TradingPanel.js
-	•	Polls signals every 0.2s via WebSocket (configurable)
-	•	Auto-refreshes embedded task graph and stock list
-	•	Color-coded by confidence level (if enabled)
+---
 
-⸻
+## Real-Time Signal Refresh
 
-## FSM Integration
+- **Frontend Component**: `TradingPanel.js`  
+- **Polling Endpoint**: `/api/trading/signals`  
+- **Frequency**: Every 0.2 seconds (configurable)  
+- **Live Update**: Signals automatically refresh and populate dashboard  
+- **Color Coding**:  
+  - Gold: High-confidence  
+  - Silver: Moderate-confidence  
 
-The FSM accepts this task shape:
+---
+
+---
+
+## FSM / Agent Integration
+
+The FSM enqueues:
+
 ```json
 { "type": "signal_scan" }
 ```
 
-FSM does the following:
-	•	Calls generate_signals()
-	•	Logs and embeds each result
-	•	Triggers memory update or agent injection
-	•	Sends high-confidence signals to planner_agent.py
+Which triggers:
+- `fsm.py` → calls `generate_signals()`
+- All resulting signals are:
+  - Embedded into memory
+  - Logged for audit
+- High-confidence signals are passed to `planner_agent.py` for deeper reasoning
 
-⸻
+---
 
 ## NLP Feedback Loop
 
-If a signal fails (e.g. wrong trend), it is:
-	1.	Logged to data/logs/bootstrap.log
-	2.	Flagged by feedback_loop.py
-	3.	Included in generate_dataset.py output
-	4.	Used to improve transformer via trainer.py
+Failed or misfired signals (e.g., bad prediction, wrong trend) trigger a feedback cascade:
 
-⸻
+1. Failure logged in: `data/logs/bootstrap.log`  
+2. Feedback flagged in: `self_training/feedback_loop.py`  
+3. Sample added to: `self_training/generate_dataset.py` output  
+4. Model retrained via: `self_training/trainer.py`  
 
-## Tax Estimation Logic (US-Only)
+This creates a continuous retraining loop based on performance.
 
-If a position is closed in portfolio_tracker.py, then:
-	•	tax_estimator.py determines:
-	•	Long vs short term
-	•	Basis cost vs sale price
-	•	Tax category (ordinary, capital gains)
-	•	Logs result to memory
+---
 
-Example output:
+## Tax Estimation Logic
+
+When positions are closed in `portfolio_tracker.py`, the `tax_estimator.py` module:
+
+- Distinguishes **long-term vs. short-term** holdings  
+- Calculates **cost basis** and **capital gains**  
+- Flags **taxable events**  
+- Logs structured events to memory for audit
+
+**Example:**
+
 ```json
 {
   "symbol": "BBIG",
@@ -156,25 +157,29 @@ Example output:
 }
 ```
 
-⸻
+---
 
 ## Fault Tolerance
-	•	If live scraping fails → defaults to Playwright screener
-	•	If API unavailable → uses random simulation from stock_scraper.py
-	•	Scraper health checked every 5s via FSM loop
 
-⸻
+System fallback logic ensures resilience:
+
+- If **live scraping fails** → fallback to Playwright or simulated screener  
+- If **external data is unavailable** → fallback to synthetic data from `stock_scraper.py`  
+- **FSM** checks scraper health every 5 seconds for auto-recovery
+
+---
 
 ## Summary
 
-GremlinGPT’s trading_core/ is engineered for:
-	•	Momentum trading under $10
-	•	Offline-safe signal generation
-	•	Vector-tagged pattern detection
-	•	Closed-loop learning via failure feedback
+`trading_core/` is built for:
 
-Every win teaches the agent reinforcement.
+- **Penny/Momentum Trading** (Stocks <$10)  
+- **Offline-first** signal generation  
+- **Vector-tagged signals** for traceability  
+- **Autonomous feedback loop** for continuous learning  
 
-Every failure teaches it mutation.
+Every **win** = reinforcement  
+Every **loss** = mutation  
+Every **signal** = memory
 
-Every signal becomes a memory.
+---
