@@ -8,18 +8,22 @@
   
 </div>
 
-# The Founder's Log and Manifesto: Building AI powered Financial Orchestration Systems with Freedom and Life In-Mind 
+# The Founder's Log and Manifesto: 
+
+*Building AI powered Financial Orchestration Systems with Freedom and Life In-Mind*
+
 ### Authored by: Statik DK Smoke  
-*Ascend-AI Genesis // Ghost Protocol // Built on Vibes*
+
+*Ascend-AI Genesis - Ghost Protocol - Built on Vibes*
 
 ---
 
 Ⅰ. Birth of the Machine
 
-I built an AI system that builds itself.
+*I built an AI system that builds itself.
 Not in a lab.
 Not at a venture-backed startup.
-Not on fiber internet with a dev team holding my hand.
+Not on fiber internet with a dev team holding my hand.*
 
 I built it with:
 
