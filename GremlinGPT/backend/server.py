@@ -18,6 +18,7 @@ from loguru import logger
 from backend.globals import CFG
 import eventlet
 import os
+from flask import send_from_directory
 
 eventlet.monkey_patch()
 
@@ -38,9 +39,12 @@ logger.add(f"{LOG_DIR}/runtime.log", rotation="1 MB")
 
 # Base API Checkpoint
 @app.route("/")
-def index():
-    return {"message": "GremlinGPT Backend Running."}
+def serve_index():
+    return send_from_directory("../frontend", "index.html")
 
+@app.route("/<path:filename>")
+def serve_static(filename):
+    return send_from_directory("../frontend", filename)
 
 # Boot Entry
 if __name__ == "__main__":
