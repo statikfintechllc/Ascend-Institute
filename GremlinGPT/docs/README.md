@@ -1,19 +1,19 @@
 <link rel="stylesheet" type="text/css" href="docs/custom.css">
+
 <div align="center">
-  <a
-href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md">
+  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md">
     <img src="https://img.shields.io/badge/FAIR%20USE-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Fair Use License"/>
   </a>
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md">
-    <img src="https://img.shields.io/badge/GREMLINGPT%20v1.0-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
+    <img src="https://img.shields.io/badge/GREMLINGPT%20v1.0.3-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
   </a>
 </div>
-	
-<h1 align= "center">GremlinGPT: The real Autonomous Agent v1.0.3</h1>
+
+<h1 align="center">GremlinGPT: The Real Autonomous Agent v1.0.3</h1>
 
 <div align="center">
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
-    <img src="https://img.shields.io/badge/build-v1.0.2-darkred?labelColor=black" alt="Build Status"/>
+    <img src="https://img.shields.io/badge/build-v1.0.3-darkred?labelColor=black" alt="Build Status"/>
   </a>
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/FOUNDER_LOG.md">
     <img src="https://img.shields.io/badge/Founder's%20Log-Manifesto-darkred?labelColor=black" alt="Founder's Log"/>
@@ -31,12 +31,11 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.
 
 <h1 align="center">AscendAI Traffic</h1>
 <h1 align="center">
+	
   <a href="https://raw.githubusercontent.com/statikfintechllc/AscendAI/main/docs/traffic_graph.png">
-  <img src="https://raw.githubusercontent.com/statikfintechllc/AscendAI/main/docs/traffic_graph.png" alt="Traffic Graph" />
+    <img src="https://raw.githubusercontent.com/statikfintechllc/AscendAI/main/docs/traffic_graph.png" alt="Traffic Graph" />
   </a>
-</div>
-  
-<h1 align="center">**Reset: 10:00pm CST**</h1>
+</h1>
 
 ---
 
@@ -44,16 +43,19 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.
 
 - [Founder's Log & Manifesto](#founders-log--manifesto)
 - [Overview](#overview)
-- [System Features](#system-features)
+- [Features](#features)
 - [Architecture](#architecture)
+- [System Components](#system-components)
 - [Installation](#installation)
 - [Running the System](#running-the-system)
-- [System Components](#system-components)
+- [Remote Access using ngrok](#remote-access-using-ngrok)
+- [API Endpoints](#api-endpoints)
 - [Recovery & Snapshots](#recovery--snapshots)
 - [Troubleshooting](#troubleshooting)
 - [System Infrastructure](#system-infrastructure)
+- [License](#license)
 
-⸻
+---
 
 ## Founder's Log & Manifesto
 
@@ -62,221 +64,208 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.
 > Not at a venture-backed startup.  
 > Not on fiber internet with a dev team holding my hand...
 
-Curious about the journey, the pain, and the philosophy behind AscendAI?  
-Read more in the [FOUNDER_LOG.md](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/FOUNDER_LOG.md)
+Read the [FOUNDER_LOG.md](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/FOUNDER_LOG.md) for the full journey and philosophy.
 
-⸻
+---
 
 ## Overview
 
-GremlinGPT is a self-hosted recursive agent system with:
+**GremlinGPT** is a fully local, modular, self-evolving AI agent platform—**no cloud**, **no external APIs**, no hidden data leaks.
 
-- Zero reliance on external APIs
-- Full vector memory and attention pipelines
-- NLP stack (tokenizer, transformer, parser) built for self-replacement
-- DOM scraping + signal analysis tailored for penny stock trading
-- A self-training pipeline that mutates failed logic into future embeddings
+- Autonomous FSM-driven agent loop
+- Self-wiring NLP/memory stack (Chroma/FAISS)
+- DOM/web/stock scraper, persistent trading signals, recursive self-training
+- Bulletproof, production-grade, **red/black/gold/silver-themed** PWA dashboard for chat, tasks, memory, and trading
 
-⸻
+---
 
-## System Features
+## Features
 
-- Offline-first PWA dashboard (mobile + desktop)
-- FSM-driven agent planning
-- Chroma/FAISS memory vector stores
-- Prebuilt transformer/embedding core (MiniLM/DistilBERT)
-- Dynamic self-training from live logs
-- DOM navigator + Playwright simulator
-- EMA/VWAP-based penny stock scanner
-- UMAP + metadata tagging on all memory
+- **Zero cloud dependence**: runs 100% offline and local
+- **Persistent, auto-recovering agent core**
+- **State-of-the-art PWA dashboard**: mobile + desktop, instant install, works offline
+- **Floating chat (always-on), tabbed navigation** (Tasks / Memory / Trading)
+- **Self-training and auto-mutation**: logs errors, auto-patches, and retrains
+- **Signal/ticker scanner**: EMA, VWAP, breakout, penny stock focus
+- **Vector memory with UMAP, metadata, tagging**
+- **Remote access with ngrok for secure AI on the go**
+- **Auto-saving, crash recovery, and live snapshotting**
 
-⸻
-
-### 🔬 Mutation Zone Activated
-
-The `dev-experiment/` sandbox is now scaffolded and online.
-
-- 🧠 `memory_hacking/` → custom embeddings, reward injection
-- 🤖 `new_agents/` → speculative planners, FSM mutators, self-reflection nodes
-- 🔥 `broken_scrapers/` → crash rigs, instability injectors
-- 📜 `your_mutations_here.md` → invitation to mutate the system directly
-
-> Fork. Inject. Break. Log.  
-> The Gremlin remembers every mutation.
-
-⸻
+---
 
 ## Architecture
 
-All subsystems communicate through a modular, recursive design:
+- **Backend:** Python (Flask/FastAPI), persistent vector DBs, FSM agent loop
+- **Frontend:** Modern PWA (Bootstrap, vanilla JS), custom dark theme, tabbed UI, floating chat
+- **Memory:** Chroma, FAISS, SentenceTransformer, full vector store, auto-index
+- **Scraper:** Playwright, BeautifulSoup, async router, DOM/stock/ticker feeds
+- **Trading Core:** Real-time signal inference, estimator, audit/history
+- **Self-training:** Log watcher, mutation engine, agent self-healing
+- **All panels and actions call live REST endpoints—no stubs, no nulls**
 
-- **Backend** (Flask + SocketIO): Orchestrates commands, routes APIs
-- **FSM Agent Core**: Controls tool invocation, retry logic, state snapshots
-- **Scraper**: Persistent browser automation, DOM capture, vector storage
-- **NLP Engine**: Bootstrap tokenizer/transformer/tagger + mutation diffing
-- **Memory**: Vector embeddings stored via Chroma/FAISS with metadata tags
-- **Self-Training Loop**: Watches logs, mutates failure data, retrains NLP
-- **Frontend Dashboard**: PWA interface for chat, tasks, memory, trading
+---
 
-⸻
+## System Components
+
+- **backend/**: API router, task/memory planners, logs, and snapshots
+- **agent_core/**: Task queue, FSM/agent logic, tool dispatcher
+- **nlp_engine/**: Tokenizer, transformer, parser, mutation diff
+- **memory/**: Chroma/FAISS vector DB, metadata, embeddings
+- **scraper/**: DOM navigator, Playwright, async router
+- **self_training/**: Watchdog, feedback ingestion, retrainer
+- **trading_core/**: Stock scanner, signal/rule engine, estimator
+- **frontend/**: PWA dashboard (chat, tasks, memory, trading)
+
+---
 
 ## Installation
 
-1. **Clone the repo**
+**1. Clone the repo**
+
 ```bash
-git clone https://github.com/statikfintechllc/AscendAI.git && cd ~/AscendAI/AscendNet/GremlinGPT
+git clone https://github.com/statikfintechllc/AscendAI.git
+cd AscendAI/AscendNet/GremlinGPT
 ```
 
-2.	Bootstrap NLP Models (one time)
-```bash
-conda activate gremlin-nlp && \
-python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from_pretrained('bert-base-uncased'); AutoModel.from_pretrained('bert-base-uncased')" && \
-python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
-```
+**2. Install Conda environments**
 
-3.	Install and Build Conda envs
 ```bash
-cd ~/AscendAI/GremlinGPT/conda_envs && sudo chmod +x create_envs.sh && ./create_envs.sh
+cd conda_envs && chmod +x create_envs.sh && ./create_envs.sh
 ```
 
 or
 
 ```bash
-cd ~/AscendAI/GremlinGPT && sudo chmod +x install.sh && ./install.sh
+cd .. && chmod +x install.sh && ./install.sh
+```
+
+**3. Bootstrap NLP models (one time)**
+
+```bash
+conda activate gremlin-nlp
+python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from_pretrained('bert-base-uncased'); AutoModel.from_pretrained('bert-base-uncased')"
+python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
 ```
 
 ⸻
 
 ## Running the System
+
 ```bash
-cd run && sudo chmod +x start_all.sh && ./start_all.sh
+cd run
+chmod +x start_all.sh
+./start_all.sh
 ```
 
-What happens:
-	•	Backend server goes live
-	•	FSM starts looping
-	•	Browser scraper engages
-	•	Feedback engine boots
-
-Access dashboard at:
-http://localhost:5050/
+- Backend server launches (Flask or FastAPI, port 5000 or 5050)
+- FSM agent loop, task queue, memory, scraper all start
+- **Dashboard ready at:** http://localhost:5000/ or http://localhost:5050/
 
 ⸻
 
-## System Components
+## Remote Access using ngrok
 
-1. backend/
-	•	Flask API router
-	•	NLP/chat routing
-	•	Task + memory planners
-	•	State snapshots + runtime logs
+- **To securely access GremlinGPT dashboard from anywhere:**
 
-2. agent_core/
-	•	Task queue w/ retry
-	•	Tool dispatcher (scrape, scan, train, nlp, shell executor)
-	•	FSM planner + heuristics
+```bash
+ngrok http 5000
+```
 
-3. nlp_engine/
-	•	Tokenizer (bert-base-uncased)
-	•	Transformer (DistilBERT / MiniLM)
-	•	POS, parsing, semantic scoring
-	•	Mutation diff engine
+or
 
-4. memory/
-	•	FAISS + Chroma vector backends
-	•	Metadata + tagging
-	•	Embedding IO + indexing
+```bash
+ngrok http 5050
+```
 
-5. scraper/
-	•	Playwright DOM sim
-	•	BeautifulSoup/LXML navigator
-	•	Persistence: cookies + Chromium profiles
+- Use the HTTPS URL provided by ngrok in your browser or mobile
+- Full dashboard, all agent controls, remote chat and signal monitoring
 
-6. self_training/
-	•	Log triggers via Watchdog
-	•	Mutation + feedback ingestion
-	•	NLP vector retrainer
+⸻
 
-7. trading_core/
-	•	Penny stock premarket scanner
-	•	EMA/VWAP breakout rules
-	•	Tax + portfolio model
+## API Endpoints
 
-8. frontend/
-	•	PWA dashboard (offline support)
-	•	Components: Chat, TaskTree, Memory, Signals
-	•	Real-time REST + WebSocket integration
+- All dashboard features are live-wired to these REST endpoints:
+
+Endpoint
+Description
+/api/chat
+Chat with GremlinGPT agent
+/api/agent/tasks
+Task queue (view/manage/inject)
+/api/memory/graph
+Visualize memory embeddings
+/api/trading/signals
+Real-time penny stock signals
+
+*Extend as you add more features (FSM control, scraping, estimator, etc.)*
 
 ⸻
 
 ## Recovery & Snapshots
 
-GremlinGPT auto-saves:
-	•	Agent state
-	•	Task queue
-	•	Memory deltas
- 
-GremlinGPT saves state to:
-~/AscendAI/GremlinGPt/run/checkpoints/state_snapshot.json
+- **Auto-saves:**
+- Agent state, task queue, memory embeddings
 
-For Viewing:
-```bash
-cat ~/AscendAI/GremlinGPT/run/checkpoints/state_snapshot.json
-```
+**Key locations:**
+- run/checkpoints/state_snapshot.json (full system snapshot)
+- 
+- run/checkpoints/task_queue.json (queue state)
 
-To test pre-launch:
-```bash
-cd ~/AscendAI/GremlinGPT && sudo chmod +x test_system_start.sh && ./test_system_start.sh
-```
+**Recovery:**
+- On crash/reboot, system auto-restores FSM, queue, and memory
 
-To monitor:
+**Manual monitoring:**
+
 ```bash
 tail -f run/logs/runtime.log
 ```
 
-To resume from crash:
-```bash
-cd ~/AscendAI/GremlinGPT && sudo chmod +x reboot_recover.sh && ./reboot_recover.sh
-```
-
-This reloads:
-	•	FSM state
-	•	Task queue
-	•	Memory vector delta
-	•	Agent profile 
- 
 ⸻
 
-Troubleshooting
-	•	Port 5050 busy? Kill or remap in config.
-	•	Scraper fails silently? Set headless=False in playwright_handler.py
-	•	No memory? Recheck embedder.py and Chroma/FAISS path.
-	•	Training loop inactive? Trigger trainer.py manually or inspect Watchdog.
+## Troubleshooting
+
+	•	Port conflict? Change in config.yaml or stop existing service
+	•	Scraper fails? Set headless=False in playwright_handler.py and retry
+	•	No memory? Verify embedder paths and Chroma/FAISS setup
+	•	Training loop not updating? Run retrainer manually or inspect watchdog logs
 
 ⸻
 
 ## System Infrastructure
 
-**This is not just architecture — it’s the nervous system of an evolving intelligence.**  
-Blueprints, memory pipelines, call graphs, and recovery rituals all live here:
+**Docs:**
+*See docs/ for:*
 
-`~/AscendAI/GremlinGPT/docs/`
+	•	System architecture (system_overview.md)
+	•	Module tree (full_structure_tree.txt)
+	•	Agent logic (fsm_architecture.md)
+	•	Memory/embeddings (memory_pipeline.md)
+	•	Trading rules/signals (trading_signals.md)
+	•	Self-training (self_training.md)
+	•	Remote ops (ngrok_integration.md)
+	•	Daemon/service setup (gremlin.service.md)
+	•	Automated shell scripting (automated_shell.md)
 
-Explore:
-- `full_structure_tree.txt` — full module hierarchy, no secrets
-- `system_overview.md` — how the mind is wired
-- `system_call_graph.md` — what talks to what, and why
-- `fsm_architecture.md` — the agent loop’s recursive core
-- `memory_pipeline.md` — vector thought, storage, and recall
-- `trading_signals.md` — the pattern seer for penny chaos
-- `self_training.md` — how failure becomes fuel
-- `ngrok_integration.md` — remote infiltration hooks
-- `gremlin.service.md` — daemonize the beast
-- `automated_shell.md` — command-line possession
+**Live system trace:**
 
-To trace the system live, run:
 ```bash
 python run/module_tracer.py
 ```
 
 ⸻
+
+## License
+
+<div align="center">
+  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md">
+    <img src="https://img.shields.io/badge/FAIR%20USE-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Fair Use License"/>
+  </a>
+  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md">
+    <img src="https://img.shields.io/badge/GREMLINGPT%20DUAL%20LICENSE-v1.0.3-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
+  </a>
+</div>
+
+FAIR USE for research, non-commercial, and education.
+Contact for commercial/enterprise licensing.
+© 2025 StatikFintechLLC / AscendAI Project.
+
