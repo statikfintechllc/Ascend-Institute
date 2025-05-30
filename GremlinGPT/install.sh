@@ -1,8 +1,24 @@
 #!/bin/zsh
 
+# Colors
+RED='\033[1;31m'
+NC='\033[0m' # No Color
+
+# Spinner Function
+spin() {
+    local -a marks=('|' '/' '-' '\\')
+    local pid=$!
+    local i=0
+    while kill -0 $pid 2>/dev/null; do
+        printf "\r${RED}GremlinGPT${NC} initializing ${marks[i++ % 4]}"
+        sleep 0.1
+    done
+    printf "\r${RED}GremlinGPT${NC} initialized ✅\n"
+}
+
 echo "[INSTALL] Initializing GremlinGPT installation..."
 
-# Base structure
+# Step 1: Create Required Directory Structure
 DIRS=(
   "run/logs"
   "run/checkpoints"
@@ -26,18 +42,36 @@ for dir in "${DIRS[@]}"; do
   mkdir -p "$dir"
 done
 
-# Create placeholder metadata DB
+# Step 2: Create Metadata / Log Files
 touch memory/local_index/metadata.db
 touch run/logs/runtime.log
 touch run/checkpoints/state_snapshot.json
 touch data/logs/bootstrap.log
 
-# Setup environment
-cd conda_envs && sudo chmod +x create_envs.sh && ./create_envs.sh && cd ..
+# Step 3: Build Conda Environments (with spinner)
+(
+  cd conda_envs || exit 1
+  chmod +x create_envs.sh && ./create_envs.sh || exit 1
+) & spin
+
+# Step 4: Source Conda If Needed
+if ! command -v conda &> /dev/null; then
+    source ~/miniconda3/etc/profile.d/conda.sh
+fi
+
+# Step 5: Download NLP Models (with spinner)
+(
+  conda activate gremlin-nlp || exit 1
+  python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from_pretrained('bert-base-uncased'); AutoModel.from_pretrained('bert-base-uncased')" || exit 1
+  python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')" || exit 1
+  conda deactivate
+) & spin
+
+# Step 6: ngrok Info Message
 echo "[*] Installing ngrok CLI (optional)..."
 if ! command -v ngrok &> /dev/null; then
-    echo "You may install it via: https://ngrok.com/download"
-    echo "Or configure it via pyngrok in config.toml"
+    echo "[NOTICE] ngrok not found. Visit https://ngrok.com/download or configure pyngrok in config.toml"
 fi
-echo "[INSTALL] GremlinGPT installed successfully."
 
+# Final Message
+echo "[INSTALL] GremlinGPT installation completed successfully."
