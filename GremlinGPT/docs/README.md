@@ -234,7 +234,7 @@ tail -f run/logs/runtime.log
 ## System Infrastructure
 
 **Docs:**
-*See [docs/]([FOUNDER_LOG.md](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs)for:*
+*See [docs/]([FOUNDER_LOG.md](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs) for:*
 
 - System architecture (system_overview.md)
 - Module tree (full_structure_tree.txt)
