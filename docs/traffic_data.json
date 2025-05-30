@@ -78,11 +78,6 @@
   ],
   "views": [
     {
-      "timestamp": "2025-05-16T00:00:00Z",
-      "count": 1,
-      "uniques": 1
-    },
-    {
       "timestamp": "2025-05-17T00:00:00Z",
       "count": 166,
       "uniques": 5
