@@ -72,14 +72,14 @@
     },
     {
       "timestamp": "2025-05-30T00:00:00Z",
-      "count": 72,
+      "count": 78,
       "uniques": 14
     }
   ],
   "views": [
     {
       "timestamp": "2025-05-16T00:00:00Z",
-      "count": 3,
+      "count": 2,
       "uniques": 2
     },
     {
