@@ -12,7 +12,8 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.
 # GremlinGPT System Flow v1.0.3
 
 ## Full Pipeline Graph — Autonomous + NLP-Aware + Mutation-Safe
-                                      ### 🧠 Core System Flow
+
+## 🧠 Core System Flow
 
 ```plaintext
              ┌────────────────────────────┐
