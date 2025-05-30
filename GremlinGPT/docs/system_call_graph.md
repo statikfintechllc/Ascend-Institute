@@ -12,52 +12,55 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.
 # GremlinGPT System Flow v1.0.3
 
 ## Full Pipeline Graph — Autonomous + NLP-Aware + Mutation-Safe
-                                                   ┌────────────────────┐
-                     generate_dataset.py           │   ChatInterface.js │
-                             ▲                     └────────────────────┘
-                             │                             ▲
-                        trainer.py                         │
-                             ▲                             │
-              ┌────────── transformer_core.py ◄────────────┘
-              │                  ▲
-         pos_tagger.py           │              parse_nlp()
-              ▲                  │                    ▲
-      tokenizer.py ◄─────────────┴─────┐        semantic_score.py
-              ▲                        │                 ▲
-          commands.py ◄──── chat_handler.py ──────► embedder.py ◄─────┐
-              │                  ▲                  ▲                 │
-              │                  │            feedback_loop.py        │
-              │                  │                  ▲                 │
-              ▼                  ▼                  │                 │
-       planner_agent.py ◄────── router.py ◄─────────┘                 │
-              │                  ▲                                    │
-              │             server.py                                 │
-              ▼                                                      │
-        task_queue.py ◄───────────── fsm.py ◄─────────────┐          │
-              ▲                     │                     │          │
-              │                     ▼                     ▼          │
+                                      ### 🧠 Core System Flow
+
+```plaintext
+             ┌────────────────────────────┐
+             │     generate_dataset.py    │
+             └────────────▲───────────────┘
+                          │
+                    trainer.py
+                          ▲
+              ┌──────── transformer_core.py ◄────────┐
+              │                   ▲                  │
+         pos_tagger.py           │             parse_nlp()
+              ▲                  │                   ▲
+      tokenizer.py ◄─────────────┴─────┐      semantic_score.py
+              ▲                        │               ▲
+        commands.py ◄──── chat_handler.py ──────► embedder.py ◄────┐
+              │                  ▲                 ▲               │
+              │                  │         feedback_loop.py        │
+              │                  │                 ▲               │
+              ▼                  ▼                 │               │
+       planner_agent.py ◄────── router.py ◄────────┘               │
+              │                  ▲                                 │
+              │             server.py                              │
+              ▼                                                    │
+        task_queue.py ◄───────────── fsm.py ◄──────────────┐       │
+              ▲                     │                      │       │
+              │                     ▼                      ▼       │
   update_position()         tool_executor.py ───────→ shell_executor.py
-              ▲                     │                     ▲          │
-  portfolio_tracker.py              │                     │          │
-              ▲                     ▼                     │          │
-  TradingPanel.js ─────────→ signal_generator.py          │          │
-                                  │                       │          │
-                                  ▼                       │          │
-                         rules_engine.py         log_event + retry  │
-                                  ▲                                 │
-                    get_live_penny_stocks()                         │
-                                  ▲                                 │
-                        stock_scraper.py ◄──── scraper_loop.py ◄────┘
+              ▲                     │                      ▲       │
+  portfolio_tracker.py              │                      │       │
+              ▲                     ▼                      │       │
+  TradingPanel.js ─────────→ signal_generator.py           │       │
+                                  │                        │       │
+                                  ▼                        │       │
+                         rules_engine.py         log_event + retry │
+                                  ▲                                │
+                    get_live_penny_stocks()                        │
+                                  ▲                                │
+                        stock_scraper.py ◄──── scraper_loop.py ◄───┘
                                   ▲                    ▲
                                   │                    │
-                    psutil → tws_handler.py     playwright_handler.py
+                     psutil → tws_handler.py     playwright_handler.py
                                   ▲                    ▲
                                   └───── dom_navigator.py ◄──── page_simulator.py
 
                                           │
                                           ▼
                                   vector_store/memory
-
+```
 
 ⸻
 
