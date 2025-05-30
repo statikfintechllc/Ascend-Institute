@@ -224,10 +224,10 @@ tail -f run/logs/runtime.log
 
 ## Troubleshooting
 
-	•	Port conflict? Change in config.yaml or stop existing service
-	•	Scraper fails? Set headless=False in playwright_handler.py and retry
-	•	No memory? Verify embedder paths and Chroma/FAISS setup
-	•	Training loop not updating? Run retrainer manually or inspect watchdog logs
+- Port conflict? Change in config.yaml or stop existing service
+- Scraper fails? Set headless=False in playwright_handler.py and retry
+- No memory? Verify embedder paths and Chroma/FAISS setup
+- Training loop not updating? Run retrainer manually or inspect watchdog logs
 
 ⸻
 
@@ -236,15 +236,15 @@ tail -f run/logs/runtime.log
 **Docs:**
 *See docs/ for:*
 
-	•	System architecture (system_overview.md)
-	•	Module tree (full_structure_tree.txt)
-	•	Agent logic (fsm_architecture.md)
-	•	Memory/embeddings (memory_pipeline.md)
-	•	Trading rules/signals (trading_signals.md)
-	•	Self-training (self_training.md)
-	•	Remote ops (ngrok_integration.md)
-	•	Daemon/service setup (gremlin.service.md)
-	•	Automated shell scripting (automated_shell.md)
+- System architecture (system_overview.md)
+- Module tree (full_structure_tree.txt)
+- Agent logic (fsm_architecture.md)
+- Memory/embeddings (memory_pipeline.md)
+- Trading rules/signals (trading_signals.md)
+- Self-training (self_training.md)
+- Remote ops (ngrok_integration.md)
+- Daemon/service setup (gremlin.service.md)
+- Automated shell scripting (automated_shell.md)
 
 **Live system trace:**
 
