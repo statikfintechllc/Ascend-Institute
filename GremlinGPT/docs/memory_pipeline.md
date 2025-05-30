@@ -35,6 +35,8 @@ Embeddings are 384-dim float32 vectors (MiniLM-L6-v2) optimized for local FAISS/
 ## Architecture
 
 The memory stack flows as:
+
+```text
 Raw Text
 ↓
 SBERT MiniLM
@@ -48,6 +50,7 @@ package_embedding()
 ➤ Vector Store (FAISS / Chroma)
 ↓
 ➤ metadata.db (SQLite) + /documents/
+```
 
 ---
 
