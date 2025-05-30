@@ -1,11 +1,10 @@
 <link rel="stylesheet" type="text/css" href="docs/custom.css">
 <div align="center">
-  <a
-href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md">
+  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md">
     <img src="https://img.shields.io/badge/FAIR%20USE-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Fair Use License"/>
   </a>
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md">
-    <img src="https://img.shields.io/badge/GREMLINGPT%20v1.0-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
+    <img src="https://img.shields.io/badge/GREMLINGPT%20v1.0.3-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
   </a>
 </div>
 
@@ -15,65 +14,66 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.
 
 ## Overview
 
-GremlinGPT self-evolves through a **recursive mutation loop** that monitors code diffs, identifies low-confidence outputs, and retrains its NLP engine from its own logs. This forms the foundation of its autonomy.
+GremlinGPT self-evolves through a **recursive mutation and retraining loop** that monitors code diffs, detects low-confidence or failed outputs, and retrains its NLP engine from its own logs and code feedback. This forms the backbone of autonomous self-improvement.
 
-The goal is to build a system that:
-
-- Observes its own behavior
-- Detects weak or failed logic
-- Mutates or retrains accordingly
-- Embeds feedback into long-term vector memory
+The goal is a system that:
+- Observes and logs its own behavior and code state
+- Detects weak, broken, or degraded logic
+- Mutates or retrains itself with new data
+- Embeds feedback and mutation history into long-term vector memory
 
 ---
 
 ## Core Modules
 
-| File                          | Purpose                                         |
-|-------------------------------|-------------------------------------------------|
-| `watcher.py`                  | Monitors code/config changes and triggers diffs |
-| `feedback_loop.py`            | Raises retrain flags via retrain_trigger.json   |
-| `mutation_engine.py`          | Alters text/tasks/code during retrain planning  |
-| `generate_dataset.py`         | Extracts failure events + diffs → JSONL dataset |
-| `trainer.py`                  | Runs retrain loop and updates transformer_core  |
-| `diff_engine.py`              | Calculates semantic delta and vector shifts     |
-| `planner_agent.py`            | Chooses new task strategies post-retrain        |
-| `embedder.py`                 | Tags + embeds every diff, feedback, signal      |
-| `tool_executor.py`            | Executes self_train task and propagates memory  |
+| File                           | Purpose                                            |
+|--------------------------------|----------------------------------------------------|
+| `self_mutation_watcher/watcher.py` | Monitors code/config changes and triggers diffs |
+| `self_training/feedback_loop.py`   | Raises retrain flags via retrain_trigger.json   |
+| `self_mutation_watcher/mutation_daemon.py` | Alters code/tasks during retrain planning |
+| `self_training/generate_dataset.py` | Extracts failure/diff events to JSONL dataset  |
+| `self_training/trainer.py`         | Runs retrain loop and updates NLP weights      |
+| `self_mutation_watcher/diff_engine.py` | Calculates semantic/code delta and vector shift |
+| `agents/planner_agent.py`          | Chooses next task strategies post-retrain      |
+| `memory/vector_store/embedder.py`  | Embeds every diff/feedback/signal into memory  |
+| `agent_core/tool_executor.py`      | Executes self_train and propagates retrain     |
 
 ---
 
 ## Training Trigger Logic
 
-Self-training is initiated under four main conditions:
+Self-training can be triggered by:
 
 1. **Code Mutations**  
-   Detected in critical logic files:
-   - `fsm.py`
-   - `rules_engine.py`
-   - `heuristics.py`
+   - Detected in monitored logic files:
+     - `fsm.py`
+     - `rules_engine.py`
+     - `heuristics.py`
+     - Any file listed in watcher config
 
 2. **Semantic Drift**  
-   - Embedding delta too high  
-   - Confidence < `0.7`
+   - Embedding delta or confidence < 0.70
 
 3. **Explicit Task**  
-   Manually queued task:
-   ```json
-   { "type": "self_train" }
+   - Manual queue:
+   - 
+     ```json
+     { "type": "self_train" }
+     ```
 
-4.	**Feedback Injection**
-Triggered by:
-	•	shell_executor.py
-	•	Failed FSM tasks
-	•	Reward model failures
+4. **Feedback Injection**  
+   - FSM/task failure
+   - Output from `shell_executor.py`
+   - Reward model score < threshold
 
-⸻
+---
 
 ## Watcher Loop
 
-The mutation watcher continuously monitors source files for changes.
+The watcher continuously monitors all key files for changes.
 
-### Key Snippet
+#### Key Snippet
+
 ```python
 if current != previous:
     diff = generate_diff(previous, current)
@@ -82,16 +82,19 @@ if current != previous:
     inject_feedback()
 ```
 
-Results are stored in memory and trigger downstream retraining.
+- All diffs, confidence drops, or failures are embedded and stored as memory.
+- feedback_loop.py then sets a retrain trigger.
 
 ⸻
 
-Feedback Trigger File
+## Feedback Trigger File
 
-Location:
+*Location:*
+
 run/checkpoints/retrain_trigger.json
 
-Example contents:
+**Example contents:**
+
 ```json
 {
   "trigger": "mutation_watcher",
@@ -100,39 +103,46 @@ Example contents:
 }
 ```
 
-This file is polled by trainer.py.
+- This is polled by trainer.py.
 
 ⸻
 
-Dataset Generation
+## Dataset Generation
 
-generate_dataset.py pulls data from:
-	•	Log files (data/logs/*.log)
-	•	Code diffs (tagged as code_diff)
-	•	Failed embeddings
-	•	Skipped or low-rewarded tasks
+**generate_dataset.py pulls from:**
+- Log files: data/logs/*.log
+- Code diffs (tagged as "type": "code_diff")
+- Failed embeddings
+- Skipped or low-rewarded tasks
 
-Sample Output
+*Sample Output:*
+
 ```json
 {
   "input": "Task failed to scrape",
   "output": "Rewritten task with URL fix"
 }
 ```
-Saved to:
+
+**Output file:**
+
 data/nlp_training_sets/auto_generated.jsonl
 
 ⸻
 
-NLP Retraining
-	•	Based on MiniLM (sentence-transformers)
-	•	Tokenized by tokenizer.py
-	•	Executes local checkpoint update to transformer_core.py
-	•	Embedded results tagged:
+## NLP Retraining
+
+- NLP model based on MiniLM (sentence-transformers)
+- Tokenization via local tokenizer
+- Executes checkpoint update to transformer core
+- Embedded retrain results are tagged:
+
 ```json
 "replaceable": false
 ```
-Lineage metadata is embedded:
+
+**Lineage metadata embedded:**
+
 ```json
 {
   "source": "GremlinGPT_v4_train",
@@ -143,45 +153,45 @@ Lineage metadata is embedded:
 
 ⸻
 
-## Reward Model (Pluggable)
+## Reward Model
 
-### GremlinGPT includes a reward model:
-	•	Scores outcomes (pass/fail/signal strength)
-	•	Ranks task types and future priority
-	•	Pluggable at tools/reward_model.py
+*tools/reward_model.py scores outcome: (pass/fail/signal strength)*
+- Ranks task types and next priority
+- Fully pluggable, all scores tracked in memory and logs
 
 ⸻
 
 ## Mutation Execution
 
-### FSM observes diffs through watcher.py:
-	1.	diff_engine.py → semantic delta
-	2.	embedder.py → embeds into memory
-	3.	feedback_loop.py → sets trigger
-	4.	trainer.py → retrains NLP engine
+FSM observes diffs through watcher:
+	1.	diff_engine.py computes semantic/code delta
+	2.	embedder.py packages diff into memory with tags
+	3.	feedback_loop.py sets retrain_trigger.json
+	4.	trainer.py runs local retraining and checkpoint update
 
-### In Progress
-	•	kernel.py → mutation engine for self-overwrites
-	•	snapshot.py → rollback engine for unsafe diffs
-	•	loop.py → evolutionary FSM manager
+*In progress:*
+
+- kernel.py for safe mutation/rollback
+- snapshot.py for versioning/rollback of codebase
+- core/loop.py for FSM mutation lifecycle
 
 ⸻
 
 ## Logging & Auditing
 
-### All mutation & retrain logs go to:
-	•	data/logs/bootstrap.log
-	•	data/nlp_training_sets/bootstrap.json
-
-Embeddings are visible in memory graph and planner preview.
+*All mutation and retrain logs are written to:*
+- data/logs/bootstrap.log
+- data/nlp_training_sets/bootstrap.json
+- All embeddings (diffs, feedback, retrain events) are visible in vector memory and dashboard graphs.
 
 ⸻
 
 ## Summary
 
-GremlinGPT doesn’t just log failures — it learns from them.
+GremlinGPT doesn’t just log or retry failures — it learns and rewires itself from every misstep.
 
-This self-training loop forms the brainstem of its evolution. Every code change, every scrape, every misstep becomes a lesson embedded into its memory.
+This self-training loop is the core of its autonomy. Every code change, signal, or bad scrape becomes a lesson, automatically embedded and replayed for the next round.
 
-GremlinGPT is not statically coded —
-it rewrites itself.
+> GremlinGPT is not statically coded — it rewrites itself.
+
+
