@@ -64,7 +64,7 @@
 > Not at a venture-backed startup.  
 > Not on fiber internet with a dev team holding my hand...
 
-Read the [FOUNDER_LOG.md](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/FOUNDER_LOG.md) for the full journey and philosophy.
+Read the [FOUNDER_LOG.md](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/FOUNDER_LOG.md) and the [FOUNDER_STATEMENT.md](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/FOUNDER_STATEMENT.md) for the full journey and philosophy.
 
 ---
 
@@ -234,7 +234,7 @@ tail -f run/logs/runtime.log
 ## System Infrastructure
 
 **Docs:**
-*See docs/ for:*
+*See [docs/]([FOUNDER_LOG.md](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs)for:*
 
 - System architecture (system_overview.md)
 - Module tree (full_structure_tree.txt)
