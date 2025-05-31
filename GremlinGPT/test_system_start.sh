@@ -76,29 +76,23 @@ else
 fi
 
 echo "[6/6] Summary Output"
-echo ""
+echo "GremlinGPT System Test Summary"
+echo "-------------------------------"
 
-python3 - <<EOF
-from rich.table import Table
-from rich.console import Console
-
-passed = ${#PASS_MODULES[@]}
-failed = ${#FAIL_MODULES[@]}
-
-table = Table(title="GremlinGPT System Test Summary")
-table.add_column("Module", style="cyan", no_wrap=True)
-table.add_column("Status", style="green")
-
-for mod in ${PASS_MODULES[@]}; do
-    table.add_row("$mod", "[bold green]PASS[/bold green]")
+for mod in "${PASS_MODULES[@]}"; do
+    echo -e "✓ $mod"
 done
 
-for mod in ${FAIL_MODULES[@]}; do
-    table.add_row("$mod", "[bold red]FAIL[/bold red]")
+for mod in "${FAIL_MODULES[@]}"; do
+    echo -e "✗ $mod"
 done
 
-console = Console()
-console.print(table)
+if [ ${#FAIL_MODULES[@]} -eq 0 ]; then
+    echo -e "\n✅ All systems go. You may now run ./run/start_all.sh"
+else
+    echo -e "\n⚠️  ${#FAIL_MODULES[@]} module(s) failed. Please check logs."
+fi
+
 
 if $failed -eq 0:
     console.print("\n[bold green]All systems go. You may now run start_all.sh[/bold green]")
