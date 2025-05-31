@@ -49,7 +49,7 @@ def serve_static(filename):
 # Boot Entry
 if __name__ == "__main__":
     host = CFG.get("backend", {}).get("host", "0.0.0.0")
-    port = CFG.get("backend", {}).get("port", 5050)
+    port = CFG.get("backend", {}).get("port", 8080)
 
     logger.info(f"[BACKEND] Starting GremlinGPT backend on {host}:{port}")
     socketio.run(app, host=host, port=port)
