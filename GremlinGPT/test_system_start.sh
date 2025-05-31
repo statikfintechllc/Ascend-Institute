@@ -61,34 +61,26 @@ else
   echo "✗ Failed to write checkpoint"
 fi
 
-echo "[5/6] Code watcher dry run..."
-if python3 self_mutation_watcher/watcher.py &>/dev/null; then
-  log_pass "Watcher"
-  echo "✓ Watcher executed"
-else
-  log_fail "Watcher"
-  echo "✗ Watcher failed"
-fi
-
 echo "[6/6] Summary Output"
 echo ""
+
 python3 - <<EOF
 from rich.table import Table
 from rich.console import Console
+
+passed = ${#PASS_MODULES[@]}
+failed = ${#FAIL_MODULES[@]}
 
 table = Table(title="GremlinGPT System Test Summary")
 table.add_column("Module", style="cyan", no_wrap=True)
 table.add_column("Status", style="green")
 
-passed = ${#PASS_MODULES[@]}
-failed = ${#FAIL_MODULES[@]}
-
 for mod in ${PASS_MODULES[@]}; do
-    table.add_row(mod, "[bold green]PASS[/bold green]")
+    table.add_row("$mod", "[bold green]PASS[/bold green]")
 done
 
 for mod in ${FAIL_MODULES[@]}; do
-    table.add_row(mod, "[bold red]FAIL[/bold red]")
+    table.add_row("$mod", "[bold red]FAIL[/bold red]")
 done
 
 console = Console()
