@@ -324,6 +324,23 @@ enabled = true
 show_metadata = true
 allow_edit = true
 max_results = 50
+embed_preview_chars = 200
+filter_by_type = ["code_diff", "signal", "planner_task"]
+
+[modules.mutation_viewer]
+enabled = true
+highlight_deltas = true
+track_lineage = true
+show_watermark = true
+diff_threshold = 0.6
+semantic_score_enabled = true
+
+[modules.shell_output]
+enabled = true
+max_output_lines = 200
+auto_scroll = true
+timestamp_display = true
+command_input_enabled = true
 
 # -------------------------------------------
 # End Config
