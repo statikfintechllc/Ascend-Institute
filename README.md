@@ -299,9 +299,6 @@ If you survive v1.0.3.
 **Installed the temporary NLP Backend**
 ![Install NLP](https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/demos/NLP_Prebuilt_Temp_Install.png)
 
-**Started Backend (Envs Active)**
-![Start Backend](https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/demos/Start_Backend_with_Environment_Activation.png)
-
 **Stopped Backend (Envs Persisting)**
 ![Stop Backend](https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/demos/Stop_Backend_Environment_Stays_Active.png)
 
