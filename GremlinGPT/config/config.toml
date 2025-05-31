@@ -19,7 +19,7 @@ SECRET_KEY = "REPLACE_ME"
 
 [ngrok]
 enabled = true
-authtoken = "REPLACE_ME"
+authtoken = "REPLACE_ME"      # REPLACE WITH YOUR TOKEN
 region = "us"
 subdomain = ""
 
@@ -259,8 +259,8 @@ reward_penalty = -1.0
 # -------------------------------------------
 [backend]
 enabled = true
-api_port = 5000
-session_cookie_name = "gremlin_session"
+api_port = 8080
+session_cookie_name = "gremlins_forge"
 cors_origins = ["*"]
 ngrok_enabled = true
 dashboard_enabled = true
