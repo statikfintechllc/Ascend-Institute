@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Conda init for non-interactive shell
+__conda_setup="$('/path/to/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+eval "$__conda_setup"
+
 # PRELOAD
 PASS_MODULES=()
 FAIL_MODULES=()
