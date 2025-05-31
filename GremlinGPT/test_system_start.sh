@@ -61,6 +61,16 @@ else
   echo "✗ Failed to write checkpoint"
 fi
 
+
+echo "[5/6] Code watcher dry run..."
+if python3 self_mutation_watcher/watcher.py &>/dev/null; thenAdd commentMore actions
+  log_pass "Watcher"
+  echo "✓ Watcher executed"
+else
+  log_fail "Watcher"
+  echo "✗ Watcher failed"
+fi
+
 echo "[6/6] Summary Output"
 echo ""
 
