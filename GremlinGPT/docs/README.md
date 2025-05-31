@@ -166,9 +166,9 @@ chmod +x start_all.sh
 ./start_all.sh
 ```
 
-- Backend server launches (Flask or FastAPI, port 5000 or 5050)
+- Backend server launches (Flask or FastAPI, port 8000 or 8080)
 - FSM agent loop, task queue, memory, scraper all start
-- **Dashboard ready at:** http://localhost:5000/ or http://localhost:5050/
+- **Dashboard ready at:** http://localhost:8000/ or http://localhost:8080/
 
 ⸻
 
@@ -177,13 +177,13 @@ chmod +x start_all.sh
 - **To securely access GremlinGPT dashboard from anywhere:**
 
 ```bash
-ngrok http 5000
+ngrok http 8000
 ```
 
 or
 
 ```bash
-ngrok http 5050
+ngrok http 8080
 ```
 
 - Use the HTTPS URL provided by ngrok in your browser or mobile
