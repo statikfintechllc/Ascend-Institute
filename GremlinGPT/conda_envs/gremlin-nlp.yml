@@ -14,6 +14,7 @@ dependencies:
   - sentence-transformers
   - transformers
   - tqdm
+  - loguru
   - psutil           # for all agent/core usage
   - rich             # recommended for colored logging
   - pip:
@@ -24,7 +25,6 @@ dependencies:
       - flask
       - flask-socketio
       - eventlet
-      - loguru
       - pyngrok        # for ngrok integration if ever needed
       - pygments       # colorized logging for anything using rich/pytest
       - pytest         # test runner
