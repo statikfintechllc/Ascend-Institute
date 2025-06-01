@@ -39,4 +39,3 @@ jobs:
           git diff --cached --quiet || git commit -m "Update traffic data and graph"
           git pull --rebase
           git push
-
