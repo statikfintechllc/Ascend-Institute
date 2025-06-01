@@ -13,15 +13,10 @@ function launch_terminal() {
   local cmd="$3"
   local logfile="$4"
 
-  function launch_terminal() {
-  local title="$1"
-  local env="$2"
-  local cmd="$3"
-  local logfile="$4"
-
   if command -v gnome-terminal > /dev/null; then
     gnome-terminal --title="$title" -- zsh -ic "
       echo '[${title}] Activating $env...';
+      source \$HOME/miniconda3/etc/profile.d/conda.sh;
       conda activate $env || { echo 'Failed to activate env: $env'; exit 1; }
       echo '[${title}] Running: $cmd';
       $cmd | tee $logfile
@@ -31,6 +26,7 @@ function launch_terminal() {
     xterm -T "$title" -e "
       zsh -ic '
         echo \"[${title}] Activating $env...\";
+        source \$HOME/miniconda3/etc/profile.d/conda.sh;
         conda activate $env || { echo \"Failed to activate env: $env\"; exit 1; }
         echo \"[${title}] Running: $cmd\";
         $cmd | tee $logfile;
@@ -48,7 +44,7 @@ echo "Boot ID: $(uuidgen) | Source: GremlinGPT | Time: $(date -u)" | tee -a run/
 
 echo "[START] Launching GremlinGPT subsystems in separate terminals..."
 
-# NLP Service (if interactive, otherwise skip or set to background)
+# NLP Service
 launch_terminal "NLP Service" gremlin-nlp "sleep infinity" "run/logs/nlp.out"
 
 # Memory Service
@@ -66,11 +62,11 @@ launch_terminal "Scraper" gremlin-scraper "python scraper/scraper_loop.py" "run/
 # Trainer
 launch_terminal "Self-Trainer" gremlin-orchestrator "python self_training/trainer.py" "run/logs/trainer.out"
 
-# Frontend Server (Python HTTP)
-launch_terminal "Frontend" base "python3 -m http.server 8080 --directory frontend" "run/logs/frontend.out"
+# Frontend Server (Python HTTP) - use gremlin-dashboard for static serving
+launch_terminal "Frontend" gremlin-dashboard "python3 -m http.server 8080 --directory frontend" "run/logs/frontend.out"
 
-# Ngrok tunnel
-launch_terminal "Ngrok Tunnel" base "python run/ngrok_launcher.py" "run/logs/ngrok.out"
+# Ngrok tunnel (uses pyngrok, part of gremlin-dashboard env)
+launch_terminal "Ngrok Tunnel" gremlin-dashboard "python run/ngrok_launcher.py" "run/logs/ngrok.out"
 
 echo "[ALL SYSTEMS LAUNCHED]"
 echo "Backend:     http://localhost:8000  (see backend/server.py for port)"
