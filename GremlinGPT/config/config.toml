@@ -10,14 +10,14 @@ offline = true
 enable_patch_test = true
 debug = true
 log_level = "INFO"
-api_port = 5000
+api_port = 8080
 cors_origins = ["*"]
 session_cookie_name = "gremlin_session"
 
 [security]
 SECRET_KEY = "REPLACE_ME"
 
-[ngrok]
+[pyngrok]
 enabled = true
 authtoken = "REPLACE_ME"      # REPLACE WITH YOUR TOKEN
 region = "us"
@@ -44,7 +44,7 @@ recovery_file = "$ROOT/run/recover.json"
 enabled = true
 fsm_enabled = true
 default_agent_type = "GeneralAgent"
-max_agents = 10
+max_agents = 13
 agent_registry_path = "$ROOT/data/agents/"
 state_snapshot_path = "$ROOT/run/state_snapshot.json"
 fsm_tick_delay = 0.5
