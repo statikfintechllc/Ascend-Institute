@@ -55,7 +55,7 @@ max_tasks = 33
 task_retry_limit = 333
 log_agent_output = true
 default_priority = "medium"
-default_task_timeout = 10
+default_task_timeout = 13
 
 [[agents.types]]
 name = "TaskAgent"
@@ -104,7 +104,7 @@ embedding_dim = 384
 confidence_threshold = 0.7
 semantic_boost = true
 similarity_threshold = 0.75
-max_nlp_batch_size = 16
+max_nlp_batch_size = 256
 
 # -------------------------------------------
 # Memory / Vector Store
@@ -114,13 +114,13 @@ enabled = true
 vector_backend = "chromadb"     # Options: "faiss", "chromadb"
 embedding_format = "float32"
 auto_index = true
-index_chunk_size = 500
+index_chunk_size = 512
 snapshot_interval_min = 30
 allow_replaceable = true
 allowed_backends = ["faiss", "chromadb"]
 vector_cache_enabled = true
 cache_path = "$ROOT/memory/vector_store/cache/"
-max_memory_usage_gb = 24
+max_memory_usage_gb = 115
 
 # -------------------------------------------
 # Core / Kernel / Loop
@@ -128,7 +128,7 @@ max_memory_usage_gb = 24
 [core]
 enabled = true
 kernel_loop_enabled = true
-loop_tick_delay = 1
+loop_tick_delay = .75
 snapshot_interval_min = 30
 recovery_file = "$ROOT/run/recover.json"
 
@@ -144,8 +144,8 @@ log_watch_dir = "$ROOT/data/logs/"
 training_output = "$ROOT/data/nlp_training_sets/mutated_dataset.json"
 overwrite_model = false
 allow_mutation = true
-feedback_interval_sec = 60
-mutation_interval_sec = 120
+feedback_interval_sec = 30
+mutation_interval_sec = 90
 
 # -------------------------------------------
 # Scraper / Web Data Tools (Full)
@@ -205,7 +205,7 @@ random_delay_range_ms = [200, 600]
 
 [scraper.playwright]
 enabled = true
-chromium_flags = ["--disable-gpu", "--no-sandbox"]
+chromium_flags = ["--enable-gpu", "--no-sandbox"]
 headless = true
 device = "desktop"
 
@@ -323,8 +323,8 @@ highlight_signal_confidence = true
 enabled = true
 show_metadata = true
 allow_edit = true
-max_results = 50
-embed_preview_chars = 200
+max_results = 200
+embed_preview_chars = 1024
 filter_by_type = ["code_diff", "signal", "planner_task"]
 
 [modules.mutation_viewer]
@@ -337,7 +337,7 @@ semantic_score_enabled = true
 
 [modules.shell_output]
 enabled = true
-max_output_lines = 200
+max_output_lines = 369
 auto_scroll = true
 timestamp_display = true
 command_input_enabled = true
