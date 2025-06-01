@@ -170,11 +170,11 @@ Reset: After 7:00pm CST on First 2 Clones
 This system has outgrown its shell.  
 To reach full deployment — stable memory growth, continuous mutation, and multi-agent orchestration — we need infrastructure.
 
-### Phase 1 Funding Target is **$10,000**
+### Phase 1 Funding Target is **$25,000**
 
 **Funds will be used to secure:**
 
-- Dedicated GPU cluster (RTX 4090 × 4 minimum)  
+- Dedicated GPU cluster (RTX 4090 × 2 minimum)  
 - Persistent vector DB and self-hosted embedding server  
 - Secure DevOps pipeline for offline + encrypted agents  
 - Infra credit for cloud-agnostic deployments (if applicable)
