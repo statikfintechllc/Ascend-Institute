@@ -38,7 +38,7 @@ The initial funding target will allow GremlinGPT to:
 | Goal | Purpose |
 |------|---------|
 | **Trading Account & Full-Time Dev.** | Fund trading account to be able to move into working from home tk Dev full time|
-| **Cluster GPU Power** | Minimum: RTX 4090 × 4 or equivalent |
+| **Cluster GPU Power** | Minimum: RTX 4090 × 2 or equivalent |
 | **Persistent Vector Infrastructure** | ChromaDB or custom embedding store |
 | **Offline Embedding + NLP Training Server** | No HuggingFace / No OpenAI |
 | **Secured Storage & I/O Expansion** | 32TB RAID array for checkpoint persistence |
