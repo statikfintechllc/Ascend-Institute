@@ -176,9 +176,8 @@ To reach full deployment — stable memory growth, continuous mutation, and mult
 
 - Start Trading account to be able to move into Full-Time Development
 - Dedicated GPU cluster (RTX 4090 × 2 minimum)  
-- Persistent vector DB and self-hosted embedding server  
-- Secure DevOps pipeline for offline + encrypted agents  
-- Infra credit for cloud-agnostic deployments (if applicable)
+- Persistent vector DB for others and self-hosted embedding server for others 
+- Secure DevOps pipeline for offline + encrypted agents for others 
 
 ---
 
