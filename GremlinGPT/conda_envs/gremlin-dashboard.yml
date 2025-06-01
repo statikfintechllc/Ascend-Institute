@@ -26,6 +26,7 @@ dependencies:
       - qrcode[pil]
       - backend
       - pyngrok
+      - qrcode
       - pygments       # color logs
       - pytest         # testing
       - networkx       # task/graph if dashboard needs it
