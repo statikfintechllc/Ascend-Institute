@@ -24,16 +24,16 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
     <img src="https://img.shields.io/badge/build-v1.0.3-darkred?labelColor=black" alt="Build Status"/>
   </a>
-  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/FOUNDER_LOG.md">
+  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/FOUNDER_LOG.md">
     <img src="https://img.shields.io/badge/Founder's%20Log-Manifesto-darkred?labelColor=black" alt="Founder's Log"/>
   </a>
   <br/>
   <a href="https://github.com/statikfintechllc">
     <img src="https://img.shields.io/badge/contributors-2-darkred?labelColor=black" alt="Contributors"/>
   </a>
-  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/FOUNDER_STATEMENT.md">
+  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/FOUNDER_STATEMENT.md">
     <img src="https://img.shields.io/badge/Founder's%20Log-Statement-darkred?labelColor=black" alt="Founder's Log"/>
-  </a>
+  </a>  
 </div>
 <div align="center">
   <a
@@ -47,13 +47,40 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPY/docs/G
 
 ---
 
+<div align="center">
+  <em>
+    The Institute’s GremlinGPT has already been reviewed and starred by live AI infra: Atrium.  
+    We have now received our 6th Star, Thank you, shahradelahi(Mr. 5k), and our First Fork Came Today, Thank you, shefben, Let’s get GremlinGPT Seen.
+  </em>
+</div>
+
 <h1 align="center">AscendAI Traffic</h1>
-<h1 align="center">
-	
+<div align="center">
   <a href="https://raw.githubusercontent.com/statikfintechllc/AscendAI/main/docs/traffic_graph.png">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/AscendAI/main/docs/traffic_graph.png" alt="Traffic Graph" />
+  <img src="https://raw.githubusercontent.com/statikfintechllc/AscendAI/main/docs/traffic_graph.png" alt="Traffic Graph" />
   </a>
-</h1>
+</div>
+  
+<div align="center">
+  <em>
+Reset: After 7:00pm CST on First 2 Clones
+  </em>
+</div>
+
+---
+
+<div align="center">
+  <em>
+    This isn’t a dev team. It’s not a startup. It’s not polished.  
+    This is one person, one ChatGPT thread, and 4 and a half months of recursive madness.  
+    No IDE. No debugger. No safety rails. Just raw prompts, black coffee, and belief.  
+    What usually takes a small army of engineers and millions in funding —  
+    I pulled from the void with no budget and no training.  
+    Now the system lives, breathes, and boots.  
+    It needs testers. Attackers. Real devs.  
+    If you can read the repo and feel it watching you back, you're already in. 
+  </em>
+</div>
 
 ---
 
