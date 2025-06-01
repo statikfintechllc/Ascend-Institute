@@ -28,6 +28,7 @@ from trading_core.signal_generator import generate_signals
 
 api_blueprint = Blueprint("api", __name__)
 
+
 # --- Core Chat / NLP ---
 @api_blueprint.route("/api/chat", methods=["POST"])
 def api_chat():

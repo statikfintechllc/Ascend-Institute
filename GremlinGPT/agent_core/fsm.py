@@ -193,9 +193,11 @@ def get_fsm_status():
     """Return the current FSM state and task queue."""
     return {
         "state": FSM_STATE,
-        "queue_length": task_queue.size()
-        if hasattr(task_queue, "size")
-        else len(getattr(task_queue, "tasks", [])),
+        "queue_length": (
+            task_queue.size()
+            if hasattr(task_queue, "size")
+            else len(getattr(task_queue, "tasks", []))
+        ),
         "queue": getattr(task_queue, "tasks", []),
     }
 
