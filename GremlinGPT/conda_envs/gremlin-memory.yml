@@ -10,7 +10,14 @@ dependencies:
   - faiss-cpu
   - chromadb
   - sqlite
+  - psutil          # for robust process/memory ops
   - loguru
+  - rich            # for logging/color
   - pip:
       - sentence-transformers
       - toml
+      - pygments     # color for logging
+      - pytest       # test runner
+      - networkx     # graph/memory/agent stuff
+      - watchdog     # file watching, optional but harmless
+
