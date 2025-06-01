@@ -55,7 +55,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
   
 <div align="center">
   <em>
-Reset: 7:00pm CST
+Reset: After 7:00pm CST on First 2 Clones
   </em>
 </div>
 
