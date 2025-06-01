@@ -1,25 +1,14 @@
 #!/bin/zsh
 
-# Colors
+# Output colors
 RED='\033[1;31m'
 GREEN='\033[1;32m'
-NC='\033[0m' # No Color
+YELLOW='\033[1;33m'
+NC='\033[0m'
 
-# Spinner Function
-spin() {
-    local -a marks=('|' '/' '-' '\\')
-    local pid=$!
-    local i=0
-    while kill -0 $pid 2>/dev/null; do
-        printf "\r${RED}GremlinGPT${NC} initializing ${marks[i++ % 4]}"
-        sleep 0.1
-    done
-    printf "\r${RED}GremlinGPT${NC} initialized ✅\n"
-}
+echo "${GREEN}[INSTALL] Initializing GremlinGPT installation...${NC}"
 
-echo "[INSTALL] Initializing GremlinGPT installation..."
-
-# Step 1: Create Required Directory Structure
+# 1. Directory structure
 echo "[*] Creating directory structure..."
 DIRS=(
   "run/logs"
@@ -39,78 +28,62 @@ DIRS=(
   "tests"
   "docs"
 )
-
 for dir in "${DIRS[@]}"; do
-  if [ ! -d "$dir" ]; then
-    mkdir -p "$dir"
-    echo "Created: $dir"
-  else
-    echo "Exists:  $dir"
-  fi
+  [ ! -d "$dir" ] && mkdir -p "$dir" && echo "Created: $dir" || echo "Exists:  $dir"
 done
 
-# Step 2: Create Metadata / Log Files
+# 2. Placeholder files
 echo "[*] Creating placeholder metadata/log files if missing..."
 touch memory/local_index/metadata.db
 touch run/logs/runtime.log
 touch run/checkpoints/state_snapshot.json
 touch data/logs/bootstrap.log
 
-# Step 3: Ensure Conda is in path and initialized
-echo "[*] Checking conda..."
+# 3. Conda init (NO 'set -e', NO error exit)
+echo "[*] Ensuring conda is initialized..."
 if ! command -v conda &> /dev/null; then
-    echo "[INFO] Attempting to source conda..."
     if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
         source "$HOME/miniconda3/etc/profile.d/conda.sh"
-    else
-        echo "[ERROR] Conda not found. Please install or check your path."
-        exit 1
     fi
 fi
 
-# Step 4: Build Conda Environments
-echo "[*] Creating conda environments if they don't exist..."
-(
-  cd conda_envs || exit 1
+eval "$(conda shell.zsh hook 2>/dev/null)" || eval "$(conda shell.bash hook 2>/dev/null)"
 
-  # Add check for whether environments already exist inside create_envs.sh
-  chmod +x create_envs.sh && ./create_envs.sh
-) & spin
+# 4. Run create_envs.sh (NO extra error traps)
+echo "[*] Building all conda environments via ./conda_envs/create_envs.sh..."
+if [ -f "./conda_envs/create_envs.sh" ]; then
+    chmod +x ./conda_envs/create_envs.sh
+    ./conda_envs/create_envs.sh
+else
+    echo "${RED}[ERROR] ./conda_envs/create_envs.sh not found!${NC}"
+fi
 
-# Step 5: Download NLP Models (if not already downloaded)
-echo "[*] Downloading required NLP models..."
+# 5. Activate gremlin-nlp for HuggingFace models
+echo "[*] Activating gremlin-nlp to download HuggingFace models..."
+conda activate gremlin-nlp
+CACHE_PATH="$HOME/.cache/huggingface/transformers"
+if [ ! -d "$CACHE_PATH/models--bert-base-uncased" ]; then
+    echo "[MODEL] Downloading: BERT base uncased"
+    python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from_pretrained('bert-base-uncased'); AutoModel.from_pretrained('bert-base-uncased')"
+else
+    echo "[MODEL] Already cached: BERT base uncased"
+fi
+if [ ! -d "$CACHE_PATH/sentence-transformers--all-MiniLM-L6-v2" ]; then
+    echo "[MODEL] Downloading: SentenceTransformer MiniLM"
+    python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
+else
+    echo "[MODEL] Already cached: SentenceTransformer MiniLM"
+fi
+conda deactivate
 
-(
-  ENV_NAME="gremlin-nlp"
+# 6. Activate gremlin-scraper for Playwright install
+echo "[*] Activating gremlin-scraper to install Playwright browsers..."
+conda activate gremlin-scraper
+pip install playwright
+playwright install
+conda deactivate
 
-  if ! conda info --envs | grep -q "$ENV_NAME"; then
-      echo "[ERROR] Environment '$ENV_NAME' does not exist. Cannot download models."
-      exit 1
-  fi
-
-  source "$HOME/miniconda3/etc/profile.d/conda.sh"
-  conda activate "$ENV_NAME" || exit 1
-
-  CACHE_PATH="$HOME/.cache/huggingface/transformers"
-
-  if [ ! -d "$CACHE_PATH/models--bert-base-uncased" ]; then
-      echo "Downloading: BERT base uncased"
-      python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from_pretrained('bert-base-uncased'); AutoModel.from_pretrained('bert-base-uncased')" || exit 1
-  else
-      echo "Model already cached: BERT base uncased"
-  fi
-
-  if [ ! -d "$CACHE_PATH/sentence-transformers--all-MiniLM-L6-v2" ]; then
-      echo "Downloading: SentenceTransformer MiniLM"
-      python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')" || exit 1
-  else
-      echo "Model already cached: SentenceTransformer MiniLM"
-  fi
-
-  conda deactivate
-) & spin
-
-# Step 6: ngrok (optional)
+# 7. ngrok CLI check
 echo "[*] Checking for ngrok CLI..."
 if ! command -v ngrok &> /dev/null; then
     echo "[NOTICE] ngrok not found. Visit https://ngrok.com/download or configure pyngrok in config.toml"
@@ -118,6 +91,4 @@ else
     echo "[INFO] ngrok installed: $(which ngrok)"
 fi
 
-# Final message
 echo "${GREEN}[INSTALL] GremlinGPT installation completed successfully.${NC}"
-
