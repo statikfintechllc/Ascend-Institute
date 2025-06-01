@@ -174,6 +174,7 @@ To reach full deployment — stable memory growth, continuous mutation, and mult
 
 **Funds will be used to secure:**
 
+- Start Trading account to be able to move into Full-Time Development
 - Dedicated GPU cluster (RTX 4090 × 2 minimum)  
 - Persistent vector DB and self-hosted embedding server  
 - Secure DevOps pipeline for offline + encrypted agents  
