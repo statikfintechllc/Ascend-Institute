@@ -24,6 +24,7 @@ dependencies:
       - websockets
       - toml
       - qrcode[pil]
+      - backend
       - pyngrok
       - pygments       # color logs
       - pytest         # testing
