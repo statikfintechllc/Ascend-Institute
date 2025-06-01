@@ -7,6 +7,7 @@ dependencies:
   - pip
   - numpy            # REQUIRED for embedder.py and watcher.py
   - pyyaml
+  - loguru
   - click
   - rich
   - psutil
@@ -16,6 +17,5 @@ dependencies:
       - watchdog
       - networkx
       - toml
-      - loguru
       - pyngrok      # (optional, if you use ngrok automation)
       - pygments     # (recommended for rich/color logs)
