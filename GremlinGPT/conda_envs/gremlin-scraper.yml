@@ -25,4 +25,5 @@ dependencies:
       - undetected-chromedriver
       - websockets
       - pyngrok
+      - toml
       - qrcode
