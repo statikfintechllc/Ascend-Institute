@@ -5,9 +5,28 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.
     <img src="https://img.shields.io/badge/FAIR%20USE-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Fair Use License"/>
   </a>
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md">
-    <img src="https://img.shields.io/badge/GREMLINGPT%20v1.0-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
+    <img src="https://img.shields.io/badge/GREMLINGPT%20v1.0.3-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
   </a>
 </div>
+<div align="center">
+  <a
+href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREMLINGPT.md">
+    <img src="https://img.shields.io/badge/Why-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Why"/>
+  </a>
+  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREMLINGPT.md">
+    <img src="https://img.shields.io/badge/GremlinGPT-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
+  </a>
+</div>
+
+---
+
+## GremlinGPT vs. the Other Guys
+
+| Project         | Size      | Files | Modularity | True Local | Dashboard | Fork-ready | Easy to Audit |
+|-----------------|-----------|-------|------------|------------|-----------|------------|--------------|
+| GremlinGPT      | 4.2 MB    | 184   | ✅         | ✅         | ✅        | ✅         | ✅           |
+| OpenDevin       | 55 MB     | 1,900 | ❌         | ?          | Partial   | ⚠️         | ⚠️           |
+| llama-cpp-python| 166 MB    | 1,892 | ⚠️         | Model-only | ❌        | ⚠️         | ⚠️           |
 
 ---
 
