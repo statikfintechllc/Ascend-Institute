@@ -5,6 +5,7 @@ channels:
 dependencies:
   - python=3.10
   - pip
+  - numpy            # REQUIRED for embedder.py and watcher.py
   - pyyaml
   - click
   - rich
@@ -16,4 +17,5 @@ dependencies:
       - networkx
       - toml
       - loguru
-
+      - pyngrok      # (optional, if you use ngrok automation)
+      - pygments     # (recommended for rich/color logs)
