@@ -177,12 +177,6 @@ chmod +x start_all.sh
 - **To securely access GremlinGPT dashboard from anywhere:**
 
 ```bash
-ngrok http 8000
-```
-
-or
-
-```bash
 ngrok http 8080
 ```
 
