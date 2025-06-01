@@ -18,4 +18,8 @@ dependencies:
       - torch
       - faiss-cpu
       - chromadb
-
+      - toml
+      - flask
+      - flask-socketio
+      - eventlet
+      - loguru
