@@ -5,7 +5,6 @@ channels:
 dependencies:
   - python=3.10
   - pip
-  - playwright
   - beautifulsoup4
   - lxml
   - aiohttp
@@ -21,7 +20,8 @@ dependencies:
   - pyperclip
   - platformdirs  # For cross-platform path safety
   - psutil         # For app detection (e.g., TWS, STT)
-  - pip:
+   - pip:
+      - playwright
       - undetected-chromedriver
       - websockets
       - pyngrok
