@@ -36,6 +36,15 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
     <img src="https://img.shields.io/badge/Founder's%20Log-Statement-darkred?labelColor=black" alt="Founder's Log"/>
   </a>  
 </div>
+<div align="center">
+  <a
+href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPY/docs/GREMLINGPT_AUTONOMY_REPORT.md">
+    <img src="https://img.shields.io/badge/The%20Autonomous-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Why"/>
+  </a>
+  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPY/docs/GREMLINGPT_AUTONOMY_REPORT.md">
+    <img src="https://img.shields.io/badge/GremlinGPT%20v1.0.3-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
+  </a>
+</div>
 
 ---
 
