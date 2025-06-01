@@ -13,4 +13,4 @@ dependencies:
   - loguru
   - pip:
       - sentence-transformers
-
+      - toml
