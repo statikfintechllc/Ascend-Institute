@@ -14,14 +14,14 @@ function launch_terminal() {
   local logfile="$4"
 
   if command -v gnome-terminal > /dev/null; then
-    gnome-terminal -- bash -c "
+    gnome-terminal --title="$title" -- zsh -ic "
       echo '[${title}] Activating $env...';
       source ~/.zshrc;
       conda activate $env || { echo 'Failed to activate env: $env'; exit 1; };
       echo '[${title}] Running: $cmd';
       echo 'Output to: $logfile';
       $cmd | tee $logfile
-      exec bash
+      exec zsh
     "
   elif command -v xterm > /dev/null; then
     xterm -T "${title}" -e "
@@ -29,7 +29,7 @@ function launch_terminal() {
       conda activate $env || { echo 'Failed to activate env: $env'; exit 1; };
       echo '[${title}] Running: $cmd';
       $cmd | tee $logfile;
-      exec bash
+      exec zsh
     "
   else
     echo "No supported terminal emulator found (gnome-terminal or xterm)."
