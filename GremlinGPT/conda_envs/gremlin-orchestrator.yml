@@ -14,5 +14,6 @@ dependencies:
   - pip:
       - watchdog
       - networkx
+      - toml
       - loguru
 
