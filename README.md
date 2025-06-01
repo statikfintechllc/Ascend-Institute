@@ -90,7 +90,7 @@ Reset: After 7:00pm CST on First 2 Clones
 1. [GremlinGPT v1.0.3 Build Status](#gremlingpt-v103-build-status)
 2. [Support This Project](#support-this-project)  
 3. [Funding and Infrastructure Goals](#funding-and-infrastructure-goals)  
-4. [Phase 1 Funding Target is $10,000](#phase-1-funding-target-is-10000)  
+4. [Phase 1 Funding Target is $25,000](#phase-1-funding-target-is-25000)  
 5. [If You Are](#if-you-are)  
 6. [Partner With Us](#partner-with-us) 
 7. [If You Believe](#if-you-believe)  
