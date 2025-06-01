@@ -13,23 +13,29 @@ function launch_terminal() {
   local cmd="$3"
   local logfile="$4"
 
+  function launch_terminal() {
+  local title="$1"
+  local env="$2"
+  local cmd="$3"
+  local logfile="$4"
+
   if command -v gnome-terminal > /dev/null; then
     gnome-terminal --title="$title" -- zsh -ic "
       echo '[${title}] Activating $env...';
-      source ~/.zshrc;
-      conda activate $env || { echo 'Failed to activate env: $env'; exit 1; };
+      conda activate $env || { echo 'Failed to activate env: $env'; exit 1; }
       echo '[${title}] Running: $cmd';
-      echo 'Output to: $logfile';
       $cmd | tee $logfile
       exec zsh
     "
   elif command -v xterm > /dev/null; then
-    xterm -T "${title}" -e "
-      source ~/.zshrc;
-      conda activate $env || { echo 'Failed to activate env: $env'; exit 1; };
-      echo '[${title}] Running: $cmd';
-      $cmd | tee $logfile;
-      exec zsh
+    xterm -T "$title" -e "
+      zsh -ic '
+        echo \"[${title}] Activating $env...\";
+        conda activate $env || { echo \"Failed to activate env: $env\"; exit 1; }
+        echo \"[${title}] Running: $cmd\";
+        $cmd | tee $logfile;
+        exec zsh
+      '
     "
   else
     echo "No supported terminal emulator found (gnome-terminal or xterm)."
