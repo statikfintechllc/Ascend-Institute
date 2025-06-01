@@ -124,18 +124,18 @@ Reset: After 7:00pm CST on First 2 Clones
 
 | **Area**              | **Status** | **Needed Actions**                                                             |
 |-----------------------|------------|--------------------------------------------------------------------------------|
-| **API endpoints**     | ~80%       | Final cross-wiring, full error/output                                          |
-| **FSM/Agent**         | ~90%       | Full dashboard control, daemon/recursion, mutation self-repair                |
-| **Task queue**        | ~90%       | Full API injection/control, crash recover, reprioritize                        |
-| **Memory/embedder**   | ~90%       | Expose recall, embedding, self-repair API                                      |
-| **Trading/signals**   | ~90%       | Persist, batch, API, embed, doc                                                |
-| **Estimator**         | ~90%       | Batch, trace, memory, dashboard                                                |
-| **Scraper**           | ~90%       | API all subsystems, dashboard-ready                                            |
-| **Frontend**          | ~80%       | Ensure all views & actions work                                                |
-| **Logging**           | ~90%       | Consistent, to-disk, error-trap                                                |
-| **Docs**              | ~80%       | Complete API/system/agent docs                                                 |
-| **Startup/integration**| ~80%      | Scripts, systemd, auto-recover                                                 |
-| **Testing**           | 0–70%      | E2E validation, dashboard control                                              |
+| **API endpoints**     | ~95%       | Final cross-wiring, full error/output                                          |
+| **FSM/Agent**         | ~95%       | Full dashboard control, daemon/recursion, mutation self-repair                |
+| **Task queue**        | ~95%       | Full API injection/control, crash recover, reprioritize                        |
+| **Memory/embedder**   | ~88%       | Expose recall, embedding, self-repair API                                      |
+| **Trading/signals**   | ~80%       | Persist, batch, API, embed, doc                                                |
+| **Estimator**         | ~85%       | Batch, trace, memory, dashboard                                                |
+| **Scraper**           | ~80%       | API all subsystems, dashboard-ready                                            |
+| **Frontend**          | ~95%       | Ensure all views & actions work                                                |
+| **Logging**           | ~95%       | Consistent, to-disk, error-trap                                                |
+| **Docs**              | ~98%       | Complete API/system/agent docs                                                 |
+| **Startup/integration**| ~93%      | Scripts, systemd, auto-recover                                                 |
+| **Testing**           | 30%      | E2E validation, dashboard control                                              |
 
 ---
 
