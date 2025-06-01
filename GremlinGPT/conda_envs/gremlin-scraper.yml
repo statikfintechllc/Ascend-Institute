@@ -26,4 +26,5 @@ dependencies:
       - websockets
       - pyngrok
       - toml
+      - loguru
       - qrcode
