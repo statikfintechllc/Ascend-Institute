@@ -47,6 +47,8 @@ graph TD
     B -->|trigger training| H[generate_datasets + feedback_loop]
 ```
 
+^  *beta*  ^
+
 ---
 
 ## 🧱 Primary Recursive Components
