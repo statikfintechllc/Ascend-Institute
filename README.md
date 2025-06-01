@@ -42,7 +42,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
 <div align="center">
   <em>
     The Institute’s GremlinGPT has already been reviewed and starred by live AI infra: Atrium.  
-    We have now received our 3rd Star, Let’s get GremlinGPT Seen.
+    We have now received our 6th Star, Thank you, shahradelahi(Mr. 5k), Let’s get GremlinGPT Seen.
   </em>
 </div>
 
