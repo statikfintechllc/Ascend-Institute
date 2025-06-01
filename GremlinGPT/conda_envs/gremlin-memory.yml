@@ -1,23 +1,23 @@
 name: gremlin-memory
 channels:
-  - defaults
   - conda-forge
+  - defaults
 dependencies:
-  - python=3.10
+  - python=3.9
   - pip
   - numpy
   - pandas
   - faiss-cpu
-  - chromadb
   - sqlite
-  - psutil          # for robust process/memory ops
+  - psutil
   - loguru
-  - rich            # for logging/color
+  - rich
   - pip:
+      - chromadb==0.4.13
       - sentence-transformers
       - toml
-      - pygments     # color for logging
-      - pytest       # test runner
-      - networkx     # graph/memory/agent stuff
-      - watchdog     # file watching, optional but harmless
+      - pygments
+      - pytest
+      - networkx
+      - watchdog
 

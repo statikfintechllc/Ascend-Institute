@@ -1,9 +1,9 @@
 name: gremlin-scraper
 channels:
-  - defaults
   - conda-forge
+  - defaults
 dependencies:
-  - python=3.10
+  - python=3.9
   - pip
   - beautifulsoup4
   - lxml
@@ -18,12 +18,13 @@ dependencies:
   - pytesseract
   - pyautogui
   - pyperclip
-  - platformdirs  # For cross-platform path safety
-  - psutil         # For app detection (e.g., TWS, STT)
-   - pip:
-      - playwright
-      - undetected-chromedriver
-      - websockets
-      - pyngrok
-      - toml
-      - qrcode
+  - platformdirs
+  - psutil
+  - pip:
+    - playwright
+    - undetected-chromedriver
+    - websockets
+    - pyngrok
+    - toml
+    - qrcode
+
