@@ -5,7 +5,8 @@
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md">
     <img src="https://img.shields.io/badge/GREMLINGPT%20v1.0-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
   </a>
-  
+</div>
+
 # GremlinGPT – Open Funding Proposal
 
 **Project:** GremlinGPT v1.0.3  
@@ -31,12 +32,12 @@ But it now requires infrastructure support to evolve into an autonomous AGI prot
 
 ---
 
-## Funding Goal: $10,000 USD
+## Funding Goal: $25,000 USD
 
 The initial funding target will allow GremlinGPT to:
-
 | Goal | Purpose |
 |------|---------|
+| **Trading Account & Full-Time Dev.** | Fund trading account to be able to move into working from home tk Dev full time|
 | **Cluster GPU Power** | Minimum: RTX 4090 × 4 or equivalent |
 | **Persistent Vector Infrastructure** | ChromaDB or custom embedding store |
 | **Offline Embedding + NLP Training Server** | No HuggingFace / No OpenAI |
