@@ -8,7 +8,9 @@ from datetime import datetime
 REPO = os.environ.get("REPO")
 TOKEN = os.environ.get("PAT_GITHUB")
 HEADERS = {"Authorization": f"token {TOKEN}"}
+
 LIFETIME_FILE = "docs/traffic_lifetime.json"
+HISTORY_FILE = "docs/traffic_history.json"
 
 
 def fetch(endpoint):
@@ -28,6 +30,27 @@ def load_existing_lifetime():
 def save_lifetime(updated):
     with open(LIFETIME_FILE, "w") as f:
         json.dump(updated, f, indent=2)
+
+
+def update_traffic_history(totals):
+    today = totals["latest_day"]
+    new_entry = {
+        "date": today,
+        "clones": totals["clones_today"],
+        "uniqueClones": totals["unique_clones_today"],
+        "views": totals["views_today"],
+        "uniqueViews": totals["unique_views_today"]
+    }
+
+    history = []
+    if os.path.exists(HISTORY_FILE):
+        with open(HISTORY_FILE, "r") as f:
+            history = json.load(f)
+
+    if not any(entry["date"] == today for entry in history):
+        history.append(new_entry)
+        with open(HISTORY_FILE, "w") as f:
+            json.dump(history, f, indent=2)
 
 
 def plot_github_style_merged(clones, views, outfile):
@@ -61,28 +84,10 @@ def plot_github_style_merged(clones, views, outfile):
     unique_views_lifetime = sum(item["uniques"] for item in views)
 
     fig, ax = plt.subplots(figsize=(12, 5))
-    ax.plot(
-        dates, clones_counts, color="#FF3131", marker="o", label="Clones", linewidth=2
-    )
-    ax.plot(
-        dates,
-        unique_clones_counts,
-        color="#46D160",
-        marker="o",
-        label="Unique Cloners",
-        linewidth=2,
-    )
-    ax.plot(
-        dates, views_counts, color="#FFD700", marker="o", label="Views", linewidth=2
-    )
-    ax.plot(
-        dates,
-        unique_views_counts,
-        color="#2188ff",
-        marker="o",
-        label="Unique Visitors",
-        linewidth=2,
-    )
+    ax.plot(dates, clones_counts, color="#FF3131", marker="o", label="Clones", linewidth=2)
+    ax.plot(dates, unique_clones_counts, color="#46D160", marker="o", label="Unique Cloners", linewidth=2)
+    ax.plot(dates, views_counts, color="#FFD700", marker="o", label="Views", linewidth=2)
+    ax.plot(dates, unique_views_counts, color="#2188ff", marker="o", label="Unique Visitors", linewidth=2)
 
     ax.set_xlabel("Date")
     ax.set_ylabel("Count")
@@ -101,16 +106,8 @@ def plot_github_style_merged(clones, views, outfile):
         f"Lifetime: Clones: {clones_lifetime:,} | Unique Cloners: {unique_clones_lifetime:,} | "
         f"Views: {views_lifetime:,} | Unique Visitors: {unique_views_lifetime:,}"
     )
-    fig.text(
-        0.5,
-        -0.08,
-        totals_str,
-        ha="center",
-        va="bottom",
-        color="#FFD700",
-        fontsize=12,
-        wrap=True,
-    )
+
+    fig.text(0.5, -0.08, totals_str, ha="center", va="bottom", color="#FFD700", fontsize=12, wrap=True)
     plt.tight_layout(rect=[0, 0.15, 1, 0.97])
     plt.savefig(outfile, bbox_inches="tight")
     plt.close()
@@ -139,26 +136,19 @@ def main(repo):
     os.makedirs("docs", exist_ok=True)
 
     with open("docs/traffic_data.json", "w") as f:
-        json.dump(
-            {"clones": clones_data["clones"], "views": views_data["views"]}, f, indent=2
-        )
+        json.dump({"clones": clones_data["clones"], "views": views_data["views"]}, f, indent=2)
 
-    totals = plot_github_style_merged(
-        clones_data["clones"], views_data["views"], "docs/traffic_graph.png"
-    )
+    totals = plot_github_style_merged(clones_data["clones"], views_data["views"], "docs/traffic_graph.png")
 
     existing_lifetime = load_existing_lifetime()
     merged_lifetime = {
         "clones": max(totals["clones_lifetime"], existing_lifetime.get("clones", 0)),
-        "uniqueClones": max(
-            totals["unique_clones_lifetime"], existing_lifetime.get("uniqueClones", 0)
-        ),
+        "uniqueClones": max(totals["unique_clones_lifetime"], existing_lifetime.get("uniqueClones", 0)),
         "views": max(totals["views_lifetime"], existing_lifetime.get("views", 0)),
-        "uniqueViews": max(
-            totals["unique_views_lifetime"], existing_lifetime.get("uniqueViews", 0)
-        ),
+        "uniqueViews": max(totals["unique_views_lifetime"], existing_lifetime.get("uniqueViews", 0)),
     }
     save_lifetime(merged_lifetime)
+    update_traffic_history(totals)
 
     with open("docs/traffic_totals.json", "w") as f:
         json.dump(
