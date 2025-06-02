@@ -131,18 +131,18 @@ Reset: After 7:00pm CST on First 2 Clones
 
 | **Area**              | **Status** | **Needed Actions**                                                             |
 |-----------------------|------------|--------------------------------------------------------------------------------|
-| **API endpoints**     | ~95%       | Final cross-wiring, full error/output                                          |
+| **API endpoints**     | ~98%       | Final cross-wiring, full error/output                                          |
 | **FSM/Agent**         | ~95%       | Full dashboard control, daemon/recursion, mutation self-repair                |
 | **Task queue**        | ~95%       | Full API injection/control, crash recover, reprioritize                        |
 | **Memory/embedder**   | ~88%       | Expose recall, embedding, self-repair API                                      |
 | **Trading/signals**   | ~80%       | Persist, batch, API, embed, doc                                                |
 | **Estimator**         | ~85%       | Batch, trace, memory, dashboard                                                |
-| **Scraper**           | ~80%       | API all subsystems, dashboard-ready                                            |
-| **Frontend**          | ~95%       | Ensure all views & actions work                                                |
-| **Logging**           | ~95%       | Consistent, to-disk, error-trap                                                |
+| **Scraper**           | ~93%       | API all subsystems, dashboard-ready                                            |
+| **Frontend**          | ~75%       | Ensure all views & actions work                                                |
+| **Logging**           | ~80%       | Consistent, to-disk, error-trap                                                |
 | **Docs**              | ~98%       | Complete API/system/agent docs                                                 |
-| **Startup/integration**| ~93%      | Scripts, systemd, auto-recover                                                 |
-| **Testing**           | 30%      | E2E validation, dashboard control                                              |
+| **Startup/integration**| ~50%      | Scripts, systemd, auto-recover                                                 |
+| **Testing**           | 45%      | E2E validation, dashboard control                                              |
 
 ---
 
