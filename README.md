@@ -44,14 +44,13 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/GREMLINGPT_AUTONOMY_REPORT.md">
     <img src="https://img.shields.io/badge/GremlinGPT%20v1.0.3-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
   </a>
-</div>
+
 
 ---
 
-<div align="center">
-  <em>
-Install and Attempt to run Demo on YT ~~tonight~~. (Internet Off)
-  </em>
+
+Install and Attempt to run Demo on YT ~~tonight~~ (Internet Off)
+
 </div>
 
 ---
