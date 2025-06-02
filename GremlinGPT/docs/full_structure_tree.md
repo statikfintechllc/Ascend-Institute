@@ -21,7 +21,6 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
 # GremlinGPT v1.0.3
 ```text
 GremlinGPT/
-├── README.md
 ├── install.sh
 ├── reboot_recover.sh
 │
@@ -225,5 +224,8 @@ GremlinGPT/
 │   ├── gremlin.service.md
 │   └── automated_shell.md
 │
-└── test_system_start.sh
+├── demos/
+│   └── README.md
+│
+└── README.md
 ```
