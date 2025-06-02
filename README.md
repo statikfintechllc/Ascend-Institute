@@ -49,7 +49,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 ---
 
 
-Install and Attempt to run Demo on YT ~~tonight~~ (Internet Off)
+*Install and Attempt to run Demo on YT ~~tonight~~ (Internet Off)*
 
 </div>
 
