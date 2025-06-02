@@ -303,13 +303,13 @@ If you survive v1.0.3.
 ## Demos
 
 **Environment Setup**
-![Environment](https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/demos/Environment.png)
+![Environment](https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/GremlinGPT/demos/Environment.png)
 
 **Installed the temporary NLP Backend**
-![Install NLP](https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/demos/NLP_Prebuilt_Temp_Install.png)
+![Install NLP](https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/GremlinGPT/demos/NLP_Prebuilt_Temp_Install.png)
 
 **Stopped Backend (Envs Persisting)**
-![Stop Backend](https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/demos/Stop_Backend_Environment_Stays_Active.png)
+![Stop Backend](https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/GremlinGPT/demos/Stop_Backend_Environment_Stays_Active.png)
 
 ---
 
