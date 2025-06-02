@@ -1,0 +1,11 @@
+numpy
+scipy
+faiss-cpu
+chromadb
+pandas
+sqlalchemy
+tqdm
+# If using OpenAI embedding or transformer-based vector store:
+sentence-transformers
+# For local db ops
+

@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+pydantic
+jinja2
+httpx
+requests
+python-multipart
+pyngrok
+loguru
+# For API docs / websocket, if needed
+websockets
+

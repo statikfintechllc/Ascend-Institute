@@ -1,11 +1,13 @@
 #!/bin/zsh
 
-cd "$(dirname "$0")/.."
+setopt NO_GLOB_SUBST
+
+cd "${0:a:h}/.."
 export GREMLIN_HOME="$PWD"
 mkdir -p run/logs
 
-# Set your preferred terminal emulator: gnome-terminal, xterm, or konsole
 TERM_EMU=$(command -v gnome-terminal || command -v xterm)
+python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords'); nltk.download('wordnet')"
 
 function launch_terminal() {
   local title="$1"
@@ -13,26 +15,22 @@ function launch_terminal() {
   local cmd="$3"
   local logfile="$4"
 
+  local preamble="
+    source \$HOME/miniconda3/etc/profile.d/conda.sh
+    conda activate $env || { echo '[${title}] Failed to activate env: $env'; exec zsh; }
+    echo '[${title}] ENV:' \$CONDA_DEFAULT_ENV
+    echo '[${title}] CWD:' \$PWD
+    echo '[${title}] Running: $cmd'
+    $cmd | tee $logfile
+    EXIT_CODE=\${PIPESTATUS[0]}
+    echo '[${title}] Process exited with code' \$EXIT_CODE
+    exec zsh
+  "
+
   if command -v gnome-terminal > /dev/null; then
-    gnome-terminal --title="$title" -- zsh -ic "
-      echo '[${title}] Activating $env...';
-      source \$HOME/miniconda3/etc/profile.d/conda.sh;
-      conda activate $env || { echo 'Failed to activate env: $env'; exit 1; }
-      echo '[${title}] Running: $cmd';
-      $cmd | tee $logfile
-      exec zsh
-    "
+    gnome-terminal --title="$title" -- zsh --login -c "$preamble"
   elif command -v xterm > /dev/null; then
-    xterm -T "$title" -e "
-      zsh -ic '
-        echo \"[${title}] Activating $env...\";
-        source \$HOME/miniconda3/etc/profile.d/conda.sh;
-        conda activate $env || { echo \"Failed to activate env: $env\"; exit 1; }
-        echo \"[${title}] Running: $cmd\";
-        $cmd | tee $logfile;
-        exec zsh
-      '
-    "
+    xterm -T "$title" -e "zsh --login -c '$preamble'"
   else
     echo "No supported terminal emulator found (gnome-terminal or xterm)."
     exit 1
@@ -44,31 +42,17 @@ echo "Boot ID: $(uuidgen) | Source: GremlinGPT | Time: $(date -u)" | tee -a run/
 
 echo "[START] Launching GremlinGPT subsystems in separate terminals..."
 
-# NLP Service
 launch_terminal "NLP Service" gremlin-nlp "sleep infinity" "run/logs/nlp.out"
-
-# Memory Service
-launch_terminal "Memory Service" gremlin-memory "python memory/embedder.py" "run/logs/memory.out"
-
-# Backend
-launch_terminal "Backend Server" gremlin-dashboard "python backend/server.py" "run/logs/backend.out"
-
-# FSM Agent
-launch_terminal "FSM Agent" gremlin-orchestrator "python agent_core/fsm.py" "run/logs/fsm.out"
-
-# Scraper
-launch_terminal "Scraper" gremlin-scraper "python scraper/scraper_loop.py" "run/logs/scraper.out"
-
-# Trainer
-launch_terminal "Self-Trainer" gremlin-orchestrator "python self_training/trainer.py" "run/logs/trainer.out"
-
-# Frontend Server (Python HTTP) - use gremlin-dashboard for static serving
+launch_terminal "Memory Service" gremlin-memory "python memory/vectore_store/embedder.py" "run/logs/memory.out"
+launch_terminal "Backend Server" gremlin-dashboard "python -m backend.server" "run/logs/backend.out"
+launch_terminal "FSM Agent" gremlin-orchestrator "python -m agent_core.fsm" "run/logs/fsm.out"
+launch_terminal "Scraper" gremlin-scraper "python -m scraper.scraper_loop" "run/logs/scraper.out"
+launch_terminal "Self-Trainer" gremlin-orchestrator "python -m self_training.trainer" "run/logs/trainer.out"
 launch_terminal "Frontend" gremlin-dashboard "python3 -m http.server 8080 --directory frontend" "run/logs/frontend.out"
-
-# Ngrok tunnel (uses pyngrok, part of gremlin-dashboard env)
 launch_terminal "Ngrok Tunnel" gremlin-dashboard "python run/ngrok_launcher.py" "run/logs/ngrok.out"
 
 echo "[ALL SYSTEMS LAUNCHED]"
 echo "Backend:     http://localhost:8000  (see backend/server.py for port)"
 echo "Frontend:    http://localhost:8080"
 echo "Logs:        $GREMLIN_HOME/run/logs/"
+

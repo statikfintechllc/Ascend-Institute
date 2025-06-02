@@ -1,0 +1,11 @@
+requests
+beautifulsoup4
+playwright
+lxml
+tqdm
+pandas
+numpy
+loguru
+sentence-transformers
+nltk
+

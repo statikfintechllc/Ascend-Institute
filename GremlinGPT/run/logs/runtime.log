@@ -1,0 +1,220 @@
+2025-06-01 19:51:39.365 | INFO     | backend.globals:<module>:65 - [GLOBALS] Configuration loaded and logger initialized.
+2025-06-01 19:51:39.465 | INFO     | backend.globals:<module>:65 - [GLOBALS] Configuration loaded and logger initialized.
+2025-06-01 19:51:39.542 | INFO     | backend.globals:<module>:65 - [GLOBALS] Configuration loaded and logger initialized.
+2025-06-01 20:04:49.892 | INFO     | backend.globals:<module>:65 - [GLOBALS] Configuration loaded and logger initialized.
+2025-06-01 20:04:50.077 | INFO     | backend.globals:<module>:65 - [GLOBALS] Configuration loaded and logger initialized.
+2025-06-01 20:04:50.150 | INFO     | backend.globals:<module>:65 - [GLOBALS] Configuration loaded and logger initialized.
+2025-06-01 20:23:00.273 | INFO     | backend.globals:<module>:65 - [GLOBALS] Configuration loaded and logger initialized.
+2025-06-01 20:23:00.425 | INFO     | backend.globals:<module>:65 - [GLOBALS] Configuration loaded and logger initialized.
+2025-06-01 20:23:00.523 | INFO     | backend.globals:<module>:65 - [GLOBALS] Configuration loaded and logger initialized.
+2025-06-01 20:33:30.723 | INFO     | backend.globals:<module>:65 - [GLOBALS] Configuration loaded and logger initialized.
+2025-06-01 20:33:34.562 | SUCCESS  | nlp_engine.tokenizer:<module>:32 - [TOKENIZER] Loaded: bert-base-uncased
+2025-06-01 20:34:01.517 | INFO     | backend.globals:<module>:65 - [GLOBALS] Configuration loaded and logger initialized.
+2025-06-01 20:34:05.379 | SUCCESS  | nlp_engine.tokenizer:<module>:32 - [TOKENIZER] Loaded: bert-base-uncased
+2025-06-01 20:38:36.038 | INFO     | backend.globals:<module>:65 - [GLOBALS] Configuration loaded and logger initialized.
+2025-06-01 20:38:36.133 | INFO     | backend.globals:<module>:65 - [GLOBALS] Configuration loaded and logger initialized.
+2025-06-01 20:38:36.148 | INFO     | backend.globals:<module>:65 - [GLOBALS] Configuration loaded and logger initialized.
+2025-06-01 20:38:36.251 | INFO     | backend.globals:<module>:65 - [GLOBALS] Configuration loaded and logger initialized.
+2025-06-01 20:38:39.660 | INFO     | __main__:run_scraper:26 - [SCRAPER_LOOP] Autonomous loop engaged.
+2025-06-01 20:38:39.660 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:38:39.660 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:38:39.660 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:38:40.241 | SUCCESS  | nlp_engine.tokenizer:<module>:32 - [TOKENIZER] Loaded: bert-base-uncased
+2025-06-01 20:38:49.671 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:38:49.671 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:38:49.671 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:38:59.681 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:38:59.681 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:38:59.681 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:39:09.691 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:39:09.691 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:39:09.691 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:39:19.701 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:39:19.702 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:39:19.702 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:39:29.712 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:39:29.712 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:39:29.712 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:39:39.723 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:39:39.723 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:39:39.723 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:39:49.733 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:39:49.734 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:39:49.734 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:39:59.744 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:39:59.744 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:39:59.744 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:40:09.754 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:40:09.754 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:40:09.754 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:40:19.764 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:40:19.765 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:40:19.765 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:40:29.775 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:40:29.775 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:40:29.775 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:40:39.785 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:40:39.786 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:40:39.786 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:40:49.796 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:40:49.796 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:40:49.796 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:40:59.807 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:40:59.807 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:40:59.807 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:41:09.817 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:41:09.817 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:41:09.817 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:41:19.827 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:41:19.827 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:41:19.828 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:41:29.838 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:41:29.838 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:41:29.838 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:41:39.848 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:41:39.848 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:41:39.848 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:41:49.858 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:41:49.859 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:41:49.859 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:41:59.869 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:41:59.869 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:41:59.869 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:42:09.879 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:42:09.880 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:42:09.880 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:42:19.890 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:42:19.890 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:42:19.890 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:42:29.900 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:42:29.900 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:42:29.900 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:42:39.910 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:42:39.911 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:42:39.911 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:42:49.921 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:42:49.921 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:42:49.921 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:42:59.931 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:42:59.932 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:42:59.932 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:43:09.942 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:43:09.942 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:43:09.942 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:43:19.952 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:43:19.952 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:43:19.953 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:43:29.963 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:43:29.963 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:43:29.963 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:43:39.973 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:43:39.974 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:43:39.974 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:43:49.984 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:43:49.984 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:43:49.984 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:43:59.994 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:43:59.994 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:43:59.994 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:44:10.004 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:44:10.004 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:44:10.004 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:44:20.014 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:44:20.015 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:44:20.015 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:44:30.025 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:44:30.025 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:44:30.025 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:44:40.036 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:44:40.036 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:44:40.036 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:44:50.046 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:44:50.046 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:44:50.046 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:45:00.056 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:45:00.057 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:45:00.057 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:45:10.067 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:45:10.067 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:45:10.067 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:45:20.077 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:45:20.077 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:45:20.077 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:45:30.087 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:45:30.087 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:45:30.087 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:45:40.097 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:45:40.098 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:45:40.098 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:45:50.108 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:45:50.108 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:45:50.108 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:46:00.118 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:46:00.118 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:46:00.118 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:46:10.128 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:46:10.129 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:46:10.129 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:46:20.139 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:46:20.139 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:46:20.139 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:46:30.149 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:46:30.149 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:46:30.149 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:46:40.159 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:46:40.159 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:46:40.159 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:46:50.169 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:46:50.169 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:46:50.169 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:47:00.180 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:47:00.180 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:47:00.180 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:47:10.190 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:47:10.190 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:47:10.190 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:47:20.200 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:47:20.201 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:47:20.201 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:47:30.211 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:47:30.211 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:47:30.211 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:47:40.221 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:47:40.221 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:47:40.222 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:47:50.231 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:47:50.231 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:47:50.231 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:48:00.241 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:48:00.241 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:48:00.241 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:48:10.251 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:48:10.251 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:48:10.251 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:48:20.261 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:48:20.261 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:48:20.261 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:48:30.271 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:48:30.271 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:48:30.271 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:48:40.281 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:48:40.282 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:48:40.282 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:48:50.292 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:48:50.292 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:48:50.292 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:49:00.302 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:49:00.303 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:49:00.303 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:49:10.313 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:49:10.313 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:49:10.313 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:49:20.323 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:49:20.323 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:49:20.323 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:49:30.333 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:49:30.333 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:49:30.333 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.
+2025-06-01 20:49:40.343 | INFO     | memory.log_history:log_event:40 - [HISTORY] Logged scraper_loop :: tick_start
+2025-06-01 20:49:40.343 | DEBUG    | __main__:run_scraper:54 - [SCRAPER_LOOP] No pending scrape task.
+2025-06-01 20:49:40.344 | DEBUG    | __main__:run_scraper:57 - [SCRAPER_LOOP] Cycle completed in 0.00 sec.

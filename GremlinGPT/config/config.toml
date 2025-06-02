@@ -24,7 +24,7 @@ region = "us"
 subdomain = ""
 
 [paths]
-base_dir = "~/GremlinGPT/"
+base_dir = "."
 data_dir = "$ROOT/data/"
 models_dir = "$ROOT/models/"
 checkpoints_dir = "$ROOT/run/checkpoints/"
@@ -40,6 +40,13 @@ recovery_file = "$ROOT/run/recover.json"
 # -------------------------------------------
 # Agent Core / FSM / Recursion
 # -------------------------------------------
+[agent]
+max_tasks = 33
+task_retry_limit = 333
+log_agent_output = true
+default_priority = "medium"
+default_task_timeout = 13
+
 [agent_core]
 enabled = true
 fsm_enabled = true
@@ -65,29 +72,29 @@ max_concurrent = 10
 [[agents.types]]
 name = "ScraperAgent"
 enabled = true
-max_concurrent = 5
+max_concurrent = 5.0
 
 [[agents.types]]
 name = "TradingAgent"
 enabled = true
-max_concurrent = 3
+max_concurrent = 3.0
 
 [[agents.types]]
 name = "MemoryAgent"
 enabled = true
-max_concurrent = 2
+max_concurrent = 2.0
 
 [[agents.types]]
 name = "PlannerAgent"
 enabled = true
-max_concurrent = 2
+max_concurrent = 2.0
 
 # -------------------------------------------
 # Shell Execution
 # -------------------------------------------
 [shell]
 enable_shell_tasks = true
-max_concurrent_shell = 2
+max_concurrent_shell = 2.0
 shell_log_path = "$ROOT/data/logs/shell_exec.log"
 default_timeout_sec = 10
 restrict_commands = ["rm", "shutdown", "reboot"]
@@ -128,7 +135,7 @@ max_memory_usage_gb = 115
 [core]
 enabled = true
 kernel_loop_enabled = true
-loop_tick_delay = .75
+loop_tick_delay = 0.75
 snapshot_interval_min = 30
 recovery_file = "$ROOT/run/recover.json"
 
@@ -154,8 +161,8 @@ mutation_interval_sec = 90
 enabled = true
 global_interval_sec = 15
 global_timeout_sec = 30
-max_concurrent_scrapers = 9
-retry_backoff_sec = 5
+max_concurrent_scrapers = 9.0
+retry_backoff_sec = 5.0
 browser_profile = "./scraper/profiles/chromium_profile/"
 fallback_enabled = true
 watch_processes = ["TWS", "StocksToTrade"]
@@ -235,7 +242,7 @@ tax_region = "US"
 simulate_if_offline = true
 default_exchange = "NASDAQ"
 allow_shorting = true
-max_orders_per_minute = 5
+max_orders_per_minute = 5.0
 api_broker_url = ""
 trade_log_path = "$ROOT/data/logs/trading.log"
 [trading.credentials]
@@ -296,7 +303,7 @@ nlp_routing_enabled = true
 
 [modules.task_tree]
 enabled = true
-display_depth = 5
+display_depth = 5.0
 show_agent_ids = true
 enable_auto_scroll = true
 highlight_mutated_tasks = true
