@@ -3,7 +3,7 @@ channels:
   - defaults
   - conda-forge
 dependencies:
-  - python=3.10
+  - python=3.9
   - pip
   - numpy            # REQUIRED for embedder.py and watcher.py
   - pyyaml
@@ -15,6 +15,7 @@ dependencies:
   - jsonschema
   - pip:
       - watchdog
+      - pyautogui
       - networkx
       - toml
       - pyngrok      # (optional, if you use ngrok automation)

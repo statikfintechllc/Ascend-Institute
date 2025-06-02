@@ -9,6 +9,7 @@ from datetime import datetime, timedelta
 
 QUEUE_FILE = Path("run/checkpoints/task_queue.json")
 ESCALATION_THRESHOLD_SEC = 120
+global_queue = []
 
 
 class TaskQueue:
