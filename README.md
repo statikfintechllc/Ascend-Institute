@@ -50,7 +50,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 
 <div align="center">
   <em>
-Install and Attempt to run Demo on YT tonight.
+Install and Attempt to run Demo on YT ~~tonight~~. (Internet Off)
   </em>
 </div>
 
