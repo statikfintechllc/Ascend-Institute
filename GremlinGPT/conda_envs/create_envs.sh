@@ -2,39 +2,47 @@
 
 echo "[GremlinGPT] Creating conda environments..."
 
-cd "$(dirname "$0")" # Always run from conda_envs/ no matter where script called
+cd "$(dirname "$0")" # Always run from conda_envs/
 
-ENV_FILES=(
-  "gremlin-nlp:gremlin-nlp.yml"
-  "gremlin-dashboard:gremlin-dashboard.yml"
-  "gremlin-scraper:gremlin-scraper.yml"
-  "gremlin-memory:gremlin-memory.yml"
-  "gremlin-orchestrator:gremlin-orchestrator.yml"
+ENV_NAMES=(
+  "gremlin-nlp"
+  "gremlin-dashboard"
+  "gremlin-scraper"
+  "gremlin-memory"
+  "gremlin-orchestrator"
 )
 
-for item in "${ENV_FILES[@]}"; do
-  ENV_NAME="${item%%:*}"
-  YAML_FILE="${item##*:}"
+for ENV in "${ENV_NAMES[@]}"; do
+  YAML_FILE="${ENV}.yml"
+  REQ_FILE="${ENV}.txt"
 
-  echo "[INFO] Checking environment: $ENV_NAME"
+  echo "[INFO] Checking environment: $ENV"
 
-  if conda info --envs | awk '{print $1}' | grep -qx "$ENV_NAME"; then
-    echo "[SKIP] Environment '$ENV_NAME' already exists."
+  if conda info --envs | awk '{print $1}' | grep -qx "$ENV"; then
+    echo "[SKIP] Environment '$ENV' already exists."
     continue
   fi
 
   if [ ! -f "$YAML_FILE" ]; then
-    echo "[ERROR] YAML file '$YAML_FILE' not found. Skipping environment '$ENV_NAME'."
+    echo "[ERROR] YAML file '$YAML_FILE' not found. Skipping '$ENV'."
     continue
   fi
 
-  echo "[CREATE] Creating '$ENV_NAME' from '$YAML_FILE'..."
+  echo "[CREATE] Creating '$ENV' from '$YAML_FILE'..."
   conda env create -f "$YAML_FILE"
   if [ $? -ne 0 ]; then
-    echo "[ERROR] Failed to create environment: $ENV_NAME"
+    echo "[ERROR] Failed to create environment: $ENV"
     exit 1
+  fi
+
+  if [ -f "$REQ_FILE" ]; then
+    echo "[PIP] Installing pip requirements for $ENV from $REQ_FILE..."
+    conda run -n "$ENV" pip install -r "$REQ_FILE"
+    if [ $? -ne 0 ]; then
+      echo "[ERROR] Pip requirements failed for $ENV"
+      exit 1
+    fi
   fi
 done
 
-echo "[GremlinGPT] ✅ All environments checked and created if necessary."
-
+echo "[GremlinGPT] ✅ All environments checked, created, and pip-requirements installed if present."
