@@ -9,7 +9,7 @@ from backend.globals import logger
 
 # --- NLTK SAFEGUARD ---
 try:
-    nltk.data.find('tokenizers/punkt')
+    nltk.data.find("tokenizers/punkt")
 except LookupError:
     nltk.download("punkt", quiet=True)
 
@@ -31,11 +31,13 @@ from sentence_transformers import SentenceTransformer, util
 
 _model_cache = {}
 
+
 def _get_lang(text):
     try:
         return langdetect.detect(text)
     except Exception:
         return "en"
+
 
 def _get_model(lang_code):
     """
@@ -55,6 +57,7 @@ def _get_model(lang_code):
             _model_cache[model_name] = None
     return _model_cache[model_name]
 
+
 def clean_text(text: str) -> str:
     """
     Strips non-ASCII chars, compresses whitespace, removes control codes.
@@ -67,12 +70,14 @@ def clean_text(text: str) -> str:
         logger.error(f"[{ENGINE_NAME}] Text cleaning failed: {e}")
         return text
 
+
 def split_sentences(text: str):
     try:
         return re.split(r"(?<=[.!?])\s+", text)
     except Exception as e:
         logger.error(f"[{ENGINE_NAME}] Sentence split failed: {e}")
         return [text]
+
 
 def tokenize(text: str):
     try:
@@ -84,7 +89,10 @@ def tokenize(text: str):
         logger.error(f"[{ENGINE_NAME}] Tokenization failed: {e}")
         return []
 
-def semantic_similarity(a: str, b: str, dynamic_language=True, sentence_level=False) -> float:
+
+def semantic_similarity(
+    a: str, b: str, dynamic_language=True, sentence_level=False
+) -> float:
     """
     Computes semantic similarity between two texts:
         - Detects language automatically if dynamic_language is True.
@@ -101,7 +109,9 @@ def semantic_similarity(a: str, b: str, dynamic_language=True, sentence_level=Fa
             lang = "en"
         model = _get_model(lang)
         if not model:
-            logger.error(f"[{ENGINE_NAME}] No valid model loaded for lang={lang}; returning 0.0")
+            logger.error(
+                f"[{ENGINE_NAME}] No valid model loaded for lang={lang}; returning 0.0"
+            )
             return 0.0
 
         # Sentence-level similarity (average all combinations)
@@ -116,7 +126,9 @@ def semantic_similarity(a: str, b: str, dynamic_language=True, sentence_level=Fa
             max_per_b = np.max(sims.cpu().numpy(), axis=0)
             sim_avg = (np.mean(max_per_a) + np.mean(max_per_b)) / 2.0
             sim_clamped = float(np.clip(sim_avg, 0.0, 1.0))
-            logger.debug(f"[{ENGINE_NAME}] Sentence-level similarity: {sim_clamped:.4f}")
+            logger.debug(
+                f"[{ENGINE_NAME}] Sentence-level similarity: {sim_clamped:.4f}"
+            )
             return sim_clamped
 
         # Whole-text similarity
@@ -124,12 +136,15 @@ def semantic_similarity(a: str, b: str, dynamic_language=True, sentence_level=Fa
         emb_b = model.encode(text_b, convert_to_tensor=True)
         sim = util.cos_sim(emb_a, emb_b).item()
         sim_clamped = max(0.0, min(1.0, float(sim)))
-        logger.debug(f"[{ENGINE_NAME}] Semantic similarity: {sim_clamped:.4f} (lang: {lang})")
+        logger.debug(
+            f"[{ENGINE_NAME}] Semantic similarity: {sim_clamped:.4f} (lang: {lang})"
+        )
         return sim_clamped
 
     except Exception as e:
         logger.error(f"[{ENGINE_NAME}] Semantic similarity computation failed: {e}")
         return 0.0
+
 
 # Utility: find best match from a list
 def most_similar(text, candidates, threshold=0.75, **kwargs):
@@ -145,6 +160,7 @@ def most_similar(text, candidates, threshold=0.75, **kwargs):
         return candidates[best_idx], best_score
     return None, best_score
 
+
 __all__ = [
     "semantic_similarity",
     "most_similar",
@@ -152,4 +168,3 @@ __all__ = [
     "split_sentences",
     "tokenize",
 ]
-

@@ -10,10 +10,12 @@ from datetime import datetime, timedelta
 QUEUE_FILE = Path("run/checkpoints/task_queue.json")
 ESCALATION_THRESHOLD_SEC = 120
 
+
 class TaskQueue:
     """
     Production-ready prioritized task queue for FSM and agents.
     """
+
     def __init__(self):
         self.task_queue = {"high": deque(), "normal": deque(), "low": deque()}
         self.task_status = {}
@@ -25,7 +27,9 @@ class TaskQueue:
         task["id"] = task_id
         priority = task.get("priority", "normal").lower()
         if priority not in self.task_queue:
-            logger.warning(f"[TaskQueue] Invalid priority '{priority}', defaulting to normal.")
+            logger.warning(
+                f"[TaskQueue] Invalid priority '{priority}', defaulting to normal."
+            )
             priority = "normal"
         self.task_queue[priority].append(task)
         self.task_status[task_id] = "queued"
@@ -140,40 +144,61 @@ class TaskQueue:
                     data = json.load(f)
                     for level in self.task_queue:
                         self.task_queue[level].clear()
-                        self.task_queue[level].extend(data.get("queue", {}).get(level, []))
+                        self.task_queue[level].extend(
+                            data.get("queue", {}).get(level, [])
+                        )
                     self.task_status.update(data.get("status", {}))
                     self.task_meta.update(data.get("meta", {}))
                 logger.info("[TaskQueue] Queue restored from snapshot.")
             except Exception as e:
                 logger.warning(f"[TaskQueue] Failed to load queue snapshot: {e}")
 
+
 # --- Legacy function API for FSM compatibility ---
 # Singleton instance for static functions
 _task_queue = TaskQueue()
 
+
 def enqueue_task(task):
     return _task_queue.enqueue_task(task)
+
 
 def fetch_task(task_type=None):
     return _task_queue.fetch_task(task_type)
 
+
 def reprioritize(task_id, new_priority):
     return _task_queue.reprioritize(task_id, new_priority)
+
 
 def promote_old_tasks():
     return _task_queue.promote_old_tasks()
 
+
 def retry(task):
     return _task_queue.retry(task)
+
 
 def get_all_tasks():
     return _task_queue.get_all_tasks()
 
+
 def update_task_status(task_id, status):
     return _task_queue.update_task_status(task_id, status)
+
 
 def dump():
     return _task_queue.dump()
 
-__all__ = ["TaskQueue", "enqueue_task", "fetch_task", "reprioritize", "promote_old_tasks", "retry", "get_all_tasks", "update_task_status", "dump"]
 
+__all__ = [
+    "TaskQueue",
+    "enqueue_task",
+    "fetch_task",
+    "reprioritize",
+    "promote_old_tasks",
+    "retry",
+    "get_all_tasks",
+    "update_task_status",
+    "dump",
+]
