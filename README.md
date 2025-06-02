@@ -52,6 +52,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
   <em>
 Install and Attempt to run Demo on YT tonight.
   </em>
+</div>
 
 ---
 
