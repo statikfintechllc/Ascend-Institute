@@ -9,7 +9,7 @@ REPO = os.environ.get("REPO")
 TOKEN = os.environ.get("PAT_GITHUB")
 HEADERS = {"Authorization": f"token {TOKEN}"}
 LIFETIME_FILE = "docs/traffic_lifetime.json"
-
+DATES_FILE = "docs/traffic_dates.json"
 
 def fetch(endpoint):
     url = f"https://api.github.com/repos/{REPO}/{endpoint}"
@@ -17,18 +17,25 @@ def fetch(endpoint):
     r.raise_for_status()
     return r.json()
 
-
 def load_existing_lifetime():
     if os.path.exists(LIFETIME_FILE):
         with open(LIFETIME_FILE, "r") as f:
             return json.load(f)
     return {"clones": 0, "uniqueClones": 0, "views": 0, "uniqueViews": 0}
 
-
 def save_lifetime(updated):
     with open(LIFETIME_FILE, "w") as f:
         json.dump(updated, f, indent=2)
 
+def load_seen_dates():
+    if os.path.exists(DATES_FILE):
+        with open(DATES_FILE, "r") as f:
+            return set(json.load(f))
+    return set()
+
+def save_seen_dates(dates):
+    with open(DATES_FILE, "w") as f:
+        json.dump(sorted(list(dates)), f, indent=2)
 
 def plot_github_style_merged(clones, views, outfile):
     plt.style.use("dark_background")
@@ -98,8 +105,6 @@ def plot_github_style_merged(clones, views, outfile):
         f"Views: {views_today:,} | Unique Visitors: {unique_views_today:,}\n"
         f"14d: Clones: {clones_14d:,} | Unique Cloners: {unique_clones_14d:,} | "
         f"Views: {views_14d:,} | Unique Visitors: {unique_views_14d:,}\n"
-        f"Lifetime: Clones: {clones_lifetime:,} | Unique Cloners: {unique_clones_lifetime:,} | "
-        f"Views: {views_lifetime:,} | Unique Visitors: {unique_views_lifetime:,}"
     )
     fig.text(
         0.5,
@@ -125,40 +130,44 @@ def plot_github_style_merged(clones, views, outfile):
         "unique_clones_14d": unique_clones_14d,
         "views_14d": views_14d,
         "unique_views_14d": unique_views_14d,
-        "clones_lifetime": clones_lifetime,
-        "unique_clones_lifetime": unique_clones_lifetime,
-        "views_lifetime": views_lifetime,
-        "unique_views_lifetime": unique_views_lifetime,
+        # Lifetime values will be handled separately
     }
 
-
 def main(repo):
-    clones_data = fetch("traffic/clones")
-    views_data = fetch("traffic/views")
+    clones_data = fetch("traffic/clones")["clones"]
+    views_data = fetch("traffic/views")["views"]
 
     os.makedirs("docs", exist_ok=True)
-
     with open("docs/traffic_data.json", "w") as f:
         json.dump(
-            {"clones": clones_data["clones"], "views": views_data["views"]}, f, indent=2
+            {"clones": clones_data, "views": views_data}, f, indent=2
         )
 
     totals = plot_github_style_merged(
-        clones_data["clones"], views_data["views"], "docs/traffic_graph.png"
+        clones_data, views_data, "docs/traffic_graph.png"
     )
 
-    existing_lifetime = load_existing_lifetime()
-    merged_lifetime = {
-        "clones": max(totals["clones_lifetime"], existing_lifetime.get("clones", 0)),
-        "uniqueClones": max(
-            totals["unique_clones_lifetime"], existing_lifetime.get("uniqueClones", 0)
-        ),
-        "views": max(totals["views_lifetime"], existing_lifetime.get("views", 0)),
-        "uniqueViews": max(
-            totals["unique_views_lifetime"], existing_lifetime.get("uniqueViews", 0)
-        ),
-    }
-    save_lifetime(merged_lifetime)
+    # Load and update processed dates for unique tracking
+    seen_dates = load_seen_dates()
+    new_dates = set()
+    clones_lifetime = load_existing_lifetime()
+
+    # Add new traffic data by date, only if not seen before
+    for entry in clones_data:
+        date = entry["timestamp"][:10]
+        if date not in seen_dates:
+            clones_lifetime["clones"] += entry["count"]
+            clones_lifetime["uniqueClones"] += entry["uniques"]
+            new_dates.add(date)
+    for entry in views_data:
+        date = entry["timestamp"][:10]
+        if date not in seen_dates:
+            clones_lifetime["views"] += entry["count"]
+            clones_lifetime["uniqueViews"] += entry["uniques"]
+            new_dates.add(date)
+    seen_dates.update(new_dates)
+    save_lifetime(clones_lifetime)
+    save_seen_dates(seen_dates)
 
     with open("docs/traffic_totals.json", "w") as f:
         json.dump(
@@ -175,7 +184,7 @@ def main(repo):
                     "views": totals["views_14d"],
                     "uniqueViews": totals["unique_views_14d"],
                 },
-                "lifetime": merged_lifetime,
+                "lifetime": clones_lifetime,
             },
             f,
             indent=2,
@@ -188,9 +197,12 @@ def main(repo):
 
 - **Today ({totals['latest_day']}):** Clones: {totals["clones_today"]:,} | Unique Cloners: {totals["unique_clones_today"]:,} | Views: {totals["views_today"]:,} | Unique Visitors: {totals["unique_views_today"]:,}
 - **Last 14 days:** Clones: {totals["clones_14d"]:,} | Unique Cloners: {totals["unique_clones_14d"]:,} | Views: {totals["views_14d"]:,} | Unique Visitors: {totals["unique_views_14d"]:,}
-- **Lifetime:** Clones: {merged_lifetime["clones"]:,} | Unique Cloners: {merged_lifetime["uniqueClones"]:,} | Views: {merged_lifetime["views"]:,} | Unique Visitors: {merged_lifetime["uniqueViews"]:,}
+- **Lifetime:** Clones: {clones_lifetime["clones"]:,} | Unique Cloners: {clones_lifetime["uniqueClones"]:,} | Views: {clones_lifetime["views"]:,} | Unique Visitors: {clones_lifetime["uniqueViews"]:,}
 """
         )
+
+if __name__ == "__main__":
+    main(REPO)
 
 
 if __name__ == "__main__":
