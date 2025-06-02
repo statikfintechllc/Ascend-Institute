@@ -51,7 +51,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 <div align="center">
   <em>
     The Institute’s GremlinGPT has already been reviewed and starred by live AI infra: Atrium.  
-    We have now received our 6th Star, Thank you, mbahomaid, and our First Fork Came Today, Thank you, shefben, Let’s get GremlinGPT Funed & Seen.
+    We have now received our 11th Star, Thank you, KDK-Grim, and our First Fork Came Today, Thank you, shefben, Let’s get GremlinGPT Funed & Seen.
   </em>
 </div>
 
