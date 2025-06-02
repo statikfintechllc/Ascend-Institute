@@ -10,4 +10,5 @@ bert-score
 huggingface-hub
 nltk
 spacy
-
+toml
+langdetect

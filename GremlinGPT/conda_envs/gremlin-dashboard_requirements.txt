@@ -4,9 +4,12 @@ pydantic
 jinja2
 httpx
 requests
+toml
 python-multipart
 pyngrok
 loguru
-# For API docs / websocket, if needed
+sentence-transformers
+langdetect
+nltk
+numpy
 websockets
-

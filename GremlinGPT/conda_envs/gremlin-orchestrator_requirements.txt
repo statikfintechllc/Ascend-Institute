@@ -6,5 +6,6 @@ sentence-transformers
 loguru
 pyyaml
 toml
+playwright
+langdetect
 nltk
-
