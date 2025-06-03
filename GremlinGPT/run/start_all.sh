@@ -42,7 +42,8 @@ echo "Boot ID: $(uuidgen) | Source: GremlinGPT | Time: $(date -u)" | tee -a run/
 
 echo "[START] Launching GremlinGPT subsystems in separate terminals..."
 
-launch_terminal "NLP Service" gremlin-nlp "python GremlinGPT/nlp_service.py" "run/logs/nlp.out"
+launch_terminal "Core Loop" gremlin-orchestrator "python core/loop.py" "run/logs/runtime.log"
+launch_terminal "NLP Service" gremlin-nlp "Internal Statud Check: ✅" "run/logs/nlp.out"
 launch_terminal "Memory Service" gremlin-memory "python memory/vector_store/embedder.py" "run/logs/memory.out"
 launch_terminal "Backend Server" gremlin-dashboard "python -m backend.server" "run/logs/backend.out"
 launch_terminal "FSM Agent" gremlin-orchestrator "python -m agent_core.fsm" "run/logs/fsm.out"
