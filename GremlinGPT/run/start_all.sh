@@ -43,7 +43,7 @@ echo "Boot ID: $(uuidgen) | Source: GremlinGPT | Time: $(date -u)" | tee -a run/
 echo "[START] Launching GremlinGPT subsystems in separate terminals..."
 
 launch_terminal "Core Loop" gremlin-orchestrator "python core/loop.py" "run/logs/runtime.log"
-launch_terminal "NLP Service" gremlin-nlp "Internal Status Check: ✅" "run/logs/nlp.out"
+launch_terminal "NLP Service" gremlin-nlp "python nlp_engine/nlp_check.py" "run/logs/nlp.out"
 launch_terminal "Memory Service" gremlin-memory "python memory/vector_store/embedder.py" "run/logs/memory.out"
 launch_terminal "Backend Server" gremlin-dashboard "python -m backend.server" "run/logs/backend.out"
 launch_terminal "FSM Agent" gremlin-orchestrator "python -m agent_core.fsm" "run/logs/fsm.out"
@@ -52,7 +52,7 @@ launch_terminal "Self-Trainer" gremlin-nlp "python -m self_training.trainer" "ru
 launch_terminal "Frontend" gremlin-dashboard "python3 -m http.server 8080 --directory frontend" "run/logs/frontend.out"
 launch_terminal "Ngrok Tunnel" gremlin-dashboard "python run/ngrok_launcher.py" "run/logs/ngrok.out"
 
-echo "[ALL SYSTEMS LAUNCHED]"
+
 echo "Backend:     http://localhost:8000  (see backend/server.py for port)"
 echo "Frontend:    http://localhost:8080"
 echo "Logs:        $GREMLIN_HOME/run/logs/"
