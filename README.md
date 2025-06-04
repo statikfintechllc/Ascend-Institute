@@ -147,6 +147,7 @@ Reset: After 7:00pm CST on First 2 Clones
 ---
 
 ## Support This Project
+*If you find this project valuable and want to support its continued development, consider sponsoring or contributing*
 
 **Sponsor via:**
 
