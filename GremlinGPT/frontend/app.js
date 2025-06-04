@@ -17,14 +17,15 @@ window.onload = function () {
   `;
 
   // Tab logic
-  function showTab(tab) {
-    const tabContent = document.getElementById('tab-content');
-    document.querySelectorAll('.nav-link').forEach(e=>e.classList.remove('active'));
-    document.getElementById('tab-' + tab).classList.add('active');
-    if (tab === "tasks") TaskTreeView(tabContent);
-    if (tab === "memory") MemoryGraph(tabContent);
-    if (tab === "trading") TradingPanel(tabContent);
-  }
+function showTab(tab) {
+  const tabContent = document.getElementById('tab-content');
+  document.querySelectorAll('.nav-link').forEach(e => e.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+
+  if (tab === "tasks") TaskTreeView('tab-content');
+  if (tab === "memory") MemoryGraph('tab-content');
+  if (tab === "trading") TradingPanel('tab-content');
+}
   showTab('tasks');
   document.getElementById('tab-tasks').onclick = e => {e.preventDefault(); showTab('tasks');};
   document.getElementById('tab-memory').onclick = e => {e.preventDefault(); showTab('memory');};
