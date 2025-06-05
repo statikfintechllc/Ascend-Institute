@@ -11,7 +11,7 @@
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 
 import time
-from agent_core import fsm
+from agent_core.fsm import fsm_loop
 from backend.globals import logger, CFG
 from self_training.feedback_loop import check_trigger, clear_trigger
 from memory.log_history import log_event
