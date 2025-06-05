@@ -17,7 +17,7 @@ from datetime import datetime
 
 import numpy as np
 from sentence_transformers import SentenceTransformer
-from backend.globals import MEM
+from backend.globals import MEMORY
 from loguru import logger
 
 # Load embedding model and paths from system config
