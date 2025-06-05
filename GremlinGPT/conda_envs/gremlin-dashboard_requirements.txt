@@ -3,6 +3,7 @@ uvicorn
 pydantic
 jinja2
 httpx
+spacy
 requests
 toml
 python-multipart
