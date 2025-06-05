@@ -49,7 +49,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 ---
 
 
-*Install and Attempt to run Demo on YT ~~tonight~~ (Internet Off)*
+*2nd Install and Attempt to run Demo on YT tonight*
 
 </div>
 
@@ -58,7 +58,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 <div align="center">
   <em>
     The Institute’s GremlinGPT has already been reviewed and starred by live AI infra: Atrium.  
-    We have now received our 11th Star, Thank you, KDK-Grim, and our First Fork, Thank you, shefben, Let’s get GremlinGPT Funed & Seen.
+    We have now received our 11th Star, Thank you, juvu, and our First Fork, Thank you, shefben, Let’s get GremlinGPT Funed & Seen.
   </em>
 </div>
 
