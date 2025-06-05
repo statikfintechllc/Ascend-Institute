@@ -7,6 +7,7 @@ scipy
 pandas
 tqdm
 bert-score
+schedule
 huggingface-hub
 nltk
 spacy
