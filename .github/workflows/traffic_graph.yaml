@@ -1,0 +1,41 @@
+name: Update Traffic Graph
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"   # Every 5 minutes
+  workflow_dispatch:
+
+jobs:
+  update-traffic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests matplotlib
+
+      - name: Fetch and update traffic data
+        env:
+          PAT_GITHUB: ${{ secrets.PAT_GITHUB }}
+          REPO: statikfintechllc/AscendAI
+        run: |
+          python .github/scripts/fetch_traffic.py
+
+      - name: Set up PAT-based push authentication
+        run: |
+          git config --global url."https://${{ secrets.PAT_GITHUB }}:@github.com/".insteadOf "https://github.com/"
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name 'GitHub Action'
+          git config user.email 'action@github.com'
+          git add docs/traffic_data.json docs/traffic_graph.png docs/traffic_totals.json
+          git diff --cached --quiet || git commit -m "Update traffic data and graph"
+          git pull --rebase
+          git push
