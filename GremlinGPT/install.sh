@@ -74,11 +74,19 @@ if [ ! -d "$CACHE_PATH/sentence-transformers--all-MiniLM-L6-v2" ]; then
 else
     echo "[MODEL] Already cached: SentenceTransformer MiniLM"
 fi
+pip install playwright
+playwright install
 conda deactivate
 
 # 6. Activate gremlin-scraper for Playwright install
 echo "[*] Activating gremlin-scraper to install Playwright browsers..."
 conda activate gremlin-scraper
+pip install playwright
+playwright install
+conda deactivate
+
+echo "[*] Activating gremlin-scraper to install Playwright browsers..."
+conda activate gremlin-orchestrator
 pip install playwright
 playwright install
 conda deactivate
