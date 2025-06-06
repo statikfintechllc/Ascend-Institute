@@ -16,7 +16,7 @@ export default function ChatInterface(targetId) {
     fetch("/api/chat", {
       method: "POST",
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({text})
+      body: JSON.stringify({message})
     }).then(res => res.json()).then(data => {
       const log = document.getElementById("chatLog");
       log.innerHTML += `<div><b>Bot:</b> ${data.response}</div>`;
