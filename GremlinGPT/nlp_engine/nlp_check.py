@@ -13,7 +13,7 @@ import sys
 import traceback
 
 try:
-    from tokenizer import Tokenizer  # Your actual tokenizer
+    from tokenizer import tokenizer  # Your actual tokenizer
     from transformer_core import TransformerCore  # Your real core model
 except ImportError as e:
     print(f"[NLP_CHECK] ImportError: {e}", file=sys.stderr)
