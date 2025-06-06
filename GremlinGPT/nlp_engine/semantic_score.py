@@ -4,6 +4,7 @@ import re
 import numpy as np
 import nltk
 import langdetect
+import torch
 from nltk.tokenize import word_tokenize
 from backend.globals import logger
 
@@ -51,7 +52,12 @@ def _get_model(lang_code):
     if model_name not in _model_cache:
         try:
             logger.info(f"[{ENGINE_NAME}] Loading model: {model_name}")
-            _model_cache[model_name] = SentenceTransformer(model_name)
+            from backend.globals import CFG
+            device = CFG.get("nlp", {}).get("device", "auto")
+            if device == "auto":
+                import torch
+                device = "cuda" if torch.cuda.is_available() else "cpu"
+            _model_cache[model_name] = SentenceTransformer(model_name, device=device)
         except Exception as e:
             logger.error(f"[{ENGINE_NAME}] Model {model_name} load failed: {e}")
             _model_cache[model_name] = None
