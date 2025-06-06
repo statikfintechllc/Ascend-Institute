@@ -87,6 +87,7 @@ conda deactivate
 
 echo "[*] Activating gremlin-scraper to install Playwright browsers..."
 conda activate gremlin-orchestrator
+pip install bs4
 pip install playwright
 playwright install
 conda deactivate
