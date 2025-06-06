@@ -48,7 +48,7 @@ launch_terminal "Core Loop" gremlin-orchestrator "python core/loop.py" "run/logs
 launch_terminal "NLP Service" gremlin-nlp "python nlp_engine/nlp_check.py" "run/logs/nlp.out"
 launch_terminal "Memory Service" gremlin-memory "python memory/vector_store/embedder.py" "run/logs/memory.out"
 launch_terminal "Backend Server" gremlin-dashboard "python -m backend.server" "run/logs/backend.out"
-launch_terminal "FSM Agent" gremlin-orchestrator "python -m agent_core.fsm" "run/logs/fsm.out"
+launch_terminal "FSM Agent" gremlin-nlp "python -m agent_core.fsm" "run/logs/fsm.out"
 launch_terminal "Scraper" gremlin-scraper "python -m scraper.scraper_loop" "run/logs/scraper.out"
 launch_terminal "Self-Trainer" gremlin-orchestrator "python -m self_training.trainer" "run/logs/trainer.out"
 launch_terminal "Frontend" gremlin-dashboard "python3 -m http.server 8080 --directory frontend" "run/logs/frontend.out"
