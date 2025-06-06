@@ -26,7 +26,7 @@ subdomain = ""
 [paths]
 base_dir = "."
 data_dir = "$ROOT/data/"
-models_dir = "$ROOT/models/"
+models_dir = "$ROOT/nlp_engine/"
 checkpoints_dir = "$ROOT/run/checkpoints/"
 log_file = "$ROOT/run/logs/runtime.log"
 snapshot_dir = "$ROOT/run/checkpoints/snapshots/"
