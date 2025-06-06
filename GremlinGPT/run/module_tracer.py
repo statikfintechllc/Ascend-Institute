@@ -25,6 +25,7 @@ from rich.table import Table
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
+
 def is_importable(module_path):
     """Check if a module is importable using importlib."""
     try:
@@ -37,6 +38,7 @@ def is_importable(module_path):
     except Exception:
         return False
 
+
 def trace_calls():
     table = Table(title="GremlinGPT Module Interconnectivity")
     table.add_column("Module", style="cyan", no_wrap=True)
@@ -48,7 +50,12 @@ def trace_calls():
             if file.endswith(".py"):
                 path = os.path.join(root, file)
                 # Normalize for pretty output
-                module_name = os.path.relpath(path, BASE_DIR).replace("/", ".").replace("\\", ".").replace(".py", "")
+                module_name = (
+                    os.path.relpath(path, BASE_DIR)
+                    .replace("/", ".")
+                    .replace("\\", ".")
+                    .replace(".py", "")
+                )
                 try:
                     with open(path, encoding="utf-8") as f:
                         lines = f.readlines()
@@ -58,14 +65,20 @@ def trace_calls():
                         if line.strip().startswith("import")
                         or line.strip().startswith("from")
                     ]
-                    importable = "[bold green]Yes[/]" if is_importable(path) else "[bold red]No[/]"
+                    importable = (
+                        "[bold green]Yes[/]"
+                        if is_importable(path)
+                        else "[bold red]No[/]"
+                    )
                     table.add_row(module_name, "\n".join(imports), importable)
                 except Exception as e:
-                    table.add_row(module_name, "[error] Could not read", "[bold red]No[/]")
+                    table.add_row(
+                        module_name, "[error] Could not read", "[bold red]No[/]"
+                    )
                     print(f"[yellow][WARN][/yellow] Skipped {module_name}: {e}")
 
     print(table)
 
+
 if __name__ == "__main__":
     trace_calls()
-
