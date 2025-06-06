@@ -19,6 +19,7 @@ except ImportError as e:
     print(f"[NLP_CHECK] ImportError: {e}", file=sys.stderr)
     sys.exit(1)
 
+
 def nlp_internal_check():
     try:
         # Simple English test phrase
@@ -38,6 +39,7 @@ def nlp_internal_check():
         print("[NLP_CHECK] Error:", ex, file=sys.stderr)
         traceback.print_exc()
         sys.exit(1)
+
 
 if __name__ == "__main__":
     nlp_internal_check()

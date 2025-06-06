@@ -53,9 +53,11 @@ def _get_model(lang_code):
         try:
             logger.info(f"[{ENGINE_NAME}] Loading model: {model_name}")
             from backend.globals import CFG
+
             device = CFG.get("nlp", {}).get("device", "auto")
             if device == "auto":
                 import torch
+
                 device = "cuda" if torch.cuda.is_available() else "cpu"
             _model_cache[model_name] = SentenceTransformer(model_name, device=device)
         except Exception as e:

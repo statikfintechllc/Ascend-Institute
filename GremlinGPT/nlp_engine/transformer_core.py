@@ -36,6 +36,7 @@ except Exception as e:
     tokenizer = None
     model = None
 
+
 # ─────────────────────────────────────────────
 def encode_text(text):
     """
@@ -65,6 +66,7 @@ def encode_text(text):
     except Exception as e:
         logger.error(f"[TRANSFORMER] Encoding failed: {e}")
         return np.zeros(EMBEDDING_DIM, dtype=np.float32)
+
 
 # ─────────────────────────────────────────────
 if __name__ == "__main__":
