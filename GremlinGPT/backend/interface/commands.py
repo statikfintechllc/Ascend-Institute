@@ -70,7 +70,7 @@ def execute_command(cmd):
         # Prepare trace
         summary = f"Command executed: {task_type}"
         trace_text = (
-            cmd.get("target") or cmd.get("text") or cmd.get("command") or str(cmd)
+            cmd.get("target") or cmd.get("message") or cmd.get("command") or str(cmd)
         )
         vector = embed_text(trace_text)
 
