@@ -1,3 +1,5 @@
+# !/usr/bin/env python3
+
 # ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
 # Built under the GremlinGPT Dual License v1.0
@@ -5,22 +7,7 @@
 # Contact: ascend.gremlin@gmail.com
 # ─────────────────────────────────────────────────────────────
 
-# !/usr/bin/env python3
-
-# GremlinGPT v5 :: Module Integrity Directive
-# This script is a component of the GremlinGPT system, under Alpha expansion.
-# It must:
-#   - Integrate seamlessly into the architecture defined in the full outline
-#   - Operate autonomously and communicate cross-module via defined protocols
-#   - Be production-grade, repair-capable, and state-of-the-art in logic
-#   - Support learning, persistence, mutation, and traceability
-#   - Not remove or weaken logic (stubs may be replaced, but never deleted)
-#   - Leverage appropriate dependencies, imports, and interlinks to other systems
-#   - Return enhanced — fully wired, no placeholders, no guesswork
-# Objective:
-#   Receive, reinforce, and return each script as a living part of the Gremlin:
-
-# self_mutation_watcher/mutation_deamon
+# GremlinGPT v1.0.3 :: Module Integrity Directive
 
 import time
 import threading
@@ -53,7 +40,6 @@ DASHBOARD_ENDPOINT = "http://localhost:5050/api/mutation/ping"
 DATASET_OUT = Path("data/nlp_training_sets/live_mutations.jsonl")
 DATASET_OUT.parent.mkdir(parents=True, exist_ok=True)
 
-
 def notify_dashboard(message):
     try:
         if NOTIFY_DASHBOARD:
@@ -61,7 +47,6 @@ def notify_dashboard(message):
             logger.debug("[WATCHER] Dashboard notified.")
     except Exception as e:
         logger.warning(f"[WATCHER] Dashboard notification failed: {e}")
-
 
 def rollback_file(path, backup_code, lineage_id, score):
     try:
@@ -88,7 +73,6 @@ def rollback_file(path, backup_code, lineage_id, score):
     except Exception as e:
         logger.error(f"[WATCHER] Rollback failed for {path}: {e}")
 
-
 def log_to_dataset(original, mutated, score, file_path, lineage_id):
     entry = {
         "input": original,
@@ -99,42 +83,57 @@ def log_to_dataset(original, mutated, score, file_path, lineage_id):
         "timestamp": datetime.utcnow().isoformat(),
         "watermark": "source:GremlinGPT",
     }
-    with open(DATASET_OUT, "a") as f:
-        f.write(json.dumps(entry) + "\n")
-
+    try:
+        with open(DATASET_OUT, "a") as f:
+            f.write(json.dumps(entry) + "\n")
+    except Exception as e:
+        logger.error(f"[WATCHER] Failed to log mutation to dataset: {e}")
 
 def archive_dataset(output_path):
     if not os.path.exists(output_path):
         return
     timestamp = datetime.utcnow().strftime("%Y%m%dT%H%M%S")
     archive_name = f"GremlinGPT/docs/dataset_dump_{timestamp}.jsonl"
-    shutil.copyfile(output_path, archive_name)
-    logger.info(f"[WATCHER] Dataset backup created → {archive_name}")
-    return archive_name
-
+    try:
+        shutil.copyfile(output_path, archive_name)
+        logger.info(f"[WATCHER] Dataset backup created → {archive_name}")
+        return archive_name
+    except Exception as e:
+        logger.error(f"[WATCHER] Dataset backup failed: {e}")
+        return None
 
 def mutation_loop():
     logger.info("[WATCHER] Mutation Daemon Started.")
     while True:
         try:
             scan_and_diff()
+        except Exception as e:
+            logger.error(f"[WATCHER] scan_and_diff() failed: {e}")
+        try:
             analyze_mutation_diff()
+        except Exception as e:
+            logger.error(f"[WATCHER] analyze_mutation_diff() failed: {e}")
+        try:
             notify_dashboard("Self-mutation scan complete.")
+        except Exception as e:
+            logger.error(f"[WATCHER] notify_dashboard() failed: {e}")
+        try:
             enqueue_next()
             logger.info(
                 f"[WATCHER] Planner task injected post-mutation at {datetime.utcnow().isoformat()}"
             )
+        except Exception as e:
+            logger.error(f"[WATCHER] enqueue_next() failed: {e}")
 
+        try:
             if DATASET_OUT.exists():
                 backup = archive_json_log(str(DATASET_OUT), prefix="dataset_dump")
                 auto_commit(backup)
                 if G.CFG.get("git", {}).get("auto_push", False):
                     auto_push()
-
         except Exception as e:
-            logger.error(f"[WATCHER] Loop error: {e}")
+            logger.error(f"[WATCHER] Dataset backup or git push failed: {e}")
         time.sleep(SCAN_INTERVAL_MIN * 60)
-
 
 def auto_push():
     try:
@@ -146,7 +145,6 @@ def auto_push():
             logger.warning(f"[WATCHER] Git push failed with exit code: {result}")
     except Exception as e:
         logger.warning(f"[WATCHER] Git push error: {e}")
-
 
 def analyze_mutation_diff():
     for path in WATCH_PATHS:
@@ -203,7 +201,10 @@ def analyze_mutation_diff():
         except Exception as e:
             logger.error(f"[WATCHER] Semantic diff scoring failed for {path}: {e}")
 
-
 def run_daemon():
-    t = threading.Thread(target=mutation_loop, daemon=True)
-    t.start()
+    try:
+        t = threading.Thread(target=mutation_loop, daemon=True)
+        t.start()
+        logger.info("[WATCHER] Mutation Daemon thread started.")
+    except Exception as e:
+        logger.error(f"[WATCHER] Failed to start mutation daemon thread: {e}")
