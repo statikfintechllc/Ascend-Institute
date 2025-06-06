@@ -1,4 +1,4 @@
-# !/usr/bin/env python3
+#!/usr/bin/env python3
 
 # ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
@@ -19,19 +19,22 @@ from backend.globals import CFG, logger
 # Config Load
 MODEL_NAME = CFG["nlp"].get("transformer_model", "bert-base-uncased")
 EMBEDDING_DIM = CFG["nlp"].get("embedding_dim", 384)
+DEVICE = CFG["nlp"].get("device", "auto")
+
+if DEVICE == "auto":
+    DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 # ─────────────────────────────────────────────
 # Model Bootstrap
 try:
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
-    model = AutoModel.from_pretrained(MODEL_NAME)
+    model = AutoModel.from_pretrained(MODEL_NAME).to(DEVICE)
     model.eval()
-    logger.success(f"[TRANSFORMER] Loaded model: {MODEL_NAME}")
+    logger.success(f"[TRANSFORMER] Loaded model: {MODEL_NAME} on {DEVICE}")
 except Exception as e:
     logger.error(f"[TRANSFORMER] Failed to load model '{MODEL_NAME}': {e}")
     tokenizer = None
     model = None
-
 
 # ─────────────────────────────────────────────
 def encode_text(text):
@@ -51,6 +54,8 @@ def encode_text(text):
             padding=True,
             max_length=512,
         )
+        # Move inputs to same device as model
+        inputs = {k: v.to(DEVICE) for k, v in inputs.items()}
         with torch.no_grad():
             outputs = model(**inputs)
 
@@ -60,7 +65,6 @@ def encode_text(text):
     except Exception as e:
         logger.error(f"[TRANSFORMER] Encoding failed: {e}")
         return np.zeros(EMBEDDING_DIM, dtype=np.float32)
-
 
 # ─────────────────────────────────────────────
 if __name__ == "__main__":
