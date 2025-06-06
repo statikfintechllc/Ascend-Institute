@@ -23,7 +23,7 @@ from datetime import datetime
 
 def chat():
     data = request.get_json()
-    user_input = data.get("text", "").strip()
+    user_input = data.get("message", "").strip()
 
     if not user_input:
         logger.warning("[CHAT] Empty input received.")
