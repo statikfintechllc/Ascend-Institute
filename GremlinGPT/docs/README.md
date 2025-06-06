@@ -178,7 +178,7 @@ cd AscendAI/GremlinGPT
 cd conda_envs && chmod +x create_envs.sh && ./create_envs.sh
 ```
 
-or
+**Or**
 
 ```bash
 cd .. && chmod +x install.sh && ./install.sh
