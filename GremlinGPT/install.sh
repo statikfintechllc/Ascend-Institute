@@ -74,6 +74,10 @@ if [ ! -d "$CACHE_PATH/sentence-transformers--all-MiniLM-L6-v2" ]; then
 else
     echo "[MODEL] Already cached: SentenceTransformer MiniLM"
 fi
+pip install bs4
+pip install nltk
+pip install pytesseract
+pip install sentence_transformers
 pip install playwright
 playwright install
 conda deactivate
@@ -95,6 +99,19 @@ conda deactivate
 # 8. Activate gremlin-orchestrator install
 echo "[*] Activating gremlin-orchestrator to install..."
 conda activate gremlin-orchestrator
+CACHE_PATH="$HOME/.cache/huggingface/transformers"
+if [ ! -d "$CACHE_PATH/models--bert-base-uncased" ]; then
+    echo "[MODEL] Downloading: BERT base uncased"
+    python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from_pretrained('bert-base-uncased'); AutoModel.from_pretrained('bert-base-uncased')"
+else
+    echo "[MODEL] Already cached: BERT base uncased"
+fi
+if [ ! -d "$CACHE_PATH/sentence-transformers--all-MiniLM-L6-v2" ]; then
+    echo "[MODEL] Downloading: SentenceTransformer MiniLM"
+    python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2', device='cpu')"
+else
+    echo "[MODEL] Already cached: SentenceTransformer MiniLM"
+fi
 pip install bs4
 pip install nltk
 pip install pytesseract
