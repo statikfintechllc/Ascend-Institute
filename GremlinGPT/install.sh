@@ -1,6 +1,5 @@
 #!/bin/zsh
 
-# Output colors
 RED='\033[1;31m'
 GREEN='\033[1;32m'
 YELLOW='\033[1;33m'
@@ -46,7 +45,6 @@ if ! command -v conda &> /dev/null; then
         source "$HOME/miniconda3/etc/profile.d/conda.sh"
     fi
 fi
-
 eval "$(conda shell.zsh hook 2>/dev/null)" || eval "$(conda shell.bash hook 2>/dev/null)"
 
 # 4. Run create_envs.sh (NO extra error traps)
@@ -58,71 +56,70 @@ else
     echo "${RED}[ERROR] ./conda_envs/create_envs.sh not found!${NC}"
 fi
 
-# 5. Activate gremlin-nlp for HuggingFace models
-echo "[*] Activating gremlin-nlp to download HuggingFace models..."
+function check_cuda {
+  echo "[*] Checking CUDA in current environment:"
+  python -c "
+import torch
+print('[CUDA] torch.cuda.is_available:', torch.cuda.is_available())
+print('[CUDA] torch.cuda.device_count:', torch.cuda.device_count())
+print('[CUDA] torch.cuda.current_device:', torch.cuda.current_device() if torch.cuda.is_available() else None)
+print('[CUDA] torch.cuda.get_device_name:', torch.cuda.get_device_name(0) if torch.cuda.is_available() else None)
+" || echo "${RED}[CUDA] PyTorch not installed or failed.${NC}"
+}
+
+# 5. Activate gremlin-nlp, install GPU deps, download models, check CUDA
+echo "[*] Activating gremlin-nlp to download HuggingFace models and set up CUDA..."
 conda activate gremlin-nlp
-CACHE_PATH="$HOME/.cache/huggingface/transformers"
-if [ ! -d "$CACHE_PATH/models--bert-base-uncased" ]; then
-    echo "[MODEL] Downloading: BERT base uncased"
-    python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from_pretrained('bert-base-uncased'); AutoModel.from_pretrained('bert-base-uncased')"
-else
-    echo "[MODEL] Already cached: BERT base uncased"
-fi
-if [ ! -d "$CACHE_PATH/sentence-transformers--all-MiniLM-L6-v2" ]; then
-    echo "[MODEL] Downloading: SentenceTransformer MiniLM"
-    python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2', device='cpu')"
-else
-    echo "[MODEL] Already cached: SentenceTransformer MiniLM"
-fi
-pip install bs4
-pip install nltk
-pip install pytesseract
-pip install sentence_transformers
-pip install playwright
+pip install --upgrade pip
+pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu121
+pip install sentence-transformers transformers
+pip install bs4 nltk pytesseract playwright
 playwright install
+check_cuda
+
+# Download core models to GPU cache (test both BERT and MiniLM for CUDA)
+python -c "
+from transformers import AutoTokenizer, AutoModel
+import torch
+print('[GPU-TEST] Loading BERT on', 'cuda' if torch.cuda.is_available() else 'cpu')
+AutoTokenizer.from_pretrained('bert-base-uncased')
+AutoModel.from_pretrained('bert-base-uncased').to('cuda' if torch.cuda.is_available() else 'cpu')
+"
+python -c "
+from sentence_transformers import SentenceTransformer
+import torch
+print('[GPU-TEST] Loading MiniLM on', 'cuda' if torch.cuda.is_available() else 'cpu')
+SentenceTransformer('all-MiniLM-L6-v2', device='cuda' if torch.cuda.is_available() else 'cpu')
+"
 conda deactivate
 
-# 6. Activate gremlin-scraper for buggy pip install
-echo "[*] Activating gremlin-scraper to install..."
+# 6. Activate gremlin-scraper
+echo "[*] Activating gremlin-scraper for Playwright install and CUDA test..."
 conda activate gremlin-scraper
-pip install playwright
+pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu121
+pip install sentence-transformers transformers playwright
 playwright install
+check_cuda
 conda deactivate
 
-# 7. Activate gremlin-dashboard for for buggy pip install
-echo "[*] Activating gremlin-dashboard to install..."
+# 7. Activate gremlin-dashboard for transformers/sentence_transformers
+echo "[*] Activating gremlin-dashboard for dashboard deps and CUDA test..."
 conda activate gremlin-dashboard
-pip install transformers
-pip install sentence_transformers
+pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu121
+pip install sentence-transformers transformers
+check_cuda
 conda deactivate
 
-# 8. Activate gremlin-orchestrator install
-echo "[*] Activating gremlin-orchestrator to install..."
+# 8. Activate gremlin-orchestrator for all deps and CUDA test...
+echo "[*] Activating gremlin-orchestrator for all deps and CUDA test..."
 conda activate gremlin-orchestrator
-CACHE_PATH="$HOME/.cache/huggingface/transformers"
-if [ ! -d "$CACHE_PATH/models--bert-base-uncased" ]; then
-    echo "[MODEL] Downloading: BERT base uncased"
-    python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from_pretrained('bert-base-uncased'); AutoModel.from_pretrained('bert-base-uncased')"
-else
-    echo "[MODEL] Already cached: BERT base uncased"
-fi
-if [ ! -d "$CACHE_PATH/sentence-transformers--all-MiniLM-L6-v2" ]; then
-    echo "[MODEL] Downloading: SentenceTransformer MiniLM"
-    python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2', device='cpu')"
-else
-    echo "[MODEL] Already cached: SentenceTransformer MiniLM"
-fi
-pip install backend
-pip install bs4
-pip install nltk
-pip install langdetect
-pip install pytesseract
-pip install sentence_transformers
-pip install playwright
+pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu121
+pip install backend bs4 nltk langdetect pytesseract sentence-transformers transformers playwright
 playwright install
+check_cuda
 conda deactivate
 
-# 7. ngrok CLI check
+# 9. ngrok CLI check
 echo "[*] Checking for ngrok CLI..."
 if ! command -v ngrok &> /dev/null; then
     echo "[NOTICE] ngrok not found. Visit https://ngrok.com/download or configure pyngrok in config.toml"
