@@ -11,11 +11,11 @@
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 
 import time
+from datetime import datetime
+from backend.globals import CFG, logger
 from agent_core.fsm import fsm_loop
-from backend.globals import logger, CFG
 from self_training.feedback_loop import check_trigger, clear_trigger
 from memory.log_history import log_event
-from datetime import datetime
 
 
 def boot_loop():
