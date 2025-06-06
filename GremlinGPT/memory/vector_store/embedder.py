@@ -16,11 +16,18 @@ import json
 from datetime import datetime
 
 import numpy as np
-from sentence_transformers import SentenceTransformer
-from backend.globals import MEM
 from loguru import logger
 
-# === Path setup ===
+# --- Configuration and Path Setup ---
+try:
+    from sentence_transformers import SentenceTransformer
+    from backend.globals import MEM
+except Exception as import_err:
+    logger = logger if 'logger' in locals() else print
+    logger(f"[EMBEDDER] Import error: {import_err}")
+    MEM = {}
+    SentenceTransformer = None
+
 MEMORY_DIR = MEM.get("storage", {}).get(
     "vector_store_path", "./memory/vector_store/faiss/"
 )
@@ -28,43 +35,63 @@ INDEX_DB = MEM.get("storage", {}).get("metadata_db", "./memory/local_index/metad
 LOCAL_INDEX_PATH = os.path.join(
     MEM.get("storage", {}).get("local_index_path", "./memory/local_index"), "documents"
 )
-os.makedirs(MEMORY_DIR, exist_ok=True)
-os.makedirs(LOCAL_INDEX_PATH, exist_ok=True)
+try:
+    os.makedirs(MEMORY_DIR, exist_ok=True)
+    os.makedirs(LOCAL_INDEX_PATH, exist_ok=True)
+except Exception as e:
+    logger.error(f"[EMBEDDER] Failed to create storage directories: {e}")
 
-# === Model load ===
-model = SentenceTransformer(MEM.get("embedding", {}).get("model", "all-MiniLM-L6-v2"))
+# --- Model Load (Resilient) ---
+model = None
+try:
+    if SentenceTransformer:
+        model_name = MEM.get("embedding", {}).get("model", "all-MiniLM-L6-v2")
+        model = SentenceTransformer(model_name)
+        logger.info(f"[EMBEDDER] Model loaded: {model_name}")
+    else:
+        logger.error("[EMBEDDER] SentenceTransformer not available.")
+except Exception as e:
+    logger.error(f"[EMBEDDER] Model load failed: {e}")
+    model = None
 
 memory_vectors = {}
 
 # --- Core Embedding Functions ---
 
-
 def embed_text(text):
-    vec = model.encode(text, convert_to_numpy=True)
-    norm = np.linalg.norm(vec)
-    logger.debug(f"[EMBEDDER] Embedding norm: {norm:.4f}")
-    return vec
-
+    if not model:
+        logger.error("[EMBEDDER] Model not loaded. Cannot embed text.")
+        return np.zeros(384)  # fallback vector
+    try:
+        vec = model.encode(text, convert_to_numpy=True)
+        norm = np.linalg.norm(vec)
+        logger.debug(f"[EMBEDDER] Embedding norm: {norm:.4f}")
+        return vec
+    except Exception as e:
+        logger.error(f"[EMBEDDER] Embedding failed: {e}")
+        return np.zeros(384)  # fallback vector
 
 def package_embedding(text, vector, meta):
     emb_id = str(uuid.uuid4())
     embedding = {
         "id": emb_id,
         "text": text,
-        "embedding": vector.tolist(),
+        "embedding": vector.tolist() if hasattr(vector, "tolist") else list(vector),
         "meta": meta,
         "tags": {
             "source": meta.get("source", "system"),
-            "model": MEM["embedding"]["model"],
+            "model": MEM.get("embedding", {}).get("model", "unknown"),
             "created": datetime.utcnow().isoformat(),
             "replaceable": True,
         },
     }
     memory_vectors[emb_id] = embedding
-    _write_to_disk(embedding)
-    logger.info(f"[EMBEDDER] Stored embedding: {emb_id}")
+    try:
+        _write_to_disk(embedding)
+        logger.info(f"[EMBEDDER] Stored embedding: {emb_id}")
+    except Exception as disk_err:
+        logger.error(f"[EMBEDDER] Could not write embedding to disk: {disk_err}")
     return embedding
-
 
 def inject_watermark(origin="unknown"):
     text = f"Watermark from {origin} @ {datetime.utcnow().isoformat()}"
@@ -72,29 +99,34 @@ def inject_watermark(origin="unknown"):
     meta = {"origin": origin, "timestamp": datetime.utcnow().isoformat()}
     return package_embedding(text, vector, meta)
 
-
 def archive_plan(vector_path="data/nlp_training_sets/auto_generated.jsonl"):
     if not os.path.exists(vector_path):
+        logger.warning(f"[EMBEDDER] No plan file to archive: {vector_path}")
         return None
     timestamp = datetime.utcnow().strftime("%Y%m%dT%H%M%S")
     archive = f"GremlinGPT/docs/planlog_{timestamp}.jsonl"
-    shutil.copyfile(vector_path, archive)
-    return archive
-
+    try:
+        shutil.copyfile(vector_path, archive)
+        logger.info(f"[EMBEDDER] Plan archived: {archive}")
+        return archive
+    except Exception as e:
+        logger.error(f"[EMBEDDER] Failed to archive plan: {e}")
+        return None
 
 def auto_commit(file_path):
     if not file_path:
         return
-    os.system(f"git add {file_path}")
-    os.system(f'git commit -m "[autocommit] Planner log update: {file_path}"')
-
+    try:
+        os.system(f"git add {file_path}")
+        os.system(f'git commit -m "[autocommit] Planner log update: {file_path}"')
+    except Exception as e:
+        logger.error(f"[EMBEDDER] Git commit failed: {e}")
 
 def get_all_embeddings(limit=50):
     # Return all loaded or cached vectors; auto-refresh if empty
     if not memory_vectors:
         _load_from_disk()
     return list(memory_vectors.values())[:limit]
-
 
 def get_embedding_by_id(emb_id):
     # Return a single embedding by ID
@@ -103,27 +135,32 @@ def get_embedding_by_id(emb_id):
     _load_from_disk()
     return memory_vectors.get(emb_id, None)
 
-
 def _write_to_disk(embedding):
     path = os.path.join(LOCAL_INDEX_PATH, f"{embedding['id']}.json")
-    with open(path, "w") as f:
-        json.dump(embedding, f, indent=2)
-
+    try:
+        with open(path, "w") as f:
+            json.dump(embedding, f, indent=2)
+    except Exception as e:
+        logger.error(f"[EMBEDDER] Failed to write embedding {embedding['id']} to disk: {e}")
 
 def _load_from_disk():
     # Rebuild memory_vectors from disk on startup or error recovery
-    for fname in os.listdir(LOCAL_INDEX_PATH):
-        if fname.endswith(".json"):
-            with open(os.path.join(LOCAL_INDEX_PATH, fname), "r") as f:
-                try:
-                    emb = json.load(f)
-                    memory_vectors[emb["id"]] = emb
-                except Exception as e:
-                    logger.warning(f"[EMBEDDER] Failed to load {fname}: {e}")
-
+    try:
+        if not os.path.exists(LOCAL_INDEX_PATH):
+            logger.warning(f"[EMBEDDER] Local index path missing: {LOCAL_INDEX_PATH}")
+            return
+        for fname in os.listdir(LOCAL_INDEX_PATH):
+            if fname.endswith(".json"):
+                with open(os.path.join(LOCAL_INDEX_PATH, fname), "r") as f:
+                    try:
+                        emb = json.load(f)
+                        memory_vectors[emb["id"]] = emb
+                    except Exception as e:
+                        logger.warning(f"[EMBEDDER] Failed to load {fname}: {e}")
+    except Exception as e:
+        logger.error(f"[EMBEDDER] Error loading embeddings from disk: {e}")
 
 # --- Dashboard & API Graph Support ---
-
 
 def get_memory_graph():
     """Return a graph of memory nodes (embeddings) and simple relations."""
@@ -144,9 +181,7 @@ def get_memory_graph():
             edges.append({"from": emb["meta"]["source_id"], "to": emb["id"]})
     return {"nodes": nodes, "edges": edges}
 
-
 # --- Self-repair utility ---
-
 
 def repair_index():
     """Scan disk and rebuild in-memory vectors for system continuity."""
@@ -154,7 +189,9 @@ def repair_index():
     _load_from_disk()
     logger.info("[EMBEDDER] Memory index repaired.")
 
-
 # --- Module load-time check ---
-if not memory_vectors:
-    _load_from_disk()
+try:
+    if not memory_vectors:
+        _load_from_disk()
+except Exception as e:
+    logger.error(f"[EMBEDDER] Initial index load failed: {e}")
