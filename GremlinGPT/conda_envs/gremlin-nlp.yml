@@ -20,6 +20,7 @@ dependencies:
   - pip:
       - torch
       - faiss-cpu
+      - langdetect
       - chromadb
       - toml
       - flask
