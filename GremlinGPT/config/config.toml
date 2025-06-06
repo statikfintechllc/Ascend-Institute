@@ -104,6 +104,7 @@ restrict_commands = ["rm", "shutdown", "reboot"]
 # -------------------------------------------
 [nlp]
 enabled = true
+device = "cuda"   # or "cpu" or "auto"
 tokenizer_model = "bert-base-uncased"
 embedder_model = "all-MiniLM-L6-v2"
 transformer_model = "bert-base-uncased"
