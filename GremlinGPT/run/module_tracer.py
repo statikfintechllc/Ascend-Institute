@@ -7,37 +7,35 @@
 
 # !/usr/bin/env python3
 
-# GremlinGPT v5 :: Module Integrity Directive
-# This script is a component of the GremlinGPT system, under Alpha expansion.
-# It must:
-#   - Integrate seamlessly into the architecture defined in the full outline
-#   - Operate autonomously and communicate cross-module via defined protocols
-#   - Be production-grade, repair-capable, and state-of-the-art in logic
-#   - Support learning, persistence, mutation, and traceability
-#   - Not remove or weaken logic (stubs may be replaced, but never deleted)
-#   - Leverage appropriate dependencies, imports, and interlinks to other systems
-#   - Return enhanced — fully wired, no placeholders, no guesswork
-# Objective:
-#   Receive, reinforce, and return each script as a living part of the Gremlin:
+"""
+GremlinGPT v5 :: Module Integrity Directive
 
-# run/module_tracer.py
+run/module_tracer.py
+
+- Deep-scans project for all .py modules
+- Maps direct imports and traces importability
+- Reports as a rich table for system diagnosis/expansion
+- No guesswork, no placeholders. State-of-the-art logic.
+"""
 
 import os
 import importlib.util
 from rich import print
 from rich.table import Table
 
-BASE_DIR = "."
-
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 def is_importable(module_path):
     """Check if a module is importable using importlib."""
     try:
         spec = importlib.util.spec_from_file_location("temp_module", module_path)
-        return spec is not None
+        if spec is None:
+            return False
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        return True
     except Exception:
         return False
-
 
 def trace_calls():
     table = Table(title="GremlinGPT Module Interconnectivity")
@@ -49,7 +47,8 @@ def trace_calls():
         for file in files:
             if file.endswith(".py"):
                 path = os.path.join(root, file)
-                module_name = path.replace("/", ".").replace(".py", "")
+                # Normalize for pretty output
+                module_name = os.path.relpath(path, BASE_DIR).replace("/", ".").replace("\\", ".").replace(".py", "")
                 try:
                     with open(path, encoding="utf-8") as f:
                         lines = f.readlines()
@@ -59,14 +58,14 @@ def trace_calls():
                         if line.strip().startswith("import")
                         or line.strip().startswith("from")
                     ]
-                    importable = "Yes" if is_importable(path) else "No"
+                    importable = "[bold green]Yes[/]" if is_importable(path) else "[bold red]No[/]"
                     table.add_row(module_name, "\n".join(imports), importable)
                 except Exception as e:
-                    table.add_row(module_name, "[error] Could not read", "No")
-                    print(f"[WARN] Skipped {module_name}: {e}")
+                    table.add_row(module_name, "[error] Could not read", "[bold red]No[/]")
+                    print(f"[yellow][WARN][/yellow] Skipped {module_name}: {e}")
 
     print(table)
 
-
 if __name__ == "__main__":
     trace_calls()
+
