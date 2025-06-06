@@ -89,12 +89,15 @@ conda deactivate
 echo "[*] Activating gremlin-dashboard to install..."
 conda activate gremlin-dashboard
 pip install transformers
+pip install sentence_transformers
 conda deactivate
 
 # 8. Activate gremlin-orchestrator install
 echo "[*] Activating gremlin-orchestrator to install..."
 conda activate gremlin-orchestrator
 pip install bs4
+pip install nltk
+pip install pytesseract
 pip install sentence_transformers
 pip install playwright
 playwright install
