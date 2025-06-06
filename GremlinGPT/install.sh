@@ -70,7 +70,7 @@ else
 fi
 if [ ! -d "$CACHE_PATH/sentence-transformers--all-MiniLM-L6-v2" ]; then
     echo "[MODEL] Downloading: SentenceTransformer MiniLM"
-    python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
+    python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2', device='cpu')"
 else
     echo "[MODEL] Already cached: SentenceTransformer MiniLM"
 fi
