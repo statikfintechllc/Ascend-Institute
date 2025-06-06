@@ -2,7 +2,7 @@
 
 setopt NO_GLOB_SUBST
 
-export PYTHONPATH="/path/to/AscendAI/GremlinGPT" #CHANGE ME
+export PYTHONPATH="/home/statiksmoke8/SkylineX-AlphaWave/AscendAI/GremlinGPT"
 
 cd "${0:a:h}/.."
 export GREMLIN_HOME="$PWD"
