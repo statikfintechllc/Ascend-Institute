@@ -169,7 +169,7 @@ Read the [FOUNDER_LOG.md](https://github.com/statikfintechllc/AscendAI/blob/mast
 
 ```bash
 git clone https://github.com/statikfintechllc/AscendAI.git
-cd AscendAI/AscendNet/GremlinGPT
+cd AscendAI/GremlinGPT
 ```
 
 **2. Install Conda environments**
