@@ -185,7 +185,7 @@ cd .. && chmod +x install.sh && ./install.sh
 ```
 
 **3. Bootstrap NLP models (one time)**
-
+*install.sh is going to complete all installs, this is soon debunk*
 ```bash
 conda activate gremlin-nlp
 python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from_pretrained('bert-base-uncased'); AutoModel.from_pretrained('bert-base-uncased')"
@@ -197,9 +197,9 @@ python -c "from sentence_transformers import SentenceTransformer; SentenceTransf
 ## Running the System
 
 ```bash
-cd run
-chmod +x start_all.sh
-./start_all.sh
+cd GremlinGPT
+chmod +x run/start_all.sh
+./run/start_all.sh
 ```
 
 - Backend server launches (Flask or FastAPI, port 8000 or 8080)
