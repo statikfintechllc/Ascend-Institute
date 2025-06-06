@@ -2,6 +2,8 @@
 
 setopt NO_GLOB_SUBST
 
+export PYTHONPATH="/path/to/AscendAI/GremlinGPT" #CHANGE ME
+
 cd "${0:a:h}/.."
 export GREMLIN_HOME="$PWD"
 mkdir -p run/logs
