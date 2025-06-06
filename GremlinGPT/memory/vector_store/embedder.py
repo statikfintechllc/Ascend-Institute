@@ -21,10 +21,10 @@ from backend.globals import MEMORY
 from loguru import logger
 
 # Load embedding model and paths from system config
-model = SentenceTransformer(MEM["embedding"]["model"])
-MEMORY_DIR = MEM["storage"]["vector_store_path"]
-INDEX_DB = MEM["storage"]["metadata_db"]
-LOCAL_INDEX_PATH = os.path.join(MEM["storage"]["local_index_path"], "documents")
+model = SentenceTransformer(MEMORY["embedding"]["model"])
+MEMORY_DIR = MEMORY["storage"]["vector_store_path"]
+INDEX_DB = MEMORY["storage"]["metadata_db"]
+LOCAL_INDEX_PATH = os.path.join(MEMPRY["storage"]["local_index_path"], "documents")
 os.makedirs(MEMORY_DIR, exist_ok=True)
 os.makedirs(LOCAL_INDEX_PATH, exist_ok=True)
 
