@@ -78,14 +78,21 @@ pip install playwright
 playwright install
 conda deactivate
 
-# 6. Activate gremlin-scraper for Playwright install
-echo "[*] Activating gremlin-scraper to install Playwright browsers..."
+# 6. Activate gremlin-scraper for buggy pip install
+echo "[*] Activating gremlin-scraper to install..."
 conda activate gremlin-scraper
 pip install playwright
 playwright install
 conda deactivate
 
-echo "[*] Activating gremlin-scraper to install Playwright browsers..."
+# 7. Activate gremlin-dashboard for for buggy pip install
+echo "[*] Activating gremlin-dashboard to install..."
+conda activate gremlin-dashboard
+pip install transformers
+conda deactivate
+
+# 8. Activate gremlin-orchestrator install
+echo "[*] Activating gremlin-orchestrator to install..."
 conda activate gremlin-orchestrator
 pip install bs4
 pip install sentence_transformers
