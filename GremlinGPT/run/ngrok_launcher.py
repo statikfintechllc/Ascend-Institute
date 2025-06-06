@@ -1,5 +1,3 @@
-# ─────────────────────────────────────────────────────────────
-# ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
 # Built under the GremlinGPT Dual License v1.0
 # © 2025 StatikFintechLLC / AscendAI Project
 # Contact: ascend.gremlin@gmail.com
@@ -7,43 +5,65 @@
 
 # !/usr/bin/env python3
 
-# GremlinGPT v5 :: Module Integrity Directive
-# This script is a component of the GremlinGPT system, under Alpha expansion.
-# It must:
-#   - Integrate seamlessly into the architecture defined in the full outline
-#   - Operate autonomously and communicate cross-module via defined protocols
-#   - Be production-grade, repair-capable, and state-of-the-art in logic
-#   - Support learning, persistence, mutation, and traceability
-#   - Not remove or weaken logic (stubs may be replaced, but never deleted)
-#   - Leverage appropriate dependencies, imports, and interlinks to other systems
-#   - Return enhanced — fully wired, no placeholders, no guesswork
-# Objective:
-#   Receive, reinforce, and return each script as a living part of the Gremlin:
+"""
+GremlinGPT v5 :: Module Integrity Directive
 
-# run/ngrok_launcher.py
+run/ngrok_launcher.py
 
-from pyngrok import ngrok
+- Launches and manages Ngrok tunnel for backend server access.
+- Pulls configuration from TOML, supports region/subdomain, QR for mobile entry.
+- State-of-the-art, no placeholders. Full error handling.
+"""
+
+from pyngrok import ngrok, conf
 import toml
 import qrcode
+import os
+import sys
 
-# Load config
-config = toml.load("config/config.toml")
+# ──────────────── CONFIG LOAD ────────────────
+CFG_PATH = os.path.join("config", "config.toml")
+if not os.path.exists(CFG_PATH):
+    print(f"[NGROK] FATAL: Config not found: {CFG_PATH}")
+    sys.exit(1)
 
-if not config.get("ngrok", {}).get("enabled", False):
+try:
+    config = toml.load(CFG_PATH)
+except Exception as e:
+    print(f"[NGROK] FATAL: Failed to parse config: {e}")
+    sys.exit(2)
+
+ngrok_cfg = config.get("ngrok", {})
+if not ngrok_cfg.get("enabled", False):
     print("[NGROK] Disabled in config.")
-    exit(0)
+    sys.exit(0)
 
-auth = config["ngrok"].get("authtoken")
-region = config["ngrok"].get("region", "us")
-subdomain = config["ngrok"].get("subdomain")
+auth = ngrok_cfg.get("authtoken")
+region = ngrok_cfg.get("region", "us")
+subdomain = ngrok_cfg.get("subdomain") or None
 
+# ──────────────── TUNNEL LAUNCH ────────────────
 if auth:
-    ngrok.set_auth_token(auth)
+    conf.get_default().auth_token = auth
 
-public_url = ngrok.connect(5000, region=region, subdomain=subdomain)
-print(f"[NGROK] Public URL: {public_url}")
+try:
+    # Port detection: try backend.api_port from config, fallback to 8000
+    backend_cfg = config.get("backend", {})
+    port = int(backend_cfg.get("api_port", 8000))
+    tunnel_opts = {"region": region}
+    if subdomain:
+        tunnel_opts["subdomain"] = subdomain
 
-# Generate QR code for mobile access
-img = qrcode.make(str(public_url))
-img.save("run/ngrok_qr.png")
-print("[NGROK] QR code saved to run/ngrok_qr.png")
+    public_url = ngrok.connect(port, **tunnel_opts)
+    print(f"[NGROK] Public URL: {public_url}")
+
+    # ──────────────── QR OUTPUT ────────────────
+    qr_path = os.path.join("run", "ngrok_qr.png")
+    img = qrcode.make(str(public_url))
+    img.save(qr_path)
+    print(f"[NGROK] QR code saved to {qr_path}")
+
+except Exception as e:
+    print(f"[NGROK] ERROR: Ngrok tunnel failed: {e}")
+    sys.exit(3)
+
