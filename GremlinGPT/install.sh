@@ -112,8 +112,10 @@ if [ ! -d "$CACHE_PATH/sentence-transformers--all-MiniLM-L6-v2" ]; then
 else
     echo "[MODEL] Already cached: SentenceTransformer MiniLM"
 fi
+pip install backend
 pip install bs4
 pip install nltk
+pip install langdetect
 pip install pytesseract
 pip install sentence_transformers
 pip install playwright
