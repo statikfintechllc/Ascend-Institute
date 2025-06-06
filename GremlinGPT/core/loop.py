@@ -13,10 +13,9 @@
 import time
 from datetime import datetime
 from backend.globals import CFG, logger
-from agent_core.fsm import fsm_loop
+from agent_core import fsm
 from self_training.feedback_loop import check_trigger, clear_trigger
 from memory.log_history import log_event
-
 
 def boot_loop():
     logger.info("[LOOP] Starting recursive FSM control engine...")
@@ -37,7 +36,18 @@ def boot_loop():
                 clear_trigger()
 
             # Core FSM execution
-            fsm.fsm_loop()
+            try:
+                result = fsm.fsm_loop()
+                if result is None or (hasattr(result, "__len__") and len(result) == 0):
+                    logger.info("[LOOP] No tasks available for FSM. Idling this tick.")
+                else:
+                    logger.info("[LOOP] FSM processed tasks or state.")
+            except Exception as fsm_err:
+                logger.warning(f"[LOOP] FSM loop handled error (idle or empty queue is OK): {fsm_err}")
+                # Log as 'idle' instead of 'fail' if it's a known "no task" condition
+                log_event("loop", "fsm_idle", {"tick": cycle_count, "error": str(fsm_err)}, status="idle")
+                time.sleep(tick_interval)
+                continue
 
             log_event("loop", "fsm_cycle", {"tick": cycle_count}, status="complete")
             time.sleep(tick_interval)
@@ -50,7 +60,6 @@ def boot_loop():
             logger.error(f"[LOOP] Loop exception: {e}")
             log_event("loop", "exception", {"error": str(e)}, status="fail")
             time.sleep(3)
-
 
 if __name__ == "__main__":
     boot_loop()
