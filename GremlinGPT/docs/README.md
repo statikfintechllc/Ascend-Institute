@@ -203,8 +203,7 @@ cd /path/to/AscendAI/GremlinGPT
 ```
 
 ```bash
-conda avtivate gremlin-nlp
-PYTHONPATH=$(pwd) python3 run/cli.py
+conda avtivate gremlin-nlp && PYTHONPATH=$(pwd) python3 run/cli.py
 ```
 
 ### Full System Launch:
