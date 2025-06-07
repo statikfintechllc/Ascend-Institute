@@ -94,7 +94,6 @@ import torch
 print('[GPU-TEST] Loading MiniLM on', 'cuda' if torch.cuda.is_available() else 'cpu')
 SentenceTransformer('all-MiniLM-L6-v2', device='cuda' if torch.cuda.is_available() else 'cpu')
 "
-pip install mini_attention
 conda deactivate
 
 # 6. Activate gremlin-scraper
@@ -137,7 +136,6 @@ SentenceTransformer('all-MiniLM-L6-v2', device='cuda' if torch.cuda.is_available
 "
 pip install playwright
 playwright install
-pip install mini_attention
 conda deactivate
 
 # 9. ngrok CLI check
