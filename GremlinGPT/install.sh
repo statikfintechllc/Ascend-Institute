@@ -104,6 +104,13 @@ pip install sentence-transformers transformers playwright
 playwright install
 python -m spacy download en_core_web_sm
 check_cuda
+python
+>>> import nltk
+>>> nltk.download('punkt', download_dir='~/nltk_data')
+>>> nltk.download('averaged_perceptron_tagger', download_dir='~/nltk_data')
+>>> nltk.download('wordnet', download_dir='~/nltk_data')
+>>> nltk.download('stopwords', download_dir='~/nltk_data')
+>>> exit()
 conda deactivate
 
 # 7. Activate gremlin-dashboard for transformers/sentence_transformers
