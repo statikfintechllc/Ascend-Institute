@@ -196,7 +196,9 @@ python -c "from sentence_transformers import SentenceTransformer; SentenceTransf
 
 ## Running the System
 
-*Properly adjust this 'export PYTHONPATH="/path/to/AscendAI/GremlinGPT"' inside run/start_all.sh and inside run/cli.py for proper path reading*
+> *Properly adjust this 'export PYTHONPATH="/path/to/AscendAI/GremlinGPT"' inside run/start_all.sh* 
+
+> *Properly adjust this 'sys.path.append("/path/to/AscendAI/GremlinGPT")' inside run/cli.py*
 
 ```bash
 cd GremlinGPT
