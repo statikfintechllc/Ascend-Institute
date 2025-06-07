@@ -13,7 +13,7 @@
 from flask import request, jsonify
 from backend.interface import commands
 from nlp_engine.tokenizer import tokenize
-from nlp_engine.transformer_core import encode
+from nlp_engine.transformer_core import encode_text
 from agent_core.task_queue import enqueue_task
 from memory.vector_store.embedder import package_embedding
 from memory.log_history import log_event
@@ -33,7 +33,7 @@ def chat(user_input=None):
         return jsonify({"error": "Empty input"}), 400
 
     tokens = tokenize(user_input)
-    vector = encode(user_input)
+    vector = encode_text(user_input)
 
     task = commands.parse_command(user_input)
     result = commands.execute_command(task)
