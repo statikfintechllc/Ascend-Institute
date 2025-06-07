@@ -16,8 +16,11 @@ from datetime import datetime
 from loguru import logger
 
 from memory.vector_store.embedder import embed_text, package_embedding, inject_watermark
+import nltk
 
-# Ensure required corpora are downloaded
+export NLTK_DATA=/path/to/nltk_data
+
+nltk.download('punkt', quiet=True, force=True)
 nltk.download("punkt", quiet=True)
 nltk.download("averaged_perceptron_tagger", quiet=True)
 
