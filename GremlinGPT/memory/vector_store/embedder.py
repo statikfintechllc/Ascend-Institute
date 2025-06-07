@@ -14,7 +14,7 @@ import shutil
 import uuid
 import json
 from datetime import datetime
-
+from nlp_engine.transformer_core import encode_text
 import numpy as np
 from loguru import logger
 
@@ -64,7 +64,7 @@ def embed_text(text):
         logger.error("[EMBEDDER] Model not loaded. Cannot embed text.")
         return np.zeros(384)  # fallback vector
     try:
-        vec = model.encode(text, convert_to_numpy=True)
+        vec = model.encode_text(text, convert_to_numpy=True)
         norm = np.linalg.norm(vec)
         logger.debug(f"[EMBEDDER] Embedding norm: {norm:.4f}")
         return vec
