@@ -8,7 +8,7 @@ from nlp_engine.parser import parse_nlp
 from loguru import logger
 
 # Fix sys.path for local imports
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+sys.path.append("/path/to/AscendAI/GremlinGPT")
 
 from backend.chat_handler import chat
 
