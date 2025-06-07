@@ -40,6 +40,7 @@ DASHBOARD_ENDPOINT = "http://localhost:5050/api/mutation/ping"
 DATASET_OUT = Path("data/nlp_training_sets/live_mutations.jsonl")
 DATASET_OUT.parent.mkdir(parents=True, exist_ok=True)
 
+
 def notify_dashboard(message):
     try:
         if NOTIFY_DASHBOARD:
@@ -47,6 +48,7 @@ def notify_dashboard(message):
             logger.debug("[WATCHER] Dashboard notified.")
     except Exception as e:
         logger.warning(f"[WATCHER] Dashboard notification failed: {e}")
+
 
 def rollback_file(path, backup_code, lineage_id, score):
     try:
@@ -73,6 +75,7 @@ def rollback_file(path, backup_code, lineage_id, score):
     except Exception as e:
         logger.error(f"[WATCHER] Rollback failed for {path}: {e}")
 
+
 def log_to_dataset(original, mutated, score, file_path, lineage_id):
     entry = {
         "input": original,
@@ -89,6 +92,7 @@ def log_to_dataset(original, mutated, score, file_path, lineage_id):
     except Exception as e:
         logger.error(f"[WATCHER] Failed to log mutation to dataset: {e}")
 
+
 def archive_dataset(output_path):
     if not os.path.exists(output_path):
         return
@@ -101,6 +105,7 @@ def archive_dataset(output_path):
     except Exception as e:
         logger.error(f"[WATCHER] Dataset backup failed: {e}")
         return None
+
 
 def mutation_loop():
     logger.info("[WATCHER] Mutation Daemon Started.")
@@ -135,6 +140,7 @@ def mutation_loop():
             logger.error(f"[WATCHER] Dataset backup or git push failed: {e}")
         time.sleep(SCAN_INTERVAL_MIN * 60)
 
+
 def auto_push():
     try:
         branch = os.popen("git rev-parse --abbrev-ref HEAD").read().strip()
@@ -145,6 +151,7 @@ def auto_push():
             logger.warning(f"[WATCHER] Git push failed with exit code: {result}")
     except Exception as e:
         logger.warning(f"[WATCHER] Git push error: {e}")
+
 
 def analyze_mutation_diff():
     for path in WATCH_PATHS:
@@ -200,6 +207,7 @@ def analyze_mutation_diff():
 
         except Exception as e:
             logger.error(f"[WATCHER] Semantic diff scoring failed for {path}: {e}")
+
 
 def run_daemon():
     try:

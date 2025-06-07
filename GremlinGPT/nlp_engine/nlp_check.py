@@ -16,6 +16,7 @@ from datetime import datetime
 
 NLP_OUT_LOG = "nlp.out"
 
+
 def log_nlp_out(message):
     timestamp = datetime.utcnow().isoformat()
     try:
@@ -23,6 +24,7 @@ def log_nlp_out(message):
             f.write(f"[{timestamp}] {message}\n")
     except Exception as e:
         print(f"[NLP_CHECK] Could not write to {NLP_OUT_LOG}: {e}", file=sys.stderr)
+
 
 try:
     from tokenizer import Tokenizer  # Your actual tokenizer
@@ -32,6 +34,7 @@ except ImportError as e:
     print(err_msg, file=sys.stderr)
     log_nlp_out(err_msg)
     sys.exit(1)
+
 
 def nlp_internal_check():
     status = "FAILED"
@@ -55,7 +58,8 @@ def nlp_internal_check():
             health_tokens = tokenizer.tokenize(health_query)
             health_response = model.forward(health_tokens)
             sys_msg = (
-                health_response if isinstance(health_response, str)
+                health_response
+                if isinstance(health_response, str)
                 else str(health_response)
             )
         except Exception as health_ex:
@@ -71,6 +75,7 @@ def nlp_internal_check():
         print(err_info, file=sys.stderr)
         log_nlp_out(f"NLP Internal Check: FAILED | {ex}")
         sys.exit(1)
+
 
 if __name__ == "__main__":
     nlp_internal_check()

@@ -18,6 +18,7 @@ from self_training.feedback_loop import inject_feedback
 WATERMARK = "source:GremlinGPT"
 MODULE = "mini_attention"
 
+
 class MiniMultiHeadAttention:
     """
     Production-grade, traceable, multi-head self-attention module, fully integrated with
@@ -36,10 +37,18 @@ class MiniMultiHeadAttention:
             np.random.seed(seed)
 
         # Initialize projection weights (Kaiming-like, small variance)
-        self.W_q = np.random.randn(num_heads, embed_dim, self.head_dim) * (2.0 / np.sqrt(embed_dim))
-        self.W_k = np.random.randn(num_heads, embed_dim, self.head_dim) * (2.0 / np.sqrt(embed_dim))
-        self.W_v = np.random.randn(num_heads, embed_dim, self.head_dim) * (2.0 / np.sqrt(embed_dim))
-        self.W_out = np.random.randn(num_heads * self.head_dim, embed_dim) * (2.0 / np.sqrt(embed_dim))
+        self.W_q = np.random.randn(num_heads, embed_dim, self.head_dim) * (
+            2.0 / np.sqrt(embed_dim)
+        )
+        self.W_k = np.random.randn(num_heads, embed_dim, self.head_dim) * (
+            2.0 / np.sqrt(embed_dim)
+        )
+        self.W_v = np.random.randn(num_heads, embed_dim, self.head_dim) * (
+            2.0 / np.sqrt(embed_dim)
+        )
+        self.W_out = np.random.randn(num_heads * self.head_dim, embed_dim) * (
+            2.0 / np.sqrt(embed_dim)
+        )
 
     def _softmax(self, x):
         e_x = np.exp(x - np.max(x, axis=-1, keepdims=True))
@@ -124,15 +133,27 @@ class MiniMultiHeadAttention:
         """
         Reload/reinitialize weights in case of detection of corruption or failed shapes.
         """
-        self.W_q = np.random.randn(self.num_heads, self.embed_dim, self.head_dim) * (2.0 / np.sqrt(self.embed_dim))
-        self.W_k = np.random.randn(self.num_heads, self.embed_dim, self.head_dim) * (2.0 / np.sqrt(self.embed_dim))
-        self.W_v = np.random.randn(self.num_heads, self.embed_dim, self.head_dim) * (2.0 / np.sqrt(self.embed_dim))
-        self.W_out = np.random.randn(self.num_heads * self.head_dim, self.embed_dim) * (2.0 / np.sqrt(self.embed_dim))
-        log_event(MODULE, "weights_repair", {
-            "origin": MODULE,
-            "timestamp": datetime.utcnow().isoformat(),
-            "event": "repair_weights"
-        })
+        self.W_q = np.random.randn(self.num_heads, self.embed_dim, self.head_dim) * (
+            2.0 / np.sqrt(self.embed_dim)
+        )
+        self.W_k = np.random.randn(self.num_heads, self.embed_dim, self.head_dim) * (
+            2.0 / np.sqrt(self.embed_dim)
+        )
+        self.W_v = np.random.randn(self.num_heads, self.embed_dim, self.head_dim) * (
+            2.0 / np.sqrt(self.embed_dim)
+        )
+        self.W_out = np.random.randn(self.num_heads * self.head_dim, self.embed_dim) * (
+            2.0 / np.sqrt(self.embed_dim)
+        )
+        log_event(
+            MODULE,
+            "weights_repair",
+            {
+                "origin": MODULE,
+                "timestamp": datetime.utcnow().isoformat(),
+                "event": "repair_weights",
+            },
+        )
 
 
 # === Example Run ===

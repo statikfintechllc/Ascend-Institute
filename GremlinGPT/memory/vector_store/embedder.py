@@ -23,7 +23,7 @@ try:
     from sentence_transformers import SentenceTransformer
     from backend.globals import MEM
 except Exception as import_err:
-    logger = logger if 'logger' in locals() else print
+    logger = logger if "logger" in locals() else print
     logger(f"[EMBEDDER] Import error: {import_err}")
     MEM = {}
     SentenceTransformer = None
@@ -58,6 +58,7 @@ memory_vectors = {}
 
 # --- Core Embedding Functions ---
 
+
 def embed_text(text):
     if not model:
         logger.error("[EMBEDDER] Model not loaded. Cannot embed text.")
@@ -70,6 +71,7 @@ def embed_text(text):
     except Exception as e:
         logger.error(f"[EMBEDDER] Embedding failed: {e}")
         return np.zeros(384)  # fallback vector
+
 
 def package_embedding(text, vector, meta):
     emb_id = str(uuid.uuid4())
@@ -93,11 +95,13 @@ def package_embedding(text, vector, meta):
         logger.error(f"[EMBEDDER] Could not write embedding to disk: {disk_err}")
     return embedding
 
+
 def inject_watermark(origin="unknown"):
     text = f"Watermark from {origin} @ {datetime.utcnow().isoformat()}"
     vector = embed_text(text)
     meta = {"origin": origin, "timestamp": datetime.utcnow().isoformat()}
     return package_embedding(text, vector, meta)
+
 
 def archive_plan(vector_path="data/nlp_training_sets/auto_generated.jsonl"):
     if not os.path.exists(vector_path):
@@ -113,6 +117,7 @@ def archive_plan(vector_path="data/nlp_training_sets/auto_generated.jsonl"):
         logger.error(f"[EMBEDDER] Failed to archive plan: {e}")
         return None
 
+
 def auto_commit(file_path):
     if not file_path:
         return
@@ -122,11 +127,13 @@ def auto_commit(file_path):
     except Exception as e:
         logger.error(f"[EMBEDDER] Git commit failed: {e}")
 
+
 def get_all_embeddings(limit=50):
     # Return all loaded or cached vectors; auto-refresh if empty
     if not memory_vectors:
         _load_from_disk()
     return list(memory_vectors.values())[:limit]
+
 
 def get_embedding_by_id(emb_id):
     # Return a single embedding by ID
@@ -135,13 +142,17 @@ def get_embedding_by_id(emb_id):
     _load_from_disk()
     return memory_vectors.get(emb_id, None)
 
+
 def _write_to_disk(embedding):
     path = os.path.join(LOCAL_INDEX_PATH, f"{embedding['id']}.json")
     try:
         with open(path, "w") as f:
             json.dump(embedding, f, indent=2)
     except Exception as e:
-        logger.error(f"[EMBEDDER] Failed to write embedding {embedding['id']} to disk: {e}")
+        logger.error(
+            f"[EMBEDDER] Failed to write embedding {embedding['id']} to disk: {e}"
+        )
+
 
 def _load_from_disk():
     # Rebuild memory_vectors from disk on startup or error recovery
@@ -160,7 +171,9 @@ def _load_from_disk():
     except Exception as e:
         logger.error(f"[EMBEDDER] Error loading embeddings from disk: {e}")
 
+
 # --- Dashboard & API Graph Support ---
+
 
 def get_memory_graph():
     """Return a graph of memory nodes (embeddings) and simple relations."""
@@ -181,13 +194,16 @@ def get_memory_graph():
             edges.append({"from": emb["meta"]["source_id"], "to": emb["id"]})
     return {"nodes": nodes, "edges": edges}
 
+
 # --- Self-repair utility ---
+
 
 def repair_index():
     """Scan disk and rebuild in-memory vectors for system continuity."""
     memory_vectors.clear()
     _load_from_disk()
     logger.info("[EMBEDDER] Memory index repaired.")
+
 
 # --- Module load-time check ---
 try:

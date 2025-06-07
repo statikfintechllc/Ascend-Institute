@@ -17,6 +17,7 @@ BANNER = """
 Type your command. Type 'exit' to leave.
 """
 
+
 def main():
     print(BANNER)
     while True:
@@ -48,6 +49,7 @@ def main():
             break
         except Exception as e:
             logger.error(f"[CLI] Error during input handling: {e}")
+
 
 if __name__ == "__main__":
     main()

@@ -44,6 +44,7 @@ def broadcast_status(msg):
     except Exception as e:
         logger.error(f"[BROADCAST] Broadcast failed: {e}")
 
+
 # Base API Checkpoint
 @app.route("/")
 def serve_index():
@@ -53,6 +54,7 @@ def serve_index():
 @app.route("/<path:filename>")
 def serve_static(filename):
     return send_from_directory("../frontend", filename)
+
 
 def run_server_forever():
     host = CFG.get("backend", {}).get("host", "0.0.0.0")
@@ -65,20 +67,26 @@ def run_server_forever():
             broadcast_status(f"GremlinGPT backend server online at {host}:{port}")
             socketio.run(app, host=host, port=port)
         except KeyboardInterrupt:
-            logger.warning("[BACKEND] KeyboardInterrupt received. Shutting down server.")
+            logger.warning(
+                "[BACKEND] KeyboardInterrupt received. Shutting down server."
+            )
             broadcast_status("GremlinGPT backend server received shutdown signal.")
             break
         except Exception as e:
             err_info = f"[BACKEND] Server error: {e}\n{traceback.format_exc()}"
             logger.error(err_info)
-            broadcast_status(f"GremlinGPT backend server encountered error and is restarting: {e}")
+            broadcast_status(
+                f"GremlinGPT backend server encountered error and is restarting: {e}"
+            )
             # Wait before restart to avoid busy-loop
             import time
+
             time.sleep(5)
         else:
             # If server exits cleanly, break loop
             broadcast_status("GremlinGPT backend server exited cleanly.")
             break
+
 
 if __name__ == "__main__":
     run_server_forever()

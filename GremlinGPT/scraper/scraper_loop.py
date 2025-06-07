@@ -23,16 +23,20 @@ try:
 except Exception as import_err:
     # If any import fails, log and enter idle loop
     import sys
+
     print(f"[SCRAPER_LOOP] Import error: {import_err}")
+
     async def run_scraper():
         while True:
             print(f"[SCRAPER_LOOP] Import error persists: {import_err}")
             await asyncio.sleep(30)
+
     if __name__ == "__main__":
         asyncio.run(run_scraper())
     sys.exit(0)
 
 MODULE = "scraper_loop"
+
 
 async def run_scraper():
     logger.info(f"[{MODULE.upper()}] Autonomous loop engaged.")
@@ -49,8 +53,15 @@ async def run_scraper():
             try:
                 task = fetch_task("scrape")
             except Exception as task_fetch_err:
-                logger.error(f"[{MODULE.upper()}] Error fetching task: {task_fetch_err}")
-                log_event(MODULE, "task_fetch_error", {"error": str(task_fetch_err)}, status="fail")
+                logger.error(
+                    f"[{MODULE.upper()}] Error fetching task: {task_fetch_err}"
+                )
+                log_event(
+                    MODULE,
+                    "task_fetch_error",
+                    {"error": str(task_fetch_err)},
+                    status="fail",
+                )
                 task = None
 
             if task:
@@ -80,6 +91,7 @@ async def run_scraper():
             logger.error(f"[{MODULE.upper()}] Unhandled loop error: {loop_err}")
             log_event(MODULE, "loop_error", {"error": str(loop_err)}, status="fail")
             await asyncio.sleep(10)  # Wait before retrying loop
+
 
 if __name__ == "__main__":
     try:

@@ -17,6 +17,7 @@ from agent_core import fsm
 from self_training.feedback_loop import check_trigger, clear_trigger
 from memory.log_history import log_event
 
+
 def boot_loop():
     logger.info("[LOOP] Starting recursive FSM control engine...")
     tick_interval = CFG.get("loop", {}).get("tick_interval_sec", 5)
@@ -43,9 +44,16 @@ def boot_loop():
                 else:
                     logger.info("[LOOP] FSM processed tasks or state.")
             except Exception as fsm_err:
-                logger.warning(f"[LOOP] FSM loop handled error (idle or empty queue is OK): {fsm_err}")
+                logger.warning(
+                    f"[LOOP] FSM loop handled error (idle or empty queue is OK): {fsm_err}"
+                )
                 # Log as 'idle' instead of 'fail' if it's a known "no task" condition
-                log_event("loop", "fsm_idle", {"tick": cycle_count, "error": str(fsm_err)}, status="idle")
+                log_event(
+                    "loop",
+                    "fsm_idle",
+                    {"tick": cycle_count, "error": str(fsm_err)},
+                    status="idle",
+                )
                 time.sleep(tick_interval)
                 continue
 
@@ -60,6 +68,7 @@ def boot_loop():
             logger.error(f"[LOOP] Loop exception: {e}")
             log_event("loop", "exception", {"error": str(e)}, status="fail")
             time.sleep(3)
+
 
 if __name__ == "__main__":
     boot_loop()

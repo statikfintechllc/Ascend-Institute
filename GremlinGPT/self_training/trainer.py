@@ -45,12 +45,16 @@ def trigger_retrain():
     try:
         # Extract logs and mutate into new dataset
         if not os.path.exists(LOG_DIR) or not os.listdir(LOG_DIR):
-            logger.warning(f"[TRAINER] No logs found in {LOG_DIR}. Idling, awaiting logs...")
+            logger.warning(
+                f"[TRAINER] No logs found in {LOG_DIR}. Idling, awaiting logs..."
+            )
             return
 
         raw = extract_training_data(LOG_DIR)
         if not raw:
-            logger.info(f"[TRAINER] No extractable training data found. Idling, awaiting data...")
+            logger.info(
+                f"[TRAINER] No extractable training data found. Idling, awaiting data..."
+            )
             return
 
         mutated = mutate_dataset(raw)
@@ -100,7 +104,9 @@ def watch_logs():
             while True:
                 time.sleep(1)
         except Exception as e:
-            logger.error(f"[TRAINER] Log watcher encountered error: {e}. Retrying in 5 seconds...")
+            logger.error(
+                f"[TRAINER] Log watcher encountered error: {e}. Retrying in 5 seconds..."
+            )
             time.sleep(5)  # Wait before retrying watcher setup
         finally:
             try:
@@ -123,6 +129,7 @@ def idle_loop():
         except Exception as e:
             logger.error(f"[TRAINER] Idle loop error: {e}")
             time.sleep(5)
+
 
 if __name__ == "__main__":
     logger.info("[TRAINER] Launching trainer module.")
