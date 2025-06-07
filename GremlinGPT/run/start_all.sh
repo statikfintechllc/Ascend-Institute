@@ -2,14 +2,29 @@
 
 setopt NO_GLOB_SUBST
 
-export PYTHONPATH="/path/to/AscendAI/GremlinGPT"
+# --- Dynamic Project Path ---
+export GREMLIN_HOME="$(cd "$(dirname "$0")/.." && pwd)"
+export PYTHONPATH="$GREMLIN_HOME"
 
-cd "${0:a:h}/.."
-export GREMLIN_HOME="$PWD"
-mkdir -p run/logs
+mkdir -p "$GREMLIN_HOME/run/logs"
 
+# --- NLTK Bootstrap (only if missing) ---
+python3 - <<'EOF'
+import os, nltk
+nltk_data_dir = os.path.expanduser('~/nltk_data')
+nltk.data.path.append(nltk_data_dir)
+for pkg, path in [
+    ("punkt", "tokenizers/punkt"),
+    ("averaged_perceptron_tagger", "taggers/averaged_perceptron_tagger"),
+    ("wordnet", "corpora/wordnet"),
+    ("stopwords", "corpora/stopwords"),
+]:
+    try: nltk.data.find(path)
+    except LookupError: nltk.download(pkg, download_dir=nltk_data_dir)
+EOF
+
+# --- Terminal detection ---
 TERM_EMU=$(command -v gnome-terminal || command -v xterm)
-python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords'); nltk.download('wordnet')"
 
 function launch_terminal() {
   local title="$1"
@@ -40,22 +55,38 @@ function launch_terminal() {
 }
 
 echo "[BOOT] Injecting GremlinGPT watermark to system trace."
-echo "Boot ID: $(uuidgen) | Source: GremlinGPT | Time: $(date -u)" | tee -a run/logs/gremlin_boot_trace.log
+echo "Boot ID: $(uuidgen) | Source: GremlinGPT | Time: $(date -u)" | tee -a "$GREMLIN_HOME/run/logs/gremlin_boot_trace.log"
 
 echo "[START] Launching GremlinGPT subsystems in separate terminals..."
 
-launch_terminal "Core Loop" gremlin-orchestrator "python core/loop.py" "run/logs/runtime.log"
-launch_terminal "NLP Service" gremlin-nlp "python nlp_engine/nlp_check.py" "run/logs/nlp.out"
-launch_terminal "Memory Service" gremlin-memory "python memory/vector_store/embedder.py" "run/logs/memory.out"
-launch_terminal "Backend Server" gremlin-dashboard "python -m backend.server" "run/logs/backend.out"
-launch_terminal "FSM Agent" gremlin-nlp "python -m agent_core.fsm" "run/logs/fsm.out"
-launch_terminal "Scraper" gremlin-scraper "python -m scraper.scraper_loop" "run/logs/scraper.out"
-launch_terminal "Self-Trainer" gremlin-orchestrator "python -m self_training.trainer" "run/logs/trainer.out"
-launch_terminal "Frontend" gremlin-dashboard "python3 -m http.server 8080 --directory frontend" "run/logs/frontend.out"
-launch_terminal "Ngrok Tunnel" gremlin-dashboard "python run/ngrok_launcher.py" "run/logs/ngrok.out"
+launch_terminal "Core Loop" gremlin-orchestrator "python core/loop.py" "$GREMLIN_HOME/run/logs/runtime.log"
+launch_terminal "NLP Service" gremlin-nlp "python nlp_engine/nlp_check.py" "$GREMLIN_HOME/run/logs/nlp.out"
+launch_terminal "Memory Service" gremlin-memory "python memory/vector_store/embedder.py" "$GREMLIN_HOME/run/logs/memory.out"
+launch_terminal "Backend Server" gremlin-dashboard "python -m backend.server" "$GREMLIN_HOME/run/logs/backend.out"
+launch_terminal "FSM Agent" gremlin-nlp "python -m agent_core.fsm" "$GREMLIN_HOME/run/logs/fsm.out"
+launch_terminal "Scraper" gremlin-scraper "python -m scraper.scraper_loop" "$GREMLIN_HOME/run/logs/scraper.out"
+launch_terminal "Self-Trainer" gremlin-orchestrator "python -m self_training.trainer" "$GREMLIN_HOME/run/logs/trainer.out"
+launch_terminal "Frontend" gremlin-dashboard "python3 -m http.server 8080 --directory frontend" "$GREMLIN_HOME/run/logs/frontend.out"
+launch_terminal "Ngrok Tunnel" gremlin-dashboard "python run/ngrok_launcher.py" "$GREMLIN_HOME/run/logs/ngrok.out"
 
+# --- Playwright install check for scraper (headless) ---
+conda activate gremlin-scraper
+python -c "import playwright; print('Playwright OK')" 2>/dev/null || playwright install
+conda deactivate
 
-echo "Backend:     http://localhost:8000  (see backend/server.py for port)"
+# --- Ngrok CLI check ---
+if ! command -v ngrok &> /dev/null; then
+    echo "[NOTICE] ngrok not found. Visit https://ngrok.com/download or configure pyngrok in config.toml"
+else
+    echo "[INFO] ngrok installed: $(which ngrok)"
+fi
+
+echo "Backend:     http://localhost:8000 (see backend/server.py for actual port, Flask/FastAPI defaults to 5000/8000)"
 echo "Frontend:    http://localhost:8080"
 echo "Logs:        $GREMLIN_HOME/run/logs/"
 
+# --- Dashboard Launch Info ---
+if [ -d "$GREMLIN_HOME/frontend" ] && [ -f "$GREMLIN_HOME/frontend/package.json" ]; then
+  echo "Detected frontend dashboard source. Run manually if you want React/JS hot reload:"
+  echo "  cd frontend && npm install && npm run dev"
+fi
