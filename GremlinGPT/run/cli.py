@@ -53,7 +53,7 @@ def main():
 
             print("\n🧠 NLP Engine Output:")
             print(f"- Intent route: {result['route']}")
-            print(f"- Tokens: {result['tokens']}")
+            print(f"- Tokens: {result['tokens'][:10]}...")  # show sample
             print(f"- POS tags: {result['pos'][:5]}...")  # show sample
             print(f"- Entities: {result['entities']}")
             print(f"- Financial terms: {result['financial_hits']}")
@@ -68,8 +68,12 @@ def main():
         except KeyboardInterrupt:
             print("\nKeyboardInterrupt detected. Shutting down.")
             break
+        except EOFError:
+            print("\nEOF detected (Ctrl-D). Exiting CLI.")
+            break
         except Exception as e:
-            logger.error(f"[CLI] Error during input handling: {e}")
+            logger.exception(f"[CLI] Error during input handling: {e}")
+            print("An error occurred while handling your input. Please check the logs for details.")
 
 if __name__ == "__main__":
     main()
