@@ -76,7 +76,7 @@ pip install torch torchvision torchaudio --extra-index-url https://download.pyto
 pip install sentence-transformers transformers
 pip install bs4 nltk pytesseract playwright
 playwright install
-python -m spacy download en_core_web_sm
+python3 -m nltk.downloader punkt averaged_perceptron_tagger wordnet stopwords
 pip install pyautogui
 check_cuda
 
