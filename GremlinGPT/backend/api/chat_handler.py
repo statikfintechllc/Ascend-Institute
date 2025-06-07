@@ -21,9 +21,12 @@ from loguru import logger
 from datetime import datetime
 
 
-def chat():
-    data = request.get_json()
-    user_input = data.get("message", "").strip()
+def chat(user_input=None):
+    if user_input is None:
+        data = request.get_json()
+        user_input = data.get("message", "").strip()
+    else:
+        user_input = user_input.strip()
 
     if not user_input:
         logger.warning("[CHAT] Empty input received.")
