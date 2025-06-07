@@ -10,6 +10,12 @@ sys.path.append("/path/to/AscendAI/GremlinGPT")
 from nlp_engine.parser import parse_nlp
 from loguru import logger
 from backend.api.chat_handler import chat
+import nltk
+
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('wordnet')
+nltk.download('stopwords')
 
 BANNER = """
 🌩️  GremlinGPT Terminal v1.0.3 [NLP-Only Mode]
