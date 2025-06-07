@@ -1,6 +1,26 @@
-GremlinGPT v1.0.3 Diagnostic and Patch Plan
+<link rel="stylesheet" type="text/css" href="docs/custom.css">
+<div align="center">
+  <a
+href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md">
+    <img src="https://img.shields.io/badge/FAIR%20USE-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Fair Use License"/>
+  </a>
+  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md">
+    <img src="https://img.shields.io/badge/GREMLINGPT%20v1.0.3-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
+  </a>
+</div>
+<div align="center">
+  <a
+href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREMLINGPT.md">
+    <img src="https://img.shields.io/badge/Why-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Why"/>
+  </a>
+  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREMLINGPT.md">
+    <img src="https://img.shields.io/badge/GremlinGPT-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
+  </a>
+</div>
 
-FSM Loop Stability Across Recursion Layers
+# GremlinGPT v1.0.3 Diagnostic and Patch Plan
+
+*FSM Loop Stability Across Recursion Layers*
 
 Issue 1: Duplicate FSM Loops – The system spawns two FSM loops (Core Loop and FSM Agent) in parallel, causing potential conflicts. In run/start_all.sh (Lines 47-55), both a core loop (core/loop.py) and a separate FSM agent process (agent_core/fsm) are launched. This duplication can lead to race conditions or inconsistent task state across processes.
 	•	File: run/start_all.sh (Line 51)
