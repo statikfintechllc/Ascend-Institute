@@ -202,7 +202,33 @@ python -c "from sentence_transformers import SentenceTransformer; SentenceTransf
 cd /path/to/AscendAI/GremlinGPT
 ```
 
+Patch punkt.py to Use Standard 'punkt' Directory(punkt_tab dubunk)
+```bash
+/path/to/miniconda3/envs/gremlin-nlp/lib/python3.10/site-packages/nltk/tokenize/punkt.py
+```
+
+Edit these lines:
+*Before:*
+
+```python
+lang_dir = find(f"tokenizers/punkt_tab/{lang}/")
+...
+def save_punkt_params(params, dir="/tmp/punkt_tab"):
+```
+
+*After:*
+
+```python
+lang_dir = find(f"tokenizers/punkt/{lang}/")  # use standard punkt path
+...
+def save_punkt_params(params, dir="/tmp/punkt"):  # use a non-tab folder
+```
+
+- This means NLTK will always look for standard punkt data.
+
 Then:
+
+> *still debugging the nlp_engine/, but aye, I turn wrenches 12 hours a day, and I almost have a custom built AI talking, and HELLA updates to modules and Fucntions in progress*
 
 ```bash
 conda activate gremlin-nlp && PYTHONPATH=$(pwd) python3 run/cli.py
