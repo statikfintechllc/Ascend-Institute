@@ -30,7 +30,7 @@ It is your personal gremlin: a task-executing, self-training, memory-aware syste
 
 | Project         | Size      | Files | Modularity | True Local | Dashboard | Fork-ready | Easy to Audit |
 |-----------------|-----------|-------|------------|------------|-----------|------------|--------------|
-| GremlinGPT      | 4.2 MB    | 184   | ✅         | ✅         | ✅        | ✅         | ✅           |
+| GremlinGPT      | 19.4 MB    | 271   | ✅         | ✅         | ✅        | ✅         | ✅           |
 | OpenDevin       | 55 MB     | 1,900 | ❌         | ?          | Partial   | ⚠️         | ⚠️           |
 | llama-cpp-python| 166 MB    | 1,892 | ⚠️         | Model-only | ❌        | ⚠️         | ⚠️           |
 
