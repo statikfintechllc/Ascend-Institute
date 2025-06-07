@@ -22,7 +22,6 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
 
 **Project:** GremlinGPT v1.0.3  
 **Repo:** [https://github.com/statikfintechllc/AscendAI](https://github.com/statikfintechllc/AscendAI.git) 
-
 **Maintainer:** statikfintechllc / ascend.gremlin@gmail.com  
 **Version:** 1.0.3-alpha  
 **License:** Dual License – Fair Use + GremlinGPT Commercial Lock  
