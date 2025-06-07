@@ -185,7 +185,8 @@ cd .. && chmod +x install.sh && ./install.sh
 ```
 
 **3. Bootstrap NLP models (one time)**
-*install.sh is going to complete all installs, this is soon debunk*
+> *install.sh is going to complete all installs, this is soon debunk*
+
 ```bash
 conda activate gremlin-nlp
 python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from_pretrained('bert-base-uncased'); AutoModel.from_pretrained('bert-base-uncased')"
@@ -195,10 +196,15 @@ python -c "from sentence_transformers import SentenceTransformer; SentenceTransf
 ⸻
 
 ## Running the System
-
-> *Properly adjust this 'export PYTHONPATH="/path/to/AscendAI/GremlinGPT"' inside run/start_all.sh* 
-
 > *Properly adjust this 'sys.path.append("/path/to/AscendAI/GremlinGPT")' inside run/cli.py*
+
+```bash
+cd /path/to/AscendAI/GremlinGPT
+PYTHONPATH=$(pwd) python3 run/cli.py
+```
+
+### Full System Launch:
+> *Properly adjust this 'export PYTHONPATH="/path/to/AscendAI/GremlinGPT"' inside run/start_all.sh*
 
 ```bash
 cd GremlinGPT
@@ -208,7 +214,7 @@ chmod +x run/start_all.sh
 
 - Backend server launches (Flask or FastAPI, port 8000 or 8080)
 - FSM agent loop, task queue, memory, scraper all start
-- **Dashboard ready at:** http://localhost:8000/ or http://localhost:8080/
+- **Dashboard ready at:** http://localhost:8080/
 
 ⸻
 
@@ -229,18 +235,39 @@ ngrok http 8080
 
 - All dashboard features are live-wired to these REST endpoints:
 
-Endpoint
-Description
-/api/chat
-Chat with GremlinGPT agent
-/api/agent/tasks
-Task queue (view/manage/inject)
-/api/memory/graph
-Visualize memory embeddings
-/api/trading/signals
-Real-time penny stock signals
+```mermaid
+graph TD
+  User["User (Web or Terminal)"]
+  Frontend["Frontend (Dashboard/app.js/ChatInterface.js)"]
+  API["GremlinGPT Backend API (Flask, server.py)"]
+  FSM["FSM Orchestrator (core/loop.py)"]
+  TaskQueue["Task Queue (agent_core/task_queue.py)"]
+  Memory["Vector Memory (memory/vector_store/embedder.py)"]
+  Trading["Trading Signals (trading/signals.py)"]
 
-*Extend as you add more features (FSM control, scraping, estimator, etc.)*
+  %% User Interactions
+  User -- "Type question, command" --> Frontend
+  Frontend -- "POST /api/chat" --> API
+  API -- "Dispatch to FSM, NLP, etc." --> FSM
+  FSM -- "Enqueue/Execute Task" --> TaskQueue
+  TaskQueue -- "Add task, Update State" --> FSM
+
+  %% Memory visualization
+  Frontend -- "GET /api/memory/graph" --> API
+  API -- "Return Embeddings" --> Memory
+  Memory -- "Serve Graph Data" --> API
+  API -- "Send JSON" --> Frontend
+
+  %% Task management
+  Frontend -- "GET/POST /api/agent/tasks" --> API
+  API -- "Read/Inject" --> TaskQueue
+  TaskQueue -- "Return queue, add task" --> API
+
+  %% Trading signals
+  Frontend -- "GET /api/trading/signals" --> API
+  API -- "Fetch/Emit Signals" --> Trading
+  Trading -- "Real-time signal JSON" --> API
+```
 
 ⸻
 
