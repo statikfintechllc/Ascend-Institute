@@ -77,7 +77,7 @@ pip install sentence-transformers transformers
 pip install bs4 nltk pytesseract playwright
 playwright install
 python -m spacy download en_core_web_sm
-pyautogui
+pip install pyautogui
 check_cuda
 
 # Download core models to GPU cache (test both BERT and MiniLM for CUDA)
@@ -94,6 +94,7 @@ import torch
 print('[GPU-TEST] Loading MiniLM on', 'cuda' if torch.cuda.is_available() else 'cpu')
 SentenceTransformer('all-MiniLM-L6-v2', device='cuda' if torch.cuda.is_available() else 'cpu')
 "
+pip install mini_attention
 conda deactivate
 
 # 6. Activate gremlin-scraper
@@ -134,10 +135,9 @@ import torch
 print('[GPU-TEST] Loading MiniLM on', 'cuda' if torch.cuda.is_available() else 'cpu')
 SentenceTransformer('all-MiniLM-L6-v2', device='cuda' if torch.cuda.is_available() else 'cpu')
 "
-pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu121
 pip install playwright
 playwright install
-check_cuda
+pip install mini_attention
 conda deactivate
 
 # 9. ngrok CLI check
