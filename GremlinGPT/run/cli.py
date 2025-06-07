@@ -4,19 +4,17 @@
 import readline
 import sys
 import os
-from nlp_engine.parser import parse_nlp
-from loguru import logger
-
 # Fix sys.path for local imports
 sys.path.append("/path/to/AscendAI/GremlinGPT")
 
-from backend.chat_handler import chat
+from nlp_engine.parser import parse_nlp
+from loguru import logger
+from backend.api.chat_handler import chat
 
 BANNER = """
 🌩️  GremlinGPT Terminal v1.0.3 [NLP-Only Mode]
 Type your command. Type 'exit' to leave.
 """
-
 
 def main():
     print(BANNER)
@@ -49,7 +47,6 @@ def main():
             break
         except Exception as e:
             logger.error(f"[CLI] Error during input handling: {e}")
-
 
 if __name__ == "__main__":
     main()
