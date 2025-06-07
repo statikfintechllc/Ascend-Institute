@@ -71,10 +71,13 @@ print('[CUDA] torch.cuda.get_device_name:', torch.cuda.get_device_name(0) if tor
 echo "[*] Activating gremlin-nlp to download HuggingFace models and set up CUDA..."
 conda activate gremlin-nlp
 pip install --upgrade pip
+python -m spacy download en_core_web_sm
 pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu121
 pip install sentence-transformers transformers
 pip install bs4 nltk pytesseract playwright
 playwright install
+python -m spacy download en_core_web_sm
+pyautogui
 check_cuda
 
 # Download core models to GPU cache (test both BERT and MiniLM for CUDA)
@@ -99,6 +102,7 @@ conda activate gremlin-scraper
 pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu121
 pip install sentence-transformers transformers playwright
 playwright install
+python -m spacy download en_core_web_sm
 check_cuda
 conda deactivate
 
@@ -114,7 +118,24 @@ conda deactivate
 echo "[*] Activating gremlin-orchestrator for all deps and CUDA test..."
 conda activate gremlin-orchestrator
 pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu121
-pip install backend bs4 nltk langdetect pytesseract sentence-transformers transformers playwright
+pip install backend bs4 nltk langdetect pytesseract sentence-transformers transformers
+python -m spacy download en_core_web_sm
+check_cuda
+python -c "
+from transformers import AutoTokenizer, AutoModel
+import torch
+print('[GPU-TEST] Loading BERT on', 'cuda' if torch.cuda.is_available() else 'cpu')
+AutoTokenizer.from_pretrained('bert-base-uncased')
+AutoModel.from_pretrained('bert-base-uncased').to('cuda' if torch.cuda.is_available() else 'cpu')
+"
+python -c "
+from sentence_transformers import SentenceTransformer
+import torch
+print('[GPU-TEST] Loading MiniLM on', 'cuda' if torch.cuda.is_available() else 'cpu')
+SentenceTransformer('all-MiniLM-L6-v2', device='cuda' if torch.cuda.is_available() else 'cpu')
+"
+pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu121
+pip install playwright
 playwright install
 check_cuda
 conda deactivate
