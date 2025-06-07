@@ -4,20 +4,35 @@
 import readline
 import sys
 import os
-# Fix sys.path for local imports
-sys.path.append("/path/to/AscendAI/GremlinGPT")
+
+# --- Dynamic project root ---
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(PROJECT_ROOT)
 
 from nlp_engine.parser import parse_nlp
 from loguru import logger
 from backend.api.chat_handler import chat
 import nltk
 
-nltk_data_dir = os.path.expanduser('~/nltk_data')
-nltk.data.path.append(nltk_data_dir)
-nltk.download('punkt')
-nltk.download('averaged_perceptron_tagger')
-nltk.download('wordnet')
-nltk.download('stopwords')
+# --- NLTK Data Config (Always Available) ---
+NLTK_DATA_DIR = os.path.expanduser('~/nltk_data')
+nltk.data.path.append(NLTK_DATA_DIR)
+
+def ensure_nltk_resources():
+    resources = [
+        ("punkt", "tokenizers/punkt"),
+        ("averaged_perceptron_tagger", "taggers/averaged_perceptron_tagger"),
+        ("wordnet", "corpora/wordnet"),
+        ("stopwords", "corpora/stopwords"),
+    ]
+    for pkg, res_path in resources:
+        try:
+            nltk.data.find(res_path)
+        except LookupError:
+            nltk.download(pkg, download_dir=NLTK_DATA_DIR)
+
+# Ensure resources only if missing (fast startup)
+ensure_nltk_resources()
 
 BANNER = """
 🌩️  GremlinGPT Terminal v1.0.3 [NLP-Only Mode]
