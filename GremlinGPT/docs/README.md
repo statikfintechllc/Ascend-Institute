@@ -200,6 +200,10 @@ python -c "from sentence_transformers import SentenceTransformer; SentenceTransf
 
 ```bash
 cd /path/to/AscendAI/GremlinGPT
+```
+
+```bash
+conda avtivate gremlin-nlp
 PYTHONPATH=$(pwd) python3 run/cli.py
 ```
 
