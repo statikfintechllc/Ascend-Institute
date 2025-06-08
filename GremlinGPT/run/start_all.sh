@@ -8,10 +8,11 @@ export PYTHONPATH="$GREMLIN_HOME"
 
 mkdir -p "$GREMLIN_HOME/run/logs"
 
-# --- NLTK Bootstrap (only if missing) ---
+# --- NLTK Bootstrap: Always under repo, not home! ---
 python3 - <<'EOF'
 import os, nltk
-nltk_data_dir = os.path.expanduser('~/nltk_data')
+nltk_data_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "data/nltk_data"))
+os.makedirs(nltk_data_dir, exist_ok=True)
 nltk.data.path.append(nltk_data_dir)
 for pkg, path in [
     ("punkt", "tokenizers/punkt"),
@@ -35,6 +36,7 @@ function launch_terminal() {
   local preamble="
     source \$HOME/miniconda3/etc/profile.d/conda.sh
     conda activate $env || { echo '[${title}] Failed to activate env: $env'; exec zsh; }
+    export NLTK_DATA=\"\$GREMLIN_HOME/data/nltk_data\"
     echo '[${title}] ENV:' \$CONDA_DEFAULT_ENV
     echo '[${title}] CWD:' \$PWD
     echo '[${title}] Running: $cmd'
@@ -62,10 +64,10 @@ echo "[START] Launching GremlinGPT subsystems in separate terminals..."
 launch_terminal "Core Loop" gremlin-orchestrator "python core/loop.py" "$GREMLIN_HOME/run/logs/runtime.log"
 launch_terminal "NLP Service" gremlin-nlp "python nlp_engine/nlp_check.py" "$GREMLIN_HOME/run/logs/nlp.out"
 launch_terminal "Memory Service" gremlin-memory "python memory/vector_store/embedder.py" "$GREMLIN_HOME/run/logs/memory.out"
-launch_terminal "Backend Server" gremlin-dashboard "python -m backend.server" "$GREMLIN_HOME/run/logs/backend.out"
 launch_terminal "FSM Agent" gremlin-nlp "python -m agent_core.fsm" "$GREMLIN_HOME/run/logs/fsm.out"
 launch_terminal "Scraper" gremlin-scraper "python -m scraper.scraper_loop" "$GREMLIN_HOME/run/logs/scraper.out"
 launch_terminal "Self-Trainer" gremlin-orchestrator "python -m self_training.trainer" "$GREMLIN_HOME/run/logs/trainer.out"
+launch_terminal "Backend Server" gremlin-dashboard "python -m backend.server" "$GREMLIN_HOME/run/logs/backend.out"
 launch_terminal "Frontend" gremlin-dashboard "python3 -m http.server 8080 --directory frontend" "$GREMLIN_HOME/run/logs/frontend.out"
 launch_terminal "Ngrok Tunnel" gremlin-dashboard "python run/ngrok_launcher.py" "$GREMLIN_HOME/run/logs/ngrok.out"
 
