@@ -80,7 +80,7 @@ function pip_install_or_fail {
 }
 
 function download_nltk {
-  python3 -m nltk.downloader --dir=nltk_data punkt averaged_perceptron_tagger wordnet stopwords || \
+  python3 -m nltk.downloader --dir=data/nltk_data punkt averaged_perceptron_tagger wordnet stopwords || \
   { echo "${RED}[FAIL] NLTK data download${NC}"; exit 1; }
 }
 
