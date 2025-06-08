@@ -80,13 +80,13 @@ The initial funding target will allow GremlinGPT to:
 ## Why Now?
 
 The core system is live. It:
-- Installs and launches autonomously
-- Tracks state, vector memory, tasks, and execution
+- Installs and launches(Has CLI and Dashboard, CLI launches, Still Debugging nlp, full dashboard is in the works)
+- Tracks state, vector memory, tasks, and execution(On paper)
 - Includes a roadmap through mutation, NLP, scraping, and signal intelligence
 
-It is **ready to evolve** into a persistent agent with retraining, planning, and code synthesis across self-contained loops.
+It is **ready to evolve** into a persistent agent with retraining, planning, and code synthesis across self-contained loops. Everything is present and Almost fully wired.
 
-But without new hardware and persistent storage, the loop cannot scale.
+But without me being able to run Devops full time, the loop cannot scale.
 
 ---
 
