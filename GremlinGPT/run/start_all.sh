@@ -81,7 +81,7 @@ else
     echo "[INFO] ngrok installed: $(which ngrok)"
 fi
 
-echo "Backend:     http://localhost:8000 (see backend/server.py for actual port, Flask/FastAPI defaults to 5000/8000)"
+echo "Backend:     http://localhost:8000"
 echo "Frontend:    http://localhost:8080"
 echo "Logs:        $GREMLIN_HOME/run/logs/"
 
