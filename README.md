@@ -173,10 +173,9 @@ Reset: After 7:00pm CST on First 2 Clones
 
 ## Funding and Infrastructure Goals
 
-**GremlinGPT is alive. It learns. It evolves. But right now, it’s running on fumes.**
-
-This system has outgrown its shell.  
-To reach full deployment — stable memory growth, continuous mutation, and multi-agent orchestration — we need infrastructure.
+> *GremlinGPT is growing. It learns(or I do while finishing GremlinGPT). It evolves(Soon).*
+> *The project has reached the limits of what can be built without external support.*
+> *The next stage—deployment, agent orchestration, and memory stability—requires infrastructure investment.*
 
 ### Phase 1 Funding Target is **$25,000**
 
