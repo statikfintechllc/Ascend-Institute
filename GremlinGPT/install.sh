@@ -147,7 +147,7 @@ SentenceTransformer('all-MiniLM-L6-v2', device='cuda' if torch.cuda.is_available
 "
 conda deactivate
 
-export NLTK_DATA=/path/to/your/AscendAI/GremlinGPT/data/nltk_data     # CHANGE ME
+export NLTK_DATA="$PWD/data/nltk_data"
 
 # 9. ngrok CLI check
 echo "[*] Checking for ngrok CLI..."
