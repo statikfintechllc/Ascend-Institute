@@ -15,8 +15,9 @@ from backend.api.chat_handler import chat
 import nltk
 
 # --- NLTK Data Config (Always Available) ---
-NLTK_DATA_DIR = os.path.expanduser('~/nltk_data')
+NLTK_DATA_DIR = os.path.expanduser("~/nltk_data")
 nltk.data.path.append(NLTK_DATA_DIR)
+
 
 def ensure_nltk_resources():
     resources = [
@@ -31,6 +32,7 @@ def ensure_nltk_resources():
         except LookupError:
             nltk.download(pkg, download_dir=NLTK_DATA_DIR)
 
+
 # Ensure resources only if missing (fast startup)
 ensure_nltk_resources()
 
@@ -38,6 +40,7 @@ BANNER = """
 🌩️  GremlinGPT Terminal v1.0.3 [NLP-Only Mode]
 Type your command. Type 'exit' to leave.
 """
+
 
 def main():
     print(BANNER)
@@ -73,7 +76,10 @@ def main():
             break
         except Exception as e:
             logger.exception(f"[CLI] Error during input handling: {e}")
-            print("An error occurred while handling your input. Please check the logs for details.")
+            print(
+                "An error occurred while handling your input. Please check the logs for details."
+            )
+
 
 if __name__ == "__main__":
     main()

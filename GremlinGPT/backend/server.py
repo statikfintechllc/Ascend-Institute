@@ -36,6 +36,7 @@ LOG_DIR = CFG.get("paths", {}).get("log_dir", "run/logs")
 os.makedirs(LOG_DIR, exist_ok=True)
 logger.add(f"{LOG_DIR}/runtime.log", rotation="1 MB")
 
+
 # Broadcast function for system status
 def broadcast_status(msg):
     try:

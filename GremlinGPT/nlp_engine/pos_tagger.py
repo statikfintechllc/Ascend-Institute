@@ -1,4 +1,6 @@
-# !/usr/bin/env python3
+# GremlinGPT/nlp_engine/pos_tagger.py
+
+#!/usr/bin/env python3
 
 # ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
@@ -10,22 +12,25 @@
 # GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 
+import os
 import nltk
 from nltk import pos_tag, word_tokenize
 from datetime import datetime
 from loguru import logger
 
 from memory.vector_store.embedder import embed_text, package_embedding, inject_watermark
-import nltk
-
-export NLTK_DATA=/path/to/nltk_data
-
-nltk.download('punkt', quiet=True, force=True)
-nltk.download("punkt", quiet=True)
-nltk.download("averaged_perceptron_tagger", quiet=True)
 
 WATERMARK = "source:GremlinGPT"
 ORIGIN = "pos_tagger"
+
+# Optional: Use environment variable for NLTK data location if set
+nltk_data_path = os.environ.get("NLTK_DATA")
+if nltk_data_path:
+    nltk.data.path.append(nltk_data_path)
+
+# Ensure required NLTK models are present (idempotent if already downloaded)
+nltk.download("punkt", quiet=True)
+nltk.download("averaged_perceptron_tagger", quiet=True)
 
 
 def get_pos_tags(text):
