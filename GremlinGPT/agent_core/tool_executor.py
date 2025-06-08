@@ -12,7 +12,7 @@ import asyncio
 from datetime import datetime
 from scraper.scraper_loop import get_dom_html
 from scraper.ask_monday_handler import handle as handle_ask_monday
-from nlp_engine.transformer_core import encode_text
+from nlp_engine.transformer_core import encode
 from memory.vector_store.embedder import package_embedding, inject_watermark
 from trading_core.signal_generator import generate_signals
 from self_training.feedback_loop import inject_feedback
@@ -61,7 +61,7 @@ def execute_tool(task):
             )
             reward = evaluate_result(task_type, preview)
             log_reward(reward)
-            vector = encode_text(preview)
+            vector = encode(preview)
             package_embedding(
                 preview,
                 vector,
@@ -89,7 +89,7 @@ def execute_tool(task):
             result = {"signals": signals}
             reward = evaluate_result(task_type, str(signals))
             log_reward(reward)
-            vector = encode_text(str(signals))
+            vector = encode(str(signals))
             package_embedding(
                 str(signals), vector, {"task": task_type, "timestamp": timestamp}
             )
@@ -101,7 +101,7 @@ def execute_tool(task):
 
         # ─────────────────────────────────────────────
         elif task_type == "nlp":
-            vec = encode_text(target)
+            vec = encode(target)
             result = {"embedding": vec.tolist()}
             reward = evaluate_result(task_type, target)
             log_reward(reward)
@@ -147,7 +147,7 @@ def execute_tool(task):
             preview = output[:500]
             reward = evaluate_result(task_type, preview)
             log_reward(reward)
-            vector = encode_text(preview)
+            vector = encode(preview)
             package_embedding(
                 preview, vector, {"task": task_type, "timestamp": timestamp}
             )
