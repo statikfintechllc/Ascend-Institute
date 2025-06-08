@@ -39,7 +39,7 @@ def execute_tool(task):
             result = {"scraped": preview}
             reward = evaluate_result(task_type, preview)
             log_reward(reward)
-            vector = encode_text(preview)
+            vector = encode(preview)
             package_embedding(
                 preview, vector, {"task": task_type, "timestamp": timestamp}
             )
