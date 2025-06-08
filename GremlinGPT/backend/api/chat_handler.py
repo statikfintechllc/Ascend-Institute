@@ -21,7 +21,7 @@ from loguru import logger
 from datetime import datetime
 
 def chat(user_input=None):
-    if has_request_context():  # If running in Flask context
+    if has_request_context():
         data = request.get_json()
         user_input = data.get("message", "").strip()
     elif user_input is not None:
@@ -65,6 +65,7 @@ def chat(user_input=None):
         "response": f"Command interpreted as: {task['type']}",
         "tokens": tokens,
         "result": result,
+        "message": f"Command interpreted as: {task['type']}",
     }
     # Return Flask response if inside a request, else dict for CLI
     return jsonify(response) if has_request_context() else response
