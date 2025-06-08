@@ -9,7 +9,6 @@
 
 # GremlinGPT v1.0.3 :: FSM Core & Module Integrity Directive
 
-import os
 import time
 import schedule
 from rich.console import Console
@@ -29,6 +28,12 @@ from self_mutation_watcher.mutation_daemon import run_daemon
 from agent_core.agent_profiles import resolve_agent_role
 from self_training.generate_dataset import generate_datasets
 from kernel import apply_patch  # 🧠 Kernel hook for patchable execution
+import nltk, os
+
+NLTK_DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../data/nltk_data"))
+os.makedirs(NLTK_DATA_DIR, exist_ok=True)
+nltk.data.path.clear()
+nltk.data.path.append(NLTK_DATA_DIR)
 
 FSM_STATE = "IDLE"
 console = Console()
