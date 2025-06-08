@@ -28,7 +28,8 @@ from self_mutation_watcher.mutation_daemon import run_daemon
 from agent_core.agent_profiles import resolve_agent_role
 from self_training.generate_dataset import generate_datasets
 from kernel import apply_patch  # 🧠 Kernel hook for patchable execution
-import nltk, os
+import nltk
+import os
 
 NLTK_DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../data/nltk_data"))
 os.makedirs(NLTK_DATA_DIR, exist_ok=True)
