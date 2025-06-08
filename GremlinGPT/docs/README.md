@@ -88,6 +88,7 @@ Reset: After 7:00pm CST on First 2 Clones
 
 - [Founder's Log & Manifesto](#founders-log--manifesto)
 - [Overview](#overview)
+- [Reviewer's Guide](#reviewers-guide)
 - [Features](#features)
 - [Architecture](#architecture)
 - [System Components](#system-components)
@@ -121,6 +122,30 @@ Read the [FOUNDER_LOG.md](https://github.com/statikfintechllc/AscendAI/blob/mast
 - Self-wiring NLP/memory stack (Chroma/FAISS)
 - DOM/web/stock scraper, persistent trading signals, recursive self-training
 - Bulletproof, production-grade, **red/black/gold/silver-themed** PWA dashboard for chat, tasks, memory, and trading
+
+---
+
+## Reviewer's Guide
+
+> *This PR brings the JSON traffic datasets up to date and introduces a new command-line interface under `GremlinGPT/run` for interactive NLP engine access.*
+
+### Sequence Diagram for New CLI Interaction
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant CLI as "GremlinGPT/run/cli.py"
+    participant Parser as "nlp_engine.parser"
+    participant Handler as "backend.chat_handler"
+
+    User->>CLI: Enters command
+    CLI->>Parser: parse_nlp(command)
+    Parser-->>CLI: Returns NLP analysis results
+    CLI->>Handler: chat(command)
+    Handler-->>CLI: Returns chat response
+    CLI->>User: Displays NLP Engine Output
+    CLI->>User: Displays GremlinGPT response
+```
 
 ---
 
