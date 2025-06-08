@@ -38,7 +38,7 @@ except Exception as e:
 
 
 # ─────────────────────────────────────────────
-def encode_text(text):
+def encode(text):
     """
     Encodes input text using the configured transformer model.
     Returns a float32 numpy vector.
