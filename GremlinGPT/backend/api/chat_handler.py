@@ -10,7 +10,7 @@
 # # GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion. v5 :: Module Integrity Directive
 
-from flask import request, jsonify
+from flask import request, jsonify, has_request_context
 from backend.interface import commands
 from nlp_engine.tokenizer import tokenize
 from nlp_engine.transformer_core import encode
@@ -20,21 +20,24 @@ from memory.log_history import log_event
 from loguru import logger
 from datetime import datetime
 
-
 def chat(user_input=None):
-    if user_input is None:
+    if has_request_context():  # If running in Flask context
         data = request.get_json()
         user_input = data.get("message", "").strip()
-    else:
+    elif user_input is not None:
         user_input = user_input.strip()
+    else:
+        logger.warning("[CHAT] No input provided to chat()")
+        # Always return dict outside Flask for CLI
+        return {"error": "No input provided"}, 400
 
     if not user_input:
         logger.warning("[CHAT] Empty input received.")
-        return jsonify({"error": "Empty input"}), 400
+        resp = {"error": "Empty input"}
+        return jsonify(resp), 400 if has_request_context() else (resp, 400)
 
     tokens = tokenize(user_input)
     vector = encode(user_input)
-
     task = commands.parse_command(user_input)
     result = commands.execute_command(task)
 
@@ -58,10 +61,11 @@ def chat(user_input=None):
         )
         enqueue_task({"type": "nlp", "text": user_input})
 
-    return jsonify(
-        {
-            "response": f"Command interpreted as: {task['type']}",
-            "tokens": tokens,
-            "result": result,
-        }
-    )
+    response = {
+        "response": f"Command interpreted as: {task['type']}",
+        "tokens": tokens,
+        "result": result,
+    }
+    # Return Flask response if inside a request, else dict for CLI
+    return jsonify(response) if has_request_context() else response
+
