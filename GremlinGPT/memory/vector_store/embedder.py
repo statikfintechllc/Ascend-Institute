@@ -98,7 +98,7 @@ def package_embedding(text, vector, meta):
 
 def inject_watermark(origin="unknown"):
     text = f"Watermark from {origin} @ {datetime.utcnow().isoformat()}"
-    vector = embed(text)
+    vector = encode(text)
     meta = {"origin": origin, "timestamp": datetime.utcnow().isoformat()}
     return package_embedding(text, vector, meta)
 
