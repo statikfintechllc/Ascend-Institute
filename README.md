@@ -16,12 +16,12 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREMLINGPT.md">
     <img src="https://img.shields.io/badge/GremlinGPT-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
   </a>
-</div>
+
 
 ---
 
-<h1 align="center">Ascend Institute for Autonomous Sovereignty & Human Financial Liberation</h1>
-<div align="center">
+# Ascend Institute for Autonomous Sovereignty & Human Financial Liberation</h1>
+
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
     <img src="https://img.shields.io/badge/v1.0.3-alpha-darkred?labelColor=black" alt="Build Status"/>
   </a>
