@@ -323,7 +323,7 @@ If you survive v1.0.3.
 **The full revamp of v1.0.2, Not just a wrapper. Autonomous.**
 
   # GremlinGPT v1.0.3 Expanded Drop  
-*(ETA: 1–2 weeks, maybe sooner if I gas it)*
+*(ETA: 1–2 months, maybe sooner if I gas it)*
 
 ## 1. Bootstrapping and Environment Management
 
