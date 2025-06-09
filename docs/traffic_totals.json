@@ -6,15 +6,15 @@
     "uniqueViews": 3
   },
   "range14d": {
-    "clones": 3833,
+    "clones": 3820,
     "uniqueClones": 357,
-    "views": 5593,
-    "uniqueViews": 107
+    "views": 5576,
+    "uniqueViews": 106
   },
   "lifetime": {
-    "clones": 3835,
-    "uniqueClones": 358,
-    "views": 5593,
-    "uniqueViews": 107
+    "clones": 3829,
+    "uniqueClones": 361,
+    "views": 5576,
+    "uniqueViews": 106
   }
 }
