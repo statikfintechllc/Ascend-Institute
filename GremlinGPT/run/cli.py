@@ -1,21 +1,22 @@
 #!/usr/bin/env python3
 
-# CLI entrypoint to talk to the GremlinGPT NLP engine
 import readline
 import sys
 import os
 
-# --- Dynamic project root ---
+# --- Set project root and sys.path ---
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(PROJECT_ROOT)
 
-from nlp_engine.parser import parse_nlp
-from loguru import logger
-from backend.api.chat_handler import chat
+# --- Set NLTK data dir using environment variable (set by shell or fallback to default) ---
+NLTK_DATA_DIR = os.environ.get("NLTK_DATA") or os.path.join(
+    PROJECT_ROOT, "data", "nltk_data"
+)
+
 import nltk
 
-# --- NLTK Data Config (Always Available) ---
-NLTK_DATA_DIR = os.path.expanduser("~/nltk_data")
+if not os.path.exists(NLTK_DATA_DIR):
+    os.makedirs(NLTK_DATA_DIR, exist_ok=True)
 nltk.data.path.append(NLTK_DATA_DIR)
 
 
@@ -35,6 +36,10 @@ def ensure_nltk_resources():
 
 # Ensure resources only if missing (fast startup)
 ensure_nltk_resources()
+
+from nlp_engine.parser import parse_nlp
+from loguru import logger
+from backend.api.chat_handler import chat
 
 BANNER = """
 🌩️  GremlinGPT Terminal v1.0.3 [NLP-Only Mode]

@@ -1,0 +1,84 @@
+{
+  "queue": {
+    "high": [],
+    "normal": [
+      {
+        "type": "nlp",
+        "text": "Hello, How are You Gremlin?",
+        "id": "776e654e-d2a0-4fa7-8cda-1792ca89c2dc"
+      },
+      {
+        "type": "nlp",
+        "text": "Hello, Gremlin, How Are You?",
+        "id": "fe599548-7160-486e-aea2-b52dbb009c66"
+      },
+      {
+        "type": "nlp",
+        "text": "How are You Gremlin?",
+        "id": "41f2083d-5148-4733-a336-a4cf978a9082"
+      },
+      {
+        "type": "nlp",
+        "text": "How are you Gremlin?",
+        "id": "ad9b62b0-413c-4218-a918-38f821cc4b33"
+      },
+      {
+        "type": "nlp",
+        "text": "How are you Gremlin?",
+        "id": "7a86c675-d725-43b0-9c38-f6178ab8879c"
+      },
+      {
+        "type": "nlp",
+        "text": "How Are you Gremlin?",
+        "id": "eb5bdef4-d8e9-42f4-b15a-71ec902cddc8"
+      }
+    ],
+    "low": []
+  },
+  "status": {
+    "776e654e-d2a0-4fa7-8cda-1792ca89c2dc": "queued",
+    "fe599548-7160-486e-aea2-b52dbb009c66": "queued",
+    "41f2083d-5148-4733-a336-a4cf978a9082": "queued",
+    "ad9b62b0-413c-4218-a918-38f821cc4b33": "queued",
+    "7a86c675-d725-43b0-9c38-f6178ab8879c": "queued",
+    "eb5bdef4-d8e9-42f4-b15a-71ec902cddc8": "queued"
+  },
+  "meta": {
+    "776e654e-d2a0-4fa7-8cda-1792ca89c2dc": {
+      "type": "nlp",
+      "priority": "normal",
+      "timestamp": "2025-06-08T02:17:10.228608",
+      "retries": 0
+    },
+    "fe599548-7160-486e-aea2-b52dbb009c66": {
+      "type": "nlp",
+      "priority": "normal",
+      "timestamp": "2025-06-08T02:17:56.243101",
+      "retries": 0
+    },
+    "41f2083d-5148-4733-a336-a4cf978a9082": {
+      "type": "nlp",
+      "priority": "normal",
+      "timestamp": "2025-06-08T03:52:00.775804",
+      "retries": 0
+    },
+    "ad9b62b0-413c-4218-a918-38f821cc4b33": {
+      "type": "nlp",
+      "priority": "normal",
+      "timestamp": "2025-06-08T03:58:14.324808",
+      "retries": 0
+    },
+    "7a86c675-d725-43b0-9c38-f6178ab8879c": {
+      "type": "nlp",
+      "priority": "normal",
+      "timestamp": "2025-06-08T04:34:06.928076",
+      "retries": 0
+    },
+    "eb5bdef4-d8e9-42f4-b15a-71ec902cddc8": {
+      "type": "nlp",
+      "priority": "normal",
+      "timestamp": "2025-06-08T04:50:38.522561",
+      "retries": 0
+    }
+  }
+}

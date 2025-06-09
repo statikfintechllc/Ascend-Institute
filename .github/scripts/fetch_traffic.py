@@ -11,11 +11,13 @@ HEADERS = {"Authorization": f"token {TOKEN}"}
 LIFETIME_FILE = "docs/traffic_lifetime.json"
 DATES_FILE = "docs/traffic_dates.json"
 
+
 def fetch(endpoint):
     url = f"https://api.github.com/repos/{REPO}/{endpoint}"
     r = requests.get(url, headers=HEADERS)
     r.raise_for_status()
     return r.json()
+
 
 def load_existing_lifetime():
     if os.path.exists(LIFETIME_FILE):
@@ -23,9 +25,11 @@ def load_existing_lifetime():
             return json.load(f)
     return {"clones": 0, "uniqueClones": 0, "views": 0, "uniqueViews": 0}
 
+
 def save_lifetime(updated):
     with open(LIFETIME_FILE, "w") as f:
         json.dump(updated, f, indent=2)
+
 
 def load_seen_dates():
     if os.path.exists(DATES_FILE):
@@ -33,9 +37,11 @@ def load_seen_dates():
             return set(json.load(f))
     return set()
 
+
 def save_seen_dates(dates):
     with open(DATES_FILE, "w") as f:
         json.dump(sorted(list(dates)), f, indent=2)
+
 
 def plot_github_style_merged(clones, views, outfile):
     plt.style.use("dark_background")
@@ -133,19 +139,16 @@ def plot_github_style_merged(clones, views, outfile):
         # Lifetime values will be handled separately
     }
 
+
 def main(repo):
     clones_data = fetch("traffic/clones")["clones"]
     views_data = fetch("traffic/views")["views"]
 
     os.makedirs("docs", exist_ok=True)
     with open("docs/traffic_data.json", "w") as f:
-        json.dump(
-            {"clones": clones_data, "views": views_data}, f, indent=2
-        )
+        json.dump({"clones": clones_data, "views": views_data}, f, indent=2)
 
-    totals = plot_github_style_merged(
-        clones_data, views_data, "docs/traffic_graph.png"
-    )
+    totals = plot_github_style_merged(clones_data, views_data, "docs/traffic_graph.png")
 
     # Load and update processed dates for unique tracking
     seen_dates = load_seen_dates()
@@ -200,6 +203,7 @@ def main(repo):
 - **Lifetime:** Clones: {clones_lifetime["clones"]:,} | Unique Cloners: {clones_lifetime["uniqueClones"]:,} | Views: {clones_lifetime["views"]:,} | Unique Visitors: {clones_lifetime["uniqueViews"]:,}
 """
         )
+
 
 if __name__ == "__main__":
     main(REPO)
