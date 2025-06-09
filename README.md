@@ -49,8 +49,9 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 ---
 
 
-*1st Demo-https://youtube.com/shorts/73A2U3ellD0?si=rTdrdQauDu_hGAuK, 2nd Install and Attempt to run Demo on YT tonight*
+> *1st Demo-https://youtube.com/shorts/73A2U3ellD0?si=rTdrdQauDu_hGAuK, 2nd Install and Attempt to run Demo on YT Soon*
 
+> *Scraper and data set gen to memory is operation, UI still a Pain, Finished GodCore in ~7-9 hours, back to GremlinGPT soon.*
 </div>
 
 ---
