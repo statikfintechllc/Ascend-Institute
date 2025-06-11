@@ -43,6 +43,11 @@ touch run/logs/runtime.log
 touch run/checkpoints/state_snapshot.json
 touch data/logs/bootstrap.log
 
+# 0. NLTK punkt global patch
+echo "[*] Ensuring /usr/local/share/nltk_data has punkt tokenizer"
+sudo mkdir -p /usr/local/share/nltk_data
+sudo python3 -m nltk.downloader -d /usr/local/share/nltk_data punkt
+
 # 3. Conda init
 echo "[*] Ensuring conda is initialized..."
 if ! command -v conda &> /dev/null; then
@@ -61,6 +66,7 @@ else
     echo "${RED}[ERROR] ./conda_envs/create_envs.sh not found!${NC}"
 fi
 
+
 function check_cuda {
   echo "[*] Checking CUDA in current environment:"
   python -c "
@@ -72,6 +78,7 @@ print('[CUDA] torch.cuda.get_device_name:', torch.cuda.get_device_name(0) if tor
 " || echo "${RED}[CUDA] PyTorch not installed or failed.${NC}"
 }
 
+
 function pip_install_or_fail {
   pip install --upgrade pip || { echo '${RED}[FAIL] pip upgrade${NC}'; exit 1; }
   for pkg in "$@"; do
@@ -79,8 +86,9 @@ function pip_install_or_fail {
   done
 }
 
+
 function download_nltk {
-  python3 -m nltk.downloader --dir=data/nltk_data punkt averaged_perceptron_tagger wordnet stopwords || \
+  python3 -m nltk.downloader --dir=/user/share/data/nltk_data punkt averaged_perceptron_tagger wordnet stopwords || \
   { echo "${RED}[FAIL] NLTK data download${NC}"; exit 1; }
 }
 
@@ -146,8 +154,6 @@ print('[GPU-TEST] Loading MiniLM on', 'cuda' if torch.cuda.is_available() else '
 SentenceTransformer('all-MiniLM-L6-v2', device='cuda' if torch.cuda.is_available() else 'cpu')
 "
 conda deactivate
-
-export NLTK_DATA="$PWD/data/nltk_data"
 
 # 9. ngrok CLI check
 echo "[*] Checking for ngrok CLI..."
