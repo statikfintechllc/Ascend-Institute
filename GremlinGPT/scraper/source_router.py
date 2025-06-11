@@ -23,6 +23,9 @@ from scraper.playwright_scraper import safe_scrape_web
 from scraper.page_simulator import store_scrape_to_memory
 from memory.log_history import log_event
 
+WATERMARK = "source:GremlinGPT"
+ORIGIN = "source_router"
+
 MODULE = "source_router"
 _last_scraped = []
 _async_lock = asyncio.Lock()  # Protect async scraping

@@ -15,6 +15,16 @@ from datetime import datetime
 from pathlib import Path
 from loguru import logger
 
+WATERMARK = "source:GremlinGPT"
+ORIGIN = "tws_scraper"
+
+HEADERS = {
+    "User-Agent": "GremlinGPT/5.0 (+https://gremlingpt.ai/bot)",
+    "Accept": "text/html,python,javascript,java,markdown,jupyter,application/xhtml+xml",
+    "Accept-Language": "en-US,en;q=0.9",
+}
+
+
 MODULE = "tws_scraper"
 DEFAULT_SIMULATION = {
     "symbol": "SIMTWS",

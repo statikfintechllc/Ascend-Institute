@@ -7,12 +7,23 @@ import langdetect
 import torch
 from nltk.tokenize import word_tokenize
 from backend.globals import logger
+from sentence_transformers import SentenceTransformer, util
 
-# --- NLTK SAFEGUARD ---
+WATERMARK = "source:GremlinGPT"
+ORIGIN = "semantic_score"
+
+# Ensure punkt is available
 try:
     nltk.data.find("tokenizers/punkt")
 except LookupError:
-    nltk.download("punkt", quiet=True)
+    nltk.download("punkt", download_dir="/usr/local/share/nltk_data")
+
+# Ensure global nltk data path is registered
+nltk.data.path.append("/usr/local/share/nltk_data")
+
+
+MODEL = CFG["nlp"].get("tokenizer_model", "bert-base-uncased")
+
 
 ENGINE_NAME = "semantic_score"
 
@@ -28,7 +39,6 @@ MODEL_MAP = {
 DEFAULT_MODEL = "all-MiniLM-L6-v2"
 MULTILINGUAL_MODEL = "distiluse-base-multilingual-cased"
 
-from sentence_transformers import SentenceTransformer, util
 
 _model_cache = {}
 

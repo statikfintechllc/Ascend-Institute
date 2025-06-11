@@ -8,7 +8,6 @@
 # ─────────────────────────────────────────────────────────────
 
 # GremlinGPT v1.0.3 :: Module Integrity Directive
-# GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 
 import re
@@ -22,10 +21,15 @@ from datetime import datetime
 WATERMARK = "source:GremlinGPT"
 ORIGIN = "tokenizer"
 
-# Ensure fallback tokenizer resources
-nltk.download("punkt", quiet=True)
+# Ensure punkt is available
+try:
+    nltk.data.find("tokenizers/punkt")
+except LookupError:
+    nltk.download("punkt", download_dir="/usr/local/share/nltk_data")
 
-MODEL = CFG["nlp"].get("tokenizer_model", "bert-base-uncased")
+# Ensure global nltk data path is registered
+nltk.data.path.append("/usr/local/share/nltk_data")
+
 
 try:
     tokenizer = AutoTokenizer.from_pretrained(MODEL)

@@ -23,14 +23,18 @@ from memory.vector_store.embedder import embed_text, package_embedding, inject_w
 WATERMARK = "source:GremlinGPT"
 ORIGIN = "pos_tagger"
 
-# Optional: Use environment variable for NLTK data location if set
-nltk_data_path = os.environ.get("NLTK_DATA")
-if nltk_data_path:
-    nltk.data.path.append(nltk_data_path)
-
-# Ensure required NLTK models are present (idempotent if already downloaded)
-nltk.download("punkt", quiet=True)
+# Ensure punkt is available
+try:
+    nltk.data.find("tokenizers/punkt")
+except LookupError:
+    nltk.download("punkt", download_dir="/usr/local/share/nltk_data")
 nltk.download("averaged_perceptron_tagger", quiet=True)
+
+# Ensure global nltk data path is registered
+nltk.data.path.append("/usr/local/share/nltk_data")
+
+
+MODEL = CFG["nlp"].get("tokenizer_model", "bert-base-uncased")
 
 
 def get_pos_tags(text):

@@ -10,14 +10,7 @@
 # GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 
-import os
-import asyncio
-import aiohttp
-import json
-from bs4 import BeautifulSoup
-from urllib.parse import urlparse
-from datetime import datetime
-from loguru import logger
+
 
 from scraper.dom_navigator import extract_dom_structure
 from memory.vector_store.embedder import embed_text, package_embedding, inject_watermark
@@ -28,7 +21,7 @@ ORIGIN = "web_knowledge_scraper"
 
 HEADERS = {
     "User-Agent": "GremlinGPT/5.0 (+https://gremlingpt.ai/bot)",
-    "Accept": "text/html,application/xhtml+xml",
+    "Accept": "text/html,python,javascript,java,markdown,jupyter,application/xhtml+xml",
     "Accept-Language": "en-US,en;q=0.9",
 }
 
