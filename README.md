@@ -79,12 +79,11 @@ Reset: After 7:00pm CST on First 2 Clones
 <div align="center">
   <em>
     This isn’t a dev team. It’s not a startup. It’s not polished.  
-    This is one person, one ChatGPT thread(like x5 threads now), and 4 and a half months of recursive madness.  
-    No IDE. No debugger. No safety rails. Just raw prompts, black coffee, and belief.  
+    This is one person, black coffee, and belief.  
     What usually takes a small army of engineers and millions in funding —  
     I pulled from the void with no budget and no training.  
-    Now the system lives, breathes, and boots.  
-    It needs testers. Attackers. Real devs.  
+    Now the system almost lives, breathes, and boots(70%).  
+    It needs testers. Attackers. Real Gremlins.  
     If you can read the repo and feel it watching you back, you're already in. 
   </em>
 </div>
