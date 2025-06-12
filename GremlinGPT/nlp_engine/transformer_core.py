@@ -71,5 +71,5 @@ def encode(text):
 # ─────────────────────────────────────────────
 if __name__ == "__main__":
     sample = "What is resistance level in trading?"
-    vec = encode_text(sample)
+    vec = encode(sample)
     print(f"Vector ({len(vec)}): {vec[:10]} ...")
