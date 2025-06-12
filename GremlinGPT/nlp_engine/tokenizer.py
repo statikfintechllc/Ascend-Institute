@@ -30,6 +30,7 @@ except LookupError:
 # Ensure global nltk data path is registered
 nltk.data.path.append("/usr/local/share/nltk_data")
 
+MODEL = CFG["nlp"].get("tokenizer_model", "bert-base-uncased")
 
 try:
     tokenizer = AutoTokenizer.from_pretrained(MODEL)
