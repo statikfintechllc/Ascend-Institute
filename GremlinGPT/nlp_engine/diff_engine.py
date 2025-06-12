@@ -16,7 +16,7 @@ from typing import Dict
 from loguru import logger
 
 from nlp_engine.semantic_score import semantic_similarity
-from nlp_engine.transformer_core import encode_text
+from nlp_engine.transformer_core import encode
 
 ENGINE_NAME = "diff_engine"
 
@@ -45,8 +45,8 @@ def diff_texts(old: str, new: str, debug: bool = False) -> Dict:
 
     sem_score = semantic_similarity(old, new)
     try:
-        vec_old = encode_text(old)
-        vec_new = encode_text(new)
+        vec_old = encode(old)
+        vec_new = encode(new)
         delta = float(np.linalg.norm(vec_old - vec_new))
     except Exception as e:
         delta = 0.0
