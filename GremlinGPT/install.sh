@@ -43,10 +43,6 @@ touch run/logs/runtime.log
 touch run/checkpoints/state_snapshot.json
 touch data/logs/bootstrap.log
 
-# 0. NLTK punkt global patch
-echo "[*] Ensuring /usr/local/share/nltk_data has punkt tokenizer"
-sudo mkdir -p /usr/local/share/nltk_data
-sudo python3 -m nltk.downloader -d /usr/local/share/nltk_data punkt
 
 # 3. Conda init
 echo "[*] Ensuring conda is initialized..."
@@ -98,6 +94,8 @@ conda activate gremlin-nlp
 pip_install_or_fail spacy torch torchvision torchaudio sentence-transformers transformers bs4 nltk pytesseract playwright pyautogui
 python -m spacy download en_core_web_sm || { echo "${RED}[FAIL] spaCy model${NC}"; exit 1; }
 playwright install || { echo "${RED}[FAIL] playwright${NC}"; exit 1; }
+pip install nltk  # or pip_install_or_fail ... as in your script
+python -m nltk.downloader -d ./nltk_data punkt
 download_nltk
 check_cuda
 
@@ -138,6 +136,8 @@ conda activate gremlin-orchestrator
 pip_install_or_fail torch torchvision torchaudio backend bs4 nltk langdetect pytesseract sentence-transformers transformers playwright pyautogui
 python -m spacy download en_core_web_sm
 playwright install
+pip install nltk  # or pip_install_or_fail ... as in your script
+python -m nltk.downloader -d ./nltk_data punkt
 download_nltk
 check_cuda
 python -c "
