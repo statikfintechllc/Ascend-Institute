@@ -69,6 +69,11 @@
       "timestamp": "2025-06-12T00:00:00Z",
       "count": 222,
       "uniques": 72
+    },
+    {
+      "timestamp": "2025-06-13T00:00:00Z",
+      "count": 8,
+      "uniques": 4
     }
   ],
   "views": [
