@@ -513,10 +513,14 @@ Unseen. Unbroken. Unrivaled. Gremlins Ascend.
 
 ## License
 
+> ⚠️ **LEGAL NOTICE:**  
+> GremlinGPT is released under a Fair-Use License. Commercial, organizational, or enterprise use is **strictly prohibited** without a paid license.  
+> Violators will be publicly disclosed and pursued for license infringement.
+
 Released under the GremlinGPT Fair Use License v1.0.
 Personal use only. Commercial use is prohibited unless licensed separately.
 
-See the [LICENSE](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/LICENSE.md) file for full terms.
+*See the **[LICENSE](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/LICENSE.md)** file for full terms.*
 
 ---
 
