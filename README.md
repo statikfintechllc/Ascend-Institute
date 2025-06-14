@@ -157,6 +157,8 @@ Reset: After 7:00pm CST on First 2 Clones
 
 **Sponsor via:**
 
+- [Patreon](https://patreon.com/StatikFinTech_LLC?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink)
+- [Ko-Fi](https://ko-fi.com/statikfintech_llc)
 - [CashApp](https://cash.app/$statikmoney8)  
 - [PayPal](https://paypal.me/statikmoney8)  
 - **Bitcoin**: `bc1qarsr966ulmcs3mlcvae7p63v4j2y2vqrw74jl8`  
