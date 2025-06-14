@@ -18,6 +18,16 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
   </a>
 </div>
 
+  <div align="center">
+  <a href="https://ko-fi.com/statikfintech_llc">
+    <img src="https://img.shields.io/badge/Support-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Support"/>
+  </a>
+  <a href="https://github.com/statikfintechllc/GodCore/blob/master/LICENSE">
+    <img src="https://img.shields.io/badge/SFTi-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="SFTi"/>
+  </a>
+
+---
+
 <p align="center"><strong>GremlinGPT Dual License v1.0</strong></p>
 
 <p align="center">Copyright (c) 2025 StatikFintechLLC / AscendAI Project</p>
