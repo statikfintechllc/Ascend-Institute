@@ -72,6 +72,8 @@ The initial funding target will allow GremlinGPT to:
 
 | Method        | Handle / Link |
 |---------------|---------------|
+| **Patreon**   | [StatikFinTech, LLC](https://patreon.com/StatikFinTech_LLC?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink) |
+| **Ko-Fi**     | [statikfintech_llc](https://ko-fi.com/statikfintech_llc) |
 | **CashApp**   | [$statikmoney8](https://cash.app/$statikmoney8) |
 | **PayPal**    | [paypal.me/statikmoney8](https://paypal.me/statikmoney8) |
 | **Bitcoin**   | `bc1qarsr966ulmcs3mlcvae7p63v4j2y2vqrw74jl8` |
