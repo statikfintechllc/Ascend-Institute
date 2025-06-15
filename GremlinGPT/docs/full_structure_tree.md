@@ -31,15 +31,17 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
 # GremlinGPT v1.0.3
 ```text
 GremlinGPT/
+│
 ├── install.sh
 ├── reboot_recover.sh
 │
 ├── config/
-│   ├── config.toml
+│   │
 │   ├── memory_settings.json
-│   └── dashboard_config.yaml
+│   └── config.toml
 │
 ├── conda_envs/
+│   │
 │   ├── gremlin-nlp.yml
 │   ├── gremlin-dashboard.yml
 │   ├── gremlin-scraper.yml
@@ -48,66 +50,90 @@ GremlinGPT/
 │   └── create_envs.sh
 │
 ├── run/
+│   │
 │   ├── start_all.sh
 │   ├── stop_all.sh
 │   ├── reboot_recover.sh
 │   ├── module_tracer.py
 │   ├── ngrok_launcher.py
 │   ├── logs/
+│   │   │
 │   │   ├── runtime.log
 │   │   ├── fsm.out
 │   │   ├── backend.out
 │   │   ├── scraper.out
 │   │   └── trainer.out
+│   │
 │   └── checkpoints/
+│       │
 │       ├── state_snapshot.json
 │       └── snapshots/
 │
 ├── systemd/
+│   │
 │   └── gremlin.service
 │
 ├── frontend/
+│   │
 │   ├── index.html
 │   ├── app.js
 │   ├── service-worker.js
 │   ├── manifest.json
 │   ├── components/
+│   │   │
 │   │   ├── App_Icon_&_Loading_&_Inference_Image.png
 │   │   └── Background_Image_For_App.png
 │   └── components/
+│       │
 │       ├── ChatInterface.js
 │       ├── TaskTreeView.js
 │       ├── MemoryGraph.js
 │       └── TradingPanel.js
 │
 ├── backend/
+│   │
 │   ├── server.py
 │   ├── router.py
 │   ├── state_manager.py
 │   ├── scheduler.py
 │   ├── globals.py
 │   ├── interface/
+│   │   │
 │   │   └── commands.py
+│   │
 │   ├── utils/
+│   │   │
 │   │   └── git_ops.py
+│   │
 │   └── api/
+│       │
 │       ├── chat_handler.py
 │       ├── memory_api.py
 │       ├── scraping_api.py
 │       └── planner.py
 │
 ├── memory/
+│   │
 │   ├── vector_store/
+│   │   │
 │   │   ├── faiss/
+│   │   │    └── ...    # fiass embeddings here
+│   │   │
 │   │   ├── chroma/
+│   │   │    └── ...    # chroma embeddings here
+│   │   │
 │   │   └── embedder.py
+│   │
 │   ├── log_history.py
+│   │
 │   └── local_index/
+│       │
 │       ├── documents/
 │       ├── scripts/
 │       └── metadata.db
 │
 ├── nlp_engine/
+│   │
 │   ├── tokenizer.py
 │   ├── parser.py
 │   ├── pos_tagger.py
@@ -117,12 +143,14 @@ GremlinGPT/
 │   └── mini_attention.py
 │
 ├── self_training/
+│   │
 │   ├── trainer.py
 │   ├── generate_dataset.py
 │   ├── mutation_engine.py
 │   └── feedback_loop.py
 │
 ├── scraper/
+│   │
 │   ├── scraper_loop.py
 │   ├── stt_scrapper.py
 │   ├── tws_scrapper.py
@@ -134,11 +162,21 @@ GremlinGPT/
 │   ├── playwright_handler.py
 │   ├── source_router.py
 │   ├── persistence/
+│   │   │
 │   │   └── cookies/
+│   │
 │   └── profiles/
+│       │
+│       ├── safari_profiles/
+│       │     └── ...    # Safari Profiles here
+│       │
+│       ├── firefox_profiles/
+│       │     └── ...    # Firefox Profiles here
+│       │
 │       └── chromium_profile/
-│
+│             └── ...    # Chromium Profiles here
 ├── agent_core/
+│   │
 │   ├── fsm.py
 │   ├── task_queue.py
 │   ├── heuristics.py
@@ -148,6 +186,7 @@ GremlinGPT/
 │   └── error_log.py
 │
 ├── trading_core/
+│   │
 │   ├── signal_generator.py
 │   ├── stock_scraper.py
 │   ├── rules_engine.py
@@ -155,64 +194,89 @@ GremlinGPT/
 │   └── tax_estimator.py
 │
 ├── agents/
+│   │
 │   └── planner_agent.py
 │
 ├── core/
+│   │
 │   ├── loop.py
 │   ├── kernel.py
 │   └── snapshot.py
 │
 ├── executors/
+│   │
 │   └── python_executor.py
 │
 ├── tools/
+│   │
 │   └── reward_model.py
 │
 ├── agent_shell/
+│   │
 │   └── shell_executor.py
 │
 ├── self_mutation_watcher/
+│   │
 │   ├── watcher.py
 │   └── mutation_daemon.py
 │
 ├── data/
+│   │
 │   ├── prompts/
-│   │   └── README.md
+│   │   │
+│   │   ├── README.md
+│   │   └── ...    # System prompts here
+│   │
 │   ├── raw_scrapes/
+│   │   │
+│   │   └── ...    # Raw scrap data here
 │   ├── embeddings/
+│   │   │
+│   │   └── ...    # Embedding here
 │   ├── nlp_training_sets/
+│   │   │   
 │   │   └── bootstrap.json
+│   │   
 │   └── logs/
+│       │   
 │       ├── bootstrap.log
 │       ├── gremlin_exec_log.jsonl
 │       └── rewards.jsonl
 │
 ├── tests/
+│   │   
 │   ├── test_scraper.py
 │   ├── test_memory.py
 │   ├── test_nlp.py
 │   └── test_dashboard.py
 │
 ├── dev-experiment/
+│   │  
 │   ├── memory_hacking/
+│   │   │   
 │   │   ├── inject_custom_embeddings.py
 │   │   ├── override_reward_trace.py
 │   │   ├── memory_probe_tool.py
 │   │   └── README.md
 │   │
 │   ├── new_agents/
+│   │   │   
 │   │   ├── planning/
+│   │   │   │
 │   │   │   ├── speculative_planner.py
 │   │   │   └── scratchpad_agent.py
 │   │   ├── self_reflection/
+│   │   │   │
 │   │   │   ├── hallucination_guard.py
 │   │   │   └── anomaly_analyzer.py
 │   │   ├── loop_extensions/
+│   │   │   │
 │   │   │   ├── fsm_tick_debugger.py
 │   │   │   └── dynamic_interval_mutator.py
 │   │   └── README.md
 │   │
 │   ├── broken_scrapers/
+│   │   │
 │   │   ├── discord_leaks_scraper.py
 │   │   ├── legacy_twitter_collector.py
 │   │   ├── unstable_playwright_agent.py
@@ -221,6 +285,7 @@ GremlinGPT/
 │   └── your_mutations_here.md
 │
 ├── docs/
+│   │
 │   ├── README.md
 │   ├── full_structure_tree.txt
 │   ├── system_call_graph.md
@@ -235,6 +300,7 @@ GremlinGPT/
 │   └── automated_shell.md
 │
 ├── demos/
+│   │
 │   └── README.md
 │
 └── README.md
