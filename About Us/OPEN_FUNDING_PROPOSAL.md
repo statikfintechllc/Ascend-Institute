@@ -81,11 +81,12 @@ The initial funding target will allow GremlinGPT to:
 | **Chime**     | `$StatikSmokTM` |
 
 **Want equity, private access, or to sponsor hardware directly? Reach Out to:**
-- **Email:** [ascend.gremlin@gmail.com](mailto:ascend.gremlin@gmail.com)  
+- **Email:** [ascend.gremlin@gmail.com](mailto:ascend.gremlin@gmail.com) | [ascend.help@gmail.com](mailto:ascend.help@gmail.com)
 - **Text Us:** [+1 (785) 443-6288](sms:+17854436288)  
 - **DM:**  
-  - a) [GitHub: statikfintechllc](https://github.com/statikfintechllc)  
+  - a) [LinkedIn: StatikFinTech, LLC](https://www.linkedin.com/in/statikfintech-llc-780804368/)
   - b) [X: @GremlinsForge](https://twitter.com/GremlinsForge)
+
 ---
 
 ## Why Now?
