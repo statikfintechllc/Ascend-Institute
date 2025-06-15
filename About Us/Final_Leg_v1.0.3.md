@@ -18,6 +18,15 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
   </a>
 </div>
 
+  <div align="center">
+  <a href="https://ko-fi.com/statikfintech_llc">
+    <img src="https://img.shields.io/badge/Support-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Support"/>
+  </a>
+  <a href="https://patreon.com/StatikFinTech_LLC?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink">
+    <img src="https://img.shields.io/badge/SFTi-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="SFTi"/>
+  </a>
+</div>
+
 # ✅ GremlinGPT Production Lock Checklist
 
 Here is a direct, surgical list of what is left to finish and lock **GremlinGPT** as a full, production, fully-autonomous, dashboard-ready, persistent, learning AI system — no stubs, no broken flows, no dev nulls.
