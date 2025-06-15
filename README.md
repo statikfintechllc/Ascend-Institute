@@ -106,16 +106,16 @@ Reset: After 7:00pm CST on First 2 Clones
 4. [Phase 1 Funding Target is $25,000](#phase-1-funding-target-is-25000)  
 5. [If You Are](#if-you-are)  
 6. [Partner With Us](#partner-with-us) 
-7. [If You Believe](#if-you-believe)  
-8. [How to Support Right Now](#how-to-support-right-now)  
-9. [What Is AscendAI?](#what-is-ascendai)  
-10. [GremlinGPT](#gremlingpt)
+7. [If You Believe](#if-you-believe)
+8. [What Is AscendAI?](#what-is-ascendai)  
+9. [What Is GremlinGPT?](#what-is-gremlingpt)
     - [How to Install and Use GremlinGPT](#how-to-install-and-use-gremlingpt)
     - [GremlinGPT's Layout](#gremlingpts-layout)  
-    - [GremlinGPT's Documentation](#gremlingpts-documentation)  
-11. [GremlinGPT vs the Other Guys](#gremlingpt-vs-the-other-guys)
-12. [Demos](#demos)
-13. [What is GremlinGPT v1.0.3](#what-is-gremlingpt-v103)    
+    - [GremlinGPT's Documentation](#gremlingpts-documentation)
+
+10. [GremlinGPT vs the Other Guys](#gremlingpt-vs-the-other-guys)
+11. [Demos](#demos)
+12. [What is GremlinGPT v1.0.3](#what-is-gremlingpt-v103)    
     - [Bootstrapping and Environment Management](#1-bootstrapping-and-environment-management)  
     - [Global Config Awareness](#2-global-config-awareness)  
     - [Memory and NLP Enhancements](#3-memory-and-nlp-enhancements)  
@@ -125,11 +125,11 @@ Reset: After 7:00pm CST on First 2 Clones
     - [Logging and Observability](#7-logging-and-observability)  
     - [Documentation and Tests](#8-documentation-and-tests)
     
-14. [Collaborators Wanted to Join the Loop](#collaborators-wanted-to-join-the-loop)  
-15. [Support](#support)  
-16. [Final Notes](#final-notes)  
-17. [License](#license)  
-18. [How GremlinGPT Was Built](#how-gremlingpt-was-built)  
+13. [Collaborators Wanted to Join the Loop](#collaborators-wanted-to-join-the-loop)
+14. [Support](#support)  
+15. [Final Notes](#final-notes)  
+16. [License](#license)  
+17. [How GremlinGPT Was Built](#how-gremlingpt-was-built)  
 
 ---
 
@@ -157,13 +157,24 @@ Reset: After 7:00pm CST on First 2 Clones
 
 **Sponsor via:**
 
-- [Patreon](https://patreon.com/StatikFinTech_LLC?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink)
-- [Ko-Fi](https://ko-fi.com/statikfintech_llc)
-- [CashApp](https://cash.app/$statikmoney8)  
-- [PayPal](https://paypal.me/statikmoney8)  
-- **Bitcoin**: `bc1qarsr966ulmcs3mlcvae7p63v4j2y2vqrw74jl8`  
-- **Ethereum**: `0xC2db50A0fc6c95f36Af7171D8C41F6998184103F`  
-- **Chime**: `$StatikSmokTM`
+## Support Options
+
+| Method        | Handle / Link |
+|---------------|---------------|
+| **Patreon**   | [StatikFinTech, LLC](https://patreon.com/StatikFinTech_LLC?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink) |
+| **Ko-Fi**     | [statikfintech_llc](https://ko-fi.com/statikfintech_llc) |
+| **CashApp**   | [$statikmoney8](https://cash.app/$statikmoney8) |
+| **PayPal**    | [paypal.me/statikmoney8](https://paypal.me/statikmoney8) |
+| **Bitcoin**   | `bc1qarsr966ulmcs3mlcvae7p63v4j2y2vqrw74jl8` |
+| **Ethereum**  | `0xC2db50A0fc6c95f36Af7171D8C41F6998184103F` |
+| **Chime**     | `$StatikSmokTM` |
+
+**Want equity, private access, or to sponsor hardware directly? Reach Out to:**
+- **Email:** [ascend.gremlin@gmail.com](mailto:ascend.gremlin@gmail.com) | [ascend.help@gmail.com](mailto:ascend.help@gmail.com)
+- **Text Us:** [+1 (785) 443-6288](sms:+17854436288)  
+- **DM:**  
+  - a) [LinkedIn: StatikFinTech, LLC](https://www.linkedin.com/in/statikfintech-llc-780804368/)
+  - b) [X: @GremlinsForge](https://twitter.com/GremlinsForge)  
 
 **See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/OPEN_FUNDING_PROPOSAL.md)**
 
@@ -235,30 +246,6 @@ We’re open to building aligned partnerships with:
 
 ---
 
-## How to Support Right Now
-
-**1. Sponsor Directly**
-
-- [CashApp](https://cash.app/$statikmoney8)  
-- [PayPal](https://paypal.me/statikmoney8)  
-- BTC: `bc1qarsr966ulmcs3mlcvae7p63v4j2y2vqrw74jl8`  
-- ETH: `0xC2db50A0fc6c95f36Af7171D8C41F6998184103F`
-
-**See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/OPEN_FUNDING_PROPOSAL.md)**
-
-**2. Share the Vision**
-
-Tweet it. Thread it. Plug it. Clone it.  
-Get it in front of people who don’t just talk AI — they **fund**, **host**, or **build** it.
-
-**3. Build Beside Us**
-
-Clone the repo, fork the code, or contribute to `GremlinGPT/docs/`.  
-Every line gets logged. Every signal matters.  
-You might just mutate the next major agent.
-
----
-
 ## What Is AscendAI?
 
 **AscendAI** is the goal — the endgame of recursive autonomy.
@@ -274,7 +261,7 @@ It is grown — from the seed of a Gremlin.
 
 ---
 
-## GremlinGPT
+## What Is GremlinGPT
 
 **GremlinGPT is the prototype. The bootloader. The spark.**
 
@@ -298,7 +285,6 @@ If you survive v1.0.3.
 
 ## GremlinGPT's Layout:
    -  **[GremlinGPT v1.0.3 AI System](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT)**
-
 
 ## GremlinGPT's Documentation:
    -  **[What is GremlinGPT v1.0.3](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs)**
