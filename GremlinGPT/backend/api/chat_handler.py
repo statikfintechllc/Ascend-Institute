@@ -20,6 +20,7 @@ from memory.log_history import log_event
 from loguru import logger
 from datetime import datetime
 
+
 def chat(user_input=None):
     if has_request_context():
         data = request.get_json()
@@ -69,4 +70,3 @@ def chat(user_input=None):
     }
     # Return Flask response if inside a request, else dict for CLI
     return jsonify(response) if has_request_context() else response
-

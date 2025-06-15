@@ -11,7 +11,6 @@
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 
 
-
 from scraper.dom_navigator import extract_dom_structure
 from memory.vector_store.embedder import embed_text, package_embedding, inject_watermark
 from memory.log_history import log_event
