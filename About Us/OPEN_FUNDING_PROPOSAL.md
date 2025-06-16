@@ -55,16 +55,12 @@ But it now requires infrastructure support to evolve into an autonomous AGI prot
 
 ## Funding Goal: $25,000 USD
 
-The initial funding target will allow GremlinGPT to:
+The initial funding target will allow StatikFinTech, LLC to:
 | Goal | Purpose |
 |------|---------|
 | **Trading Account & Full-Time Dev.** | Fund trading account to be able to move into working from home tk Dev full time|
+| **Full-Time Development** | Have to get out of the Shop, but need the income to support it |
 | **Cluster GPU Power** | Minimum: RTX 4090 × 2 or equivalent |
-| **Persistent Vector Infrastructure** | ChromaDB or custom embedding store |
-| **Offline Embedding + NLP Training Server** | No HuggingFace / No OpenAI |
-| **Secured Storage & I/O Expansion** | 32TB RAID array for checkpoint persistence |
-| **Air-Gapped Agent Testing Lab** | Full recursive agent loop in self-contained shell |
-| **Backup/Failover Network Infra** | Autonomous fallback during crash or mutation loops |
 
 ---
 
@@ -91,20 +87,13 @@ The initial funding target will allow GremlinGPT to:
 
 ## Why Now?
 
-The core system is live. It:
-- Installs and launches(Has CLI and Dashboard, CLI launches, Still Debugging nlp, full dashboard is in the works)
-- Tracks state, vector memory, tasks, and execution(On paper)
-- Includes a roadmap through mutation, NLP, scraping, and signal intelligence
-
-It is **ready to evolve** into a persistent agent with retraining, planning, and code synthesis across self-contained loops. Everything is present and Almost fully wired.
-
 But without me being able to run Devops full time, the loop cannot scale.
 
 ---
 
 ## Strategic Fit
 
-GremlinGPT aligns with:
+StatikFinTech, LLC is building:
 
 | Sector           | Why it Fits |
 |------------------|-------------|
@@ -118,12 +107,12 @@ GremlinGPT aligns with:
 
 ## Summary
 
-This isn’t another LLM front-end.
+This isn’t another LLM Wrapper Start-Up.
 
 This is a *live AI loop* building itself from local computation —  
-and it’s working, starving, and scaling.
+and the team is working, starving, and scaling.
 
-**GremlinGPT v1.0.3 will be the foundation of self-bootstrapped, offline recursive AI** if funded and supported in time.
+The Prize **GremlinGPT v1.0.3 will be the foundation of self-bootstrapped, offline recursive AI** if funded and supported in time.
 
 **Support autonomy. Fund the evolution.**
 
