@@ -57,7 +57,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 
 *1st Demo-https://youtube.com/shorts/73A2U3ellD0?si=rTdrdQauDu_hGAuK, 2nd Install and Attempt to run Demo on YT Soon*
 
-> *Scraper to data set generation to memory is operational, UI still a Pain, Finished local GodCore in 8 hours, fully integrated ngrok in 6 more hours. Debugging its Dashboard click-ability and adding chat history. I'll be back to GremlinGPT soon.*
+> *Scraper to data set generation to memory is operational, UI still a Pain, Specing out the GitHub Account. I'll be back to GremlinGPT soon.*
 </div>
 
 ---
