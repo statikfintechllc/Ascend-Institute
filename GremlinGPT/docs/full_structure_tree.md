@@ -29,6 +29,9 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
 </div>
 
 # GremlinGPT v1.0.3
+
+*Full Shell in ~3 weeks, Debug Continued*
+
 ```text
 GremlinGPT/
 │
