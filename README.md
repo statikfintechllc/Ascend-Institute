@@ -196,7 +196,7 @@ Reset: After 7:00pm CST on First 2 Clones
 > *The project has reached the limits of what can be built without external support.*
 > *The next stage—deployment, agent orchestration, and memory stability—requires infrastructure investment.*
 
-### Phase 1 Funding Target is **$25,000**
+### Phase 1 Funding Target is **$200,000**
 
 **Funds will be used to secure:**
 
