@@ -30,11 +30,13 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
 # GremlinGPT – Open Funding Proposal
 
 **Project:** GremlinGPT v1.0.3  
-**Repo:** [https://github.com/statikfintechllc/AscendAI](https://github.com/statikfintechllc/AscendAI.git) 
-**Maintainer:** statikfintechllc / ascend.gremlin@gmail.com  
-**Version:** 1.0.3-alpha  
-**License:** Dual License – Fair Use + GremlinGPT Commercial Lock  
-**Status:** Actively Maintained  
+*Repo:*
+
+[https://github.com/statikfintechllc/AscendAI](https://github.com/statikfintechllc/AscendAI.git)  
+**Maintainer:** statikfintechllc / ascend.gremlin@gmail.com   
+**Version:** 1.0.3-alpha   
+**License:** Dual License – Fair Use + GremlinGPT Commercial Lock   
+**Status:** Actively Maintained   
 **Dashboard:** [https://statikfintechllc.github.io
 ](https://statikfintechllc.github.io/AscendAI/)
 
@@ -53,7 +55,7 @@ But it now requires infrastructure support to evolve into an autonomous AGI prot
 
 ---
 
-## Funding Goal: $25,000 USD
+## Funding Goal: $200,000 USD
 
 The initial funding target will allow StatikFinTech, LLC to:
 | Goal | Purpose |
