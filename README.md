@@ -55,7 +55,10 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 
 ---
 
-*1st Demo-https://youtube.com/shorts/73A2U3ellD0?si=rTdrdQauDu_hGAuK, 2nd Install and Attempt to run Demo on YT Soon*
+*1st Demo-https://youtube.com/shorts/73A2U3ellD0?si=rTdrdQauDu_hGAuK.*
+*2nd Install and Attempt to run Demo on YT tonight.*
+
+*I apologize on Delays. Solo. Determined. Un-Funded.*
 
 > *Scraper to data set generation to memory is operational, UI still a Pain, Specing out the GitHub Account. I'll be back to GremlinGPT soon.*
 </div>
