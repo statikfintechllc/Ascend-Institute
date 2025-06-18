@@ -126,7 +126,7 @@ Reset: After 7:00pm CST on First 2 Clones
     - [Documentation and Tests](#8-documentation-and-tests)
     
 13. [Collaborators Wanted to Join the Loop](#collaborators-wanted-to-join-the-loop)
-14. [Support](#support)  
+14. [Tech Support](#tech-support)  
 15. [Final Notes](#final-notes)  
 16. [License](#license)  
 17. [How GremlinGPT Was Built](#how-gremlingpt-was-built)  
@@ -487,7 +487,7 @@ If you know how to think in layers, act in silence, and write code that rewrites
 
 ---
 
-## Support
+## Tech Support
 
 For bugs, glitches, or apocalyptic feedback:
 
