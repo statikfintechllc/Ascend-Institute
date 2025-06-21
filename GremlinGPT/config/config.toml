@@ -15,7 +15,7 @@ cors_origins = ["*"]
 session_cookie_name = "gremlin_session"
 
 [security]
-SECRET_KEY = "REPLACE_ME"
+SECRET_KEY = "SFTi"
 
 [ngrok]
 enabled = true
@@ -220,17 +220,17 @@ device = "desktop"
 [scraper.stt_credentials]
 username = "your_stt_user"
 password = "your_stt_pass"
-api_key = ""
+api_key = ""   # Gremlin Doesnt Use these, Once Configured
 
 [scraper.tws_credentials]
 username = "your_tws_user"
 password = "your_tws_pass"
-api_key = ""
+api_key = ""   # Gremlin Doesnt Use these, Once Configured
 
 [scraper.ask_monday_credentials]
 username = "your_monday_user"
 password = "your_monday_pass"
-api_token = ""
+api_token = ""   # Gremlin Doesnt Use these, Once Configured
 
 # -------------------------------------------
 # Trading Core / Signal Agents
@@ -246,11 +246,16 @@ allow_shorting = true
 max_orders_per_minute = 5.0
 api_broker_url = ""
 trade_log_path = "$ROOT/data/logs/trading.log"
-[trading.credentials]
-ibkr_api_key = ""
-stt_api_key = ""
+
+[paper.trading_credentials]
+ibkr_api_key = ""   # Gremlin Doesnt Use these, Once Configured
 sim_broker_username = ""
 sim_broker_password = ""
+
+[real.trading_credentials]
+ibkr_api_key = ""   # Gremlin Doesnt Use these, Once Configured
+username = "your_tws_user"
+password = "your_tws_pass"
 
 # -------------------------------------------
 # Tools / Reward Model / Utilities
@@ -292,8 +297,8 @@ allow_remote_control = true
 enabled = true
 
 [[auth.users]]
-username = "admin"
-password = "changeme"
+username = "SFTi" # Change to your Prefered User.
+password = "changeme" # Change to your Prefered Pass.
 
 [modules.chat_interface]
 enabled = true
