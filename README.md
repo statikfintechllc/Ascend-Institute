@@ -84,7 +84,8 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 	•	Hooking logs into startup script for bootstrap visibility
 	•	Ensuring universal pathing across all runtime entrypoints
 
-*Starting Today, Progress Updates will be as frequent as possible.*
+*Working Directory: GremlinGPT Today*
+⚠️Progress Updates will be as frequent as possible.⚠️
 
 ---
 
