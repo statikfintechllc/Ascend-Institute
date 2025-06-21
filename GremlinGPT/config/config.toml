@@ -164,11 +164,11 @@ global_interval_sec = 15
 global_timeout_sec = 30
 max_concurrent_scrapers = 9.0
 retry_backoff_sec = 5.0
-browser_profile = "./scraper/profiles/chromium_profile/"
+browser_profile = "$ROOT/scraper/profiles/chromium_profile/"
 fallback_enabled = true
 watch_processes = ["TWS", "StocksToTrade"]
 user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36"
-chromium_flags = ["--disable-gpu", "--no-sandbox"]
+chromium_flags = ["--enable-gpu", "--no-sandbox"]
 device_emulation = "desktop"
 simulation_enabled = true
 routing_enabled = true
@@ -190,7 +190,7 @@ interval_sec = 25
 timeout_sec = 60
 
 [scraper.ask_monday]
-enabled = false
+enabled = true
 interval_sec = 30
 timeout_sec = 30
 
@@ -281,7 +281,7 @@ allowed_api_routes = ["chat", "trade", "memory", "scrape", "shell", "mutation"]
 enabled = true
 title = "GremlinGPT Command Console"
 theme = "dark"
-auto_launch_browser = false
+auto_launch_browser = true
 enable_qr_code = true
 enable_mobile_pwa = true
 poll_interval_ms = 500

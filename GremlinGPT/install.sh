@@ -163,4 +163,26 @@ else
     echo "[INFO] ngrok installed: $(which ngrok)"
 fi
 
+
+REPO="$(cd "$(dirname "$0")/.." && pwd)"
+APPDIR="$HOME/.local/share/applications"
+ICNDIR="$HOME/.local/share/icons"
+
+mkdir -p "$APPDIR" "$ICNDIR"
+
+mkdir -p "$ICNDIR"
+
+cp "$REPO/GremlinGPT/frontend/Icon_Logo/App_Icon_&_Loading_&_Inference_Image.png" "$ICNDIR/AscendAI-v1.0.3.png"
+
+cat > "$APPDIR/AscendAI-v1.0.3.desktop" <<EOF
+[Desktop Entry]
+Type=Application
+Name=AscendAI-v1.0.3
+Comment=SFTi
+Exec=$HOME/AscendAI/GremlinGPT/run/start_all.sh
+Icon=$ICNDIR/AscendAI-v1.0.3.png
+Terminal=true
+Categories=Development;Utility;
+EOF
+
 echo "${GREEN}[INSTALL] GremlinGPT installation completed successfully.${NC}"

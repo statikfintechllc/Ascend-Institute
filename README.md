@@ -92,7 +92,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 <div align="center">
   <em>
     The Institute’s GremlinGPT system Idea and progress has already been reviewed and starred by tkersey from Atrium.  
-    We have received our 11th Star, Thank you, juvu, and our 2nd Fork, Thank you, sycomix, Let’s get GremlinGPT Funed & Seen.
+    We have received our 13th Star, Thank you, markwylde, and our 3nd Fork, Thank you, NullMeDev, Let’s get GremlinGPT Funed & Seen.
   </em>
 </div>
 
@@ -290,8 +290,13 @@ It is grown — from the seed of a Gremlin.
 
 ## What Is GremlinGPT
 
-**GremlinGPT is the prototype. The bootloader. The spark.**
+**GremlinGPT is the prototype. *The bootloader. The spark.***
 
+
+The world’s first R‑SRACS
+*Recursive, Self-Referential Autonomous Cognitive System*
+
+GremlinGPT is a Recursive, Self-Referential Autonomous Cognitive System (R‑SRACS), deployable as a Decentralized Autonomous Intelligence Node (DAIN) with multi-agent Emergent Network properties (EMAN) and a Meta-Synthetic Persona Engine (MSPE) interface.
 A modular recursive AI built to grow itself offline — no API key, no remote LLMs.  
 It mutates, it reasons, and it builds... toward **AscendAI**.
 

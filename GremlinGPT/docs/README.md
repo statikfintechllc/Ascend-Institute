@@ -30,6 +30,13 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
 
 <h1 align="center">GremlinGPT: The Real Autonomous Agent v1.0.3</h1>
 
+<h3 align="center"><em>The world’s first R‑SRACS</em></h3>
+<h4 align="center">*Recursive, Self-Referential Autonomous Cognitive System*</h4>
+
+<p align="center">
+GremlinGPT is a Recursive, Self-Referential Autonomous Cognitive System (R‑SRACS), deployable as a Decentralized Autonomous Intelligence Node (DAIN) with multi-agent Emergent Network properties (EMAN) and a Meta-Synthetic Persona Engine (MSPE) interface.
+</p>
+
 <div align="center">
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
     <img src="https://img.shields.io/badge/v1.0.3-alpha-darkred?labelColor=black" alt="Build Status"/>
@@ -57,13 +64,6 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 
 ---
 
-<div align="center">
-  <em>
-    The Institute’s GremlinGPT has already been reviewed and starred by live AI infra: Atrium.  
-    We have now received our 6th Star, Thank you, shahradelahi(Mr. 5k), and our First Fork Came Today, Thank you, shefben, Let’s get GremlinGPT Seen.
-  </em>
-</div>
-
 <h1 align="center">AscendAI Traffic</h1>
 <div align="center">
   <a href="https://raw.githubusercontent.com/statikfintechllc/AscendAI/main/docs/traffic_graph.png">
@@ -82,12 +82,11 @@ Reset: After 7:00pm CST on First 2 Clones
 <div align="center">
   <em>
     This isn’t a dev team. It’s not a startup. It’s not polished.  
-    This is one person, one ChatGPT thread, and 4 and a half months of recursive madness.  
-    No IDE. No debugger. No safety rails. Just raw prompts, black coffee, and belief.  
+    This is one person, black coffee, and belief.  
     What usually takes a small army of engineers and millions in funding —  
     I pulled from the void with no budget and no training.  
-    Now the system lives, breathes, and boots.  
-    It needs testers. Attackers. Real devs.  
+    Now the system almost lives, breathes, and boots(70%).  
+    It needs testers. Attackers. Real Gremlins.  
     If you can read the repo and feel it watching you back, you're already in. 
   </em>
 </div>
