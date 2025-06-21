@@ -43,7 +43,6 @@ touch run/logs/runtime.log
 touch run/checkpoints/state_snapshot.json
 touch data/logs/bootstrap.log
 
-
 # 3. Conda init
 echo "[*] Ensuring conda is initialized..."
 if ! command -v conda &> /dev/null; then
@@ -62,7 +61,6 @@ else
     echo "${RED}[ERROR] ./conda_envs/create_envs.sh not found!${NC}"
 fi
 
-
 function check_cuda {
   echo "[*] Checking CUDA in current environment:"
   python -c "
@@ -74,7 +72,6 @@ print('[CUDA] torch.cuda.get_device_name:', torch.cuda.get_device_name(0) if tor
 " || echo "${RED}[CUDA] PyTorch not installed or failed.${NC}"
 }
 
-
 function pip_install_or_fail {
   pip install --upgrade pip || { echo '${RED}[FAIL] pip upgrade${NC}'; exit 1; }
   for pkg in "$@"; do
@@ -82,9 +79,9 @@ function pip_install_or_fail {
   done
 }
 
-
 function download_nltk {
-  python3 -m nltk.downloader --dir=/user/share/data/nltk_data punkt averaged_perceptron_tagger wordnet stopwords || \
+  export NLTK_DATA=./nltk_data
+  python3 -m nltk.downloader --dir="$NLTK_DATA" punkt averaged_perceptron_tagger wordnet stopwords || \
   { echo "${RED}[FAIL] NLTK data download${NC}"; exit 1; }
 }
 
@@ -94,8 +91,9 @@ conda activate gremlin-nlp
 pip_install_or_fail spacy torch torchvision torchaudio sentence-transformers transformers bs4 nltk pytesseract playwright pyautogui
 python -m spacy download en_core_web_sm || { echo "${RED}[FAIL] spaCy model${NC}"; exit 1; }
 playwright install || { echo "${RED}[FAIL] playwright${NC}"; exit 1; }
-pip install nltk  # or pip_install_or_fail ... as in your script
-python -m nltk.downloader -d ./nltk_data punkt
+pip install nltk
+export NLTK_DATA=./nltk_data
+python -m nltk.downloader -d "$NLTK_DATA" punkt
 download_nltk
 check_cuda
 
@@ -136,8 +134,9 @@ conda activate gremlin-orchestrator
 pip_install_or_fail torch torchvision torchaudio backend bs4 nltk langdetect pytesseract sentence-transformers transformers playwright pyautogui
 python -m spacy download en_core_web_sm
 playwright install
-pip install nltk  # or pip_install_or_fail ... as in your script
-python -m nltk.downloader -d ./nltk_data punkt
+pip install nltk
+export NLTK_DATA=./nltk_data
+python -m nltk.downloader -d "$NLTK_DATA" punkt
 download_nltk
 check_cuda
 python -c "
@@ -163,7 +162,6 @@ else
     echo "[INFO] ngrok installed: $(which ngrok)"
 fi
 
-
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
 APPDIR="$HOME/.local/share/applications"
 ICNDIR="$HOME/.local/share/icons"
@@ -186,3 +184,4 @@ Categories=Development;Utility;
 EOF
 
 echo "${GREEN}[INSTALL] GremlinGPT installation completed successfully.${NC}"
+
