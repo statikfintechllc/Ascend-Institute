@@ -92,7 +92,7 @@ pip_install_or_fail spacy torch torchvision torchaudio sentence-transformers tra
 python -m spacy download en_core_web_sm || { echo "${RED}[FAIL] spaCy model${NC}"; exit 1; }
 playwright install || { echo "${RED}[FAIL] playwright${NC}"; exit 1; }
 pip install nltk
-export NLTK_DATA=./nltk_data
+export NLTK_DATA=./data/nltk_data
 python -m nltk.downloader -d "$NLTK_DATA" punkt
 download_nltk
 check_cuda
@@ -135,7 +135,7 @@ pip_install_or_fail torch torchvision torchaudio backend bs4 nltk langdetect pyt
 python -m spacy download en_core_web_sm
 playwright install
 pip install nltk
-export NLTK_DATA=./nltk_data
+export NLTK_DATA=./data/nltk_data
 python -m nltk.downloader -d "$NLTK_DATA" punkt
 download_nltk
 check_cuda
