@@ -233,7 +233,7 @@ python -c "from sentence_transformers import SentenceTransformer; SentenceTransf
 
 ⸻
 
-## 🧠 Running the System
+## Running the System
 
 > If you’re seeing errors from NLTK (e.g. punkt not found), don’t panic—you don’t have to go spelunking into site-packages anymore.
 
