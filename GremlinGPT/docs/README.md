@@ -136,12 +136,10 @@ Read the [FOUNDER_LOG.md](https://github.com/statikfintechllc/AscendAI/blob/mast
 
 ## Reviewer's Guide
 
-> *This PR brings the JSON traffic datasets up to date and introduces a new command-line interface under `GremlinGPT/run` for interactive NLP engine access.*
-
-### Sequence Diagram for CLI Interaction
+### Sequence Diagram for CLI Interaction (Represetation is for the Cli.py for chat, not the App icon interaction.)
 
 > *For those who dont want to wait on the dashboard to be buttoned and all pieces connedted.*
-> 
+
 ```mermaid
 sequenceDiagram
     actor User
@@ -162,6 +160,7 @@ sequenceDiagram
 
 ## Features
 
+🗣️ *NEW LINUX APP ICON*
 - **Zero cloud dependence**: runs 100% offline and local
 - **Persistent, auto-recovering agent core**
 - **State-of-the-art PWA dashboard**: mobile + desktop, instant install, works offline
@@ -176,6 +175,7 @@ sequenceDiagram
 
 ## Architecture
 
+- **Linux Application** After install.sh is ran, linux users can check thier local app menu for AscendAR app icon.
 - **Backend:** Python (Flask/FastAPI), persistent vector DBs, FSM agent loop
 - **Frontend:** Modern PWA (Bootstrap, vanilla JS), custom dark theme, tabbed UI, floating chat
 - **Memory:** Chroma, FAISS, SentenceTransformer, full vector store, auto-index
@@ -231,33 +231,36 @@ python -c "from sentence_transformers import SentenceTransformer; SentenceTransf
 
 ⸻
 
-## Running the System
-> *Properly adjust this 'sys.path.append("/path/to/AscendAI/GremlinGPT")' inside run/cli.py*
+## 🧠 Running the System
+
+> If you’re seeing errors from NLTK (e.g. punkt not found), don’t panic—you don’t have to go spelunking into site-packages anymore.
+
+1. **Set your working directory**
 
 ```bash
 cd /path/to/AscendAI/GremlinGPT
 ```
 
-Patch punkt.py to Use Standard 'punkt' Directory(punkt_tab dubunk)
+2. **Activate your NLP environment**
+   
 ```bash
-/path/to/miniconda3/envs/gremlin-nlp/lib/python3.10/site-packages/nltk/tokenize/punkt.py
+conda activate gremlin-nlp
 ```
 
-Edit these lines:
-*Before:*
+3. **Run GremlinGPT CLI with NLP setup auto-wired**
+
+*Inside run/cli.py, make sure this line appears near the top:*
 
 ```python
-lang_dir = find(f"tokenizers/punkt_tab/{lang}/")
-...
-def save_punkt_params(params, dir="/tmp/punkt_tab"):
+from utils.nltk_setup import setup_nltk_data
+setup_nltk_data()
+conda deactivate
 ```
 
-*After:*
+**Then *run* the system**:
 
 ```python
-lang_dir = find(f"tokenizers/punkt/{lang}/")  # use standard punkt path
-...
-def save_punkt_params(params, dir="/tmp/punkt"):  # use a non-tab folder
+PYTHONPATH=$(pwd) python3 run/cli.py
 ```
 
 - This means NLTK will always look for standard punkt data.
@@ -288,6 +291,7 @@ chmod +x run/start_all.sh
 ## Remote Access using ngrok
 
 - **To securely access GremlinGPT dashboard from anywhere:**
+> *start_all.sh takes care of this*
 
 ```bash
 ngrok http 8080
