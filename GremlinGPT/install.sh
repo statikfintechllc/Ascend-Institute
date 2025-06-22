@@ -30,7 +30,7 @@ DIRS=(
   "frontend/components"
   "tests"
   "docs"
-  "nltk_data"
+  "data/nltk_data"
 )
 for dir in "${DIRS[@]}"; do
   [ ! -d "$dir" ] && mkdir -p "$dir" && echo "Created: $dir" || echo "Exists:  $dir"
@@ -80,7 +80,7 @@ function pip_install_or_fail {
 }
 
 function download_nltk {
-  export NLTK_DATA=./nltk_data
+  export NLTK_DATA=./data/nltk_data
   python3 -m nltk.downloader --dir="$NLTK_DATA" punkt averaged_perceptron_tagger wordnet stopwords || \
   { echo "${RED}[FAIL] NLTK data download${NC}"; exit 1; }
 }
