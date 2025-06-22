@@ -85,13 +85,18 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 	•	Ensuring universal pathing across all runtime entrypoints
 
 <div align="center">
-*Working Directory: GremlinGPT Today*
-⚠️Progress Updates will be as frequent as possible.⚠️
+	
+Working Directory: GremlinGPT Today
+⚠️Progress Updates will be as *frequent*</h1> as possible.⚠️
+
 </div>
 
 ---
 
 <div align="center">
+	
+# AscendAI Traffic</h1>
+
   <em>
     The Institute’s GremlinGPT system Idea and progress has already been reviewed and starred by tkersey from Atrium.  
     We have received our 13th Star, Thank you, markwylde, and our 3nd Fork, Thank you, NullMeDev, Let’s get GremlinGPT Funed & Seen.
