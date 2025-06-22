@@ -136,7 +136,9 @@ Read the [FOUNDER_LOG.md](https://github.com/statikfintechllc/AscendAI/blob/mast
 
 ## Reviewer's Guide
 
-### Sequence Diagram for CLI Interaction (Represetation is for the Cli.py for chat, not the App icon interaction.)
+### Sequence Diagram for CLI Interaction
+
+- *(Represetation is for the Cli.py for chat, not the App icon interaction.)*
 
 > *For those who dont want to wait on the dashboard to be buttoned and all pieces connedted.*
 
