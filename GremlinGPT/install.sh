@@ -164,6 +164,7 @@ fi
 
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
 APPDIR="$HOME/.local/share/applications"
+APPLOC="$HOME/AscendAI/GremlinGPT"
 ICNDIR="$HOME/.local/share/icons"
 
 mkdir -p "$APPDIR" "$ICNDIR"
@@ -175,7 +176,7 @@ cat > "$APPDIR/AscendAI-v1.0.3.desktop" <<EOF
 Type=Application
 Name=AscendAI-v1.0.3
 Comment=SFTi
-Exec=$HOME/AscendAI/GremlinGPT/utils/dash_cli.sh
+Exec=$APPLOC/utils/dash_cli.sh
 Icon=$ICNDIR/AscendAI-v1.0.3.png
 Terminal=true
 Categories=Development;Utility;
