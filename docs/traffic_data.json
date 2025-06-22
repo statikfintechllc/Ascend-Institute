@@ -72,7 +72,7 @@
     },
     {
       "timestamp": "2025-06-22T00:00:00Z",
-      "count": 175,
+      "count": 185,
       "uniques": 21
     }
   ],
@@ -144,8 +144,8 @@
     },
     {
       "timestamp": "2025-06-22T00:00:00Z",
-      "count": 188,
-      "uniques": 3
+      "count": 189,
+      "uniques": 4
     }
   ]
 }
