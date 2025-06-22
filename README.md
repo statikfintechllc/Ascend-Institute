@@ -98,7 +98,6 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
   </em>
 </div>
 
-<h1 align="center">AscendAI Traffic</h1>
 <div align="center">
   <a href="https://raw.githubusercontent.com/statikfintechllc/AscendAI/main/docs/traffic_graph.png">
   <img src="https://raw.githubusercontent.com/statikfintechllc/AscendAI/main/docs/traffic_graph.png" alt="Traffic Graph" />
@@ -120,7 +119,6 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master
     <img src="https://img.shields.io/badge/Why-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
   </a>
 </div>
-
 ---
 
 <div align="center">
