@@ -84,8 +84,10 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 	•	Hooking logs into startup script for bootstrap visibility
 	•	Ensuring universal pathing across all runtime entrypoints
 
+<div align="center">
 *Working Directory: GremlinGPT Today*
 ⚠️Progress Updates will be as frequent as possible.⚠️
+</div>
 
 ---
 
@@ -140,7 +142,7 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master
 1. [GremlinGPT v1.0.3 Build Status](#gremlingpt-v103-build-status)
 2. [Support This Project](#support-this-project)  
 3. [Funding and Infrastructure Goals](#funding-and-infrastructure-goals)  
-4. [Phase 1 Funding Target is $25,000](#phase-1-funding-target-is-25000)  
+4. [Funding Target](#funding-target-is-500000)  
 5. [If You Are](#if-you-are)  
 6. [Partner With Us](#partner-with-us) 
 7. [If You Believe](#if-you-believe)
@@ -233,7 +235,7 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master
 > *The project has reached the limits of what can be built without external support.*
 > *The next stage—deployment, agent orchestration, and memory stability—requires infrastructure investment.*
 
-### Phase 1 Funding Target is **$200,000**
+### Funding Target is **$500,000**
 
 **Funds will be used to secure:**
 
