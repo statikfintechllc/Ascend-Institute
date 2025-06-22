@@ -55,7 +55,7 @@ But it now requires infrastructure support to evolve into an autonomous AGI prot
 
 ---
 
-## Funding Goal: $200,000 USD
+## Funding Goal: $500,000 USD
 
 The initial funding target will allow StatikFinTech, LLC to:
 | Goal | Purpose |
