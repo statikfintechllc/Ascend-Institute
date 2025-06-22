@@ -21,15 +21,18 @@ from executors.python_executor import run_python_sandbox
 from tools.reward_model import evaluate_result, log_reward
 from memory.log_history import log_event
 from backend.globals import logger
+from utils.nltk_setup import setup_nltk_data
 import nltk
 import os
 
-NLTK_DATA_DIR = os.path.abspath(
-    os.path.join(os.path.dirname(__file__), "../data/nltk_data")
-)
-os.makedirs(NLTK_DATA_DIR, exist_ok=True)
-nltk.data.path.clear()
-nltk.data.path.append(NLTK_DATA_DIR)
+NLTK_DATA_DIR = setup_nltk_data()
+
+#NLTK_DATA_DIR = os.path.abspath(
+#    os.path.join(os.path.dirname(__file__), "../data/nltk_data")
+#)
+#os.makedirs(NLTK_DATA_DIR, exist_ok=True)
+#nltk.data.path.clear()
+#nltk.data.path.append(NLTK_DATA_DIR)
 
 
 def execute_tool(task):

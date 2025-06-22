@@ -2,31 +2,34 @@
 
 import re
 import numpy as np
-import nltk
 import langdetect
 import torch
-from nltk.tokenize import word_tokenize
 from backend.globals import logger
 from sentence_transformers import SentenceTransformer, util
+from utils.nltk_setup import setup_nltk_data
+import nltk
+from nltk.tokenize import word_tokenize
+
+setup_nltk_data()
 
 WATERMARK = "source:GremlinGPT"
 ORIGIN = "semantic_score"
 
 # Ensure punkt is available
-NLTK_PATHS = ["/usr/local/share/nltk_data", "./nltk_data"]
-for path in NLTK_PATHS:
-    nltk.data.path.append(path)
+#NLTK_PATHS = ["/usr/local/share/nltk_data", ".data/nltk_data"]
+#for path in NLTK_PATHS:
+#    nltk.data.path.append(path)
 
-try:
-    nltk.data.find("tokenizers/punkt")
-except LookupError:
+#try:
+#    nltk.data.find("tokenizers/punkt")
+#except LookupError:
     # Try downloading to a writable directory
-    for path in NLTK_PATHS:
-        try:
-            nltk.download("punkt", download_dir=path)
-            break
-        except Exception as e:
-            pass  # Optionally log or print the failure
+#    for path in NLTK_PATHS:
+#        try:
+#            nltk.download("punkt", download_dir=path)
+#            break
+#        except Exception as e:
+#            pass  # Optionally log or print the failure
 
 
 MODEL = CFG["nlp"].get("tokenizer_model", "bert-base-uncased")

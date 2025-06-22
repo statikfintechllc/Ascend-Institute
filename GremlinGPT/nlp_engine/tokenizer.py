@@ -11,31 +11,32 @@
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 
 import re
-import nltk
 from transformers import AutoTokenizer
 from backend.globals import CFG, logger
 
 from memory.vector_store.embedder import embed_text, package_embedding, inject_watermark
 from datetime import datetime
+from utils.nltk_setup import setup_nltk_data
+import nltk
+
+setup_nltk_data()
 
 WATERMARK = "source:GremlinGPT"
 ORIGIN = "tokenizer"
 
 # Ensure punkt is available
-NLTK_PATHS = ["/usr/local/share/nltk_data", "./nltk_data"]
-for path in NLTK_PATHS:
-    nltk.data.path.append(path)
-
-try:
-    nltk.data.find("tokenizers/punkt")
-except LookupError:
-    # Try downloading to a writable directory
-    for path in NLTK_PATHS:
-        try:
-            nltk.download("punkt", download_dir=path)
-            break
-        except Exception as e:
-            pass  # Optionally log or print the failure
+#NLTK_PATHS = ["/usr/local/share/nltk_data", ".data/nltk_data"]
+#for path in NLTK_PATHS:
+#    nltk.data.path.append(path)
+#try:
+#    nltk.data.find("tokenizers/punkt")
+#except LookupError:
+    # Try downloading to a writable directory#    for path in NLTK_PATHS:
+#        try:
+#            nltk.download("punkt", download_dir=path)
+#            break
+#        except Exception as e:
+#            pass  # Optionally log or print the failure
 
 MODEL = CFG["nlp"].get("tokenizer_model", "bert-base-uncased")
 

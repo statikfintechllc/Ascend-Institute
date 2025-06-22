@@ -30,7 +30,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
 
 # GremlinGPT v1.0.3
 
-*Full Shell in ~3 weeks, Debug Continued*
+*Full Shell in ~3 weeks, Debug Continues*
 
 ```text
 GremlinGPT/
@@ -305,6 +305,10 @@ GremlinGPT/
 ├── demos/
 │   │
 │   └── README.md
+│
+├── utils/
+│   │
+│   └── nltk_setup.py
 │
 └── README.md
 ```

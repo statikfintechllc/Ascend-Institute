@@ -31,7 +31,9 @@ except LookupError:
 nltk.download("averaged_perceptron_tagger", quiet=True)
 
 # Ensure global nltk data path is registered
-nltk.data.path.append("/usr/local/share/nltk_data")
+NLTK_PATHS = ["/usr/local/share/nltk_data", ".data/nltk_data"]
+for path in NLTK_PATHS:
+    nltk.data.path.append(path)
 
 
 MODEL = CFG["nlp"].get("tokenizer_model", "bert-base-uncased")
