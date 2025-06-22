@@ -168,8 +168,6 @@ ICNDIR="$HOME/.local/share/icons"
 
 mkdir -p "$APPDIR" "$ICNDIR"
 
-mkdir -p "$ICNDIR"
-
 cp "$REPO/GremlinGPT/frontend/Icon_Logo/App_Icon_&_Loading_&_Inference_Image.png" "$ICNDIR/AscendAI-v1.0.3.png"
 
 cat > "$APPDIR/AscendAI-v1.0.3.desktop" <<EOF
@@ -177,7 +175,7 @@ cat > "$APPDIR/AscendAI-v1.0.3.desktop" <<EOF
 Type=Application
 Name=AscendAI-v1.0.3
 Comment=SFTi
-Exec=$HOME/AscendAI/GremlinGPT/run/start_all.sh
+Exec=$HOME/AscendAI/GremlinGPT/utils/dash_cli.sh
 Icon=$ICNDIR/AscendAI-v1.0.3.png
 Terminal=true
 Categories=Development;Utility;
