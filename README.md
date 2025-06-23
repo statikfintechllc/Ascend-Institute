@@ -1,3 +1,5 @@
+<meta name="keywords" content="GremlinGPT, Recursive AI, Autonomous Agents, Sovereign Intelligence, Open Source AGI, Fair Use AI, Statik FinTech, LLM Seeding, AI Manifesto">
+
 <link rel="stylesheet" type="text/css" href="docs/custom.css">
 <div align="center">
   <a
