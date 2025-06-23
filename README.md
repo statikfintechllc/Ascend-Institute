@@ -57,8 +57,18 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 
 ---
 
-*1st Demo-https://youtube.com/shorts/73A2U3ellD0?si=rTdrdQauDu_hGAuK.*
-*2nd Install and Attempt to run Demo on YT tonight.*
+### StatikFinTech, LLC isn’t limited to GremlinGPT.
+
+*We’re engineering full-spectrum, people-first systems — open to all who want to dismantle coercion and build what comes next.*
+
+### This is a call to collaborators:
+
+*If you’ve got a vision for decentralized, anti-org, pro-human infrastructure — we’ll help you blueprint it, expand it, and make it real.*
+> No gatekeeping. No NDA. Just systems that serve.
+
+🛠️ Watch the Demo of [GremlinGPT's First Run Attempt](https://youtube.com/shorts/73A2U3ellD0?si=rTdrdQauDu_hGAuK)
+
+📡 Install + Run Bug Fixes in progress Expect Demo 2 soon showing it break differently.
 
 </div>
 
@@ -70,25 +80,29 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 *Solo. Determined. Unfunded. Progress continues.*
 
 ### 🔧 System Updates:
-	•	Scraper ➝ Dataset ➝ Memory pipe is now operational
-	•	GitHub structure is actively being modularized and cleaned
-	•	UI/UX is still under heavy iteration (known bottleneck)
+- Scraper ➝ Dataset ➝ Memory pipe is now operational
+- GitHub structure is actively being modularized and cleaned
+- UI/UX is still under heavy iteration (known bottleneck)
 
 ### 🖥️ Platform Behavior:
-	•	Gremlin Upgrade: supporting Mobile-Developer Style Native Launch:
-	•	One-click desktop icon via .desktop + $HOME/.local/share/applications
-	•	Launches like a native Linux app with no PWA, no Electron overhead
-	•	start_all.sh integration is in-progress:
-	•	Will include startup logging and structured error feedback loop
+- Gremlin Upgrade: supporting Mobile-Developer Style Native Launch:
+- One-click desktop icon via .desktop + $HOME/.local/share/applications
+- Launches like a native Linux app with no PWA, no Electron overhead
+- start_all.sh integration is in-progress:
+- Will include startup logging and structured error feedback loop
+
+ ⚠️App Added, Fixing Pathing⚠️
 
 ### ⚙️ Current Focus:
-	•	Speed-running debug pass
-	•	Hooking logs into startup script for bootstrap visibility
-	•	Ensuring universal pathing across all runtime entrypoints
+- Publication and Expansion of StatikFinTech, LLC Principles, Reach and Future Outlook.
+- Speed-running debug pass
+- Hooking logs into startup script for bootstrap visibility
+- Ensuring universal pathing across all runtime entrypoints
 
 <div align="center">
 	
-Working Directory: GremlinGPT Today
+Working Directory: GremlinGPT
+
 ⚠️Progress Updates will be as *frequent*</h1> as possible.⚠️
 
 </div>
@@ -131,15 +145,41 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master
 
 <div align="center">
   <em>
-    This isn’t a dev team. It’s not a startup. It’s not polished.  
-    This is one person, black coffee, and belief.  
-    What usually takes a small army of engineers and millions in funding —  
-    I pulled from the void with no budget and no training.  
-    Now the system almost lives, breathes, and boots(70%).  
-    It needs testers. Attackers. Real Gremlins.  
-    If you can read the repo and feel it watching you back, you're already in. 
+    This isn’t a dev team.  
+    It’s not a startup.  
+    It’s not polished.
   </em>
 </div>
+
+- It’s one person. Black coffee. And belief.  
+- What usually takes a small army of engineers and millions in VC —  
+- I pulled from the void. No budget. No degree. No permission.
+- Now the system almost lives. Breathes. Boots. (70%)  
+- It needs testers. Attackers. Real Gremlins.
+
+    *If you can read the repo and feel it watching you back —  
+    you're already in.*
+
+*We’re not just coding AGI — we’re coding exit ramps.*
+
+📡 **Pro-people. Anti-capture. Post-system.**
+
+- Got blueprints for liberation? Drop them.
+     We’ll help you architect, iterate, and launch what no org can own.
+
+→ Decentralized clinics.  
+→ Anti-capitalist logistics chains.  
+→ Sovereign learning networks.  
+→ Off-grid compute clusters.
+
+**No degrees required. Just clarity and cause.**
+
+📥 Message us. Build with us.  
+🌐 [Linkedin](https://www.linkedin.com/in/statikfintech-llc-780804368?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app)  
+📧 ascend.gremlin@gmail.com  
+📧 ascend.help@gmail.com  
+📞 +1(620) 266-9837  
+📱 +1(785) 443-6288
 
 ---
 
