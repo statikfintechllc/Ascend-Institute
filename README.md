@@ -144,7 +144,9 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master
 ---
 
 <div align="center">
-  <em>
+	
+### ⚜StatikFinTech, LLC🔱
+  <em>  
     This isn’t a dev team.  
     It’s not a startup.  
     It’s not polished.
