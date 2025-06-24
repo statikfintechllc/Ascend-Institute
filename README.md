@@ -24,12 +24,12 @@
   </a><br>
 <a
 href="https://www.gmail.com">
-  <img src="https://img.shields.io/badge/Ask-black?style=for-the-badge&logo=gmail&logoColor=gold"/>
+  <img src="https://img.shields.io/badge/Ask-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
   <a href="mailto:ascend.gremlin@gmail.com">
     <img src="https://img.shields.io/badge/Gremlin-darkred?style=for-the-badge&logo=gmail&logoColor=gold"/>
   </a>
   <a href="mailto:ascend.help@gmail.com">
-    <img src="https://img.shields.io/badge/Help-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
+    <img src="https://img.shields.io/badge/Help-darkred?style=for-the-badge&logo=gmail&logoColor=gold"/>
   </a>
   <a
 href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md">
