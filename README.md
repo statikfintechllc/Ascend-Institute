@@ -24,7 +24,7 @@
   </a><br>
 <a
 href="https://www.gmail.com">
-  <img src="https://img.shields.io/badge/Ask-black?style=for-the-badge&logo=gmail&logoColor=gold"/>
+  <img src="https://img.shields.io/badge/Ask-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
   <a href="mailto:ascend.gremlin@gmail.com">
     <img src="https://img.shields.io/badge/Gremlin-darkred?style=for-the-badge&logo=gmail&logoColor=gold"/>
   </a>
