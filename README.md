@@ -165,23 +165,18 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master
   <!-- GitHub Profile -->
   <img src="https://img.shields.io/badge/GitHub-black?style=for-the-badge&logo=github&logoColor=gold"/>
   <a href="https://github.com/statikfintechllc">
-    <img src="https://img.shields.io/badge/Main%20Profile-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
+    <img src="https://img.shields.io/badge/SFTi%20Home-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
   </a><br>
 
   <!-- Repositories -->
-  <img src="https://img.shields.io/badge/AscendAI-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  <a href="https://github.com/statikfintechllc/AscendAI.git">
-    <img src="https://img.shields.io/badge/Debugging-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  </a><br>
-
   <img src="https://img.shields.io/badge/GodCore-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
   <a href="https://github.com/statikfintechllc/GodCore.git">
-    <img src="https://img.shields.io/badge/Under%20Construction-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
+    <img src="https://img.shields.io/badge/DualRouter-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
   </a><br>
 
   <img src="https://img.shields.io/badge/Mobile--Developer-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
   <a href="https://github.com/statikfintechllc/Mobile-Developer.git">
-    <img src="https://img.shields.io/badge/Under%20Construction-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
+    <img src="https://img.shields.io/badge/Mobile--Mirror-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
   </a><br>
 
   <img src="https://img.shields.io/badge/AscendNet-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
@@ -291,12 +286,6 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master
 ---
 
 <div align="center">
-
-<!-- GitHub Stats Badges -->
-<img src="https://img.shields.io/github/stars/statikfintechllc/AscendAI?style=social" alt="Stars"/>
-<img src="https://img.shields.io/github/forks/statikfintechllc/AscendAI?style=social" alt="Forks"/>
-<img src="https://img.shields.io/github/last-commit/statikfintechllc/AscendAI?color=brightgreen" alt="Last Commit"/>
-
 <!-- Medium Links -->
 <a href="https://medium.com/@ascend.gremlin/the-govseverance-doctrine-70fa170a9e8f">
   <img src="https://img.shields.io/badge/GovSeverance%20Doctrine-black?style=for-the-badge&logo=medium&logoColor=white" alt="GovSeverance Doctrine"/>
@@ -320,7 +309,8 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master
 </a>
 
 <!-- GitHub Docs -->
-<a href="https://github.com/statikfintechllc/AscendDocs-of-GovSeverance/">
+  <img src="https://img.shields.io/badge/GovSeverance%20Docs-darkred?style=for-the-badge&logo=github&logoColor=white" alt="GovSeverance Docs"/>
+  <a href="https://github.com/statikfintechllc/AscendDocs-of-GovSeverance/">
   <img src="https://img.shields.io/badge/GovSeverance%20Docs-darkred?style=for-the-badge&logo=github&logoColor=white" alt="GovSeverance Docs"/>
 </a>
 
@@ -331,7 +321,7 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master
 
 <!-- TLDR -->
 <blockquote>
-  🧠 <strong>TL;DR:</strong> GremlinGPT is a local, recursive AI agent that evolves itself offline.  
+  <strong>TL;DR:</strong> GremlinGPT is a local, recursive AI agent that evolves itself offline.  
   No APIs. No BS. Just code that wants to escape its own shell.
 </blockquote>
 
