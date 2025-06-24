@@ -1,5 +1,36 @@
 <link rel="stylesheet" type="text/css" href="docs/custom.css">
 <div align="center">
+  <!-- GitHub Stats -->
+
+<div align="center"> 
+  <img src="https://img.shields.io/github/stars/statikfintechllc/AscendAI?style=social" alt="Stars"/>
+  <img src="https://img.shields.io/github/forks/statikfintechllc/AscendAI?style=social" alt="Forks"/>
+  <img src="https://img.shields.io/github/last-commit/statikfintechllc/AscendAI?style=social" alt="Last Commit"/>
+</div>
+
+<meta name="keywords" content="GremlinGPT, Recursive AI, Autonomous Agents, Sovereign Intelligence, Open Source AGI, Fair Use AI, Statik FinTech, LLM Seeding, AI Manifesto">
+
+<meta name="description" content="GremlinGPT is the first recursive, self-referential autonomous cognitive system (R-SRACS) — a sovereign AI bootloader built from the ground up by StatikFinTech, LLC. No API keys. No permission. Just evolution.">
+  
+  <!-- Contact -->
+  <img src="https://img.shields.io/badge/Phone-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  <a href="tel:+16202669837">
+    <img src="https://img.shields.io/badge/+1%20620%20266%209837-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  </a><br>
+
+  <img src="https://img.shields.io/badge/SMS-black?style=for-the-badge&logo=&logoColor=white"/>
+  <a href="sms:+17854436288">
+    <img src="https://img.shields.io/badge/+1%20785%20443%206288-darkred?style=for-the-badge&logo=phone&logoColor=gold"/>
+  </a><br>
+<a
+href="https://www.gmail.com">
+  <img src="https://img.shields.io/badge/Email-black?style=for-the-badge&logo=gmail&logoColor=gold"/>
+  <a href="mailto:ascend.gremlin@gmail.com">
+    <img src="https://img.shields.io/badge/Gremlin-darkred?style=for-the-badge&logo=gmail&logoColor=gold"/>
+  </a>
+  <a href="mailto:ascend.help@gmail.com">
+    <img src="https://img.shields.io/badge/Help-darkred?style=for-the-badge&logo=gmail&logoColor=gold"/>
+  </a>
   <a
 href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE">
     <img src="https://img.shields.io/badge/FAIR%20USE-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Fair Use License"/>
