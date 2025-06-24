@@ -91,7 +91,11 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 - start_all.sh integration is in-progress:
 - Will include startup logging and structured error feedback loop
 
+<div align="center">
+	
  ⚠️App Added, Fixing Pathing⚠️
+
+ </div>
 
 ### ⚙️ Current Focus:
 - Publication and Expansion of StatikFinTech, LLC Principles, Reach and Future Outlook.
@@ -145,7 +149,7 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master
 
 <div align="center">
 	
-### ⚜StatikFinTech, LLC🔱
+### 🔱 StatikFinTech, LLC 🔱
   <em>  
     This isn’t a dev team.  
     It’s not a startup.  
