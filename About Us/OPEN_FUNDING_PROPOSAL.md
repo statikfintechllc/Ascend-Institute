@@ -73,8 +73,8 @@ The initial funding target will allow StatikFinTech, LLC to:
 <table>
   <thead>
     <tr>
-      <th>Method</th>
-      <th>Badge</th>
+      <th>Vendor</th>
+      <th>Access</th>
     </tr>
   </thead>
   <tbody>
