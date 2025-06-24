@@ -22,7 +22,8 @@
   <a href="sms:+17854436288">
     <img src="https://img.shields.io/badge/+1%20785%20443%206288-darkred?style=for-the-badge&logo=phone&logoColor=gold"/>
   </a><br>
-
+<a
+href="gmail.com">
   <img src="https://img.shields.io/badge/Email-black?style=for-the-badge&logo=gmail&logoColor=gold"/>
   <a href="mailto:ascend.gremlin@gmail.com">
     <img src="https://img.shields.io/badge/Gremlin-darkred?style=for-the-badge&logo=gmail&logoColor=gold"/>
