@@ -315,7 +315,8 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master
   <a href="https://github.com/statikfintechllc/AscendDocs-of-GovSeverance/">
   <img src="https://img.shields.io/badge/GovSeverance%20Docs-darkred?style=for-the-badge&logo=github&logoColor=white" alt="GovSeverance Docs"/>
 </a>
-
+</div>
+<div align="center">
 <!-- Replit -->
 <a href="https://replit.com/github/statikfintechllc/AscendAI">
   <img src="https://replit.com/badge/github/statikfintechllc/AscendAI" alt="Run on Replit">
