@@ -93,7 +93,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 
 <div align="center">
 	
- ⚠️App Added, Fixing Pathing⚠️
+ ⚠️App Added, Fixing Pathing for Proper Speen Running.⚠️
 
  </div>
 
