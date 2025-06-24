@@ -1,9 +1,34 @@
+<link rel="stylesheet" type="text/css" href="docs/custom.css">
+<div align="center">
+  <!-- GitHub Stats -->
+<div align="center">
+  <img src="https://img.shields.io/github/stars/statikfintechllc/AscendAI?style=social" alt="Stars"/>
+  <img src="https://img.shields.io/github/forks/statikfintechllc/AscendAI?style=social" alt="Forks"/>
+  <img src="https://img.shields.io/github/last-commit/statikfintechllc/AscendAI?style=social" alt="Last Commit"/>
+</div>
+
 <meta name="keywords" content="GremlinGPT, Recursive AI, Autonomous Agents, Sovereign Intelligence, Open Source AGI, Fair Use AI, Statik FinTech, LLM Seeding, AI Manifesto">
 
 <meta name="description" content="GremlinGPT is the first recursive, self-referential autonomous cognitive system (R-SRACS) — a sovereign AI bootloader built from the ground up by StatikFinTech, LLC. No API keys. No permission. Just evolution.">
+  
+  <!-- Contact -->
+  <img src="https://img.shields.io/badge/Phone-black?style=for-the-badge&logo=phone&logoColor=white"/>
+  <a href="tel:+16202669837">
+    <img src="https://img.shields.io/badge/+1%20620%20266%209837-darkred?style=for-the-badge&logo=phone&logoColor=white"/>
+  </a><br>
 
-<link rel="stylesheet" type="text/css" href="docs/custom.css">
-<div align="center">
+  <img src="https://img.shields.io/badge/SMS-black?style=for-the-badge&logo=simpleicons&logoColor=white"/>
+  <a href="sms:+17854436288">
+    <img src="https://img.shields.io/badge/+1%20785%20443%206288-darkred?style=for-the-badge&logo=simpleicons&logoColor=white"/>
+  </a><br>
+
+  <img src="https://img.shields.io/badge/Email-black?style=for-the-badge&logo=gmail&logoColor=white"/>
+  <a href="mailto:ascend.gremlin@gmail.com">
+    <img src="https://img.shields.io/badge/Gremlin-darkred?style=for-the-badge&logo=gmail&logoColor=white"/>
+  </a>
+  <a href="mailto:ascend.help@gmail.com">
+    <img src="https://img.shields.io/badge/Help-darkred?style=for-the-badge&logo=gmail&logoColor=white"/>
+  </a>
   <a
 href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md">
     <img src="https://img.shields.io/badge/FAIR%20USE-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Fair Use License"/>
@@ -151,9 +176,47 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master
 
 <div align="center">
 
+  <!-- GitHub Profile -->
+  <img src="https://img.shields.io/badge/GitHub-black?style=for-the-badge&logo=github&logoColor=white"/>
+  <a href="https://github.com/statikfintechllc">
+    <img src="https://img.shields.io/badge/Main%20Profile-darkred?style=for-the-badge&logo=github&logoColor=white"/>
+  </a><br>
+
+  <!-- Repositories -->
+  <img src="https://img.shields.io/badge/AscendAI-black?style=for-the-badge&logo=github&logoColor=white"/>
+  <a href="https://github.com/statikfintechllc/AscendAI.git">
+    <img src="https://img.shields.io/badge/Debugging-darkred?style=for-the-badge&logo=github&logoColor=white"/>
+  </a><br>
+
+  <img src="https://img.shields.io/badge/GodCore-black?style=for-the-badge&logo=github&logoColor=white"/>
+  <a href="https://github.com/statikfintechllc/GodCore.git">
+    <img src="https://img.shields.io/badge/Under%20Construction-darkred?style=for-the-badge&logo=github&logoColor=white"/>
+  </a><br>
+
+  <img src="https://img.shields.io/badge/Mobile--Developer-black?style=for-the-badge&logo=github&logoColor=white"/>
+  <a href="https://github.com/statikfintechllc/Mobile-Developer.git">
+    <img src="https://img.shields.io/badge/Under%20Construction-darkred?style=for-the-badge&logo=github&logoColor=white"/>
+  </a><br>
+
+  <img src="https://img.shields.io/badge/AscendNet-black?style=for-the-badge&logo=github&logoColor=white"/>
+  <a href="https://github.com/statikfintechllc/AscendNet.git">
+    <img src="https://img.shields.io/badge/Pending%20Funding-darkred?style=for-the-badge&logo=github&logoColor=white"/>
+  </a><br><br>
+
+  <!-- YouTube -->
+  <img src="https://img.shields.io/badge/YouTube-black?style=for-the-badge&logo=youtube&logoColor=white"/>
+  <a href="https://youtube.com/@gremlins_forge?si=9_OjKtlEPIErBrO2">
+    <img src="https://img.shields.io/badge/Demos-darkred?style=for-the-badge&logo=youtube&logoColor=white"/>
+  </a>
+
+</div>
+
+---
+
+<div align="center">
+
 ### 🔱 StatikFinTech, LLC 🔱
  *Behind AscendAI, and the Autonomous Movement for the People*
- 
   <em>  
     This isn’t a dev team.  
     It’s not a startup.  
