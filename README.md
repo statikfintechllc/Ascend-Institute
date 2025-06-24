@@ -62,7 +62,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
 # The Ascend Institute:
 
 *🔱Presented by: StatikFinTech, LLC 🔱*
-*Which operates as an Unincorporated Sovereign R&D Trust pending legal formation.*
+*Operating as an Unincorporated Sovereign R&D Trust pending legal formation.*
 
 **Striving for *Autonomous Sovereignty* & for *Human Financial Liberation***
 
