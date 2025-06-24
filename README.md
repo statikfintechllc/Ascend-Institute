@@ -153,6 +153,7 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master
 
 ### 🔱 StatikFinTech, LLC 🔱
  *Behind AscendAI, and the Autonomous Movement for the People*
+ 
   <em>  
     This isn’t a dev team.  
     It’s not a startup.  
