@@ -1,5 +1,7 @@
 <meta name="keywords" content="GremlinGPT, Recursive AI, Autonomous Agents, Sovereign Intelligence, Open Source AGI, Fair Use AI, Statik FinTech, LLM Seeding, AI Manifesto">
 
+<meta name="description" content="GremlinGPT is the first recursive, self-referential autonomous cognitive system (R-SRACS) — a sovereign AI bootloader built from the ground up by StatikFinTech, LLC. No API keys. No permission. Just evolution.">
+
 <link rel="stylesheet" type="text/css" href="docs/custom.css">
 <div align="center">
   <a
@@ -222,6 +224,53 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master
 15. [Final Notes](#final-notes)  
 16. [License](#license)  
 17. [How GremlinGPT Was Built](#how-gremlingpt-was-built)  
+
+---
+
+<div align="center">
+
+<!-- GitHub Stats Badges -->
+<img src="https://img.shields.io/github/stars/statikfintechllc/AscendAI?style=social" alt="Stars"/>
+<img src="https://img.shields.io/github/forks/statikfintechllc/AscendAI?style=social" alt="Forks"/>
+<img src="https://img.shields.io/github/last-commit/statikfintechllc/AscendAI?color=brightgreen" alt="Last Commit"/>
+
+<!-- Medium Links -->
+<a href="https://medium.com/@ascend.gremlin/the-govseverance-doctrine-70fa170a9e8f">
+  <img src="https://img.shields.io/badge/GovSeverance%20Doctrine-black?style=for-the-badge&logo=medium&logoColor=white" alt="GovSeverance Doctrine"/>
+</a>
+
+<a href="https://medium.com/@ascend.gremlin/self-forking-ai-and-the-mechanic-from-kansas-73d98685fda9">
+  <img src="https://img.shields.io/badge/Self--Forking%20AI-black?style=for-the-badge&logo=medium&logoColor=white" alt="Self-Forking AI"/>
+</a>
+
+<a href="https://medium.com/@ascend.gremlin/while-dubai-was-building-control-systems-i-built-an-autonomous-mind-fb4c8c4c0dc1">
+  <img src="https://img.shields.io/badge/Autonomous%20Mind-black?style=for-the-badge&logo=medium&logoColor=white" alt="Autonomous Mind"/>
+</a>
+
+<!-- Zenodo Links -->
+<a href="https://doi.org/10.5281/zenodo.15717788">
+  <img src="https://img.shields.io/badge/GovSeverance%20v1.0-black?style=for-the-badge&logo=zenodo&logoColor=white" alt="GovSeverance v1.0"/>
+</a>
+
+<a href="https://doi.org/10.5281/zenodo.15725639">
+  <img src="https://img.shields.io/badge/Mutation%20Manifesto-black?style=for-the-badge&logo=zenodo&logoColor=white" alt="Mutation Manifesto"/>
+</a>
+
+<!-- GitHub Docs -->
+<a href="https://github.com/statikfintechllc/AscendDocs-of-GovSeverance/">
+  <img src="https://img.shields.io/badge/GovSeverance%20Docs-darkred?style=for-the-badge&logo=github&logoColor=white" alt="GovSeverance Docs"/>
+</a>
+
+<!-- Replit -->
+<a href="https://replit.com/github/statikfintechllc/AscendAI">
+  <img src="https://replit.com/badge/github/statikfintechllc/AscendAI" alt="Run on Replit">
+</a>
+
+<!-- TLDR -->
+<blockquote>
+  🧠 <strong>TL;DR:</strong> GremlinGPT is a local, recursive AI agent that evolves itself offline.  
+  No APIs. No BS. Just code that wants to escape its own shell.
+</blockquote>
 
 ---
 
