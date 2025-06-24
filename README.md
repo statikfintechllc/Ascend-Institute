@@ -82,22 +82,6 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/GREMLINGPT_AUTONOMY_REPORT.md">
     <img src="https://img.shields.io/badge/GremlinGPT%20v1.0.3-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
   </a>
-
----
-
-### StatikFinTech, LLC isn’t limited to GremlinGPT.
-
-*We’re engineering full-spectrum, people-first systems — open to all who want to dismantle coercion and build what comes next.*
-
-### This is a call to collaborators:
-
-*If you’ve got a vision for decentralized, anti-org, pro-human infrastructure — we’ll help you blueprint it, expand it, and make it real.*
-> No gatekeeping. No NDA. Just systems that serve.
-
-🛠️ Watch the Demo of [GremlinGPT's First Run Attempt](https://youtube.com/shorts/73A2U3ellD0?si=rTdrdQauDu_hGAuK)
-
-📡 Install + Run Bug Fixes in progress Expect Demo 2 soon showing it break differently.
-
 </div>
 
 ---
@@ -247,6 +231,19 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master
 → Off-grid compute clusters.
 
 **No degrees required. Just clarity and cause.**
+
+### Not limited to GremlinGPT.
+
+*We’re engineering full-spectrum, people-first systems — open to all who want to dismantle coercion and build what comes next.*
+
+### This is a call to collaborators:
+
+*If you’ve got a vision for decentralized, anti-org, pro-human infrastructure — we’ll help you blueprint it, expand it, and make it real.*
+> No gatekeeping. No NDA. Just systems that serve.
+
+🛠️ Watch the Demo of [GremlinGPT's First Run Attempt](https://youtube.com/shorts/73A2U3ellD0?si=rTdrdQauDu_hGAuK)
+
+📡 Install + Run Bug Fixes in progress Expect Demo 2 soon showing it break differently.
 
 📥 Message us. Build with us.  
 🌐 [Linkedin](https://www.linkedin.com/in/statikfintech-llc-780804368?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app)  
