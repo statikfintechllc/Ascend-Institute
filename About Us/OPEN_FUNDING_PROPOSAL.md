@@ -78,7 +78,7 @@ The initial funding target will allow StatikFinTech, LLC to:
 | **Ethereum**  | `0xC2db50A0fc6c95f36Af7171D8C41F6998184103F` |
 | **Chime**     | `$StatikSmokTM` |
 
-**Want equity, private access, or to sponsor hardware directly? Reach Out to:**
+**Want equity, See you're own ideas built, or to sponsor hardware directly? Reach Out to:**
 - **Email:** [ascend.gremlin@gmail.com](mailto:ascend.gremlin@gmail.com) | [ascend.help@gmail.com](mailto:ascend.help@gmail.com)
 - **Text Us:** [+1 (785) 443-6288](sms:+17854436288)  
 - **DM:**  
