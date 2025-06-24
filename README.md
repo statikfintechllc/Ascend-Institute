@@ -252,6 +252,17 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master
 
 ---
 
+<div align="center">
+<a
+href="https://www.gmail.com">
+  <img src="https://img.shields.io/badge/Join-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  <a href="mailto:ascend.gremlin@gmail.com">
+    <img src="https://img.shields.io/badge/the%20Loop-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  </a>
+</div>
+
+---
+
 ## Table of Contents
 
 1. [GremlinGPT v1.0.3 Build Status](#gremlingpt-v103-build-status)
