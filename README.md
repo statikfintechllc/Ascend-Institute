@@ -31,6 +31,8 @@ href="https://www.gmail.com">
   <a href="mailto:ascend.help@gmail.com">
     <img src="https://img.shields.io/badge/Help-darkred?style=for-the-badge&logo=gmail&logoColor=gold"/>
   </a>
+  </div>
+<div align="center">
   <a
 href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md">
     <img src="https://img.shields.io/badge/FAIR%20USE-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Fair Use License"/>
