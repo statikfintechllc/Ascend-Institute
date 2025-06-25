@@ -209,6 +209,8 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master
   </em>
 </div>
 
+</div>
+
 - It’s one person. Black coffee. And belief.  
 - What usually takes a small army of engineers and millions in VC —  
 - I pulled from the void. No budget. No degree. No permission.
@@ -326,7 +328,6 @@ href="https://www.gmail.com">
 <!-- GitHub Docs -->
   <img src="https://img.shields.io/badge/GovSeverance%20Docs-darkred?style=for-the-badge&logo=github&logoColor=white" alt="GovSeverance Docs"/>
   <a href="https://github.com/statikfintechllc/AscendDocs-of-GovSeverance/">
-  <img src="https://img.shields.io/badge/GovSeverance%20Docs-darkred?style=for-the-badge&logo=github&logoColor=white" alt="GovSeverance Docs"/>
 </a>
 </div>
 <div align="center">
