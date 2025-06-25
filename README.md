@@ -90,6 +90,8 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 
 ---
 
+</div>
+
 ## 🛠️ GremlinGPT Dev Log — June 21
 
 **Status:**  
