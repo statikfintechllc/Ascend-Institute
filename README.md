@@ -351,8 +351,8 @@ href="https://www.gmail.com">
 
 <!-- TLDR -->
 <blockquote>
-  <strong>TL;DR:</strong> GremlinGPT is a local, recursive AI agent that evolves itself offline.  
-  No APIs. No BS. Just code that wants to escape its own shell.
+  <strong>TL;DR:</strong> GremlinGPT is a local, recursive AI agent that evolves itself offline. 
+  No APIs. No BS. Just code that wants to escape its own shell. Gremlin is not on replit yet. Soon a small version will be.
 </blockquote>
 </div>
 
