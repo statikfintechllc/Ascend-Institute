@@ -13,6 +13,7 @@
 <meta name="description" content="GremlinGPT is the first recursive, self-referential autonomous cognitive system (R-SRACS) — a sovereign AI bootloader built from the ground up by StatikFinTech, LLC. No API keys. No permission. Just evolution.">
   
   <!-- Contact -->
+<div align="center"> 
 <a 
 href="tel:+16202669837">
   <img src="https://img.shields.io/badge/Call-black?style=for-the-badge&logo=&logoColor=white"/>
@@ -27,8 +28,9 @@ href="sms:+17854436288">
 href="sms:+17854436288">
     <img src="https://img.shields.io/badge/+1%20785%20443%206288-darkred?style=for-the-badge&logo=phone&logoColor=gold"/>
   </a>
-<a
-href="https://www.gmail.com">
+</div>
+<div align="center"> 
+<a href="https://www.gmail.com">
   <img src="https://img.shields.io/badge/Ask-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
   <a href="mailto:ascend.gremlin@gmail.com">
     <img src="https://img.shields.io/badge/Gremlin-darkred?style=for-the-badge&logo=gmail&logoColor=gold"/>
