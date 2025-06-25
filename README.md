@@ -95,6 +95,8 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 
 </div>
 
+</div>
+
 ---
 
 </div>
