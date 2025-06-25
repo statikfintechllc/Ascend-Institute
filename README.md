@@ -110,8 +110,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 
 <div align="center">
 
-⚠️ **App Integration Underway** ⚠️
-Pathing logic being hardened for fast launch & restart cycles.
+⚠️ **App Integration Underway**, Pathing logic is being hardened for fast launch & restart cycles. ⚠️
 
 </div>
 
@@ -178,18 +177,19 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master
   <img src="https://img.shields.io/badge/GodCore-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
   <a href="https://github.com/statikfintechllc/GodCore.git">
     <img src="https://img.shields.io/badge/DualRouter-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  </a><br>
+  </a>
 
   <img src="https://img.shields.io/badge/Mobile--Developer-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
   <a href="https://github.com/statikfintechllc/Mobile-Developer.git">
     <img src="https://img.shields.io/badge/Mobile--Mirror-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  </a><br>
+  </a>
 
   <img src="https://img.shields.io/badge/AscendNet-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
   <a href="https://github.com/statikfintechllc/AscendNet.git">
     <img src="https://img.shields.io/badge/Pending%20Funding-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  </a><br><br>
-
+  </a>
+  </div>
+  <div align="center">
   <!-- YouTube -->
   <img src="https://img.shields.io/badge/YouTube-black?style=for-the-badge&logo=youtube&logoColor=gold"/>
   <a href="https://youtube.com/@gremlins_forge?si=9_OjKtlEPIErBrO2">
