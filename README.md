@@ -136,11 +136,14 @@ Working Directory: GremlinGPT
 # AscendAI Traffic</h1>
 
   <em>
-    The Institute’s GremlinGPT system Idea and progress has already been reviewed and starred by tkersey from Atrium.  
-    We have received our 13th Star, Thank you, markwylde, and our 3nd Fork, Thank you, NullMeDev, Let’s get GremlinGPT Funed & Seen.
+    The Institute’s GremlinGPT system, has already been reviewed and starred by tkersey from Atrium.  
+    We have received our 13th Star, Thank you, markwylde, and our 3nd Fork, Thank you, NullMeDev, Let’s get GremlinGPT Funed & Seen.  
   </em>
 </div>
-
+<div align="center">
+	
+ **The world’s first *R‑SRACS* (Recursive, Self-Referential Autonomous Cognitive System)**
+</div> 
 <div align="center">
   <a href="https://raw.githubusercontent.com/statikfintechllc/AscendAI/main/docs/traffic_graph.png">
   <img src="https://raw.githubusercontent.com/statikfintechllc/AscendAI/main/docs/traffic_graph.png" alt="Traffic Graph" />
