@@ -16,12 +16,12 @@
   <img src="https://img.shields.io/badge/Phone-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
   <a href="tel:+16202669837">
     <img src="https://img.shields.io/badge/+1%20620%20266%209837-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  </a><br>
+  </a>
 
   <img src="https://img.shields.io/badge/SMS-black?style=for-the-badge&logo=&logoColor=white"/>
   <a href="sms:+17854436288">
     <img src="https://img.shields.io/badge/+1%20785%20443%206288-darkred?style=for-the-badge&logo=phone&logoColor=gold"/>
-  </a><br>
+  </a>
 <a
 href="https://www.gmail.com">
   <img src="https://img.shields.io/badge/Ask-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
@@ -40,8 +40,6 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md">
     <img src="https://img.shields.io/badge/GREMLINGPT%20v1.0.3-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
   </a>
-</div>
-<div align="center">
   <a
 href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREMLINGPT.md">
     <img src="https://img.shields.io/badge/Why-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Why"/>
@@ -50,72 +48,71 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
     <img src="https://img.shields.io/badge/GremlinGPT-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
   </a>
 </div>
-
   <div align="center">
   <a href="https://ko-fi.com/statikfintech_llc">
     <img src="https://img.shields.io/badge/Support-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Support"/>
   </a>
   <a href="https://patreon.com/StatikFinTech_LLC?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink">
     <img src="https://img.shields.io/badge/SFTi-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="SFTi"/>
-  </a>
+  </a> 
+	  
+# The Ascend Institute
+**🔱 Presented by: StatikFinTech, LLC 🔱**  
+*Operating as an Unincorporated Sovereign R&D Trust (legal formation pending)*  
+**Mission: Autonomous Sovereignty & Human Financial Liberation**
 
----
-
-# The Ascend Institute:
-
-*🔱Presented by: StatikFinTech, LLC 🔱*
-*Operating as an Unincorporated Sovereign R&D Trust pending legal formation.*
-
-**Striving for *Autonomous Sovereignty* & for *Human Financial Liberation***
-
-  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
-    <img src="https://img.shields.io/badge/v1.0.3-alpha-darkred?labelColor=black" alt="Build Status"/>
-  </a>
-  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/FOUNDER_LOG.md">
-    <img src="https://img.shields.io/badge/Founder's%20Log-Manifesto-darkred?labelColor=black" alt="Founder's Log"/>
-  </a>
-  <br/>
-  <a href="https://github.com/statikfintechllc">
-    <img src="https://img.shields.io/badge/contributors-2-darkred?labelColor=black" alt="Contributors"/>
-  </a>
-  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/FOUNDER_STATEMENT.md">
-    <img src="https://img.shields.io/badge/Founder's%20Log-Statement-darkred?labelColor=black" alt="Founder's Log"/>
-  </a>  
 </div>
 <div align="center">
-  <a
+
+<a href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
+  <img src="https://img.shields.io/badge/v1.0.3-alpha-darkred?labelColor=black" alt="GremlinGPT Alpha"/>
+</a>
+<a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/FOUNDER_LOG.md">
+  <img src="https://img.shields.io/badge/Founder's%20Log-Manifesto-darkred?labelColor=black" alt="Founder's Log"/>
+</a>
+<a href="https://github.com/statikfintechllc">
+  <img src="https://img.shields.io/badge/contributors-2-darkred?labelColor=black" alt="Contributors"/>
+</a>
+<a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/FOUNDER_STATEMENT.md">
+  <img src="https://img.shields.io/badge/Founder's%20Log-Statement-darkred?labelColor=black" alt="Founder's Statement"/>
+</a>
+<div align="center">
+  <a 
 href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/GREMLINGPT_AUTONOMY_REPORT.md">
-    <img src="https://img.shields.io/badge/The%20Autonomous-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Why"/>
-  </a>
-  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/GREMLINGPT_AUTONOMY_REPORT.md">
-    <img src="https://img.shields.io/badge/GremlinGPT%20v1.0.3-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
-  </a>
+  <img src="https://img.shields.io/badge/The%20Autonomous-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Autonomy Report"/>
+</a>
+  <a 
+href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/GREMLINGPT_AUTONOMY_REPORT.md">
+  <img src="https://img.shields.io/badge/GremlinGPT%20v1.0.3-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
+</a>
+
 </div>
 
 ---
 
- 🛠️ **GremlinGPT Dev Log – June 21 Update**
+## 🛠️ GremlinGPT Dev Log — June 21
 
-**🧵 Status:**
-*Solo. Determined. Unfunded. Progress continues.*
+**Status:**  
+🧵 *Solo. Unfunded. Building anyway.*
 
-### 🔧 System Updates:
-- Scraper ➝ Dataset ➝ Memory pipe is now operational
-- GitHub structure is actively being modularized and cleaned
-- UI/UX is still under heavy iteration (known bottleneck)
+### 🧬 Core System Progress
+- ✅ Scraper ➝ Dataset ➝ Memory loop fully operational  
+- 🔧 GitHub repo now undergoing modular cleanup  
+- 🎨 UI/UX bottleneck acknowledged — restructuring in progress  
 
-### 🖥️ Platform Behavior:
-- Gremlin Upgrade: supporting Mobile-Developer Style Native Launch:
-- One-click desktop icon via .desktop + $HOME/.local/share/applications
-- Launches like a native Linux app with no PWA, no Electron overhead
-- start_all.sh integration is in-progress:
-- Will include startup logging and structured error feedback loop
+### ⚙️ Platform Execution
+- 🧠 Debug icon added for speed-run testing cycles  
+- ⏳ Current priority: “threading the brain” — deep internal logic loops  
+- 🧱 Expect a wave of commits as structural internals are rewritten  
+- 🏗️ Dev speed will taper due to external workload (new shop)
 
 <div align="center">
-	
- ⚠️App Added, Fixing Pathing for Proper Speen Running.⚠️
 
- </div>
+⚠️ **App Integration Underway** ⚠️
+Pathing logic being hardened for fast launch & restart cycles.
+
+</div>
+
 
 ### ⚙️ Current Focus:
 - Publication and Expansion of StatikFinTech, LLC Principles, Reach and Future Outlook.
