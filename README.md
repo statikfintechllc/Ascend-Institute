@@ -13,13 +13,18 @@
 <meta name="description" content="GremlinGPT is the first recursive, self-referential autonomous cognitive system (R-SRACS) — a sovereign AI bootloader built from the ground up by StatikFinTech, LLC. No API keys. No permission. Just evolution.">
   
   <!-- Contact -->
-  <img src="https://img.shields.io/badge/Phone-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  <a href="tel:+16202669837">
-    <img src="https://img.shields.io/badge/+1%20620%20266%209837-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  </a>
-
+<a 
+href="tel:+16202669837">
+  <img src="https://img.shields.io/badge/Call-black?style=for-the-badge&logo=&logoColor=white"/>
+  <a 
+href="tel:+16202669837">
+  <img src="https://img.shields.io/badge/+1%20620%20266%209837-darkred?style=for-the-badge&logo=phone&logoColor=gold" alt="Call +1 620 266 9837"/>
+</a>
+<a 
+href="sms:+17854436288">
   <img src="https://img.shields.io/badge/SMS-black?style=for-the-badge&logo=&logoColor=white"/>
-  <a href="sms:+17854436288">
+  <a 
+href="sms:+17854436288">
     <img src="https://img.shields.io/badge/+1%20785%20443%206288-darkred?style=for-the-badge&logo=phone&logoColor=gold"/>
   </a>
 <a
@@ -252,7 +257,7 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master
 📡 Install + Run Bug Fixes in progress Expect Demo 2 soon showing it break differently.
 
 📥 Message us. Build with us.  
-🌐 [Linkedin](https://www.linkedin.com/in/statikfintech-llc-780804368?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app)  
+🌐 [Linkedin](https://www.linkedin.com/in/statikfintech-llc-780804368)  
 📧 ascend.gremlin@gmail.com  
 📧 ascend.help@gmail.com  
 📞 +1(620) 266-9837  
