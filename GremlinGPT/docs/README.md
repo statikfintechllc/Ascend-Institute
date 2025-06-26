@@ -1,7 +1,3 @@
-<link rel="stylesheet" type="text/css" href="docs/custom.css">
-<div align="center">
-  <!-- GitHub Stats -->
-
 <div align="center"> 
   <img src="https://img.shields.io/github/stars/statikfintechllc/AscendAI?style=social" alt="Stars"/>
   <img src="https://img.shields.io/github/forks/statikfintechllc/AscendAI?style=social" alt="Forks"/>
@@ -11,8 +7,9 @@
 <meta name="keywords" content="GremlinGPT, Recursive AI, Autonomous Agents, Sovereign Intelligence, Open Source AGI, Fair Use AI, Statik FinTech, LLM Seeding, AI Manifesto">
 
 <meta name="description" content="GremlinGPT is the first recursive, self-referential autonomous cognitive system (R-SRACS) — a sovereign AI bootloader built from the ground up by StatikFinTech, LLC. No API keys. No permission. Just evolution.">
-  
-  <!-- Contact -->
+
+<div align="center"> 
+
   <img src="https://img.shields.io/badge/Phone-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
   <a href="tel:+16202669837">
     <img src="https://img.shields.io/badge/+1%20620%20266%209837-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
@@ -57,16 +54,15 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
   <a href="https://patreon.com/StatikFinTech_LLC?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink">
     <img src="https://img.shields.io/badge/SFTi-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="SFTi"/>
   </a>
+
+# GremlinGPT: The Real Autonomous Agent v1.0.3
+
+### The world’s first R‑SRACS   
+***Recursive, Self-Referential Autonomous Cognitive System***  
+
+**GremlinGPT is a Recursive, Self-Referential Autonomous Cognitive System (R‑SRACS), deployable as a Decentralized Autonomous Intelligence Node (DAIN) with multi-agent Emergent Network properties (EMAN) and a Meta-Synthetic Persona Engine (MSPE) interface.**
+
 </div>
-
-<h1 align="center">GremlinGPT: The Real Autonomous Agent v1.0.3</h1>
-
-<h3 align="center"><em>The world’s first R‑SRACS</em></h3>
-<h4 align="center">*Recursive, Self-Referential Autonomous Cognitive System*</h4>
-
-<p align="center">
-GremlinGPT is a Recursive, Self-Referential Autonomous Cognitive System (R‑SRACS), deployable as a Decentralized Autonomous Intelligence Node (DAIN) with multi-agent Emergent Network properties (EMAN) and a Meta-Synthetic Persona Engine (MSPE) interface.
-</p>
 
 <div align="center">
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
@@ -183,6 +179,9 @@ Read the [FOUNDER_LOG.md](https://github.com/statikfintechllc/AscendAI/blob/mast
 
 > *For those who dont want to wait on the dashboard to be buttoned and all pieces connedted.*
 
+<details>
+<summary>🌀 Press to see How It Works 🌀</summary>
+  
 ```mermaid
 sequenceDiagram
     actor User
@@ -199,7 +198,10 @@ sequenceDiagram
     CLI->>User: Displays GremlinGPT response
 ```
 
+</details>
+
 ---
+
 
 ## Features
 
@@ -272,7 +274,7 @@ python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from
 python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
 ```
 
-⸻
+---
 
 ## Running the System
 
@@ -329,7 +331,7 @@ chmod +x run/start_all.sh
 - FSM agent loop, task queue, memory, scraper all start
 - **Dashboard ready at:** http://localhost:8080/
 
-⸻
+---
 
 ## Remote Access using ngrok
 
@@ -343,12 +345,15 @@ ngrok http 8080
 - Use the HTTPS URL provided by ngrok in your browser or mobile
 - Full dashboard, all agent controls, remote chat and signal monitoring
 
-⸻
+---
 
 ## API Endpoints
 
 - All dashboard features are live-wired to these REST endpoints:
 
+<details>
+<summary>🌀 Press to see How It Works 🌀</summary>
+  
 ```mermaid
 graph TD
   User["User (Web or Terminal)"]
@@ -383,7 +388,9 @@ graph TD
   Trading -- "Real-time signal JSON" --> API
 ```
 
-⸻
+</details>
+
+---
 
 ## Recovery & Snapshots
 
@@ -404,7 +411,7 @@ graph TD
 tail -f run/logs/runtime.log
 ```
 
-⸻
+---
 
 ## Troubleshooting
 
@@ -413,7 +420,7 @@ tail -f run/logs/runtime.log
 - No memory? Verify embedder paths and Chroma/FAISS setup
 - Training loop not updating? Run retrainer manually or inspect watchdog logs
 
-⸻
+---
 
 ## System Infrastructure
 
@@ -436,7 +443,7 @@ tail -f run/logs/runtime.log
 python run/module_tracer.py
 ```
 
-⸻
+---
 
 ## License
 
