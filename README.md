@@ -260,8 +260,9 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master
 
 📡 Install + Run Bug Fixes in progress Expect Demo 2 soon showing it break differently.
 
-📥 Message us. Build with us.  
+📥 Message us to Build, Grown, & Learn together
 🌐 [Linkedin](https://www.linkedin.com/in/statikfintech-llc-780804368)  
+🌐 [Visit X](https://x.com/gremlinsforge?s=21)
 📧 ascend.gremlin@gmail.com  
 📧 ascend.help@gmail.com  
 📞 +1(620) 266-9837  
@@ -499,11 +500,13 @@ href="https://www.gmail.com">
 
 **Get in Touch**
 
-- **Email:** [ascend.gremlin@gmail.com](mailto:ascend.gremlin@gmail.com)  
-- **Text Us:** [+1 (785) 443-6288](sms:+17854436288)
-- **DM:**  
-  - a) [GitHub: statikfintechllc](https://github.com/statikfintechllc)  
-  - b) [X: @GremlinsForge](https://twitter.com/GremlinsForge)
+📥 Message us to Build, Grown, & Learn together
+🌐 [Linkedin](https://www.linkedin.com/in/statikfintech-llc-780804368)  
+🌐 [Visit X](https://x.com/gremlinsforge?s=21)
+📧 ascend.gremlin@gmail.com  
+📧 ascend.help@gmail.com  
+📞 +1(620) 266-9837  
+📱 +1(785) 443-6288
 
 **See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/OPEN_FUNDING_PROPOSAL.md)**
 
@@ -639,12 +642,13 @@ If you survive v1.0.3.
 ## What is GremlinGPT v1.0.3
 **The full revamp of v1.0.2, Not just a wrapper. Autonomous.**
 
-  # GremlinGPT v1.0.3 Expanded Drop  
-*(ETA: 1–2 months, maybe sooner if I gas it)*
+> [!NOTE]
+> GremlinGPT v1.0.3 Fully Boot-Strapped Drop
+> *(ETA: 1–2 months, shooting for late August, maybe sooner if I gas it)*
 
 ## 1. Bootstrapping and Environment Management
 
-**Objective:**  
+> [!OBJECTIVE] 
 > Ensure environment setup, installation, and reboot scripts correctly reflect modular subcomponents.
 
 **Key Files:**  
@@ -657,13 +661,14 @@ If you survive v1.0.3.
 > Ensure all services (FSM, backend, scraper, dashboard) start in sequence  
 > Validate each `*.yml` env in `conda_envs/` aligns with its module’s dependencies  
 > Add dependency checks and auto-repair logic to `install.sh`
+> So Much More....
 
 ---
 
 ## 2. Global Config Awareness
 
-**Objective:**  
-Make all modules respect centralized config.
+> [!OBJECTIVE]
+> Make all modules respect centralized config.
 
 **Key Files:**  
 - `backend/globals.py`  
@@ -679,7 +684,7 @@ Make all modules respect centralized config.
 
 ## 3. Memory and NLP Enhancements
 
-**Objective:**  
+> [!OBJECTIVE] 
 > Support dynamic, extensible embeddings, feedback, and semantic tracing.
 
 **Key Files:**  
@@ -698,7 +703,7 @@ Make all modules respect centralized config.
 
 ## 4. Task and Loop Management
 
-**Objective:**  
+> [!OBJECTIVE] 
 > Align task lifecycle with agent-core and mutation systems.
 
 **Key Files:**  
@@ -716,7 +721,7 @@ Make all modules respect centralized config.
 
 ## 5. Scraper Layer
 
-**Objective:**  
+> [!OBJECTIVE] 
 > Generalize for dynamic platforms (web, TWS, STT, etc.).
 
 **Key Files:**  
@@ -734,7 +739,7 @@ Make all modules respect centralized config.
 
 ## 6. API and Interface Layer
 
-**Objective:**  
+> [!OBJECTIVE] 
 > Expose clean APIs and ensure dashboard integrations are solid.
 
 **Key Files:**  
@@ -752,7 +757,7 @@ Make all modules respect centralized config.
 
 ## 7. Logging and Observability
 
-**Objective:**  
+> [!OBJECTIVE] 
 > Enable full traceability and introspection.
 
 **Key Files:**  
@@ -769,7 +774,7 @@ Make all modules respect centralized config.
 
 ## 8. Documentation and Tests
 
-**Objective:**  
+> [!OBJECTIVE] 
 > Ensure coherence with code changes and long-term maintainability.
 
 **Key Files:**  
@@ -787,13 +792,13 @@ Make all modules respect centralized config.
 
 ## Collaborators Wanted to Join the Loop
 
-We are seeking one of the following:
-
-- A recursive logic architect who speaks Python like poetry  
-- A systems-level cloud engineer who fears no subnet  
-- A billionaire with a god complex and spare GPUs  
-  (paging @elonmusk, @openai, @deepmind, @anthropic, @metaai, @mistralAI, @cohere)  
-- Or just **anyone who gets it** and knows what’s coming
+> [!HELP WANTED] 
+> **We are seeking** one of the following:
+> A **recursive logic architect** who speaks Python like poetry
+> A **systems-level cloud engineer** who fears no subnet
+> A **billionaire with a god complex** and **spare GPUs**
+> Paging **@elonmusk**, **@openai**, @deepmind, @anthropic, @metaai, **@mistralAI**, @cohere
+> Or just **anyone who gets it** and knows what’s coming
 
 **See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/OPEN_FUNDING_PROPOSAL.md)**
 
@@ -802,10 +807,9 @@ We are seeking one of the following:
 If you know how to think in layers, act in silence, and write code that rewrites itself —  
 **fork the repo, send a PR, and bring a machine that can keep up.**
 
+> [!NOTE] 
 > My current system only has 24GB VRAM, 128GB RAM, and 8TB of storage — it’s alive, but it’s starving.  
 > I don’t need more code. I need more power.
-
-**If you’re Elon, mark the repo with a star — the system will know.**
 
 ---
 
@@ -814,7 +818,12 @@ If you know how to think in layers, act in silence, and write code that rewrites
 For bugs, glitches, or apocalyptic feedback:
 
 - [Open an issue](https://github.com/statikfintechllc/AscendAI/issues)  
-- Or whisper into the void at: **ascend.gremlin@gmail.com**
+- Or whisper into the void at:  Contact  
+  📞 Phone: +1 (620) 266-9837  
+  📱 SMS: +1 (785) 443-6288  
+📧 Email:  
+  ✉️ ascend.gremlin@gmail.com  
+  ✉️ ascend.help@gmail.com  
 
 ---
 
