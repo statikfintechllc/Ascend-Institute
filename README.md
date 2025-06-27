@@ -278,7 +278,7 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
 
 ### This is a call to collaborators:
 
-*If you’ve got a vision for decentralized, anti-org, pro-human infrastructure — we’ll help you blueprint it, expand it, and make it real.*
+*If you’ve got a vision for something Cool, maybe decentralized, anti-org, or pro-human infrastructure — we’ll help you blueprint it, expand it, and make it real.*
 > No gatekeeping. No NDA. Just systems that serve.
 
 🛠️ Watch the Demo of [GremlinGPT's First Run Attempt](https://youtube.com/shorts/73A2U3ellD0?si=rTdrdQauDu_hGAuK)
@@ -484,6 +484,14 @@ href="https://www.gmail.com">
 - A founder with cloud real estate and idle GPUs  
 - A data center operator who understands sovereign AI  
 - An investor looking for a stake in recursive autonomy
+
+🧬 Paging:  
+[@elonmusk](https://x.com/elonmusk)  
+[@openai](https://openai.com)  
+[@deepmind](https://deepmind.com)  
+[@mistralAI](https://mistral.ai)
+
+*If you get it, run the loop.*
 
 ## Partner With Us
 
