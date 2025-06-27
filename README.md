@@ -239,7 +239,7 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master
 
 </div>
 
-- It’s one person. Black coffee. And belief.  
+- It’s one person. Black coffee, *ah little cream and sugar sometimes, Determination, and Will.  
 - What usually takes a small army of engineers and millions in VC —  
 - I pulled from the void. No budget. No degree. No permission.
 - Now the system almost lives. Breathes. Boots. (70%)  
@@ -250,7 +250,7 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master
 
 *We’re not just coding AGI — we’re coding exit ramps.*
 
-📡 **Pro-people. Anti-capture. Post-system.**
+📡 **Pro-people. Anti-PayWall. Post-system.**
 
 - Got blueprints for liberation? Drop them.
      We’ll help you architect, iterate, and launch what no org can own.
@@ -302,36 +302,6 @@ href="https://www.gmail.com">
 
 <details>
 <summary>🔎 Expand to begin Review 🔍</summary>
-
-## Table of Contents
-
-1. [GremlinGPT v1.0.3 Build Status](#gremlingpt-v103-build-status)
-2. [Support This Project](#support-this-project)  
-3. [Funding and Infrastructure Goals](#funding-and-infrastructure-goals)  
-4. [Funding Target](#funding-target-is-500000)  
-5. [If You Are](#if-you-are)  
-6. [Partner With Us](#partner-with-us) 
-7. [If You Believe](#if-you-believe)
-8. [What Is AscendAI?](#what-is-ascendai)  
-9. [What Is GremlinGPT?](#what-is-gremlingpt)
-    - [How to Install and Use GremlinGPT](#how-to-install-and-use-gremlingpt)
-    - [GremlinGPT's Layout](#gremlingpts-layout)  
-    - [GremlinGPT's Documentation](#gremlingpts-documentation)
-
-10. [*GremlinGPT* vs GenAI Titans](#gremlingpt-vs-genai-titans)
-11. [Demos](#demos)
-12. [What is GremlinGPT v1.0.3](#what-is-gremlingpt-v103)    
-    - [Bootstrapping and Environment Management](#1-bootstrapping-and-environment-management)  
-    - [Global Config Awareness](#2-global-config-awareness)  
-    - [Memory and NLP Enhancements](#3-memory-and-nlp-enhancements)  
-    - [Task and Loop Management](#4-task-and-loop-management)  
-    - [Scraper Layer](#5-scraper-layer)  
-    - [API and Interface Layer](#6-api-and-interface-layer)  
-    - [Logging and Observability](#7-logging-and-observability)  
-    - [Documentation and Tests](#8-documentation-and-tests)
-13. [Final Notes](#final-notes)  
-14. [Tech Support](#tech-support)  
-15. [License](#license)  
 
 ---
 
