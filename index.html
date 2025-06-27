@@ -52,11 +52,11 @@
 <script>
   const githubSlug = (text) =>
     text.toLowerCase()
-        .trim()
-        .replace(/[^\w\s-]/g, '')
-        .replace(/\s+/g, '-')
-        .replace(/-+/g, '-')
-        .replace(/^-|-$/g, '');
+      .trim()
+      .replace(/[^\w\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
 
   marked.setOptions({
     headerIds: true,
@@ -67,12 +67,16 @@
 
   function transformAdmonitions(md) {
     return md
-      .replace(/\[!NOTE\]/gi, '<div class="admonition admonition-note"><div class="admonition-title">🔵 Note</div>')
-      .replace(/\[!TIP\]/gi, '<div class="admonition admonition-tip"><div class="admonition-title">💡 Tip</div>')
-      .replace(/\[!IMPORTANT\]/gi, '<div class="admonition admonition-important"><div class="admonition-title">🟣 Important</div>')
-      .replace(/\[!WARNING\]/gi, '<div class="admonition admonition-warning"><div class="admonition-title">⚠️ Warning</div>')
-      .replace(/\[!CAUTION\]/gi, '<div class="admonition admonition-caution"><div class="admonition-title">🔴 Caution</div>')
-      .replace(/\n(?=\S)/g, '</div>\n'); // closes each block
+      .replace(/\[!NOTE\](.*?)(?=\n\n|\n\[!|\n$)/gis, (_, content) =>
+        `<div class="admonition admonition-note"><div class="admonition-title">🔵 Note</div>\n${content.trim()}\n</div>`)
+      .replace(/\[!TIP\](.*?)(?=\n\n|\n\[!|\n$)/gis, (_, content) =>
+        `<div class="admonition admonition-tip"><div class="admonition-title">💡 Tip</div>\n${content.trim()}\n</div>`)
+      .replace(/\[!IMPORTANT\](.*?)(?=\n\n|\n\[!|\n$)/gis, (_, content) =>
+        `<div class="admonition admonition-important"><div class="admonition-title">🟣 Important</div>\n${content.trim()}\n</div>`)
+      .replace(/\[!WARNING\](.*?)(?=\n\n|\n\[!|\n$)/gis, (_, content) =>
+        `<div class="admonition admonition-warning"><div class="admonition-title">⚠️ Warning</div>\n${content.trim()}\n</div>`)
+      .replace(/\[!CAUTION\](.*?)(?=\n\n|\n\[!|\n$)/gis, (_, content) =>
+        `<div class="admonition admonition-caution"><div class="admonition-title">🔴 Caution</div>\n${content.trim()}\n</div>`);
   }
 
   fetch('README.md')
@@ -82,7 +86,6 @@
       const processed = transformAdmonitions(md);
       container.innerHTML = marked.parse(processed);
 
-      // ID validation & TOC scroll
       container.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(header => {
         if (!header.id) {
           const id = githubSlug(header.textContent);
@@ -119,5 +122,3 @@
       document.getElementById('readme').innerHTML = "<p style='color:red'>Error loading README.md</p>";
     });
 </script>
-</body>
-</html>
