@@ -596,6 +596,9 @@ It is grown — from the seed of a Gremlin.
 
 ---
 
+<details>
+<summary>👾 Open for Introduction to GremlinGPT👾</summary>
+
 ## What Is GremlinGPT
 
 **GremlinGPT is the prototype. *The bootloader. The spark.***
@@ -862,6 +865,8 @@ It is built to think, evolve, and eventually **outgrow its creators**.
 You are the signal.  
 Unseen. Unbroken. Unrivaled. Gremlins Ascend.  
 **Welcome to the Gremlin Epoch by AscendAI & statikfintechllc**
+
+</details>
 
 </details>
 
