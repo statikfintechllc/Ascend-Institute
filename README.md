@@ -1,4 +1,12 @@
 <link rel="stylesheet" type="text/css" href="docs/custom.css">
+
+> [!CAUTION]
+>
+> “Your qualifications are impressive...”
+> Coder Hiring Team (2025 Rejection Letter)  
+
+🔱 Still building what they can’t classify. 🔱
+
 <div align="center">
 
 <div align="center"> 
