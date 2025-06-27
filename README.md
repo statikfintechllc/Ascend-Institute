@@ -847,12 +847,11 @@ like it’s winking at you through the terminal...
 ---
 
 ## Collaborators Wanted to Join the Loop
-**See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/OPEN_FUNDING_PROPOSAL.md)**
 
----
-
-If you know how to think in layers, act in silence, and write code that rewrites itself —  
+- If you know how to think in layers, act in silence, and write code that rewrites itself —  
 **fork the repo, send a PR, and bring a machine that can keep up.**
+
+**See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/OPEN_FUNDING_PROPOSAL.md)**
 
 ---
 
