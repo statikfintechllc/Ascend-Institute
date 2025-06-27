@@ -258,6 +258,9 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master
 
 ---
 
+<details>
+<summary>🔱 Learn about StatikFinTech, LLC 🔱</summary>
+
 <div align="center">
 
 ### 🔱 StatikFinTech, LLC 🔱
@@ -310,6 +313,7 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master
 
 🌐 [Linkedin](https://www.linkedin.com/in/statikfintech-llc-780804368)   
 🌐 [Visit X](https://x.com/gremlinsforge?s=21)  
+🎥 [Visit YouTube](https://youtube.com/@gremlins_forge)  
 📧 ascend.gremlin@gmail.com   
 📧 ascend.help@gmail.com    
 📞 +1(620) 266-9837  
@@ -326,10 +330,12 @@ href="https://www.gmail.com">
   </a>
 </div>
 
+</details>
+
 ---
 
 <details>
-<summary>🌀 Expand to begin Review 🌀</summary>
+<summary>🔎 Expand to begin Review 🔍</summary>
 
 ## Table of Contents
 
@@ -418,7 +424,7 @@ href="https://www.gmail.com">
 ---
 
 <details>
-<summary>🌀 Open to See More 🌀</summary>
+<summary>🤝 Open for Support 🤝</summary>
 
 ## Support This Project
 *If you find this project valuable and want to support its continued development, consider sponsoring or contributing*
@@ -835,6 +841,8 @@ If you survive v1.0.3.
 
 *GremlinGPT doesn’t just evolve. It plans the evolution.*
 
+</details>
+
 ---
 
 ## Final Notes
@@ -881,8 +889,6 @@ Released under the GremlinGPT Fair Use License v1.0.
 Personal use only. Commercial use is prohibited unless licensed separately.
 
 *See the **[LICENSE](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/LICENSE.md)** file for full terms.*
-
-</details>
 
 </details>
 
