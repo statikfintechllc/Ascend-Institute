@@ -234,6 +234,8 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
 
 </details>
 
+---
+
 <details>
 <summary>🔱 Learn about StatikFinTech, LLC 🔱</summary>
 
