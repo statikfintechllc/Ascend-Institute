@@ -1,6 +1,5 @@
 <link rel="stylesheet" type="text/css" href="docs/custom.css">
 <div align="center">
-  <!-- GitHub Stats -->
 
 <div align="center"> 
   <img src="https://img.shields.io/github/stars/statikfintechllc/AscendAI?style=social" alt="Stars"/>
@@ -12,7 +11,6 @@
 
 <meta name="description" content="GremlinGPT is the first recursive, self-referential autonomous cognitive system (R-SRACS) — a sovereign AI bootloader built from the ground up by StatikFinTech, LLC. No API keys. No permission. Just evolution.">
   
-  <!-- Contact -->
 <div align="center"> 
 <a 
 href="tel:+16202669837">
