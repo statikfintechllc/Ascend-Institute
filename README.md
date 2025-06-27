@@ -143,7 +143,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 > Gremlin is not on Replit yet. Soon a small version will be.
 
 <details>
-<summary>🌀 Intrigued? Open to See More 🌀</summary>
+<summary>🌀 Intrigued? Open to Read More 🌀</summary>
 
 ## 🛠️ GremlinGPT Dev Log — June 21
 
@@ -156,7 +156,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 - 🎨 UI/UX bottleneck acknowledged — restructuring in progress  
 
 <details>
-<summary>👀 Still Intrigued? Open to See how it's implemented 👀</summary>
+<summary>👀 Still Intrigued? Open to See progress on how it's been implemented 👀</summary>
 
 ### ⚙️ Platform Execution
 - 🧠 Debug icon added for speed-run testing cycles  
@@ -169,6 +169,8 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 ⚠️ **App Integration Underway**, Pathing logic is being hardened for fast launch & restart cycles. ⚠️
 
 </div>
+
+</details>
 
 <details>
 <summary>🛠️ Open for Current Focus & Traffic Stats🛠️</summary>
@@ -260,6 +262,8 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master
 </div>
 
 ---
+
+</details>
 
 </details>
 
