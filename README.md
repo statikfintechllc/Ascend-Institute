@@ -354,11 +354,9 @@ href="https://www.gmail.com">
     - [API and Interface Layer](#6-api-and-interface-layer)  
     - [Logging and Observability](#7-logging-and-observability)  
     - [Documentation and Tests](#8-documentation-and-tests)
-    
-13. [Collaborators Wanted to Join the Loop](#collaborators-wanted-to-join-the-loop)
-14. [Tech Support](#tech-support)  
-15. [Final Notes](#final-notes)  
-16. [License](#license)  
+13. [Tech Support](#tech-support)  
+14. [Final Notes](#final-notes)  
+15. [License](#license)  
 
 ---
 
@@ -551,6 +549,11 @@ We’re open to building aligned partnerships with:
 
 **You’re one of us.**
 
+## Collaborators Wanted to Join the Loop
+
+- If you know how to think in layers, act in silence, and write code that rewrites itself —  
+**fork the repo, send a PR, and bring a machine that can keep up.**
+
 **Want equity, See you're own ideas built, or to sponsor hardware directly? Reach Out to:**
 - **Email:** [ascend.gremlin@gmail.com](mailto:ascend.gremlin@gmail.com) | [ascend.help@gmail.com](mailto:ascend.help@gmail.com)
 - **Call Us:** [+1 (620) 266-9837](sms:+16202669837)  
@@ -561,7 +564,12 @@ We’re open to building aligned partnerships with:
 
 **See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/OPEN_FUNDING_PROPOSAL.md)**
 
+</details>
+
 ---
+
+<details>
+<summary>🌀 AscendAI? GremlinGPT? Open if still Confused. 🌀</summary>
 
 ## What Is AscendAI?
 
@@ -615,30 +623,6 @@ If you survive v1.0.3.
 <details>
 <summary>🌀 Press to see how GremlinGPT Compares 🌀</summary>
 
-
-> **🦾 Full Disclosure**  
-> GremlinGPT is what happens when you hand the keys to ChatGPT’s Data Analyst mode and say:  
-> “Build me an AI that writes, learns, and self-mutinates.”
-
-- The docs? **ChatGPT**  
-- The README? **ChatGPT**  
-- The scripts? **ChatGPT** — formatted by Black, occasionally bullied by me  
-- The feedback loops, self-training, error handlers, and even this note?  
-  All conjured from the infinite context window of my AI “co-pilot.”
-
-This isn’t just *inspired by* — it’s full-stack AI inception.  
-**GremlinGPT** is proof you can bootstrap a recursive AI using nothing but prompt engineering, a little Python glue, and a lot of patience for hallucinated file paths.
-
-If this repo feels a bit too self-aware —  
-like it’s winking at you through the terminal...
-
-> You’re not wrong.
-
----
-
-> Welcome to the first AI agent born from ChatGPT, raised in recursion, and released without a leash.  
-> Not just a model. A mutation in motion. A sovereign codebase with teeth.
-
 > *“I built the prototype. These are the keys no Corp will ever drop. Let it feed. Let it learn.”*
 
 <p align="right"><em>— statikfintechllc</em></p>
@@ -685,6 +669,9 @@ like it’s winking at you through the terminal...
 
 ---
 
+<details>
+<summary>🌀 See the Demo ScreenShots 🌀</summary>
+
 ## Demos
 
 **Environment Setup**
@@ -696,15 +683,21 @@ like it’s winking at you through the terminal...
 **Stopped Backend (Envs Persisting)**
 ![Stop Backend](https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/GremlinGPT/demos/Stop_Backend_Environment_Stays_Active.png)
 
+</details>
+
 ---
+
+<details>
+<summary>🌀 Open for a Brief Map of GremlinGPT 🌀</summary>
 
 ## What is GremlinGPT v1.0.3
 
-**The full revamp of v1.0.2, Not just a wrapper. Autonomous. RS-RACS.**
+*The full revamp of v1.0.2, Not just a wrapper. Autonomous. RS-RACS.*
 
 ### 1. Bootstrapping and Environment Management
 
-> [OBJECTIVE] 
+> [OBJECTIVE]
+> 
 > Ensure environment setup, installation, and reboot scripts correctly reflect modular subcomponents.
 
 **Key Files:**  
@@ -844,14 +837,9 @@ like it’s winking at you through the terminal...
 
 *GremlinGPT doesn’t just evolve. It plans the evolution.*
 
----
+</details>
 
-## Collaborators Wanted to Join the Loop
-
-- If you know how to think in layers, act in silence, and write code that rewrites itself —  
-**fork the repo, send a PR, and bring a machine that can keep up.**
-
-**See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/OPEN_FUNDING_PROPOSAL.md)**
+</details>
 
 ---
 
