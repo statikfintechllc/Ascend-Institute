@@ -3,14 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>AscendAI – Sovereign Stack</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-dark.min.css">
-  <link rel="stylesheet" href="docs/custom.css">
+
+  <!-- Meta + Favicon -->
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <meta property="og:title" content="AscendAI – Sovereign Stack">
   <meta property="og:description" content="GremlinGPT, Financial Autonomy, and Self-Hosting Liberation.">
   <meta property="og:image" content="https://statikfintechllc.github.io/assets/og-image.png">
   <meta property="og:url" content="https://statikfintechllc.github.io/AscendAI/">
 
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-dark.min.css">
+  <link rel="stylesheet" type="text/css" href="docs/custom.css">
+
+  <!-- Admonition Styling -->
   <style>
     main {
       max-width: 960px;
@@ -22,15 +27,15 @@
       border-left: 4px solid #444;
       padding: 1em;
       margin: 1.5em 0;
-      background: #0d1117;
+      background: #161b22;
       border-radius: 6px;
     }
 
-    .admonition-note { border-color: #2f81f7; }
-    .admonition-tip { border-color: #3fb950; }
-    .admonition-warning { border-color: #d29922; }
+    .admonition-note      { border-color: #2f81f7; }
+    .admonition-tip       { border-color: #3fb950; }
+    .admonition-warning   { border-color: #d29922; }
     .admonition-important { border-color: #8250df; }
-    .admonition-caution { border-color: #f85149; }
+    .admonition-caution   { border-color: #f85149; }
 
     .admonition-title {
       font-weight: bold;
@@ -46,6 +51,7 @@
   <div id="readme" class="markdown-body glass"></div>
 </main>
 
+<!-- Scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -69,26 +75,27 @@
   fetch('README.md')
     .then(res => res.ok ? res.text() : Promise.reject('README fetch failed'))
     .then(md => {
+      // Render markdown first
+      let html = marked.parse(md);
+
+      // Admonition Parsing
+      html = html
+        .replace(/\[!NOTE\]/gi, `<div class="admonition admonition-note"><div class="admonition-title">🔵 Note</div>`)
+        .replace(/\[!TIP\]/gi, `<div class="admonition admonition-tip"><div class="admonition-title">💡 Tip</div>`)
+        .replace(/\[!IMPORTANT\]/gi, `<div class="admonition admonition-important"><div class="admonition-title">🟣 Important</div>`)
+        .replace(/\[!WARNING\]/gi, `<div class="admonition admonition-warning"><div class="admonition-title">⚠️ Warning</div>`)
+        .replace(/\[!CAUTION\]/gi, `<div class="admonition admonition-caution"><div class="admonition-title">🔴 Caution</div>`)
+        .replace(/\n(?=\S)/g, '</div>\n'); // Auto-close block on next paragraph start
+
       const container = document.getElementById('readme');
+      container.innerHTML = html;
 
-      // Basic parse
-      let parsed = marked.parse(md);
-
-      // Render GitHub-style admonitions
-      parsed = parsed
-        .replace(/\[!NOTE\]/g, `<div class="admonition admonition-note"><div class="admonition-title">🔵 Note</div>`)
-        .replace(/\[!TIP\]/g, `<div class="admonition admonition-tip"><div class="admonition-title">💡 Tip</div>`)
-        .replace(/\[!IMPORTANT\]/g, `<div class="admonition admonition-important"><div class="admonition-title">🟣 Important</div>`)
-        .replace(/\[!WARNING\]/g, `<div class="admonition admonition-warning"><div class="admonition-title">⚠️ Warning</div>`)
-        .replace(/\[!CAUTION\]/g, `<div class="admonition admonition-caution"><div class="admonition-title">🔴 Caution</div>`)
-        .replace(/\n(?=\S)/g, '</div>\n'); // auto-close on next paragraph start
-
-      container.innerHTML = parsed;
-
+      // Anchor IDs
       container.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(header => {
         if (!header.id) header.id = githubSlug(header.textContent);
       });
 
+      // Smooth Scroll
       container.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
           const target = document.getElementById(this.getAttribute('href').slice(1));
@@ -100,6 +107,7 @@
         });
       });
 
+      // Vanta FX
       VANTA.NET({
         el: "#vanta-bg",
         mouseControls: true,
@@ -109,6 +117,7 @@
         backgroundColor: 0x000000
       });
 
+      // Optional FX
       const fxScript = document.createElement('script');
       fxScript.src = 'docs/scrollFX.js';
       document.body.appendChild(fxScript);
