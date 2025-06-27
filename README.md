@@ -312,18 +312,6 @@ href="https://www.gmail.com">
 
 ---
 
-<div align="center">
-  <a
-href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
-    <img src="https://img.shields.io/badge/Jump%20To-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Fair Use License"/>
-  </a>
-  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
-    <img src="https://img.shields.io/badge/GremlinGPT-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
-  </a>
-</div>
-
----
-
 <details>
 <summary>🔎 Expand to begin Review 🔍</summary>
 
@@ -835,6 +823,18 @@ Unseen. Unbroken. Unrivaled. Gremlins Ascend.
 </details>
 
 </details>
+
+---
+
+<div align="center">
+  <a
+href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
+    <img src="https://img.shields.io/badge/Jump%20To-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Fair Use License"/>
+  </a>
+  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
+    <img src="https://img.shields.io/badge/GremlinGPT-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
+  </a>
+</div>
 
 ---
 
