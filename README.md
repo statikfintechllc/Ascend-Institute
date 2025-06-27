@@ -856,6 +856,8 @@ Personal use only. Commercial use is prohibited unless licensed separately.
 
 </details>
 
+---
+
 > [!NOTE]
 > 
 > GremlinGPT v1.0.3 Fully Boot-Strapped Drop is 45% Complete
