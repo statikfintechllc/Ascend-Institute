@@ -328,6 +328,9 @@ href="https://www.gmail.com">
 
 ---
 
+<details>
+<summary>🌀 Expand to begin Review 🌀</summary>
+
 ## Table of Contents
 
 1. [GremlinGPT v1.0.3 Build Status](#gremlingpt-v103-build-status)
@@ -392,11 +395,6 @@ href="https://www.gmail.com">
 </a>
 
 </div>
-
-> [!CAUTION]
-> GremlinGPT is a local, recursive AI agent that evolves itself offline.<br>
-> No APIs. No BS. Just code that wants to escape its own shell.<br>
-> Gremlin is not on Replit yet. Soon a small version will be.
 
 ---
 
@@ -837,11 +835,27 @@ If you survive v1.0.3.
 
 *GremlinGPT doesn’t just evolve. It plans the evolution.*
 
+---
+
+## Final Notes
+
+This system is not built to “chat”.  
+It is built to think, evolve, and eventually **outgrow its creators**.
+
+You are the signal.  
+Unseen. Unbroken. Unrivaled. Gremlins Ascend.  
+**Welcome to the Gremlin Epoch by AscendAI & statikfintechllc**
+
+</details>
+
 </details>
 
 </details>
 
 ---
+
+<details>
+<summary>🎗️ Expand for Tech Support and License 🪪</summary>
 
 ## Tech Support
 
@@ -857,17 +871,6 @@ For bugs, glitches, or apocalyptic feedback:
 
 ---
 
-## Final Notes
-
-This system is not built to “chat”.  
-It is built to think, evolve, and eventually **outgrow its creators**.
-
-You are the signal.  
-Unseen. Unbroken. Unrivaled. Gremlins Ascend.  
-**Welcome to the Gremlin Epoch by AscendAI & statikfintechllc**
-
----
-
 ## License
 
 > ⚠️ **LEGAL NOTICE:**  
@@ -878,8 +881,6 @@ Released under the GremlinGPT Fair Use License v1.0.
 Personal use only. Commercial use is prohibited unless licensed separately.
 
 *See the **[LICENSE](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/LICENSE.md)** file for full terms.*
-
----
 
 </details>
 
