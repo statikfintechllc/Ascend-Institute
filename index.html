@@ -16,6 +16,25 @@
       margin: 4rem auto;
       padding: 1rem;
     }
+
+    .admonition {
+      border-left: 4px solid #444;
+      padding: 1em;
+      margin: 1.5em 0;
+      background: #0d1117;
+      border-radius: 6px;
+    }
+
+    .admonition-note { border-color: #2f81f7; }
+    .admonition-tip { border-color: #3fb950; }
+    .admonition-warning { border-color: #d29922; }
+    .admonition-important { border-color: #8250df; }
+    .admonition-caution { border-color: #f85149; }
+
+    .admonition-title {
+      font-weight: bold;
+      margin-bottom: 0.5em;
+    }
   </style>
 </head>
 <body>
@@ -29,6 +48,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
 <script>
   const githubSlug = (text) =>
     text.toLowerCase()
@@ -42,16 +62,25 @@
     headerIds: true,
     headerPrefix: '',
     mangle: false,
-    slugger: {
-      slug: githubSlug
-    }
+    slugger: { slug: githubSlug }
   });
+
+  function transformAdmonitions(md) {
+    return md
+      .replace(/\[!NOTE\]/gi, '<div class="admonition admonition-note"><div class="admonition-title">🔵 Note</div>')
+      .replace(/\[!TIP\]/gi, '<div class="admonition admonition-tip"><div class="admonition-title">💡 Tip</div>')
+      .replace(/\[!IMPORTANT\]/gi, '<div class="admonition admonition-important"><div class="admonition-title">🟣 Important</div>')
+      .replace(/\[!WARNING\]/gi, '<div class="admonition admonition-warning"><div class="admonition-title">⚠️ Warning</div>')
+      .replace(/\[!CAUTION\]/gi, '<div class="admonition admonition-caution"><div class="admonition-title">🔴 Caution</div>')
+      .replace(/\n(?=\S)/g, '</div>\n'); // closes each block
+  }
 
   fetch('README.md')
     .then(res => res.ok ? res.text() : Promise.reject('README fetch failed'))
     .then(md => {
       const container = document.getElementById('readme');
-      container.innerHTML = marked.parse(md);
+      const processed = transformAdmonitions(md);
+      container.innerHTML = marked.parse(processed);
 
       // ID validation & TOC scroll
       container.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(header => {
