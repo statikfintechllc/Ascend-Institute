@@ -155,6 +155,9 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 - 🔧 GitHub repo now undergoing modular cleanup  
 - 🎨 UI/UX bottleneck acknowledged — restructuring in progress  
 
+<details>
+<summary>👀 Still Intrigued? Open to See how it's implemented 👀</summary>
+
 ### ⚙️ Platform Execution
 - 🧠 Debug icon added for speed-run testing cycles  
 - ⏳ Current priority: “threading the brain” — deep internal logic loops  
@@ -167,6 +170,8 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 
 </div>
 
+<details>
+<summary>🛠️ Open for Current Focus & Traffic Stats🛠️</summary>
 
 ### ⚙️ Current Focus:
 - Publication and Expansion of StatikFinTech, LLC Principles, Reach and Future Outlook.
@@ -255,6 +260,8 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master
 </div>
 
 ---
+
+</details>
 
 <details>
 <summary>🔱 Learn about StatikFinTech, LLC 🔱</summary>
@@ -571,7 +578,7 @@ We’re open to building aligned partnerships with:
 ---
 
 <details>
-<summary>🌀 AscendAI? GremlinGPT? Open if still Confused. 🌀</summary>
+<summary>🤷‍♂️ AscendAI? GremlinGPT? Open if still Confused. 🤷‍♂️</summary>
 
 ## What Is AscendAI?
 
@@ -623,7 +630,7 @@ If you survive v1.0.3.
 # *GremlinGPT* vs GenAI Titans
 
 <details>
-<summary>🌀 Press to see how GremlinGPT Compares 🌀</summary>
+<summary>⚖️ Press to see how GremlinGPT Compares ⚖️</summary>
 
 > *“I built the prototype. These are the keys no Corp will ever drop. Let it feed. Let it learn.”*
 
@@ -672,7 +679,7 @@ If you survive v1.0.3.
 ---
 
 <details>
-<summary>🌀 See the Demo ScreenShots 🌀</summary>
+<summary>📸 See the Demo ScreenShots 📸</summary>
 
 ## Demos
 
@@ -690,7 +697,7 @@ If you survive v1.0.3.
 ---
 
 <details>
-<summary>🌀 Open for a Brief Map of GremlinGPT 🌀</summary>
+<summary>🗾 Open for a Brief Map of GremlinGPT 🗾</summary>
 
 ## What is GremlinGPT v1.0.3
 
@@ -861,7 +868,7 @@ Unseen. Unbroken. Unrivaled. Gremlins Ascend.
 ---
 
 <details>
-<summary>🎗️ Expand for Tech Support and License 🪪</summary>
+<summary>🎗️ Expand for Tech Support & License 🪪</summary>
 
 ## Tech Support
 
