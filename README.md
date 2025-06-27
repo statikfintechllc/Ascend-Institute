@@ -413,6 +413,9 @@ href="https://www.gmail.com">
 
 ---
 
+<details>
+<summary>👾 Open for GremlinGPT Full build Status 👾</summary>
+
 ## GremlinGPT v1.0.3 Build Status:
 
 | **Area**              | **Status** | **Needed Actions**                                                             |
@@ -597,7 +600,7 @@ It is grown — from the seed of a Gremlin.
 ---
 
 <details>
-<summary>👾 Open for Introduction to GremlinGPT👾</summary>
+<summary>👾 Open for Introduction to GremlinGPT 👾</summary>
 
 ## What Is GremlinGPT
 
