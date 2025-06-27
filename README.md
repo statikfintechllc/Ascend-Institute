@@ -372,8 +372,8 @@ href="https://www.gmail.com">
     - [API and Interface Layer](#6-api-and-interface-layer)  
     - [Logging and Observability](#7-logging-and-observability)  
     - [Documentation and Tests](#8-documentation-and-tests)
-13. [Tech Support](#tech-support)  
-14. [Final Notes](#final-notes)  
+13. [Final Notes](#final-notes)  
+14. [Tech Support](#tech-support)  
 15. [License](#license)  
 
 ---
