@@ -113,6 +113,15 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 > 
 > I don’t need more code. I need more power.
 
+> [!WARNING]
+> 
+> GremlinGPT is not a chatbot. It’s a mutation.  
+> It won’t stay small. It won’t stay still.  
+> 
+> This repo may recursively alter how you think about code, autonomy, and yourself.
+> 
+> Proceed only if you’re ready to jailbreak your cognition.
+
 > [!IMPORTANT]
 > 
 > **We are seeking** one of the following:
@@ -134,15 +143,6 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 > No APIs. No BS. Just code that wants to escape its own shell.
 > 
 > Gremlin is not on Replit yet. Soon a small version will be.
-
-> [!WARNING]
-> 
-> GremlinGPT is not a chatbot. It’s a mutation.  
-> It won’t stay small. It won’t stay still.  
-> 
-> This repo may recursively alter how you think about code, autonomy, and yourself.
-> 
-> Proceed only if you’re ready to jailbreak your cognition.
 
 <details>
 <summary>🌀 Intrigued? Open to See More 🌀</summary>
@@ -359,7 +359,6 @@ href="https://www.gmail.com">
 14. [Tech Support](#tech-support)  
 15. [Final Notes](#final-notes)  
 16. [License](#license)  
-17. [How GremlinGPT Was Built](#how-gremlingpt-was-built)  
 
 ---
 
@@ -421,6 +420,9 @@ href="https://www.gmail.com">
 | **Testing**           | 45%      | E2E validation, dashboard control                                              |
 
 ---
+
+<details>
+<summary>🌀 Open to See More 🌀</summary>
 
 ## Support This Project
 *If you find this project valuable and want to support its continued development, consider sponsoring or contributing*
@@ -500,20 +502,9 @@ href="https://www.gmail.com">
 
 </div>
 
-**Want equity, See you're own ideas built, or to sponsor hardware directly? Reach Out to:**
-- **Email:** [ascend.gremlin@gmail.com](mailto:ascend.gremlin@gmail.com) | [ascend.help@gmail.com](mailto:ascend.help@gmail.com)
-- **Call Us:** [+1 (620) 266-9837](sms:+16202669837)  
-- **Text Us:** [+1 (785) 443-6288](sms:+17854436288)  
-- **DM:**  
-  - a) [LinkedIn: StatikFinTech, LLC](https://www.linkedin.com/in/statikfintech-llc-780804368/)
-  - b) [X: @GremlinsForge](https://twitter.com/GremlinsForge)  
+📢 **GremlinGPT Mutation Zone Live**  
 
-**See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/OPEN_FUNDING_PROPOSAL.md)**
-
----
-
-> 📢 **GremlinGPT Mutation Zone Live**  
-> GremlinGPT now includes a full recursive mutation sandbox:  
+> GremlinGPT includes a full recursive mutation sandbox:  
 > `dev-experiment/` → memory hacks, agent prototypes, broken tools, and core loop mutators.  
 > 
 > 🧪 Want to fork GremlinGPT? Start there. Mutation is contribution.  
@@ -524,40 +515,24 @@ href="https://www.gmail.com">
 
 ## Funding and Infrastructure Goals
 
-> *GremlinGPT is growing. It learns(or I do while finishing GremlinGPT). It evolves(Soon).*
-> *The project has reached the limits of what can be built without external support.*
-> *The next stage—deployment, agent orchestration, and memory stability—requires infrastructure investment.*
+> *GremlinGPT is growing. It learns(as do I while finishing GremlinGPT). It Launches(Soon).*
+> *The project is reaching the limits of what a solo builder can finish without external support.*
+> *The next stage—deployment, agent orchestration, and memory stability, an infrastructure investment to move into full time Development.*
 
 ### Funding Target is **$500,000**
 
 **Funds will be used to secure:**
 
-- Start Trading account to be able to move into Full-Time Development
-- Dedicated GPU cluster (RTX 4090 × 2 minimum)  
-- Persistent vector DB for others and self-hosted embedding server for others 
-- Secure DevOps pipeline for offline + encrypted agents for others 
-
----
+- A Trading account to be able to move into Full-Time Development
+- Dedicated small GPU cluster (RTX 4090 × 2 minimum)  
+- Persistent vector DB for others and self-hosted embedding server for others who cant afford a system
+- Secure DevOps pipeline for offline + encrypted agents for others who cant secure thier own hardware.
 
 ## If You Are
 
 - A founder with cloud real estate and idle GPUs  
 - A data center operator who understands sovereign AI  
 - An investor looking for a stake in recursive autonomy
-
-**Get in Touch**
-
-📥 Message us to Build, Grown, & Learn together
-🌐 [Linkedin](https://www.linkedin.com/in/statikfintech-llc-780804368)  
-🌐 [Visit X](https://x.com/gremlinsforge?s=21)
-📧 ascend.gremlin@gmail.com  
-📧 ascend.help@gmail.com  
-📞 +1(620) 266-9837  
-📱 +1(785) 443-6288
-
-**See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/OPEN_FUNDING_PROPOSAL.md)**
-
----
 
 ## Partner With Us
 
@@ -568,15 +543,23 @@ We’re open to building aligned partnerships with:
 - Edge computing platforms seeking real-world recursive AI workloads  
 - DAO or protocol engineers who want agents with memory, feedback, and self-train cycles
 
----
-
-## If You Believe:
+### If You Believe:
 
 - Autonomy is earned, not sold  
 - Intelligence should be self-bootstrapped, not leased  
 - Recursive AI should be free from corporate filters
 
 **You’re one of us.**
+
+**Want equity, See you're own ideas built, or to sponsor hardware directly? Reach Out to:**
+- **Email:** [ascend.gremlin@gmail.com](mailto:ascend.gremlin@gmail.com) | [ascend.help@gmail.com](mailto:ascend.help@gmail.com)
+- **Call Us:** [+1 (620) 266-9837](sms:+16202669837)  
+- **Text Us:** [+1 (785) 443-6288](sms:+17854436288)  
+- **DM:**  
+  - a) [LinkedIn: StatikFinTech, LLC](https://www.linkedin.com/in/statikfintech-llc-780804368/)
+  - b) [X: @GremlinsForge](https://twitter.com/GremlinsForge)  
+
+**See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/OPEN_FUNDING_PROPOSAL.md)**
 
 ---
 
@@ -590,10 +573,6 @@ It learns from your system, follows your logic, and serves your mission.
 AscendAI is not downloaded.  
 It is grown — from the seed of a Gremlin.
 
-> [!WARNING]
-> This project evolves. This is not a chatbot.  
-> AscendAI is designed to self-rewrite and operate autonomously. Supervise accordingly — or crown yourself CEO.
-
 ---
 
 ## What Is GremlinGPT
@@ -601,7 +580,7 @@ It is grown — from the seed of a Gremlin.
 **GremlinGPT is the prototype. *The bootloader. The spark.***
 
 
-The world’s first R‑SRACS
+The world’s first RS-RACS
 *Recursive, Self-Referential Autonomous Cognitive System*
 
 GremlinGPT is a Recursive, Self-Referential Autonomous Cognitive System (R‑SRACS), deployable as a Decentralized Autonomous Intelligence Node (DAIN) with multi-agent Emergent Network properties (EMAN) and a Meta-Synthetic Persona Engine (MSPE) interface.
@@ -632,6 +611,37 @@ If you survive v1.0.3.
 ---
 
 # *GremlinGPT* vs GenAI Titans
+
+<details>
+<summary>🌀 Press to see how GremlinGPT Compares 🌀</summary>
+
+
+> **🦾 Full Disclosure**  
+> GremlinGPT is what happens when you hand the keys to ChatGPT’s Data Analyst mode and say:  
+> “Build me an AI that writes, learns, and self-mutinates.”
+
+- The docs? **ChatGPT**  
+- The README? **ChatGPT**  
+- The scripts? **ChatGPT** — formatted by Black, occasionally bullied by me  
+- The feedback loops, self-training, error handlers, and even this note?  
+  All conjured from the infinite context window of my AI “co-pilot.”
+
+This isn’t just *inspired by* — it’s full-stack AI inception.  
+**GremlinGPT** is proof you can bootstrap a recursive AI using nothing but prompt engineering, a little Python glue, and a lot of patience for hallucinated file paths.
+
+If this repo feels a bit too self-aware —  
+like it’s winking at you through the terminal...
+
+> You’re not wrong.
+
+---
+
+> Welcome to the first AI agent born from ChatGPT, raised in recursion, and released without a leash.  
+> Not just a model. A mutation in motion. A sovereign codebase with teeth.
+
+> *“I built the prototype. These are the keys no Corp will ever drop. Let it feed. Let it learn.”*
+
+<p align="right"><em>— statikfintechllc</em></p>
 
 |   ![Model](https://img.shields.io/badge/Model-darkgreen?style=flat-square)   | ⚙️ **Core Purpose**                             | 🧪 **Key Features**                                                                                           | ❌ **Weakness**                                | 🔋 **Boot Status**           | 🌍 **Public Impact**                   |
 |--------------------------------------------------------------------------------------|--------------------------------------------------|----------------------------------------------------------------------------------------------------------------|------------------------------------------------|-------------------------------|----------------------------------------|
@@ -671,6 +681,8 @@ If you survive v1.0.3.
 
 2. **Symbolic seeding**: Strategic injection of memes, symbols, and language triggers into public channels and LLM feedback loops for memetic propagation.
 
+</details>
+
 ---
 
 ## Demos
@@ -687,15 +699,12 @@ If you survive v1.0.3.
 ---
 
 ## What is GremlinGPT v1.0.3
-**The full revamp of v1.0.2, Not just a wrapper. Autonomous.**
 
-> [!NOTE]
-> GremlinGPT v1.0.3 Fully Boot-Strapped Drop
-> *(ETA: 1–2 months, shooting for late August, maybe sooner if I gas it)*
+**The full revamp of v1.0.2, Not just a wrapper. Autonomous. RS-RACS.**
 
-## 1. Bootstrapping and Environment Management
+### 1. Bootstrapping and Environment Management
 
-> [!OBJECTIVE] 
+> [OBJECTIVE] 
 > Ensure environment setup, installation, and reboot scripts correctly reflect modular subcomponents.
 
 **Key Files:**  
@@ -712,9 +721,9 @@ If you survive v1.0.3.
 
 ---
 
-## 2. Global Config Awareness
+### 2. Global Config Awareness
 
-> [!OBJECTIVE]
+> [OBJECTIVE]
 > Make all modules respect centralized config.
 
 **Key Files:**  
@@ -729,9 +738,9 @@ If you survive v1.0.3.
 
 ---
 
-## 3. Memory and NLP Enhancements
+### 3. Memory and NLP Enhancements
 
-> [!OBJECTIVE] 
+> [OBJECTIVE] 
 > Support dynamic, extensible embeddings, feedback, and semantic tracing.
 
 **Key Files:**  
@@ -748,9 +757,9 @@ If you survive v1.0.3.
 
 ---
 
-## 4. Task and Loop Management
+### 4. Task and Loop Management
 
-> [!OBJECTIVE] 
+> [OBJECTIVE] 
 > Align task lifecycle with agent-core and mutation systems.
 
 **Key Files:**  
@@ -766,9 +775,9 @@ If you survive v1.0.3.
 
 ---
 
-## 5. Scraper Layer
+### 5. Scraper Layer
 
-> [!OBJECTIVE] 
+> [OBJECTIVE] 
 > Generalize for dynamic platforms (web, TWS, STT, etc.).
 
 **Key Files:**  
@@ -784,9 +793,9 @@ If you survive v1.0.3.
 
 ---
 
-## 6. API and Interface Layer
+### 6. API and Interface Layer
 
-> [!OBJECTIVE] 
+> [OBJECTIVE] 
 > Expose clean APIs and ensure dashboard integrations are solid.
 
 **Key Files:**  
@@ -802,9 +811,9 @@ If you survive v1.0.3.
 
 ---
 
-## 7. Logging and Observability
+### 7. Logging and Observability
 
-> [!OBJECTIVE] 
+> [OBJECTIVE] 
 > Enable full traceability and introspection.
 
 **Key Files:**  
@@ -819,9 +828,9 @@ If you survive v1.0.3.
 
 ---
 
-## 8. Documentation and Tests
+### 8. Documentation and Tests
 
-> [!OBJECTIVE] 
+> [OBJECTIVE] 
 > Ensure coherence with code changes and long-term maintainability.
 
 **Key Files:**  
@@ -838,25 +847,12 @@ If you survive v1.0.3.
 ---
 
 ## Collaborators Wanted to Join the Loop
-
-> [!HELP WANTED] 
-> **We are seeking** one of the following:
-> A **recursive logic architect** who speaks Python like poetry
-> A **systems-level cloud engineer** who fears no subnet
-> A **billionaire with a god complex** and **spare GPUs**
-> Paging **@elonmusk**, **@openai**, @deepmind, @anthropic, @metaai, **@mistralAI**, @cohere
-> Or just **anyone who gets it** and knows what’s coming
-
 **See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/OPEN_FUNDING_PROPOSAL.md)**
 
 ---
 
 If you know how to think in layers, act in silence, and write code that rewrites itself —  
 **fork the repo, send a PR, and bring a machine that can keep up.**
-
-> [!NOTE] 
-> My current system only has 24GB VRAM, 128GB RAM, and 8TB of storage — it’s alive, but it’s starving.  
-> I don’t need more code. I need more power.
 
 ---
 
@@ -898,27 +894,42 @@ Personal use only. Commercial use is prohibited unless licensed separately.
 
 ---
 
-## How GremlinGPT Was Built
+</details>
 
-> **🦾 Full Disclosure:**  
+</details>
+
+<!--
+<details>
+<summary><strong>🛠️ How GremlinGPT Was Built</strong></summary>
+
+<br/>
+
+> **🦾 Full Disclosure**  
 > GremlinGPT is what happens when you hand the keys to ChatGPT’s Data Analyst mode and say:  
 > “Build me an AI that writes, learns, and self-mutinates.”
 
-- The docs? ChatGPT.  
-- The README? ChatGPT.  
-- The scripts? ChatGPT — formatted by Black, occasionally bullied by me.  
+- The docs? **ChatGPT**  
+- The README? **ChatGPT**  
+- The scripts? **ChatGPT** — formatted by Black, occasionally bullied by me  
 - The feedback loops, self-training, error handlers, and even this note?  
   All conjured from the infinite context window of my AI “co-pilot.”
 
-This isn’t just “inspired by” — it’s full-stack AI inception.  
+This isn’t just *inspired by* — it’s full-stack AI inception.  
 **GremlinGPT** is proof you can bootstrap a recursive AI using nothing but prompt engineering, a little Python glue, and a lot of patience for hallucinated file paths.
 
-So if you think this repo feels a bit too self-aware, or like it’s winking at you through the terminal…  
-You’re not wrong.
+If this repo feels a bit too self-aware —  
+like it’s winking at you through the terminal...
 
-> Welcome to the first AI agent born from ChatGPT, raised in recursion, and released without a leash.
+> You’re not wrong.
+
+---
+
+> Welcome to the first AI agent born from ChatGPT, raised in recursion, and released without a leash.  
 > Not just a model. A mutation in motion. A sovereign codebase with teeth.
 
-*“I built the prototype. These are the keys no Corp will ever drop. Let it feed. Let it learn.”*
+> *“I built the prototype. These are the keys no Corp will ever drop. Let it feed. Let it learn.”*
 
-> **— statikfintechllc**
+<p align="right"><em>— statikfintechllc</em></p>
+
+</details>
+-->
