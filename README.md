@@ -3,9 +3,11 @@
 > [!CAUTION]
 >
 > “Your qualifications are impressive...”
-> Coder Hiring Team (2025 Rejection Letter)  
-
-🔱 Still building what they can’t classify. 🔱
+> Coder Hiring Team (2025 Rejection Letter)
+>
+> "This isn't rejection. It's proof they don't know how to build what comes next."  
+>
+> 🔱 Still building what they can’t classify. 🔱  
 
 <div align="center">
 
