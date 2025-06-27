@@ -260,13 +260,14 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master
 
 📡 Install + Run Bug Fixes in progress Expect Demo 2 soon showing it break differently.
 
-📥 Message us to Build, Grown, & Learn together
-🌐 [Linkedin](https://www.linkedin.com/in/statikfintech-llc-780804368)  
-🌐 [Visit X](https://x.com/gremlinsforge?s=21)
-📧 ascend.gremlin@gmail.com  
-📧 ascend.help@gmail.com  
+📥 Message us to Build, Grown, & Learn together  
+
+🌐 [Linkedin](https://www.linkedin.com/in/statikfintech-llc-780804368)   
+🌐 [Visit X](https://x.com/gremlinsforge?s=21)  
+📧 ascend.gremlin@gmail.com   
+📧 ascend.help@gmail.com    
 📞 +1(620) 266-9837  
-📱 +1(785) 443-6288
+📱 +1(785) 443-6288  
 
 ---
 
