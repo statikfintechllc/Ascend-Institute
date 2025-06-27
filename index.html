@@ -67,13 +67,23 @@
       }
     });
 
+    function transformAdmonitions(md) {
+      return md
+        .replace(/\[!NOTE\]/g, `<div class="admonition admonition-note"><div class="admonition-title">🔵 Note</div>`)
+        .replace(/\[!TIP\]/g, `<div class="admonition admonition-tip"><div class="admonition-title">💡 Tip</div>`)
+        .replace(/\[!WARNING\]/g, `<div class="admonition admonition-warning"><div class="admonition-title">⚠️ Warning</div>`)
+        .replace(/\[!IMPORTANT\]/g, `<div class="admonition admonition-important"><div class="admonition-title">🟣 Important</div>`)
+        .replace(/\[!CAUTION\]/g, `<div class="admonition admonition-caution"><div class="admonition-title">🔴 Caution</div>`)
+        .replace(/\n(?=\s*[^>\s])/g, '</div>\n'); // closes block when new paragraph starts
+    }
+
     fetch('README.md')
       .then(res => res.ok ? res.text() : Promise.reject('README fetch failed'))
       .then(md => {
         const container = document.getElementById('readme');
-        container.innerHTML = marked.parse(md);
+        const processed = transformAdmonitions(md);
+        container.innerHTML = marked.parse(processed);
 
-        // ID validation & TOC scroll
         container.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(header => {
           if (!header.id) {
             const id = githubSlug(header.textContent);
