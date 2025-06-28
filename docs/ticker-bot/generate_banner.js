@@ -2,7 +2,10 @@ import puppeteer from "puppeteer";
 import fs from "fs";
 import path from "path";
 import { execSync } from "child_process";
+import { fileURLToPath } from "url";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const statsPath = path.join(__dirname, "stats.json");
 const outputGif = path.join(__dirname, "output", "ticker.gif");
 const outputMp4 = path.join(__dirname, "output", "temp.mp4");
