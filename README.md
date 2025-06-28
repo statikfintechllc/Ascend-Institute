@@ -340,10 +340,11 @@ href="https://www.gmail.com">
   <img src="https://img.shields.io/badge/Mutation%20Manifesto-black?style=for-the-badge&logo=zenodo&logoColor=white" alt="Mutation Manifesto"/>
 </a>
 
+  <a href="https://github.com/statikfintechllc/AscendDocs-of-GovSeverance.git">
   <img src="https://img.shields.io/badge/GovSeverance%20Docs-darkred?style=for-the-badge&logo=github&logoColor=white" alt="GovSeverance Docs"/>
-  <a href="https://github.com/statikfintechllc/AscendDocs-of-GovSeverance">
 </a>
 </div>
+
 <div align="center">
 
 <a href="https://replit.com/github/statikfintechllc/AscendAI">
