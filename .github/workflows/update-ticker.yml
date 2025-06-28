@@ -2,7 +2,7 @@ name: Update LED Ticker
 
 on:
   schedule:
-    - cron: "0 5 * * *" # Daily at 5 AM UTC
+    - cron: "0 5 * * *"
   workflow_dispatch:
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
         run: pip install requests
 
       - name: Fetch GitHub traffic stats
-        run: python ticker-bot/fetch_stats.py
+        run: python docs/ticker-bot/fetch_stats.py
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -28,15 +28,15 @@ jobs:
           node-version: 20
 
       - name: Install Node dependencies
-        run: cd ticker-bot && npm install
+        run: cd docs/ticker-bot && npm install
 
       - name: Generate banner
-        run: node ticker-bot/generate_banner.js
+        run: node docs/ticker-bot/generate_banner.js
 
       - name: Commit updated banner
         run: |
           git config user.name "gremlin-bot"
           git config user.email "gremlin-bot@users.noreply.github.com"
-          git add ticker-bot/output/ticker.gif
-          git commit -m "Update traffic banner"
+          git add docs/ticker-bot/output/ticker.gif
+          git commit -m "Update ticker banner"
           git push
