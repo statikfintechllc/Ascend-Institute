@@ -12,7 +12,8 @@ APP_TITLE="AscendAI: GremlinGPT v1.0.3"
 SUB_TITLE="From: SFTi"
 
 # Resolve script dir
-APPLOC="$HOME/AscendAI/GremlinGPT"
+APPDIR="$HOME/.local/share/applications"
+APPLOC="$APPDIR/GremlinGPT"
 START_SCRIPT="$APPLOC/run/start_code.sh"
 STOP_SCRIPT="$APPLOC/run/stop_all.sh"
 CHAT_SCRIPT="$APPLOC/run/cli.py"
