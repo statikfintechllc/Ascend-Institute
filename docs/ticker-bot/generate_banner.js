@@ -1,19 +1,13 @@
 const puppeteer = require("puppeteer");
 const fs = require("fs");
 const path = require("path");
+const { execSync } = require("child_process");
 
-// ✅ Always resolve relative to this file
-const rootDir = path.resolve(__dirname, "..", "..");
 const statsPath = path.join(__dirname, "stats.json");
-const outputPath = path.join(__dirname, "output", "ticker.gif");
+const outputGif = path.join(__dirname, "output", "ticker.gif");
+const outputMp4 = path.join(__dirname, "output", "temp.mp4");
 
-let stats;
-try {
-  stats = JSON.parse(fs.readFileSync(statsPath, "utf8"));
-} catch (err) {
-  console.error("[ERROR] Could not read stats.json:", err.message);
-  process.exit(1);
-}
+const stats = JSON.parse(fs.readFileSync(statsPath, "utf8"));
 
 const html = `
 <html>
@@ -28,11 +22,52 @@ const html = `
 `;
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: "new" });
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ["--use-gl=egl"]
+  });
+
   const page = await browser.newPage();
   await page.setContent(html);
   await page.setViewport({ width: 1024, height: 40 });
 
-  await page.screenshot({ path: outputPath });
+  // 🎥 Start screen recording
+  const stream = await page.screenshot({ type: 'png' }); // temp fallback
+  await page.evaluate(() => {
+    window.scrollTo(0, 0);
+  });
+
+  // Use Chrome's DevTools Protocol for screencapture:
+  const client = await page.target().createCDPSession();
+  await client.send("Page.startScreencast", {
+    format: "jpeg",
+    quality: 80,
+    everyNthFrame: 1
+  });
+
+  const frames = [];
+  client.on("Page.screencastFrame", async ({ data, sessionId }) => {
+    frames.push(Buffer.from(data, "base64"));
+    await client.send("Page.screencastFrameAck", { sessionId });
+  });
+
+  // Let the marquee scroll for 6 seconds
+  await new Promise(resolve => setTimeout(resolve, 6000));
+  await client.send("Page.stopScreencast");
   await browser.close();
+
+  // Save to .mp4 using ffmpeg
+  const frameDir = path.join(__dirname, "output", "frames");
+  fs.mkdirSync(frameDir, { recursive: true });
+
+  frames.forEach((img, idx) => {
+    fs.writeFileSync(`${frameDir}/frame_${String(idx).padStart(3, "0")}.jpg`, img);
+  });
+
+  execSync(`ffmpeg -y -framerate 10 -i ${frameDir}/frame_%03d.jpg -vf "scale=1024:-1:flags=lanczos" -loop 0 ${outputGif}`);
+
+  // Clean up temp frames
+  fs.rmSync(frameDir, { recursive: true, force: true });
+
+  console.log("[✅] Animated ticker.gif created.");
 })();
