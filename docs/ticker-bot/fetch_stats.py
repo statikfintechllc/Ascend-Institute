@@ -22,5 +22,5 @@ for repo in repos:
         "visitors": views.get("uniques", 0)
     })
 
-with open("ticker-bot/stats.json", "w") as f:
+with open("docs/ticker-bot/stats.json", "w") as f:
     json.dump(stats, f)
