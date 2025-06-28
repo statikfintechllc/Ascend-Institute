@@ -22,7 +22,8 @@ jobs:
           node-version: 20
 
       - name: Install Node dependencies
-        run: cd docs/ticker-bot && npm install
+        working-directory: docs/ticker-bot
+        run: npm install
 
       - name: Install Python dependencies
         run: pip install requests
@@ -36,7 +37,7 @@ jobs:
       - name: Commit updated banner
         run: |
           git config user.name "gremlin-bot"
-          git config user.email "gremlin-bot@users.noreply.github.com"
+          git config user.email "actions@github.com"
           git add docs/ticker-bot/output/ticker.gif
           git commit -m "Update ticker banner"
           git push
