@@ -341,7 +341,7 @@ href="https://www.gmail.com">
 </a>
 
   <img src="https://img.shields.io/badge/GovSeverance%20Docs-darkred?style=for-the-badge&logo=github&logoColor=white" alt="GovSeverance Docs"/>
-  <a href="https://github.com/statikfintechllc/AscendDocs-of-GovSeverance/">
+  <a href="https://github.com/statikfintechllc/AscendDocs-of-GovSeverance">
 </a>
 </div>
 <div align="center">
