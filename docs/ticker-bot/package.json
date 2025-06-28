@@ -1,0 +1,8 @@
+{
+  "name": "ticker-bot",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "puppeteer": "^21.3.8"
+  }
+}
