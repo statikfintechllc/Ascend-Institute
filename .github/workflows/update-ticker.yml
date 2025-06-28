@@ -15,10 +15,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: 3.11
-          
-      - name: Install Node dependencies
-        run: cd docs/ticker-bot && npm install
-        
+
       - name: Install Python dependencies
         run: pip install requests
 
@@ -29,9 +26,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-
-      - name: Install Node dependencies
-        run: cd docs/ticker-bot && npm install
 
       - name: Generate banner
         run: node docs/ticker-bot/generate_banner.js
