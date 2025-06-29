@@ -5,18 +5,6 @@
   alt="Repo Ticker Stats" 
   style="height: 33px ;"
 />
-</div>
-
-> [!CAUTION]
->
-> “Your qualifications are impressive...”
-> - Coder Hiring Team (2025 Rejection Letter)
->
-> 🔱 "This isn't rejection. It's proof they don't know how to build what comes next.  
->
-> Still building what they can’t classify." 🔱  -*StatikFinTech, LLC*
-
-<div align="center">
 
 <div align="center"> 
   <img src="https://img.shields.io/github/stars/statikfintechllc/AscendAI?style=social" alt="Stars"/>
@@ -114,56 +102,18 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 
 </div>
 
+</div>
+
 ---
 
-</div>
-
-<details>
-<summary>🌀 Intrigued? Open to Read More 🌀</summary>
-
-## 🛠️ GremlinGPT Dev Log — June 21
-
-**Status:**  
-🧵 *Solo. Unfunded. Building anyway.*
-
-### 🧬 Core System Progress
-- ✅ Scraper ➝ Dataset ➝ Memory loop fully operational  
-- 🔧 GitHub repo now undergoing modular cleanup  
-- 🎨 UI/UX bottleneck acknowledged — restructuring in progress  
-
-<details>
-<summary>👀 Still Intrigued? Open to See progress on how it's been implemented 👀</summary>
-
-### ⚙️ Platform Execution
-- 🧠 Debug icon added for speed-run testing cycles  
-- ⏳ Current priority: “threading the brain” — deep internal logic loops  
-- 🧱 Expect a wave of commits as structural internals are rewritten  
-- 🏗️ Dev speed will taper due to external workload (new shop)
-
-<div align="center">
-
-⚠️ **App Integration Underway**, Pathing logic is being hardened for fast launch & restart cycles. ⚠️
-
-</div>
-
-</details>
-
-<details>
-<summary>🛠️ Open for Current Focus & Traffic Stats🛠️</summary>
-
-### ⚙️ Current Focus:
-- Publication and Expansion of StatikFinTech, LLC Principles, Reach and Future Outlook.
-- Speed-running debug pass
-- Hooking logs into startup script for bootstrap visibility
-- Ensuring universal pathing across all runtime entrypoints
-
-<div align="center">
-	
-Working Directory: GremlinGPT
-
-⚠️Progress Updates will be as *frequent*</h1> as possible.⚠️
-
-</div>
+> [!CAUTION]
+>
+> “Your qualifications are impressive...”
+> - Coder Hiring Team (2025 Rejection Letter)
+>
+> 🔱 "This isn't rejection. It's proof they don't know how to build what comes next.  
+>
+> Still building what they can’t classify." 🔱  -*StatikFinTech, LLC*
 
 ---
 
@@ -234,6 +184,55 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
   <a href="https://youtube.com/@gremlins_forge?si=9_OjKtlEPIErBrO2">
     <img src="https://img.shields.io/badge/Demos-darkred?style=for-the-badge&logo=youtube&logoColor=gold"/>
   </a>
+
+</div>
+
+---
+
+<details>
+<summary>🌀 Intrigued? Open to Read More 🌀</summary>
+
+## 🛠️ GremlinGPT Dev Log — June 21
+
+**Status:**  
+🧵 *Solo. Unfunded. Building anyway.*
+
+### 🧬 Core System Progress
+- ✅ Scraper ➝ Dataset ➝ Memory loop fully operational  
+- 🔧 GitHub repo now undergoing modular cleanup  
+- 🎨 UI/UX bottleneck acknowledged — restructuring in progress  
+
+<details>
+<summary>👀 Still Intrigued? Open to See progress on how it's been implemented 👀</summary>
+
+### ⚙️ Platform Execution
+- 🧠 Debug icon added for speed-run testing cycles  
+- ⏳ Current priority: “threading the brain” — deep internal logic loops  
+- 🧱 Expect a wave of commits as structural internals are rewritten  
+- 🏗️ Dev speed will taper due to external workload (new shop)
+
+<div align="center">
+
+⚠️ **App Integration Underway**, Pathing logic is being hardened for fast launch & restart cycles. ⚠️
+
+</div>
+
+</details>
+
+<details>
+<summary>🛠️ Open for Current Focus 🛠️</summary>
+
+### ⚙️ Current Focus:
+- Publication and Expansion of StatikFinTech, LLC Principles, Reach and Future Outlook.
+- Speed-running debug pass
+- Hooking logs into startup script for bootstrap visibility
+- Ensuring universal pathing across all runtime entrypoints
+
+<div align="center">
+	
+Working Directory: GremlinGPT
+
+⚠️Progress Updates will be as *frequent*</h1> as possible.⚠️
 
 </div>
 
