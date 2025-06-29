@@ -16,14 +16,18 @@ const isCI = process.env.CI === "true";
 const args = ["--use-gl=egl"];
 if (isCI) args.unshift("--no-sandbox", "--disable-setuid-sandbox");
 
+// 🧠 Build full repo stat string
+const scrollText = stats.map(s =>
+  `📦 ${s.repo} :: ⭐ ${s.stars} | 🍴 ${s.forks} | 👁️ ${s.views} Views | 🧠 ${s.uniques} Clones`
+).join(" — ");
+
+// 🧱 Wider than viewport, tall font, high padding for clarity
 const html = `
 <html>
   <body style="margin:0; background:black;">
-    <marquee behavior="scroll" direction="left" scrollamount="6"
-      style="color:red; font-family:monospace; font-size:18px; padding:10px;">
-      ${stats.map(s =>
-        `📦 ${s.repo} :: ${s.clones} Clones | ${s.views} Views | ${s.uniques} Unique 🧠`
-      ).join(" — ")}
+    <marquee behavior="scroll" direction="left" scrollamount="3"
+      style="color:red; font-family:monospace; font-size:36px; padding:20px;">
+      ${scrollText}
     </marquee>
   </body>
 </html>
@@ -33,14 +37,15 @@ const html = `
   const browser = await puppeteer.launch({ headless: true, args });
   const page = await browser.newPage();
 
-  await page.setViewport({ width: 1024, height: 80 });
+  // 🧱 Double the vertical resolution for clarity
+  await page.setViewport({ width: 1024, height: 120 });
   await page.setContent(html);
-  await new Promise(r => setTimeout(r, 500)); // wait for marquee render
+  await new Promise(r => setTimeout(r, 500)); // give marquee time to start
 
   const client = await page.target().createCDPSession();
   await client.send("Page.startScreencast", {
     format: "jpeg",
-    quality: 80,
+    quality: 85,
     everyNthFrame: 1
   });
 
@@ -50,7 +55,8 @@ const html = `
     await client.send("Page.screencastFrameAck", { sessionId });
   });
 
-  await new Promise(r => setTimeout(r, 6000)); // record for 6 seconds
+  // ⏱ Long enough for full scroll offscreen
+  await new Promise(r => setTimeout(r, 10000));
   await client.send("Page.stopScreencast");
   await browser.close();
 
@@ -63,8 +69,8 @@ const html = `
     fs.writeFileSync(`${frameDir}/frame_${String(i).padStart(3, "0")}.jpg`, img);
   });
 
-  execSync(`ffmpeg -y -framerate 10 -i ${frameDir}/frame_%03d.jpg -vf "scale=1024:80:flags=lanczos" -loop 0 ${outputGif}`);
-
+  execSync(`ffmpeg -y -framerate 10 -i ${frameDir}/frame_%03d.jpg -vf "scale=1024:120:flags=lanczos" -loop 0 ${outputGif}`);
   fs.rmSync(frameDir, { recursive: true, force: true });
-  console.log(`[✅] ticker.gif created with ${frames.length} frames.`);
+
+  console.log(`[✅] Final ticker.gif rendered with ${frames.length} frames.`);
 })();
