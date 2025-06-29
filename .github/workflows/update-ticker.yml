@@ -42,6 +42,6 @@ jobs:
         run: |
           git config user.name "gremlin-bot"
           git config user.email "actions@github.com"
-          git add docs/ticker-bot/output/ticker.gif
+          git add docs/ticker-bot/*
           git commit -m "Update ticker banner"
           git push
