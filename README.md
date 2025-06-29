@@ -351,9 +351,15 @@ href="https://www.gmail.com">
 
 <div align="center">
 
+### Make your Own App:
+
+*Just a funny, this app is cool though, I use it as a Game*
+
 <a href="https://replit.com/github/statikfintechllc/AscendAI">
   <img src="https://replit.com/badge/github/statikfintechllc/AscendAI" alt="Run on Replit">
 </a>
+
+⚠️ Just Until GremlinGPT is booting, Soon ⚠️
 
 </div>
 
