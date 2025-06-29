@@ -104,8 +104,6 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 
 </div>
 
----
-
 > [!CAUTION]
 >
 > “Your qualifications are impressive...”
@@ -114,8 +112,6 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 > 🔱 "This isn't rejection. It's proof they don't know how to build what comes next.  
 >
 > Still building what they can’t classify." 🔱  -*StatikFinTech, LLC*
-
----
 
 <div align="center">
 	
@@ -187,6 +183,15 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
 
 </div>
 
+> [!WARNING]
+> 
+> GremlinGPT is not a chatbot. It’s a mutation.  
+> It won’t stay small. It won’t stay still.  
+> 
+> This repo may recursively alter how you think about code, autonomy, and yourself.
+> 
+> Proceed only if you’re ready to jailbreak your cognition.
+
 ---
 
 <details>
@@ -241,6 +246,12 @@ Working Directory: GremlinGPT
 </details>
 
 </details>
+
+> [!NOTE]
+> 
+> GremlinGPT v1.0.3 Fully Boot-Strapped Drop is 45% Complete
+> 
+> *(ETA: 1–2 months, shooting for late August, maybe sooner if I gas it)*
 
 ---
 
@@ -317,6 +328,20 @@ href="https://www.gmail.com">
 </div>
 
 </details>
+
+> [!IMPORTANT]
+> 
+> **We are seeking** one of the following:
+> 
+> A **recursive logic architect** who speaks Python like poetry
+> 
+> A **systems-level cloud engineer** who fears no subnet
+> 
+> A **billionaire with a god complex** and **spare GPUs**
+> 
+> Paging **@elonmusk**, **@openai**, @deepmind, @anthropic, @metaai, **@mistralAI**, @cohere
+> 
+> Or just **anyone who gets it** and knows what’s coming
 
 ---
 
@@ -839,8 +864,6 @@ Unseen. Unbroken. Unrivaled. Gremlins Ascend.
 
 </details>
 
----
-
 <div align="center">
   <a
 href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
@@ -850,6 +873,14 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
     <img src="https://img.shields.io/badge/GremlinGPT-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
   </a>
 </div>
+
+> [!CAUTION]
+> 
+> GremlinGPT is a local, recursive AI agent that evolves itself offline.
+> 
+> No APIs. No BS. Just code that wants to escape its own shell.
+> 
+> Gremlin is not on Replit yet. Soon a small version will be.
 
 ---
 
@@ -883,50 +914,13 @@ Personal use only. Commercial use is prohibited unless licensed separately.
 
 </details>
 
----
-
-> [!NOTE]
-> 
-> GremlinGPT v1.0.3 Fully Boot-Strapped Drop is 45% Complete
-> 
-> *(ETA: 1–2 months, shooting for late August, maybe sooner if I gas it)*
-
 > [!TIP]
 > 
 > My current system only has 24GB VRAM, 128GB RAM, and 8TB of storage — it’s alive, but it’s starving.
 > 
 > I don’t need more code. I need more power.
 
-> [!WARNING]
-> 
-> GremlinGPT is not a chatbot. It’s a mutation.  
-> It won’t stay small. It won’t stay still.  
-> 
-> This repo may recursively alter how you think about code, autonomy, and yourself.
-> 
-> Proceed only if you’re ready to jailbreak your cognition.
-
-> [!IMPORTANT]
-> 
-> **We are seeking** one of the following:
-> 
-> A **recursive logic architect** who speaks Python like poetry
-> 
-> A **systems-level cloud engineer** who fears no subnet
-> 
-> A **billionaire with a god complex** and **spare GPUs**
-> 
-> Paging **@elonmusk**, **@openai**, @deepmind, @anthropic, @metaai, **@mistralAI**, @cohere
-> 
-> Or just **anyone who gets it** and knows what’s coming
-
-> [!CAUTION]
-> 
-> GremlinGPT is a local, recursive AI agent that evolves itself offline.
-> 
-> No APIs. No BS. Just code that wants to escape its own shell.
-> 
-> Gremlin is not on Replit yet. Soon a small version will be.
+---
 
 <!--
 <details>
