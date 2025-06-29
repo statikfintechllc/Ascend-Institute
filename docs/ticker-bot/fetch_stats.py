@@ -1,21 +1,30 @@
 import requests, json, os
 
-TOKEN = os.getenv("GH_TOKEN") or "ghp_xxx"  # Set in GitHub Secrets
+TOKEN = os.getenv("GH_TOKEN") or "ghp_xxx"  # Secure token in GitHub secrets
 HEADERS = {"Authorization": f"token {TOKEN}"}
 
 repos = [
-    "statikfintechllc/AscendAI", "statikfintechllc/Mobile-Developer",
+    "statikfintechllc/AscendAI",
+    "statikfintechllc/Mobile-Developer",
     "statikfintechllc/AscendDocs-of-GovSeverance",
-    "statikfintechllc/GodCore", "statikfintechllc/AscendNet"
+    "statikfintechllc/GodCore",
+    "statikfintechllc/AscendNet"
 ]
 
 stats = []
+
 for repo in repos:
-    views = requests.get(f"https://api.github.com/repos/{repo}/traffic/views", headers=HEADERS).json()
-    clones = requests.get(f"https://api.github.com/repos/{repo}/traffic/clones", headers=HEADERS).json()
+    owner, name = repo.split("/")
+    base = f"https://api.github.com/repos/{owner}/{name}"
+
+    views = requests.get(f"{base}/traffic/views", headers=HEADERS).json()
+    clones = requests.get(f"{base}/traffic/clones", headers=HEADERS).json()
+    meta   = requests.get(base, headers=HEADERS).json()
 
     stats.append({
-        "repo": repo.split("/")[-1],
+        "repo": name,
+        "stars": meta.get("stargazers_count", 0),
+        "forks": meta.get("forks_count", 0),
         "clones": clones.get("count", 0),
         "uniques": clones.get("uniques", 0),
         "views": views.get("count", 0),
@@ -23,4 +32,4 @@ for repo in repos:
     })
 
 with open("docs/ticker-bot/stats.json", "w") as f:
-    json.dump(stats, f)
+    json.dump(stats, f, indent=2)
