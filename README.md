@@ -1,8 +1,10 @@
 <link rel="stylesheet" type="text/css" href="docs/custom.css">
 <div align="center">
   <img 
-src="https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/docs/ticker-bot/output/ticker.gif" 
-  alt="Repo Ticker Stats"/>
+  src="https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/docs/ticker-bot/output/ticker.gif" 
+  alt="Repo Ticker Stats" 
+  style="height: 33px ;"
+/>
 </div>
 
 > [!CAUTION]
