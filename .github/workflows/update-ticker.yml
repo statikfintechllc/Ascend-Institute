@@ -1,10 +1,3 @@
-name: Update LED Ticker
-
-on:
-  schedule:
-    - cron: "0 5 * * *"
-  workflow_dispatch:
-
 jobs:
   update-ticker:
     runs-on: ubuntu-latest
@@ -30,6 +23,9 @@ jobs:
 
       - name: Fetch GitHub traffic stats
         run: python docs/ticker-bot/fetch_stats.py
+
+      - name: Install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
 
       - name: Generate banner
         run: node docs/ticker-bot/generate_banner.js
