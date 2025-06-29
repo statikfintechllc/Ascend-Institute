@@ -11,6 +11,9 @@ const outputGif = path.join(__dirname, "output", "ticker.gif");
 const outputMp4 = path.join(__dirname, "output", "temp.mp4");
 
 const stats = JSON.parse(fs.readFileSync(statsPath, "utf8"));
+const isCI = process.env.CI === "true";
+const args = ["--use-gl=egl"];
+if (isCI) args.unshift("--no-sandbox", "--disable-setuid-sandbox");
 
 const html = `
 <html>
@@ -25,10 +28,11 @@ const html = `
 `;
 
 (async () => {
-  const browser = await puppeteer.launch({
-    headless: true,
-    args: ["--use-gl=egl"]
-  });
+
+const browser = await puppeteer.launch({
+  headless: true,
+  args
+});
 
   const page = await browser.newPage();
   await page.setContent(html);
