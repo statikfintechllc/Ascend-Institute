@@ -319,6 +319,7 @@ conda activate gremlin-nlp && PYTHONPATH=$(pwd) python3 run/cli.py
 ```
 
 ### Full System Launch:
+
 > *Properly adjust this 'export PYTHONPATH="/path/to/AscendAI/GremlinGPT"' inside run/start_all.sh*
 
 ```bash
@@ -352,7 +353,7 @@ ngrok http 8080
 - All dashboard features are live-wired to these REST endpoints:
 
 <details>
-<summary>🌀 Press to see How It Works 🌀</summary>
+<summary>🌀 Press to see How It Connects 🌀</summary>
   
 ```mermaid
 graph TD
@@ -415,10 +416,33 @@ tail -f run/logs/runtime.log
 
 ## Troubleshooting
 
+### You can:
+- Filter error logs like:
+
+```bash
+grep '"severity": "error"' run/logs/task_errors.jsonl
+```
+
+- Or trace failed shell tasks only:
+
+```bash
+jq 'select(.task_type=="shell")' run/logs/task_errors.jsonl
+```
+
 - Port conflict? Change in config.yaml or stop existing service
 - Scraper fails? Set headless=False in playwright_handler.py and retry
 - No memory? Verify embedder paths and Chroma/FAISS setup
 - Training loop not updating? Run retrainer manually or inspect watchdog logs
+
+### Or Contact Us:
+
+For Issues, or to See you're own ideas built, or to sponsor hardware directly? Reach Out to:**
+- **Email:** [ascend.gremlin@gmail.com](mailto:ascend.gremlin@gmail.com) | [ascend.help@gmail.com](mailto:ascend.help@gmail.com)
+- **Call Us:** [+1 (620) 266-9837](sms:+16202669837)  
+- **Text Us:** [+1 (785) 443-6288](sms:+17854436288)  
+- **DM:**  
+  - a) [LinkedIn: StatikFinTech, LLC](https://www.linkedin.com/in/statikfintech-llc-780804368/)
+  - b) [X: @GremlinsForge](https://twitter.com/GremlinsForge)
 
 ---
 
