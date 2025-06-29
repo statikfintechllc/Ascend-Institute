@@ -4,12 +4,12 @@ on:
   schedule:
     - cron: "0 5 * * *"
   workflow_dispatch:
-  
+
 jobs:
   update-ticker:
     runs-on: ubuntu-latest
+
     steps:
-    
       - uses: actions/checkout@v4
 
       - name: Set up Python
@@ -24,12 +24,15 @@ jobs:
 
       - name: Install Node dependencies
         working-directory: docs/ticker-bot
-        run: npm install
+        run: |
+          if [ -f package.json ]; then npm install; fi
 
       - name: Install Python dependencies
         run: pip install requests
 
       - name: Fetch GitHub traffic stats
+        env:
+          PAT_GITHUB: ${{ secrets.PAT_GITHUB }}
         run: python docs/ticker-bot/fetch_stats.py
 
       - name: Install ffmpeg
@@ -42,6 +45,6 @@ jobs:
         run: |
           git config user.name "gremlin-bot"
           git config user.email "actions@github.com"
-          git add docs/ticker-bot/output/ticker.gif
-          git commit -m "Update ticker banner"
+          git add docs/ticker-bot/stats.json docs/ticker-bot/output/ticker.gif
+          git commit -m "Update ticker banner" || echo "No changes to commit"
           git push
