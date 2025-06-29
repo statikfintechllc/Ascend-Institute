@@ -6,8 +6,8 @@ import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const statsPath = path.join(__dirname, "docs/ticker-bot/stats.json");
-const outputGif = path.join(__dirname, "docs/ticker-bot/ticker.gif");
+const statsPath = path.join(rootDir, "docs/ticker-bot/stats.json");
+const outputGif = path.join(rootDir, "docs/ticker-bot/ticker.gif");
 
 const stats = JSON.parse(fs.readFileSync(statsPath, "utf8"));
 if (!stats.length) throw new Error("⚠️ No stats found — check stats.json");
