@@ -1,4 +1,12 @@
-# !/usr/bin/env python3
+#!/usr/bin/env python3
+# ─────────────────────────────────────────────────────────────
+# ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
+# Built under the GremlinGPT Dual License v1.0
+# © 2025 StatikFintechLLC / AscendAI Project
+# Contact: ascend.gremlin@gmail.com
+# ─────────────────────────────────────────────────────────────
+
+# GremlinGPT v1.0.3 :: agent_core/task_queue.py
 
 from collections import deque, defaultdict
 import uuid
@@ -154,6 +162,27 @@ class TaskQueue:
             except Exception as e:
                 logger.warning(f"[TaskQueue] Failed to load queue snapshot: {e}")
 
+    def is_empty(self):
+        """
+        Check if all priority queues (high, normal, low) are empty.
+        Used by FSM to determine when to halt or pause execution loop.
+        """
+        empty = all(len(queue) == 0 for queue in self.task_queue.values())
+        logger.debug(f"[TaskQueue] is_empty() → {empty}")
+        return empty
+
+    def get_next(self):
+        """
+        Fetches the next available task using internal priority order.
+        Equivalent to fetch_task(task_type=None), but callable by FSM directly.
+        Marks task as 'running' and returns it.
+        """
+        task = self.fetch_task()
+        if task:
+            logger.debug(f"[TaskQueue] get_next() → {task['id']}")
+        else:
+            logger.debug("[TaskQueue] get_next() → None")
+        return task
 
 # --- Legacy function API for FSM compatibility ---
 # Singleton instance for static functions
@@ -196,6 +225,8 @@ __all__ = [
     "TaskQueue",
     "enqueue_task",
     "fetch_task",
+    "get_next",
+    "is_empty",
     "reprioritize",
     "promote_old_tasks",
     "retry",
