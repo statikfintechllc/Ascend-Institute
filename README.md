@@ -1,10 +1,9 @@
 <link rel="stylesheet" type="text/css" href="docs/custom.css">
 <div align="center">
   <img 
-  src="https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/docs/ticker-bot/output/ticker.gif" 
-  alt="Repo Ticker Stats" 
-  style="height: 33px ;"
-/>
+    src="https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/docs/ticker-bot/ticker.gif" 
+    alt="Repo Ticker Stats" 
+    style="height:33px;" />
 
 <div align="center"> 
   <img src="https://img.shields.io/github/stars/statikfintechllc/AscendAI?style=social" alt="Stars"/>
