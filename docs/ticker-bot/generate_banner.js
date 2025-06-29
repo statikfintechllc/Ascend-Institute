@@ -36,7 +36,7 @@ const browser = await puppeteer.launch({
 
   const page = await browser.newPage();
   await page.setContent(html);
-  await page.setViewport({ width: 1024, height: 40 });
+  await page.setViewport({ width: 1024, height: 80 });
 
   // 🎥 Start screen recording
   const stream = await page.screenshot({ type: 'png' }); // temp fallback
@@ -71,7 +71,7 @@ const browser = await puppeteer.launch({
     fs.writeFileSync(`${frameDir}/frame_${String(idx).padStart(3, "0")}.jpg`, img);
   });
 
-  execSync(`ffmpeg -y -framerate 10 -i ${frameDir}/frame_%03d.jpg -vf "scale=1024:-1:flags=lanczos" -loop 0 ${outputGif}`);
+  execSync(`ffmpeg -y -framerate 10 -i ${frameDir}/frame_%03d.jpg -vf "scale=1024:80:flags=lanczos" -loop 0 ${outputGif}`);
 
   // Clean up temp frames
   fs.rmSync(frameDir, { recursive: true, force: true });
