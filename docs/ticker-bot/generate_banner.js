@@ -44,7 +44,7 @@ const html = `
   const page = await browser.newPage();
   await page.setViewport({ width: 1024, height: 120 });
   await page.setContent(html);
-  await new Promise(r => setTimeout(r, 500));
+  await new Promise(r => setTimeout(r, 500000));
 
   const client = await page.target().createCDPSession();
   await client.send("Page.startScreencast", {
