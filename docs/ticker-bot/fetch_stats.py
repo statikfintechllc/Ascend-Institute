@@ -1,7 +1,7 @@
 import requests, json, os
 from datetime import datetime
 
-TOKEN = os.getenv("GH_TOKEN") or "ghp_xxx"
+TOKEN = os.getenv("PAT_GITHUB")
 HEADERS = {"Authorization": f"token {TOKEN}"}
 
 REPOS = [
