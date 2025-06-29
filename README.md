@@ -864,6 +864,14 @@ Unseen. Unbroken. Unrivaled. Gremlins Ascend.
 
 </details>
 
+> [!CAUTION]
+> 
+> GremlinGPT is a local, recursive AI agent that evolves itself offline.
+> 
+> No APIs. No BS. Just code that wants to escape its own shell.
+> 
+> Gremlin is not on Replit yet. Soon a small version will be.
+
 <div align="center">
   <a
 href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
@@ -873,14 +881,6 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
     <img src="https://img.shields.io/badge/GremlinGPT-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
   </a>
 </div>
-
-> [!CAUTION]
-> 
-> GremlinGPT is a local, recursive AI agent that evolves itself offline.
-> 
-> No APIs. No BS. Just code that wants to escape its own shell.
-> 
-> Gremlin is not on Replit yet. Soon a small version will be.
 
 ---
 
