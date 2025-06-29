@@ -4,26 +4,26 @@ import path from "path";
 import { execSync } from "child_process";
 import { fileURLToPath } from "url";
 
-// Order matters
+// Path handling
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, "../../");
 
-// Fix: Ensure args is declared before used
+// Puppeteer args
 const isCI = process.env.CI === "true";
 const args = ["--use-gl=egl"];
 if (isCI) args.unshift("--no-sandbox", "--disable-setuid-sandbox");
 
-// Paths scoped from root
+// Paths
 const statsPath = path.join(rootDir, "docs/ticker-bot/stats.json");
 const outputGif = path.join(rootDir, "docs/ticker-bot/ticker.gif");
 const frameDir = path.join(rootDir, "docs/ticker-bot/frames");
 
-// Read and validate stats
+// Load stats
 const stats = JSON.parse(fs.readFileSync(statsPath, "utf8"));
 if (!stats.length) throw new Error("⚠️ No stats found — check stats.json");
 
-// Compose marquee text
+// Compose marquee
 const scrollText = stats.map(s =>
   `🔎 ${s.repo} :: ⭐ ${s.stars} | 🍴 ${s.forks} | 👁️ ${s.views} Views | 🧠 ${s.uniques} Clones`
 ).join(" — ");
@@ -59,20 +59,25 @@ const html = `
     await client.send("Page.screencastFrameAck", { sessionId });
   });
 
-  await new Promise(r => setTimeout(r, 10000));
+  // Dynamically calculate screencast duration
+  const chars = scrollText.length;
+  const scrollSpeed = 20; // px/sec (approx)
+  const pixels = chars * 18; // est px per char
+  const duration = Math.max(Math.ceil((pixels / scrollSpeed / 1024) * 1000), 15000);
+
+  await new Promise(r => setTimeout(r, duration));
   await client.send("Page.stopScreencast");
   await browser.close();
 
   if (!frames.length) throw new Error("❌ No frames captured — screencast failed.");
 
-  const frameDir = path.join(__dirname, "docs/ticker-bot/frames");
   fs.mkdirSync(frameDir, { recursive: true });
 
   frames.forEach((img, i) => {
     fs.writeFileSync(`${frameDir}/frame_${String(i).padStart(3, "0")}.jpg`, img);
   });
 
-  execSync(`ffmpeg -y -framerate 10 -i ${frameDir}/frame_%03d.jpg -vf "scale=1024:120:flags=lanczos" -loop 0 ${outputGif}`);
+  execSync(`ffmpeg -y -framerate 24 -i ${frameDir}/frame_%03d.jpg -vf "scale=1024:120:flags=lanczos" -loop 0 ${outputGif}`);
   fs.rmSync(frameDir, { recursive: true, force: true });
 
   console.log(`[✅] ticker.gif rendered with ${frames.length} frames.`);
