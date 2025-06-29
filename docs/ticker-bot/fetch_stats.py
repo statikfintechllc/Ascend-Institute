@@ -19,9 +19,16 @@ for repo in REPOS:
     base = f"https://api.github.com/repos/{owner}/{name}"
 
     try:
-        views = requests.get(f"{base}/traffic/views", headers=HEADERS).json()
-        clones = requests.get(f"{base}/traffic/clones", headers=HEADERS).json()
-        meta = requests.get(base, headers=HEADERS).json()
+        views_resp = requests.get(f"{base}/traffic/views", headers=HEADERS)
+        clones_resp = requests.get(f"{base}/traffic/clones", headers=HEADERS)
+        meta_resp = requests.get(base, headers=HEADERS)
+
+        views = views_resp.json()
+        clones = clones_resp.json()
+        meta = meta_resp.json()
+
+        if views_resp.status_code != 200 or clones_resp.status_code != 200:
+            raise Exception(f"Views: {views_resp.status_code}, Clones: {clones_resp.status_code}")
 
         stats.append({
             "repo": name,
@@ -33,6 +40,7 @@ for repo in REPOS:
             "visitors": views.get("uniques", 0),
             "fetched": datetime.utcnow().isoformat()
         })
+
         print(f"[✔] {name} :: Views={views.get('count')} | Clones={clones.get('count')}")
 
     except Exception as e:
