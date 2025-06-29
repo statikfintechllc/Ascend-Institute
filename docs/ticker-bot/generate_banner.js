@@ -4,21 +4,26 @@ import path from "path";
 import { execSync } from "child_process";
 import { fileURLToPath } from "url";
 
-// ✅ Order matters in ESM — filename first
+// Order matters
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-// ✅ Path is now safe to resolve after __dirname is defined
 const rootDir = path.resolve(__dirname, "../../");
-const statsPath = path.join(rootDir, "docs", "ticker-bot", "stats.json");
-const outputGif = path.join(rootDir, "docs", "ticker-bot", "ticker.gif");
-const frameDir = path.join(rootDir, "docs", "ticker-bot", "frames");
 
-// ✅ Read and validate stats
+// Fix: Ensure args is declared before used
+const isCI = process.env.CI === "true";
+const args = ["--use-gl=egl"];
+if (isCI) args.unshift("--no-sandbox", "--disable-setuid-sandbox");
+
+// Paths scoped from root
+const statsPath = path.join(rootDir, "docs/ticker-bot/stats.json");
+const outputGif = path.join(rootDir, "docs/ticker-bot/ticker.gif");
+const frameDir = path.join(rootDir, "docs/ticker-bot/frames");
+
+// Read and validate stats
 const stats = JSON.parse(fs.readFileSync(statsPath, "utf8"));
 if (!stats.length) throw new Error("⚠️ No stats found — check stats.json");
 
-// 🧠 Compose marquee text
+// Compose marquee text
 const scrollText = stats.map(s =>
   `🔎 ${s.repo} :: ⭐ ${s.stars} | 🍴 ${s.forks} | 👁️ ${s.views} Views | 🧠 ${s.uniques} Clones`
 ).join(" — ");
