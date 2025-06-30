@@ -102,7 +102,63 @@ eval "$(conda shell.zsh hook 2>/dev/null)" || eval "$(conda shell.bash hook 2>/d
         exit 1
     fi
 fi
+
+# Ensure conda is initialized for the current shell
+echo "[*] Initializing conda shell hooks..."
+# This will set up the conda command in the current shell session
+# Try the zsh hook, then bash hook; fallback to sourcing conda.sh
+if ! eval "$(conda shell.zsh hook 2>/dev/null)" \
+   && ! eval "$(conda shell.bash hook 2>/dev/null)"; then
+  CONDA_SH="$HOME/miniconda3/etc/profile.d/conda.sh"
+  if [ -f "$CONDA_SH" ]; then
+    source "$CONDA_SH"
+  else
+    echo "${RED}[ERROR] Could not initialize conda environment (no shell hook and no $CONDA_SH).${NC}"
+    exit 1
+  fi
+fi
+
+# Fallback: source conda.sh directly if hooks fail
+CONDA_BASE=$(conda info --base 2>/dev/null)
+if [ -n "$CONDA_BASE" ] && [ -f "$CONDA_BASE/etc/profile.d/conda.sh" ]; then
+    source "$CONDA_BASE/etc/profile.d/conda.sh"
+else
+    echo "${RED}[ERROR] Could not initialize conda environment.${NC}"
+    exit 1
+fi
+
+# Ensure conda is initialized for the current shell
 eval "$(conda shell.zsh hook 2>/dev/null)" || eval "$(conda shell.bash hook 2>/dev/null)"
+
+# 3. Conda initialization
+echo "[*] Ensuring conda is initialized..."
+if ! command -v conda >/dev/null 2>&1; then
+  echo "${RED}[ERROR] conda command not found on your PATH.${NC}"
+  exit 1
+fi
+
+# Try the zsh hook, then bash hook; fallback to sourcing conda.sh
+if ! eval "$(conda shell.zsh hook 2>/dev/null)" \
+   && ! eval "$(conda shell.bash hook 2>/dev/null)"; then
+
+  CONDA_SH="$HOME/miniconda3/etc/profile.d/conda.sh"
+  if [ -f "$CONDA_SH" ]; then
+    source "$CONDA_SH"
+  else
+    echo "${RED}[ERROR] Could not initialize conda environment (no shell hook and no $CONDA_SH).${NC}"
+    exit 1
+  fi
+fi
+
+# Fallback: source conda.sh directly if hooks fail
+if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+   source "$HOME/miniconda3/etc/profile.d/conda.sh"
+elif [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
+   source "$HOME/anaconda3/etc/profile.d/conda.sh"
+else
+   echo "${RED}[ERROR] Could not initialize conda environment.${NC}"
+   exit 1
+fi
 
 # 4. Build all conda environments
 echo "[*] Building all conda environments via ./conda_envs/create_envs.sh..."

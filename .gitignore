@@ -17,7 +17,7 @@ GremlinGPT/data/prompts/*
 *Systems.internal
 
 # === LOGS AND OUTPUT FILES ===
-*.log
+
 *.jsonl
 *.sig
 *.tmp

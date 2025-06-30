@@ -63,6 +63,7 @@ GremlinGPT/
 │   │   │
 │   │   ├── runtime.log
 │   │   ├── fsm.out
+│   │   ├── install.log
 │   │   ├── backend.out
 │   │   ├── scraper.out
 │   │   └── trainer.out
