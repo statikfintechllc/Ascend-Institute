@@ -1,34 +1,26 @@
+// docs/ticker-bot/generate_banner.js
+
 import puppeteer from "puppeteer";
 import fs from "fs";
 import path from "path";
 import { execSync } from "child_process";
 import { fileURLToPath } from "url";
 
-// Path setup
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, "../../");
 
-// Puppeteer args
-const isCI = process.env.CI === "true";
-const args = ["--use-gl=egl"];
-if (isCI) args.unshift("--no-sandbox", "--disable-setuid-sandbox");
-
-// Paths
 const statsPath = path.join(rootDir, "docs/ticker-bot/stats.json");
 const outputGif = path.join(rootDir, "docs/ticker-bot/ticker.gif");
 const frameDir = path.join(rootDir, "docs/ticker-bot/frames");
 
-// Load stats
 const stats = JSON.parse(fs.readFileSync(statsPath, "utf8"));
 if (!stats.length) throw new Error("⚠️ No stats found — check stats.json");
 
-// Compose marquee text
 const scrollText = stats.map(s =>
-  `🔎 ${s.repo} :: ⭐ ${s.stars} | 🍴 ${s.forks} | 👁️ ${s.views} Views | 🧠 ${s.uniques} Clones`
+  `🔎 ${s.repo} :: ⭐ ${s.stars} | 🍴 ${s.forks} | 👁️ ${s.views} Views | 🧠 ${s.uniques} Clones | 👀 ${s.watchers} Watchers | 🪲 ${s.open_issues} Issues | 🧵 ${s.pulls_count} PRs | 🧬 ${s.language} | 📦 ${s.size_kb} KB | 🧭 ${s.default_branch} | 📅 ${s.updated_at.slice(0,10)}`
 ).join(" — ");
 
-// Final HTML with scrollamount=4 for faster speed
 const html = `
 <html>
   <body style="margin:0; background:black;">
@@ -41,11 +33,11 @@ const html = `
 `;
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: true, args });
+  const browser = await puppeteer.launch({ headless: true, args: ["--use-gl=egl"] });
   const page = await browser.newPage();
   await page.setViewport({ width: 1024, height: 120 });
   await page.setContent(html);
-  await new Promise(r => setTimeout(r, 30000));
+  await new Promise(r => setTimeout(r, 1000));
 
   const client = await page.target().createCDPSession();
   await client.send("Page.startScreencast", {
@@ -60,18 +52,17 @@ const html = `
     await client.send("Page.screencastFrameAck", { sessionId });
   });
 
-  // Dynamically calculate scroll duration
   const chars = scrollText.length;
-  const pxPerChar = 18;        // estimate for 36px monospace
+  const pxPerChar = 18;
   const scrollWidth = chars * pxPerChar;
   const screenWidth = 1024;
-  const scrollSpeed = 45;       // matches scrollamount=4
+  const scrollSpeed = 45;
   const fps = 24;
 
   const framesNeeded = Math.ceil((scrollWidth + screenWidth) / scrollSpeed);
   const durationMs = Math.ceil((framesNeeded / fps) * 1000);
 
-  console.log(`ℹ️ Calculated duration: ${durationMs}ms for ${framesNeeded} frames`);
+  console.log(`ℹ️ Duration: ${durationMs}ms | Frames: ${framesNeeded}`);
 
   await new Promise(r => setTimeout(r, durationMs));
   await client.send("Page.stopScreencast");
