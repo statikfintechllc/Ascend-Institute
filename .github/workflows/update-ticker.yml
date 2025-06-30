@@ -37,7 +37,10 @@ jobs:
 
       - name: Install ffmpeg
         run: sudo apt-get update && sudo apt-get install -y ffmpeg
-
+        
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y libnss3 libxss1 libasound2
+        
       - name: Generate banner
         run: node docs/ticker-bot/generate_banner.js
 
