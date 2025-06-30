@@ -145,7 +145,7 @@ def main(repo):
     views_data = fetch("traffic/views")["views"]
 
     os.makedirs("docs", exist_ok=True)
-    with open("docs/traffic_data.json", "w") as f:
+    with open("docs/graph/traffic_data.json", "w") as f:
         json.dump({"clones": clones_data, "views": views_data}, f, indent=2)
 
     totals = plot_github_style_merged(clones_data, views_data, "docs/traffic_graph.png")
@@ -172,7 +172,7 @@ def main(repo):
     save_lifetime(clones_lifetime)
     save_seen_dates(seen_dates)
 
-    with open("docs/traffic_totals.json", "w") as f:
+    with open("docs/graph/traffic_totals.json", "w") as f:
         json.dump(
             {
                 "day": {
@@ -193,7 +193,7 @@ def main(repo):
             indent=2,
         )
 
-    with open("docs/traffic_totals.md", "w") as f:
+    with open("docs/graph/traffic_totals.md", "w") as f:
         f.write(
             f"""
 **GitHub Traffic Totals**
