@@ -2,7 +2,7 @@ name: Update LED Ticker
 
 on:
   schedule:
-    - cron: "0 5 * * *"
+    - cron: "*/5 * * * *"   # Every 5 minutes
   workflow_dispatch:
 
 jobs:
