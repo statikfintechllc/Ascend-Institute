@@ -161,24 +161,29 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
 ---
 
 <div align="center">
+  <a href="https://github.com/statikfintechllc">
   <img src="https://img.shields.io/badge/GitHub-black?style=for-the-badge&logo=github&logoColor=gold"/>
   <a href="https://github.com/statikfintechllc">
   <img src="https://img.shields.io/badge/SFTi%20Home-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
   </a><br>
+  <a href="https://github.com/statikfintechllc/GodCore.git">
   <img src="https://img.shields.io/badge/GodCore-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
   <a href="https://github.com/statikfintechllc/GodCore.git">
   <img src="https://img.shields.io/badge/DualRouter-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
   </a>
+  <a href="https://github.com/statikfintechllc/Mobile-Developer.git">
   <img src="https://img.shields.io/badge/Mobile--Developer-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
   <a href="https://github.com/statikfintechllc/Mobile-Developer.git">
   <img src="https://img.shields.io/badge/Mobile--Mirror-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
   </a>
+  <a href="https://github.com/statikfintechllc/AscendNet.git">
   <img src="https://img.shields.io/badge/AscendNet-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
   <a href="https://github.com/statikfintechllc/AscendNet.git">
   <img src="https://img.shields.io/badge/Pending%20Funding-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
   </a>
 </div>
 <div align="center">
+  <a href="https://youtube.com/@gremlins_forge?si=9_OjKtlEPIErBrO2">
   <img src="https://img.shields.io/badge/YouTube-black?style=for-the-badge&logo=youtube&logoColor=gold"/>
   <a href="https://youtube.com/@gremlins_forge?si=9_OjKtlEPIErBrO2">
   <img src="https://img.shields.io/badge/Demos-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
