@@ -150,7 +150,7 @@ The initial funding target will allow StatikFinTech, LLC to:
 
 ## Why Now?
 
-But without me being able to run Devops full time, the loop cannot scale.
+Without me being able to run Devops full time, the loop cannot scale quickly.
 
 ---
 
