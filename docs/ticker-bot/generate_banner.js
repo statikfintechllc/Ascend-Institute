@@ -1,7 +1,5 @@
 // docs/ticker-bot/generate_banner.js
 
-// docs/ticker-bot/generate_banner.js
-
 import puppeteer from "puppeteer";
 import fs from "fs";
 import path from "path";
