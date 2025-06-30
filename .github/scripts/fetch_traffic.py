@@ -148,7 +148,7 @@ def main(repo):
     with open("docs/graph/traffic_data.json", "w") as f:
         json.dump({"clones": clones_data, "views": views_data}, f, indent=2)
 
-    totals = plot_github_style_merged(clones_data, views_data, "docs/traffic_graph.png")
+    totals = plot_github_style_merged(clones_data, views_data, "docs/graph/traffic_graph.png")
 
     # Load and update processed dates for unique tracking
     seen_dates = load_seen_dates()
