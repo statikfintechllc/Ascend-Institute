@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="docs/custom.css">
+<link rel="stylesheet" type="text/css" href="custom.css">
 <div align="center">
   <img 
     src="https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/docs/ticker-bot/ticker.gif" 
