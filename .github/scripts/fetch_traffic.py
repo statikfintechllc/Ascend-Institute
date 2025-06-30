@@ -8,8 +8,8 @@ from datetime import datetime
 REPO = os.environ.get("REPO")
 TOKEN = os.environ.get("PAT_GITHUB")
 HEADERS = {"Authorization": f"token {TOKEN}"}
-LIFETIME_FILE = "docs/traffic_lifetime.json"
-DATES_FILE = "docs/traffic_dates.json"
+LIFETIME_FILE = "docs/graph/traffic_lifetime.json"
+DATES_FILE = "docs/graph/traffic_dates.json"
 
 
 def fetch(endpoint):
