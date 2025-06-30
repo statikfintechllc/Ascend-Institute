@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AscendAI Live Traffic</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { background: #222; color: #eee; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 2em; }
+    h2 { color: #FFD700; }
+    .totals, .totals-extra { display: flex; gap: 2em; justify-content: center; margin: 1.5em 0 2em 0; font-size: 1.2em; color: #eee; flex-wrap: wrap;}
+    .totals span, .totals-extra span { background: #181818; border-radius: 8px; padding: 0.5em 1.2em; font-weight: bold; display: inline-block; min-width: 130px; text-align: center; }
+    .clones { color: #FF3131; }
+    .unique-clones { color: #46D160; }
+    .views { color: #FFD700; }
+    .unique-views { color: #2188ff; }
+    canvas { background: #222; border: 1px solid #333; }
+    .totals-label { font-weight: normal; color: #aaa; min-width: 85px; }
+  </style>
+</head>
+<body>
+  <h2>AscendAI GitHub Traffic (Live)</h2>
+  <div class="totals-extra" id="totals-today">
+    <span class="totals-label">Today</span>
+    <span class="clones">Clones: <span id="clonesToday">--</span></span>
+    <span class="unique-clones">Unique Cloners: <span id="uniqueClonesToday">--</span></span>
+    <span class="views">Views: <span id="viewsToday">--</span></span>
+    <span class="unique-views">Unique Visitors: <span id="uniqueViewsToday">--</span></span>
+  </div>
+  <div class="totals">
+    <span class="totals-label">14d</span>
+    <span class="clones">Clones: <span id="clonesTotal">--</span></span>
+    <span class="unique-clones">Unique Cloners: <span id="uniqueClonesTotal">--</span></span>
+    <span class="views">Views: <span id="viewsTotal">--</span></span>
+    <span class="unique-views">Unique Visitors: <span id="uniqueViewsTotal">--</span></span>
+  </div>
+  <div class="totals-extra" id="totals-lifetime">
+    <span class="totals-label">Lifetime</span>
+    <span class="clones">Clones: <span id="clonesLifetime">--</span></span>
+    <span class="unique-clones">Unique Cloners: <span id="uniqueClonesLifetime">--</span></span>
+    <span class="views">Views: <span id="viewsLifetime">--</span></span>
+    <span class="unique-views">Unique Visitors: <span id="uniqueViewsLifetime">--</span></span>
+  </div>
+  <canvas id="trafficChart" width="800" height="400"></canvas>
+  <script>
+    async function fetchData() {
+      try {
+        const resp = await fetch('traffic_data.json?' + Date.now());
+        const data = await resp.json();
+        const labels = data.clones.map(e => e.timestamp.slice(5,10)); // MM-DD for compactness
+        return {
+          labels,
+          clones: data.clones.map(e => e.count),
+          uniqueClones: data.clones.map(e => e.uniques),
+          views: data.views.map(e => e.count),
+          uniqueViews: data.views.map(e => e.uniques)
+        };
+      } catch (e) {
+        return {labels: [], clones: [], uniqueClones: [], views: [], uniqueViews: []};
+      }
+    }
+    async function fetchTotals() {
+      try {
+        const resp = await fetch('traffic_totals.json?' + Date.now());
+        return await resp.json();
+      } catch (e) {
+        return {};
+      }
+    }
+    function sum(arr) {
+      return arr.reduce((a, b) => a + b, 0);
+    }
+    function safeNum(x) { return (typeof x === "number" && !isNaN(x)) ? x : 0; }
+    function setVal(id, val) {
+      document.getElementById(id).textContent = (typeof val === "number" ? val.toLocaleString() : (val || '--'));
+    }
+    async function updateTotals(d, totals) {
+      // 14d (range)
+      setVal('clonesTotal', safeNum(totals?.range14d?.clones) || sum(d.clones));
+      setVal('uniqueClonesTotal', safeNum(totals?.range14d?.uniqueClones) || sum(d.uniqueClones));
+      setVal('viewsTotal', safeNum(totals?.range14d?.views) || sum(d.views));
+      setVal('uniqueViewsTotal', safeNum(totals?.range14d?.uniqueViews) || sum(d.uniqueViews));
+      // Today
+      setVal('clonesToday', safeNum(totals?.day?.clones));
+      setVal('uniqueClonesToday', safeNum(totals?.day?.uniqueClones));
+      setVal('viewsToday', safeNum(totals?.day?.views));
+      setVal('uniqueViewsToday', safeNum(totals?.day?.uniqueViews));
+      // Lifetime
+      setVal('clonesLifetime', safeNum(totals?.lifetime?.clones));
+      setVal('uniqueClonesLifetime', safeNum(totals?.lifetime?.uniqueClones));
+      setVal('viewsLifetime', safeNum(totals?.lifetime?.views));
+      setVal('uniqueViewsLifetime', safeNum(totals?.lifetime?.uniqueViews));
+    }
+    async function drawChart() {
+      const [d, totals] = await Promise.all([fetchData(), fetchTotals()]);
+      await updateTotals(d, totals);
+      const ctx = document.getElementById('trafficChart').getContext('2d');
+      window.trafficChart?.destroy();
+      window.trafficChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: d.labels,
+          datasets: [
+            {
+              label: 'Clones',
+              data: d.clones,
+              borderColor: '#FF3131',
+              backgroundColor: 'rgba(255,49,49,0.2)',
+              fill: false,
+              tension: 0.2,
+              pointRadius: 3,
+              borderWidth: 2
+            },
+            {
+              label: 'Unique Cloners',
+              data: d.uniqueClones,
+              borderColor: '#46D160',
+              backgroundColor: 'rgba(70,209,96,0.2)',
+              fill: false,
+              tension: 0.2,
+              pointRadius: 3,
+              borderWidth: 2
+            },
+            {
+              label: 'Views',
+              data: d.views,
+              borderColor: '#FFD700',
+              backgroundColor: 'rgba(255,215,0,0.2)',
+              fill: false,
+              tension: 0.2,
+              pointRadius: 3,
+              borderWidth: 2
+            },
+            {
+              label: 'Unique Visitors',
+              data: d.uniqueViews,
+              borderColor: '#2188ff',
+              backgroundColor: 'rgba(33,136,255,0.2)',
+              fill: false,
+              tension: 0.2,
+              pointRadius: 3,
+              borderWidth: 2
+            }
+          ]
+        },
+        options: {
+          plugins: {
+            legend: { labels: { color: '#eee' } }
+          },
+          scales: {
+            x: {
+              ticks: { color: '#eee', maxRotation: 50, minRotation: 30 }
+            },
+            y: {
+              beginAtZero: true,
+              ticks: { color: '#eee' },
+              grid: { color: '#444' }
+            }
+          }
+        }
+      });
+    }
+    drawChart();
+    setInterval(drawChart, 60000);
+  </script>
+</body>
+</html>
