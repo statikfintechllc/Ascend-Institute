@@ -1,12 +1,15 @@
 #!/usr/bin/env zsh
 
 # Only set zsh-specific options if running under zsh
-if [ -n "$ZSH_VERSION" ]; then
+if [ -n "${ZSH_VERSION:-}" ]; then
   setopt NO_GLOB_SUBST
 fi
+
+# Treat unset variables as an error
 set -u
+
 # Only set pipefail if supported (bash or zsh)
-if [ -n "$BASH_VERSION" ] || [ -n "$ZSH_VERSION" ]; then
+if [ -n "${BASH_VERSION:-}" ] || [ -n "${ZSH_VERSION:-}" ]; then
   set -o pipefail
 fi
 
