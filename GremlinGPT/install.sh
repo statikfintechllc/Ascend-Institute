@@ -267,7 +267,7 @@ fi
 
 sudo apt install xdotool util-linux
 
-# 12. Setup systemd service
+# 10. Setup systemd service
 echo "[*] Setting up systemd service..."
 
 SYSTEMD_UNIT_PATH="/etc/systemd/system/gremlin.service"
@@ -299,7 +299,7 @@ sudo systemctl restart gremlin.service
 echo "[✓] Systemd service registered and running."
 
 # ─────────────────────────────────────────────────────────────
-# 13. Setup RTC wake & login filler from config
+# 11. Setup RTC wake & login filler from config
 echo "[*] Setting RTC wake + GUI login automation..."
 
 WAKE_SCRIPT="/usr/local/bin/set-wake-timer.sh"
@@ -313,7 +313,7 @@ EOF
 sudo chmod +x "$WAKE_SCRIPT"
 (crontab -l 2>/dev/null; echo "@reboot $WAKE_SCRIPT") | crontab -
 
-# Pulling login creds from config.toml
+# 12. Pulling login creds from config.toml
 TWS_USER=$(grep -oP '(?<=tws_username\s?=\s?")[^"]*' "$CONFIG_PATH")
 TWS_PASS=$(grep -oP '(?<=tws_password\s?=\s?")[^"]*' "$CONFIG_PATH")
 STT_USER=$(grep -oP '(?<=stt_username\s?=\s?")[^"]*' "$CONFIG_PATH")
@@ -342,7 +342,7 @@ echo "@reboot $LOGIN_SCRIPT" | crontab -
 
 echo "${GREEN}[✓] Wake timer, autologin, and systemd service bootstrapped.${NC}"
 
-# 10. Finalize installation
+# 13. Finalize installation
 echo "[*] Finalizing installation..."
 echo "${GREEN}[INSTALL] GremlinGPT installation completed successfully.${NC}"
 echo "[*] Installation complete! You can now run GremlinGPT using the desktop entry or via the command line."
