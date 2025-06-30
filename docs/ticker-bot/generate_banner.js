@@ -1,5 +1,7 @@
 // docs/ticker-bot/generate_banner.js
 
+// docs/ticker-bot/generate_banner.js
+
 import puppeteer from "puppeteer";
 import fs from "fs";
 import path from "path";
@@ -21,13 +23,41 @@ const scrollText = stats.map(s =>
   `🔎 ${s.repo} :: ⭐ ${s.stars} | 🍴 ${s.forks} | 👁️ ${s.views} Views | 🧠 ${s.uniques} Clones | 👀 ${s.watchers} Watchers | 🪲 ${s.open_issues} Issues | 🧵 ${s.pulls_count} PRs | 🧬 ${s.language} | 📦 ${s.size_kb} KB | 🧭 ${s.default_branch} | 📅 ${s.updated_at.slice(0,10)}`
 ).join(" — ");
 
+const pxPerChar = 18;
+const scrollWidth = scrollText.length * pxPerChar;
+const screenWidth = 1024;
+const scrollSpeed = 45;
+const fps = 24;
+const framesNeeded = Math.ceil((scrollWidth + screenWidth) / scrollSpeed);
+const durationMs = Math.ceil((framesNeeded / fps) * 1000);
+
 const html = `
 <html>
-  <body style="margin:0; background:black;">
-    <marquee behavior="scroll" direction="left" scrollamount="4" loop="infinite"
-      style="color:red; font-family:monospace; font-size:36px; padding:20px;">
-      ${scrollText}
-    </marquee>
+  <head>
+    <style>
+      body {
+        margin: 0;
+        background: black;
+        overflow: hidden;
+      }
+      #ticker {
+        color: red;
+        font-family: monospace;
+        font-size: 36px;
+        padding: 20px;
+        white-space: nowrap;
+        position: absolute;
+        will-change: transform;
+        animation: scroll-left ${durationMs}ms linear forwards;
+      }
+      @keyframes scroll-left {
+        0% { transform: translateX(100%); }
+        100% { transform: translateX(-${scrollWidth}px); }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="ticker">${scrollText}</div>
   </body>
 </html>
 `;
@@ -35,9 +65,9 @@ const html = `
 (async () => {
   const browser = await puppeteer.launch({ headless: true, args: ["--use-gl=egl"] });
   const page = await browser.newPage();
-  await page.setViewport({ width: 1024, height: 120 });
+  await page.setViewport({ width: screenWidth, height: 120 });
   await page.setContent(html);
-  await new Promise(r => setTimeout(r, 1000));
+  await page.evaluate(ms => new Promise(res => setTimeout(res, ms)), durationMs + 500);
 
   const client = await page.target().createCDPSession();
   await client.send("Page.startScreencast", {
@@ -52,19 +82,9 @@ const html = `
     await client.send("Page.screencastFrameAck", { sessionId });
   });
 
-  const chars = scrollText.length;
-  const pxPerChar = 18;
-  const scrollWidth = chars * pxPerChar;
-  const screenWidth = 1024;
-  const scrollSpeed = 45;
-  const fps = 24;
-
-  const framesNeeded = Math.ceil((scrollWidth + screenWidth) / scrollSpeed);
-  const durationMs = Math.ceil((framesNeeded / fps) * 1000);
-
   console.log(`ℹ️ Duration: ${durationMs}ms | Frames: ${framesNeeded}`);
 
-  await new Promise(r => setTimeout(r, durationMs));
+  await page.evaluate(ms => new Promise(res => setTimeout(res, ms)), durationMs + 1000);
   await client.send("Page.stopScreencast");
   await browser.close();
 
@@ -75,7 +95,7 @@ const html = `
     fs.writeFileSync(`${frameDir}/frame_${String(i).padStart(3, "0")}.jpg`, img);
   });
 
-  execSync(`ffmpeg -y -framerate 24 -i ${frameDir}/frame_%03d.jpg -vf "scale=1024:120:flags=lanczos" -loop 0 ${outputGif}`);
+  execSync(`ffmpeg -y -framerate ${fps} -i ${frameDir}/frame_%03d.jpg -vf "scale=${screenWidth}:120:flags=lanczos" -loop 0 ${outputGif}`);
   fs.rmSync(frameDir, { recursive: true, force: true });
 
   console.log(`[✅] ticker.gif rendered with ${frames.length} frames.`);
