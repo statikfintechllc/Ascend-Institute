@@ -126,8 +126,8 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
  **The world’s first *R‑SRACS* (Recursive, Self-Referential Autonomous Cognitive System)**
 </div> 
 <div align="center">
-  <a href="https://raw.githubusercontent.com/statikfintechllc/AscendAI/main/docs/traffic_graph.png">
-  <img src="https://raw.githubusercontent.com/statikfintechllc/AscendAI/main/docs/graph/traffic_graph.png" alt="Traffic Graph" />
+  <a href="https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/docs/traffic_graph.png">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/docs/graph/traffic_graph.png" alt="Traffic Graph" />
   </a>
 </div>
   
