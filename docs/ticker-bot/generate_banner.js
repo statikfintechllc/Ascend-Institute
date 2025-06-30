@@ -24,7 +24,7 @@ const scrollText = stats.map(s =>
 
 const pxPerChar = 22;
 const scrollWidth = scrollText.length * pxPerChar;
-const screenWidth = 1024;
+const screenWidth = 2048;
 const scrollSpeed = 8;
 const fps =60;
 const framesNeeded = Math.ceil((scrollWidth + screenWidth) / scrollSpeed);
