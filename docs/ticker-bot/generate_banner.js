@@ -61,7 +61,10 @@ const html = `
 `;
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: true, args: ["--use-gl=egl"] });
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ["--no-sandbox", "--disable-setuid-sandbox", "--use-gl=egl"]
+  });
   const page = await browser.newPage();
   await page.setViewport({ width: screenWidth, height: 120 });
   await page.setContent(html);
