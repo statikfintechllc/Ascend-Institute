@@ -1,4 +1,3 @@
-
 // docs/ticker-bot/generate_banner.js
 
 import puppeteer from "puppeteer";
@@ -31,7 +30,7 @@ const fps = 24;
 const framesNeeded = Math.ceil((scrollWidth + screenWidth) / scrollSpeed);
 const durationMs = Math.ceil((framesNeeded / fps) * 1000);
 
-const html = 
+const html = `
 <html>
   <head>
     <style>
@@ -60,7 +59,7 @@ const html =
     <div id="ticker">${scrollText}</div>
   </body>
 </html>
-;
+`;
 
 (async () => {
   let browser;
@@ -73,7 +72,7 @@ const html =
     const page = await browser.newPage();
     await page.setViewport({ width: screenWidth, height: 120 });
     await page.setContent(html);
-    await new Promise(r => setTimeout(r, 200)); // Allow DOM to paint
+    await new Promise(r => setTimeout(r, 200)); // Let DOM paint
 
     const client = await page.target().createCDPSession();
     await client.send("Page.startScreencast", {
