@@ -177,7 +177,7 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
   <!-- YouTube -->
   <img src="https://img.shields.io/badge/YouTube-black?style=for-the-badge&logo=youtube&logoColor=gold"/>
   <a href="https://youtube.com/@gremlins_forge?si=9_OjKtlEPIErBrO2">
-    <img src="https://img.shields.io/badge/Demos-darkred?style=for-the-badge&logo=youtube&logoColor=gold"/>
+    <img src="https://img.shields.io/badge/Demos-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
   </a>
 
 </div>
