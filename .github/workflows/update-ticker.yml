@@ -60,5 +60,6 @@ jobs:
           git config user.name "gremlin-bot"
           git config user.email "actions@github.com"
           git add docs/ticker-bot/stats.json docs/ticker-bot/ticker.gif
-          git commit -m "Update ticker banner" || echo "No changes to commit"
+          git diff --cached --quiet || git commit -m "Update traffic data and Banner"
+          git pull --rebase
           git push
