@@ -22,10 +22,10 @@ const scrollText = stats.map(s =>
   `🔎 ${s.repo} :: ⭐ ${s.stars} | 🍴 ${s.forks} | 👁️ ${s.views} Views | 🧠 ${s.uniques} Clones | 👀 ${s.watchers} Watchers | 🪲 ${s.open_issues} Issues | 🧵 ${s.pulls_count} PRs | 🧬 ${s.language} | 📦 ${s.size_kb} KB | 🧭 ${s.default_branch} | 📅 ${s.updated_at?.slice(0,10) || "unknown"}`
 ).join(" — ");
 
-const pxPerChar = 18;
+const pxPerChar = 22;
 const scrollWidth = scrollText.length * pxPerChar;
 const screenWidth = 1024;
-const scrollSpeed = 45;
+const scrollSpeed = 18;
 const fps = 24;
 const framesNeeded = Math.ceil((scrollWidth + screenWidth) / scrollSpeed);
 const durationMs = Math.ceil((framesNeeded / fps) * 1000);
