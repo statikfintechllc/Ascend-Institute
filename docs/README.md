@@ -210,7 +210,7 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
 - 🎨 UI/UX bottleneck acknowledged — restructuring in progress  
 
 <details>
-<summary>👀 Still Intrigued? Open to See progress on how it's been implemented 👀</summary>
+<summary>👀 Still Intrigued? Open to See the progress on how it's being implemented 👀</summary>
 
 ### ⚙️ Platform Execution
 - 🧠 Debug icon added for speed-run testing cycles  
