@@ -144,7 +144,7 @@ def main(repo):
     clones_data = fetch("traffic/clones")["clones"]
     views_data = fetch("traffic/views")["views"]
 
-    os.makedirs("docs", exist_ok=True)
+    os.makedirs("docs/graph", exist_ok=True)
     with open("docs/graph/traffic_data.json", "w") as f:
         json.dump({"clones": clones_data, "views": views_data}, f, indent=2)
 
