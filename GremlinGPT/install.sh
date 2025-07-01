@@ -23,6 +23,7 @@ APPDIR="$HOME/.local/share/applications"
 ICNDIR="$HOME/.local/share/icons"
 SRC="$REPO/GremlinGPT"
 DEST="$HOME"
+APPLOC="$HOME" 
 
 # Move all files and subdirectories (including hidden ones) from GremlinGPT to $HOME, overwriting existing
 setopt extended_glob
@@ -37,30 +38,6 @@ done
 unsetopt extended_glob
 
 cd $HOME || { echo "${RED}[ERROR] Failed to change directory to $HOME${NC}"; exit 1; }
-
-DASH_CLI_PATH="$HOME/utils/dash_cli.sh"
-
-mkdir -p "$APPDIR" "$ICNDIR"
-
-ICON_SRC="$HOME/frontend/Icon_Logo/App_Icon_&_Loading_&_Inference_Image.png"
-ICON_DEST="$ICNDIR/AscendAI-v1.0.3.png"
-if [ -f "$ICON_SRC" ]; then
-  cp "$ICON_SRC" "$ICON_DEST"
-else
-  echo "${YELLOW}[WARNING] Icon file not found at $ICON_SRC. Skipping icon copy.${NC}"
-fi
-
-cat > "$APPDIR/AscendAI-v1.0.3.desktop" <<EOF
-[Desktop Entry]
-Type=Application
-Name=AscendAI-v1.0.3
-Comment=SFTi
-Exec=$HOME/utils/dash_cli.sh
-Icon=$HOME/.local/share/icons/AscendAI-v1.0.3.png
-Path=$HOME
-Terminal=true
-Categories=Development;Utility;
-EOF  
 
 # 1. Directory structure
 echo "[*] Creating directory structure..."
@@ -362,16 +339,18 @@ if [ -f "$ICON_SRC" ]; then
 else
   echo "${YELLOW}[WARNING] Icon file not found at $ICON_SRC. Skipping icon copy.${NC}"
 fi
+
 cat > "$APPDIR/AscendAI-v1.0.3.desktop" <<EOF
 [Desktop Entry]
 Type=Application
 Name=AscendAI-v1.0.3
 Comment=SFTi
 Exec=$APPLOC/utils/dash_cli.sh
-Icon=$ICON_DEST
+Icon=$ICNDIR/AscendAI-v1.0.3.png
 Terminal=true
 Categories=Development;Utility;
 EOF
 update-desktop-database "$APPDIR"
 echo "${GREEN}[INSTALL] GremlinGPT installation completed successfully.${NC}"
 echo "[*] Installation complete! You can now run GremlinGPT using the desktop entry or via the command line."
+
