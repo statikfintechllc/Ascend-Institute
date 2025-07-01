@@ -129,7 +129,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 
   <em>
     The Institute’s GremlinGPT system, has already been reviewed and starred by tkersey from Atrium.  
-    We have received our 13th Star, Thank you, markwylde, and our 3nd Fork, Thank you, NullMeDev, Let’s get GremlinGPT Funed & Seen.  
+    We have received our 14th Star, Thank you, suninweb, and our 3nd Fork, Thank you, NullMeDev, Let’s get GremlinGPT Funed & Seen.  
   </em>
 </div>
 <div align="center">
