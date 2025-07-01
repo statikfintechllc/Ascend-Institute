@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css" href="custom.css">
 <div align="center">
   <img  
-	  src="https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/docs/ticker-bot/ticker.gif" 
+	  src="https://raw.githubusercontent.com/statikfintechllc/WorkFlowRepo/master/docs/ticker-bot/ticker.gif" 
   alt="Repo Ticker Stats" 
   style="height:33px;" />
 <div align="center"> 
@@ -137,8 +137,8 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
  **The world’s first *R‑SRACS* (Recursive, Self-Referential Autonomous Cognitive System)**
 </div> 
 <div align="center">
-  <a href="https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/docs/traffic_graph.png">
-  <img src="https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/docs/graph/traffic_graph.png" alt="Traffic Graph" />
+  <a href="https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/About US/">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/WorkFlowRepo/master/docs/graph/traffic_graph.png" alt="Traffic Graph" />
   </a>
 </div>
   
