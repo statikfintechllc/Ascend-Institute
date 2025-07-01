@@ -1,7 +1,5 @@
 #!/usr/bin/env zsh
 
-set -x
-
 # Set up logging
 LOGFILE="run/logs/install.log"
 : > "$LOGFILE"         # Overwrite log file
@@ -37,6 +35,8 @@ for item in "$SRC"/*(N) "$SRC"/.*(N); do
 done
 unsetopt extended_glob
 
+git stash
+git pull --rebase
 cd $HOME || { echo "${RED}[ERROR] Failed to change directory to $HOME${NC}"; exit 1; }
 
 # 1. Directory structure
@@ -120,7 +120,7 @@ function pip_install_or_fail {
 
 
 function download_nltk {
-  python3 -m nltk.downloader --dir=./data/nltk_data punkt averaged_perceptron_tagger wordnet stopwords || \
+  python3 -m nltk.downloader --dir=$HOME/data/nltk_data punkt averaged_perceptron_tagger wordnet stopwords || \
   { echo "${RED}[FAIL] NLTK data download${NC}"; exit 1; }
 }
 
@@ -137,7 +137,7 @@ pip_install_or_fail spacy torch torchvision torchaudio sentence-transformers tra
 python -m spacy download en_core_web_sm || { echo "${RED}[FAIL] spaCy model${NC}"; exit 1; }
 playwright install || { echo "${RED}[FAIL] playwright${NC}"; exit 1; }
 pip install nltk
-export NLTK_DATA=./data/nltk_data
+export NLTK_DATA=$HOME/data/nltk_data
 python -m nltk.downloader -d "$NLTK_DATA" punkt
 download_nltk
 check_cuda
@@ -198,7 +198,7 @@ pip_install_or_fail torch torchvision torchaudio backend bs4 nltk langdetect pyt
 python -m spacy download en_core_web_sm
 playwright install
 pip install nltk
-export NLTK_DATA=./data/nltk_data
+export NLTK_DATA=$HOME/data/nltk_data
 python -m nltk.downloader -d "$NLTK_DATA" punkt
 download_nltk
 check_cuda
@@ -253,6 +253,8 @@ else
 fi
 
 sudo apt install -y xdotool util-linux
+
+set -x
 
 # 10. Setup systemd service
 APPLOC="$HOME"  # All files are moved to $HOME
@@ -340,17 +342,44 @@ else
   echo "${YELLOW}[WARNING] Icon file not found at $ICON_SRC. Skipping icon copy.${NC}"
 fi
 
+# Check for dash_cli.sh and fallback to python if missing
+DASH_CLI_SH="$APPLOC/utils/dash_cli.sh"
+DASH_CLI_PY="$APPLOC/utils/dash_cli.py"
+if [ -x "$DASH_CLI_SH" ]; then
+  LAUNCH_CMD="$DASH_CLI_SH"
+elif [ -f "$DASH_CLI_PY" ]; then
+  LAUNCH_CMD="/usr/bin/python3 $DASH_CLI_PY"
+  echo "${YELLOW}[WARNING] dash_cli.sh not found, using dash_cli.py as launcher.${NC}"
+else
+  LAUNCH_CMD="/usr/bin/echo 'GremlinGPT CLI not found!'"
+  echo "${RED}[ERROR] No dash_cli.sh or dash_cli.py found in $APPLOC/utils. App menu entry will not work.${NC}"
+fi
+
+# Create .desktop file with required fields and validate
 cat > "$APPDIR/AscendAI-v1.0.3.desktop" <<EOF
 [Desktop Entry]
+Version=1.0
 Type=Application
 Name=AscendAI-v1.0.3
 Comment=SFTi
-Exec=$APPLOC/utils/dash_cli.sh
+Exec=$LAUNCH_CMD
 Icon=$ICNDIR/AscendAI-v1.0.3.png
 Terminal=true
-Categories=Development;Utility;
+Categories=Utility;Development;Application;
+StartupNotify=true
 EOF
+
+chmod 644 "$APPDIR/AscendAI-v1.0.3.desktop"
+
+# Validate .desktop file if possible
+if command -v desktop-file-validate &>/dev/null; then
+  desktop-file-validate "$APPDIR/AscendAI-v1.0.3.desktop" || echo "${YELLOW}[WARNING] .desktop file validation failed.${NC}"
+else
+  echo "${YELLOW}[WARNING] desktop-file-validate not found. Skipping validation.${NC}"
+fi
+
 update-desktop-database "$APPDIR"
+
 echo "${GREEN}[INSTALL] GremlinGPT installation completed successfully.${NC}"
 echo "[*] Installation complete! You can now run GremlinGPT using the desktop entry or via the command line."
-
+# End of install.sh
