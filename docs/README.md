@@ -197,7 +197,9 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
 > 
 > This repo may recursively alter how you think about code, autonomy, and yourself.
 > 
-> Proceed only if you’re ready to jailbreak your cognition.
+> Proceed only if you’re ready to jailbreak your cognition
+> To end Wall-Streets rain on Capital.
+> To bring Power back to the People
 
 ---
 
@@ -210,18 +212,18 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
 🧵 *Solo. Unfunded. Building anyway.*
 
 ### 🧬 Core System Progress
-- ✅ Scraper ➝ Dataset ➝ Memory loop fully operational  
-- 🔧 GitHub repo now undergoing modular cleanup  
-- 🎨 UI/UX bottleneck acknowledged — restructuring in progress  
+- ✅ Scraper ➝ Dataset ➝ Memory loop fully operational  |  #*MIRRORING TO OTHER PLUG-INS AND TOOLS* 
+- 🔧 GitHub repo now undergoing modular cleanup  |  #*DONE*  
+- 🎨 UI/UX bottleneck acknowledged — restructuring in progress  |  #*IN-LINE WITH MIRRORING UPDATES FROM SCRAPER*
 
 <details>
 <summary>👀 Still Intrigued? Open to See the progress on how it's being implemented 👀</summary>
 
 ### ⚙️ Platform Execution
-- 🧠 Debug icon added for speed-run testing cycles  
-- ⏳ Current priority: “threading the brain” — deep internal logic loops  
-- 🧱 Expect a wave of commits as structural internals are rewritten  
-- 🏗️ Dev speed will taper due to external workload (new shop)
+- 🧠 Debug icon added for speed-run testing cycles  |  #*DONE*
+- ⏳ Current priority: “threading the brain” — deep internal logic loops  |  #*GONNA BE A MINUTE*
+- 🧱 Expect a wave of commits as structural internals are rewritten  |  #*ALREADY IN THE PROCCESS*
+- 🏗️ Dev speed will taper due to external workload (new shop)  |  #*TRYING TO START SIDE GIGS AND MTURK TO GO FULL TIME UNTIL SOMETHING LANDS*
 
 <div align="center">
 
@@ -235,10 +237,10 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
 <summary>🛠️ Open for Current Focus 🛠️</summary>
 
 ### ⚙️ Current Focus:
-- Publication and Expansion of StatikFinTech, LLC Principles, Reach and Future Outlook.
-- Speed-running debug pass
-- Hooking logs into startup script for bootstrap visibility
-- Ensuring universal pathing across all runtime entrypoints
+- Publication and Expansion of StatikFinTech, LLC Principles, Reach and Future Outlook.  |  #IN-PROGRESS
+- Speed-running debug pass  |  #IN-PROGRESS
+- Hooking logs into startup script for bootstrap visibility  |  #COMPLETE FOR `install.sh`, IN-PROGRESS FOR `start_all.sh` & `dash_cli.py`
+- Ensuring universal pathing across all runtime entrypoints  |  #BASICALY DONE NEEDS BUTTONING AFTER ABOVE STEPS COMPLETE
 
 <div align="center">
 	
@@ -258,7 +260,7 @@ Working Directory: GremlinGPT
 > 
 > GremlinGPT v1.0.3 Fully Boot-Strapped Drop is 45% Complete
 > 
-> *(ETA: 1–2 months, shooting for late August, maybe sooner if I gas it)*
+> *(ETA: 1 months, shooting for late August, maybe sooner if I gas it)*
 
 ---
 
