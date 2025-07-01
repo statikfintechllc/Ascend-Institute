@@ -343,17 +343,16 @@ else
 fi
 
 # Check for dash_cli.sh and fallback to python if missing
-DASH_CLI_SH="$APPLOC/utils/dash_cli.sh"
-DASH_CLI_PY="$APPLOC/utils/dash_cli.py"
-if [ -x "$DASH_CLI_SH" ]; then
-  LAUNCH_CMD="$DASH_CLI_SH"
-elif [ -f "$DASH_CLI_PY" ]; then
-  LAUNCH_CMD="/usr/bin/python3 $DASH_CLI_PY"
-  echo "${YELLOW}[WARNING] dash_cli.sh not found, using dash_cli.py as launcher.${NC}"
+$SCRIPT="$APPLOC/utils/dash_cli.sh"
+if [ -f "$SCRIPT" ]; then
+  chmod +x "$SCRIPT"
 else
-  LAUNCH_CMD="/usr/bin/echo 'GremlinGPT CLI not found!'"
-  echo "${RED}[ERROR] No dash_cli.sh or dash_cli.py found in $APPLOC/utils. App menu entry will not work.${NC}"
+  echo "${YELLOW}[WARNING] $SCRIPT not found. Using python fallback.${NC}"
+  SCRIPT="python3 $APPLOC/utils/dash_cli.py"
 fi
+
+ICON=$ICON_DEST
+APP=$SCRIPT
 
 # Create .desktop file with required fields and validate
 cat > "$APPDIR/AscendAI-v1.0.3.desktop" <<EOF
@@ -362,18 +361,19 @@ Version=1.0
 Type=Application
 Name=AscendAI-v1.0.3
 Comment=SFTi
-Exec=$LAUNCH_CMD
-Icon=$ICNDIR/AscendAI-v1.0.3.png
+Exec=$SCRIPT
+Icon=$ICON
 Terminal=true
 Categories=Utility;Development;Application;
 StartupNotify=true
 EOF
 
-chmod 644 "$APPDIR/AscendAI-v1.0.3.desktop"
+chmod +x "$SCRIPT"
+chmod 644 "$ICON"
 
 # Validate .desktop file if possible
 if command -v desktop-file-validate &>/dev/null; then
-  desktop-file-validate "$APPDIR/AscendAI-v1.0.3.desktop" || echo "${YELLOW}[WARNING] .desktop file validation failed.${NC}"
+  desktop-file-validate "$ICON" || echo "${YELLOW}[WARNING] .desktop file validation failed.${NC}"
 else
   echo "${YELLOW}[WARNING] desktop-file-validate not found. Skipping validation.${NC}"
 fi
