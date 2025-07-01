@@ -3,10 +3,10 @@
 setopt NO_GLOB_SUBST
 
 # --- Dynamic Project Path ---
-export GREMLIN_HOME="$(cd "$(dirname "$0")/.." && pwd)"
+export GREMLIN_HOME="$HOME"
 export PYTHONPATH="$GREMLIN_HOME"
 
-mkdir -p "$GREMLIN_HOME/run/logs"
+mkdir -p "$HOME/run/logs"
 
 # --- NLTK Bootstrap: Always under repo, not home! ---
 python3 - <<'EOF'

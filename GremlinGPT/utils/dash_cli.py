@@ -1,4 +1,7 @@
 #!/usr/bin/env zsh
+LOGFILE="$HOME/run/logs/dash_cli.log"
+mkdir -p "$(dirname "$LOGFILE")"
+exec > >(tee -a "$LOGFILE") 2>&1
 set -e
 
 # Guarantee login+interactive shell for environment
@@ -13,7 +16,7 @@ SUB_TITLE="From: SFTi"
 
 # Resolve script dir
 APPDIR="$HOME/.local/share/applications"
-APPLOC="$APPDIR/GremlinGPT"
+APPLOC="$HOME"
 START_SCRIPT="$APPLOC/run/start_code.sh"
 STOP_SCRIPT="$APPLOC/run/stop_all.sh"
 CHAT_SCRIPT="$APPLOC/run/cli.py"
