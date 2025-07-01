@@ -1,17 +1,15 @@
 #!/usr/bin/env zsh
 
-# Only set zsh-specific options if running under zsh
-if [ -n "${ZSH_VERSION:-}" ]; then
-  setopt NO_GLOB_SUBST
-fi
+set -x
 
-# Treat unset variables as an error
+# Set up logging
+LOGFILE="run/logs/install.log"
+: > "$LOGFILE"         # Overwrite log file
+exec > >(tee -a "$LOGFILE") 2>&1
+
+setopt NO_GLOB_SUBST
 set -u
-
-# Only set pipefail if supported (bash or zsh)
-if [ -n "${BASH_VERSION:-}" ] || [ -n "${ZSH_VERSION:-}" ]; then
-  set -o pipefail
-fi
+set -o pipefail
 
 RED='\033[1;31m'
 GREEN='\033[1;32m'
@@ -22,36 +20,47 @@ echo "${GREEN}[INSTALL] Initializing GremlinGPT installation...${NC}"
 
 REPO="$(cd "$(dirname "$(readlink -f "$0")")/.." && pwd)"
 APPDIR="$HOME/.local/share/applications"
-APPLOC="$HOME/AscendAI/GremlinGPT"
 ICNDIR="$HOME/.local/share/icons"
+SRC="$REPO/GremlinGPT"
+DEST="$HOME"
 
-if [ ! -d "$APPLOC" ]; then
-    mkdir -p "$APPLOC"
-    echo "[*] Created application directory: $APPLOC"
-else
-    echo "[*] Application directory already exists: $APPLOC"
-fi
+# Move all files and subdirectories (including hidden ones) from GremlinGPT to $HOME, overwriting existing
+setopt extended_glob
+for item in "$SRC"/*(N) "$SRC"/.*(N); do
+  [[ "$(basename "$item")" == "." || "$(basename "$item")" == ".." ]] && continue
+  target="$DEST/$(basename "$item")"
+  if [ -e "$target" ]; then
+    rm -rf "$target"
+  fi
+  mv -f "$item" "$DEST/"
+done
+unsetopt extended_glob
+
+cd $HOME || { echo "${RED}[ERROR] Failed to change directory to $HOME${NC}"; exit 1; }
+
+DASH_CLI_PATH="$HOME/utils/dash_cli.sh"
 
 mkdir -p "$APPDIR" "$ICNDIR"
 
-ICON_SRC="$REPO/GremlinGPT/frontend/Icon_Logo/App_Icon_&_Loading_&_Inference_Image.png"
+ICON_SRC="$HOME/frontend/Icon_Logo/App_Icon_&_Loading_&_Inference_Image.png"
+ICON_DEST="$ICNDIR/AscendAI-v1.0.3.png"
 if [ -f "$ICON_SRC" ]; then
-  cp "$ICON_SRC" "$ICNDIR/AscendAI-v1.0.3.png"
+  cp "$ICON_SRC" "$ICON_DEST"
 else
   echo "${YELLOW}[WARNING] Icon file not found at $ICON_SRC. Skipping icon copy.${NC}"
 fi
 
-DASH_CLI_PATH="$APPLOC/utils/dash_cli.sh"
 cat > "$APPDIR/AscendAI-v1.0.3.desktop" <<EOF
 [Desktop Entry]
 Type=Application
 Name=AscendAI-v1.0.3
 Comment=SFTi
-Exec=$DASH_CLI_PATH
-Icon=$ICNDIR/AscendAI-v1.0.3.png
+Exec=$HOME/utils/dash_cli.sh
+Icon=$HOME/.local/share/icons/AscendAI-v1.0.3.png
+Path=$HOME
 Terminal=true
 Categories=Development;Utility;
-EOF
+EOF  
 
 # 1. Directory structure
 echo "[*] Creating directory structure..."
@@ -86,88 +95,34 @@ touch run/checkpoints/state_snapshot.json
 touch data/logs/bootstrap.log
 
 echo "[*] Ensuring conda is initialized..."
-if ! eval "$(conda shell.zsh hook 2>/dev/null)"; then
-    if ! eval "$(conda shell.bash hook 2>/dev/null)"; then
-        # Fallback: source conda.sh directly if hooks fail
-        if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
-            source "$HOME/miniconda3/etc/profile.d/conda.sh"
-        else
-            echo "${RED}[ERROR] Could not initialize conda environment.${NC}"
-            exit 1
-        fi
-    fi
-fi
-eval "$(conda shell.zsh hook 2>/dev/null)" || eval "$(conda shell.bash hook 2>/dev/null)"
-        echo "${RED}[ERROR] Could not initialize conda environment.${NC}"
-        exit 1
-    fi
-fi
 
-# Ensure conda is initialized for the current shell
-echo "[*] Initializing conda shell hooks..."
-# This will set up the conda command in the current shell session
-# Try the zsh hook, then bash hook; fallback to sourcing conda.sh
-if ! eval "$(conda shell.zsh hook 2>/dev/null)" \
-   && ! eval "$(conda shell.bash hook 2>/dev/null)"; then
-  CONDA_SH="$HOME/miniconda3/etc/profile.d/conda.sh"
-  if [ -f "$CONDA_SH" ]; then
-    source "$CONDA_SH"
-  else
-    echo "${RED}[ERROR] Could not initialize conda environment (no shell hook and no $CONDA_SH).${NC}"
-    exit 1
-  fi
-fi
-
-# Fallback: source conda.sh directly if hooks fail
-CONDA_BASE=$(conda info --base 2>/dev/null)
-if [ -n "$CONDA_BASE" ] && [ -f "$CONDA_BASE/etc/profile.d/conda.sh" ]; then
-    source "$CONDA_BASE/etc/profile.d/conda.sh"
-else
-    echo "${RED}[ERROR] Could not initialize conda environment.${NC}"
-    exit 1
-fi
-
-# Ensure conda is initialized for the current shell
-eval "$(conda shell.zsh hook 2>/dev/null)" || eval "$(conda shell.bash hook 2>/dev/null)"
-
-# 3. Conda initialization
+# 3. Conda init
 echo "[*] Ensuring conda is initialized..."
-if ! command -v conda >/dev/null 2>&1; then
-  echo "${RED}[ERROR] conda command not found on your PATH.${NC}"
-  exit 1
+if ! command -v conda &> /dev/null; then
+    if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+        source "$HOME/miniconda3/etc/profile.d/conda.sh"
+    fi
 fi
-
-# Try the zsh hook, then bash hook; fallback to sourcing conda.sh
-if ! eval "$(conda shell.zsh hook 2>/dev/null)" \
-   && ! eval "$(conda shell.bash hook 2>/dev/null)"; then
-
-  CONDA_SH="$HOME/miniconda3/etc/profile.d/conda.sh"
-  if [ -f "$CONDA_SH" ]; then
-    source "$CONDA_SH"
-  else
-    echo "${RED}[ERROR] Could not initialize conda environment (no shell hook and no $CONDA_SH).${NC}"
-    exit 1
-  fi
-fi
-
-# Fallback: source conda.sh directly if hooks fail
-if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
-   source "$HOME/miniconda3/etc/profile.d/conda.sh"
-elif [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
-   source "$HOME/anaconda3/etc/profile.d/conda.sh"
-else
-   echo "${RED}[ERROR] Could not initialize conda environment.${NC}"
-   exit 1
-fi
+eval "$(conda shell.zsh hook 2>/dev/null)" || eval "$(conda shell.bash hook 2>/dev/null)"
 
 # 4. Build all conda environments
 echo "[*] Building all conda environments via ./conda_envs/create_envs.sh..."
+
+# Add this block before running conda commands as root
+if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+    source "$HOME/miniconda3/etc/profile.d/conda.sh"
+elif [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
+    source "$HOME/anaconda3/etc/profile.d/conda.sh"
+fi
+
 if [ -f "./conda_envs/create_envs.sh" ]; then
     chmod +x ./conda_envs/create_envs.sh
     ./conda_envs/create_envs.sh || { echo "${RED}[ERROR] Failed creating envs${NC}"; exit 1; }
 else
     echo "${RED}[ERROR] ./conda_envs/create_envs.sh not found!${NC}"
-check_cuda() {
+fi
+
+function check_cuda {
   echo "[*] Checking CUDA in current environment:"
   python -c "
 import torch
@@ -178,18 +133,17 @@ print('[CUDA] torch.cuda.get_device_name:', torch.cuda.get_device_name(0) if tor
 " || echo "${RED}[CUDA] PyTorch not installed or failed.${NC}"
 }
 
-pip_install_or_fail() {
+
+function pip_install_or_fail {
   pip install --upgrade pip || { echo '${RED}[FAIL] pip upgrade${NC}'; exit 1; }
   for pkg in "$@"; do
     pip install "$pkg" || { echo "${RED}[FAIL] pip install $pkg${NC}"; exit 1; }
   done
 }
 
-download_nltk() {
-  export NLTK_DATA=./data/nltk_data
-  python3 -m nltk.downloader --dir="$NLTK_DATA" punkt averaged_perceptron_tagger wordnet stopwords || \
-  { echo "${RED}[FAIL] NLTK data download${NC}"; exit 1; }
-}
+
+function download_nltk {
+  python3 -m nltk.downloader --dir=./data/nltk_data punkt averaged_perceptron_tagger wordnet stopwords || \
   { echo "${RED}[FAIL] NLTK data download${NC}"; exit 1; }
 }
 
@@ -200,6 +154,7 @@ if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
 elif [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
     source "$HOME/anaconda3/etc/profile.d/conda.sh"
 fi
+
 conda activate gremlin-nlp
 pip_install_or_fail spacy torch torchvision torchaudio sentence-transformers transformers bs4 nltk pytesseract playwright pyautogui
 python -m spacy download en_core_web_sm || { echo "${RED}[FAIL] spaCy model${NC}"; exit 1; }
@@ -232,6 +187,7 @@ if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
 elif [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
     source "$HOME/anaconda3/etc/profile.d/conda.sh"
 fi
+
 conda activate gremlin-scraper
 pip_install_or_fail torch torchvision torchaudio sentence-transformers transformers playwright pyautogui
 python -m spacy download en_core_web_sm
@@ -246,6 +202,7 @@ if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
 elif [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
     source "$HOME/anaconda3/etc/profile.d/conda.sh"
 fi
+
 conda activate gremlin-dashboard
 pip_install_or_fail torch torchvision torchaudio sentence-transformers transformers pyautogui
 check_cuda
@@ -258,6 +215,7 @@ if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
 elif [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
     source "$HOME/anaconda3/etc/profile.d/conda.sh"
 fi
+
 conda activate gremlin-orchestrator
 pip_install_or_fail torch torchvision torchaudio backend bs4 nltk langdetect pytesseract sentence-transformers transformers playwright pyautogui
 python -m spacy download en_core_web_sm
@@ -284,51 +242,43 @@ conda deactivate
 
 # 9. ngrok CLI check
 echo "[*] Checking for ngrok CLI..."
+
 if ! command -v ngrok &> /dev/null; then
-    echo "${YELLOW}[NOTICE] ngrok not found.${NC}"
-    echo "You can install ngrok by following the instructions at: https://ngrok.com/download"
-    read -r -p "Would you like to attempt automatic installation of ngrok? (y/N): " install_ngrok
-    if [[ "$install_ngrok" =~ ^[Yy]$ ]]; then
-        if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-            wget -O ngrok.zip https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.zip && \
-            unzip ngrok.zip -d "$HOME/.local/bin" && \
-            chmod +x "$HOME/.local/bin/ngrok" && \
-            rm ngrok.zip && \
-            echo "${GREEN}[INFO] ngrok installed to $HOME/.local/bin/ngrok${NC}" || \
-            echo "${RED}[ERROR] Failed to install ngrok automatically.${NC}"
-            export PATH="$HOME/.local/bin:$PATH"
-            # Instruct user to persist PATH for future shells
-            SHELL_PROFILE=""
-            if [ -n "$ZSH_VERSION" ]; then
-              SHELL_PROFILE="$HOME/.zshrc"
-            elif [ -n "$BASH_VERSION" ]; then
-              SHELL_PROFILE="$HOME/.bashrc"
-            else
-              SHELL_PROFILE="$HOME/.profile"
-            fi
-            if ! grep -q 'export PATH="$HOME/.local/bin:$PATH"' "$SHELL_PROFILE"; then
-              echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$SHELL_PROFILE"
-              echo "${YELLOW}[NOTICE] Added ngrok path to $SHELL_PROFILE. Restart your terminal or run: source $SHELL_PROFILE${NC}"
-            fi
-        elif [[ "$OSTYPE" == "darwin"* ]]; then
-            brew install ngrok || echo "${RED}[ERROR] Failed to install ngrok via Homebrew.${NC}"
+    echo "${YELLOW}[NOTICE] ngrok not found. Attempting automatic installation...${NC}"
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        wget -O /tmp/ngrok.zip https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.zip && \
+        unzip -o /tmp/ngrok.zip -d "$HOME/.local/bin" && \
+        chmod +x "$HOME/.local/bin/ngrok" && \
+        rm /tmp/ngrok.zip && \
+        echo "${GREEN}[INFO] ngrok installed to $HOME/.local/bin/ngrok${NC}" || \
+        echo "${RED}[ERROR] Failed to install ngrok automatically.${NC}"
+        export PATH="$HOME/.local/bin:$PATH"
+        # Instruct user to persist PATH for future shells
+        SHELL_PROFILE=""
+        if [ -n "$ZSH_VERSION" ]; then
+          SHELL_PROFILE="$HOME/.zshrc"
+        elif [ -n "$BASH_VERSION" ]; then
+          SHELL_PROFILE="$HOME/.bashrc"
         else
-            echo "${YELLOW}[NOTICE] Please install ngrok manually for your OS.${NC}"
+          SHELL_PROFILE="$HOME/.profile"
         fi
+        if ! grep -q 'export PATH="$HOME/.local/bin:$PATH"' "$SHELL_PROFILE"; then
+          echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$SHELL_PROFILE"
+          echo "${YELLOW}[NOTICE] Added ngrok path to $SHELL_PROFILE. Restart your terminal or run: source $SHELL_PROFILE${NC}"
+        fi
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        brew install ngrok || echo "${RED}[ERROR] Failed to install ngrok via Homebrew.${NC}"
     else
-        echo "${YELLOW}[NOTICE] Skipping ngrok installation. You can install it later from https://ngrok.com/download${NC}"
+        echo "${YELLOW}[NOTICE] Please install ngrok manually for your OS: https://ngrok.com/download${NC}"
     fi
 else
     echo "[INFO] ngrok installed: $(which ngrok)"
 fi
 
-# ─────────────────────────────────────────────────────────────
-
-sudo apt install xdotool util-linux
+sudo apt install -y xdotool util-linux
 
 # 10. Setup systemd service
-echo "[*] Setting up systemd service..."
-
+APPLOC="$HOME"  # All files are moved to $HOME
 SYSTEMD_UNIT_PATH="/etc/systemd/system/gremlin.service"
 START_SCRIPT="$APPLOC/start_all.sh"
 
@@ -344,7 +294,7 @@ ExecStart=/bin/zsh -c 'conda activate gremlin-orchestrator && $START_SCRIPT'
 Restart=always
 RestartSec=10
 User=$USER
-Environment="PATH=$HOME/miniconda3/envs/gremlin-orchestrator/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+Environment="PATH=$APPLOC/miniconda3/envs/gremlin-orchestrator/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 [Install]
 WantedBy=multi-user.target
@@ -367,16 +317,17 @@ CONFIG_PATH="$APPLOC/config/config.toml"
 
 sudo tee "$WAKE_SCRIPT" > /dev/null <<EOF
 #!/bin/zsh
-rtcwake -m no -t \$(date -d 'tomorrow 03:30' +%s)
+rtcwake -m no -t $(date -d 'tomorrow 03:30' +%s)
 EOF
 sudo chmod +x "$WAKE_SCRIPT"
-(crontab -l 2>/dev/null; echo "@reboot $WAKE_SCRIPT") | crontab -
+# Deduplicate RTC wake cron job
+(crontab -l 2>/dev/null | grep -v "$WAKE_SCRIPT"; echo "@reboot $WAKE_SCRIPT") | crontab -
 
 # 12. Pulling login creds from config.toml
-TWS_USER=$(grep -oP '(?<=tws_username\s?=\s?")[^"]*' "$CONFIG_PATH")
-TWS_PASS=$(grep -oP '(?<=tws_password\s?=\s?")[^"]*' "$CONFIG_PATH")
-STT_USER=$(grep -oP '(?<=stt_username\s?=\s?")[^"]*' "$CONFIG_PATH")
-STT_PASS=$(grep -oP '(?<=stt_password\s?=\s?")[^"]*' "$CONFIG_PATH")
+TWS_USER=$(grep -oP '(?<=tws_username\\s?=\\s?")[^"]*' "$CONFIG_PATH")
+TWS_PASS=$(grep -oP '(?<=tws_password\\s?=\\s?")[^"]*' "$CONFIG_PATH")
+STT_USER=$(grep -oP '(?<=stt_username\\s?=\\s?")[^"]*' "$CONFIG_PATH")
+STT_PASS=$(grep -oP '(?<=stt_password\\s?=\\s?")[^"]*' "$CONFIG_PATH")
 
 mkdir -p "$APPLOC/utils"
 tee "$LOGIN_SCRIPT" > /dev/null <<EOF
@@ -395,13 +346,32 @@ xdotool search --name "StocksToTrade" windowactivate --sync \
 EOF
 
 chmod +x "$LOGIN_SCRIPT"
-
-# Optional autostart (user-controlled)
-echo "@reboot $LOGIN_SCRIPT" | crontab -
+# Deduplicate login automation cron job
+(crontab -l 2>/dev/null | grep -v "$LOGIN_SCRIPT"; echo "@reboot $LOGIN_SCRIPT") | crontab -
 
 echo "${GREEN}[✓] Wake timer, autologin, and systemd service bootstrapped.${NC}"
 
 # 13. Finalize installation
-echo "[*] Finalizing installation..."
+APPDIR="$HOME/.local/share/applications"
+ICNDIR="$HOME/.local/share/icons"
+mkdir -p "$APPDIR" "$ICNDIR"
+ICON_SRC="$HOME/frontend/Icon_Logo/App_Icon_&_Loading_&_Inference_Image.png"
+ICON_DEST="$ICNDIR/AscendAI-v1.0.3.png"
+if [ -f "$ICON_SRC" ]; then
+  cp "$ICON_SRC" "$ICON_DEST"
+else
+  echo "${YELLOW}[WARNING] Icon file not found at $ICON_SRC. Skipping icon copy.${NC}"
+fi
+cat > "$APPDIR/AscendAI-v1.0.3.desktop" <<EOF
+[Desktop Entry]
+Type=Application
+Name=AscendAI-v1.0.3
+Comment=SFTi
+Exec=$APPLOC/utils/dash_cli.sh
+Icon=$ICON_DEST
+Terminal=true
+Categories=Development;Utility;
+EOF
+update-desktop-database "$APPDIR"
 echo "${GREEN}[INSTALL] GremlinGPT installation completed successfully.${NC}"
 echo "[*] Installation complete! You can now run GremlinGPT using the desktop entry or via the command line."
