@@ -1,7 +1,5 @@
 <link rel="stylesheet" type="text/css" href="custom.css">
 
----
-
 <div align="center">
   <img  
 	  src="https://raw.githubusercontent.com/statikfintechllc/WorkFlowRepo/master/docs/ticker-bot/ticker.gif" 
