@@ -3,10 +3,12 @@
   <img  
 	  src="https://raw.githubusercontent.com/statikfintechllc/WorkFlowRepo/master/docs/ticker-bot/ticker.gif" 
   alt="Repo Ticker Stats" 
-  style="height:33px;" />  
+  style="height:33px;" /> 
+<div align="center"> 
    <a href="https://github.com/statikfintechllc/WorkFlowRepo.git">
   <img src="https://img.shields.io/badge/Click%20to%20Install-Banner%20Workflow-darkred?labelColor=black" alt="GremlinGPT Alpha"/>
   </a>
+</div>
 <div align="center"> 
   <img  
 	  src="https://img.shields.io/github/stars/statikfintechllc/AscendAI?style=social" alt="Stars"/>
