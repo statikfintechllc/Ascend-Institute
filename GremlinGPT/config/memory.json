@@ -1,20 +1,21 @@
 {
   "vector_backend": "faiss",
-  "embedding_dim": 384,
   "auto_index": true,
   "index_chunk_size": 500,
 
   "storage": {
-    "vector_store_path": "./memory/vector_store/faiss/",
-    "local_index_path": "./memory/local_index/",
+    "vector_store_path": "./memory/vector_store",   // parent of both faiss/ and chroma/
+    "use_faiss": true,
+    "use_chroma": false,
+    "local_index_path": "./memory/local_index",     // parent of documents/
     "metadata_db": "./memory/local_index/metadata.db",
-    "document_store_path": "./memory/local_index/documents/",
     "log_dir": "./data/logs/",
     "training_data_path": "./data/nlp_training_sets/"
   },
 
   "embedding": {
     "model": "all-MiniLM-L6-v2",
+    "dimension": 384,                                // matches your FAISS index dim
     "source": "sentence-transformers",
     "format": "float32",
     "batch_size": 250,
