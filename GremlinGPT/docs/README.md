@@ -1,3 +1,9 @@
+<div align="center">
+  <img  
+	  src="https://raw.githubusercontent.com/statikfintechllc/WorkFlowRepo/master/docs/ticker-bot/ticker.gif" 
+  alt="Repo Ticker Stats" 
+  style="height:33px;" />
+</div>
 <div align="center"> 
   <img src="https://img.shields.io/github/stars/statikfintechllc/AscendAI?style=social" alt="Stars"/>
   <img src="https://img.shields.io/github/forks/statikfintechllc/AscendAI?style=social" alt="Forks"/>
@@ -86,31 +92,6 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
   </a>
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/GREMLINGPT_AUTONOMY_REPORT.md">
     <img src="https://img.shields.io/badge/GremlinGPT%20v1.0.3-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
-  </a>
-</div>
-
----
-
-<h1 align="center">AscendAI Traffic</h1>
-<div align="center">
-  <a href="https://raw.githubusercontent.com/statikfintechllc/AscendAI/main/docs/traffic_graph.png">
-  <img src="https://raw.githubusercontent.com/statikfintechllc/AscendAI/main/docs/traffic_graph.png" alt="Traffic Graph" />
-  </a>
-</div>
-  
-<div align="center">
-  <em>
-Reset: After 7:00pm CST on First 2 Clones
-  </em>
-</div>
-
-<div align="center">
-  <a
-href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master/Docs">
-    <img src="https://img.shields.io/badge/Learn-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Why"/>
-  </a>
-  <a href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master/Docs">
-    <img src="https://img.shields.io/badge/Why-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
   </a>
 </div>
 
@@ -206,28 +187,28 @@ sequenceDiagram
 ## Features
 
 🗣️ *NEW LINUX APP ICON*
-- **Zero cloud dependence**: runs 100% offline and local
-- **Persistent, auto-recovering agent core**
-- **State-of-the-art PWA dashboard**: mobile + desktop, instant install, works offline
-- **Floating chat (always-on), tabbed navigation** (Tasks / Memory / Trading)
-- **Self-training and auto-mutation**: logs errors, auto-patches, and retrains
-- **Signal/ticker scanner**: EMA, VWAP, breakout, penny stock focus
-- **Vector memory with UMAP, metadata, tagging**
-- **Remote access with ngrok for secure AI on the go**
-- **Auto-saving, crash recovery, and live snapshotting**
+- **Zero cloud dependence**: runs 100% offline and local  `#OPERATIONAL`
+- **Persistent, auto-recovering agent core**  `#DEBUGGING`
+- **State-of-the-art PWA dashboard**: mobile + desktop, instant install, works offline  `#DEBUGGING`
+- **Floating chat (always-on), tabbed navigation** (Tasks / Memory / Trading)  `#NEED DASHBOAD OPERATIONAL FIRST`
+- **Self-training and auto-mutation**: logs errors, auto-patches, and retrains  `#I KNOW IT SAVES IT SCRAPS, PROGRESS`
+- **Signal/ticker scanner**: EMA, VWAP, breakout, penny stock focus  `#I'M NOT BAD AT IT, SO HE'S STARTING AHEAD OF MOST`
+- **Vector memory with UMAP, metadata, tagging**  `#THAT IS OPERATIONAL, SO FAR FOR SCRAPER`
+- **Remote access with ngrok for secure AI on the go**  `#NOT HERE YET, ALSO NOT HARD`
+- **Auto-saving, crash recovery, and live snapshotting**  `#AUTO-SAVES, STILL FIGHTING BOOT AND APP`
 
 ---
 
 ## Architecture
 
-- **Linux Application** After install.sh is ran, linux users can check thier local app menu for AscendAR app icon.
-- **Backend:** Python (Flask/FastAPI), persistent vector DBs, FSM agent loop
-- **Frontend:** Modern PWA (Bootstrap, vanilla JS), custom dark theme, tabbed UI, floating chat
-- **Memory:** Chroma, FAISS, SentenceTransformer, full vector store, auto-index
-- **Scraper:** Playwright, BeautifulSoup, async router, DOM/stock/ticker feeds
-- **Trading Core:** Real-time signal inference, estimator, audit/history
-- **Self-training:** Log watcher, mutation engine, agent self-healing
-- **All panels and actions call live REST endpoints—no stubs, no nulls**
+- **Linux Application** After install.sh is ran, linux users can check thier local app menu for AscendAI app icon.  `#INSTALLS AND SHOWS UP, STILL DEBUGGING SILENT FAIL`
+- **Backend:** Python (Flask/FastAPI), persistent vector DBs, FSM agent loop  `#GOT EMBEDDER SEEING THESE, NEED FULL BOOT TO FULLY ALIGN`
+- **Frontend:** Modern PWA (Bootstrap, vanilla JS), custom dark theme, tabbed UI, floating chat  `#WILL BE SAVAGE WHEN BACKEND BOOTS FULLY`
+- **Memory:** Chroma, FAISS, SentenceTransformer, full vector store, auto-index  `#THE FULL SUITE`
+- **Scraper:** Playwright, BeautifulSoup, async router, DOM/stock/ticker feeds  `#SCRAPER LOOPS, CAN'T DIRECT UNTIL ORCHESTRAtION FROM DASHBOARD IS AVAILABLE`
+- **Trading Core:** Real-time signal inference, estimator, audit/history  `#NOT SURE HOW THIS RUNS UNTIL FURTHER ALIGNMENT`
+- **Self-training:** Log watcher, mutation engine, agent self-healing  `#FULLY CODED FOR IT, JUST GOT DEBUGGINS`
+- **All panels and actions call live REST endpoints—no stubs, no nulls**  `#THIS IS TRUE, API HANDLERS AND FULL BACKEND GLOBALS FOR FULL SYSTEM COMS`
 
 ---
 
@@ -466,6 +447,31 @@ For Issues, or to See you're own ideas built, or to sponsor hardware directly? R
 ```bash
 python run/module_tracer.py
 ```
+
+---
+
+<h1 align="center">AscendAI Traffic</h1>
+<div align="center">
+  <a href="https://raw.githubusercontent.com/statikfintechllc/WorkFlowRepo/master/docs/graph/traffic_graph.png">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/WorkFlowRepo/master/docs/graph/traffic_graph.png" alt="Traffic Graph" />
+  </a>
+</div>
+  
+<div align="center">
+  <em>
+Reset: After 7:00pm CST on First 2 Clones
+  </em>
+</div>
+
+<div align="center">
+  <a
+href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master/Docs">
+    <img src="https://img.shields.io/badge/Learn-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Why"/>
+  </a>
+  <a href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance/blob/master/Docs">
+    <img src="https://img.shields.io/badge/Why-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
+  </a>
+</div>
 
 ---
 
