@@ -343,7 +343,7 @@ else
 fi
 
 # Check for dash_cli.sh and fallback to python if missing
-$SCRIPT="$APPLOC/utils/dash_cli.sh"
+SCRIPT="$APPLOC/utils/dash_cli.sh"
 if [ -f "$SCRIPT" ]; then
   chmod +x "$SCRIPT"
 else
