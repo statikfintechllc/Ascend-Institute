@@ -574,7 +574,7 @@ We’re open to building aligned partnerships with:
 - If you know how to think in layers, act in silence, and write code that rewrites itself —  
 **fork the repo, send a PR, and bring a machine that can keep up.**
 
-**Want equity, See you're own ideas built, or to sponsor hardware directly? Reach Out to:**
+**Want to See you're own ideas built, or to sponsor hardware directly? Reach Out to:**
 - **Email:** [ascend.gremlin@gmail.com](mailto:ascend.gremlin@gmail.com) | [ascend.help@gmail.com](mailto:ascend.help@gmail.com)
 - **Call Us:** [+1 (620) 266-9837](sms:+16202669837)  
 - **Text Us:** [+1 (785) 443-6288](sms:+17854436288)  
