@@ -120,8 +120,6 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 - [Architecture](#architecture)
 - [System Components](#system-components)
 - [Installation](#installation)
-- [Running the System](#running-the-system)
-- [Remote Access using ngrok](#remote-access-using-ngrok)
 - [API Endpoints](#api-endpoints)
 - [Recovery & Snapshots](#recovery--snapshots)
 - [Troubleshooting](#troubleshooting)
@@ -157,8 +155,12 @@ Read the [FOUNDER_LOG.md](https://github.com/statikfintechllc/AscendAI/blob/mast
 ### Sequence Diagram for CLI Interaction
 
 - *(Represetation is for the Cli.py for chat, not the App icon interaction.)*
-
-> *For those who dont want to wait on the dashboard to be buttoned and all pieces connedted.*
+- See more in the [Documentation](https://github.com/statikfintechllc/AscendAI/master/GremlinGPT/docs)
+  
+> [!TIP]
+> 
+> *For those who dont want to wait on the dashboard to be buttoned and all pieces connedted.
+> Fork and Help LOL*
 
 <details>
 <summary>🌀 Press to see How It Works 🌀</summary>
