@@ -349,13 +349,13 @@ jq 'select(.task_type=="shell")' run/logs/task_errors.jsonl
 
 ### Or Contact Us:
 
-For Issues, or to See you're own ideas built, or to sponsor hardware directly? Reach Out to:**
+**Have an Issue, Want to See you're own ideas built, or to sponsor hardware directly? Reach Out to:**
 - **Email:** [ascend.gremlin@gmail.com](mailto:ascend.gremlin@gmail.com) | [ascend.help@gmail.com](mailto:ascend.help@gmail.com)
 - **Call Us:** [+1 (620) 266-9837](sms:+16202669837)  
 - **Text Us:** [+1 (785) 443-6288](sms:+17854436288)  
 - **DM:**  
   - a) [LinkedIn: StatikFinTech, LLC](https://www.linkedin.com/in/statikfintech-llc-780804368/)
-  - b) [X: @GremlinsForge](https://twitter.com/GremlinsForge)
+  - b) [X: @GremlinsForge](https://twitter.com/GremlinsForge)  
 
 ---
 
