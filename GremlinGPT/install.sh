@@ -27,6 +27,10 @@ APPLOC="$HOME"
 setopt extended_glob
 for item in "$SRC"/*(N) "$SRC"/.*(N); do
   [[ "$(basename "$item")" == "." || "$(basename "$item")" == ".." ]] && continue
+  # Do not move the icon directory to avoid overwriting/corrupting the icon
+  if [[ "$(basename "$item")" == "Icon_Logo" ]]; then
+    continue
+  fi
   target="$DEST/$(basename "$item")"
   if [ -e "$target" ]; then
     rm -rf "$target"
@@ -308,7 +312,6 @@ TWS_PASS=$(grep -oP '(?<=tws_password\\s?=\\s?")[^"]*' "$CONFIG_PATH")
 STT_USER=$(grep -oP '(?<=stt_username\\s?=\\s?")[^"]*' "$CONFIG_PATH")
 STT_PASS=$(grep -oP '(?<=stt_password\\s?=\\s?")[^"]*' "$CONFIG_PATH")
 
-mkdir -p "$APPLOC/utils"
 tee "$LOGIN_SCRIPT" > /dev/null <<EOF
 #!/bin/zsh
 sleep 20
@@ -337,7 +340,12 @@ mkdir -p "$APPDIR" "$ICNDIR"
 ICON_SRC="$HOME/frontend/Icon_Logo/App_Icon_&_Loading_&_Inference_Image.png"
 ICON_DEST="$ICNDIR/AscendAI-v1.0.3.png"
 if [ -f "$ICON_SRC" ]; then
-  cp "$ICON_SRC" "$ICON_DEST"
+  # Check if the file is a valid PNG before copying
+  if file "$ICON_SRC" | grep -q "PNG image data"; then
+    cp "$ICON_SRC" "$ICON_DEST"
+  else
+    echo "${YELLOW}[WARNING] $ICON_SRC is not a valid PNG. Skipping icon copy.${NC}"
+  fi
 else
   echo "${YELLOW}[WARNING] Icon file not found at $ICON_SRC. Skipping icon copy.${NC}"
 fi
@@ -361,14 +369,14 @@ Version=1.0
 Type=Application
 Name=AscendAI-v1.0.3
 Comment=SFTi
-Exec=$SCRIPT
+Exec=$APP
 Icon=$ICON
 Terminal=true
 Categories=Utility;Development;Application;
 StartupNotify=true
 EOF
 
-chmod +x "$SCRIPT"
+chmod +x "$APP"
 chmod 644 "$ICON"
 
 # Validate .desktop file if possible
