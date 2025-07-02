@@ -381,7 +381,7 @@ chmod 644 "$ICON"
 
 # Validate .desktop file if possible
 if command -v desktop-file-validate &>/dev/null; then
-  desktop-file-validate "$ICON" || echo "${YELLOW}[WARNING] .desktop file validation failed.${NC}"
+  desktop-file-validate "$APPDIR/AscendAI-v1.0.3.desktop" || echo "${YELLOW}[WARNING] .desktop file validation failed.${NC}"
 else
   echo "${YELLOW}[WARNING] desktop-file-validate not found. Skipping validation.${NC}"
 fi
