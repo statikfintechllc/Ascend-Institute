@@ -803,7 +803,7 @@ If you survive v1.0.3.
 
 ### 6. API and Interface Layer
 
-> [OBJECTIVE] 
+> [OBJECTIVE]  
 > Expose clean APIs and ensure dashboard integrations are solid.
 
 **Key Files:**  
@@ -877,7 +877,7 @@ Unseen. Unbroken. Unrivaled. Gremlins Ascend.
 > 
 > GremlinGPT is a local, recursive AI agent that evolves itself offline.
 > 
-> No APIs. No BS. Just code that wants to escape its own shell.
+> No APIs out to a cloud. No Hidden PayMes. Just code that wants to escape its own shell.
 > 
 > Gremlin is not on Replit yet. Soon a small version will be.
 
