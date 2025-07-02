@@ -232,100 +232,26 @@ sequenceDiagram
 ```bash
 git clone https://github.com/statikfintechllc/AscendAI.git
 cd AscendAI/GremlinGPT
+chmod +x install.sh && ./install.sh
 ```
+> [!IMPORTANT]
+>
+> For Linux Users:
+>
+> After the above is ran, there will be an application icon in you're app menu.
+> Pin to dash.
+>
+> You now have GremlinGPT Installed
 
-**2. Install Conda environments**
-
-```bash
-cd conda_envs && chmod +x create_envs.sh && ./create_envs.sh
-```
-
-**Or**
-
-```bash
-cd .. && chmod +x install.sh && ./install.sh
-```
-
-**3. Bootstrap NLP models (one time)**
-> *install.sh is going to complete all installs, this is soon debunk*
-
-```bash
-conda activate gremlin-nlp
-python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from_pretrained('bert-base-uncased'); AutoModel.from_pretrained('bert-base-uncased')"
-python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
-```
-
----
-
-## Running the System
-
-> If you’re seeing errors from NLTK (e.g. punkt not found), don’t panic—you don’t have to go spelunking into site-packages anymore.
-
-1. **Set your working directory**
-
-```bash
-cd /path/to/AscendAI/GremlinGPT
-```
-
-2. **Activate your NLP environment**
-   
-```bash
-conda activate gremlin-nlp
-```
-
-3. **Run GremlinGPT CLI with NLP setup auto-wired**
-
-*Inside run/cli.py, make sure this line appears near the top:*
-
-```python
-from utils.nltk_setup import setup_nltk_data
-setup_nltk_data()
-conda deactivate
-```
-
-**Then *run* the system**:
+**To *run* the just the chat system**:
 
 ```python
 PYTHONPATH=$(pwd) python3 run/cli.py
 ```
 
-- This means NLTK will always look for standard punkt data.
-
-Then:
-
-> *still debugging the nlp_engine/, but aye, I turn wrenches 12 hours a day, and I almost have a custom built AI talking, and HELLA updates to modules and Fucntions in progress*
-
-```bash
-conda activate gremlin-nlp && PYTHONPATH=$(pwd) python3 run/cli.py
-```
-
-### Full System Launch:
-
-> *Properly adjust this 'export PYTHONPATH="/path/to/AscendAI/GremlinGPT"' inside run/start_all.sh*
-
-```bash
-cd GremlinGPT
-chmod +x run/start_all.sh
-./run/start_all.sh
-```
-
-- Backend server launches (Flask or FastAPI, port 8000 or 8080)
+- Backend server launches (Flask or FastAPI, port 8080)
 - FSM agent loop, task queue, memory, scraper all start
-- **Dashboard ready at:** http://localhost:8080/
-
----
-
-## Remote Access using ngrok
-
-- **To securely access GremlinGPT dashboard from anywhere:**
-> *start_all.sh takes care of this*
-
-```bash
-ngrok http 8080
-```
-
-- Use the HTTPS URL provided by ngrok in your browser or mobile
-- Full dashboard, all agent controls, remote chat and signal monitoring
+- **Dashboard ready at:** http://localhost:8080/ and ngrok `#WHEN I GET NGROK RUNNING AFTER BOOT THE PORT WILL BE HERE`
 
 ---
 
@@ -409,6 +335,10 @@ grep '"severity": "error"' run/logs/task_errors.jsonl
 ```bash
 jq 'select(.task_type=="shell")' run/logs/task_errors.jsonl
 ```
+
+> [!CAUTION]
+>
+> Debugging Logging, Might not be accurate.
 
 - Port conflict? Change in config.yaml or stop existing service
 - Scraper fails? Set headless=False in playwright_handler.py and retry
