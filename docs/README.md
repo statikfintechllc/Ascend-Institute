@@ -1,15 +1,4 @@
 <link rel="stylesheet" type="text/css" href="custom.css">
-
-> [!NOTE]
->
-> Full Time Mechanic, Part-Time Developer.  
-> Progress Is not Always persistent.
->
-> Sometimes there is time for Multiple Scripts  
-> Sometimes there is time for a quick badge edit or workflow addition
->
-> SOON!
-
 <div align="center">
   <img  
 	  src="https://raw.githubusercontent.com/statikfintechllc/WorkFlowRepo/master/docs/ticker-bot/ticker.gif" 
