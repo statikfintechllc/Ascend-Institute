@@ -379,15 +379,7 @@ EOF
 chmod +x "$APP"
 chmod 644 "$ICON"
 
-# Validate .desktop file if possible
-if command -v desktop-file-validate &>/dev/null; then
-  desktop-file-validate "$APPDIR/AscendAI-v1.0.3.desktop" || echo "${YELLOW}[WARNING] .desktop file validation failed.${NC}"
-else
-  echo "${YELLOW}[WARNING] desktop-file-validate not found. Skipping validation.${NC}"
-fi
-
 update-desktop-database "$APPDIR"
 
 echo "${GREEN}[INSTALL] GremlinGPT installation completed successfully.${NC}"
-echo "[*] Installation complete! You can now run GremlinGPT using the desktop entry or via the command line."
-# End of install.sh
+echo "[*] Installat
