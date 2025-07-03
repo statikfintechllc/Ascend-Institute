@@ -236,6 +236,7 @@ git clone https://github.com/statikfintechllc/AscendAI.git
 cd AscendAI/GremlinGPT
 chmod +x install.sh && ./install.sh
 ```
+
 > [!IMPORTANT]
 >
 > For Linux Users:
@@ -247,9 +248,12 @@ chmod +x install.sh && ./install.sh
 
 **To *run* the just the chat system**:
 
-```python
-PYTHONPATH=$(pwd) python3 run/cli.py
-```
+Once Inside the app there are 5 Choices:
+1. Start.
+2. Stop.
+3. Start chat only
+4. Check logs.
+5. Exit
 
 - Backend server launches (Flask or FastAPI, port 8080)
 - FSM agent loop, task queue, memory, scraper all start
