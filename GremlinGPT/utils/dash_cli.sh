@@ -136,7 +136,7 @@ while true; do
             exit 0
             ;;
         *)
-            echo "[!] Invalid choice. Try again."
+            echo "[!] Invalid input. Maybe choose a real Option."
             read -r
             ;;
     esac
