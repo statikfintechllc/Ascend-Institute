@@ -2,10 +2,10 @@
 
 > [!NOTE]
 >
-> Full Time Mechanic, Part-Time Developer.
+> Full Time Mechanic, Part-Time Developer.  
 > Progress Is not Always persistent.
 >
-> Sometimes there is time for Multiple Scripts
+> Sometimes there is time for Multiple Scripts  
 > Sometimes there is time for a quick badge edit or workflow addition
 >
 > SOON!
