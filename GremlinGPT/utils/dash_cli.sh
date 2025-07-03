@@ -1,10 +1,13 @@
 #!/usr/bin/env zsh
+
+# Dash CLI for GremlinGPT
 LOGFILE="$HOME/run/logs/dash_cli.log"
 mkdir -p "$(dirname "$LOGFILE")"
 exec > >(tee -a "$LOGFILE") 2>&1
 set -e
 
-# Guarantee login+interactive shell for environment
+# Guarantee login+interactive shell for environment, if not already started
+if [[ -z "$LOGIN_SHELL_STARTED" && "$0" != "-bash"
 if [[ -z "$LOGIN_SHELL_STARTED" ]]; then
     export LOGIN_SHELL_STARTED=1
     exec "$SHELL" -l -i "$0" "$@"
@@ -14,17 +17,22 @@ fi
 APP_TITLE="AscendAI: GremlinGPT v1.0.3"
 SUB_TITLE="From: SFTi"
 
-# Resolve script dir
+# Resolve script dir, fallback to home if not found
 APPDIR="$HOME/.local/share/applications"
 APPLOC="$HOME"
-START_SCRIPT="$APPLOC/run/start_code.sh"
+START_SCRIPT="$APPLOC/run/start_all.sh"
 STOP_SCRIPT="$APPLOC/run/stop_all.sh"
 CHAT_SCRIPT="$APPLOC/run/cli.py"
 
-# Detect preferred shell (get user's shell from /etc/passwd or $SHELL)
+# Detect preferred shell (get user's shell from /etc/passwd or $SHELL), fallback to /bin/bash
 USER_SHELL="$(getent passwd "$USER" | cut -d: -f7 2>/dev/null || echo "${SHELL:-/bin/bash}")"
 
-# List of popular emulators
+# List of popular emulators, in order of preference
+# If none found, will prompt user to install one
+# If multiple found, will use the first available one
+# This list can be extended with more terminal emulators as needed
+# Note: This list is not exhaustive and may vary by distribution.
+# It includes common terminal emulators found in most Linux distributions.
 EMULATORS=(x-terminal-emulator gnome-terminal konsole xfce4-terminal lxterminal tilix mate-terminal)
 
 function relaunch_in_terminal() {
@@ -42,7 +50,7 @@ function relaunch_in_terminal() {
     exit 1
 }
 
-# Check if we're in a terminal, if not relaunch in a graphical one
+# Check if we're in a terminal, if not relaunch in a graphical one, if available
 if ! [ -t 0 ]; then
     relaunch_in_terminal
 fi
@@ -55,14 +63,14 @@ while true; do
     echo -e "Up-Time: \033[1;33m$UPTIME\033[0m"
     echo ""
     echo "Choose an action:"
-    echo "1) ✅ Start Mobile Tunnel ✅"
+    echo "1) ✅ Start GremlinGPT ✅"
     echo "2) 🚫 Stop GremlinGPT 🚫"
     echo "3) 🗣️ Chat Only 🗣️"
-    echo "4) ⚠️ View Logs ⚠️"
-    echo "5) ✌️ Exit ✌️"
+    echo "4) ⚠️ View GremlinGPT Logs ⚠️"
+    echo "5) ✌️ Exit GremlinGPT ✌️"
     echo -n "Select> "
     read -r CHOICE
-
+#    echo ""  # For better readability, can be uncommented if needed
     case $CHOICE in
         1)
             bash -l "$START_SCRIPT"
@@ -85,7 +93,9 @@ while true; do
                 clear
                 echo -e "\033[1;34m[Log Menu]\033[0m"
                 echo "Select a log to view (last 40 lines):"
-
+                echo "Available logs:" # List of log files
+                # Define an array of log file names
+                # This array can be extended with more log files as needed
                 LOG_NAMES=(
                     "runtime.log"
                     "nlp.out"
@@ -98,14 +108,14 @@ while true; do
                     "ngrok.out"
                     "gremlin_boot_trace.log"
                 )
-
+#                Display available logs
                 for i in {1..${#LOG_NAMES[@]}}; do
                     echo "$i) ${LOG_NAMES[$((i - 1))]}"
                 done
                 echo "$(( ${#LOG_NAMES[@]} + 1 ))) 🔙 Back to Main Menu"
                 echo -n "Select log> "
                 read -r LOG_CHOICE
-
+#                echo ""  # For better readability, can be uncommented if needed
                 if (( LOG_CHOICE > 0 && LOG_CHOICE <= ${#LOG_NAMES[@]} )); then
                     LOG_FILE="$APPLOC/run/logs/${LOG_NAMES[$((LOG_CHOICE - 1))]}"
                     clear
@@ -116,13 +126,13 @@ while true; do
                 elif (( LOG_CHOICE == ${#LOG_NAMES[@]} + 1 )); then
                     break
                 else
-                    echo "[!] Invalid input. Press enter to retry."
+                    echo "[!] Invalid input. Maybe choose a real Option."
                     read -r
                 fi
             done
             ;;
         5)
-            echo "Goodbye, meatspace operator."
+            echo "Goodbye, MeatSpace operator."
             exit 0
             ;;
         *)
