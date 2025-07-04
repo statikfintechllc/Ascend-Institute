@@ -19,6 +19,7 @@ SUB_TITLE="From: SFTi"
 
 # Resolve script dir, fallback to home if not found
 APPDIR="$HOME/.local/share/applications"
+ICONDIR="$HOME/.local/share/icons"
 APPLOC="$HOME"
 LOGDIR="$APPLOC/data/logs"
 START_SCRIPT="$APPLOC/run/start_all.sh"

@@ -3,8 +3,19 @@
 # --- AscendAI GremlinGPT Start Script ---
 # This script launches all GremlinGPT subsystems in separate terminal windows.  
 
+# It ensures that the environment is set up correctly and that all necessary services are running.
 setopt NO_GLOB_SUBST
 
+# --- Environment Setup ---
+# Ensure the script runs in the user's home directory
+# and sets up the necessary environment variables.
+# This allows for dynamic project paths and log directories.
+# It also ensures that the NLTK data directory is created and configured correctly.
+# This script should be run from the GremlinGPT project root directory.
+# If run from a different directory, it will still work as long as the environment variables are
+GREMLIN_HOME="$HOME"
+PYTHONPATH="$GREMLIN_HOME"
+LOGDIR="$GREMLIN_HOME/data/logs"
 
 # --- Dynamic Project Path ---
 export GREMLIN_HOME="$HOME"
@@ -63,19 +74,19 @@ function launch_terminal() {
 }
 
 echo "[BOOT] Injecting GremlinGPT watermark to system trace."
-echo "Boot ID: $(uuidgen) | Source: GremlinGPT | Time: $(date -u)" | tee -a "$GREMLIN_HOME/run/logs/gremlin_boot_trace.log"
+echo "Boot ID: $(uuidgen) | Source: GremlinGPT | Time: $(date -u)" | tee -a "$LOGDIR/gremlin_boot_trace.log"
 
 echo "[START] Launching GremlinGPT subsystems in separate terminals..."
 
-launch_terminal "Core Loop" gremlin-orchestrator "python core/loop.py" "$GREMLIN_HOME/run/logs/runtime.log"
-launch_terminal "NLP Service" gremlin-nlp "python nlp_engine/nlp_check.py" "$GREMLIN_HOME/run/logs/nlp.out"
-launch_terminal "Memory Service" gremlin-memory "python memory/vector_store/embedder.py" "$GREMLIN_HOME/run/logs/memory.out"
-launch_terminal "FSM Agent" gremlin-nlp "python -m agent_core.fsm" "$GREMLIN_HOME/run/logs/fsm.out"
-launch_terminal "Scraper" gremlin-scraper "python -m scraper.scraper_loop" "$GREMLIN_HOME/run/logs/scraper.out"
-launch_terminal "Self-Trainer" gremlin-orchestrator "python -m self_training.trainer" "$GREMLIN_HOME/run/logs/trainer.out"
-launch_terminal "Backend Server" gremlin-dashboard "python -m backend.server" "$GREMLIN_HOME/run/logs/backend.out"
-launch_terminal "Frontend" gremlin-dashboard "python3 -m http.server 8080 --directory frontend" "$GREMLIN_HOME/run/logs/frontend.out"
-launch_terminal "Ngrok Tunnel" gremlin-dashboard "python run/ngrok_launcher.py" "$GREMLIN_HOME/run/logs/ngrok.out"
+launch_terminal "Core Loop" gremlin-orchestrator "python core/loop.py" "$LOGDIR/runtime.log"
+launch_terminal "NLP Service" gremlin-nlp "python nlp_engine/nlp_check.py" "$LOGDIR/nlp.out"
+launch_terminal "Memory Service" gremlin-memory "python memory/vector_store/embedder.py" "$LOGDIR/memory.out"
+launch_terminal "FSM Agent" gremlin-nlp "python -m agent_core.fsm" "$LOGDIR/fsm.out"
+launch_terminal "Scraper" gremlin-scraper "python -m scraper.scraper_loop" "$LOGDIR/scraper.out"
+launch_terminal "Self-Trainer" gremlin-orchestrator "python -m self_training.trainer" "$LOGDIR/trainer.out"
+launch_terminal "Backend Server" gremlin-dashboard "python -m backend.server" "$LOGDIR/backend.out"
+launch_terminal "Frontend" gremlin-dashboard "python3 -m http.server 8080 --directory frontend" "$LOGDIR/frontend.out"
+launch_terminal "Ngrok Tunnel" gremlin-dashboard "python run/ngrok_launcher.py" "$LOGDIR/ngrok.out"
 
 # --- Playwright install check for scraper (headless) ---
 conda activate gremlin-scraper
