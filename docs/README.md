@@ -267,7 +267,7 @@ Working Directory: GremlinGPT
 > 
 > GremlinGPT v1.0.3 Fully Boot-Strapped Drop is 45% Complete
 > 
-> *(ETA: 1 months (maybe longer, still learning), shooting for late August, maybe sooner if I gas it)*
+> *(ETA: 2 months (maybe longer, still learning), shooting for late August, maybe sooner if I gas it)*
 
 ---
 
