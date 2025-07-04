@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
 
+APPLOC="$HOME"
 LOGDIR="$APPLOC/data/logs"
 
 # Dash CLI for GremlinGPT

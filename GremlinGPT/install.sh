@@ -6,7 +6,7 @@ LOGFILE="data/logs/install.log"
 exec > >(tee -a "$LOGFILE") 2>&1
 
 setopt NO_GLOB_SUBST
-set -u
+set +u
 set -o pipefail
 
 RED='\033[1;31m'
@@ -307,6 +307,10 @@ sudo apt install -y xdotool util-linux
 banner "Setup systemd service"
 
 # Ensure the start script exists
+echo "APPLOC=$APPLOC"
+echo "START_SCRIPT=$START_SCRIPT"
+echo "USER=$USER"
+
 
 sudo tee "$SYSTEMD_UNIT_PATH" > /dev/null <<EOF
 [Unit]
@@ -324,9 +328,8 @@ Environment="PATH=$APPLOC/miniconda3/envs/gremlin-orchestrator/bin:/usr/local/sb
 
 [Install]
 WantedBy=multi-user.target
-EOF >> "$LOGFILE" 2>&1
+EOF
 
-# Ensure the start scripts permissions are correct
 sudo systemctl daemon-reexec
 sudo systemctl daemon-reload
 sudo systemctl enable gremlin.service
@@ -359,7 +362,7 @@ xdotool search --name "Trader Workstation" windowactivate --sync \
 xdotool search --name "StocksToTrade" windowactivate --sync \
   key Tab type '$STT_USER' key Tab \
   type '$STT_PASS' key Return
-EOF >> "$LOGFILE" 2>&1
+EOF
 
 chmod +x "$LOGIN_SCRIPT"
 
@@ -382,12 +385,14 @@ Icon=$ICON
 Terminal=true
 Categories=Utility;Development;Application;
 StartupNotify=true
-EOF >> "$LOGFILE" 2>&1
+EOF
 
 chmod +x "$APP"
 chmod 644 "$ICON"
 
 update-desktop-database "$APPDIR" >> "$LOGFILE" 2>&1 || echo "${YELLOW}[WARNING] update-desktop-database failed. Continuing...${NC}"
+
+set -u  # Reset to default shell behavior
 
 # Final message
 echo "${GREEN}[INSTALL] GremlinGPT installation completed successfully.${NC}"
