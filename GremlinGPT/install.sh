@@ -22,12 +22,48 @@ function banner() {
 echo "${GREEN}[INSTALL] Initializing GremlinGPT installation...${NC}"
 banner "Initializing GremlinGPT installation..."
 
+# Proper definition of variables, ensuring they are set before use
 REPO="$(cd "$(dirname "$(readlink -f "$0")")/.." && pwd)"
 APPDIR="$HOME/.local/share/applications"
 ICNDIR="$HOME/.local/share/icons"
 SRC="$REPO/GremlinGPT"
 DEST="$HOME"
-APPLOC="$HOME" 
+APPLOC="$HOME"
+APPDIR="$HOME/.local/share/applications"
+ICNDIR="$HOME/.local/share/icons"
+mkdir -p "$APPDIR" "$ICNDIR"
+WAKE_SCRIPT="/usr/local/bin/set-wake-timer.sh"
+LOGIN_SCRIPT="$APPLOC/utils/tws_stt_autologin.sh"
+CONFIG_PATH="$APPLOC/config/config.toml"
+SYSTEMD_UNIT_PATH="/etc/systemd/system/gremlin.service"
+START_SCRIPT="$APPLOC/start_all.sh"
+
+ICON=$ICON_DEST
+APP=$SCRIPT
+SCRIPT="$APPLOC/utils/dash_cli.sh"
+if [ -f "$SCRIPT" ]; then
+  chmod +x "$SCRIPT"
+else
+  echo "${YELLOW}[WARNING] $SCRIPT not found. Using python fallback.${NC}"
+  SCRIPT="python3 $APPLOC/utils/dash_cli.py"
+fi >> "$LOGFILE" 2>&1
+
+ICON_SRC="$HOME/frontend/Icon_Logo/App_Icon_&_Loading_&_Inference_Image.png"
+ICON_DEST="$ICNDIR/AscendAI-v1.0.3.png"
+if [ -f "$ICON_SRC" ]; then
+  if file "$ICON_SRC" | grep -q "PNG image data"; then
+    cp "$ICON_SRC" "$ICON_DEST"
+  else
+    echo "${YELLOW}[WARNING] $ICON_SRC is not a valid PNG. Skipping icon copy.${NC}"
+  fi
+else
+  echo "${YELLOW}[WARNING] Icon file not found at $ICON_SRC. Skipping icon copy.${NC}"
+fi
+
+TWS_USER=$(grep -oP '(?<=tws_username\\s?=\\s?")[^"]*' "$CONFIG_PATH")
+TWS_PASS=$(grep -oP '(?<=tws_password\\s?=\\s?")[^"]*' "$CONFIG_PATH")
+STT_USER=$(grep -oP '(?<=stt_username\\s?=\\s?")[^"]*' "$CONFIG_PATH")
+STT_PASS=$(grep -oP '(?<=stt_password\\s?=\\s?")[^"]*' "$CONFIG_PATH")
 
 # Move all files and subdirectories (including hidden ones) from GremlinGPT to $HOME, overwriting existing
 setopt extended_glob
@@ -267,16 +303,14 @@ fi >> "$LOGFILE" 2>&1
 
 sudo apt install -y xdotool util-linux
 
-# 10. Setup systemd service, if not already set up, to manage GremlinGPT processes
-
 # set -x  # Enable command tracing for debugging. Uncomment if needed.
 
+# 10. Setup systemd service, if not already set up, to manage GremlinGPT processes
+
 banner "Setup systemd service"
-APPLOC="$HOME"  # All files are moved to $HOME, so we set APPLOC to $HOME
-SYSTEMD_UNIT_PATH="/etc/systemd/system/gremlin.service"
-START_SCRIPT="$APPLOC/start_all.sh"
 
 # Ensure the start script exists
+
 sudo tee "$SYSTEMD_UNIT_PATH" > /dev/null <<EOF
 [Unit]
 Description=GremlinGPT Autonomous Agent
@@ -285,7 +319,7 @@ After=network.target
 [Service]
 Type=simple
 WorkingDirectory=$APPLOC
-ExecStart=$START_SCRIPT'
+ExecStart=/bin/zsh -c 'conda activate gremlin-orchestrator && $START_SCRIPT'
 Restart=always
 RestartSec=10
 User=$USER
@@ -306,23 +340,14 @@ echo "[✓] Systemd service registered and running." >> "$LOGFILE" 2>&1
 # 11. Setup RTC wake & login filler from config, if available
 banner "Setting RTC wake + GUI login automation..."
 
-WAKE_SCRIPT="/usr/local/bin/set-wake-timer.sh"
-LOGIN_SCRIPT="$APPLOC/utils/tws_stt_autologin.sh"
-CONFIG_PATH="$APPLOC/config/config.toml"
-
 sudo tee "$WAKE_SCRIPT" > /dev/null <<EOF
 #!/bin/zsh
 rtcwake -m no -t $(date -d 'tomorrow 03:30' +%s)
 EOF
 sudo chmod +x "$WAKE_SCRIPT"
-# Deduplicate RTC wake cron job, if it exists.
 (crontab -l 2>/dev/null | grep -v "$WAKE_SCRIPT"; echo "@reboot $WAKE_SCRIPT") | crontab -
 
 # 12. Pulling login creds from config.toml, if available
-TWS_USER=$(grep -oP '(?<=tws_username\\s?=\\s?")[^"]*' "$CONFIG_PATH")
-TWS_PASS=$(grep -oP '(?<=tws_password\\s?=\\s?")[^"]*' "$CONFIG_PATH")
-STT_USER=$(grep -oP '(?<=stt_username\\s?=\\s?")[^"]*' "$CONFIG_PATH")
-STT_PASS=$(grep -oP '(?<=stt_password\\s?=\\s?")[^"]*' "$CONFIG_PATH")
 
 tee "$LOGIN_SCRIPT" > /dev/null <<EOF
 #!/bin/zsh
@@ -339,43 +364,14 @@ xdotool search --name "StocksToTrade" windowactivate --sync \
   type '$STT_PASS' key Return
 EOF >> "$LOGFILE" 2>&1
 
-# Ensure the login script is executable
 chmod +x "$LOGIN_SCRIPT"
 
-# Deduplicate login automation cron job
 (crontab -l 2>/dev/null | grep -v "$LOGIN_SCRIPT"; echo "@reboot $LOGIN_SCRIPT") | crontab -
 
 echo "${GREEN}[✓] Wake timer, autologin, and systemd service bootstrapped.${NC}"
 
 # 13. Finalize installation, create desktop entry, and icon
 banner "Finalizing installation and creating desktop entry..."
-
-APPDIR="$HOME/.local/share/applications"
-ICNDIR="$HOME/.local/share/icons"
-mkdir -p "$APPDIR" "$ICNDIR"
-ICON_SRC="$HOME/frontend/Icon_Logo/App_Icon_&_Loading_&_Inference_Image.png"
-ICON_DEST="$ICNDIR/AscendAI-v1.0.3.png"
-if [ -f "$ICON_SRC" ]; then
-  if file "$ICON_SRC" | grep -q "PNG image data"; then
-    cp "$ICON_SRC" "$ICON_DEST"
-  else
-    echo "${YELLOW}[WARNING] $ICON_SRC is not a valid PNG. Skipping icon copy.${NC}"
-  fi
-else
-  echo "${YELLOW}[WARNING] Icon file not found at $ICON_SRC. Skipping icon copy.${NC}"
-fi
-
-# Check for dash_cli.sh and fallback to python if missing, to avoid breaking the installation
-SCRIPT="$APPLOC/utils/dash_cli.sh"
-if [ -f "$SCRIPT" ]; then
-  chmod +x "$SCRIPT"
-else
-  echo "${YELLOW}[WARNING] $SCRIPT not found. Using python fallback.${NC}"
-  SCRIPT="python3 $APPLOC/utils/dash_cli.py"
-fi >> "$LOGFILE" 2>&1
-
-ICON=$ICON_DEST
-APP=$SCRIPT
 
 # Create .desktop file with required fields and validate, if missing, create a fallback
 cat > "$APPDIR/AscendAI-v1.0.3.desktop" <<EOF
@@ -391,11 +387,9 @@ Categories=Utility;Development;Application;
 StartupNotify=true
 EOF >> "$LOGFILE" 2>&1
 
-# Validate the .desktop file
 chmod +x "$APP"
 chmod 644 "$ICON"
 
-# Update desktop database
 update-desktop-database "$APPDIR" >> "$LOGFILE" 2>&1 || echo "${YELLOW}[WARNING] update-desktop-database failed. Continuing...${NC}"
 
 # Final message
