@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 # Dash CLI for GremlinGPT
-LOGFILE="$HOME/run/logs/dash_cli.log"
+LOGFILE="$HOME/data/logs/dash_cli.log"
 mkdir -p "$(dirname "$LOGFILE")"
 exec > >(tee -a "$LOGFILE") 2>&1
 set -e
@@ -20,6 +20,7 @@ SUB_TITLE="From: SFTi"
 # Resolve script dir, fallback to home if not found
 APPDIR="$HOME/.local/share/applications"
 APPLOC="$HOME"
+LOGDIR="$APPLOC/data/logs"
 START_SCRIPT="$APPLOC/run/start_all.sh"
 STOP_SCRIPT="$APPLOC/run/stop_all.sh"
 CHAT_SCRIPT="$APPLOC/run/cli.py"
@@ -98,15 +99,15 @@ while true; do
                 # This array can be extended with more log files as needed
                 LOG_NAMES=(
                     "runtime.log"
-                    "nlp.out"
-                    "memory.out"
-                    "fsm.out"
-                    "scraper.out"
-                    "trainer.out"
-                    "backend.out"
-                    "frontend.out"
-                    "ngrok.out"
-                    "gremlin_boot_trace.log"
+                    "$LOGDIR/nlp.out"
+                    "$LOGDIR/memory.out"
+                    "$LOGDIR/fsm.out"
+                    "$LOGDIR/scraper.out"
+                    "$LOGDIR/trainer.out"
+                    "$LOGDIR/backend.out"
+                    "$LOGDIR/frontend.out"
+                    "$LOGDIR/ngrok.out"
+                    "$LOGDIR/gremlin_boot_trace.log"
                 )
 #                Display available logs
                 for i in {1..${#LOG_NAMES[@]}}; do

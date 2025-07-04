@@ -1,12 +1,18 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
+
+# --- AscendAI GremlinGPT Start Script ---
+# This script launches all GremlinGPT subsystems in separate terminal windows.  
 
 setopt NO_GLOB_SUBST
+
 
 # --- Dynamic Project Path ---
 export GREMLIN_HOME="$HOME"
 export PYTHONPATH="$GREMLIN_HOME"
 
-mkdir -p "$HOME/run/logs"
+# --- Log Directory ---
+export LOGDIR="$GREMLIN_HOME/data/logs"
+
 
 # --- NLTK Bootstrap: Always under repo, not home! ---
 python3 - <<'EOF'

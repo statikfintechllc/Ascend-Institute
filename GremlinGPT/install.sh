@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 # Set up logging
-LOGFILE="run/logs/install.log"
+LOGFILE="data/logs/install.log"
 : > "$LOGFILE"         # Overwrite log file
 exec > >(tee -a "$LOGFILE") 2>&1
 
@@ -13,6 +13,11 @@ RED='\033[1;31m'
 GREEN='\033[1;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
+
+# --- Banner helper ---
+function banner() {
+  echo -e "\n\033[1;36m[INSTALL] $1\033[0m\n"
+}
 
 echo "${GREEN}[INSTALL] Initializing GremlinGPT installation...${NC}"
 
@@ -44,7 +49,7 @@ git pull --rebase
 cd $HOME || { echo "${RED}[ERROR] Failed to change directory to $HOME${NC}"; exit 1; }
 
 # 1. Directory structure
-echo "[*] Creating directory structure..."
+banner "Creating directory structure..."
 DIRS=(
   "run/logs"
   "run/checkpoints"
@@ -69,13 +74,13 @@ for dir in "${DIRS[@]}"; do
 done
 
 # 2. Placeholder files
-echo "[*] Creating placeholder metadata/log files if missing..."
+banner "Creating placeholder metadata/log files if missing..."
 touch memory/local_index/metadata.db
 touch run/logs/runtime.log
 touch run/checkpoints/state_snapshot.json
 touch data/logs/bootstrap.log
 
-echo "[*] Ensuring conda is initialized..."
+banner "Ensuring conda is initialized..."
 
 # 3. Conda init
 echo "[*] Ensuring conda is initialized..."
@@ -87,7 +92,7 @@ fi
 eval "$(conda shell.zsh hook 2>/dev/null)" || eval "$(conda shell.bash hook 2>/dev/null)"
 
 # 4. Build all conda environments
-echo "[*] Building all conda environments via ./conda_envs/create_envs.sh..."
+banner "Building all conda environments via ./conda_envs/create_envs.sh..."
 
 # Add this block before running conda commands as root
 if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
@@ -122,29 +127,28 @@ function pip_install_or_fail {
   done
 }
 
-
 function download_nltk {
   python3 -m nltk.downloader --dir=$HOME/data/nltk_data punkt averaged_perceptron_tagger wordnet stopwords || \
   { echo "${RED}[FAIL] NLTK data download${NC}"; exit 1; }
 }
 
 # 5. gremlin-nlp env setup
-echo "[*] Activating gremlin-nlp and installing deps..."
+banner "Activating gremlin-nlp and installing deps..."
 if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
     source "$HOME/miniconda3/etc/profile.d/conda.sh"
 elif [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
     source "$HOME/anaconda3/etc/profile.d/conda.sh"
 fi
 
-conda activate gremlin-nlp
-pip_install_or_fail spacy torch torchvision torchaudio sentence-transformers transformers bs4 nltk pytesseract playwright pyautogui
-python -m spacy download en_core_web_sm || { echo "${RED}[FAIL] spaCy model${NC}"; exit 1; }
-playwright install || { echo "${RED}[FAIL] playwright${NC}"; exit 1; }
-pip install nltk
+conda activate gremlin-nlp >> "$LOGFILE" 2>&1
+pip_install_or_fail spacy torch torchvision torchaudio sentence-transformers transformers bs4 nltk pytesseract playwright pyautogui >> "$LOGFILE" 2>&1
+python -m spacy download en_core_web_sm >> "$LOGFILE" 2>&1 || { echo "${RED}[FAIL] spaCy model${NC}"; exit 1; }
+playwright install >> "$LOGFILE" 2>&1 || { echo "${RED}[FAIL] playwright${NC}"; exit 1; }
+pip install nltk >> "$LOGFILE" 2>&1
 export NLTK_DATA=$HOME/data/nltk_data
-python -m nltk.downloader -d "$NLTK_DATA" punkt
-download_nltk
-check_cuda
+python -m nltk.downloader -d "$NLTK_DATA" punkt >> "$LOGFILE" 2>&1
+download_nltk >> "$LOGFILE" 2>&1
+check_cuda >> "$LOGFILE" 2>&1
 
 python -c "
 from transformers import AutoTokenizer, AutoModel
@@ -152,77 +156,74 @@ import torch
 print('[GPU-TEST] Loading BERT on', 'cuda' if torch.cuda.is_available() else 'cpu')
 AutoTokenizer.from_pretrained('bert-base-uncased')
 AutoModel.from_pretrained('bert-base-uncased').to('cuda' if torch.cuda.is_available() else 'cpu')
-"
+" >> "$LOGFILE" 2>&1
 python -c "
 from sentence_transformers import SentenceTransformer
 import torch
 print('[GPU-TEST] Loading MiniLM on', 'cuda' if torch.cuda.is_available() else 'cpu')
 SentenceTransformer('all-MiniLM-L6-v2', device='cuda' if torch.cuda.is_available() else 'cpu')
-"
-conda deactivate
+" >> "$LOGFILE" 2>&1
+conda deactivate >> "$LOGFILE" 2>&1
 
 # 6. gremlin-scraper env setup
-echo "[*] Activating gremlin-scraper..."
+banner "Activating gremlin-scraper..."
 if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
     source "$HOME/miniconda3/etc/profile.d/conda.sh"
 elif [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
     source "$HOME/anaconda3/etc/profile.d/conda.sh"
 fi
-
-conda activate gremlin-scraper
-pip_install_or_fail torch torchvision torchaudio sentence-transformers transformers playwright pyautogui
-python -m spacy download en_core_web_sm
-playwright install
-check_cuda
-conda deactivate
+conda activate gremlin-scraper >> "$LOGFILE" 2>&1
+pip_install_or_fail torch torchvision torchaudio sentence-transformers transformers playwright pyautogui >> "$LOGFILE" 2>&1
+python -m spacy download en_core_web_sm >> "$LOGFILE" 2>&1
+playwright install >> "$LOGFILE" 2>&1
+check_cuda >> "$LOGFILE" 2>&1
+conda deactivate >> "$LOGFILE" 2>&1
 
 # 7. gremlin-dashboard env setup
-echo "[*] Activating gremlin-dashboard..."
+banner "Activating gremlin-dashboard..."
 if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
     source "$HOME/miniconda3/etc/profile.d/conda.sh"
 elif [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
     source "$HOME/anaconda3/etc/profile.d/conda.sh"
 fi
-
-conda activate gremlin-dashboard
-pip_install_or_fail torch torchvision torchaudio sentence-transformers transformers pyautogui
-check_cuda
-conda deactivate
+conda activate gremlin-dashboard >> "$LOGFILE" 2>&1
+pip_install_or_fail torch torchvision torchaudio sentence-transformers transformers pyautogui >> "$LOGFILE" 2>&1
+check_cuda >> "$LOGFILE" 2>&1
+conda deactivate >> "$LOGFILE" 2>&1
 
 # 8. gremlin-orchestrator env setup
-echo "[*] Activating gremlin-orchestrator..."
+banner "Activating gremlin-orchestrator..."
 if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
     source "$HOME/miniconda3/etc/profile.d/conda.sh"
 elif [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
     source "$HOME/anaconda3/etc/profile.d/conda.sh"
 fi
-
-conda activate gremlin-orchestrator
-pip_install_or_fail torch torchvision torchaudio backend bs4 nltk langdetect pytesseract sentence-transformers transformers playwright pyautogui
-python -m spacy download en_core_web_sm
-playwright install
-pip install nltk
+conda activate gremlin-orchestrator >> "$LOGFILE" 2>&1
+pip_install_or_fail torch torchvision torchaudio backend bs4 nltk langdetect pytesseract sentence-transformers transformers playwright pyautogui >> "$LOGFILE" 2>&1
+python -m spacy download en_core_web_sm >> "$LOGFILE" 2>&1
+playwright install >> "$LOGFILE" 2>&1
+pip install nltk >> "$LOGFILE" 2>&1
 export NLTK_DATA=$HOME/data/nltk_data
-python -m nltk.downloader -d "$NLTK_DATA" punkt
-download_nltk
-check_cuda
+python -m nltk.downloader -d "$NLTK_DATA" punkt >> "$LOGFILE" 2>&1
+download_nltk >> "$LOGFILE" 2>&1
+check_cuda >> "$LOGFILE" 2>&1
 python -c "
 from transformers import AutoTokenizer, AutoModel
 import torch
 print('[GPU-TEST] Loading BERT on', 'cuda' if torch.cuda.is_available() else 'cpu')
 AutoTokenizer.from_pretrained('bert-base-uncased')
 AutoModel.from_pretrained('bert-base-uncased').to('cuda' if torch.cuda.is_available() else 'cpu')
-"
+" >> "$LOGFILE" 2>&1
 python -c "
 from sentence_transformers import SentenceTransformer
 import torch
 print('[GPU-TEST] Loading MiniLM on', 'cuda' if torch.cuda.is_available() else 'cpu')
 SentenceTransformer('all-MiniLM-L6-v2', device='cuda' if torch.cuda.is_available() else 'cpu')
-"
-conda deactivate
+" >> "$LOGFILE" 2>&1
+conda deactivate >> "$LOGFILE" 2>&1
 
 # 9. ngrok CLI check
-echo "[*] Checking for ngrok CLI..."
+banner "Checking for ngrok CLI..."
 
 if ! command -v ngrok &> /dev/null; then
     echo "${YELLOW}[NOTICE] ngrok not found. Attempting automatic installation...${NC}"
@@ -260,7 +261,7 @@ sudo apt install -y xdotool util-linux
 
 set -x
 
-# 10. Setup systemd service
+banner "Setup systemd service"
 APPLOC="$HOME"  # All files are moved to $HOME
 SYSTEMD_UNIT_PATH="/etc/systemd/system/gremlin.service"
 START_SCRIPT="$APPLOC/start_all.sh"
@@ -292,7 +293,7 @@ echo "[✓] Systemd service registered and running."
 
 # ─────────────────────────────────────────────────────────────
 # 11. Setup RTC wake & login filler from config
-echo "[*] Setting RTC wake + GUI login automation..."
+banner "Setting RTC wake + GUI login automation..."
 
 WAKE_SCRIPT="/usr/local/bin/set-wake-timer.sh"
 LOGIN_SCRIPT="$APPLOC/utils/tws_stt_autologin.sh"
@@ -382,4 +383,4 @@ chmod 644 "$ICON"
 update-desktop-database "$APPDIR"
 
 echo "${GREEN}[INSTALL] GremlinGPT installation completed successfully.${NC}"
-echo "[*] Installat
+banner "Installation log saved to $LOGFILE"
