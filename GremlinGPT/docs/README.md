@@ -160,7 +160,7 @@ Read the [FOUNDER_LOG.md](https://github.com/statikfintechllc/AscendAI/blob/mast
 > [!TIP]
 > 
 > *For those who dont want to wait on the dashboard to be buttoned and all pieces connedted.
-> Fork and Help LOL*
+> Fork and Build, or Fund us*
 
 <details>
 <summary>🌀 Press to see How It Works 🌀</summary>
