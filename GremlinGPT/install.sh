@@ -29,18 +29,17 @@ ICNDIR="$HOME/.local/share/icons"
 SRC="$REPO/GremlinGPT"
 DEST="$HOME"
 APPLOC="$HOME"
-APPDIR="$HOME/.local/share/applications"
-ICNDIR="$HOME/.local/share/icons"
-mkdir -p "$APPDIR" "$ICNDIR"
 WAKE_SCRIPT="/usr/local/bin/set-wake-timer.sh"
 LOGIN_SCRIPT="$APPLOC/utils/tws_stt_autologin.sh"
 CONFIG_PATH="$APPLOC/config/config.toml"
 SYSTEMD_UNIT_PATH="/etc/systemd/system/gremlin.service"
 START_SCRIPT="$APPLOC/start_all.sh"
-
+ICON_SRC="$HOME/frontend/Icon_Logo/App_Icon_&_Loading_&_Inference_Image.png"
+ICON_DEST="$ICNDIR/AscendAI-v1.0.3.png"
 ICON=$ICON_DEST
 APP=$SCRIPT
 SCRIPT="$APPLOC/utils/dash_cli.sh"
+
 if [ -f "$SCRIPT" ]; then
   chmod +x "$SCRIPT"
 else
@@ -48,8 +47,6 @@ else
   SCRIPT="python3 $APPLOC/utils/dash_cli.py"
 fi >> "$LOGFILE" 2>&1
 
-ICON_SRC="$HOME/frontend/Icon_Logo/App_Icon_&_Loading_&_Inference_Image.png"
-ICON_DEST="$ICNDIR/AscendAI-v1.0.3.png"
 if [ -f "$ICON_SRC" ]; then
   if file "$ICON_SRC" | grep -q "PNG image data"; then
     cp "$ICON_SRC" "$ICON_DEST"
