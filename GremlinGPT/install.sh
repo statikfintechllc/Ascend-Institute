@@ -36,9 +36,9 @@ SYSTEMD_UNIT_PATH="/etc/systemd/system/gremlin.service"
 START_SCRIPT="$APPLOC/start_all.sh"
 ICON_SRC="$HOME/frontend/Icon_Logo/App_Icon_&_Loading_&_Inference_Image.png"
 ICON_DEST="$ICNDIR/AscendAI-v1.0.3.png"
+SCRIPT="$APPLOC/utils/dash_cli.sh"
 ICON=$ICON_DEST
 APP=$SCRIPT
-SCRIPT="$APPLOC/utils/dash_cli.sh"
 
 if [ -f "$SCRIPT" ]; then
   chmod +x "$SCRIPT"

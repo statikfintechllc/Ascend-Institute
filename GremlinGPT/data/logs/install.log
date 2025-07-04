@@ -2,4 +2,4 @@
 
 [1;36m[INSTALL] Initializing GremlinGPT installation...[0m
 
-./install.sh:41: ICON_DEST: parameter not set
+./install.sh:40: SCRIPT: parameter not set
