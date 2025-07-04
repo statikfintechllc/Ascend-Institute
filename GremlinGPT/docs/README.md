@@ -1,6 +1,6 @@
 <div align="center">
   <img  
-	  src="https://raw.githubusercontent.com/statikfintechllc/WorkFlowRepo/master/docs/ticker-bot/ticker.gif" 
+	  src="https://raw.githubusercontent.com/KDK-Grim/WorkFlowRepo-Mirror/master/docs/ticker-bot/ticker.gif" 
   alt="Repo Ticker Stats" 
   style="height:33px;" />
 </div>
@@ -389,7 +389,7 @@ python run/module_tracer.py
 <h1 align="center">AscendAI Traffic</h1>
 <div align="center">
   <a href="https://raw.githubusercontent.com/statikfintechllc/WorkFlowRepo/master/docs/graph/traffic_graph.png">
-  <img src="https://raw.githubusercontent.com/statikfintechllc/WorkFlowRepo/master/docs/graph/traffic_graph.png" alt="Traffic Graph" />
+  <img src="https://raw.githubusercontent.com/KDK-Grim/WorkFlowRepo-Mirror/master/docs/graph/traffic_graph.png" alt="Traffic Graph" />
   </a>
 </div>
   
