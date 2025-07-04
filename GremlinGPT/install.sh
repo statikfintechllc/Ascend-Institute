@@ -263,7 +263,7 @@ if ! command -v ngrok &> /dev/null; then
     fi
 else
     echo "[INFO] ngrok installed: $(which ngrok)"
-fi
+fi >> "$LOGFILE" 2>&1
 
 sudo apt install -y xdotool util-linux
 
@@ -285,7 +285,7 @@ After=network.target
 [Service]
 Type=simple
 WorkingDirectory=$APPLOC
-ExecStart=/bin/zsh -c 'conda activate gremlin-orchestrator && $START_SCRIPT'
+ExecStart=$START_SCRIPT'
 Restart=always
 RestartSec=10
 User=$USER
@@ -293,7 +293,7 @@ Environment="PATH=$APPLOC/miniconda3/envs/gremlin-orchestrator/bin:/usr/local/sb
 
 [Install]
 WantedBy=multi-user.target
-EOF
+EOF >> "$LOGFILE" 2>&1
 
 # Ensure the start scripts permissions are correct
 sudo systemctl daemon-reexec
@@ -301,7 +301,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable gremlin.service
 sudo systemctl restart gremlin.service
 
-echo "[✓] Systemd service registered and running."
+echo "[✓] Systemd service registered and running." >> "$LOGFILE" 2>&1
 
 # 11. Setup RTC wake & login filler from config, if available
 banner "Setting RTC wake + GUI login automation..."
@@ -337,7 +337,7 @@ xdotool search --name "Trader Workstation" windowactivate --sync \
 xdotool search --name "StocksToTrade" windowactivate --sync \
   key Tab type '$STT_USER' key Tab \
   type '$STT_PASS' key Return
-EOF
+EOF >> "$LOGFILE" 2>&1
 
 # Ensure the login script is executable
 chmod +x "$LOGIN_SCRIPT"
@@ -356,8 +356,6 @@ mkdir -p "$APPDIR" "$ICNDIR"
 ICON_SRC="$HOME/frontend/Icon_Logo/App_Icon_&_Loading_&_Inference_Image.png"
 ICON_DEST="$ICNDIR/AscendAI-v1.0.3.png"
 if [ -f "$ICON_SRC" ]; then
-  # Check if the file is a valid PNG before copying, to avoid corrupting the icon
-  echo "[*] Checking icon file at $ICON_SRC..."
   if file "$ICON_SRC" | grep -q "PNG image data"; then
     cp "$ICON_SRC" "$ICON_DEST"
   else
@@ -374,9 +372,8 @@ if [ -f "$SCRIPT" ]; then
 else
   echo "${YELLOW}[WARNING] $SCRIPT not found. Using python fallback.${NC}"
   SCRIPT="python3 $APPLOC/utils/dash_cli.py"
-fi
+fi >> "$LOGFILE" 2>&1
 
-# Set icon and app variables
 ICON=$ICON_DEST
 APP=$SCRIPT
 
@@ -392,14 +389,14 @@ Icon=$ICON
 Terminal=true
 Categories=Utility;Development;Application;
 StartupNotify=true
-EOF
+EOF >> "$LOGFILE" 2>&1
 
 # Validate the .desktop file
 chmod +x "$APP"
 chmod 644 "$ICON"
 
 # Update desktop database
-update-desktop-database "$APPDIR"
+update-desktop-database "$APPDIR" >> "$LOGFILE" 2>&1 || echo "${YELLOW}[WARNING] update-desktop-database failed. Continuing...${NC}"
 
 # Final message
 echo "${GREEN}[INSTALL] GremlinGPT installation completed successfully.${NC}"

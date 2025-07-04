@@ -1,7 +1,9 @@
 #!/usr/bin/env zsh
 
+LOGDIR="$APPLOC/data/logs"
+
 # Dash CLI for GremlinGPT
-LOGFILE="$HOME/data/logs/dash_cli.log"
+LOGFILE="$LOGDIR/dash_cli.log"
 mkdir -p "$(dirname "$LOGFILE")"
 exec > >(tee -a "$LOGFILE") 2>&1
 set -e
@@ -19,9 +21,7 @@ SUB_TITLE="From: SFTi"
 
 # Resolve script dir, fallback to home if not found
 APPDIR="$HOME/.local/share/applications"
-ICONDIR="$HOME/.local/share/icons"
 APPLOC="$HOME"
-LOGDIR="$APPLOC/data/logs"
 START_SCRIPT="$APPLOC/run/start_all.sh"
 STOP_SCRIPT="$APPLOC/run/stop_all.sh"
 CHAT_SCRIPT="$APPLOC/run/cli.py"
