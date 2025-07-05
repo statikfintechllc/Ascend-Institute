@@ -8,11 +8,11 @@ DEST="$HOME"
 setopt extended_glob
 for item in "$SRC"/*(N) "$SRC"/.*(N); do
   [[ "$(basename "$item")" == "." || "$(basename "$item")" == ".." ]] && continue
-  # Do not move the icon directory to avoid overwriting/corrupting the icon
+  # Do not move the icon directory to avoid overwriting/corrupting the icon, as it is used by the application
   if [[ "$(basename "$item")" == "Icon_Logo" ]]; then
     continue
   fi
-  # Do not move the currently running install.sh
+  # Do not move the currently running install.sh, as it would cause issues
   if [[ "$item" == "$0" ]]; then
     continue
   fi
@@ -24,6 +24,12 @@ for item in "$SRC"/*(N) "$SRC"/.*(N); do
 done
 unsetopt extended_glob
 
+# Update the repository, ensuring we are in the correct directory
+banner "Updating GremlinGPT repository..."
+
+# Ensure the log directory exists, create it if not
+git stash || echo "${YELLOW}[WARNING] git stash failed, continuing...${NC}"
+git pull --rebase || { echo "${RED}[ERROR] git pull failed!${NC}"; exit 1; }
 cd $HOME || { echo "[ERROR] Failed to change directory to $HOME"; exit 1; }
 
 # === Set up logging and variables AFTER move ===
@@ -40,7 +46,10 @@ GREEN='\033[1;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
 
-# --- Banner helper ---
+# --- Banner helper, to print messages in a consistent format ---
+# Usage: banner "Your message here"
+# This function prints a message in cyan color with a prefix [INSTALL]
+# It can be used to highlight important steps in the installation process.
 function banner() {
   echo -e "\n\033[1;36m[INSTALL] $1\033[0m\n"
 }
@@ -63,6 +72,7 @@ SCRIPT="$APPLOC/utils/dash_cli.sh"
 ICON=$ICON_DEST
 APP=$SCRIPT
 
+# Ensure the application has the correct permissions, if the script exists
 if [ -f "$SCRIPT" ]; then
   chmod +x "$SCRIPT"
 else
@@ -80,21 +90,13 @@ else
   echo "${YELLOW}[WARNING] Icon file not found at $ICON_SRC. Skipping icon copy.${NC}"
 fi
 
+# Ensure the icon directory exists, if not create it
 TWS_USER=$(grep -oP '(?<=tws_username\\s?=\\s?")[^"]*' "$CONFIG_PATH")
 TWS_PASS=$(grep -oP '(?<=tws_password\\s?=\\s?")[^"]*' "$CONFIG_PATH")
 STT_USER=$(grep -oP '(?<=stt_username\\s?=\\s?")[^"]*' "$CONFIG_PATH")
 STT_PASS=$(grep -oP '(?<=stt_password\\s?=\\s?")[^"]*' "$CONFIG_PATH")
 
-# Ensure the log directory exists
-git stash || echo "${YELLOW}[WARNING] git stash failed, continuing...${NC}"
-
-# Update the repository
-banner "Updating GremlinGPT repository..."
-
-git pull --rebase || { echo "${RED}[ERROR] git pull failed!${NC}"; exit 1; }
-cd $HOME || { echo "${RED}[ERROR] Failed to change directory to $HOME${NC}"; exit 1; }
-
-# 1. Directory structure
+# 1. Directory structure, if not already created
 banner "Creating directory structure..."
 
 DIRS=(
@@ -120,7 +122,7 @@ for dir in "${DIRS[@]}"; do
   [ ! -d "$dir" ] && mkdir -p "$dir" && echo "Created: $dir" || echo "Exists:  $dir"
 done
 
-# 2. Placeholder files
+# 2. Placeholder files, if not already created
 banner "Creating placeholder metadata/log files if missing..."
 
 touch memory/local_index/metadata.db
@@ -130,7 +132,7 @@ touch data/logs/bootstrap.log
 
 banner "Ensuring conda is initialized..."
 
-# 3. Conda init
+# 3. Conda init, if not already initialized
 echo "[*] Ensuring conda is initialized..."
 if ! command -v conda &> /dev/null; then
     if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
@@ -139,10 +141,10 @@ if ! command -v conda &> /dev/null; then
 fi
 eval "$(conda shell.zsh hook 2>/dev/null)" || eval "$(conda shell.bash hook 2>/dev/null)"
 
-# 4. Build all conda environments
+# 4. Build all conda environments, if not already built
 banner "Building all conda environments via ./conda_envs/create_envs.sh..."
 
-# Add this block before running conda commands as root
+# Add this block before running conda commands as root, to ensure conda is sourced correctly
 if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
     source "$HOME/miniconda3/etc/profile.d/conda.sh"
 elif [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
@@ -156,6 +158,14 @@ else
     echo "${RED}[ERROR] ./conda_envs/create_envs.sh not found!${NC}"
 fi
 
+# Function to check CUDA availability in the current environment
+# This function will print the CUDA availability status and device information.
+# It is useful for verifying that PyTorch can utilize GPU resources if available.
+# Usage: check_cuda
+# This function will print the CUDA availability status and device information.
+# It is useful for verifying that PyTorch can utilize GPU resources if available.
+# Usage: check_cuda
+# This function will print the CUDA availability status and device information.
 function check_cuda {
   echo "[*] Checking CUDA in current environment:"
   python -c "
@@ -167,7 +177,12 @@ print('[CUDA] torch.cuda.get_device_name:', torch.cuda.get_device_name(0) if tor
 " || echo "${RED}[CUDA] PyTorch not installed or failed.${NC}"
 }
 
-
+# Function to install pip packages and handle failures
+# This function will attempt to upgrade pip and install the specified packages.
+# If any installation fails, it will print an error message and exit with a non-zero status.
+# Usage: pip_install_or_fail package1 package2 ...
+# This function will attempt to upgrade pip and install the specified packages.
+# If any installation fails, it will print an error message and exit with a non-zero status
 function pip_install_or_fail {
   pip install --upgrade pip || { echo '${RED}[FAIL] pip upgrade${NC}'; exit 1; }
   for pkg in "$@"; do
@@ -175,12 +190,16 @@ function pip_install_or_fail {
   done
 }
 
+# Function to download NLTK data packages
+# This function will download the specified NLTK data packages to the user's home directory.
+# If the download fails, it will print an error message and exit with a non-zero status
+# Usage: download_nltk
 function download_nltk {
   python3 -m nltk.downloader --dir=$HOME/data/nltk_data punkt averaged_perceptron_tagger wordnet stopwords || \
   { echo "${RED}[FAIL] NLTK data download${NC}"; exit 1; }
 }
 
-# 5. gremlin-nlp env setup
+# 5. gremlin-nlp env setup, if not already set up
 banner "Activating gremlin-nlp and installing deps..."
 if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
     source "$HOME/miniconda3/etc/profile.d/conda.sh"
@@ -213,7 +232,7 @@ SentenceTransformer('all-MiniLM-L6-v2', device='cuda' if torch.cuda.is_available
 " >> "$LOGFILE" 2>&1
 conda deactivate >> "$LOGFILE" 2>&1
 
-# 6. gremlin-scraper env setup
+# 6. gremlin-scraper env setup, if not already set up
 banner "Activating gremlin-scraper..."
 if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
     source "$HOME/miniconda3/etc/profile.d/conda.sh"
@@ -227,7 +246,7 @@ playwright install >> "$LOGFILE" 2>&1
 check_cuda >> "$LOGFILE" 2>&1
 conda deactivate >> "$LOGFILE" 2>&1
 
-# 7. gremlin-dashboard env setup
+# 7. gremlin-dashboard env setup, if not already set up
 banner "Activating gremlin-dashboard..."
 if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
     source "$HOME/miniconda3/etc/profile.d/conda.sh"
@@ -239,7 +258,7 @@ pip_install_or_fail torch torchvision torchaudio sentence-transformers transform
 check_cuda >> "$LOGFILE" 2>&1
 conda deactivate >> "$LOGFILE" 2>&1
 
-# 8. gremlin-orchestrator env setup
+# 8. gremlin-orchestrator env setup, if not already set up
 banner "Activating gremlin-orchestrator..."
 if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
     source "$HOME/miniconda3/etc/profile.d/conda.sh"
@@ -270,7 +289,7 @@ SentenceTransformer('all-MiniLM-L6-v2', device='cuda' if torch.cuda.is_available
 " >> "$LOGFILE" 2>&1
 conda deactivate >> "$LOGFILE" 2>&1
 
-# 9. ngrok CLI check
+# 9. ngrok CLI check, if not already installed, attempt automatic installation, if not found
 banner "Checking for ngrok CLI..."
 
 if ! command -v ngrok &> /dev/null; then
@@ -283,7 +302,7 @@ if ! command -v ngrok &> /dev/null; then
         echo "${GREEN}[INFO] ngrok installed to $HOME/.local/bin/ngrok${NC}" || \
         echo "${RED}[ERROR] Failed to install ngrok automatically.${NC}"
         export PATH="$HOME/.local/bin:$PATH"
-        # Instruct user to persist PATH for future shells
+        # Instruct user to persist PATH for future shells, if not already done
         SHELL_PROFILE=""
         if [ -n "$ZSH_VERSION" ]; then
           SHELL_PROFILE="$HOME/.zshrc"
@@ -309,11 +328,11 @@ sudo apt install -y xdotool util-linux
 
 # set -x  # Enable command tracing for debugging. Uncomment if needed.
 
-# 10. Setup systemd service, if not already set up, to manage GremlinGPT processes
-
+# 10. Setup systemd service, if not already set up, to manage GremlinGPT processes, if not already set up
+# This service will ensure that GremlinGPT starts on boot and can be managed via systemctl
 banner "Setup systemd service"
 
-# Ensure the start script exists
+# Ensure the start script exists, if not this creates it
 echo "APPLOC=$APPLOC"
 echo "START_SCRIPT=$START_SCRIPT"
 echo "USER=$USER"
@@ -344,7 +363,10 @@ sudo systemctl restart gremlin.service
 
 echo "[✓] Systemd service registered and running." >> "$LOGFILE" 2>&1
 
-# 11. Setup RTC wake & login filler from config, if available
+# 11. Setup RTC wake & login filler from config, if available, to automate wake timer and GUI login
+# This script will set the RTC wake timer and automatically log in to TWS and STT
+# It will run on system boot via cron and ensure the system wakes up at the specified time
+# and logs in to the GUI automatically, if credentials are available in config.toml
 banner "Setting RTC wake + GUI login automation..."
 
 sudo tee "$WAKE_SCRIPT" > /dev/null <<EOF
@@ -354,8 +376,10 @@ EOF
 sudo chmod +x "$WAKE_SCRIPT"
 (crontab -l 2>/dev/null | grep -v "$WAKE_SCRIPT"; echo "@reboot $WAKE_SCRIPT") | crontab -
 
-# 12. Pulling login creds from config.toml, if available
-
+# 12. Pulling login creds from config.toml, if available, to automate TWS and STT login
+# This script will automatically log in to TWS and STT using xdotool
+# It will run on system boot via cron and ensure the user is logged in to both applications
+banner "Setting up TWS and STT auto-login script..."
 tee "$LOGIN_SCRIPT" > /dev/null <<EOF
 #!/bin/zsh
 sleep 20
@@ -371,16 +395,19 @@ xdotool search --name "StocksToTrade" windowactivate --sync \
   type '$STT_PASS' key Return
 EOF
 
+# Ensure the login script is executable and set up to run on boot
 chmod +x "$LOGIN_SCRIPT"
 
 (crontab -l 2>/dev/null | grep -v "$LOGIN_SCRIPT"; echo "@reboot $LOGIN_SCRIPT") | crontab -
 
 echo "${GREEN}[✓] Wake timer, autologin, and systemd service bootstrapped.${NC}"
 
-# 13. Finalize installation, create desktop entry, and icon
+# 13. Finalize installation, create desktop entry, and icon, if not already created
+# This will create a .desktop file for GremlinGPT to allow launching from the desktop environment
+# It will also ensure the icon is set up correctly for the application
 banner "Finalizing installation and creating desktop entry..."
 
-# Create .desktop file with required fields and validate, if missing, create a fallback
+# Create .desktop file with required fields and validate, if missing, create a fallback, if not already created
 cat > "$APPDIR/AscendAI-v1.0.3.desktop" <<EOF
 [Desktop Entry]
 Version=1.0
@@ -399,8 +426,11 @@ chmod 644 "$ICON"
 
 update-desktop-database "$APPDIR" >> "$LOGFILE" 2>&1 || echo "${YELLOW}[WARNING] update-desktop-database failed. Continuing...${NC}"
 
-set -u  # Reset to default shell behavior
+set -u  # Reset to default shell behavior, ensuring undefined variables cause an error
 
-# Final message
+# Final message, indicating successful installation
+banner "GremlinGPT installation completed successfully!"
+echo "${GREEN}[✓] GremlinGPT installation completed successfully!${NC}"
+banner "You can now run GremlinGPT using the command: $APP"
 echo "${GREEN}[INSTALL] GremlinGPT installation completed successfully.${NC}"
 banner "Installation log saved to $LOGFILE('~/data/logs/install.log')"
