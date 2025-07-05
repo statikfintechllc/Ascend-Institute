@@ -15,11 +15,11 @@ from rich.console import Console
 from datetime import datetime
 
 from agent_core.task_queue import TaskQueue, reprioritize, promote_old_tasks
-from agent_core.tool_executor import execute_tool
+from executors.tool_executor import execute_tool
 from agent_core.heuristics import evaluate_task
 from agent_core.error_log import log_error
 from agents.planner_agent import enqueue_next
-from backend import globals as G
+from backend.globals import CFG, AGENT, SYSTEM, LOOP, ROLES  # import all needed symbols directly
 from backend.utils.git_ops import archive_json_log, auto_commit
 from memory.vector_store.embedder import inject_watermark
 from memory.log_history import log_event
@@ -27,7 +27,7 @@ from self_mutation_watcher.watcher import scan_and_diff
 from self_mutation_watcher.mutation_daemon import run_daemon
 from agent_core.agent_profiles import resolve_agent_role
 from self_training.generate_dataset import generate_datasets
-from kernel import apply_patch  # 🧠 Kernel hook for patchable execution
+from core.kernel import apply_patch  # 🧠 Kernel hook for patchable execution
 from utils.nltk_setup import setup_nltk_data
 import nltk
 import os
@@ -43,8 +43,8 @@ NLTK_DATA_DIR = setup_nltk_data()
 
 FSM_STATE = "IDLE"
 console = Console()
-task_queue = TaskQueue(retry_limit=G.AGENT.get("task_retry_limit", 2))
-tick_delay = G.CFG.get("loop", {}).get("fsm_tick_delay", 0.5)
+task_queue = TaskQueue()
+tick_delay = CFG.get("loop", {}).get("fsm_tick_delay", 0.5)
 DATASET_PATH = "data/nlp_training_sets/auto_generated.jsonl"
 LOG_CRASH_PATH = "run/logs/fsm_crash.log"
 
@@ -169,7 +169,7 @@ def fsm_loop():
                         archive_path, message="[autocommit] Dataset updated by FSM loop"
                     )
 
-                if G.CFG.get("git", {}).get("auto_push", False):
+                if CFG.get("git", {}).get("auto_push", False):
                     auto_push()
             except Exception as e:
                 console.log(f"[FSM] Dataset generation failed: {e}")
@@ -214,10 +214,10 @@ def run_schedule():
 if __name__ == "__main__":
     # Optionally: try/catch bulk enqueue to avoid crash if sample tasks are malformed
     try:
-        task_queue.enqueue({"type": "scrape"})
-        task_queue.enqueue({"type": "signal_scan"})
-        task_queue.enqueue({"type": "nlp", "text": "What is support and resistance?"})
-        task_queue.enqueue(
+        task_queue.enqueue_task({"type": "scrape"})
+        task_queue.enqueue_task({"type": "signal_scan"})
+        task_queue.enqueue_task({"type": "nlp", "text": "What is support and resistance?"})
+        task_queue.enqueue_task(
             {
                 "type": "code_patch",
                 "file": "agent_core/tool_executor.py",
@@ -235,14 +235,11 @@ if __name__ == "__main__":
 
 def get_fsm_status():
     """Return the current FSM state and task queue."""
+    queue_length = sum(len(task_queue.task_queue[level]) for level in ["high", "normal", "low"])
     return {
         "state": FSM_STATE,
-        "queue_length": (
-            task_queue.size()
-            if hasattr(task_queue, "size")
-            else len(getattr(task_queue, "tasks", []))
-        ),
-        "queue": getattr(task_queue, "tasks", []),
+        "queue_length": queue_length,
+        "queue": task_queue.dump(),
     }
 
 
@@ -288,14 +285,14 @@ def reset_fsm():
     """Reset FSM state and clear the task queue."""
     global FSM_STATE, task_queue
     FSM_STATE = "IDLE"
-    task_queue = TaskQueue(retry_limit=G.AGENT.get("task_retry_limit", 2))
+    task_queue = TaskQueue()
     return {"reset": True}
 
 
 def inject_task(task):
     """Inject a new task into the FSM's task queue."""
     try:
-        task_queue.enqueue(task)
+        task_queue.enqueue_task(task)
         return {"injected": True, "task": task}
     except Exception as e:
         return {"injected": False, "error": str(e)}

@@ -16,7 +16,7 @@ from nlp_engine.transformer_core import encode
 from memory.vector_store.embedder import package_embedding, inject_watermark
 from trading_core.signal_generator import generate_signals
 from self_training.feedback_loop import inject_feedback
-from agent_shell.shell_executor import run_shell_command
+from executors.shell_executor import run_shell_command
 from executors.python_executor import run_python_sandbox
 from tools.reward_model import evaluate_result, log_reward
 from memory.log_history import log_event

@@ -9,3 +9,4 @@ sentence-transformers
 langdetect
 nltk
 backend
+schedule

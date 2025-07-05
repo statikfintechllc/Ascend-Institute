@@ -10,4 +10,5 @@ playwright
 langdetect
 nltk
 beautifulsoup4
+schedule
 

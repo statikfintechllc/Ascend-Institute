@@ -27,6 +27,10 @@ from pathlib import Path
 from datetime import datetime
 from backend.globals import logger
 from memory.vector_store.embedder import embed_text, package_embedding, inject_watermark
+import shutil
+import math
+from agent_core.task_queue import enqueue_task  # FSM/task queue hook
+from self_training.feedback_loop import tag_event  # Feedback/tagging
 
 # === File Paths ===
 PORTFOLIO_FILE = Path("data/portfolio.json")
@@ -167,3 +171,120 @@ def get_portfolio_summary(current_prices: dict):
         f"[PORTFOLIO] Summary generated. Total value: ${summary['total']['value']:.2f}"
     )
     return summary
+
+
+# === Backup & Recovery ===
+BACKUP_FILE = Path("data/portfolio_backup.json")
+
+
+def backup_portfolio():
+    shutil.copy(PORTFOLIO_FILE, BACKUP_FILE)
+    logger.info("[PORTFOLIO] Backup created.")
+
+
+def restore_portfolio():
+    if BACKUP_FILE.exists():
+        shutil.copy(BACKUP_FILE, PORTFOLIO_FILE)
+        logger.info("[PORTFOLIO] Portfolio restored from backup.")
+    else:
+        logger.warning("[PORTFOLIO] No backup found.")
+
+
+# === Audit Trail ===
+def audit_portfolio():
+    portfolio = load_portfolio()
+    history = []
+    if HISTORY_FILE.exists():
+        with open(HISTORY_FILE) as f:
+            history = [json.loads(line) for line in f]
+    audit = {"portfolio": portfolio, "history": history, "timestamp": datetime.utcnow().isoformat()}
+    logger.info(f"[PORTFOLIO] Audit: {audit}")
+    return audit
+
+
+# === Advanced Trade Types ===
+def place_order(symbol, action, shares, price, order_type="market", limit_price=None, stop_price=None):
+    if order_type == "market":
+        update_position(symbol, price, shares, action)
+    elif order_type == "limit":
+        if (action == "buy" and price <= limit_price) or (action == "sell" and price >= limit_price):
+            update_position(symbol, price, shares, action)
+        else:
+            logger.info(f"[PORTFOLIO] Limit order not filled: {symbol} {action} @ {limit_price}")
+    elif order_type == "stop":
+        if (action == "buy" and price >= stop_price) or (action == "sell" and price <= stop_price):
+            update_position(symbol, price, shares, action)
+        else:
+            logger.info(f"[PORTFOLIO] Stop order not triggered: {symbol} {action} @ {stop_price}")
+    else:
+        logger.warning(f"[PORTFOLIO] Unknown order type: {order_type}")
+    tag_event("trade", {"symbol": symbol, "action": action, "shares": shares, "price": price, "order_type": order_type})
+    enqueue_task({"type": "trade_event", "symbol": symbol, "action": action, "shares": shares, "price": price, "order_type": order_type})
+
+
+# === Portfolio Analytics ===
+def calculate_risk_metrics(current_prices: dict):
+    portfolio = load_portfolio()
+    total_value = sum(current_prices.get(sym, d["price"]) * d["shares"] for sym, d in portfolio.items())
+    exposures = {sym: (current_prices.get(sym, d["price"]) * d["shares"]) / total_value if total_value else 0 for sym, d in portfolio.items()}
+    diversification = 1 - sum(v ** 2 for v in exposures.values())  # Herfindahl index
+    returns = []
+    for sym, d in portfolio.items():
+        entry = d["price"]
+        curr = current_prices.get(sym, entry)
+        if entry > 0:
+            returns.append((curr - entry) / entry)
+    mean_return = sum(returns) / len(returns) if returns else 0
+    stddev = math.sqrt(sum((r - mean_return) ** 2 for r in returns) / len(returns)) if returns else 0
+    sharpe = mean_return / stddev if stddev else 0
+    metrics = {
+        "exposures": exposures,
+        "diversification": diversification,
+        "sharpe_ratio": round(sharpe, 3),
+        "mean_return": round(mean_return, 4),
+        "stddev": round(stddev, 4),
+    }
+    logger.info(f"[PORTFOLIO] Risk metrics: {metrics}")
+    return metrics
+
+
+# === CLI/API Interface ===
+def cli_interface():
+    import argparse
+    parser = argparse.ArgumentParser(description="GremlinGPT Portfolio Tracker CLI")
+    parser.add_argument("action", choices=["buy", "sell", "audit", "backup", "restore", "summary", "risk"])
+    parser.add_argument("--symbol", type=str)
+    parser.add_argument("--shares", type=int, default=0)
+    parser.add_argument("--price", type=float, default=0.0)
+    parser.add_argument("--order_type", type=str, default="market")
+    parser.add_argument("--limit_price", type=float)
+    parser.add_argument("--stop_price", type=float)
+    parser.add_argument("--current_prices", type=str, help="JSON string of current prices")
+    args = parser.parse_args()
+
+    if args.action in ["buy", "sell"]:
+        place_order(
+            args.symbol,
+            args.action,
+            args.shares,
+            args.price,
+            order_type=args.order_type,
+            limit_price=args.limit_price,
+            stop_price=args.stop_price,
+        )
+    elif args.action == "audit":
+        print(json.dumps(audit_portfolio(), indent=2))
+    elif args.action == "backup":
+        backup_portfolio()
+    elif args.action == "restore":
+        restore_portfolio()
+    elif args.action == "summary":
+        prices = json.loads(args.current_prices) if args.current_prices else {}
+        print(json.dumps(get_portfolio_summary(prices), indent=2))
+    elif args.action == "risk":
+        prices = json.loads(args.current_prices) if args.current_prices else {}
+        print(json.dumps(calculate_risk_metrics(prices), indent=2))
+
+
+if __name__ == "__main__":
+    cli_interface()

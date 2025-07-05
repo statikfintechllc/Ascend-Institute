@@ -7,7 +7,7 @@
 
 # !/usr/bin/env python3
 
-# GremlinGPT v5 :: Module Integrity Directive
+# GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 # It must:
 #   - Integrate seamlessly into the architecture defined in the full outline

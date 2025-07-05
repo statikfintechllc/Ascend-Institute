@@ -108,12 +108,12 @@ Core Python Nodes
 	•	nlp_engine/parser.py
 	•	nlp_engine/mini_attention.py
 	•	agent_core/task_queue.py
-	•	agent_core/tool_executor.py
 	•	agent_core/fsm.py
 	•	agent_core/heuristics.py
 	•	agent_core/error_log.py
-	•	agent_shell/shell_executor.py
 	•	executors/python_executor.py
+	•	executors/shell_executor.py
+	•	executors/tool_executor.py
 	•	scraper/scraper_loop.py
 	•	scraper/playwright_handler.py
 	•	scraper/dom_navigator.py

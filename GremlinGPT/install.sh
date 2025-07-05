@@ -1,6 +1,32 @@
 #!/usr/bin/env zsh
 
-# Set up logging
+# === Move all files and subdirectories (including hidden ones) from GremlinGPT to $HOME, overwriting existing ===
+REPO="$(cd "$(dirname "$(readlink -f "$0")")/.." && pwd)"
+SRC="$REPO/GremlinGPT"
+DEST="$HOME"
+
+setopt extended_glob
+for item in "$SRC"/*(N) "$SRC"/.*(N); do
+  [[ "$(basename "$item")" == "." || "$(basename "$item")" == ".." ]] && continue
+  # Do not move the icon directory to avoid overwriting/corrupting the icon
+  if [[ "$(basename "$item")" == "Icon_Logo" ]]; then
+    continue
+  fi
+  # Do not move the currently running install.sh
+  if [[ "$item" == "$0" ]]; then
+    continue
+  fi
+  target="$DEST/$(basename "$item")"
+  if [ -e "$target" ]; then
+    rm -rf "$target"
+  fi
+  mv -f "$item" "$DEST/"
+done
+unsetopt extended_glob
+
+cd $HOME || { echo "[ERROR] Failed to change directory to $HOME"; exit 1; }
+
+# === Set up logging and variables AFTER move ===
 LOGFILE="data/logs/install.log"
 : > "$LOGFILE"         # Overwrite log file
 exec > >(tee -a "$LOGFILE") 2>&1
@@ -23,11 +49,8 @@ echo "${GREEN}[INSTALL] Initializing GremlinGPT installation...${NC}"
 banner "Initializing GremlinGPT installation..."
 
 # Proper definition of variables, ensuring they are set before use
-REPO="$(cd "$(dirname "$(readlink -f "$0")")/.." && pwd)"
 APPDIR="$HOME/.local/share/applications"
 ICNDIR="$HOME/.local/share/icons"
-SRC="$REPO/GremlinGPT"
-DEST="$HOME"
 APPLOC="$HOME"
 WAKE_SCRIPT="/usr/local/bin/set-wake-timer.sh"
 LOGIN_SCRIPT="$APPLOC/utils/tws_stt_autologin.sh"
@@ -61,22 +84,6 @@ TWS_USER=$(grep -oP '(?<=tws_username\\s?=\\s?")[^"]*' "$CONFIG_PATH")
 TWS_PASS=$(grep -oP '(?<=tws_password\\s?=\\s?")[^"]*' "$CONFIG_PATH")
 STT_USER=$(grep -oP '(?<=stt_username\\s?=\\s?")[^"]*' "$CONFIG_PATH")
 STT_PASS=$(grep -oP '(?<=stt_password\\s?=\\s?")[^"]*' "$CONFIG_PATH")
-
-# Move all files and subdirectories (including hidden ones) from GremlinGPT to $HOME, overwriting existing
-setopt extended_glob
-for item in "$SRC"/*(N) "$SRC"/.*(N); do
-  [[ "$(basename "$item")" == "." || "$(basename "$item")" == ".." ]] && continue
-  # Do not move the icon directory to avoid overwriting/corrupting the icon
-  if [[ "$(basename "$item")" == "Icon_Logo" ]]; then
-    continue
-  fi
-  target="$DEST/$(basename "$item")"
-  if [ -e "$target" ]; then
-    rm -rf "$target"
-  fi
-  mv -f "$item" "$DEST/"
-done
-unsetopt extended_glob
 
 # Ensure the log directory exists
 git stash || echo "${YELLOW}[WARNING] git stash failed, continuing...${NC}"

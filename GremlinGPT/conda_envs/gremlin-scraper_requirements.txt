@@ -10,3 +10,4 @@ loguru
 sentence-transformers
 langdetect
 nltk
+schedule

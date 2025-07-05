@@ -47,7 +47,6 @@ GremlinGPT/
 │   ├── fsm.py
 │   ├── task_queue.py
 │   ├── heuristics.py
-│   ├── tool_executor.py
 │   ├── agent_profiles.yaml
 │   ├── agent_profiles.py
 │   └── error_log.py
@@ -181,8 +180,9 @@ GremlinGPT/
 │
 ├── executors/
 │   │
+│   ├── python_executor.py
 │   ├── shell_executor.py
-│   └── python_executor.py
+│   └── tool_executor.py
 │
 ├── frontend/
 │   │

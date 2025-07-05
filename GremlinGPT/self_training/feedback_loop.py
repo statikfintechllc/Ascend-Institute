@@ -7,7 +7,7 @@
 
 # !/usr/bin/env python3
 
-# GremlinGPT v5 :: Module Integrity Directive
+# GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 # It must:
 #   - Integrate seamlessly into the architecture defined in the full outline
@@ -27,7 +27,7 @@ import os
 from datetime import datetime
 from pathlib import Path
 from loguru import logger
-from memory.vector_store.embedder import inject_watermark
+from memory.vector_store.embedder import inject_watermark, package_embedding
 
 # Paths
 LOG_PATH = Path("data/logs/")
@@ -45,6 +45,8 @@ def inject_feedback():
         "time": datetime.utcnow().isoformat(),
         "note": "Auto-diff-based training cycle",
         "watermark": "source:GremlinGPT",
+        "context": "Feedback loop triggered by mutation event"
+        
     }
 
     try:
@@ -97,3 +99,31 @@ def clear_trigger():
     if TRIGGER_FILE.exists():
         TRIGGER_FILE.unlink()
         logger.info("[FEEDBACK] Retrain trigger cleared.")
+
+def tag_event(tag, meta=None):
+    """Tag an event for feedback, traceability, and cross-module signaling."""
+    event = {
+        "tag": tag,
+        "meta": meta or {},
+        "timestamp": datetime.utcnow().isoformat(),
+        "watermark": "source:GremlinGPT",
+    }
+    try:
+        # Log to feedback log
+        log_path = LOG_PATH / "tagged_events.jsonl"
+        with open(log_path, "a") as f:
+            f.write(json.dumps(event) + "\n")
+        # Archive for traceability
+        archive_trigger(event)
+        logger.info(f"[FEEDBACK] Event tagged: {tag} | {meta}")
+    except Exception as e:
+        logger.error(f"[FEEDBACK] Failed to tag event: {e}")
+
+__all__ = [
+    "inject_feedback",
+    "archive_trigger",
+    "auto_commit_push",
+    "check_trigger",
+    "clear_trigger",
+    "tag_event",
+]
