@@ -399,13 +399,13 @@ href="https://www.gmail.com">
 
   <!-- Zenodo Archives -->
   <a href="https://doi.org/10.5281/zenodo.15717788">
-    <img src="https://img.shields.io/badge/GovSeverance%20v1.0-black?style=for-the-badge&logo=zenodo&logoColor=white" alt="GovSeverance v1.0"/>
+    <img src="https://img.shields.io/badge/The%20GovSeverance%20Doctrine-black?style=for-the-badge&logo=zenodo&logoColor=white" alt="GovSeverance v1.0"/>
   </a>
   <a href="https://doi.org/10.5281/zenodo.15725639">
     <img src="https://img.shields.io/badge/Mutation%20Manifesto-black?style=for-the-badge&logo=zenodo&logoColor=white" alt="Mutation Manifesto"/>
   </a>
   <a href="https://doi.org/10.5281/zenodo.15825120">
-    <img src="https://img.shields.io/badge/OpenAI%20MCP%20Analysis-black?style=for-the-badge&logo=zenodo&logoColor=white" alt="OpenAI MCP Analysis"/>
+    <img src="https://img.shields.io/badge/GenX%20Didn't%20Fail-black?style=for-the-badge&logo=zenodo&logoColor=white" alt="OpenAI MCP Analysis"/>
   </a>
 </div>
 <div align="center">
