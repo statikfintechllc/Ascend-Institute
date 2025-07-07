@@ -1,6 +1,9 @@
 <link rel="stylesheet" type="text/css" href="custom.css">
 <div align="center">
-<div align="center">
+	
+[![Sponsor 💪 statikfintechllc](https://img.shields.io/badge/Sponsor%20%F0%9F%92%AA%20statikfintechllc-darkred?logo=github&style=for-the-badge)](https://github.com/sponsors/statikfintechllc)
+	
+ <div align="center">
   <img  
 	  src="https://raw.githubusercontent.com/KDK-Grim/WorkFlowRepo-Mirror/master/docs/ticker-bot/ticker.gif" 
   alt="Repo Ticker Stats" 
