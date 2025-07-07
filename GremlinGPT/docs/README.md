@@ -63,12 +63,15 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
 
 # GremlinGPT: The Real Autonomous Agent v1.0.3
 
-### The world’s first R‑SRACS   
+### The world’s first *RS-RACS*   
 ***Recursive, Self-Referential Autonomous Cognitive System***  
 
-**GremlinGPT is a Recursive, Self-Referential Autonomous Cognitive System (R‑SRACS), deployable as a Decentralized Autonomous Intelligence Node (DAIN) with multi-agent Emergent Network properties (EMAN) and a Meta-Synthetic Persona Engine (MSPE) interface.**
-
 </div>
+
+> [!IMPORTANT]
+>
+> GremlinGPT is a Recursive, Self-Referential Autonomous Cognitive System (R‑SRACS)
+> Deployable as a Decentralized Autonomous Intelligence Node (DAIN) with multi-agent Emergent Network properties (EMAN) and a Meta-Synthetic Persona Engine (MSPE) interface.
 
 <div align="center">
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
