@@ -10,7 +10,6 @@ exec > >(tee -a "$LOGFILE") 2>&1
 set -e
 
 # Guarantee login+interactive shell for environment, if not already started
-if [[ -z "$LOGIN_SHELL_STARTED" && "$0" != "-bash"
 if [[ -z "$LOGIN_SHELL_STARTED" ]]; then
     export LOGIN_SHELL_STARTED=1
     exec "$SHELL" -l -i "$0" "$@"
@@ -21,8 +20,8 @@ APP_TITLE="AscendAI: GremlinGPT v1.0.3"
 SUB_TITLE="From: SFTi"
 
 # Resolve script dir, fallback to home if not found
-APPDIR="$HOME/.local/share/applications"
 APPLOC="$HOME"
+APPDIR="$HOME/.local/share/applications"
 START_SCRIPT="$APPLOC/run/start_all.sh"
 STOP_SCRIPT="$APPLOC/run/stop_all.sh"
 CHAT_SCRIPT="$APPLOC/run/cli.py"
