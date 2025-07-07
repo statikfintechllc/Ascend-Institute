@@ -20,45 +20,25 @@ import os
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(PROJECT_ROOT)
 
-# --- Set NLTK data dir using environment variable (set by shell or fallback to default) ---
-NLTK_DATA_DIR = os.environ.get("NLTK_DATA") or os.path.join(
-    PROJECT_ROOT, "data", "nltk_data"
-)
-
+# --- Core Imports ---
 import nltk
-
-if not os.path.exists(NLTK_DATA_DIR):
-    os.makedirs(NLTK_DATA_DIR, exist_ok=True)
-nltk.data.path.append(NLTK_DATA_DIR)
-
-
-def ensure_nltk_resources():
-    resources = [
-        ("punkt", "tokenizers/punkt"),
-        ("averaged_perceptron_tagger", "taggers/averaged_perceptron_tagger"),
-        ("wordnet", "corpora/wordnet"),
-        ("stopwords", "corpora/stopwords"),
-    ]
-    for pkg, res_path in resources:
-        try:
-            nltk.data.find(res_path)
-        except LookupError:
-            nltk.download(pkg, download_dir=NLTK_DATA_DIR)
-
-
-# Ensure resources only if missing (fast startup)
-ensure_nltk_resources()
-
+from utils.nltk_setup import setup_nltk_data  # ✅ PROPER FIX
 from nlp_engine.parser import parse_nlp
 from loguru import logger
-from backend.api.chat_handler import chat
+from backend.api.chat_handler import chat, app
 
+# --- Ensure NLTK Paths and Resources (centralized) ---
+NLTK_DATA_DIR = setup_nltk_data()
+if NLTK_DATA_DIR not in nltk.data.path:
+    nltk.data.path.append(NLTK_DATA_DIR)
+
+# --- Banner ---
 BANNER = """
 🌩️  GremlinGPT Terminal v1.0.3 [NLP-Only Mode]
 Type your command. Type 'exit' to leave.
 """
 
-
+# --- CLI Main ---
 def main():
     print(BANNER)
     while True:
@@ -73,16 +53,22 @@ def main():
 
             print("\n🧠 NLP Engine Output:")
             print(f"- Intent route: {result['route']}")
-            print(f"- Tokens: {result['tokens'][:10]}...")  # show sample
-            print(f"- POS tags: {result['pos'][:5]}...")  # show sample
+            print(f"- Tokens: {result['tokens'][:10]}...")
+            print(f"- POS tags: {result['pos'][:5]}...")
             print(f"- Entities: {result['entities']}")
             print(f"- Financial terms: {result['financial_hits']}")
             print(f"- Code structures: {result['code_entities']}")
 
-            # Call GremlinGPT's chat handler
-            response = chat(user_input)
-            print("🤖 GremlinGPT:", response.get("message", "[No response]"))
+            # --- Flask app context for chat() ---
+            with app.app_context():
+                response = chat(user_input)
 
+            if hasattr(response, "get_json"):
+                parsed = response.get_json()
+            else:
+                parsed = response
+
+            print("🤖 GremlinGPT:", parsed.get("message", "[No response]"))
             print("-" * 40)
 
         except KeyboardInterrupt:
@@ -96,7 +82,6 @@ def main():
             print(
                 "An error occurred while handling your input. Please check the logs for details."
             )
-
 
 if __name__ == "__main__":
     main()
