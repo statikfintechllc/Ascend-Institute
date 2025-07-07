@@ -97,6 +97,13 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
 **Mission: Autonomous Sovereignty & Human Financial Liberation**
 
 </div>
+</div>
+
+> [!NOTE]
+>
+>*We have received our 2nd Star, Thank you, KDK-Grim.
+>Let’s get GremlinGPT Seen & Funded.*
+
 <div align="center">
 
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
@@ -136,14 +143,10 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 <div align="center">
 	
 # AscendAI Traffic</h1>
+ 
+ **The world’s first *RS-RACS***  
+*Recursive, Self-Referential Autonomous Cognitive System*
 
-  <em>
-    We have received our 2nd Star, Thank you, KDK-Grim, and our 3nd, Let’s get GremlinGPT Seen & Funded.  
-  </em>
-</div>
-<div align="center">
-	
- **The world’s first *R‑SRACS* (Recursive, Self-Referential Autonomous Cognitive System)**
 </div> 
 <div align="center">
   <a href="https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/About US/">
