@@ -14,7 +14,7 @@ import sys
 import traceback
 from datetime import datetime
 
-NLP_OUT_LOG = "nlp.out"
+NLP_OUT_LOG = "$HOME/data/logs/nlp.out"
 
 
 def log_nlp_out(message):
