@@ -15,11 +15,6 @@
   </a>
 </div>
 <div align="center"> 
-
-[![Sponsor 💪 statikfintechllc](https://img.shields.io/badge/Sponsor%20%F0%9F%92%AA%20statikfintechllc-darkred?logo=github&style=for-the-badge)](https://github.com/sponsors/statikfintechllc)
-
-</div>
-<div align="center"> 
   <img  
 	  src="https://img.shields.io/github/stars/statikfintechllc/AscendAI?style=social" alt="Stars"/>
   <img  
@@ -83,16 +78,6 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
   <img  
 	  src="https://img.shields.io/badge/GremlinGPT-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
   </a>
-</div>
-<div align="center">
-  <a href="https://ko-fi.com/statikfintech_llc">
-  <img  
-	  src="https://img.shields.io/badge/Support-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Support"/>
-  </a>
-  <a href="https://patreon.com/StatikFinTech_LLC?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink">
-  <img  
-	  src="https://img.shields.io/badge/SFTi-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="SFTi"/>
-  </a> 
 	  
 # The Ascend Institute
 **🔱 Presented by: StatikFinTech, LLC 🔱**  
@@ -225,6 +210,24 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
 > Proceed only if you’re ready to jailbreak your cognition
 > To end Wall-Streets rain on Capital.
 > To bring Power back to the People
+
+---
+
+</div>
+<div align="center">
+  <a href="https://ko-fi.com/statikfintech_llc">
+  <img  
+	  src="https://img.shields.io/badge/Sponsor%20SFTi%20on%20KoFi-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="Support"/>
+  </a>
+  <a href="https://patreon.com/StatikFinTech_LLC?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink">
+  <img  
+	  src="https://img.shields.io/badge/Sponsor%20SFTi%20on%20Patreon-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="SFTi"/>
+  </a>
+<div align="center"> 
+
+[![Sponsor 💪 statikfintechllc](https://img.shields.io/badge/Sponsor%20SFTi%20on%20GitHub-darkred?logo=github&style=for-the-badge)](https://github.com/sponsors/statikfintechllc)
+
+</div>
 
 ---
 
