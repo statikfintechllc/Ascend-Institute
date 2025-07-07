@@ -1,5 +1,3 @@
-# GremlinGPT/nlp_engine/pos_tagger.py
-
 #!/usr/bin/env python3
 
 # ─────────────────────────────────────────────────────────────
@@ -18,26 +16,25 @@ from nltk import pos_tag, word_tokenize
 from datetime import datetime
 from loguru import logger
 
+from utils.nltk_setup import setup_nltk_data
 from memory.vector_store.embedder import embed_text, package_embedding, inject_watermark
+
+# ─────────────────────────────────────────────────────────────
+# Init
+# ─────────────────────────────────────────────────────────────
 
 WATERMARK = "source:GremlinGPT"
 ORIGIN = "pos_tagger"
 
-# Ensure punkt is available
-try:
-    nltk.data.find("tokenizers/punkt")
-except LookupError:
-    nltk.download("punkt", download_dir="/usr/local/share/nltk_data")
+# Ensure nltk resources are prepped and paths registered
+nltk_path = setup_nltk_data()
+
+# Optional: quiet secondary tagger ensure
 nltk.download("averaged_perceptron_tagger", quiet=True)
 
-# Ensure global nltk data path is registered
-NLTK_PATHS = ["/usr/local/share/nltk_data", ".data/nltk_data"]
-for path in NLTK_PATHS:
-    nltk.data.path.append(path)
-
-
-MODEL = CFG["nlp"].get("tokenizer_model", "bert-base-uncased")
-
+# ─────────────────────────────────────────────────────────────
+# POS Tagging
+# ─────────────────────────────────────────────────────────────
 
 def get_pos_tags(text):
     """
@@ -48,7 +45,6 @@ def get_pos_tags(text):
         tokens = word_tokenize(text)
         tags = pos_tag(tokens)
 
-        # Structured trace metadata
         summary = f"POS tagging: {len(tokens)} tokens | Example: {tags[:3]}"
         vector = embed_text(summary)
 
@@ -64,7 +60,6 @@ def get_pos_tags(text):
         )
 
         inject_watermark(origin=ORIGIN)
-
         return tags
 
     except Exception as e:
