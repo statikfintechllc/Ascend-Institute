@@ -122,17 +122,9 @@ for dir in "${DIRS[@]}"; do
   [ ! -d "$dir" ] && mkdir -p "$dir" && echo "Created: $dir" || echo "Exists:  $dir"
 done
 
-# 2. Placeholder files, if not already created
-banner "Creating placeholder metadata/log files if missing..."
-
-touch memory/local_index/metadata.db
-touch data/logs/runtime.log
-touch run/checkpoints/state_snapshot.json
-touch data/logs/bootstrap.log
-
 banner "Ensuring conda is initialized..."
 
-# 3. Conda init, if not already initialized
+# 2. Conda init, if not already initialized
 echo "[*] Ensuring conda is initialized..."
 if ! command -v conda &> /dev/null; then
     if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
@@ -141,7 +133,7 @@ if ! command -v conda &> /dev/null; then
 fi
 eval "$(conda shell.zsh hook 2>/dev/null)" || eval "$(conda shell.bash hook 2>/dev/null)"
 
-# 4. Build all conda environments, if not already built
+# 3. Build all conda environments, if not already built
 banner "Building all conda environments via ./conda_envs/create_envs.sh..."
 
 # Add this block before running conda commands as root, to ensure conda is sourced correctly
@@ -199,7 +191,7 @@ function download_nltk {
   { echo "${RED}[FAIL] NLTK data download${NC}"; exit 1; }
 }
 
-# 5. gremlin-nlp env setup, if not already set up
+# 4. gremlin-nlp env setup, if not already set up
 banner "Activating gremlin-nlp and installing deps..."
 if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
     source "$HOME/miniconda3/etc/profile.d/conda.sh"
@@ -232,7 +224,7 @@ SentenceTransformer('all-MiniLM-L6-v2', device='cuda' if torch.cuda.is_available
 " >> "$LOGFILE" 2>&1
 conda deactivate >> "$LOGFILE" 2>&1
 
-# 6. gremlin-scraper env setup, if not already set up
+# 5. gremlin-scraper env setup, if not already set up
 banner "Activating gremlin-scraper..."
 if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
     source "$HOME/miniconda3/etc/profile.d/conda.sh"
@@ -246,7 +238,7 @@ playwright install >> "$LOGFILE" 2>&1
 check_cuda >> "$LOGFILE" 2>&1
 conda deactivate >> "$LOGFILE" 2>&1
 
-# 7. gremlin-dashboard env setup, if not already set up
+# 6. gremlin-dashboard env setup, if not already set up
 banner "Activating gremlin-dashboard..."
 if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
     source "$HOME/miniconda3/etc/profile.d/conda.sh"
@@ -258,7 +250,7 @@ pip_install_or_fail torch torchvision torchaudio sentence-transformers transform
 check_cuda >> "$LOGFILE" 2>&1
 conda deactivate >> "$LOGFILE" 2>&1
 
-# 8. gremlin-orchestrator env setup, if not already set up
+# 7. gremlin-orchestrator env setup, if not already set up
 banner "Activating gremlin-orchestrator..."
 if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
     source "$HOME/miniconda3/etc/profile.d/conda.sh"
@@ -289,7 +281,7 @@ SentenceTransformer('all-MiniLM-L6-v2', device='cuda' if torch.cuda.is_available
 " >> "$LOGFILE" 2>&1
 conda deactivate >> "$LOGFILE" 2>&1
 
-# 9. ngrok CLI check, if not already installed, attempt automatic installation, if not found
+# 8. ngrok CLI check, if not already installed, attempt automatic installation, if not found
 banner "Checking for ngrok CLI..."
 
 if ! command -v ngrok &> /dev/null; then
@@ -328,7 +320,7 @@ sudo apt install -y xdotool util-linux
 
 # set -x  # Enable command tracing for debugging. Uncomment if needed.
 
-# 10. Setup systemd service, if not already set up, to manage GremlinGPT processes, if not already set up
+# 9. Setup systemd service, if not already set up, to manage GremlinGPT processes, if not already set up
 # This service will ensure that GremlinGPT starts on boot and can be managed via systemctl
 banner "Setup systemd service"
 
@@ -363,7 +355,7 @@ sudo systemctl restart gremlin.service
 
 echo "[✓] Systemd service registered and running." >> "$LOGFILE" 2>&1
 
-# 11. Setup RTC wake & login filler from config, if available, to automate wake timer and GUI login
+# 10. Setup RTC wake & login filler from config, if available, to automate wake timer and GUI login
 # This script will set the RTC wake timer and automatically log in to TWS and STT
 # It will run on system boot via cron and ensure the system wakes up at the specified time
 # and logs in to the GUI automatically, if credentials are available in config.toml
@@ -376,7 +368,7 @@ EOF
 sudo chmod +x "$WAKE_SCRIPT"
 (crontab -l 2>/dev/null | grep -v "$WAKE_SCRIPT"; echo "@reboot $WAKE_SCRIPT") | crontab -
 
-# 12. Pulling login creds from config.toml, if available, to automate TWS and STT login
+# 11. Pulling login creds from config.toml, if available, to automate TWS and STT login
 # This script will automatically log in to TWS and STT using xdotool
 # It will run on system boot via cron and ensure the user is logged in to both applications
 banner "Setting up TWS and STT auto-login script..."
@@ -402,7 +394,7 @@ chmod +x "$LOGIN_SCRIPT"
 
 echo "${GREEN}[✓] Wake timer, autologin, and systemd service bootstrapped.${NC}"
 
-# 13. Finalize installation, create desktop entry, and icon, if not already created
+# 12. Finalize installation, create desktop entry, and icon, if not already created
 # This will create a .desktop file for GremlinGPT to allow launching from the desktop environment
 # It will also ensure the icon is set up correctly for the application
 banner "Finalizing installation and creating desktop entry..."
@@ -428,7 +420,7 @@ update-desktop-database "$APPDIR" >> "$LOGFILE" 2>&1 || echo "${YELLOW}[WARNING]
 
 set -u  # Reset to default shell behavior, ensuring undefined variables cause an error
 
-# Final message, indicating successful installation
+# 13. Final message, indicating successful installation
 banner "GremlinGPT installation completed successfully!"
 echo "${GREEN}[✓] GremlinGPT installation completed successfully!${NC}"
 banner "You can now run GremlinGPT using the command: $APP"
