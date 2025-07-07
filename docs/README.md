@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="custom.css">
-<div align="center">	
- <div align="center">
+<div align="center">	 
+<div align="center">
   <img  
 	  src="https://raw.githubusercontent.com/KDK-Grim/WorkFlowRepo-Mirror/master/docs/ticker-bot/ticker.gif" 
   alt="Repo Ticker Stats" 
@@ -223,6 +223,7 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
   <img  
 	  src="https://img.shields.io/badge/Sponsor%20SFTi%20on%20Patreon-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="SFTi"/>
   </a>
+</div>
 <div align="center"> 
 
 [![Sponsor 💪 statikfintechllc](https://img.shields.io/badge/Sponsor%20SFTi%20on%20GitHub-darkred?logo=github&style=for-the-badge)](https://github.com/sponsors/statikfintechllc)
@@ -466,7 +467,7 @@ href="https://www.gmail.com">
 
 <details>
 <summary>🤝 Open for Support 🤝</summary>
-
+	
 ## Support This Project
 *If you find this project valuable and want to support its continued development, consider sponsoring or contributing*
 
@@ -544,6 +545,13 @@ href="https://www.gmail.com">
 </table>
 
 </div>
+
+<div align="center">
+  <a href="https://maps.app.goo.gl/7tekD9g8i7FkWqxk8" target="_blank" rel="noopener">
+  <img src="https://img.shields.io/badge/StatikFinTeck--LLC-Google%20Verified-ff0000?style=for-the-badge&logo=googlemaps&logoColor=white&labelColor=000000" />
+  </a>
+</div>
+
 
 📢 **GremlinGPT Mutation Zone Live**  
 
