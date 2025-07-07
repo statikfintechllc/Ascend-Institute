@@ -1,8 +1,5 @@
 <link rel="stylesheet" type="text/css" href="custom.css">
-<div align="center">
-	
-[![Sponsor 💪 statikfintechllc](https://img.shields.io/badge/Sponsor%20%F0%9F%92%AA%20statikfintechllc-darkred?logo=github&style=for-the-badge)](https://github.com/sponsors/statikfintechllc)
-	
+<div align="center">	
  <div align="center">
   <img  
 	  src="https://raw.githubusercontent.com/KDK-Grim/WorkFlowRepo-Mirror/master/docs/ticker-bot/ticker.gif" 
@@ -16,6 +13,11 @@
    <a href="https://github.com/KDK-Grim/WorkFlowRepo-Mirror">
   <img src="https://img.shields.io/badge/Click%20to%20Install-Advance%20Mirror%20Workflow-darkred?labelColor=black" alt="GremlinGPT Alpha"/>
   </a>
+</div>
+<div align="center"> 
+
+[![Sponsor 💪 statikfintechllc](https://img.shields.io/badge/Sponsor%20%F0%9F%92%AA%20statikfintechllc-darkred?logo=github&style=for-the-badge)](https://github.com/sponsors/statikfintechllc)
+
 </div>
 <div align="center"> 
   <img  
