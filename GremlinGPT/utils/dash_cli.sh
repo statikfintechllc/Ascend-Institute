@@ -10,7 +10,7 @@ exec > >(tee -a "$LOGFILE") 2>&1
 set -e
 
 # Guarantee login+interactive shell for environment, if not already started
-if [[ -z "$LOGIN_SHELL_STARTED" ]]; then
+if [[ -z "$LOGIN_SHELL_STARTED" && "$0" != "-bash" ]]; then
     export LOGIN_SHELL_STARTED=1
     exec "$SHELL" -l -i "$0" "$@"
     exit 1
