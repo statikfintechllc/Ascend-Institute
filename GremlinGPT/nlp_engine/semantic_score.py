@@ -1,16 +1,34 @@
 #!/usr/bin/env python3
 
+# ─────────────────────────────────────────────────────────────
+# ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
+# Built under the GremlinGPT Dual License v1.0
+# © 2025 StatikFintechLLC / AscendAI Project
+# Contact: ascend.gremlin@gmail.com
+# ─────────────────────────────────────────────────────────────
+
+# GremlinGPT v1.0.3 :: nlp_engine/semantic_score.py :: Module Integrity Directive
+# Self-improving semantic similarity engine for GremlinGPT.
+# This script is a component of the GremlinGPT system, under Alpha expansion.
+
 import re
 import numpy as np
 import langdetect
 import torch
 from backend.globals import logger
+from backend.globals import CFG
 from sentence_transformers import SentenceTransformer, util
 from utils.nltk_setup import setup_nltk_data
 import nltk
 from nltk.tokenize import word_tokenize
+from memory.log_history import log_event
 
-setup_nltk_data()
+try:
+    from self_training.feedback_loop import inject_feedback
+except ImportError:
+    inject_feedback = None
+
+NLTK_DATA_DIR = setup_nltk_data()
 
 WATERMARK = "source:GremlinGPT"
 ORIGIN = "semantic_score"
@@ -174,6 +192,93 @@ def semantic_similarity(
         return 0.0
 
 
+def reasoned_similarity(
+    a: str,
+    b: str,
+    dynamic_language=True,
+    sentence_level=False,
+    feedback=None,
+    web_augment=False,
+) -> dict:
+    """
+    Computes semantic similarity and returns a reasoned explanation, logs the event, and optionally injects feedback.
+    """
+    result = {
+        "score": None,
+        "explanation": None,
+        "web": None,
+        "tokens_a": [],
+        "tokens_b": [],
+        "lang": None,
+        "sentence_level": sentence_level,
+    }
+    try:
+        text_a, text_b = clean_text(a), clean_text(b)
+        tokens_a, tokens_b = tokenize(text_a), tokenize(text_b)
+        result["tokens_a"] = tokens_a
+        result["tokens_b"] = tokens_b
+        if dynamic_language:
+            lang_a = _get_lang(text_a)
+            lang_b = _get_lang(text_b)
+            lang = lang_a if lang_a == lang_b else "en"
+        else:
+            lang = "en"
+        result["lang"] = lang
+        model = _get_model(lang)
+        if not model:
+            result["score"] = 0.0
+            result["explanation"] = f"No valid model loaded for lang={lang}."
+            return result
+        if sentence_level:
+            sents_a = split_sentences(text_a)
+            sents_b = split_sentences(text_b)
+            embs_a = model.encode(sents_a, convert_to_tensor=True)
+            embs_b = model.encode(sents_b, convert_to_tensor=True)
+            sims = util.cos_sim(embs_a, embs_b)
+            max_per_a = np.max(sims.cpu().numpy(), axis=1)
+            max_per_b = np.max(sims.cpu().numpy(), axis=0)
+            sim_avg = (np.mean(max_per_a) + np.mean(max_per_b)) / 2.0
+            sim_clamped = float(np.clip(sim_avg, 0.0, 1.0))
+            result["score"] = sim_clamped
+            result["explanation"] = f"Sentence-level similarity: {sim_clamped:.4f} (lang: {lang})"
+        else:
+            emb_a = model.encode(text_a, convert_to_tensor=True)
+            emb_b = model.encode(text_b, convert_to_tensor=True)
+            sim = util.cos_sim(emb_a, emb_b).item()
+            sim_clamped = max(0.0, min(1.0, float(sim)))
+            result["score"] = sim_clamped
+            result["explanation"] = f"Whole-text similarity: {sim_clamped:.4f} (lang: {lang})"
+        # Optionally augment with web search
+        if web_augment:
+            try:
+                from scraper.web_knowledge_scraper import run_search_and_scrape
+
+                result["web"] = run_search_and_scrape(a + " " + b)
+            except Exception:
+                result["web"] = None
+        # Log event for learning
+        log_event(
+            "nlp_engine",
+            "reasoned_similarity",
+            {
+                "a": a,
+                "b": b,
+                "score": result["score"],
+                "lang": lang,
+                "tokens_a": tokens_a,
+                "tokens_b": tokens_b,
+                "explanation": result["explanation"],
+            },
+        )
+        # Inject feedback if provided
+        if feedback and inject_feedback:
+            inject_feedback()
+    except Exception as e:
+        result["score"] = 0.0
+        result["explanation"] = f"Reasoned similarity computation failed: {e}"
+    return result
+
+
 # Utility: find best match from a list
 def most_similar(text, candidates, threshold=0.75, **kwargs):
     """
@@ -195,4 +300,5 @@ __all__ = [
     "clean_text",
     "split_sentences",
     "tokenize",
+    "reasoned_similarity",
 ]

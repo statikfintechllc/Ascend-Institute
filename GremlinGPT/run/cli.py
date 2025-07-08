@@ -25,7 +25,7 @@ import nltk
 from utils.nltk_setup import setup_nltk_data  # ✅ PROPER FIX
 from nlp_engine.parser import parse_nlp
 from loguru import logger
-from backend.api.chat_handler import chat, app
+from backend.api.chat_handler import chat
 
 # --- Ensure NLTK Paths and Resources (centralized) ---
 NLTK_DATA_DIR = setup_nltk_data()
@@ -59,16 +59,22 @@ def main():
             print(f"- Financial terms: {result['financial_hits']}")
             print(f"- Code structures: {result['code_entities']}")
 
-            # --- Flask app context for chat() ---
-            with app.app_context():
-                response = chat(user_input)
-
-            if hasattr(response, "get_json"):
-                parsed = response.get_json()
+            response = chat(user_input)
+            # Normalize response
+            if isinstance(response, str):
+                msg = response
+            elif isinstance(response, dict):
+                msg = response.get("response", next(iter(response.values()), ""))
+            elif isinstance(response, tuple):
+                val = response[0]
+                if isinstance(val, dict):
+                    msg = val.get("response", next(iter(val.values()), ""))
+                else:
+                    msg = str(val)
             else:
-                parsed = response
+                msg = str(response)
 
-            print("🤖 GremlinGPT:", parsed.get("message", "[No response]"))
+            print("🤖 GremlinGPT:", msg)
             print("-" * 40)
 
         except KeyboardInterrupt:

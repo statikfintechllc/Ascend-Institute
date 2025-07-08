@@ -7,7 +7,8 @@
 # Contact: ascend.gremlin@gmail.com
 # ─────────────────────────────────────────────────────────────
 
-# GremlinGPT v1.0.3 :: Module Integrity Directive
+# GremlinGPT v1.0.3 :: nlp_engine/tokenizer.py :: Module Integrity Directive
+# Self-improving tokenizer for GremlinGPT.
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 
 import re
@@ -19,26 +20,11 @@ from datetime import datetime
 from utils.nltk_setup import setup_nltk_data
 import nltk
 
-setup_nltk_data()
-
+NLTK_DATA_DIR = setup_nltk_data()
 WATERMARK = "source:GremlinGPT"
 ORIGIN = "tokenizer"
-
-# Ensure punkt is available
-#NLTK_PATHS = ["/usr/local/share/nltk_data", ".data/nltk_data"]
-#for path in NLTK_PATHS:
-#    nltk.data.path.append(path)
-#try:
-#    nltk.data.find("tokenizers/punkt")
-#except LookupError:
-    # Try downloading to a writable directory#    for path in NLTK_PATHS:
-#        try:
-#            nltk.download("punkt", download_dir=path)
-#            break
-#        except Exception as e:
-#            pass  # Optionally log or print the failure
-
 MODEL = CFG["nlp"].get("tokenizer_model", "bert-base-uncased")
+
 
 try:
     tokenizer = AutoTokenizer.from_pretrained(MODEL)

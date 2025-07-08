@@ -15,3 +15,4 @@ nltk
 numpy
 websockets
 schedule
+flask

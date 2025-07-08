@@ -23,7 +23,6 @@ dependencies:
       - langdetect
       - chromadb
       - toml
-      - flask
       - flask-socketio
       - eventlet
       - pyngrok        # for ngrok integration if ever needed
