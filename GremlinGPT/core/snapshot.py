@@ -145,6 +145,10 @@ def verify_snapshot(file_path, snapshot_path):
 # CLI usage
 if __name__ == "__main__":
     src = "agent_core/tool_executor.py"
-    snap, meta = snapshot_file(src, label="test", return_meta=True)
-    if snap and not verify_snapshot(src, snap):
-        rollback(src, snap)
+    result = snapshot_file(src, label="test", return_meta=True)
+    if result and isinstance(result, tuple):
+        snap, meta = result
+        if snap and not verify_snapshot(src, snap):
+            rollback(src, snap)
+    else:
+        logger.error("[SNAPSHOT] Snapshot creation failed; skipping verification/rollback.")

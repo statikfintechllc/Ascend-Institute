@@ -20,7 +20,7 @@ from loguru import logger
 
 # === CONFIGURATION PATHS ===
 CONFIG_PATH = "config/config.toml"
-MEMORY_JSON = "config/memory_settings.json"
+MEMORY_JSON = "config/memory.json"
 
 
 def load_config():

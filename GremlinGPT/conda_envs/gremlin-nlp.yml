@@ -30,3 +30,4 @@ dependencies:
       - pytest         # test runner
       - networkx       # task/memory/graph support
       - watchdog       # live file watching, optional but harmless
+      - flask

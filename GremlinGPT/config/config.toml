@@ -20,7 +20,7 @@ SECRET_KEY = "SFTi"
 [ngrok]
 enabled = true
 authtoken = "REPLACE_ME"      # REPLACE WITH YOUR TOKEN
-region = "us"
+region = "US" 
 subdomain = ""
 
 [paths]
@@ -72,17 +72,17 @@ max_concurrent = 10
 [[agents.types]]
 name = "ScraperAgent"
 enabled = true
-max_concurrent = 5.0
+max_concurrent = 5
 
 [[agents.types]]
 name = "TradingAgent"
 enabled = true
-max_concurrent = 3.0
+max_concurrent = 3
 
 [[agents.types]]
 name = "MemoryAgent"
 enabled = true
-max_concurrent = 2.0
+max_concurrent = 2
 
 [[agents.types]]
 name = "PlannerAgent"
@@ -94,7 +94,7 @@ max_concurrent = 2.0
 # -------------------------------------------
 [shell]
 enable_shell_tasks = true
-max_concurrent_shell = 2.0
+max_concurrent_shell = 2
 shell_log_path = "$ROOT/data/logs/shell_exec.log"
 default_timeout_sec = 10
 restrict_commands = ["rm", "shutdown", "reboot"]
@@ -162,7 +162,7 @@ mutation_interval_sec = 90
 enabled = true
 global_interval_sec = 15
 global_timeout_sec = 30
-max_concurrent_scrapers = 9.0
+max_concurrent_scrapers = 9
 retry_backoff_sec = 5.0
 browser_profile = "$ROOT/scraper/profiles/chromium_profile/"
 fallback_enabled = true
@@ -243,7 +243,7 @@ tax_region = "US"
 simulate_if_offline = true
 default_exchange = "NASDAQ"
 allow_shorting = true
-max_orders_per_minute = 5.0
+max_orders_per_minute = 5
 api_broker_url = ""
 trade_log_path = "$ROOT/data/logs/trading.log"
 
@@ -309,7 +309,7 @@ nlp_routing_enabled = true
 
 [modules.task_tree]
 enabled = true
-display_depth = 5.0
+display_depth = 5
 show_agent_ids = true
 enable_auto_scroll = true
 highlight_mutated_tasks = true
@@ -327,7 +327,7 @@ refresh_on_embedding = true
 enabled = true
 tracked_stocks = ["SPY", "BTC", "LQD", "AAPL", "TSLA"]
 auto_refresh = true
-refresh_interval_sec = 0.2
+refresh_interval_sec = 1
 show_unrealized_pnl = true
 enable_trade_logging = true
 highlight_signal_confidence = true

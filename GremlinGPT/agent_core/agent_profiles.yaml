@@ -2,7 +2,7 @@ agents:
 
   default:
     profile: "gremlin_v1"
-    retry_limit: 333
+    retry_limit: 333  # High value intentional for bootstrap agent recursion
     tools:
       - scrape
       - signal_scan
@@ -59,7 +59,7 @@ profiles:
     description: "Bootstrap/primary agent. Handles core recursion, bootstrapping, and general tasks."
     default_tools: ["scrape", "signal_scan", "nlp", "self_train"]
     max_concurrent_tasks: 2
-    isolation: "medium"
+    isolation: "moderate"
     priority: "normal"
 
   planner_genesis:
@@ -98,6 +98,8 @@ profiles:
     priority: "high"
 
 meta:
+  # format_version: Specifies the schema version for this YAML file. 
+  # Expected values: Numeric, incremented with breaking changes (e.g., 1.0, 2.0).
   format_version: 1.0
   created: "2025-05-27"
   origin: "GremlinGPT v1.0.3 :: Agent Role Definition"

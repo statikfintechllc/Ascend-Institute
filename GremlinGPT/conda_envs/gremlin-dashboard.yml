@@ -31,3 +31,4 @@ dependencies:
       - networkx       # task/graph if dashboard needs it
       - gunicorn       # optional, production WSGI
       - watchdog       # optional, for live reload/file watch
+      - chromadb

@@ -20,12 +20,10 @@ from loguru import logger
 
 # --- Resilient Imports ---
 try:
-    from chromadb import Client
-    from chromadb.config import Settings
+    import chromadb
 except ImportError as e:
     logger.error(f"[EMBEDDER] chromadb import failed: {e}")
-    Client = None
-    Settings = None
+    chromadb = None
 
 try:
     from sentence_transformers import SentenceTransformer
@@ -34,6 +32,8 @@ except ImportError as e:
     SentenceTransformer = None
 
 try:
+    import sys
+    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
     from backend.globals import MEM
     if not isinstance(MEM, dict):
         raise ValueError("MEM is not a dict")
@@ -61,7 +61,8 @@ CHROMA_DIR       = os.path.join(BASE_VECTOR_PATH, "chroma")
 
 LOCAL_INDEX_ROOT = storage_conf.get("local_index_path", "./memory/local_index")
 LOCAL_INDEX_PATH = os.path.join(LOCAL_INDEX_ROOT, "documents")
-METADATA_DB_PATH = storage_conf.get("metadata_db", os.path.join(LOCAL_INDEX_ROOT, "metadata.db"))
+# Change config filename from memory_settings.json to memory.json
+METADATA_DB_PATH = storage_conf.get("metadata_db", os.path.join(LOCAL_INDEX_ROOT, "memory.json"))
 
 USE_FAISS   = storage_conf.get("use_faiss", True)
 USE_CHROMA  = storage_conf.get("use_chroma", False)
@@ -76,12 +77,9 @@ for path in (FAISS_DIR, CHROMA_DIR, LOCAL_INDEX_PATH):
         logger.error(f"[EMBEDDER] Failed to create directory {path}: {e}")
 
 # --- Chroma Client Setup ---
-if Client and Settings:
+if chromadb:
     try:
-        chroma_client = Client(Settings(
-            persist_directory=CHROMA_DIR,
-            chroma_db_impl="duckdb+parquet"
-        ))
+        chroma_client = chromadb.PersistentClient(path=CHROMA_DIR)
         collection = chroma_client.get_or_create_collection(name="gremlin_memory")
     except Exception as e:
         logger.error(f"[EMBEDDER] Failed to initialize Chroma client: {e}")

@@ -200,7 +200,7 @@ elif [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
 fi
 
 conda activate gremlin-nlp >> "$LOGFILE" 2>&1
-pip_install_or_fail spacy torch torchvision torchaudio sentence-transformers transformers bs4 nltk pytesseract playwright pyautogui >> "$LOGFILE" 2>&1
+pip_install_or_fail spacy torch torchvision torchaudio sentence-transformers transformers bs4 nltk pytesseract playwright pyautogui flask flask-socketio eventlet >> "$LOGFILE" 2>&1
 python -m spacy download en_core_web_sm >> "$LOGFILE" 2>&1 || { echo "${RED}[FAIL] spaCy model${NC}"; exit 1; }
 playwright install >> "$LOGFILE" 2>&1 || { echo "${RED}[FAIL] playwright${NC}"; exit 1; }
 pip install nltk >> "$LOGFILE" 2>&1
@@ -232,7 +232,7 @@ elif [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
     source "$HOME/anaconda3/etc/profile.d/conda.sh"
 fi
 conda activate gremlin-scraper >> "$LOGFILE" 2>&1
-pip_install_or_fail torch torchvision torchaudio sentence-transformers transformers playwright pyautogui >> "$LOGFILE" 2>&1
+pip_install_or_fail torch torchvision torchaudio sentence_transformers transformers playwright pyautogui flask flask-socketio eventlet >> "$LOGFILE" 2>&1
 python -m spacy download en_core_web_sm >> "$LOGFILE" 2>&1
 playwright install >> "$LOGFILE" 2>&1
 check_cuda >> "$LOGFILE" 2>&1
@@ -246,7 +246,7 @@ elif [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
     source "$HOME/anaconda3/etc/profile.d/conda.sh"
 fi
 conda activate gremlin-dashboard >> "$LOGFILE" 2>&1
-pip_install_or_fail torch torchvision torchaudio sentence-transformers transformers pyautogui >> "$LOGFILE" 2>&1
+pip_install_or_fail torch torchvision torchaudio sentence-transformers transformers pyautogui flask flask-socketio eventlet >> "$LOGFILE" 2>&1
 check_cuda >> "$LOGFILE" 2>&1
 conda deactivate >> "$LOGFILE" 2>&1
 
@@ -258,7 +258,7 @@ elif [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
     source "$HOME/anaconda3/etc/profile.d/conda.sh"
 fi
 conda activate gremlin-orchestrator >> "$LOGFILE" 2>&1
-pip_install_or_fail torch torchvision torchaudio backend bs4 nltk langdetect pytesseract sentence-transformers transformers playwright pyautogui >> "$LOGFILE" 2>&1
+pip_install_or_fail torch torchvision torchaudio backend bs4 nltk langdetect pytesseract sentence-transformers transformers playwright pyautogui flask flask-socketio eventlet >> "$LOGFILE" 2>&1
 python -m spacy download en_core_web_sm >> "$LOGFILE" 2>&1
 playwright install >> "$LOGFILE" 2>&1
 pip install nltk >> "$LOGFILE" 2>&1

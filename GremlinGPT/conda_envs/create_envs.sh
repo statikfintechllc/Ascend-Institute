@@ -43,6 +43,8 @@ for ENV in "${ENV_NAMES[@]}"; do
       exit 1
     fi
   fi
+  # Always ensure flask and chromadb are installed for VS Code and runtime compatibility
+  conda run -n "$ENV" pip install --upgrade flask chromadb
 done
 
 echo "[GremlinGPT] ✅ All environments checked, created, and pip-requirements installed if present."

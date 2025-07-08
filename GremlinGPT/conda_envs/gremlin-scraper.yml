@@ -28,4 +28,5 @@ dependencies:
     - pyngrok
     - toml
     - qrcode
+    - chromadb
 

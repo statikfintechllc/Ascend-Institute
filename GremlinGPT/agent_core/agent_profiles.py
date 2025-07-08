@@ -12,7 +12,9 @@ import yaml
 import os
 from backend.globals import logger
 
-AGENT_PROFILE_PATH = os.path.abspath("agent_core/agent_profiles.yaml")
+AGENT_PROFILE_PATH = os.path.abspath(
+    os.environ.get("AGENT_PROFILE_PATH", "agent_core/agent_profiles.yaml")
+)
 
 
 def load_agent_profiles():
@@ -21,11 +23,25 @@ def load_agent_profiles():
             data = yaml.safe_load(f)
             agents = data.get("agents", {})
             profiles = data.get("profiles", {})
+            # Validate that each agent's 'tools' field is a list or set, or set to empty list if missing/invalid
+            for agent_name, profile in agents.items():
+                tools = profile.get("tools", [])
+                if not isinstance(tools, (list, set)):
+                    logger.warning(f"[AGENT_PROFILE] Agent '{agent_name}' has invalid 'tools' field. Setting to empty list.")
+                    profile["tools"] = []
             return agents, profiles
     except Exception as e:
         logger.error(f"[AGENT_PROFILE] Failed to load profiles: {e}")
         return {}, {}
+AGENTS, PROFILES = load_agent_profiles()
 
+def reload_agent_profiles():
+    """
+    Reloads agent and profile data from the YAML file and updates globals.
+    """
+    global AGENTS, PROFILES
+    AGENTS, PROFILES = load_agent_profiles()
+    logger.info("[AGENT_PROFILE] Agent profiles reloaded from YAML file.")
 
 AGENTS, PROFILES = load_agent_profiles()
 
@@ -37,11 +53,7 @@ def resolve_agent_role(task_type):
     """
     for agent_name, profile in AGENTS.items():
         if "tools" in profile and task_type in profile["tools"]:
-            logger.debug(
-                f"[AGENT_PROFILE] Task type '{task_type}' assigned to agent '{agent_name}'"
-            )
             return agent_name
-    logger.debug(f"[AGENT_PROFILE] Task type '{task_type}' assigned to default agent")
     return "default"
 
 
@@ -57,13 +69,6 @@ def get_profile_details(profile_name):
     Returns the extended profile (role/capabilities/isolation/priority) for a profile name.
     """
     return PROFILES.get(profile_name, {})
-
-
-def all_agents():
-    """
-    Returns all agent names.
-    """
-    return list(AGENTS.keys())
 
 
 def agent_supports_task(agent_name, task_type):

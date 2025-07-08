@@ -18,6 +18,15 @@ from pathlib import Path
 from memory.vector_store.embedder import package_embedding
 from backend.globals import logger
 
+# --- Import encode for embedding shell logs ---
+try:
+    from nlp_engine.transformer_core import encode
+except ImportError:
+    import numpy as np
+    def encode(text):
+        return np.zeros(384, dtype="float32")
+
+
 LOG_PATH = Path("run/logs/shell_log.jsonl")
 LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
 
@@ -72,7 +81,8 @@ def run_shell_command(cmd: str) -> str:
             "watermark": "source:GremlinGPT",
         }
 
-        package_embedding(f"{cmd}\n{output}", meta=meta)
+        vector = encode(f"{cmd}\n{output}")
+        package_embedding(f"{cmd}\n{output}", vector, meta=meta)
 
         with open(LOG_PATH, "a") as log:
             log.write(json.dumps({
