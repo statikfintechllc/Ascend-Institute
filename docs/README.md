@@ -91,8 +91,9 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
 
 > [!NOTE]
 >
->*We have received our 2nd Star, Thank you, KDK-Grim.
->Let’s get GremlinGPT Seen & Funded.*
+> *We have received our 2nd Star(Since the reset, after the OpenAI MCP repo pull on July 4th), Thank you, KDK-Grim.
+>
+> Let’s get GremlinGPT Seen & Funded.*
 
 <div align="center">
 
