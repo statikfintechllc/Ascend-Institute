@@ -28,288 +28,231 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
   </a>
 </div>
 
-# GremlinGPT v1.0.3
+# GremlinGPT v1.0.3 – Full Structure Tree (2025)
 
-*Full Shell built in ~3 weeks, Debug Continues*
+*This tree reflects the current, fully-wired, state-of-the-art GremlinGPT system, including all analytics, dashboard, trading, and self-healing logic.*
 
 ```text
 GremlinGPT/
 │
+├── __init__.py
 ├── install.sh
 ├── reboot_recover.sh
 │
 ├── agents/
-│   │
 │   └── planner_agent.py
 │
 ├── agent_core/
-│   │
-│   ├── fsm.py
-│   ├── task_queue.py
-│   ├── heuristics.py
-│   ├── agent_profiles.yaml
 │   ├── agent_profiles.py
-│   └── error_log.py
+│   ├── agent_profiles.yaml
+│   ├── error_log.py
+│   ├── fsm.py
+│   ├── heuristics.py
+│   └── task_queue.py
 │
 ├── backend/
-│   │
-│   ├── server.py
-│   ├── router.py
-│   ├── state_manager.py
-│   ├── scheduler.py
+│   ├── __init__.py
+│   ├── api/
+│   │   ├── api_endpoints.py
+│   │   ├── chat_handler.py
+│   │   ├── memory_api.py
+│   │   ├── planner.py
+│   │   └── scraping_api.py
 │   ├── globals.py
 │   ├── interface/
-│   │   │
 │   │   └── commands.py
-│   │
-│   ├── utils/
-│   │   │
-│   │   └── git_ops.py
-│   │
-│   └── api/
-│       │
-│       ├── chat_handler.py
-│       ├── memory_api.py
-│       ├── scraping_api.py
-│       └── planner.py
-│
-├── config/
-│   │
-│   ├── memory.json
-│   └── config.toml
+│   ├── router.py
+│   ├── scheduler.py
+│   ├── server.py
+│   ├── state_manager.py
+│   └── utils/
+│       └── git_ops.py
 │
 ├── conda_envs/
-│   │
-│   ├── gremlin-nlp.yml
+│   ├── create_envs.sh
 │   ├── gremlin-dashboard.yml
-│   ├── gremlin-scraper.yml
+│   ├── gremlin-dashboard_requirements.txt
 │   ├── gremlin-memory.yml
+│   ├── gremlin-memory_requirements.txt
+│   ├── gremlin-nlp.yml
+│   ├── gremlin-nlp_requirements.txt
 │   ├── gremlin-orchestrator.yml
-│   └── create_envs.sh
+│   ├── gremlin-orchestrator_requirements.txt
+│   ├── gremlin-scraper.yml
+│   └── gremlin-scraper_requirements.txt
+│
+├── config/
+│   ├── config.toml
+│   └── memory.json
 │
 ├── core/
-│   │
-│   ├── loop.py
 │   ├── kernel.py
+│   ├── loop.py
 │   └── snapshot.py
 │
 ├── data/
-│   │
-│   ├── prompts/
-│   │   │
-│   │   ├── README.md
-│   │   └── ...    # System prompts here
-│   │
-│   ├── raw_scrapes/
-│   │   │
-│   │   └── ...    # Raw scrap data here
 │   ├── embeddings/
-│   │   │
-│   │   └── ...    # Embedding here
+│   ├── logs/
+│   │   ├── .gitkeep
+│   │   ├── backend.out
+│   │   ├── bootstrap.log
+│   │   ├── dash_cli.log
+│   │   ├── frontend.out
+│   │   ├── fsm.out
+│   │   ├── install.log
+│   │   ├── memory.out
+│   │   ├── ngrok.out
+│   │   ├── nlp.out
+│   │   ├── runtime.log
+│   │   ├── scraper.out
+│   │   └── trainer.out
 │   ├── nlp_training_sets/
-│   │   │   
-│   │   └── bootstrap.json
-│   │   
-│   └── logs/
-│       │
-│       ├── runtime.log
-│       ├── fsm.out
-│       ├── install.log
-│       ├── backend.out
-│       ├── scraper.out
-│       ├── trainer.out 
-│       ├── bootstrap.log
-│       ├── gremlin_exec_log.jsonl
-│       └── rewards.jsonl
+│   ├── prompts/
+│   └── raw_scrapes/
 │
 ├── demos/
-│   │
-│   └── README.md
+│   ├── Backend_Successfull_Test_1.png
+│   ├── Environment.png
+│   ├── IMG_7267.png
+│   ├── IMG_C6A6CCEB-DCB1-4166-B349-A7431E0D5657.jpeg
+│   ├── NLP_Prebuilt_Temp_Install.png
+│   └── Stop_Backend_Environment_Stays_Active.png
 │
 ├── dev-experiment/
-│   │  
-│   ├── memory_hacking/
-│   │   │   
-│   │   ├── inject_custom_embeddings.py
-│   │   ├── override_reward_trace.py
-│   │   ├── memory_probe_tool.py
-│   │   └── README.md
-│   │
-│   ├── new_agents/
-│   │   │   
-│   │   ├── planning/
-│   │   │   │
-│   │   │   ├── speculative_planner.py
-│   │   │   └── scratchpad_agent.py
-│   │   │   
-│   │   ├── self_reflection/
-│   │   │   │
-│   │   │   ├── hallucination_guard.py
-│   │   │   └── anomaly_analyzer.py
-│   │   │
-│   │   ├── loop_extensions/
-│   │   │   │
-│   │   │   ├── fsm_tick_debugger.py
-│   │   │   └── dynamic_interval_mutator.py
-│   │   │   
-│   │   └── README.md
-│   │
 │   ├── broken_scrapers/
-│   │   │
+│   │   ├── README.md
 │   │   ├── discord_leaks_scraper.py
 │   │   ├── legacy_twitter_collector.py
-│   │   ├── unstable_playwright_agent.py
-│   │   └── README.md
-│   │
+│   │   └── unstable_playwright_agent.py
+│   ├── memory_hacking/
+│   │   ├── README.md
+│   │   ├── inject_custom_embeddings.py
+│   │   ├── memory_probe_tool.py
+│   │   └── override_reward_trace.py
+│   ├── new_agents/
+│   │   ├── README.md
+│   │   ├── loop_extensions/
+│   │   │   ├── dynamic_interval_mutator.py
+│   │   │   └── fsm_tick_debugger.py
+│   │   ├── planning/
+│   │   │   ├── scratchpad_agent.py
+│   │   │   └── speculative_planner.py
+│   │   └── self_reflection/
+│   │       ├── anomaly_analyzer.py
+│   │       └── hallucination_guard.py
 │   └── your_mutations_here.md
 │
 ├── docs/
-│   │
+│   ├── GREMLINGPT-v1.0.3_PATCH_PLAN.md
+│   ├── GREMLINGPT_AUTONOMY_REPORT.md
 │   ├── README.md
-│   ├── full_structure_tree.txt
-│   ├── system_call_graph.md
-│   ├── self_training.md
-│   ├── system_overview.md
+│   ├── REVIEWER'S_GUIDE.md
+│   ├── WHY_GREMLINGPT.md
+│   ├── automated_shell.md
 │   ├── fsm_architecture.md
-│   ├── memory_pipeline.md
-│   ├── trading_signals.md
-│   ├── self_training.md
-│   ├── ngrok_integration.md
+│   ├── full_structure_tree.md
 │   ├── gremlin.service.md
-│   └── automated_shell.md
+│   ├── memory_pipeline.md
+│   ├── ngrok_integration.md
+│   ├── self_training.md
+│   ├── system_call_graph.md
+│   ├── system_overview.md
+│   └── trading_signals.md
 │
 ├── executors/
-│   │
 │   ├── python_executor.py
 │   ├── shell_executor.py
 │   └── tool_executor.py
 │
 ├── frontend/
-│   │
-│   ├── index.html
+│   ├── Icon_Logo/
 │   ├── app.js
-│   ├── service-worker.js
-│   ├── manifest.json
-│   │
 │   ├── components/
-│   │   │
-│   │   ├── App_Icon_&_Loading_&_Inference_Image.png
-│   │   └── Background_Image_For_App.png
-│   │
-│   └── components/
-│       │
-│       ├── ChatInterface.js
-│       ├── TaskTreeView.js
-│       ├── MemoryGraph.js
-│       └── TradingPanel.js
+│   │   ├── ChatInterface.js
+│   │   ├── MemoryGraph.js
+│   │   ├── RewardFeedView.js
+│   │   ├── TaskTreeView.js
+│   │   └── TradingPanel.js
+│   ├── index.html
+│   ├── manifest.json
+│   ├── service-worker.js
+│   └── theme.css
 │
 ├── memory/
-│   │
-│   ├── vector_store/
-│   │   │
-│   │   ├── faiss/
-│   │   │    └── ...    # fiass embeddings here
-│   │   │
-│   │   ├── chroma/
-│   │   │    └── ...    # chroma embeddings here
-│   │   │
-│   │   └── embedder.py
-│   │
+│   ├── local_index/
 │   ├── log_history.py
-│   │
-│   └── local_index/
-│       │
-│       ├── documents/
-│       ├── scripts/
-│       └── metadata.db
+│   └── vector_store/
+│       ├── chroma/
+│       ├── embedder.py
+│       └── faiss/
 │
 ├── nlp_engine/
-│   │
-│   ├── tokenizer.py
+│   ├── __init__.py
+│   ├── __pycache__/
+│   ├── chat_session.py
+│   ├── diff_engine.py
+│   ├── mini_attention.py
+│   ├── nlp_check.py
 │   ├── parser.py
 │   ├── pos_tagger.py
 │   ├── semantic_score.py
-│   ├── transformer_core.py
-│   ├── diff_engine.py
-│   └── mini_attention.py
+│   ├── tokenizer.py
+│   └── transformer_core.py
 │
 ├── run/
-│   │
-│   ├── start_all.sh
-│   ├── stop_all.sh
-│   ├── reboot_recover.sh
+│   ├── checkpoints/
+│   ├── cli.py
 │   ├── module_tracer.py
 │   ├── ngrok_launcher.py
-│   │
-│   └── checkpoints/
-│       │
-│       ├── state_snapshot.json
-│       └── snapshots/
+│   ├── nohup.out
+│   ├── reboot_recover.sh
+│   ├── start_all.sh
+│   └── stop_all.sh
 │
 ├── scraper/
-│   │
-│   ├── scraper_loop.py
-│   ├── stt_scrapper.py
-│   ├── tws_scrapper.py
-│   ├── source_router.py
-│   ├── web_knowledge_scraper.py
+│   ├── ask_monday_handler.py
 │   ├── dom_navigator.py
 │   ├── page_simulator.py
-│   ├── ask_monday_handler.py
+│   ├── persistance/
 │   ├── playwright_handler.py
+│   ├── profiles/
+│   ├── scraper_loop.py
 │   ├── source_router.py
-│   ├── persistence/
-│   │   │
-│   │   └── cookies/
-│   │
-│   └── profiles/
-│       │
-│       ├── safari_profiles/
-│       │     └── ...    # Safari Profiles here
-│       │
-│       ├── firefox_profiles/
-│       │     └── ...    # Firefox Profiles here
-│       │
-│       └── chromium_profile/
-│             └── ...    # Chromium Profiles here
+│   ├── stt_scraper.py
+│   ├── tws_scraper.py
+│   └── web_knowledge_scraper.py
 │
 ├── self_mutation_watcher/
-│   │
-│   ├── watcher.py
-│   └── mutation_daemon.py
+│   ├── mutation_daemon.py
+│   └── watcher.py
 │
 ├── self_training/
-│   │
-│   ├── trainer.py
+│   ├── feedback_loop.py
 │   ├── generate_dataset.py
 │   ├── mutation_engine.py
-│   └── feedback_loop.py
+│   └── trainer.py
 │
 ├── systemd/
-│   │
-│   └── gremlin.service
+│   ├── gremlin.service
+│   └── gremlin_auto_boot.sh
 │
 ├── tests/
-│   │   
-│   ├── test_scraper.py
+│   ├── test_dashboard.py
 │   ├── test_memory.py
 │   ├── test_nlp.py
-│   └── test_dashboard.py
+│   └── test_scraper.py
 │
 ├── tools/
-│   │
 │   └── reward_model.py
 │
 ├── trading_core/
-│   │
+│   ├── portfolio_tracker.py
+│   ├── rules_engine.py
 │   ├── signal_generator.py
 │   ├── stock_scraper.py
-│   ├── rules_engine.py
-│   ├── portfolio_tracker.py
 │   └── tax_estimator.py
 │
 ├── utils/
-│   │
 │   ├── dash_cli.sh
 │   └── nltk_setup.py
 │
