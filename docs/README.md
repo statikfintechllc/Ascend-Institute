@@ -79,7 +79,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
 	  src="https://img.shields.io/badge/GremlinGPT-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
   </a>
 	  
-# GremlinGPT
+# AscendAI/GremlinGPT
 **🔱 Presented by: StatikFinTech, LLC 🔱**  
 
 *Operating as an Unincorporated Sovereign R&D Trust (legal formation pending)*  
