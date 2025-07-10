@@ -13,7 +13,7 @@ from datetime import datetime
 from scraper.scraper_loop import get_dom_html
 from scraper.ask_monday_handler import handle as handle_ask_monday
 from nlp_engine.transformer_core import encode
-from memory.vector_store.embedder import package_embedding, inject_watermark
+from memory.vector_store import embedder
 from trading_core.signal_generator import generate_signals
 from self_training.feedback_loop import inject_feedback
 from executors.shell_executor import run_shell_command
@@ -52,10 +52,10 @@ def execute_tool(task):
             reward = evaluate_result(task_type, preview)
             log_reward(reward)
             vector = encode(preview)
-            package_embedding(
+            embedder.package_embedding(
                 preview, vector, {"task": task_type, "timestamp": timestamp}
             )
-            inject_watermark(origin="tool::scrape")
+            embedder.inject_watermark(origin="tool::scrape")
             log_event(
                 "exec", task_type, {"preview": preview}, status="success", meta=reward
             )
@@ -74,7 +74,7 @@ def execute_tool(task):
             reward = evaluate_result(task_type, preview)
             log_reward(reward)
             vector = encode(preview)
-            package_embedding(
+            embedder.package_embedding(
                 preview,
                 vector,
                 {
@@ -85,7 +85,7 @@ def execute_tool(task):
                     "watermark": "source:GremlinGPT",
                 },
             )
-            inject_watermark(origin="tool::python_exec")
+            embedder.inject_watermark(origin="tool::python_exec")
             log_event(
                 "exec",
                 task_type,
@@ -102,10 +102,10 @@ def execute_tool(task):
             reward = evaluate_result(task_type, str(signals))
             log_reward(reward)
             vector = encode(str(signals))
-            package_embedding(
+            embedder.package_embedding(
                 str(signals), vector, {"task": task_type, "timestamp": timestamp}
             )
-            inject_watermark(origin="tool::signal_scan")
+            embedder.inject_watermark(origin="tool::signal_scan")
             log_event(
                 "exec", task_type, {"signals": signals}, status="success", meta=reward
             )
@@ -117,7 +117,7 @@ def execute_tool(task):
             result = {"embedding": vec.tolist()}
             reward = evaluate_result(task_type, target)
             log_reward(reward)
-            package_embedding(
+            embedder.package_embedding(
                 target,
                 vec,
                 {
@@ -126,7 +126,7 @@ def execute_tool(task):
                     "timestamp": timestamp,
                 },
             )
-            inject_watermark(origin="tool::nlp")
+            embedder.inject_watermark(origin="tool::nlp")
             log_event(
                 "exec", task_type, {"embedded": True}, status="success", meta=reward
             )
@@ -136,13 +136,13 @@ def execute_tool(task):
         elif task_type == "ask_monday":
             result = handle_ask_monday(task)
             log_event("exec", task_type, {"response": result}, status="success")
-            inject_watermark(origin="tool::ask_monday")
+            embedder.inject_watermark(origin="tool::ask_monday")
             return result
 
         # ─────────────────────────────────────────────
         elif task_type == "self_train":
             inject_feedback()
-            inject_watermark(origin="tool::self_train")
+            embedder.inject_watermark(origin="tool::self_train")
             result = {"trained": True}
             log_event(
                 "exec",
@@ -160,10 +160,10 @@ def execute_tool(task):
             reward = evaluate_result(task_type, preview)
             log_reward(reward)
             vector = encode(preview)
-            package_embedding(
+            embedder.package_embedding(
                 preview, vector, {"task": task_type, "timestamp": timestamp}
             )
-            inject_watermark(origin="tool::shell")
+            embedder.inject_watermark(origin="tool::shell")
             result = {"shell_result": preview}
             log_event("exec", task_type, result, status="success", meta=reward)
             return result

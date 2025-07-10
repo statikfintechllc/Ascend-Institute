@@ -15,7 +15,7 @@ from backend.interface import commands
 from nlp_engine.tokenizer import tokenize
 from nlp_engine.transformer_core import encode
 from agent_core.task_queue import enqueue_task
-from memory.vector_store.embedder import package_embedding
+from memory.vector_store import embedder
 from memory.log_history import log_event
 from loguru import logger
 from datetime import datetime
@@ -42,7 +42,7 @@ def chat(user_input=None):
     task = commands.parse_command(user_input)
     result = commands.execute_command(task)
 
-    package_embedding(
+    embedder.package_embedding(
         text=user_input,
         vector=vector,
         meta={

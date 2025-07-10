@@ -1,4 +1,4 @@
-# !/usr/bin/env python3
+#!/usr/bin/env python3
 
 # ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
@@ -14,7 +14,7 @@
 # Handles dialog state, memory, feedback, and learning integration.
 
 
-from datetime import datetime
+from datetime import datetime, timezone
 from memory.vector_store.embedder import embed_text, package_embedding, inject_watermark
 from memory.log_history import log_event
 from nlp_engine.tokenizer import tokenize
@@ -22,15 +22,27 @@ from nlp_engine.semantic_score import reasoned_similarity
 from agent_core.fsm import inject_task
 from backend.api.chat_handler import chat as backend_chat
 
+__all__ = ["ChatSession"]
+
 
 class ChatSession:
+    """
+    ChatSession manages a dialog session, maintaining a history of turns.
+
+    self.history: List of tuples in the format:
+        (user_input: str, bot_response: str, meta: dict)
+    where meta contains optional keys such as:
+        - "explanation": str or None
+        - "feedback": any feedback provided by the user
+    """
 
 
     def __init__(self, user_id=None):
         self.user_id = user_id or "anon"
         self.history = []  # List of (user, bot, meta)
         self.created = datetime.utcnow().isoformat()
-        self.session_id = f"chat_{self.user_id}_{self.created}"
+        safe_created = self.created.replace(":", "-")
+        self.session_id = f"chat_{self.user_id}_{safe_created}"
         self.memory_trace = []
 
 
@@ -53,17 +65,13 @@ class ChatSession:
         # Call backend chat handler for response
         bot_response = backend_chat(user_input)
         # Ensure output is always a string
-        if isinstance(bot_response, str):
-            pass
-        elif isinstance(bot_response, dict):
-            bot_response = str(bot_response.get("response", next(iter(bot_response.values()), "")))
-        elif isinstance(bot_response, tuple):
-            # Flask may return (dict, status)
-            val = bot_response[0]
-            if isinstance(val, dict):
-                bot_response = str(val.get("response", next(iter(val.values()), "")))
+        if isinstance(bot_response, dict):
+            # Prefer explicit "response" key; fallback to first value if not present
+            if "response" in bot_response:
+                bot_response = str(bot_response["response"])
             else:
-                bot_response = str(val)
+                # Fallback: use the first value in the dict (documented behavior)
+                bot_response = str(next(iter(bot_response.values()), ""))
         else:
             bot_response = str(bot_response)
         # Optionally, reason about similarity to previous turns
@@ -73,16 +81,13 @@ class ChatSession:
             sim = reasoned_similarity(prev_user, user_input)
             explanation = sim.get("explanation")
         # Log event
-        log_event(
-            "chat_session", "turn", {
-                "user_input": user_input,
-                "bot_response": bot_response,
-                "tokens": tokens,
-                "explanation": explanation,
-                "feedback": feedback,
-                "session_id": self.session_id,
-            }
-        )
+        # Optionally, reason about similarity to previous turns
+        # 'explanation' holds reasoning or similarity explanation for the current turn, if available
+        explanation = None
+        if self.history:
+            prev_user, prev_bot, _ = self.history[-1]
+            sim = reasoned_similarity(prev_user, user_input)
+            explanation = sim.get("explanation")
         # Store in history
         self.history.append((user_input, bot_response, {"explanation": explanation, "feedback": feedback}))
         # Optionally inject feedback for learning
@@ -90,8 +95,7 @@ class ChatSession:
             inject_task({"type": "feedback", "input": user_input, "feedback": feedback})
         return {
             "response": bot_response,
-            "explanation": explanation,
-            "tokens": tokens,
+# For API/CLI usage
             "session_id": self.session_id,
         }
 

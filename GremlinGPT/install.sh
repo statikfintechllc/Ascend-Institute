@@ -154,10 +154,6 @@ fi
 # This function will print the CUDA availability status and device information.
 # It is useful for verifying that PyTorch can utilize GPU resources if available.
 # Usage: check_cuda
-# This function will print the CUDA availability status and device information.
-# It is useful for verifying that PyTorch can utilize GPU resources if available.
-# Usage: check_cuda
-# This function will print the CUDA availability status and device information.
 function check_cuda {
   echo "[*] Checking CUDA in current environment:"
   python -c "
@@ -173,8 +169,6 @@ print('[CUDA] torch.cuda.get_device_name:', torch.cuda.get_device_name(0) if tor
 # This function will attempt to upgrade pip and install the specified packages.
 # If any installation fails, it will print an error message and exit with a non-zero status.
 # Usage: pip_install_or_fail package1 package2 ...
-# This function will attempt to upgrade pip and install the specified packages.
-# If any installation fails, it will print an error message and exit with a non-zero status
 function pip_install_or_fail {
   pip install --upgrade pip || { echo '${RED}[FAIL] pip upgrade${NC}'; exit 1; }
   for pkg in "$@"; do
@@ -200,6 +194,7 @@ elif [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
 fi
 
 conda activate gremlin-nlp >> "$LOGFILE" 2>&1
+pip install flask eventlet
 pip_install_or_fail spacy torch torchvision torchaudio sentence-transformers transformers bs4 nltk pytesseract playwright pyautogui flask flask-socketio eventlet >> "$LOGFILE" 2>&1
 python -m spacy download en_core_web_sm >> "$LOGFILE" 2>&1 || { echo "${RED}[FAIL] spaCy model${NC}"; exit 1; }
 playwright install >> "$LOGFILE" 2>&1 || { echo "${RED}[FAIL] playwright${NC}"; exit 1; }
@@ -208,7 +203,7 @@ export NLTK_DATA=$HOME/data/nltk_data
 python -m nltk.downloader -d "$NLTK_DATA" punkt >> "$LOGFILE" 2>&1
 download_nltk >> "$LOGFILE" 2>&1
 check_cuda >> "$LOGFILE" 2>&1
-
+# Test GPU availability and load models
 python -c "
 from transformers import AutoTokenizer, AutoModel
 import torch
@@ -232,10 +227,26 @@ elif [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
     source "$HOME/anaconda3/etc/profile.d/conda.sh"
 fi
 conda activate gremlin-scraper >> "$LOGFILE" 2>&1
+pip install flask eventlet
 pip_install_or_fail torch torchvision torchaudio sentence_transformers transformers playwright pyautogui flask flask-socketio eventlet >> "$LOGFILE" 2>&1
 python -m spacy download en_core_web_sm >> "$LOGFILE" 2>&1
 playwright install >> "$LOGFILE" 2>&1
 check_cuda >> "$LOGFILE" 2>&1
+conda deactivate >> "$LOGFILE" 2>&1
+
+# 5. gremlin-scraper env setup, if not already set up. This is a duplicate of the previous step, but for gremlin-memory
+# This is a duplicate of the previous step, but for gremlin-memory
+# This is necessary to ensure that the gremlin-memory environment is set up correctly
+# and to avoid conflicts with the gremlin-scraper environment.
+banner "Activating gremlin-memory..."
+if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+    source "$HOME/miniconda3/etc/profile.d/conda.sh"
+elif [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
+    source "$HOME/anaconda3/etc/profile.d/conda.sh"
+fi
+conda activate gremlin-memory >> "$LOGFILE" 2>&1
+pip install flask eventlet
+pip_install_or_fail flask chromadb faiss-cpu >> "$LOGFILE" 2>&1
 conda deactivate >> "$LOGFILE" 2>&1
 
 # 6. gremlin-dashboard env setup, if not already set up
@@ -246,6 +257,7 @@ elif [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
     source "$HOME/anaconda3/etc/profile.d/conda.sh"
 fi
 conda activate gremlin-dashboard >> "$LOGFILE" 2>&1
+pip install flask eventlet
 pip_install_or_fail torch torchvision torchaudio sentence-transformers transformers pyautogui flask flask-socketio eventlet >> "$LOGFILE" 2>&1
 check_cuda >> "$LOGFILE" 2>&1
 conda deactivate >> "$LOGFILE" 2>&1
@@ -259,6 +271,10 @@ elif [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
 fi
 conda activate gremlin-orchestrator >> "$LOGFILE" 2>&1
 pip_install_or_fail torch torchvision torchaudio backend bs4 nltk langdetect pytesseract sentence-transformers transformers playwright pyautogui flask flask-socketio eventlet >> "$LOGFILE" 2>&1
+pip install flask eventlet >> "$LOGFILE" 2>&1
+# Ensure the conda environment is activated before running pip commands
+# This is necessary to ensure the correct environment is used for package installation
+# and to avoid conflicts with the base environment.
 python -m spacy download en_core_web_sm >> "$LOGFILE" 2>&1
 playwright install >> "$LOGFILE" 2>&1
 pip install nltk >> "$LOGFILE" 2>&1
@@ -266,6 +282,7 @@ export NLTK_DATA=$HOME/data/nltk_data
 python -m nltk.downloader -d "$NLTK_DATA" punkt >> "$LOGFILE" 2>&1
 download_nltk >> "$LOGFILE" 2>&1
 check_cuda >> "$LOGFILE" 2>&1
+# Test GPU availability and load models
 python -c "
 from transformers import AutoTokenizer, AutoModel
 import torch
@@ -281,7 +298,11 @@ SentenceTransformer('all-MiniLM-L6-v2', device='cuda' if torch.cuda.is_available
 " >> "$LOGFILE" 2>&1
 conda deactivate >> "$LOGFILE" 2>&1
 
-# 8. ngrok CLI check, if not already installed, attempt automatic installation, if not found
+# 8. ngrok CLI check, if not already installed, attempt automatic installation, if not already installed
+# This will check if ngrok is installed, and if not, attempt to install it automatically
+# If ngrok is already installed, it will print the path to the ngrok executable.
+# This is useful for ensuring that ngrok is available for use in the GremlinGPT environment
+# and to avoid manual installation steps.
 banner "Checking for ngrok CLI..."
 
 if ! command -v ngrok &> /dev/null; then
@@ -295,6 +316,11 @@ if ! command -v ngrok &> /dev/null; then
         echo "${RED}[ERROR] Failed to install ngrok automatically.${NC}"
         export PATH="$HOME/.local/bin:$PATH"
         # Instruct user to persist PATH for future shells, if not already done
+        echo "${YELLOW}[NOTICE] Please add ngrok to your PATH for future shells. You can do this by adding the following line to your shell profile:${NC}"
+        echo export PATH="$HOME/.local/bin:$PATH"
+        echo "${YELLOW}[NOTICE] Adding ngrok path to shell profile...${NC}"
+        # Determine the shell profile based on the current shell
+        # This will ensure that the PATH is set correctly for future terminal sessions
         SHELL_PROFILE=""
         if [ -n "$ZSH_VERSION" ]; then
           SHELL_PROFILE="$HOME/.zshrc"
@@ -324,7 +350,8 @@ sudo apt install -y xdotool util-linux
 # This service will ensure that GremlinGPT starts on boot and can be managed via systemctl
 banner "Setup systemd service"
 
-# Ensure the start script exists, if not this creates it
+# Ensure the start script exists, if not this creates it.
+# This script will be used to start the GremlinGPT application
 echo "APPLOC=$APPLOC"
 echo "START_SCRIPT=$START_SCRIPT"
 echo "USER=$USER"

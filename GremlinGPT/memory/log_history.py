@@ -1,4 +1,4 @@
-# !/usr/bin/env python3
+#!/usr/bin/env python3
 
 # ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
@@ -16,8 +16,6 @@ from datetime import datetime
 from backend.globals import logger
 
 HISTORY_DIR = Path("data/logs/history/")
-HISTORY_DIR.mkdir(parents=True, exist_ok=True)
-
 HISTORY_FILE = HISTORY_DIR / "gremlin_exec_log.jsonl"
 
 
@@ -35,9 +33,9 @@ def log_event(event_type, task_type, details, status="ok", meta=None):
     }
 
     try:
-        with open(HISTORY_FILE, "a") as f:
+        HISTORY_DIR.mkdir(parents=True, exist_ok=True)
+        with open(HISTORY_FILE, "a", encoding="utf-8") as f:
             f.write(json.dumps(record) + "\n")
-        logger.info(f"[HISTORY] Logged {event_type} :: {task_type}")
     except Exception as e:
         logger.error(f"[HISTORY] Failed to log: {e}")
 
@@ -47,10 +45,10 @@ def load_history(n=50):
     Loads the last n historical events from memory.
     """
     try:
-        with open(HISTORY_FILE, "r") as f:
-            lines = f.readlines()
-        return [json.loads(line) for line in lines[-n:]]
-    except FileNotFoundError:
+        from collections import deque
+        with open(HISTORY_FILE, "r", encoding="utf-8") as f:
+            lines = deque(f, maxlen=n)
+        return [json.loads(line) for line in lines]
         return []
     except Exception as e:
         logger.error(f"[HISTORY] Load failed: {e}")
@@ -59,6 +57,7 @@ def load_history(n=50):
 
 # === CLI Test Harness ===
 if __name__ == "__main__":
+    HISTORY_DIR.mkdir(parents=True, exist_ok=True)
     log_event("exec", "scrape", {"outcome": "5 tickers pulled"}, status="success")
     log_event("exec", "nlp", {"answer": "support/resistance identified"}, status="ok")
     print(load_history(2))

@@ -14,13 +14,16 @@ import shutil
 import uuid
 import json
 import numpy as np
-import faiss
-from datetime import datetime
+try:
+    import faiss
+except ImportError:
+    import faiss_cpu as faiss  # type: ignore
+from datetime import datetime, timezone
 from loguru import logger
 
 # --- Resilient Imports ---
 try:
-    import chromadb
+    import chromadb  # type: ignore
 except ImportError as e:
     logger.error(f"[EMBEDDER] chromadb import failed: {e}")
     chromadb = None
@@ -43,11 +46,10 @@ except Exception as e:
 
 try:
     from nlp_engine.transformer_core import encode
-except ImportError as e:
-    logger.error(f"[EMBEDDER] encode import failed: {e}")
+except Exception:
     # fallback to a dummy encoder
     def encode(text):
-        return np.zeros( MEM.get("embedding",{}).get("dimension",384), dtype="float32" )
+        return np.zeros(MEM.get("embedding", {}).get("dimension", 384), dtype="float32")
 
 # --- Configuration & Paths ---
 storage_conf = MEM.get("storage", {})
@@ -106,10 +108,10 @@ def add_to_chroma(text, emb_id, vector, meta):
 FAISS_INDEX_PATH = os.path.join(FAISS_DIR, "faiss_index.index")
 try:
     if os.path.exists(FAISS_INDEX_PATH):
-        faiss_index = faiss.read_index(FAISS_INDEX_PATH)
+        faiss_index = faiss.read_index(FAISS_INDEX_PATH)  # type: ignore
         logger.info(f"[FAISS] Loaded index from {FAISS_INDEX_PATH}")
     else:
-        faiss_index = faiss.IndexFlatL2(DIMENSION)
+        faiss_index = faiss.IndexFlatL2(DIMENSION)  # type: ignore
         logger.info("[FAISS] Initialized new IndexFlatL2")
 except Exception as e:
     logger.error(f"[FAISS] Failed to load or init index: {e}")
@@ -122,7 +124,7 @@ def add_to_faiss(vector, emb_id):
     try:
         vec = np.array([vector], dtype="float32")
         faiss_index.add(vec)
-        faiss.write_index(faiss_index, FAISS_INDEX_PATH)
+        faiss.write_index(faiss_index, FAISS_INDEX_PATH)  # type: ignore
         logger.info(f"[FAISS] Added {emb_id}")
     except Exception as e:
         logger.error(f"[FAISS] Add failed for {emb_id}: {e}")
@@ -167,12 +169,10 @@ def package_embedding(text, vector, meta):
         "text": text,
         "embedding": vector.tolist() if hasattr(vector, "tolist") else list(vector),
         "meta": meta,
-        "tags": {
-            "source": meta.get("source", "system"),
-            "model": EMBED_MODEL,
-            "created": datetime.utcnow().isoformat(),
-            "replaceable": True,
-        },
+        "created": datetime.now(timezone.utc).isoformat(),
+        "source": meta.get("source", "system"),
+        "model": EMBED_MODEL,
+        "replaceable": True,
     }
 
     # rails: add to stores if enabled
@@ -192,17 +192,8 @@ def package_embedding(text, vector, meta):
 
     return embedding
 
-def inject_watermark(origin="unknown"):
-    text = f"Watermark from {origin} @ {datetime.utcnow().isoformat()}"
-    vector = encode(text)
-    meta = {"origin": origin, "timestamp": datetime.utcnow().isoformat()}
-    return package_embedding(text, vector, meta)
-
 def archive_plan(vector_path="data/nlp_training_sets/auto_generated.jsonl"):
-    if not os.path.exists(vector_path):
-        logger.warning(f"[EMBEDDER] No plan to archive at {vector_path}")
-        return None
-    stamp = datetime.utcnow().strftime("%Y%m%dT%H%M%S")
+    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S")
     archive = os.path.join("GremlinGPT", "docs", f"planlog_{stamp}.jsonl")
     try:
         shutil.copyfile(vector_path, archive)
@@ -264,7 +255,7 @@ def get_memory_graph():
         nodes.append({
             "id": emb["id"],
             "label": emb["meta"].get("label", emb["text"][:24] + "..."),
-            "group": emb["tags"].get("source", "system"),
+            "group": emb["meta"].get("source", "system"),
         })
         if "source_id" in emb["meta"]:
             edges.append({"from": emb["meta"]["source_id"], "to": emb["id"]})
@@ -274,6 +265,13 @@ def repair_index():
     memory_vectors.clear()
     _load_from_disk()
     logger.info("[EMBEDDER] Index repaired")
+
+# --- Watermark Injection ---
+def inject_watermark(origin="unknown"):
+    text = f"Watermark from {origin} @ {datetime.utcnow().isoformat()}"
+    vector = encode(text)
+    meta = {"origin": origin, "timestamp": datetime.utcnow().isoformat()}
+    return package_embedding(text, vector, meta)
 
 # --- Initial Load ---
 try:

@@ -95,11 +95,9 @@ while true; do
                 clear
                 echo -e "\033[1;34m[Log Menu]\033[0m"
                 echo "Select a log to view (last 40 lines):"
-                echo "Available logs:" # List of log files
-                # Define an array of log file names
-                # This array can be extended with more log files as needed
+                echo "Available logs:"
                 LOG_NAMES=(
-                    "runtime.log"
+                    "$LOGDIR/runtime.log"
                     "$LOGDIR/nlp.out"
                     "$LOGDIR/memory.out"
                     "$LOGDIR/fsm.out"
@@ -110,14 +108,7 @@ while true; do
                     "$LOGDIR/ngrok.out"
                     "$LOGDIR/gremlin_boot_trace.log"
                 )
-#                Display available logs
-                for i in {1..${#LOG_NAMES[@]}}; do
-                    echo "$i) ${LOG_NAMES[$((i - 1))]}"
-                done
-                echo "$(( ${#LOG_NAMES[@]} + 1 ))) 🔙 Back to Main Menu"
-                echo -n "Select log> "
-                read -r LOG_CHOICE
-#                echo ""  # For better readability, can be uncommented if needed
+                
                 if (( LOG_CHOICE > 0 && LOG_CHOICE <= ${#LOG_NAMES[@]} )); then
                     LOG_FILE="$APPLOC/run/logs/${LOG_NAMES[$((LOG_CHOICE - 1))]}"
                     clear

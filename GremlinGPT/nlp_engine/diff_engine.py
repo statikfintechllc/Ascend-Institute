@@ -1,4 +1,4 @@
-# !/usr/bin/env python3
+#!/usr/bin/env python3
 
 # ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
@@ -25,6 +25,14 @@ def diff_texts(old: str, new: str, debug: bool = False) -> Dict:
     """
     Computes unified diff, semantic similarity, and embedding delta
     between two strings. Used in mutation safety logic.
+
+    Args:
+        old (str): The original text.
+        new (str): The new text to compare against the original.
+        debug (bool, optional): If True, logs warnings on embedding delta failures. Defaults to False.
+
+    Returns:
+        Dict: A dictionary containing diff lines, semantic score, and embedding delta.
     """
     if not old and not new:
         return {
@@ -35,23 +43,29 @@ def diff_texts(old: str, new: str, debug: bool = False) -> Dict:
 
     lines = list(
         unified_diff(
-            old.splitlines(),
-            new.splitlines(),
-            fromfile="before",
-            tofile="after",
-            lineterm="",
+            old.splitlines(keepends=True),
+            new.splitlines(keepends=True),
+            fromfile="old",
+            tofile="new",
         )
     )
-
-    sem_score = semantic_similarity(old, new)
-    try:
-        vec_old = encode(old)
-        vec_new = encode(new)
-        delta = float(np.linalg.norm(vec_old - vec_new))
-    except Exception as e:
+    if old or new:
+        sem_score = semantic_similarity(old, new)
+        try:
+            vec_old = encode(old)
+            vec_new = encode(new)
+            if vec_old.shape != vec_new.shape:
+                if debug:
+                    logger.warning(f"[{ENGINE_NAME}] Embedding shapes differ: {vec_old.shape} vs {vec_new.shape}")
+            delta = float(np.linalg.norm(vec_old - vec_new))
+        except Exception as e:
+            delta = 0.0
+            logger.debug(f"[{ENGINE_NAME}] Embedding delta failed: {e}")
+            if debug:
+                logger.warning(f"[{ENGINE_NAME}] Embedding delta failed: {e}")
+    else:
+        sem_score = 1.0
         delta = 0.0
-        if debug:
-            logger.warning(f"[{ENGINE_NAME}] Embedding delta failed: {e}")
 
     return {
         "diff_lines": lines,
@@ -66,12 +80,11 @@ def diff_files(file_a: str, file_b: str) -> Dict:
     Handles encoding errors safely.
     """
     try:
-        with open(file_a, "r", encoding="utf-8") as f1, open(
-            file_b, "r", encoding="utf-8"
-        ) as f2:
+        with open(file_a, "r", encoding="utf-8") as f1:
             content_a = f1.read()
+        with open(file_b, "r", encoding="utf-8") as f2:
             content_b = f2.read()
-            return diff_texts(content_a, content_b)
+        return diff_texts(content_a, content_b)
     except Exception as e:
         logger.error(f"[{ENGINE_NAME}] Could not diff files: {e}")
         return {

@@ -43,7 +43,6 @@ def load_memory_config():
 CFG = load_config()
 MEM = load_memory_config()
 
-
 # === PATH MANAGEMENT ===
 def resolve_path(p):
     """Expands $ROOT and user home (~) dynamically"""

@@ -25,7 +25,7 @@
 import random
 from datetime import datetime
 from backend.globals import logger
-from scraper.source_router import route_scraping
+import asyncio
 
 WATERMARK = "source:GremlinGPT"
 ORIGIN = "stock_scraper"
@@ -87,6 +87,38 @@ def simulate_fallback():
         results.append(stock_data)
 
     return results
+
+
+def route_scraping():
+    """
+    State-of-the-art, robust, cross-module scraping router.
+    Handles async, fallback, and integrates with all available sources.
+    Returns a list of stock dicts.
+    """
+    from scraper.source_router import route_scraping_async, get_live_snapshot
+
+    try:
+        # Try async scrape (if event loop available)
+        try:
+            loop = asyncio.get_event_loop()
+            if loop.is_running():
+                # If already running, schedule and wait
+                result = loop.run_until_complete(route_scraping_async())
+            else:
+                result = loop.run_until_complete(route_scraping_async())
+        except RuntimeError:
+            # No event loop, create one
+            result = asyncio.run(route_scraping_async())
+        if result and isinstance(result, list):
+            return result
+        # Fallback to last snapshot
+        snapshot = get_live_snapshot()
+        if snapshot:
+            return snapshot
+    except Exception as e:
+        logger.warning(f"[STOCK_SCRAPER] route_scraping failed: {e}")
+    # Fallback to simulate_fallback
+    return simulate_fallback()
 
 
 def get_live_penny_stocks():

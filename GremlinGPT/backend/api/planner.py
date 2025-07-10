@@ -73,7 +73,8 @@ def list_tasks():
 @planner_bp.route("/api/mutation/ping", methods=["POST"])
 def mutation_notify():
     """Receives ping from mutation daemon."""
-    message = flask.request.json.get("message", "No message provided")
+    data = flask.request.get_json(silent=True) or {}
+    message = data.get("message", "No message provided")
     logger.debug(f"[PLANNER_API] Mutation ping: {message}")
     log_event("planner_api", "mutation_ping", {"message": message}, status="pong")
 
@@ -145,6 +146,8 @@ def get_signals():
             if not data:
                 continue
             for item in data:
+                if not (isinstance(item, dict) and hasattr(item, "get")):
+                    continue
                 signals.append({
                     "source": src,
                     "symbol": item.get("symbol", "N/A"),

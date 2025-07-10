@@ -16,6 +16,8 @@ from pathlib import Path
 import numpy as np
 from backend.globals import logger
 from nlp_engine.semantic_score import semantic_similarity
+from nlp_engine.diff_engine import diff_texts
+from agent_core.fsm import inject_task  # For feedback loop
 
 LOG_HISTORY_DIR = Path("data/logs/")
 REWARD_LOG = LOG_HISTORY_DIR / "rewards.jsonl"
@@ -63,11 +65,48 @@ def evaluate_result(task_type, output_text, reference_text=None):
     }
 
 
+def evaluate_with_diff(task_type, output_text, reference_text=None, debug=False, feedback_loop=True):
+    """
+    Evaluate result with diff analysis:
+    - Computes reward/confidence as before
+    - Adds diff lines, semantic score, embedding delta if reference_text is provided
+    - Returns a richer record for logging and analytics
+    - Optionally triggers a feedback event for self-training
+    """
+    base = evaluate_result(task_type, output_text, reference_text)
+    diff_info = None
+    if reference_text:
+        diff_info = diff_texts(reference_text, output_text, debug=debug)
+        # Advanced heuristics: penalize large embedding delta or low semantic score
+        if diff_info["embedding_delta"] > 2.0:
+            base["reward"] -= 0.2
+            base["reason"] += "+embedding_penalty"
+        if diff_info["semantic_score"] < 0.5:
+            base["reward"] -= 0.2
+            base["reason"] += "+semantic_penalty"
+        base["semantic_score"] = diff_info["semantic_score"]
+        base["embedding_delta"] = diff_info["embedding_delta"]
+        base["diff_lines"] = diff_info["diff_lines"]
+        # Feedback loop: inject feedback for self-training
+        if feedback_loop:
+            inject_task({
+                "type": "reward_feedback",
+                "task": task_type,
+                "output": output_text,
+                "reference": reference_text,
+                "reward": base["reward"],
+                "semantic_score": diff_info["semantic_score"],
+                "embedding_delta": diff_info["embedding_delta"],
+                "timestamp": base["timestamp"],
+            })
+    return base
+
+
 def log_reward(record):
     try:
         with open(REWARD_LOG, "a") as f:
             f.write(json.dumps(record) + "\n")
-        logger.info(f"[REWARD] Logged: {record['task']} [{record['reason']}]")
+        logger.info(f"[REWARD] Logged: {record['task']} [{record['reason']}]" + (f" | Δ={record.get('embedding_delta', None)}" if 'embedding_delta' in record else ""))
     except Exception as e:
         logger.error(f"[REWARD] Failed to log reward: {e}")
 
@@ -85,9 +124,27 @@ def top_rewarded_tasks(n=5):
     return sorted(records, key=lambda r: r["reward"], reverse=True)[:n]
 
 
+def get_reward_feed(n=20):
+    """
+    Returns the latest n reward+diff records for dashboard/feed usage.
+    """
+    records = []
+    try:
+        with open(REWARD_LOG, "r") as f:
+            for line in f:
+                rec = json.loads(line.strip())
+                records.append(rec)
+    except FileNotFoundError:
+        return []
+    return records[-n:][::-1]  # Most recent first
+
+
 if __name__ == "__main__":
     out = "Successfully scraped 5 stock tickers from Webull."
     ref = "Extract a list of tickers from a market page."
-    rec = evaluate_result("scrape", out, ref)
+    rec = evaluate_with_diff("scrape", out, ref, feedback_loop=True)
     log_reward(rec)
     print(top_rewarded_tasks())
+    print("--- Dashboard Feed Example ---")
+    for item in get_reward_feed(3):
+        print(item)

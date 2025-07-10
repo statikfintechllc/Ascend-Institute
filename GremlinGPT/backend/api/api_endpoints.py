@@ -27,6 +27,7 @@ from backend.api.scraping_api import scrape_url
 from memory.vector_store.embedder import get_memory_graph
 from trading_core.signal_generator import generate_signals
 from nlp_engine.chat_session import ChatSession
+from tools.reward_model import get_reward_feed
 
 # Create Flask Blueprint for API
 api_blueprint = flask.Blueprint("api", __name__)
@@ -165,6 +166,14 @@ def api_scrape():
         return flask.jsonify({"error": "Missing 'url'"}), 400
     result = scrape_url(url)
     return flask.jsonify({"scrape_result": result})
+
+
+# --- Reward Dashboard ---
+@api_blueprint.route("/api/dashboard/reward_feed", methods=["GET"])
+def api_dashboard_reward_feed():
+    n = flask.request.args.get("n", default=20, type=int)
+    feed = get_reward_feed(n)
+    return flask.jsonify({"reward_feed": feed})
 
 
 # --- Extend with more agent/tools as needed below ---

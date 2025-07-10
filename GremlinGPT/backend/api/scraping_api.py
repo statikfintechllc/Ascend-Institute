@@ -15,63 +15,57 @@ from backend.globals import logger
 from scraper.scraper_loop import get_dom_html
 from scraper.ask_monday_handler import handle as ask_monday_handle
 from scraper.web_knowledge_scraper import scrape_web_knowledge
-from scraper.tws_scraper import scrape_tws
-from scraper.stt_scraper import scrape_stt
-from scraper.playwright_handler import scrape_with_playwright
-from scraper.page_simulator import simulate_page
 from scraper.dom_navigator import extract_dom_structure
 from scraper.source_router import route_scraping_async
 
 import traceback
 
-# --- Main Scraper Router ---
+import asyncio
 
-
-def scrape_url(url, method="auto", extra=None):
+async def scrape_url(url, method="auto", extra=None):
     """
     Main entry point for dashboard/API. Dispatches to best scraper.
     :param url: target URL (or app for TWS/STT)
-    :param method: one of [dom, playwright, web, tws, stt, monday, sim, router, auto]
+    :param method: one of [dom, web, monday, router, auto]
     :param extra: dict, additional args for some scrapers
     :return: dict of scrape results (or error)
     """
     try:
         logger.info(f"[SCRAPER_API] Scrape requested: {url} [{method}]")
         if method == "dom":
-            result = get_dom_html(url)
-        elif method == "playwright":
-            result = scrape_with_playwright(url)
+            result = await get_dom_html(url)
         elif method == "web":
-            result = scrape_web_knowledge(url)
-        elif method == "tws":
-            result = scrape_tws(url)
-        elif method == "stt":
-            result = scrape_stt(url)
+            result = await scrape_web_knowledge(url)
         elif method == "monday":
             result = ask_monday_handle(url)
-        elif method == "sim":
-            result = simulate_page(url)
         elif method == "router":
-            # Async, but dashboard may want to trigger and return job id/status
-            result = route_scraping_async(url, extra=extra or {})
+            result = await route_scraping_async()
         elif method == "auto":
-            # Choose best method by URL/app type
-            if url.startswith("http"):
+            # Try DOM first, then Web, then Monday
+            try:
+                result = await get_dom_html(url)
+                if isinstance(result, dict) and result.get("content"):
+                    return {"scrape_result": result}
+            except Exception:
+                pass
+            try:
+                result = await scrape_web_knowledge(url)
+                if isinstance(result, dict) and result.get("content"):
+                    return {"scrape_result": result}
+            except Exception:
+                pass
+            if "monday.com" in url:
                 try:
-                    result = get_dom_html(url)
-                    if result.get("content"):
-                        return result
-                    # fallback to playwright if needed
+                    result = ask_monday_handle(url)
+                    if isinstance(result, dict) and result.get("content"):
+                        return {"scrape_result": result}
                 except Exception:
-                    result = scrape_with_playwright(url)
-            elif url.lower().startswith("tws"):
-                result = scrape_tws(url)
-            elif url.lower().startswith("stt"):
-                result = scrape_stt(url)
-            elif "monday.com" in url:
-                result = ask_monday_handle(url)
-            else:
-                result = simulate_page(url)
+                    pass
+            try:
+                result = await route_scraping_async()
+                return {"scrape_result": result}
+            except Exception:
+                return {"error": "All scraping methods failed."}
         else:
             return {"error": f"Unknown scrape method: {method}"}
         return {"scrape_result": result}
@@ -107,12 +101,8 @@ __all__ = [
     "scrape_url",
     "scrape_router",
     "get_dom_html",
-    "scrape_with_playwright",
     "scrape_web_knowledge",
-    "scrape_tws",
-    "scrape_stt",
     "ask_monday_handle",
-    "simulate_page",
     "extract_dom_structure",
     "route_scraping_async",
 ]

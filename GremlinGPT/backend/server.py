@@ -10,12 +10,12 @@
 # GremlinGPT v1.0.3 :: Module Integrity Directive
 
 from flask import Flask, send_from_directory
-from flask_socketio import SocketIO
+from flask_socketio import SocketIO   # type: ignore 
 from backend.router import register_routes
 from backend.api.api_endpoints import api_blueprint
 from loguru import logger
 from backend.globals import CFG
-import eventlet
+import eventlet   # type: ignore
 import os
 import sys
 import traceback

@@ -2,6 +2,7 @@ import ChatInterface from './components/ChatInterface.js';
 import TaskTreeView from './components/TaskTreeView.js';
 import MemoryGraph from './components/MemoryGraph.js';
 import TradingPanel from './components/TradingPanel.js';
+import RewardFeedView from './components/RewardFeedView.js';
 
 window.onload = function () {
   // Tab Navigation
@@ -11,25 +12,28 @@ window.onload = function () {
         <li class="nav-item"><a class="nav-link active" id="tab-tasks" href="#">Tasks</a></li>
         <li class="nav-item"><a class="nav-link" id="tab-memory" href="#">Memory</a></li>
         <li class="nav-item"><a class="nav-link" id="tab-trading" href="#">Trading</a></li>
+        <li class="nav-item"><a class="nav-link" id="tab-reward" href="#">Reward Feed</a></li>
       </ul>
     </nav>
     <div id="tab-content" class="section-card"></div>
   `;
 
   // Tab logic
-function showTab(tab) {
-  const tabContent = document.getElementById('tab-content');
-  document.querySelectorAll('.nav-link').forEach(e => e.classList.remove('active'));
-  document.getElementById('tab-' + tab).classList.add('active');
+  function showTab(tab) {
+    const tabContent = document.getElementById('tab-content');
+    document.querySelectorAll('.nav-link').forEach(e => e.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
 
-  if (tab === "tasks") TaskTreeView('tab-content');
-  if (tab === "memory") MemoryGraph('tab-content');
-  if (tab === "trading") TradingPanel('tab-content');
-}
+    if (tab === "tasks") TaskTreeView('tab-content');
+    if (tab === "memory") MemoryGraph('tab-content');
+    if (tab === "trading") TradingPanel('tab-content');
+    if (tab === "reward") RewardFeedView('tab-content');
+  }
   showTab('tasks');
   document.getElementById('tab-tasks').onclick = e => {e.preventDefault(); showTab('tasks');};
   document.getElementById('tab-memory').onclick = e => {e.preventDefault(); showTab('memory');};
   document.getElementById('tab-trading').onclick = e => {e.preventDefault(); showTab('trading');};
+  document.getElementById('tab-reward').onclick = e => {e.preventDefault(); showTab('reward');};
 
   // Chat FAB (always bottom-right)
   document.body.insertAdjacentHTML("beforeend", `<div id="gremlin-chat-fab" title="Open Chat">💬</div>
