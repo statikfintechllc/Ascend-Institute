@@ -1,4 +1,6 @@
 #!/usr/bin/env zsh
+
+# This script is used to start the GremlinGPT core headless services.
 # GremlinGPT Trading Core Headless Startup
 source $HOME/miniconda3/etc/profile.d/conda.sh
 export GREMLIN_HOME="$HOME/AscendNet/server/AscendAI/GremlinGPT"

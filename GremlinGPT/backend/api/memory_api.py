@@ -14,8 +14,9 @@ from flask import jsonify
 from memory.vector_store.embedder import get_all_embeddings
 from backend.globals import MEM
 from memory.log_history import log_event
-from loguru import logger
-from datetime import datetime
+import logging
+logger = logging.getLogger("GremlinGPT.TaskQueue")
+from datetime import datetime, UTC
 
 
 def graph():
@@ -37,7 +38,7 @@ def graph():
                 "limit": limit,
                 "embedding_dim": dimension,
                 "similarity_threshold": threshold,
-                "timestamp": datetime.utcnow().isoformat(),
+                "timestamp": datetime.now(UTC).isoformat(),
                 "source": "memory_api.graph",
                 "watermark": "source:GremlinGPT",
             },
@@ -50,7 +51,11 @@ def graph():
 
         return jsonify(response)
 
-    except Exception as e:
+    except (KeyError, TypeError) as e:
         logger.error(f"[MEMORY_API] Graph load failure: {e}")
         log_event("memory_api", "graph_error", {"error": str(e)}, status="failure")
         return jsonify({"error": "Failed to load memory graph", "details": str(e)}), 500
+    except Exception as e:
+        logger.error(f"[MEMORY_API] Unexpected error: {e}")
+        log_event("memory_api", "graph_error", {"error": str(e)}, status="failure")
+        return jsonify({"error": "An unexpected error occurred", "details": str(e)}), 500

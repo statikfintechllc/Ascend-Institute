@@ -10,16 +10,19 @@
 # GremlinGPT v1.0.3 :: FSM Core & Module Integrity Directive
 
 import time
-import schedule
+import schedule # type: ignore
+import json
+import os
+from pathlib import Path
 from rich.console import Console
-from datetime import datetime
+from datetime import datetime, timezone
 
 from agent_core.task_queue import TaskQueue, reprioritize, promote_old_tasks
 from executors.tool_executor import execute_tool
 from agent_core.heuristics import evaluate_task
 from agent_core.error_log import log_error
 from agents.planner_agent import enqueue_next
-from backend.globals import CFG, AGENT, SYSTEM, LOOP, ROLES  # import all needed symbols directly
+from backend.globals import CFG  # import only used symbol
 from backend.utils.git_ops import archive_json_log, auto_commit
 from memory.vector_store.embedder import inject_watermark
 from memory.log_history import log_event
@@ -29,7 +32,7 @@ from agent_core.agent_profiles import resolve_agent_role
 from self_training.generate_dataset import generate_datasets
 from core.kernel import apply_patch  # 🧠 Kernel hook for patchable execution
 from utils.nltk_setup import setup_nltk_data
-import nltk
+# import nltk  # Removed unused import
 import os
 
 NLTK_DATA_DIR = setup_nltk_data()
@@ -65,7 +68,7 @@ def auto_push():
 def fsm_loop():
     global FSM_STATE
     FSM_STATE = "RUNNING"
-    tick_time = datetime.utcnow().isoformat()
+    tick_time = datetime.now(timezone.utc).isoformat()
     console.log(f"[FSM] Tick start @ {tick_time}")
     log_event("fsm", "tick_start", {"timestamp": tick_time})
 
@@ -175,7 +178,7 @@ def fsm_loop():
                 console.log(f"[FSM] Dataset generation failed: {e}")
                 with open(LOG_CRASH_PATH, "a") as logf:
                     logf.write(
-                        f"{datetime.utcnow().isoformat()} :: Dataset Error: {str(e)}\n"
+                        f"{datetime.now(timezone.utc).isoformat()} :: Dataset Error: {str(e)}\n"
                     )
         else:
             FSM_STATE = "RUNNING"

@@ -1,4 +1,4 @@
-# !/usr/bin/env python3
+#!/usr/bin/env python3
 
 # ─────────────────────────────────────────────────────────────
 # ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
@@ -17,7 +17,8 @@ from nlp_engine.transformer_core import encode
 from agent_core.task_queue import enqueue_task
 from memory.vector_store import embedder
 from memory.log_history import log_event
-from loguru import logger
+import logging
+logger = logging.getLogger("GremlinGPT.TaskQueue")
 from datetime import datetime
 
 
@@ -35,7 +36,10 @@ def chat(user_input=None):
     if not user_input:
         logger.warning("[CHAT] Empty input received.")
         resp = {"error": "Empty input"}
-        return jsonify(resp), 400 if has_request_context() else (resp, 400)
+        if has_request_context():
+            return jsonify(resp), 400
+        else:
+            return resp, 400
 
     tokens = tokenize(user_input)
     vector = encode(user_input)
@@ -51,8 +55,9 @@ def chat(user_input=None):
             "timestamp": datetime.utcnow().isoformat(),
             "user_input": user_input,
             "watermark": "source:GremlinGPT",
-        },
+        }
     )
+    log_event("chat", "parsed", {"input": user_input, "task_type": task.get("type", "unknown")})
 
     log_event("chat", "parsed", {"input": user_input, "task_type": task["type"]})
 
@@ -66,7 +71,7 @@ def chat(user_input=None):
         "response": f"Command interpreted as: {task['type']}",
         "tokens": tokens,
         "result": result,
-        "message": f"Command interpreted as: {task['type']}",
     }
     # Return Flask response if inside a request, else dict for CLI
-    return jsonify(response) if has_request_context() else response
+    # Return Flask response if inside a request, else tuple (dict, 200) for CLI
+    return (jsonify(response), 200) if has_request_context() else (response, 200)

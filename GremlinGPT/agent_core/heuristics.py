@@ -12,7 +12,9 @@
 import psutil
 import random
 import math
-from loguru import logger
+from loguru import logger # type: ignore
+from typing import Dict, Any
+import json
 from backend.globals import CFG
 
 
@@ -52,13 +54,14 @@ def evaluate_task(task: dict, queue_size: int = 0) -> bool:
     }
 
     entropy_buffer = tolerance_map.get(task_type, 0.0)
-    entropy_pass = entropy > (rng_floor + entropy_buffer)
+    # Remove unused entropy_pass variable
 
+    cpu_count = psutil.cpu_count()
     system_pass = (
         cpu < cpu_thresh and
         mem < mem_thresh and
         disk < disk_thresh and
-        load < psutil.cpu_count()
+        (cpu_count is not None and load < cpu_count)
     )
 
     # Queue overload: if queue is large, reduce rejection chance

@@ -25,6 +25,7 @@ APPDIR="$HOME/.local/share/applications"
 START_SCRIPT="$APPLOC/run/start_all.sh"
 STOP_SCRIPT="$APPLOC/run/stop_all.sh"
 CHAT_SCRIPT="$APPLOC/run/cli.py"
+REBOOT_SCRIPT="$APPLOC/run/reboot_recover.sh"
 
 # Detect preferred shell (get user's shell from /etc/passwd or $SHELL), fallback to /bin/bash
 USER_SHELL="$(getent passwd "$USER" | cut -d: -f7 2>/dev/null || echo "${SHELL:-/bin/bash}")"
@@ -70,6 +71,7 @@ while true; do
     echo "3) 🗣️ Chat Only 🗣️"
     echo "4) ⚠️ View GremlinGPT Logs ⚠️"
     echo "5) ✌️ Exit GremlinGPT ✌️"
+    echo "6) ♻️ Reboot & Recover GremlinGPT ♻️"
     echo -n "Select> "
     read -r CHOICE
 #    echo ""  # For better readability, can be uncommented if needed
@@ -97,20 +99,25 @@ while true; do
                 echo "Select a log to view (last 40 lines):"
                 echo "Available logs:"
                 LOG_NAMES=(
-                    "$LOGDIR/runtime.log"
-                    "$LOGDIR/nlp.out"
-                    "$LOGDIR/memory.out"
-                    "$LOGDIR/fsm.out"
-                    "$LOGDIR/scraper.out"
-                    "$LOGDIR/trainer.out"
-                    "$LOGDIR/backend.out"
-                    "$LOGDIR/frontend.out"
-                    "$LOGDIR/ngrok.out"
-                    "$LOGDIR/gremlin_boot_trace.log"
+                    "runtime.log"
+                    "nlp.out"
+                    "memory.out"
+                    "fsm.out"
+                    "scraper.out"
+                    "trainer.out"
+                    "backend.out"
+                    "frontend.out"
+                    "ngrok.out"
+                    "gremlin_boot_trace.log"
                 )
-                
+                for i in "${!LOG_NAMES[@]}"; do
+                    echo "$((i+1))) ${LOG_NAMES[$i]}"
+                done
+                echo "$(( ${#LOG_NAMES[@]} + 1 ))) Return to main menu"
+                echo -n "Select log> "
+                read -r LOG_CHOICE
                 if (( LOG_CHOICE > 0 && LOG_CHOICE <= ${#LOG_NAMES[@]} )); then
-                    LOG_FILE="$APPLOC/run/logs/${LOG_NAMES[$((LOG_CHOICE - 1))]}"
+                    LOG_FILE="$LOGDIR/${LOG_NAMES[$((LOG_CHOICE - 1))]}"
                     clear
                     echo -e "\n\033[1;36m[Viewing: ${LOG_NAMES[$((LOG_CHOICE - 1))]}]\033[0m"
                     echo -e "Press Enter to return to log menu...\n"
@@ -127,6 +134,11 @@ while true; do
         5)
             echo "Goodbye, MeatSpace operator."
             exit 0
+            ;;
+        6)
+            bash -l "$REBOOT_SCRIPT"
+            echo -e "\nGremlinGPT reboot & recovery triggered. Press enter to continue..."
+            read -r
             ;;
         *)
             echo "[!] Invalid input. Maybe choose a real Option."

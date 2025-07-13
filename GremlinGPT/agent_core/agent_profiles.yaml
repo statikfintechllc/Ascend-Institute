@@ -2,7 +2,7 @@ agents:
 
   default:
     profile: "gremlin_v1"
-    retry_limit: 333  # High value intentional for bootstrap agent recursion
+    retry_limit: 333  # High value intentional: allows the bootstrap agent to recursively retry tasks many times during initialization and self-evolution, ensuring robust startup and adaptability.
     tools:
       - scrape
       - signal_scan
@@ -96,10 +96,11 @@ profiles:
     max_concurrent_tasks: 1
     isolation: "critical"
     priority: "high"
-
 meta:
   # format_version: Specifies the schema version for this YAML file. 
   # Expected values: Numeric, incremented with breaking changes (e.g., 1.0, 2.0).
+  # When upgrading format_version, ensure all consumers of this file are updated to handle the new schema.
+  # Backward compatibility is not guaranteed across major versions; provide migration steps in documentation if breaking changes are introduced.
   format_version: 1.0
   created: "2025-05-27"
   origin: "GremlinGPT v1.0.3 :: Agent Role Definition"

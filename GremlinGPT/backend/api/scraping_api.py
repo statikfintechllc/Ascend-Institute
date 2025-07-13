@@ -37,35 +37,44 @@ async def scrape_url(url, method="auto", extra=None):
         elif method == "web":
             result = await scrape_web_knowledge(url)
         elif method == "monday":
-            result = ask_monday_handle(url)
+            if asyncio.iscoroutinefunction(ask_monday_handle):
+                result = await ask_monday_handle(url)
+            else:
+                result = ask_monday_handle(url)
         elif method == "router":
             result = await route_scraping_async()
         elif method == "auto":
             # Try DOM first, then Web, then Monday
-            try:
-                result = await get_dom_html(url)
-                if isinstance(result, dict) and result.get("content"):
-                    return {"scrape_result": result}
-            except Exception:
-                pass
-            try:
-                result = await scrape_web_knowledge(url)
-                if isinstance(result, dict) and result.get("content"):
-                    return {"scrape_result": result}
-            except Exception:
-                pass
-            if "monday.com" in url:
+            for scrape_func, args in [
+                (get_dom_html, [url]),
+                (scrape_web_knowledge, [[url]]),
+            ]:
                 try:
-                    result = ask_monday_handle(url)
+                    result = await scrape_func(*args)
                     if isinstance(result, dict) and result.get("content"):
                         return {"scrape_result": result}
-                except Exception:
-                    pass
+                except Exception as e:
+                    logger.warning(f"[SCRAPER_API] {scrape_func.__name__} failed: {e}")
+            if "monday.com" in url:
+                try:
+                    if asyncio.iscoroutinefunction(ask_monday_handle):
+                        result = await ask_monday_handle(url)
+                    else:
+                        result = ask_monday_handle(url)
+                    if isinstance(result, dict) and result.get("content"):
+                        return {"scrape_result": result}
+                except Exception as e:
+                    logger.warning(f"[SCRAPER_API] ask_monday_handle failed: {e}")
             try:
                 result = await route_scraping_async()
-                return {"scrape_result": result}
-            except Exception:
-                return {"error": "All scraping methods failed."}
+                if isinstance(result, dict) and result.get("content"):
+                    return {"scrape_result": result}
+                else:
+                    logger.error(f"[SCRAPER_API] route_scraping_async returned no content: {result}")
+                    return {"error": "All scraping methods failed."}
+            except Exception as e:
+                logger.error(f"[SCRAPER_API] route_scraping_async failed: {e}\n{traceback.format_exc()}")
+                return {"error": "All scraping methods failed.", "trace": traceback.format_exc()}
         else:
             return {"error": f"Unknown scrape method: {method}"}
         return {"scrape_result": result}

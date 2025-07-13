@@ -104,7 +104,7 @@ SCRAPER = {
 
 # === MEMORY ENGINE SETTINGS ===
 MEMORY = {
-    "vector_backend": CFG["memory"].get("vector_backend", "faiss"),
+    "vector_backend": CFG["memory"].get("dashboard_selected_backend", CFG["memory"].get("vector_backend", "faiss")),
     "embedding_format": CFG["memory"].get("embedding_format", "float32"),
     "auto_index": CFG["memory"].get("auto_index", True),
     "index_chunk_size": CFG["memory"].get("index_chunk_size", 128),
@@ -130,6 +130,31 @@ LOOP = {
     "mutation_enabled": CFG.get("loop", {}).get("mutation_enabled", True),
     "self_training_enabled": CFG.get("loop", {}).get("self_training_enabled", True),
 }
+
+
+# === DASHBOARD BACKEND SELECTION ===
+def set_dashboard_backend(backend):
+    """Update the dashboard selected backend in config and memory"""
+    global MEMORY
+    if backend in ["faiss", "chroma"]:
+        MEMORY["vector_backend"] = backend
+        CFG["memory"]["dashboard_selected_backend"] = backend
+        # Also update the config file
+        try:
+            with open(CONFIG_PATH, 'w') as f:
+                toml.dump(CFG, f)
+            logger.info(f"[GLOBALS] Dashboard backend updated to: {backend}")
+            return True
+        except Exception as e:
+            logger.error(f"[GLOBALS] Failed to update backend: {e}")
+            return False
+    else:
+        logger.error(f"[GLOBALS] Invalid backend: {backend}")
+        return False
+
+def get_dashboard_backend():
+    """Get the current dashboard selected backend"""
+    return MEMORY.get("vector_backend", "faiss")
 
 
 # === AGENT ROLE ASSIGNMENTS ===

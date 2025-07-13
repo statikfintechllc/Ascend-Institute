@@ -8,10 +8,11 @@
 
 # GremlinGPT v1.0.3 :: agents/planner_agent.py
 
-from agent_core.task_queue import global_queue, reprioritize
+from agent_core.task_queue import enqueue_task, reprioritize, dump
 from tools.reward_model import top_rewarded_tasks
 from memory.vector_store import embedder
-from backend.globals import logger
+import logging
+logger = logging.getLogger("GremlinGPT.TaskQueue")
 from backend.utils.git_ops import archive_json_log, auto_commit
 from datetime import datetime
 import random
@@ -21,8 +22,8 @@ AGENT_NAME = "planner_agent"
 
 
 def inspect_task_queue():
-    current = global_queue.dump()
-    logger.info(f"[{AGENT_NAME}] Found {len(current)} task(s) in queue.")
+    current = dump()
+    logger.info(f"[{AGENT_NAME}] Found {sum(len(current[level]) for level in current)} task(s) in queue.")
     return current
 
 
@@ -36,7 +37,7 @@ def analyze_rewards(threshold=0.4):
 
 
 def adjust_priorities(weak_signals):
-    queue = global_queue.dump()
+    queue = dump()
     affected_types = {w["task"] for w in weak_signals}
     count = 0
     for level in queue:
@@ -119,8 +120,8 @@ def plan_next_task():
 
 def enqueue_next():
     task = plan_next_task()
-    global_queue.enqueue(task)
-    logger.success(f"[{AGENT_NAME}] Enqueued task: {task['type']}")
+    enqueue_task(task)
+    logger.info(f"[{AGENT_NAME}] Enqueued task: {task['type']}")
 
 
 def planner_loop(cycles=3):

@@ -19,6 +19,7 @@ SECRET_KEY = "SFTi"
 
 [ngrok]
 enabled = true
+# WARNING: Update 'authtoken' with your actual ngrok token before deploying to production.
 authtoken = "REPLACE_ME"      # REPLACE WITH YOUR TOKEN
 region = "US" 
 subdomain = ""
@@ -87,7 +88,7 @@ max_concurrent = 2
 [[agents.types]]
 name = "PlannerAgent"
 enabled = true
-max_concurrent = 2.0
+max_concurrent = 2
 
 # -------------------------------------------
 # Shell Execution
@@ -119,13 +120,16 @@ max_nlp_batch_size = 256
 # -------------------------------------------
 [memory]
 enabled = true
-vector_backend = "chromadb"     # Options: "faiss", "chromadb"
+vector_backend = "faiss"     # Options: "faiss", "chromadb"
 embedding_format = "float32"
 auto_index = true
 index_chunk_size = 512
 snapshot_interval_min = 30
 allow_replaceable = true
 allowed_backends = ["faiss", "chromadb"]
+
+# Dashboard toggle: set to "faiss" or "chromadb" to select backend
+dashboard_selected_backend = "faiss"
 vector_cache_enabled = true
 cache_path = "$ROOT/memory/vector_store/cache/"
 max_memory_usage_gb = 115
@@ -272,7 +276,6 @@ reward_penalty = -1.0
 # -------------------------------------------
 [backend]
 enabled = true
-api_port = 8080
 session_cookie_name = "gremlins_forge"
 cors_origins = ["*"]
 ngrok_enabled = true

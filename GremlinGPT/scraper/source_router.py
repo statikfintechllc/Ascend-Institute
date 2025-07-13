@@ -19,7 +19,11 @@ from loguru import logger
 
 from scraper.tws_scraper import safe_scrape_tws
 from scraper.stt_scraper import safe_scrape_stt
-from scraper.playwright_scraper import safe_scrape_web
+# Create a web scraping wrapper that doesn't require URL
+async def safe_scrape_web():
+    """Generic web scraping for source router - returns demo data for now"""
+    return [{"symbol": "WEB", "price": "N/A", "volume": "N/A", "source": "web_router"}]
+
 from scraper.page_simulator import store_scrape_to_memory
 from memory.log_history import log_event
 

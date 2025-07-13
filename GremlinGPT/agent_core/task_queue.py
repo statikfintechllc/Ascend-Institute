@@ -12,12 +12,12 @@ from collections import deque, defaultdict
 import uuid
 import json
 from pathlib import Path
-from backend.globals import logger
+import logging
+logger = logging.getLogger("GremlinGPT.TaskQueue")
 from datetime import datetime, timedelta
 
 QUEUE_FILE = Path("run/checkpoints/task_queue.json")
 ESCALATION_THRESHOLD_SEC = 120
-global_queue = []
 
 
 class TaskQueue:
@@ -134,33 +134,43 @@ class TaskQueue:
         }
 
     def _save_snapshot(self):
+        def make_serializable(obj):
+            if isinstance(obj, defaultdict):
+                obj = dict(obj)
+            if isinstance(obj, dict):
+                return {k: make_serializable(v) for k, v in obj.items()}
+            if isinstance(obj, (list, tuple)):
+                return [make_serializable(i) for i in obj]
+            if isinstance(obj, (datetime,)):
+                return obj.isoformat()
+            return obj
+
         try:
             snapshot = {
                 "queue": {k: list(v) for k, v in self.task_queue.items()},
-                "status": self.task_status,
-                "meta": dict(self.task_meta),
+                "status": make_serializable(self.task_status),
+                "meta": make_serializable(dict(self.task_meta)),
             }
             with open(QUEUE_FILE, "w") as f:
                 json.dump(snapshot, f, indent=2, default=str)
-            logger.debug("[TaskQueue] Snapshot saved.")
+                logger.debug("[TaskQueue] Snapshot saved.")
         except Exception as e:
             logger.error(f"[TaskQueue] Snapshot save failed: {e}")
 
     def _load_snapshot(self):
-        if QUEUE_FILE.exists():
-            try:
-                with open(QUEUE_FILE, "r") as f:
-                    data = json.load(f)
-                    for level in self.task_queue:
-                        self.task_queue[level].clear()
-                        self.task_queue[level].extend(
-                            data.get("queue", {}).get(level, [])
-                        )
-                    self.task_status.update(data.get("status", {}))
-                    self.task_meta.update(data.get("meta", {}))
-                logger.info("[TaskQueue] Queue restored from snapshot.")
-            except Exception as e:
-                logger.warning(f"[TaskQueue] Failed to load queue snapshot: {e}")
+        try:
+            with open(QUEUE_FILE, "r") as f:
+                data = json.load(f)
+                for level in self.task_queue:
+                    self.task_queue[level].clear()
+                    self.task_queue[level].extend(
+                        data.get("queue", {}).get(level, [])
+                    )
+                self.task_status.update(data.get("status", {}))
+                self.task_meta = defaultdict(dict, data.get("meta", {}))
+            logger.info("[TaskQueue] Queue restored from snapshot.")
+        except Exception as e:
+            logger.warning(f"[TaskQueue] Failed to load queue snapshot: {e}")
 
     def is_empty(self):
         """
@@ -185,10 +195,31 @@ class TaskQueue:
         return task
 
 # --- Legacy function API for FSM compatibility ---
+# --- Legacy function API for FSM compatibility ---
+"""
+Legacy function API for FSM compatibility.
+
+These functions provide a module-level interface to the TaskQueue singleton instance,
+allowing legacy code and FSM modules to enqueue, fetch, reprioritize, and manage tasks
+without directly instantiating or referencing the TaskQueue class. This ensures backward
+compatibility and simplifies integration with existing agent and FSM workflows.
+
+Usage:
+    enqueue_task(task_dict)
+    fetch_task(task_type=None)
+    reprioritize(task_id, new_priority)
+    promote_old_tasks()
+    retry(task)
+    get_all_tasks()
+    update_task_status(task_id, status)
+    dump()
+    get_next()
+    is_empty()
+"""
+
 # Singleton instance for static functions
 
 _task_queue = TaskQueue()
-
 
 def enqueue_task(task):
     return _task_queue.enqueue_task(task)
@@ -220,6 +251,14 @@ def update_task_status(task_id, status):
 
 def dump():
     return _task_queue.dump()
+
+
+def get_next():
+    return _task_queue.get_next()
+
+
+def is_empty():
+    return _task_queue.is_empty()
 
 
 __all__ = [

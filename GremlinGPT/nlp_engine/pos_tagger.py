@@ -29,8 +29,13 @@ ORIGIN = "pos_tagger"
 # Ensure nltk resources are prepped and paths registered
 nltk_path = setup_nltk_data()
 
-# Optional: quiet secondary tagger ensure
-nltk.download("averaged_perceptron_tagger", quiet=True)
+# Download POS tagger to project directory only
+try:
+    nltk.data.find("taggers/averaged_perceptron_tagger")
+    print(f"[NLTK] Found POS tagger in {nltk_path}")
+except LookupError:
+    print(f"[NLTK] Downloading POS tagger to {nltk_path}")
+    nltk.download("averaged_perceptron_tagger", download_dir=nltk_path, quiet=True)
 
 # ─────────────────────────────────────────────────────────────
 # POS Tagging

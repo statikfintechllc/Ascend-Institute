@@ -38,7 +38,7 @@ def evaluate_result(task_type, output_text, reference_text=None):
     if reference_text:
         similarity = semantic_similarity(output_text, reference_text)
         delta = np.linalg.norm(np.array([similarity]) - np.array([1.0]))
-        confidence = max(0.0, 1.0 - delta)
+        confidence = max(0.0, float(1.0 - delta))  # Convert to float
         reward = similarity
         reason = "semantic_match"
     else:
@@ -89,16 +89,20 @@ def evaluate_with_diff(task_type, output_text, reference_text=None, debug=False,
         base["diff_lines"] = diff_info["diff_lines"]
         # Feedback loop: inject feedback for self-training
         if feedback_loop:
-            inject_task({
-                "type": "reward_feedback",
-                "task": task_type,
-                "output": output_text,
-                "reference": reference_text,
-                "reward": base["reward"],
-                "semantic_score": diff_info["semantic_score"],
-                "embedding_delta": diff_info["embedding_delta"],
-                "timestamp": base["timestamp"],
-            })
+            try:
+                from agent_core.fsm import inject_task  # Lazy import to avoid circular dependency
+                inject_task({
+                    "type": "reward_feedback",
+                    "task": task_type,
+                    "output": output_text,
+                    "reference": reference_text,
+                    "reward": base["reward"],
+                    "semantic_score": diff_info["semantic_score"],
+                    "embedding_delta": diff_info["embedding_delta"],
+                    "timestamp": base["timestamp"],
+                })
+            except ImportError:
+                logger.warning("[REWARD] Cannot import inject_task - feedback loop disabled")
     return base
 
 

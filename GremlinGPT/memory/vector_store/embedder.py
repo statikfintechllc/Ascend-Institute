@@ -13,13 +13,17 @@ import os
 import shutil
 import uuid
 import json
-import numpy as np
+import numpy as np # type: ignore
 try:
     import faiss
 except ImportError:
-    import faiss_cpu as faiss  # type: ignore
+    try:
+        import faiss_cpu as faiss  # type: ignore
+    except ImportError as e:
+        print(f"[EMBEDDER] faiss import failed: {e}")
+        faiss = None
 from datetime import datetime, timezone
-from loguru import logger
+from loguru import logger # type: ignore
 
 # --- Resilient Imports ---
 try:
@@ -29,7 +33,7 @@ except ImportError as e:
     chromadb = None
 
 try:
-    from sentence_transformers import SentenceTransformer
+    from sentence_transformers import SentenceTransformer # type: ignore
 except ImportError as e:
     logger.error(f"[EMBEDDER] sentence_transformers import failed: {e}")
     SentenceTransformer = None
@@ -38,8 +42,15 @@ try:
     import sys
     sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
     from backend.globals import MEM
-    if not isinstance(MEM, dict):
-        raise ValueError("MEM is not a dict")
+    import toml
+    CONFIG_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../config/config.toml'))
+    try:
+        config = toml.load(CONFIG_PATH)
+        memory_conf = config.get('memory', {})
+        dashboard_selected_backend = memory_conf.get('dashboard_selected_backend', 'faiss')
+    except Exception as e:
+        logger.error(f"[EMBEDDER] Failed to load config.toml: {e}")
+        dashboard_selected_backend = 'faiss'
 except Exception as e:
     logger.error(f"[EMBEDDER] MEM import or type-check failed: {e}")
     MEM = {}
@@ -49,6 +60,7 @@ try:
 except Exception:
     # fallback to a dummy encoder
     def encode(text):
+        _ = text  # Access the parameter to avoid unused variable warning
         return np.zeros(MEM.get("embedding", {}).get("dimension", 384), dtype="float32")
 
 # --- Configuration & Paths ---
@@ -60,14 +72,13 @@ if not isinstance(storage_conf, dict):
 BASE_VECTOR_PATH = storage_conf.get("vector_store_path", "./memory/vector_store")
 FAISS_DIR        = os.path.join(BASE_VECTOR_PATH, "faiss")
 CHROMA_DIR       = os.path.join(BASE_VECTOR_PATH, "chroma")
-
 LOCAL_INDEX_ROOT = storage_conf.get("local_index_path", "./memory/local_index")
 LOCAL_INDEX_PATH = os.path.join(LOCAL_INDEX_ROOT, "documents")
-# Change config filename from memory_settings.json to memory.json
 METADATA_DB_PATH = storage_conf.get("metadata_db", os.path.join(LOCAL_INDEX_ROOT, "memory.json"))
 
-USE_FAISS   = storage_conf.get("use_faiss", True)
-USE_CHROMA  = storage_conf.get("use_chroma", False)
+# Use dashboard-selected backend for toggling
+USE_FAISS   = dashboard_selected_backend == "faiss"
+USE_CHROMA  = dashboard_selected_backend == "chromadb"
 EMBED_MODEL = MEM.get("embedding", {}).get("model", "all-MiniLM-L6-v2")
 DIMENSION   = MEM.get("embedding", {}).get("dimension", 384)
 
@@ -96,7 +107,7 @@ def add_to_chroma(text, emb_id, vector, meta):
     try:
         collection.add(
             documents=[text],
-            embeddings=[vector.tolist()],
+            embeddings=[vector.tolist() if hasattr(vector, "tolist") else list(vector)],
             metadatas=[meta],
             ids=[emb_id]
         )
@@ -107,12 +118,15 @@ def add_to_chroma(text, emb_id, vector, meta):
 # --- FAISS Index Setup ---
 FAISS_INDEX_PATH = os.path.join(FAISS_DIR, "faiss_index.index")
 try:
-    if os.path.exists(FAISS_INDEX_PATH):
+    if faiss and os.path.exists(FAISS_INDEX_PATH):
         faiss_index = faiss.read_index(FAISS_INDEX_PATH)  # type: ignore
         logger.info(f"[FAISS] Loaded index from {FAISS_INDEX_PATH}")
-    else:
+    elif faiss:
         faiss_index = faiss.IndexFlatL2(DIMENSION)  # type: ignore
         logger.info("[FAISS] Initialized new IndexFlatL2")
+    else:
+        faiss_index = None
+        logger.error("[FAISS] faiss unavailable; index not initialized")
 except Exception as e:
     logger.error(f"[FAISS] Failed to load or init index: {e}")
     faiss_index = None
@@ -122,12 +136,132 @@ def add_to_faiss(vector, emb_id):
         logger.warning(f"[FAISS] Skipping add; index not available")
         return
     try:
-        vec = np.array([vector], dtype="float32")
-        faiss_index.add(vec)
+        vec = np.array(vector, dtype="float32").reshape(1, -1)
+        # Diagnostic logging for FAISS index type and available methods
+        logger.info(f"[FAISS] Index type: {type(faiss_index)}")
+        logger.debug(f"[FAISS] Index methods: {[m for m in dir(faiss_index) if 'add' in m]}")
+        
+        # Check if index supports IDs (not all FAISS indexes do)
+        supports_ids = hasattr(faiss_index, 'add_with_ids') and callable(getattr(faiss_index, 'add_with_ids', None))
+        
+        if supports_ids:
+            logger.info(f"[FAISS] Using add_with_ids method.")
+            try:
+                emb_id_int = int(emb_id) if isinstance(emb_id, int) or (isinstance(emb_id, str) and emb_id.isdigit()) else abs(hash(emb_id)) % (2**63)
+            except Exception:
+                emb_id_int = abs(hash(str(emb_id))) % (2**63)
+            try:
+                # Ensure vec is 2D (n, d)
+                vec_2d = np.array(vector, dtype="float32").reshape(1, -1)
+                ids_array = np.array([emb_id_int], dtype="int64")
+                logger.debug(f"[FAISS] add_with_ids vec shape: {vec_2d.shape}, emb_id_int: {emb_id_int}")
+                
+                # Use type ignore to handle various FAISS implementations
+                faiss_index.add_with_ids(vec_2d, ids_array)  # type: ignore
+                logger.info(f"[FAISS] Added {emb_id} with ID")
+            except Exception as e:
+                # Some indexes claim to support add_with_ids but actually don't
+                logger.warning(f"[FAISS] add_with_ids failed, falling back to add: {e}")
+                supports_ids = False
+        
+        if not supports_ids:
+            logger.info(f"[FAISS] Using add method (no ID support).")
+            try:
+                # Ensure vec is 2D (n, d)
+                vec_2d = np.array(vector, dtype="float32").reshape(1, -1)
+                logger.debug(f"[FAISS] add vec shape: {vec_2d.shape}")
+                
+                # Use type ignore to handle various FAISS implementations
+                faiss_index.add(vec_2d)  # type: ignore
+                logger.info(f"[FAISS] Added {emb_id} without ID")
+            except Exception as e:
+                logger.error(f"[FAISS] add failed: {e}")
+                return
+        else:
+            logger.error(f"[FAISS] Index object missing valid 'add' or 'add_with_ids' method. Type: {type(faiss_index)}")
+            return
         faiss.write_index(faiss_index, FAISS_INDEX_PATH)  # type: ignore
         logger.info(f"[FAISS] Added {emb_id}")
     except Exception as e:
         logger.error(f"[FAISS] Add failed for {emb_id}: {e}")
+def get_index_info():
+    """Return diagnostic info about FAISS and Chroma index types and available methods."""
+    info = {}
+    # FAISS
+    if 'faiss_index' in globals() and faiss_index:
+        info['faiss_type'] = str(type(faiss_index))
+        info['faiss_methods'] = dir(faiss_index)
+    else:
+        info['faiss_type'] = None
+        info['faiss_methods'] = []
+    # Chroma
+    if 'collection' in globals() and collection:
+        info['chroma_type'] = str(type(collection))
+        info['chroma_methods'] = dir(collection)
+    else:
+        info['chroma_type'] = None
+        info['chroma_methods'] = []
+    return info
+
+# --- Backend Selection Functions for Dashboard ---
+def get_current_backend():
+    """Get the currently selected vector backend."""
+    global dashboard_selected_backend
+    return dashboard_selected_backend
+
+def set_backend(backend_name):
+    """Set the vector backend (faiss or chromadb) and update config."""
+    global dashboard_selected_backend, USE_FAISS, USE_CHROMA
+    
+    if backend_name not in ['faiss', 'chromadb']:
+        raise ValueError(f"Invalid backend: {backend_name}. Must be 'faiss' or 'chromadb'.")
+    
+    dashboard_selected_backend = backend_name
+    USE_FAISS = backend_name == "faiss"
+    USE_CHROMA = backend_name == "chromadb"
+    
+    # Update config file
+    try:
+        import toml
+        config = toml.load(CONFIG_PATH)
+        if 'memory' not in config:
+            config['memory'] = {}
+        config['memory']['dashboard_selected_backend'] = backend_name
+        
+        with open(CONFIG_PATH, 'w') as f:
+            toml.dump(config, f)
+        
+        logger.info(f"[EMBEDDER] Backend switched to: {backend_name}")
+        return {"status": f"Backend switched to {backend_name}", "backend": backend_name}
+    except Exception as e:
+        logger.error(f"[EMBEDDER] Failed to update config: {e}")
+        return {"error": f"Failed to update config: {e}", "backend": backend_name}
+
+def get_backend_status():
+    """Get status of both FAISS and Chroma backends."""
+    status = {
+        "current_backend": dashboard_selected_backend,
+        "faiss_available": faiss is not None and faiss_index is not None,
+        "chromadb_available": chromadb is not None and collection is not None,
+        "faiss_index_count": 0,
+        "chroma_collection_count": 0
+    }
+    
+    # Get FAISS count
+    if status["faiss_available"]:
+        try:
+            status["faiss_index_count"] = faiss_index.ntotal  # type: ignore
+        except Exception as e:
+            logger.warning(f"[EMBEDDER] Failed to get FAISS count: {e}")
+    
+    # Get Chroma count
+    if status["chromadb_available"]:
+        try:
+            status["chroma_collection_count"] = collection.count()  # type: ignore
+        except Exception as e:
+            logger.warning(f"[EMBEDDER] Failed to get Chroma count: {e}")
+    
+    return status
 
 # --- Model Loading (Resilient) ---
 model = None
@@ -157,13 +291,10 @@ def embed_text(text):
         return np.zeros(DIMENSION, dtype="float32")
 
 def package_embedding(text, vector, meta):
-    # generate unique ID
     emb_id = str(uuid.uuid4())
-    # ensure meta is a dict
     if not isinstance(meta, dict):
         logger.warning(f"[EMBEDDER] meta not dict; got {type(meta)}; coercing")
         meta = {"source": str(meta)}
-
     embedding = {
         "id": emb_id,
         "text": text,
@@ -174,22 +305,20 @@ def package_embedding(text, vector, meta):
         "model": EMBED_MODEL,
         "replaceable": True,
     }
-
-    # rails: add to stores if enabled
-    if USE_FAISS:
+    
+    # Use current backend selection (dynamically determined)
+    current_backend = get_current_backend()
+    if current_backend == "faiss" and faiss_index is not None:
         add_to_faiss(vector, emb_id)
-    if USE_CHROMA:
+    if current_backend == "chromadb" and collection is not None:
         add_to_chroma(text, emb_id, vector, meta)
-
+        
     memory_vectors[emb_id] = embedding
-
-    # persist embedding metadata
     try:
         _write_to_disk(embedding)
-        logger.info(f"[EMBEDDER] Stored embedding: {emb_id}")
+        logger.info(f"[EMBEDDER] Stored embedding: {emb_id} using {current_backend}")
     except Exception as e:
         logger.error(f"[EMBEDDER] Disk write failed for {emb_id}: {e}")
-
     return embedding
 
 def archive_plan(vector_path="data/nlp_training_sets/auto_generated.jsonl"):
@@ -266,11 +395,10 @@ def repair_index():
     _load_from_disk()
     logger.info("[EMBEDDER] Index repaired")
 
-# --- Watermark Injection ---
 def inject_watermark(origin="unknown"):
-    text = f"Watermark from {origin} @ {datetime.utcnow().isoformat()}"
+    text = f"Watermark from {origin} @ {datetime.now(timezone.utc).isoformat()}"
     vector = encode(text)
-    meta = {"origin": origin, "timestamp": datetime.utcnow().isoformat()}
+    meta = {"origin": origin, "timestamp": datetime.now(timezone.utc).isoformat()}
     return package_embedding(text, vector, meta)
 
 # --- Initial Load ---

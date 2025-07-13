@@ -13,7 +13,8 @@
 from agent_core.task_queue import reprioritize
 from agent_core import task_queue
 from memory.log_history import log_event
-from loguru import logger
+import logging
+logger = logging.getLogger("GremlinGPT.TaskQueue")
 import networkx as nx
 from datetime import datetime
 from scraper import source_router, web_knowledge_scraper
@@ -25,37 +26,24 @@ planner_bp = flask.Blueprint("planner", __name__)
 @planner_bp.route("/tasks", methods=["GET"])
 def list_tasks():
     """Returns all queued tasks and a simple DAG view."""
-    queue_data = task_queue.global_queue
+
+    # Use the correct TaskQueue API to get all tasks
     flat_list = []
     count = 0
-
-    # If global_queue is a dict with priorities as keys
-    if isinstance(queue_data, dict):
-        for level in ["high", "normal", "low"]:
-            for task in queue_data.get(level, []):
-                count += 1
-                flat_list.append(
-                    {
-                        "name": task.get("type", "unknown"),
-                        "state": "queued",
-                        "priority": level,
-                        "meta": task.get("meta", {}),
-                    }
-                )
-    # If global_queue is a flat list
-    elif isinstance(queue_data, list):
-        for task in queue_data:
+    try:
+        all_tasks = task_queue.get_all_tasks()
+        for task in all_tasks:
             count += 1
             flat_list.append(
                 {
                     "name": task.get("type", "unknown"),
-                    "state": "queued",
+                    "state": task.get("status", "queued"),
                     "priority": task.get("priority", "normal"),
-                    "meta": task.get("meta", {}),
+                    "meta": task,
                 }
             )
-    else:
-        logger.error("[PLANNER_API] global_queue is not a recognized type.")
+    except Exception as e:
+        logger.error(f"[PLANNER_API] Failed to fetch tasks: {e}")
 
     logger.info(f"[PLANNER_API] Found {count} tasks in queue.")
     log_event("planner_api", "task_list_fetch", {"count": count}, status="ok")
