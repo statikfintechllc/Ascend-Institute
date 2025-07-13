@@ -73,6 +73,7 @@ while true; do
     echo "4) ⚠️ View GremlinGPT Logs ⚠️"
     echo "5) ✌️ Exit GremlinGPT ✌️"
     echo "6) ♻️ Reboot & Recover GremlinGPT ♻️"
+    echo "7) 🚀 Enhanced Dashboard (Full Navigation & Config) 🚀"
     echo -n "Select> "
     read -r CHOICE
 #    echo ""  # For better readability, can be uncommented if needed
@@ -205,6 +206,18 @@ while true; do
             bash -l "$REBOOT_SCRIPT"
             echo -e "\nGremlinGPT reboot & recovery triggered. Press enter to continue..."
             read -r
+            ;;
+        7)
+            echo -e "\n${CYAN}🚀 Launching Enhanced Dashboard CLI...${NC}"
+            echo "This provides full file navigation, config management, and advanced monitoring."
+            ENHANCED_CLI="$SCRIPT_DIR/enhanced_dash.sh"
+            if [ -f "$ENHANCED_CLI" ]; then
+                bash "$ENHANCED_CLI"
+            else
+                echo -e "${RED}❌ Enhanced dashboard not found${NC}"
+                echo "Please ensure enhanced_dash.sh exists in utils/"
+                read -r
+            fi
             ;;
         *)
             echo "[!] Invalid input. Maybe choose a real Option."
