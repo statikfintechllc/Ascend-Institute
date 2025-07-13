@@ -1,23 +1,37 @@
-# GremlinGPT Tests Module
+# ─────────────────────────────────────────────────────────────
+# ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
+# Built under the GremlinGPT Dual License v1.0
+# © 2025 StatikFintechLLC / AscendAI Project
+# Contact: ascend.gremlin@gmail.com
+# ─────────────────────────────────────────────────────────────
 
-## Overview
-The tests module provides comprehensive testing infrastructure for GremlinGPT, ensuring system reliability, performance validation, and integration testing across all components. This module implements both unit tests and integration tests to maintain code quality and system stability.
+# GremlinGPT Testing Suite
 
-## Architecture
+This directory contains comprehensive tests for all GremlinGPT components, providing validation, performance monitoring, and quality assurance for the autonomous trading and analysis system.
+
+## Test Architecture
+
+### 🏗️ Test Structure
 
 ```
 tests/
-├── test_dashboard.py          # Frontend and dashboard testing
-├── test_memory.py             # Memory system and vector store tests
-├── test_nlp.py                # NLP engine and transformer tests
-└── test_scraper.py            # Web scraping and data extraction tests
+├── conftest.py                 # Pytest configuration and fixtures
+├── run_tests.py               # Test runner and execution manager
+├── test_agent_core.py         # Agent core functionality tests
+├── test_backend.py            # Backend system tests
+├── test_memory_system.py      # Memory and vector storage tests
+├── test_nlp.py               # NLP engine tests
+├── test_scraper_system.py    # Web scraping tests
+├── test_trading_core.py      # Trading algorithms tests
+└── README.md                 # This documentation
 ```
 
-## Test Categories
+### 🎯 Test Categories
 
-### Dashboard Testing (`test_dashboard.py`)
-- **Purpose**: Validates frontend functionality and user interface components
-- **Test Coverage**:
+1. **Unit Tests**: Individual component functionality
+2. **Integration Tests**: Cross-module interactions
+3. **Performance Tests**: Load and stress testing
+4. **End-to-End Tests**: Complete workflow validation
   - Component rendering and interaction
   - API communication and data flow
   - UI state management

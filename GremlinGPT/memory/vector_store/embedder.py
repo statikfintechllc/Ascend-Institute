@@ -26,7 +26,7 @@ from datetime import datetime, timezone
 from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
-logger = setup_module_logger("memory", "embedder") # type: ignore
+logger = setup_module_logger("memory") # type: ignore
 
 # --- Resilient Imports ---
 try:

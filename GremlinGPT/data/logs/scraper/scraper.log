@@ -62,3 +62,41 @@
 2025-07-13 00:11:37.205 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
 2025-07-13 00:11:37.209 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
 2025-07-13 00:22:31.983 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/data/logs/scraper/scraper.log
+2025-07-13 15:15:40.989 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/data/logs/scraper/scraper.log
+2025-07-13 15:15:59.925 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/tests/../data/logs/scraper/scraper.log
+2025-07-13 15:16:19.475 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/data/logs/scraper/scraper.log
+2025-07-13 15:16:19.475 | INFO     | scraper.dom_navigator:extract_dom_structure:74 - [DOM NAVIGATOR] Parsed HTML → 0 links, 0 semantic nodes, 12 chars of text.
+2025-07-13 15:16:39.927 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/data/logs/scraper/scraper.log
+2025-07-13 15:17:02.052 | INFO     | scraper.tws_scraper:safe_scrape_tws:129 - [tws_scraper] No valid files found — using fallback simulation.
+2025-07-13 15:22:37.161 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/data/logs/scraper/scraper.log
+2025-07-13 15:22:37.161 | INFO     | scraper.tws_scraper:locate_tws_files:51 - [tws_scraper] Scanning for TWS files in /home/statiksmoke8
+2025-07-13 15:23:39.765 | INFO     | scraper.tws_scraper:locate_tws_files:162 - [tws_scraper] Total candidates found: 0
+2025-07-13 15:23:39.765 | INFO     | scraper.tws_scraper:locate_tws_files:51 - [tws_scraper] Scanning for TWS files in /home/statiksmoke8
+2025-07-13 15:24:43.708 | INFO     | scraper.tws_scraper:locate_tws_files:162 - [tws_scraper] Total candidates found: 0
+2025-07-13 15:24:43.708 | INFO     | scraper.tws_scraper:safe_scrape_tws:232 - [tws_scraper] No valid files found — using fallback simulation.
+2025-07-13 15:38:15.533 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/data/logs/scraper/scraper.log
+2025-07-13 15:38:15.534 | INFO     | scraper.tws_scraper:locate_tws_files:51 - [tws_scraper] Scanning for TWS files in /home/statiksmoke8
+2025-07-13 15:38:15.534 | INFO     | scraper.tws_scraper:locate_tws_files:105 - [tws_scraper] Scanning explicit TWS directory: /home/statiksmoke8/Jts
+2025-07-13 15:38:15.535 | INFO     | scraper.tws_scraper:locate_tws_files:108 - [tws_scraper] Found TWS file in Jts: /home/statiksmoke8/Jts/hs_err_pid107844.log
+2025-07-13 15:38:15.535 | INFO     | scraper.tws_scraper:locate_tws_files:108 - [tws_scraper] Found TWS file in Jts: /home/statiksmoke8/Jts/launcher.log
+2025-07-13 15:38:15.535 | INFO     | scraper.tws_scraper:locate_tws_files:108 - [tws_scraper] Found TWS file in Jts: /home/statiksmoke8/Jts/launcher.20250705.log
+2025-07-13 15:38:15.535 | INFO     | scraper.tws_scraper:locate_tws_files:108 - [tws_scraper] Found TWS file in Jts: /home/statiksmoke8/Jts/launcher.20250712.log
+2025-07-13 15:38:15.535 | INFO     | scraper.tws_scraper:locate_tws_files:108 - [tws_scraper] Found TWS file in Jts: /home/statiksmoke8/Jts/launcher.20250707.log
+2025-07-13 15:38:15.535 | INFO     | scraper.tws_scraper:locate_tws_files:108 - [tws_scraper] Found TWS file in Jts: /home/statiksmoke8/Jts/launcher.20250704.log
+2025-07-13 15:38:15.535 | INFO     | scraper.tws_scraper:locate_tws_files:108 - [tws_scraper] Found TWS file in Jts: /home/statiksmoke8/Jts/launcher.20250702.log
+2025-07-13 15:38:15.535 | INFO     | scraper.tws_scraper:locate_tws_files:108 - [tws_scraper] Found TWS file in Jts: /home/statiksmoke8/Jts/launcher.20250706.log
+2025-07-13 15:38:15.535 | INFO     | scraper.tws_scraper:locate_tws_files:108 - [tws_scraper] Found TWS file in Jts: /home/statiksmoke8/Jts/.install4j/updater.log
+2025-07-13 15:38:15.535 | INFO     | scraper.tws_scraper:locate_tws_files:108 - [tws_scraper] Found TWS file in Jts: /home/statiksmoke8/Jts/.install4j/files.log
+2025-07-13 15:38:15.535 | INFO     | scraper.tws_scraper:locate_tws_files:108 - [tws_scraper] Found TWS file in Jts: /home/statiksmoke8/Jts/.install4j/installation.log
+2025-07-13 15:39:21.166 | INFO     | scraper.tws_scraper:locate_tws_files:171 - [tws_scraper] Total candidates found: 11
+2025-07-13 15:39:21.167 | INFO     | scraper.tws_scraper:locate_tws_files:173 - [tws_scraper] Candidate file: /home/statiksmoke8/Jts/hs_err_pid107844.log (size: 425532 bytes)
+2025-07-13 15:39:21.167 | INFO     | scraper.tws_scraper:locate_tws_files:173 - [tws_scraper] Candidate file: /home/statiksmoke8/Jts/launcher.log (size: 71856 bytes)
+2025-07-13 15:39:21.167 | INFO     | scraper.tws_scraper:locate_tws_files:173 - [tws_scraper] Candidate file: /home/statiksmoke8/Jts/launcher.20250705.log (size: 53302 bytes)
+2025-07-13 15:39:21.167 | INFO     | scraper.tws_scraper:locate_tws_files:173 - [tws_scraper] Candidate file: /home/statiksmoke8/Jts/launcher.20250712.log (size: 11613 bytes)
+2025-07-13 15:39:21.167 | INFO     | scraper.tws_scraper:locate_tws_files:173 - [tws_scraper] Candidate file: /home/statiksmoke8/Jts/launcher.20250707.log (size: 15131 bytes)
+2025-07-13 15:39:21.167 | INFO     | scraper.tws_scraper:locate_tws_files:173 - [tws_scraper] Candidate file: /home/statiksmoke8/Jts/launcher.20250704.log (size: 8390 bytes)
+2025-07-13 15:39:21.167 | INFO     | scraper.tws_scraper:locate_tws_files:173 - [tws_scraper] Candidate file: /home/statiksmoke8/Jts/launcher.20250702.log (size: 11610 bytes)
+2025-07-13 15:39:21.167 | INFO     | scraper.tws_scraper:locate_tws_files:173 - [tws_scraper] Candidate file: /home/statiksmoke8/Jts/launcher.20250706.log (size: 7201 bytes)
+2025-07-13 15:39:21.167 | INFO     | scraper.tws_scraper:locate_tws_files:173 - [tws_scraper] Candidate file: /home/statiksmoke8/Jts/.install4j/updater.log (size: 5229 bytes)
+2025-07-13 15:39:21.167 | INFO     | scraper.tws_scraper:locate_tws_files:173 - [tws_scraper] Candidate file: /home/statiksmoke8/Jts/.install4j/files.log (size: 71285 bytes)
+2025-07-13 15:39:21.167 | INFO     | scraper.tws_scraper:locate_tws_files:173 - [tws_scraper] Candidate file: /home/statiksmoke8/Jts/.install4j/installation.log (size: 43359 bytes)

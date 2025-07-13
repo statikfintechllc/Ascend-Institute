@@ -14,7 +14,7 @@ from bs4 import BeautifulSoup
 from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
-logger = setup_module_logger("scraper", "dom_navigator")
+logger = setup_module_logger("scraper")
 from collections import Counter
 
 WATERMARK = "source:GremlinGPT"
@@ -40,10 +40,12 @@ def extract_dom_structure(html):
         }
 
     # Extract anchor href links
-    links = [a["href"] for a in soup.find_all("a", href=True)]
+    from bs4 import Tag
+    links = [a.get("href") for a in soup.find_all("a", href=True) if isinstance(a, Tag)]
 
     # Count tag types (structure profiling)
-    tag_counts = Counter(tag.name for tag in soup.find_all())
+    from bs4 import Tag
+    tag_counts = Counter(tag.name for tag in soup.find_all() if isinstance(tag, Tag))
 
     # Extract key semantic sections
     semantic_tags = ["header", "nav", "main", "section", "article", "footer"]
