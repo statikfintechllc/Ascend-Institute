@@ -65,7 +65,7 @@ LOG_FILE = resolve_path(CFG["paths"].get("log_file", "data/logs/runtime.log"))
 
 # === LOGGER INITIALIZATION ===
 from utils.logging_config import setup_module_logger
-logger = setup_module_logger("backend")
+logger = setup_module_logger("backend", "globals")
 
 
 # === HARDWARE PREFERENCES ===

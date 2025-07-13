@@ -31,10 +31,10 @@ from memory.vector_store.embedder import embed_text, package_embedding, inject_w
 from self_training.feedback_loop import inject_feedback
 from core.kernel import apply_patch
 from agents.planner_agent import enqueue_next
-from utils.logging_config import get_module_logger
+from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
-logger = get_module_logger("self_mutation_watcher")
+logger = setup_module_logger("self_mutation_watcher", "watcher")
 
 WATCH_PATHS = [
     "agent_core/fsm.py",

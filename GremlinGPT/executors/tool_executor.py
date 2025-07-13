@@ -20,10 +20,10 @@ from executors.shell_executor import run_shell_command
 from executors.python_executor import run_python_sandbox
 from tools.reward_model import evaluate_result, log_reward
 from memory.log_history import log_event
-from utils.logging_config import get_module_logger
+from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
-logger = get_module_logger("executors")
+logger = setup_module_logger("executors", "tool_executor")
 from utils.nltk_setup import setup_nltk_data
 import nltk
 import os

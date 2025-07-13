@@ -17,13 +17,18 @@ import json
 from datetime import datetime
 from pathlib import Path
 import uuid
+import sys
+
+# Add project root to path for imports
+project_root = Path(__file__).parent.parent
+sys.path.insert(0, str(project_root))
 
 from nlp_engine.diff_engine import diff_texts
 from memory.vector_store.embedder import embed_text, package_embedding
-from utils.logging_config import get_module_logger
+from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
-logger = get_module_logger("core")
+logger = setup_module_logger("core", "snapshot")
 
 SNAPSHOT_ROOT = Path("run/checkpoints/snapshots/")
 SNAPSHOT_ROOT.mkdir(parents=True, exist_ok=True)

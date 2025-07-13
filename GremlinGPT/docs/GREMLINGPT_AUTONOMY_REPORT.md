@@ -109,7 +109,7 @@ graph TD
 
 | Type               | Target Directory                            |
 |--------------------|---------------------------------------------|
-| Logs               | `run/logs/`, `data/logs/`                   |
+| Logs               | `run/logs/`, `data/logs/{system,modules,services,applications}/`                   |
 | Memory Embeddings  | `memory/vector_store/chroma/`, `faiss/`    |
 | NLP Training Sets  | `data/nlp_training_sets/auto_generated.jsonl` |
 | Kernel Patches     | Patched live via `apply_patch()`            |

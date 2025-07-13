@@ -19,6 +19,15 @@
 
 # tests/test_dashboard.py
 
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
+from utils.logging_config import setup_module_logger
+
+# Initialize module logging
+logger = setup_module_logger('tests', 'test_dashboard')
+
 import requests
 
 

@@ -10,10 +10,10 @@
 # GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 
-from utils.logging_config import get_module_logger
+from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
-logger = get_module_logger("trading_core")
+logger = setup_module_logger("trading_core", "tax_estimator")
 from datetime import datetime
 
 DEFAULT_TAX_RATE = 0.15  # Can be made dynamic via config or input

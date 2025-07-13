@@ -1,5 +1,10 @@
 // RewardFeedView.js
+// Initialize component logger
+const logger = window.GremlinLogger ? window.GremlinLogger.createLogger('frontend', 'reward-feed-view') : console;
+
 export default function RewardFeedView(containerId) {
+  logger.info('Initializing RewardFeedView component');
+  
   const el = (typeof containerId === 'string') ? document.getElementById(containerId) : containerId;
   if (!el) return;
   el.innerHTML = '<div class="loading">Loading reward/diff feed...</div>';

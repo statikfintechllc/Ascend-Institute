@@ -22,10 +22,10 @@ import os
 import shutil
 from datetime import datetime
 from pathlib import Path
-from utils.logging_config import get_module_logger
+from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
-logger = get_module_logger("backend")
+logger = setup_module_logger("backend", "git_ops")
 
 DEFAULT_ARCHIVE_DIR = "docs/"
 

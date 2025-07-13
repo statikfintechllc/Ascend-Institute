@@ -1,5 +1,10 @@
 // SelfTrainingTab.js
+// Initialize component logger
+const logger = window.GremlinLogger ? window.GremlinLogger.createLogger('frontend', 'self-training-tab') : console;
+
 export default function SelfTrainingTab(containerId) {
+  logger.info('Initializing SelfTrainingTab component');
+  
   const el = (typeof containerId === 'string') ? document.getElementById(containerId) : containerId;
   if (!el) return;
 
@@ -51,35 +56,44 @@ export default function SelfTrainingTab(containerId) {
 
   // Define global functions for button handlers
   window.triggerMutation = () => {
+    logger.info('Triggering mutation');
     fetch('/api/self_training/mutate', { method: 'POST' })
       .then(res => res.json())
       .then(data => {
         document.getElementById('mutationStatus').innerHTML = `<div class="alert alert-info">${JSON.stringify(data)}</div>`;
+        logger.info('Mutation triggered', data);
       })
       .catch(err => {
         document.getElementById('mutationStatus').innerHTML = `<div class="alert alert-danger">Error: ${err.message}</div>`;
+        logger.error('Error triggering mutation', err);
       });
   };
 
   window.startFeedback = () => {
+    logger.info('Starting feedback loop');
     fetch('/api/self_training/feedback', { method: 'POST' })
       .then(res => res.json())
       .then(data => {
         document.getElementById('feedbackStatus').innerHTML = `<div class="alert alert-success">${JSON.stringify(data)}</div>`;
+        logger.info('Feedback loop started', data);
       })
       .catch(err => {
         document.getElementById('feedbackStatus').innerHTML = `<div class="alert alert-danger">Error: ${err.message}</div>`;
+        logger.error('Error starting feedback loop', err);
       });
   };
 
   window.scheduleRetrain = () => {
+    logger.info('Scheduling retrain');
     fetch('/api/self_training/retrain', { method: 'POST' })
       .then(res => res.json())
       .then(data => {
         document.getElementById('retrainStatus').innerHTML = `<div class="alert alert-warning">${JSON.stringify(data)}</div>`;
+        logger.info('Retrain scheduled', data);
       })
       .catch(err => {
         document.getElementById('retrainStatus').innerHTML = `<div class="alert alert-danger">Error: ${err.message}</div>`;
+        logger.error('Error scheduling retrain', err);
       });
   };
 
@@ -91,10 +105,12 @@ export default function SelfTrainingTab(containerId) {
       document.getElementById('feedbackStatus').innerHTML = `<small>Status: ${data.feedback_status || 'Idle'}</small>`;
       document.getElementById('retrainStatus').innerHTML = `<small>Status: ${data.retrain_status || 'Idle'}</small>`;
       document.getElementById('watcherStatus').innerHTML = `<small>Status: ${data.watcher_status || 'Monitoring'}</small>`;
+      logger.info('Status loaded', data);
     })
     .catch(err => {
       ['mutationStatus', 'feedbackStatus', 'retrainStatus', 'watcherStatus'].forEach(id => {
         document.getElementById(id).innerHTML = '<small class="text-danger">Error loading status</small>';
       });
+      logger.error('Error loading status', err);
     });
 }

@@ -146,7 +146,7 @@ Which triggers:
 
 Failed or misfired signals (e.g., bad prediction, wrong trend) trigger a feedback cascade:
 
-1. Failure logged in: `data/logs/bootstrap.log`  
+1. Failure logged in: `data/logs/system/bootstrap.log`  
 2. Feedback flagged in: `self_training/feedback_loop.py`  
 3. Sample added to: `self_training/generate_dataset.py` output  
 4. Model retrained via: `self_training/trainer.py`  

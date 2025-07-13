@@ -1,5 +1,11 @@
 // SettingsTab.js (System tab)
+
+// Initialize component logger
+const logger = window.GremlinLogger ? window.GremlinLogger.createLogger('frontend', 'settings-tab') : console;
+
 export default function SettingsTab(containerId) {
+  logger.info('Initializing SettingsTab component');
+  
   const el = (typeof containerId === 'string') ? document.getElementById(containerId) : containerId;
   if (!el) return;
 

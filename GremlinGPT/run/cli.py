@@ -21,10 +21,10 @@ sys.path.append(PROJECT_ROOT)
 import nltk
 from utils.nltk_setup import setup_nltk_data
 from nlp_engine.parser import parse_nlp
-from utils.logging_config import get_module_logger
+from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
-logger = get_module_logger("utils")
+logger = setup_module_logger("run", "cli")
 from backend.api.chat_handler import chat
 from nlp_engine.chat_session import ChatSession
 

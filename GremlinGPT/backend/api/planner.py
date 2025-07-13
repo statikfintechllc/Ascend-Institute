@@ -13,12 +13,20 @@
 from agent_core.task_queue import reprioritize
 from agent_core import task_queue
 from memory.log_history import log_event
-import logging
-logger = logging.getLogger("GremlinGPT.TaskQueue")
+import sys
+from pathlib import Path
 import networkx as nx
 from datetime import datetime
 from scraper import source_router, web_knowledge_scraper
 import flask
+
+# Add project root to path for imports
+project_root = Path(__file__).parent.parent.parent
+sys.path.insert(0, str(project_root))
+
+from utils.logging_config import setup_module_logger
+
+logger = setup_module_logger('backend', 'planner')
 
 planner_bp = flask.Blueprint("planner", __name__)
 

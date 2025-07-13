@@ -1,5 +1,10 @@
 // ToolsTab.js
+// Initialize component logger
+const logger = window.GremlinLogger ? window.GremlinLogger.createLogger('frontend', 'tools-tab') : console;
+
 export default function ToolsTab(containerId) {
+  logger.info('Initializing ToolsTab component');
+  
   const el = (typeof containerId === 'string') ? document.getElementById(containerId) : containerId;
   if (!el) return;
 

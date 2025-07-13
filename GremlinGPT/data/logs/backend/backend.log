@@ -167,3 +167,7 @@
 2025-07-13 00:22:36.459 | INFO     | memory.vector_store.embedder:<module>:126 - [FAISS] Loaded index from ./memory/vector_store/faiss/faiss_index.index
 2025-07-13 00:22:37.476 | INFO     | memory.vector_store.embedder:<module>:274 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
 2025-07-13 00:22:37.482 | INFO     | memory.vector_store.embedder:<module>:410 - [EMBEDDER] Initial disk load complete
+2025-07-13 08:51:17.900 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/data/logs/backend/backend.log
+2025-07-13 08:51:17.908 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/data/logs/backend/backend.log
+2025-07-13 08:51:39.028 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/data/logs/backend/backend.log
+2025-07-13 08:51:39.036 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/data/logs/backend/backend.log

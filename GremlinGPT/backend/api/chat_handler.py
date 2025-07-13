@@ -17,9 +17,17 @@ from nlp_engine.transformer_core import encode
 from agent_core.task_queue import enqueue_task
 from memory.vector_store import embedder
 from memory.log_history import log_event
-import logging
-logger = logging.getLogger("GremlinGPT.TaskQueue")
+import sys
+from pathlib import Path
 from datetime import datetime
+
+# Add project root to path for imports
+project_root = Path(__file__).parent.parent.parent
+sys.path.insert(0, str(project_root))
+
+from utils.logging_config import setup_module_logger
+
+logger = setup_module_logger('backend', 'chat_handler')
 
 
 def chat(user_input=None):

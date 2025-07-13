@@ -1,5 +1,10 @@
 // ExperimentalTab.js
+// Initialize component logger
+const logger = window.GremlinLogger ? window.GremlinLogger.createLogger('frontend', 'experimental-tab') : console;
+
 export default function ExperimentalTab(containerId) {
+  logger.info('Initializing ExperimentalTab component');
+  
   const el = (typeof containerId === 'string') ? document.getElementById(containerId) : containerId;
   if (!el) return;
 
@@ -57,6 +62,7 @@ export default function ExperimentalTab(containerId) {
 
   // Define global functions for button handlers
   window.startMutationWatcher = () => {
+    logger.info('Start Mutation Watcher button clicked');
     fetch('/api/experimental/mutation_watcher', { method: 'POST' })
       .then(res => res.json())
       .then(data => {
@@ -69,20 +75,25 @@ export default function ExperimentalTab(containerId) {
             <pre>${JSON.stringify(data, null, 2)}</pre>
           </div>
         `;
+        logger.info('Mutation watcher started', data);
       })
       .catch(err => {
         document.getElementById('mutationWatcherStatus').innerHTML = `<div class="alert alert-danger">Error: ${err.message}</div>`;
+        logger.error('Error starting mutation watcher', err);
       });
   };
 
   window.stopMutationWatcher = () => {
+    logger.info('Stop Mutation Watcher button clicked');
     fetch('/api/experimental/mutation_watcher', { method: 'DELETE' })
       .then(res => res.json())
       .then(data => {
         document.getElementById('mutationWatcherStatus').innerHTML = `<div class="alert alert-secondary">Mutation watcher stopped</div>`;
+        logger.info('Mutation watcher stopped', data);
       })
       .catch(err => {
         document.getElementById('mutationWatcherStatus').innerHTML = `<div class="alert alert-danger">Error: ${err.message}</div>`;
+        logger.error('Error stopping mutation watcher', err);
       });
   };
 
@@ -93,6 +104,7 @@ export default function ExperimentalTab(containerId) {
       return;
     }
 
+    logger.info('Test New Agent button clicked', { agent });
     fetch('/api/experimental/new_agents', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -107,13 +119,16 @@ export default function ExperimentalTab(containerId) {
           <pre>${JSON.stringify(data, null, 2)}</pre>
         </div>
       `;
+      logger.info('New agent tested', { agent, data });
     })
     .catch(err => {
       document.getElementById('newAgentOutput').innerHTML = `<div class="alert alert-danger">Error: ${err.message}</div>`;
+      logger.error('Error testing new agent', err);
     });
   };
 
   window.refreshBrokenScrapers = () => {
+    logger.info('Refresh Broken Scrapers button clicked');
     fetch('/api/experimental/broken_scrapers')
       .then(res => res.json())
       .then(data => {
@@ -127,9 +142,11 @@ export default function ExperimentalTab(containerId) {
             </div>
           `).join('');
         }
+        logger.info('Broken scrapers list refreshed', { scrapers });
       })
       .catch(err => {
         document.getElementById('brokenScrapersList').innerHTML = `<small class="text-danger">Error loading scrapers: ${err.message}</small>`;
+        logger.error('Error loading broken scrapers', err);
       });
   };
 
@@ -138,9 +155,11 @@ export default function ExperimentalTab(containerId) {
     .then(res => res.json())
     .then(data => {
       document.getElementById('mutationWatcherStatus').innerHTML = `<small>Status: ${data.status || 'Stopped'}</small>`;
+      logger.info('Loaded initial mutation watcher status', data);
     })
     .catch(err => {
       document.getElementById('mutationWatcherStatus').innerHTML = '<small class="text-danger">Error loading status</small>';
+      logger.error('Error loading initial mutation watcher status', err);
     });
 
   fetch('/api/experimental/new_agents')
@@ -150,9 +169,11 @@ export default function ExperimentalTab(containerId) {
       const select = document.getElementById('newAgentSelect');
       select.innerHTML = '<option value="">Select new agent...</option>' + 
         agents.map(agent => `<option value="${agent.name}">${agent.name} - ${agent.description}</option>`).join('');
+      logger.info('Loaded initial new agents', agents);
     })
     .catch(err => {
       document.getElementById('newAgentSelect').innerHTML = '<option value="">Error loading agents</option>';
+      logger.error('Error loading initial new agents', err);
     });
 
   window.refreshBrokenScrapers();

@@ -14,10 +14,10 @@ import os
 import nltk
 from nltk import pos_tag, word_tokenize
 from datetime import datetime
-from utils.logging_config import get_module_logger
+from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
-logger = get_module_logger("nlp_engine")
+logger = setup_module_logger("nlp_engine", "pos_tagger")
 
 from utils.nltk_setup import setup_nltk_data
 from memory.vector_store.embedder import embed_text, package_embedding, inject_watermark

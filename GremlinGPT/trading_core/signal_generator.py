@@ -17,10 +17,10 @@ from memory.vector_store.embedder import (
     embed_text,
     inject_watermark,
 )
-from utils.logging_config import get_module_logger
+from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
-logger = get_module_logger("trading_core")
+logger = setup_module_logger("trading_core", "signal_generator")
 from datetime import datetime
 
 WATERMARK = "source:GremlinGPT"

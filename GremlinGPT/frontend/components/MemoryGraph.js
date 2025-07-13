@@ -1,4 +1,9 @@
+// Initialize component logger
+const logger = window.GremlinLogger ? window.GremlinLogger.createLogger('frontend', 'memory-graph') : console;
+
 export default function MemoryGraph(targetId) {
+  logger.info('Initializing MemoryGraph component');
+  
   const el = document.getElementById(targetId);
   el.innerHTML = `
     <div class="card bg-secondary">

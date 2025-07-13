@@ -19,6 +19,15 @@
 
 # tests/test_memory.py
 
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
+from utils.logging_config import setup_module_logger
+
+# Initialize module logging
+logger = setup_module_logger('tests', 'test_memory')
+
 from memory.vector_store.embedder import embed_text, package_embedding
 
 

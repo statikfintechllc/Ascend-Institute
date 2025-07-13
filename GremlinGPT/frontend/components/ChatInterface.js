@@ -1,4 +1,9 @@
+// Initialize component logger
+const logger = window.GremlinLogger ? window.GremlinLogger.createLogger('frontend', 'chat-interface') : console;
+
 export default function ChatInterface(targetId) {
+  logger.info('Initializing ChatInterface component', { targetId });
+  
   const el = document.getElementById(targetId);
   el.innerHTML = `
     <div class="card bg-secondary">

@@ -11,10 +11,10 @@
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 
 from bs4 import BeautifulSoup
-from utils.logging_config import get_module_logger
+from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
-logger = get_module_logger("scraper")
+logger = setup_module_logger("scraper", "dom_navigator")
 from collections import Counter
 
 WATERMARK = "source:GremlinGPT"

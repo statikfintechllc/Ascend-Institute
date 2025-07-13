@@ -80,7 +80,7 @@ cd /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT
 ./run/start_all.sh
 
 # Monitor logs
-tail -f data/logs/backend.out
+tail -f data/logs/services/backend.out
 ```
 
 ### **Manual Component Startup**

@@ -13,11 +13,19 @@ import time
 import schedule # type: ignore
 import json
 import os
+import sys
 from pathlib import Path
 from rich.console import Console
 from datetime import datetime, timezone
 
+# Add project root to path for imports
+project_root = Path(__file__).parent.parent
+sys.path.insert(0, str(project_root))
+
+from utils.logging_config import setup_module_logger
 from agent_core.task_queue import TaskQueue, reprioritize, promote_old_tasks
+
+logger = setup_module_logger('agent_core', 'fsm')
 from executors.tool_executor import execute_tool
 from agent_core.heuristics import evaluate_task
 from agent_core.error_log import log_error

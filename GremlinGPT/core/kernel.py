@@ -10,17 +10,23 @@
 
 from datetime import datetime
 from pathlib import Path
+import sys
+
+# Add project root to path for imports
+project_root = Path(__file__).parent.parent
+sys.path.insert(0, str(project_root))
+
 from memory.vector_store.embedder import embed_text, package_embedding
 from self_training.feedback_loop import inject_feedback
 from nlp_engine.diff_engine import diff_texts
-from utils.logging_config import get_module_logger
-
-# Initialize module-specific logger
-logger = get_module_logger("core")
+from utils.logging_config import setup_module_logger
 from backend.globals import CFG
 import shutil
 import uuid
 import subprocess
+
+# Initialize module-specific logger
+logger = setup_module_logger("core", "kernel")
 
 KERNEL_TAG = "kernel_writer"
 SOURCE_ROOT = Path("GremlinGPT")

@@ -16,10 +16,10 @@ import json
 from datetime import datetime
 from pathlib import Path
 from memory.vector_store.embedder import package_embedding
-from utils.logging_config import get_module_logger
+from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
-logger = get_module_logger("executors")
+logger = setup_module_logger("executors", "shell_executor")
 
 # --- Import encode for embedding shell logs ---
 try:

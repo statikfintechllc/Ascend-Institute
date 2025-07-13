@@ -13,10 +13,10 @@ import tempfile
 import uuid
 import os
 from pathlib import Path
-from utils.logging_config import get_module_logger
+from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
-logger = get_module_logger("executors")
+logger = setup_module_logger("executors", "python_executor")
 
 EXEC_LOG_DIR = Path("data/logs/executions/")
 EXEC_LOG_DIR.mkdir(parents=True, exist_ok=True)

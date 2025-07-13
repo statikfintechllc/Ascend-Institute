@@ -13,10 +13,10 @@
 import json
 from datetime import datetime
 from pathlib import Path
-from utils.logging_config import get_module_logger
+from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
-logger = get_module_logger("scraper")
+logger = setup_module_logger("scraper", "tws_scraper")
 
 WATERMARK = "source:GremlinGPT"
 ORIGIN = "tws_scraper"

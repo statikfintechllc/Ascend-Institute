@@ -8,13 +8,22 @@
 
 # GremlinGPT v1.0.3 :: Module Integrity Directive
 
+import sys
 import logging
 from datetime import datetime, timezone
-from backend.globals import CFG
 from pathlib import Path
 import json
 import uuid
 from typing import Union
+
+# Add project root to path for imports
+project_root = Path(__file__).parent.parent
+sys.path.insert(0, str(project_root))
+
+from backend.globals import CFG
+from utils.logging_config import setup_module_logger
+
+logger = setup_module_logger('agent_core', 'error_log')
 
 log_dir = (CFG.get("paths") or {}).get("logs_dir")  # Fixed to match config.toml
 if not log_dir or not isinstance(log_dir, str):

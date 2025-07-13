@@ -334,7 +334,14 @@ graph TD
 **Manual monitoring:**
 
 ```bash
-tail -f data/logs/runtime.log
+# Watch system logs
+tail -f data/logs/system/runtime.log
+
+# Watch module logs  
+tail -f data/logs/backend/backend.log
+
+# Watch service outputs
+tail -f data/logs/services/backend.out
 ```
 
 ---
@@ -353,10 +360,10 @@ tail -f data/logs/runtime.log
 ### Debug Commands:
 ```bash
 # Filter error logs
-grep '"severity": "error"' data/logs/task_errors.jsonl
+grep '"severity": "error"' data/logs/applications/task_errors.jsonl
 
 # Trace failed shell tasks only
-jq 'select(.task_type=="shell")' data/logs/task_errors.jsonl
+jq 'select(.task_type=="shell")' data/logs/applications/task_errors.jsonl
 
 # Test system health
 curl http://localhost:5000/api/health

@@ -12,10 +12,10 @@
 
 import schedule
 import time
-from utils.logging_config import get_module_logger
+from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
-logger = get_module_logger("backend")
+logger = setup_module_logger("backend", "scheduler")
 import threading
 from backend.globals import CFG
 

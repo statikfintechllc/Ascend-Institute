@@ -1,4 +1,9 @@
+// Initialize component logger
+const logger = window.GremlinLogger ? window.GremlinLogger.createLogger('frontend', 'trading-panel') : console;
+
 export default function TradingPanel(targetId) {
+  logger.info('Initializing TradingPanel component');
+  
   const el = document.getElementById(targetId);
   el.innerHTML = `
     <div class="card bg-secondary">

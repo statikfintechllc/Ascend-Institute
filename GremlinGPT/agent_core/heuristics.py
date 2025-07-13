@@ -12,12 +12,18 @@
 import psutil
 import random
 import math
-from utils.logging_config import get_module_logger
-
-# Initialize module-specific logger
-logger = get_module_logger("utils") # type: ignore
+import sys
+from pathlib import Path
 from typing import Dict, Any
 import json
+
+# Add project root to path for imports
+project_root = Path(__file__).parent.parent
+sys.path.insert(0, str(project_root))
+
+from utils.logging_config import setup_module_logger
+
+logger = setup_module_logger('agent_core', 'heuristics')
 from backend.globals import CFG
 
 

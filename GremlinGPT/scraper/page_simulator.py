@@ -12,10 +12,10 @@
 
 from scraper.dom_navigator import extract_dom_structure
 from memory.vector_store.embedder import embed_text, package_embedding, inject_watermark
-from utils.logging_config import get_module_logger
+from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
-logger = get_module_logger("scraper")
+logger = setup_module_logger("scraper", "page_simulator")
 from datetime import datetime
 
 WATERMARK = "source:GremlinGPT"

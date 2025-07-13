@@ -353,15 +353,26 @@ sudo tee "$SYSTEMD_UNIT_PATH" > /dev/null <<EOF
 [Unit]
 Description=GremlinGPT Autonomous Agent
 After=network.target
+Wants=network-online.target
 
 [Service]
 Type=simple
 WorkingDirectory=$APPLOC
-ExecStart=/bin/zsh -c 'conda activate gremlin-orchestrator && $START_SCRIPT'
+ExecStart=/bin/bash -c 'source $HOME/miniconda3/etc/profile.d/conda.sh && conda activate gremlin-orchestrator && python3 core/loop.py'
 Restart=always
 RestartSec=10
 User=$USER
-Environment="PATH=$APPLOC/miniconda3/envs/gremlin-orchestrator/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+Group=$USER
+Environment="PYTHONPATH=$APPLOC"
+Environment="PATH=$HOME/miniconda3/envs/gremlin-orchestrator/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+Environment="CONDA_DEFAULT_ENV=gremlin-orchestrator"
+Environment="CONDA_PREFIX=$HOME/miniconda3/envs/gremlin-orchestrator"
+Environment="HOME=$HOME"
+StandardOutput=journal
+StandardError=journal
+KillMode=mixed
+KillSignal=SIGTERM
+TimeoutStopSec=30
 
 [Install]
 WantedBy=multi-user.target

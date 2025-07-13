@@ -10,9 +10,16 @@
 
 import yaml
 import os
-import logging
+import sys
+from pathlib import Path
 
-logger = logging.getLogger("GremlinGPT.agent_profiles")
+# Add project root to path for imports
+project_root = Path(__file__).parent.parent
+sys.path.insert(0, str(project_root))
+
+from utils.logging_config import setup_module_logger
+
+logger = setup_module_logger('agent_core', 'agent_profiles')
 
 # The agent profiles YAML path can be set via the AGENT_PROFILE_PATH environment variable.
 # If not set, defaults to "agent_core/agent_profiles.yaml".

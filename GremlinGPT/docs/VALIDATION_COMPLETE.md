@@ -140,8 +140,8 @@ curl -X POST http://localhost:5000/api/vector/backend \
 
 ### **Monitor Logs**
 ```bash
-tail -f data/logs/backend.out
-tail -f data/logs/bootstrap.log
+tail -f data/logs/services/backend.out
+tail -f data/logs/system/bootstrap.log
 ```
 
 ---

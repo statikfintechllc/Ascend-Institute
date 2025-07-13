@@ -1,5 +1,10 @@
 // ExecutorsTab.js
+// Initialize component logger
+const logger = window.GremlinLogger ? window.GremlinLogger.createLogger('frontend', 'executors-tab') : console;
+
 export default function ExecutorsTab(containerId) {
+  logger.info('Initializing ExecutorsTab component');
+  
   const el = (typeof containerId === 'string') ? document.getElementById(containerId) : containerId;
   if (!el) return;
 
@@ -52,6 +57,7 @@ print('Hello from GremlinGPT!')"></textarea>
   // Define global functions for button handlers
   window.executePython = () => {
     const code = document.getElementById('pythonCode').value;
+    logger.info('Executing Python code:', code);
     fetch('/api/execute/python', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -65,14 +71,17 @@ print('Hello from GremlinGPT!')"></textarea>
           <pre>${data.output || data.error}</pre>
         </div>
       `;
+      logger.info('Python execution result:', data);
     })
     .catch(err => {
       document.getElementById('pythonOutput').innerHTML = `<div class="alert alert-danger">Error: ${err.message}</div>`;
+      logger.error('Python execution error:', err);
     });
   };
 
   window.executeShell = () => {
     const command = document.getElementById('shellCommand').value;
+    logger.info('Executing shell command:', command);
     fetch('/api/execute/shell', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -86,14 +95,17 @@ print('Hello from GremlinGPT!')"></textarea>
           <pre>${data.output || data.error}</pre>
         </div>
       `;
+      logger.info('Shell execution result:', data);
     })
     .catch(err => {
       document.getElementById('shellOutput').innerHTML = `<div class="alert alert-danger">Error: ${err.message}</div>`;
+      logger.error('Shell execution error:', err);
     });
   };
 
   window.executeTool = () => {
     const tool = document.getElementById('toolSelect').value;
+    logger.info('Executing tool:', tool);
     fetch('/api/execute/tool', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -107,9 +119,11 @@ print('Hello from GremlinGPT!')"></textarea>
           <pre>${JSON.stringify(data, null, 2)}</pre>
         </div>
       `;
+      logger.info('Tool execution result:', data);
     })
     .catch(err => {
       document.getElementById('toolOutput').innerHTML = `<div class="alert alert-danger">Error: ${err.message}</div>`;
+      logger.error('Tool execution error:', err);
     });
   };
 }

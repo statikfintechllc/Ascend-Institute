@@ -12,10 +12,20 @@
 
 import time
 from datetime import datetime
-from backend.globals import CFG, logger
+from pathlib import Path
+import sys
+
+# Add project root to path for imports
+project_root = Path(__file__).parent.parent
+sys.path.insert(0, str(project_root))
+
+from backend.globals import CFG
+from utils.logging_config import setup_module_logger
 from agent_core import fsm
 from self_training.feedback_loop import check_trigger, clear_trigger
 from memory.log_history import log_event
+
+logger = setup_module_logger("core", "loop")
 
 
 def boot_loop():

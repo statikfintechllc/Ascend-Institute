@@ -19,6 +19,15 @@
 
 # tests/test_nlp.py
 
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
+from utils.logging_config import setup_module_logger
+
+# Initialize module logging
+logger = setup_module_logger('tests', 'test_nlp')
+
 from nlp_engine.tokenizer import tokenize
 from nlp_engine.pos_tagger import get_pos_tags
 from nlp_engine.transformer_core import encode

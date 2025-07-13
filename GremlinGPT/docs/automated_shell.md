@@ -163,8 +163,8 @@ python3 core/loop.py
 
 | **Purpose**         | **File / Path**                                  |
 |---------------------|--------------------------------------------------|
-| Execution Events    | `data/logs/history/gremlin_exec_log.jsonl`       |
-| Reward Scores       | `data/logs/rewards.jsonl`                        |
+| Execution Events    | `data/logs/applications/gremlin_exec_log.jsonl`       |
+| Reward Scores       | `data/logs/applications/rewards.jsonl`                        |
 | Mutation Embeds     | `data/nlp_training_sets/live_mutations.jsonl`    |
 | Portfolio           | `data/portfolio.json`, `trade_history.jsonl`     |
 | Snapshots           | `run/checkpoints/snapshots/`                     |

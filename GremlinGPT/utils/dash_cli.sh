@@ -1,6 +1,8 @@
 #!/usr/bin/env zsh
 
-APPLOC="$HOME"
+# Get the actual GremlinGPT directory (where this script is located)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
+APPLOC="$(cd "$SCRIPT_DIR/.." && pwd)"
 LOGDIR="$APPLOC/data/logs"
 
 # Dash CLI for GremlinGPT
@@ -19,8 +21,7 @@ fi
 APP_TITLE="AscendAI: GremlinGPT v1.0.3"
 SUB_TITLE="From: SFTi"
 
-# Resolve script dir, fallback to home if not found
-APPLOC="$HOME"
+# Resolve script dir, fallback to detected apploc
 APPDIR="$HOME/.local/share/applications"
 START_SCRIPT="$APPLOC/run/start_all.sh"
 STOP_SCRIPT="$APPLOC/run/stop_all.sh"
@@ -96,38 +97,103 @@ while true; do
             while true; do
                 clear
                 echo -e "\033[1;34m[Log Menu]\033[0m"
-                echo "Select a log to view (last 40 lines):"
-                echo "Available logs:"
-                LOG_NAMES=(
-                    "runtime.log"
-                    "nlp.out"
-                    "memory.out"
-                    "fsm.out"
-                    "scraper.out"
-                    "trainer.out"
-                    "backend.out"
-                    "frontend.out"
-                    "ngrok.out"
-                    "gremlin_boot_trace.log"
-                )
-                for i in "${!LOG_NAMES[@]}"; do
-                    echo "$((i+1))) ${LOG_NAMES[$i]}"
-                done
-                echo "$(( ${#LOG_NAMES[@]} + 1 ))) Return to main menu"
-                echo -n "Select log> "
-                read -r LOG_CHOICE
-                if (( LOG_CHOICE > 0 && LOG_CHOICE <= ${#LOG_NAMES[@]} )); then
-                    LOG_FILE="$LOGDIR/${LOG_NAMES[$((LOG_CHOICE - 1))]}"
+                echo "Select a log category to view:"
+                echo ""
+                echo "1) System Logs (runtime, bootstrap, install)"
+                echo "2) Service Logs (component outputs)"  
+                echo "3) Module Logs (individual module logs)"
+                echo "4) Application Logs (task errors, data)"
+                echo "5) Return to main menu"
+                echo -n "Select category> "
+                read -r LOG_CAT_CHOICE
+                
+                case $LOG_CAT_CHOICE in
+                    1)
+                        # System Logs
+                        LOG_NAMES=(
+                            "system/runtime.log"
+                            "system/bootstrap.log"
+                            "system/install.log"
+                        )
+                        LOG_CATEGORY="System"
+                        ;;
+                    2)
+                        # Service Logs  
+                        LOG_NAMES=(
+                            "services/backend.out"
+                            "services/frontend.out"
+                            "services/nlp.out"
+                            "services/memory.out"
+                            "services/fsm.out"
+                            "services/scraper.out"
+                            "services/trainer.out"
+                            "services/ngrok.out"
+                        )
+                        LOG_CATEGORY="Service"
+                        ;;
+                    3)
+                        # Module Logs
+                        LOG_NAMES=(
+                            "backend/backend.log"
+                            "core/core.log"
+                            "nlp_engine/nlp_engine.log"
+                            "memory/memory.log"
+                            "scraper/scraper.log"
+                            "trading_core/trading_core.log"
+                            "agents/agents.log"
+                            "executors/executors.log"
+                            "tools/tools.log"
+                            "utils/utils.log"
+                            "self_mutation_watcher/self_mutation_watcher.log"
+                            "self_training/self_training.log"
+                        )
+                        LOG_CATEGORY="Module"
+                        ;;
+                    4)
+                        # Application Logs
+                        LOG_NAMES=(
+                            "applications/task_errors.jsonl"
+                            "tests/tests.log"
+                        )
+                        LOG_CATEGORY="Application"
+                        ;;
+                    5)
+                        break
+                        ;;
+                    *)
+                        echo "[!] Invalid input. Maybe choose a real Option."
+                        read -r
+                        continue
+                        ;;
+                esac
+                
+                if [[ $LOG_CAT_CHOICE != 5 ]]; then
                     clear
-                    echo -e "\n\033[1;36m[Viewing: ${LOG_NAMES[$((LOG_CHOICE - 1))]}]\033[0m"
-                    echo -e "Press Enter to return to log menu...\n"
-                    tail -n 40 "$LOG_FILE" 2>/dev/null || echo "[Error] Log file not found."
-                    read -r
-                elif (( LOG_CHOICE == ${#LOG_NAMES[@]} + 1 )); then
-                    break
-                else
-                    echo "[!] Invalid input. Maybe choose a real Option."
-                    read -r
+                    echo -e "\033[1;36m[$LOG_CATEGORY Logs]\033[0m"
+                    echo "Select a log to view (last 40 lines):"
+                    for i in "${!LOG_NAMES[@]}"; do
+                        echo "$((i+1))) $(basename "${LOG_NAMES[$i]}")"
+                    done
+                    echo "$(( ${#LOG_NAMES[@]} + 1 ))) Back to categories"
+                    echo -n "Select log> "
+                    read -r LOG_CHOICE
+                    if (( LOG_CHOICE > 0 && LOG_CHOICE <= ${#LOG_NAMES[@]} )); then
+                        LOG_FILE="$LOGDIR/${LOG_NAMES[$((LOG_CHOICE - 1))]}"
+                        clear
+                        echo -e "\n\033[1;36m[Viewing: ${LOG_NAMES[$((LOG_CHOICE - 1))]}]\033[0m"
+                        echo -e "Press Enter to return to log menu...\n"
+                        if [[ -f "$LOG_FILE" ]]; then
+                            tail -n 40 "$LOG_FILE"
+                        else
+                            echo "[Info] Log file not yet created: $LOG_FILE"
+                        fi
+                        read -r
+                    elif (( LOG_CHOICE == ${#LOG_NAMES[@]} + 1 )); then
+                        continue
+                    else
+                        echo "[!] Invalid input. Maybe choose a real Option."
+                        read -r
+                    fi
                 fi
             done
             ;;

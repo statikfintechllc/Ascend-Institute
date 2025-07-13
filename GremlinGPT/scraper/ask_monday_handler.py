@@ -28,9 +28,9 @@ import json
 import argparse
 
 try:
-    from utils.logging_config import get_module_logger
+    from utils.logging_config import setup_module_logger
     # Initialize module-specific logger
-    logger = get_module_logger("scraper")
+    logger = setup_module_logger("scraper", "ask_monday_handler")
     from memory.vector_store.embedder import embed_text, package_embedding, inject_watermark
     from memory.log_history import log_event
 except ImportError:

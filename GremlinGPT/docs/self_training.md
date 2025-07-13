@@ -130,7 +130,7 @@ run/checkpoints/retrain_trigger.json
 ## Dataset Generation
 
 **generate_dataset.py pulls from:**
-- Log files: data/logs/*.log
+- Log files: data/logs/{system,modules,services,applications}/*.log
 - Code diffs (tagged as "type": "code_diff")
 - Failed embeddings
 - Skipped or low-rewarded tasks
@@ -200,7 +200,7 @@ FSM observes diffs through watcher:
 ## Logging & Auditing
 
 *All mutation and retrain logs are written to:*
-- data/logs/bootstrap.log
+- data/logs/system/bootstrap.log
 - data/nlp_training_sets/bootstrap.json
 - All embeddings (diffs, feedback, retrain events) are visible in vector memory and dashboard graphs.
 

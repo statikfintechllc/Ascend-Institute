@@ -13,10 +13,10 @@
 import json
 from pathlib import Path
 from datetime import datetime
-from utils.logging_config import get_module_logger
+from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
-logger = get_module_logger("memory")
+logger = setup_module_logger("memory", "log_history")
 
 HISTORY_DIR = Path("data/logs/history/")
 HISTORY_FILE = HISTORY_DIR / "gremlin_exec_log.jsonl"

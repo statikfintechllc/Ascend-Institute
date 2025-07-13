@@ -14,9 +14,17 @@ from flask import jsonify
 from memory.vector_store.embedder import get_all_embeddings
 from backend.globals import MEM
 from memory.log_history import log_event
-import logging
-logger = logging.getLogger("GremlinGPT.TaskQueue")
+import sys
+from pathlib import Path
 from datetime import datetime, UTC
+
+# Add project root to path for imports
+project_root = Path(__file__).parent.parent.parent
+sys.path.insert(0, str(project_root))
+
+from utils.logging_config import setup_module_logger
+
+logger = setup_module_logger('backend', 'memory_api')
 
 
 def graph():

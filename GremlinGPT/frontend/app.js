@@ -1,3 +1,6 @@
+// Import frontend logging utility
+import './logging.js';
+
 import ChatInterface from './components/ChatInterface.js';
 import TaskTreeView from './components/TaskTreeView.js';
 import MemoryGraph from './components/MemoryGraph.js';
@@ -9,7 +12,12 @@ import ToolsTab from './components/ToolsTab.js';
 import SettingsTab from './components/SettingsTab.js';
 import ExperimentalTab from './components/ExperimentalTab.js';
 
+// Initialize main app logger
+const logger = window.GremlinLogger.createLogger('frontend', 'app');
+
 window.onload = function () {
+  logger.info('GremlinGPT frontend application initializing');
+
   // Tab Navigation
   document.getElementById('gremlin-app-root').innerHTML = `
     <nav>

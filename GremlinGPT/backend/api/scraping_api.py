@@ -9,10 +9,10 @@
 
 # GremlinGPT v1.0.3 :: Scraper API & Module Router
 
-from utils.logging_config import get_module_logger
+from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
-logger = get_module_logger("backend")
+logger = setup_module_logger("backend", "scraping_api")
 
 # Core scrapers (import ALL actual scripts from scraper/)
 from scraper.scraper_loop import get_dom_html

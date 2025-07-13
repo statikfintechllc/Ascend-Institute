@@ -26,10 +26,10 @@ import json
 import os
 from datetime import datetime
 from pathlib import Path
-from utils.logging_config import get_module_logger
+from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
-logger = get_module_logger("self_training")
+logger = setup_module_logger("self_training", "feedback_loop")
 from memory.vector_store.embedder import inject_watermark, package_embedding
 
 # Paths

@@ -15,10 +15,10 @@ import re
 import numpy as np
 import langdetect
 import torch
-from utils.logging_config import get_module_logger
+from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
-logger = get_module_logger("nlp_engine")
+logger = setup_module_logger("nlp_engine", "semantic_score")
 from backend.globals import CFG
 from sentence_transformers import SentenceTransformer, util
 from utils.nltk_setup import setup_nltk_data

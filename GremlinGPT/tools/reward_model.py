@@ -14,10 +14,10 @@ import json
 from datetime import datetime
 from pathlib import Path
 import numpy as np
-from utils.logging_config import get_module_logger
+from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
-logger = get_module_logger("tools")
+logger = setup_module_logger("tools", "reward_model")
 from nlp_engine.semantic_score import semantic_similarity
 from nlp_engine.diff_engine import diff_texts
 # Lazy import to avoid circular dependency
