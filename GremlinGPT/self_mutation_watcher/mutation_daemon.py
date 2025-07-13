@@ -100,7 +100,7 @@ def archive_dataset(output_path):
     if not os.path.exists(output_path):
         return
     timestamp = datetime.utcnow().strftime("%Y%m%dT%H%M%S")
-    archive_name = f"GremlinGPT/docs/dataset_dump_{timestamp}.jsonl"
+    archive_name = f"docs/dataset_dump_{timestamp}.jsonl"
     try:
         shutil.copyfile(output_path, archive_name)
         logger.info(f"[WATCHER] Dataset backup created → {archive_name}")

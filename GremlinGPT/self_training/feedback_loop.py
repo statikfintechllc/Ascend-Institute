@@ -35,7 +35,7 @@ from memory.vector_store.embedder import inject_watermark, package_embedding
 # Paths
 LOG_PATH = Path("data/logs/")
 TRIGGER_FILE = Path("run/checkpoints/retrain_trigger.json")
-ARCHIVE_DIR = Path("GremlinGPT/docs/feedback_triggers/")
+ARCHIVE_DIR = Path("docs/feedback_triggers/")
 LOG_PATH.mkdir(parents=True, exist_ok=True)
 ARCHIVE_DIR.mkdir(parents=True, exist_ok=True)
 

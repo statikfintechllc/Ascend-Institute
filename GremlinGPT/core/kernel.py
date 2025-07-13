@@ -16,7 +16,8 @@ from nlp_engine.diff_engine import diff_texts
 from utils.logging_config import get_module_logger
 
 # Initialize module-specific logger
-logger = get_module_logger("core"), CFG
+logger = get_module_logger("core")
+from backend.globals import CFG
 import shutil
 import uuid
 import subprocess

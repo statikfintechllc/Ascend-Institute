@@ -14,8 +14,9 @@ import sys
 from pathlib import Path
 from loguru import logger
 
-# Base logging directory
-BASE_LOG_DIR = Path.home() / "data" / "logs"
+# Base logging directory - use project directory instead of home
+project_root = Path(__file__).parent.parent
+BASE_LOG_DIR = project_root / "data" / "logs"
 
 def setup_module_logger(module_name, log_level="INFO"):
     """

@@ -41,17 +41,22 @@ except ImportError:
         def warning(self, *a, **k): print("[WARNING]", *a, **k, file=sys.stderr)
         def error(self, *a, **k): print("[ERROR]", *a, **k, file=sys.stderr)
     logger = _MiniLogger()
-    def embed_text(x): return [0.0] * 64
-    def package_embedding(**x): pass
-    def inject_watermark(**x): pass
-    def log_event(*a, **k): pass
+    def embed_text(text): 
+        try:
+            import numpy as np
+            return np.zeros(64, dtype="float32")
+        except ImportError:
+            return [0.0] * 64
+    def package_embedding(text, vector, meta): return {}
+    def inject_watermark(origin="unknown"): return {}
+    def log_event(event_type, task_type, details, status="ok", meta=None): pass
 
 # ---- GREMLIN FLAVOR: Watermark, structure, memory
 WATERMARK = "source:GremlinGPT"
 ORIGIN = "ask_monday_handler"
 
-SCREENSHOT_DIR = Path(os.path.expanduser("data/logs/screenshots"))
-MEMORY_DIR = Path(os.path.expanduser("data/logs/chat_responses"))
+SCREENSHOT_DIR = Path("data/logs/screenshots")
+MEMORY_DIR = Path("data/logs/chat_responses")
 SCREENSHOT_DIR.mkdir(parents=True, exist_ok=True)
 MEMORY_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -177,6 +182,13 @@ def ocr_images(image_paths):
 def save_to_memory(prompt, response):
     timestamp = datetime.utcnow().isoformat()
     vector = embed_text(response)
+    # Ensure vector is a list of floats
+    try:
+        import numpy as np
+        if isinstance(vector, np.ndarray):
+            vector = vector.tolist()
+    except ImportError:
+        pass
     summary = f"GremlinGPT ChatGPT response to: {prompt[:100]}"
     package_embedding(
         text=summary,

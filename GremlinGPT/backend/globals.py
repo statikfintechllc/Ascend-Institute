@@ -51,8 +51,9 @@ def resolve_path(p):
     """Expands $ROOT and user home (~) dynamically"""
     if not isinstance(p, str):
         return str(p)
-    base = Path(os.path.expanduser(CFG["paths"].get("base_dir", "."))).resolve()
-    return os.path.expanduser(p.replace("$ROOT", str(base)))
+    # Use current script directory as the project root, not the config base_dir
+    project_root = Path(__file__).parent.parent.resolve()
+    return os.path.expanduser(p.replace("$ROOT", str(project_root)))
 
 
 BASE_DIR = resolve_path(CFG["paths"].get("base_dir", "."))

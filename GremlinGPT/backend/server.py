@@ -9,6 +9,13 @@
 
 # GremlinGPT v1.0.3 :: Module Integrity Directive
 
+# CRITICAL: Eventlet monkey patching MUST happen before any other imports
+try:
+    import eventlet
+    eventlet.monkey_patch()
+except ImportError:
+    pass  # eventlet is optional
+
 # Set up NLTK data path before any imports
 import os
 import sys
