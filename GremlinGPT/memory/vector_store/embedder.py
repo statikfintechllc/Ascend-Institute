@@ -23,7 +23,10 @@ except ImportError:
         print(f"[EMBEDDER] faiss import failed: {e}")
         faiss = None
 from datetime import datetime, timezone
-from loguru import logger # type: ignore
+from utils.logging_config import get_module_logger
+
+# Initialize module-specific logger
+logger = get_module_logger("memory") # type: ignore
 
 # --- Resilient Imports ---
 try:

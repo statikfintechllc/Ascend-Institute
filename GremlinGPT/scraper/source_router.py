@@ -15,7 +15,10 @@ import psutil
 import threading
 import time
 from datetime import datetime
-from loguru import logger
+from utils.logging_config import get_module_logger
+
+# Initialize module-specific logger
+logger = get_module_logger("scraper")
 
 from scraper.tws_scraper import safe_scrape_tws
 from scraper.stt_scraper import safe_scrape_stt

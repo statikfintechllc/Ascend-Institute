@@ -24,7 +24,10 @@ sys.path.insert(0, GREMLIN_HOME)
 from flask import Flask, send_from_directory
 from flask_socketio import SocketIO   # type: ignore 
 from backend.api.api_endpoints import api_blueprint
-from loguru import logger
+from utils.logging_config import get_module_logger
+
+# Initialize module-specific logger
+logger = get_module_logger("backend")
 from backend.globals import CFG
 import eventlet   # type: ignore
 import traceback
@@ -54,10 +57,7 @@ except Exception as e:
     logger.warning(f"[SERVER] Could not register additional routes: {e}")
     # Continue without additional routes - API endpoints are already registered
 
-# Log Setup
-LOG_DIR = CFG.get("paths", {}).get("logs_dir", "run/logs")  # Fixed to match config.toml
-os.makedirs(LOG_DIR, exist_ok=True)
-logger.add(f"{LOG_DIR}/runtime.log", rotation="1 MB")
+# Log directory is already set up by globals.py, no need to duplicate logger setup
 
 
 # Broadcast function for system status

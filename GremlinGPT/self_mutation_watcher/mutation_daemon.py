@@ -13,7 +13,10 @@ import time
 import threading
 import requests
 from datetime import datetime
-from loguru import logger
+from utils.logging_config import get_module_logger
+
+# Initialize module-specific logger
+logger = get_module_logger("self_mutation_watcher")
 from pathlib import Path
 import json
 import uuid

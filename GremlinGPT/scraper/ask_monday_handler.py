@@ -14,11 +14,13 @@
 import os
 import time
 import sys
+import shutil
 import pyautogui
 import pyperclip
 import pytesseract
 import subprocess
 import platform
+import shutil
 from PIL import ImageGrab, Image
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -26,7 +28,9 @@ import json
 import argparse
 
 try:
-    from backend.globals import logger
+    from utils.logging_config import get_module_logger
+    # Initialize module-specific logger
+    logger = get_module_logger("scraper")
     from memory.vector_store.embedder import embed_text, package_embedding, inject_watermark
     from memory.log_history import log_event
 except ImportError:

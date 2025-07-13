@@ -14,10 +14,14 @@ import json
 from datetime import datetime
 from pathlib import Path
 import numpy as np
-from backend.globals import logger
+from utils.logging_config import get_module_logger
+
+# Initialize module-specific logger
+logger = get_module_logger("tools")
 from nlp_engine.semantic_score import semantic_similarity
 from nlp_engine.diff_engine import diff_texts
-from agent_core.fsm import inject_task  # For feedback loop
+# Lazy import to avoid circular dependency
+# from agent_core.fsm import inject_task  # For feedback loop
 
 LOG_HISTORY_DIR = Path("data/logs/")
 REWARD_LOG = LOG_HISTORY_DIR / "rewards.jsonl"

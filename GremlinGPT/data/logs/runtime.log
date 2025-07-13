@@ -795,3 +795,135 @@ Traceback (most recent call last):
   File "/home/statiksmoke8/miniconda3/envs/gremlin-orchestrator/lib/python3.9/os.py", line 679, in __getitem__
     raise KeyError(key) from None
 KeyError: 'DISPLAY'
+2025-07-12 22:45:07.695 | INFO     | backend.globals:<module>:64 - [GLOBALS] Configuration loaded and logger initialized.
+2025-07-12 22:46:52.647 | INFO     | backend.globals:<module>:64 - [GLOBALS] Configuration loaded and logger initialized.
+2025-07-12 22:46:55.878 | SUCCESS  | nlp_engine.transformer_core:<module>:33 - [TRANSFORMER] Loaded model: bert-base-uncased on cuda
+2025-07-12 22:46:56.449 | INFO     | memory.vector_store.embedder:<module>:123 - [FAISS] Loaded index from ./memory/vector_store/faiss/faiss_index.index
+2025-07-12 22:46:57.669 | INFO     | memory.vector_store.embedder:<module>:271 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-12 22:46:57.675 | INFO     | memory.vector_store.embedder:<module>:407 - [EMBEDDER] Initial disk load complete
+2025-07-12 22:47:32.459 | INFO     | backend.globals:<module>:64 - [GLOBALS] Configuration loaded and logger initialized.
+2025-07-12 22:47:35.511 | SUCCESS  | nlp_engine.transformer_core:<module>:33 - [TRANSFORMER] Loaded model: bert-base-uncased on cuda
+2025-07-12 22:47:37.532 | INFO     | memory.vector_store.embedder:<module>:123 - [FAISS] Loaded index from ./memory/vector_store/faiss/faiss_index.index
+2025-07-12 22:47:39.017 | INFO     | memory.vector_store.embedder:<module>:271 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-12 22:47:39.027 | INFO     | memory.vector_store.embedder:<module>:407 - [EMBEDDER] Initial disk load complete
+2025-07-12 22:47:39.378 | SUCCESS  | nlp_engine.tokenizer:<module>:31 - [TOKENIZER] Loaded: bert-base-uncased
+2025-07-12 22:47:39.381 | INFO     | backend.interface.commands:<module>:110 - [FAISS] Loaded index from ./memory/vector_store/faiss/faiss_index.index
+2025-07-12 22:47:40.490 | INFO     | backend.interface.commands:<module>:135 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-12 22:47:40.497 | INFO     | backend.interface.commands:<module>:281 - [EMBEDDER] Initial disk load complete
+2025-07-12 22:47:40.590 | INFO     | backend.server:<module>:36 - [SERVER] NLTK configured to use: /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/data/nltk_data
+2025-07-12 22:47:43.933 | INFO     | backend.router:register_routes:18 - [ROUTER] Verifying and backing up API routes...
+2025-07-12 22:47:43.933 | INFO     | backend.router:register_routes:35 - [ROUTER] Verified: /api/chat is already registered (likely via blueprint).
+2025-07-12 22:47:43.933 | DEBUG    | backend.router:register_routes:41 - [ROUTER] Existing endpoint for /api/chat: api.api_chat
+2025-07-12 22:47:43.933 | INFO     | backend.router:register_routes:35 - [ROUTER] Verified: /api/memory/graph is already registered (likely via blueprint).
+2025-07-12 22:47:43.933 | DEBUG    | backend.router:register_routes:41 - [ROUTER] Existing endpoint for /api/memory/graph: api.api_memory_graph
+2025-07-12 22:47:43.933 | INFO     | backend.router:register_routes:35 - [ROUTER] Verified: /api/scrape is already registered (likely via blueprint).
+2025-07-12 22:47:43.933 | DEBUG    | backend.router:register_routes:41 - [ROUTER] Existing endpoint for /api/scrape: api.api_scrape
+2025-07-12 22:47:43.933 | INFO     | backend.router:register_routes:35 - [ROUTER] Verified: /api/agent/tasks is already registered (likely via blueprint).
+2025-07-12 22:47:43.933 | DEBUG    | backend.router:register_routes:41 - [ROUTER] Existing endpoint for /api/agent/tasks: api.api_agent_tasks
+2025-07-12 22:47:43.933 | INFO     | backend.router:register_routes:35 - [ROUTER] Verified: /api/trading/signals is already registered (likely via blueprint).
+2025-07-12 22:47:43.933 | DEBUG    | backend.router:register_routes:41 - [ROUTER] Existing endpoint for /api/trading/signals: api.api_trading_signals
+2025-07-12 22:47:43.934 | SUCCESS  | backend.router:register_routes:49 - [ROUTER] Route registered as backup: /api/tasks/priority -> set_task_priority
+2025-07-12 22:47:43.934 | INFO     | backend.server:<module>:52 - [SERVER] Additional routes registered
+2025-07-12 22:48:38.978 | INFO     | backend.globals:<module>:64 - [GLOBALS] Configuration loaded and logger initialized.
+2025-07-12 22:48:42.068 | SUCCESS  | nlp_engine.transformer_core:<module>:33 - [TRANSFORMER] Loaded model: bert-base-uncased on cuda
+2025-07-12 22:48:42.132 | INFO     | memory.vector_store.embedder:<module>:123 - [FAISS] Loaded index from ./memory/vector_store/faiss/faiss_index.index
+2025-07-12 22:48:43.399 | INFO     | memory.vector_store.embedder:<module>:271 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-12 22:48:43.405 | INFO     | memory.vector_store.embedder:<module>:407 - [EMBEDDER] Initial disk load complete
+2025-07-12 22:49:16.056 | INFO     | backend.globals:<module>:64 - [GLOBALS] Configuration loaded and logger initialized.
+2025-07-12 22:49:19.476 | SUCCESS  | nlp_engine.transformer_core:<module>:33 - [TRANSFORMER] Loaded model: bert-base-uncased on cuda
+2025-07-12 22:49:19.544 | INFO     | memory.vector_store.embedder:<module>:123 - [FAISS] Loaded index from ./memory/vector_store/faiss/faiss_index.index
+2025-07-12 22:49:20.601 | INFO     | memory.vector_store.embedder:<module>:271 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-12 22:49:20.606 | INFO     | memory.vector_store.embedder:<module>:407 - [EMBEDDER] Initial disk load complete
+2025-07-12 22:49:20.918 | SUCCESS  | nlp_engine.tokenizer:<module>:31 - [TOKENIZER] Loaded: bert-base-uncased
+2025-07-12 22:49:20.921 | INFO     | backend.interface.commands:<module>:110 - [FAISS] Loaded index from ./memory/vector_store/faiss/faiss_index.index
+2025-07-12 22:49:21.985 | INFO     | backend.interface.commands:<module>:135 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-12 22:49:21.991 | INFO     | backend.interface.commands:<module>:281 - [EMBEDDER] Initial disk load complete
+2025-07-12 22:49:22.064 | INFO     | backend.server:<module>:36 - [SERVER] NLTK configured to use: /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/data/nltk_data
+2025-07-12 22:49:25.049 | INFO     | backend.router:register_routes:18 - [ROUTER] Verifying and backing up API routes...
+2025-07-12 22:49:25.049 | INFO     | backend.router:register_routes:35 - [ROUTER] Verified: /api/chat is already registered (likely via blueprint).
+2025-07-12 22:49:25.049 | DEBUG    | backend.router:register_routes:41 - [ROUTER] Existing endpoint for /api/chat: api.api_chat
+2025-07-12 22:49:25.049 | INFO     | backend.router:register_routes:35 - [ROUTER] Verified: /api/memory/graph is already registered (likely via blueprint).
+2025-07-12 22:49:25.049 | DEBUG    | backend.router:register_routes:41 - [ROUTER] Existing endpoint for /api/memory/graph: api.api_memory_graph
+2025-07-12 22:49:25.049 | INFO     | backend.router:register_routes:35 - [ROUTER] Verified: /api/scrape is already registered (likely via blueprint).
+2025-07-12 22:49:25.049 | DEBUG    | backend.router:register_routes:41 - [ROUTER] Existing endpoint for /api/scrape: api.api_scrape
+2025-07-12 22:49:25.049 | INFO     | backend.router:register_routes:35 - [ROUTER] Verified: /api/agent/tasks is already registered (likely via blueprint).
+2025-07-12 22:49:25.049 | DEBUG    | backend.router:register_routes:41 - [ROUTER] Existing endpoint for /api/agent/tasks: api.api_agent_tasks
+2025-07-12 22:49:25.049 | INFO     | backend.router:register_routes:35 - [ROUTER] Verified: /api/trading/signals is already registered (likely via blueprint).
+2025-07-12 22:49:25.049 | DEBUG    | backend.router:register_routes:41 - [ROUTER] Existing endpoint for /api/trading/signals: api.api_trading_signals
+2025-07-12 22:49:25.050 | SUCCESS  | backend.router:register_routes:49 - [ROUTER] Route registered as backup: /api/tasks/priority -> set_task_priority
+2025-07-12 22:49:25.050 | INFO     | backend.server:<module>:52 - [SERVER] Additional routes registered
+2025-07-12 22:50:01.348 | INFO     | backend.globals:<module>:64 - [GLOBALS] Configuration loaded and logger initialized.
+2025-07-12 22:50:04.395 | SUCCESS  | nlp_engine.transformer_core:<module>:33 - [TRANSFORMER] Loaded model: bert-base-uncased on cuda
+2025-07-12 22:50:06.563 | INFO     | memory.vector_store.embedder:<module>:123 - [FAISS] Loaded index from ./memory/vector_store/faiss/faiss_index.index
+2025-07-12 22:50:07.721 | INFO     | memory.vector_store.embedder:<module>:271 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-12 22:50:07.727 | INFO     | memory.vector_store.embedder:<module>:407 - [EMBEDDER] Initial disk load complete
+2025-07-12 22:50:19.458 | INFO     | backend.globals:<module>:64 - [GLOBALS] Configuration loaded and logger initialized.
+2025-07-12 22:50:22.710 | SUCCESS  | nlp_engine.transformer_core:<module>:33 - [TRANSFORMER] Loaded model: bert-base-uncased on cuda
+2025-07-12 22:50:23.572 | INFO     | memory.vector_store.embedder:<module>:123 - [FAISS] Loaded index from ./memory/vector_store/faiss/faiss_index.index
+2025-07-12 22:50:24.688 | INFO     | memory.vector_store.embedder:<module>:271 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-12 22:50:24.694 | INFO     | memory.vector_store.embedder:<module>:407 - [EMBEDDER] Initial disk load complete
+2025-07-12 22:50:25.000 | SUCCESS  | nlp_engine.tokenizer:<module>:31 - [TOKENIZER] Loaded: bert-base-uncased
+2025-07-12 22:50:25.003 | INFO     | backend.interface.commands:<module>:110 - [FAISS] Loaded index from ./memory/vector_store/faiss/faiss_index.index
+2025-07-12 22:50:26.016 | INFO     | backend.interface.commands:<module>:135 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-12 22:50:26.024 | INFO     | backend.interface.commands:<module>:281 - [EMBEDDER] Initial disk load complete
+2025-07-12 22:50:26.112 | INFO     | backend.server:<module>:36 - [SERVER] NLTK configured to use: /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/data/nltk_data
+2025-07-12 22:50:29.559 | INFO     | backend.router:register_routes:18 - [ROUTER] Verifying and backing up API routes...
+2025-07-12 22:50:29.559 | INFO     | backend.router:register_routes:35 - [ROUTER] Verified: /api/chat is already registered (likely via blueprint).
+2025-07-12 22:50:29.559 | DEBUG    | backend.router:register_routes:41 - [ROUTER] Existing endpoint for /api/chat: api.api_chat
+2025-07-12 22:50:29.559 | INFO     | backend.router:register_routes:35 - [ROUTER] Verified: /api/memory/graph is already registered (likely via blueprint).
+2025-07-12 22:50:29.559 | DEBUG    | backend.router:register_routes:41 - [ROUTER] Existing endpoint for /api/memory/graph: api.api_memory_graph
+2025-07-12 22:50:29.559 | INFO     | backend.router:register_routes:35 - [ROUTER] Verified: /api/scrape is already registered (likely via blueprint).
+2025-07-12 22:50:29.559 | DEBUG    | backend.router:register_routes:41 - [ROUTER] Existing endpoint for /api/scrape: api.api_scrape
+2025-07-12 22:50:29.559 | INFO     | backend.router:register_routes:35 - [ROUTER] Verified: /api/agent/tasks is already registered (likely via blueprint).
+2025-07-12 22:50:29.559 | DEBUG    | backend.router:register_routes:41 - [ROUTER] Existing endpoint for /api/agent/tasks: api.api_agent_tasks
+2025-07-12 22:50:29.560 | INFO     | backend.router:register_routes:35 - [ROUTER] Verified: /api/trading/signals is already registered (likely via blueprint).
+2025-07-12 22:50:29.560 | DEBUG    | backend.router:register_routes:41 - [ROUTER] Existing endpoint for /api/trading/signals: api.api_trading_signals
+2025-07-12 22:50:29.560 | SUCCESS  | backend.router:register_routes:49 - [ROUTER] Route registered as backup: /api/tasks/priority -> set_task_priority
+2025-07-12 22:50:29.560 | INFO     | backend.server:<module>:52 - [SERVER] Additional routes registered
+2025-07-12 22:53:12.646 | INFO     | backend.globals:<module>:64 - [GLOBALS] Configuration loaded and logger initialized.
+2025-07-12 22:53:16.040 | SUCCESS  | nlp_engine.transformer_core:<module>:33 - [TRANSFORMER] Loaded model: bert-base-uncased on cuda
+2025-07-12 22:53:16.110 | INFO     | memory.vector_store.embedder:<module>:123 - [FAISS] Loaded index from ./memory/vector_store/faiss/faiss_index.index
+2025-07-12 22:53:17.211 | INFO     | memory.vector_store.embedder:<module>:271 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-12 22:53:17.219 | INFO     | memory.vector_store.embedder:<module>:407 - [EMBEDDER] Initial disk load complete
+2025-07-12 22:53:17.766 | SUCCESS  | nlp_engine.tokenizer:<module>:31 - [TOKENIZER] Loaded: bert-base-uncased
+2025-07-12 22:54:09.382 | INFO     | backend.globals:<module>:64 - [GLOBALS] Configuration loaded and logger initialized.
+2025-07-12 22:54:12.501 | SUCCESS  | nlp_engine.transformer_core:<module>:33 - [TRANSFORMER] Loaded model: bert-base-uncased on cuda
+2025-07-12 22:54:13.637 | INFO     | memory.vector_store.embedder:<module>:123 - [FAISS] Loaded index from ./memory/vector_store/faiss/faiss_index.index
+2025-07-12 22:54:14.660 | INFO     | memory.vector_store.embedder:<module>:271 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-12 22:54:14.665 | INFO     | memory.vector_store.embedder:<module>:407 - [EMBEDDER] Initial disk load complete
+2025-07-12 22:54:15.110 | SUCCESS  | nlp_engine.tokenizer:<module>:31 - [TOKENIZER] Loaded: bert-base-uncased
+2025-07-12 22:54:33.873 | INFO     | backend.globals:<module>:64 - [GLOBALS] Configuration loaded and logger initialized.
+2025-07-12 22:54:36.796 | SUCCESS  | nlp_engine.transformer_core:<module>:33 - [TRANSFORMER] Loaded model: bert-base-uncased on cuda
+2025-07-12 22:54:36.859 | INFO     | memory.vector_store.embedder:<module>:123 - [FAISS] Loaded index from ./memory/vector_store/faiss/faiss_index.index
+2025-07-12 22:54:38.032 | INFO     | memory.vector_store.embedder:<module>:271 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-12 22:54:38.037 | INFO     | memory.vector_store.embedder:<module>:407 - [EMBEDDER] Initial disk load complete
+2025-07-12 22:54:38.920 | SUCCESS  | nlp_engine.tokenizer:<module>:31 - [TOKENIZER] Loaded: bert-base-uncased
+2025-07-12 22:54:44.729 | INFO     | backend.globals:<module>:64 - [GLOBALS] Configuration loaded and logger initialized.
+2025-07-12 22:54:47.550 | SUCCESS  | nlp_engine.transformer_core:<module>:33 - [TRANSFORMER] Loaded model: bert-base-uncased on cuda
+2025-07-12 22:54:47.615 | INFO     | memory.vector_store.embedder:<module>:123 - [FAISS] Loaded index from ./memory/vector_store/faiss/faiss_index.index
+2025-07-12 22:54:48.716 | INFO     | memory.vector_store.embedder:<module>:271 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-12 22:54:48.722 | INFO     | memory.vector_store.embedder:<module>:407 - [EMBEDDER] Initial disk load complete
+2025-07-12 22:54:49.143 | SUCCESS  | nlp_engine.tokenizer:<module>:31 - [TOKENIZER] Loaded: bert-base-uncased
+2025-07-12 22:55:37.159 | INFO     | backend.globals:<module>:64 - [GLOBALS] Configuration loaded and logger initialized.
+2025-07-12 22:55:40.709 | SUCCESS  | nlp_engine.transformer_core:<module>:33 - [TRANSFORMER] Loaded model: bert-base-uncased on cuda
+2025-07-12 22:55:42.655 | INFO     | memory.vector_store.embedder:<module>:123 - [FAISS] Loaded index from ./memory/vector_store/faiss/faiss_index.index
+2025-07-12 22:55:43.799 | INFO     | memory.vector_store.embedder:<module>:271 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-12 22:55:43.806 | INFO     | memory.vector_store.embedder:<module>:407 - [EMBEDDER] Initial disk load complete
+2025-07-12 22:55:44.284 | SUCCESS  | nlp_engine.tokenizer:<module>:31 - [TOKENIZER] Loaded: bert-base-uncased
+2025-07-12 22:55:44.287 | INFO     | backend.interface.commands:<module>:110 - [FAISS] Loaded index from ./memory/vector_store/faiss/faiss_index.index
+2025-07-12 22:55:45.558 | INFO     | backend.interface.commands:<module>:135 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-12 22:55:45.565 | INFO     | backend.interface.commands:<module>:281 - [EMBEDDER] Initial disk load complete
+2025-07-12 22:55:45.657 | INFO     | backend.server:<module>:36 - [SERVER] NLTK configured to use: /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/data/nltk_data
+2025-07-12 22:55:48.848 | INFO     | backend.router:register_routes:18 - [ROUTER] Verifying and backing up API routes...
+2025-07-12 22:55:48.848 | INFO     | backend.router:register_routes:35 - [ROUTER] Verified: /api/chat is already registered (likely via blueprint).
+2025-07-12 22:55:48.848 | DEBUG    | backend.router:register_routes:41 - [ROUTER] Existing endpoint for /api/chat: api.api_chat
+2025-07-12 22:55:48.848 | INFO     | backend.router:register_routes:35 - [ROUTER] Verified: /api/memory/graph is already registered (likely via blueprint).
+2025-07-12 22:55:48.848 | DEBUG    | backend.router:register_routes:41 - [ROUTER] Existing endpoint for /api/memory/graph: api.api_memory_graph
+2025-07-12 22:55:48.848 | INFO     | backend.router:register_routes:35 - [ROUTER] Verified: /api/scrape is already registered (likely via blueprint).
+2025-07-12 22:55:48.848 | DEBUG    | backend.router:register_routes:41 - [ROUTER] Existing endpoint for /api/scrape: api.api_scrape
+2025-07-12 22:55:48.848 | INFO     | backend.router:register_routes:35 - [ROUTER] Verified: /api/agent/tasks is already registered (likely via blueprint).
+2025-07-12 22:55:48.848 | DEBUG    | backend.router:register_routes:41 - [ROUTER] Existing endpoint for /api/agent/tasks: api.api_agent_tasks
+2025-07-12 22:55:48.848 | INFO     | backend.router:register_routes:35 - [ROUTER] Verified: /api/trading/signals is already registered (likely via blueprint).
+2025-07-12 22:55:48.848 | DEBUG    | backend.router:register_routes:41 - [ROUTER] Existing endpoint for /api/trading/signals: api.api_trading_signals
+2025-07-12 22:55:48.849 | SUCCESS  | backend.router:register_routes:49 - [ROUTER] Route registered as backup: /api/tasks/priority -> set_task_priority
+2025-07-12 22:55:48.849 | INFO     | backend.server:<module>:52 - [SERVER] Additional routes registered
