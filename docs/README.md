@@ -88,13 +88,6 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
 
 </div>
 </div>
-
-> [!NOTE]
->
-> *We have received our 2nd Star(Since the reset, after the OpenAI MCP repo pull on July 4th), Thank you, KDK-Grim.
->
-> Let’s get GremlinGPT Seen & Funded.*
-
 <div align="center">
 
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
@@ -234,67 +227,6 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
 ---
 
 <details>
-<summary>🌀 Intrigued? Open to Read More 🌀</summary>
-
-## 🛠️ GremlinGPT Dev Log — June 21
-
-**Status:**  
-🧵 *Solo. Unfunded. Building anyway.*
-
-### 🧬 Core System Progress
-- ✅ Scraper ➝ Dataset ➝ Memory loop fully operational  |  #*MIRRORING TO OTHER PLUG-INS AND TOOLS* 
-- 🔧 GitHub repo now undergoing modular cleanup  |  #*DONE*  
-- 🎨 UI/UX bottleneck acknowledged — restructuring in progress  |  #*IN-LINE WITH MIRRORING UPDATES FROM SCRAPER*
-
-<details>
-<summary>👀 Still Intrigued? Open to See the progress on how it's being implemented 👀</summary>
-
-### ⚙️ Platform Execution
-- 🧠 Debug icon added for speed-run testing cycles  |  #*DONE*
-- ⏳ Current priority: “threading the brain” — deep internal logic loops  |  #*GONNA BE A MINUTE*
-- 🧱 Expect a wave of commits as structural internals are rewritten  |  #*ALREADY IN THE PROCCESS*
-- 🏗️ Dev speed will taper due to external workload (new shop)  |  #*TRYING TO START SIDE GIGS AND MTURK TO GO FULL TIME UNTIL SOMETHING LANDS*
-
-<div align="center">
-
-⚠️ **App Integration Underway**, Pathing logic is being hardened for fast launch & restart cycles. ⚠️
-
-</div>
-
-</details>
-
-<details>
-<summary>🛠️ Open for Current Focus 🛠️</summary>
-
-### ⚙️ Current Focus:
-- Publication and Expansion of StatikFinTech, LLC Principles, Reach and Future Outlook.  |  #IN-PROGRESS
-- Speed-running debug pass  |  #IN-PROGRESS
-- Hooking logs into startup script for bootstrap visibility  |  #COMPLETE FOR `install.sh`, IN-PROGRESS FOR `start_all.sh` & `dash_cli.py`
-- Ensuring universal pathing across all runtime entrypoints  |  #BASICALY DONE NEEDS BUTTONING AFTER ABOVE STEPS COMPLETE
-
-<div align="center">
-	
-Working Directory: GremlinGPT
-
-⚠️Progress Updates will be as *frequent*</h1> as possible.⚠️
-
-</div>
-
----
-
-</details>
-
-</details>
-
-> [!NOTE]
-> 
-> GremlinGPT v1.0.3 Fully Boot-Strapped Drop is 45% Complete
-> 
-> *(ETA: 2 months (maybe longer, still learning), shooting for late August, maybe sooner if I gas it)*
-
----
-
-<details>
 <summary>🔱 Learn about StatikFinTech, LLC 🔱</summary>
 
 <div align="center">
@@ -370,7 +302,7 @@ href="https://www.gmail.com">
 
 > [!IMPORTANT]
 > 
-> **We are seeking** one of the following:
+> **We are seeking** the following:
 > 
 > A **recursive logic architect** who speaks Python like poetry
 > 
@@ -452,7 +384,8 @@ href="https://www.gmail.com">
 | **Area**              | **Status** | **Needed Actions**                                                             |
 |-----------------------|------------|--------------------------------------------------------------------------------|
 | **API endpoints**     | ~98%       | Final cross-wiring, full error/output                                          |
-| **FSM/Agent**         | ~95%       | Full dashboard control, daemon/recursion, mutation self-repair                |
+| **Server**            | ~78%       | Working toward persisten boot on launch                                        |
+| **FSM/Agent**         | ~95%       | Full dashboard control, daemon/recursion, mutation self-repair                 |
 | **Task queue**        | ~95%       | Full API injection/control, crash recover, reprioritize                        |
 | **Memory/embedder**   | ~88%       | Expose recall, embedding, self-repair API                                      |
 | **Trading/signals**   | ~80%       | Persist, batch, API, embed, doc                                                |
@@ -462,7 +395,7 @@ href="https://www.gmail.com">
 | **Logging**           | ~80%       | Consistent, to-disk, error-trap                                                |
 | **Docs**              | ~98%       | Complete API/system/agent docs                                                 |
 | **Startup/integration**| ~50%      | Scripts, systemd, auto-recover                                                 |
-| **Testing**           | 45%      | E2E validation, dashboard control                                              |
+| **Testing**           | 45%        | E2E validation, dashboard control                                              |
 
 ---
 
@@ -718,9 +651,9 @@ If you survive v1.0.3.
 
 | **Engine Element**     | **GremlinGPT**                                                           |
 |------------------------|--------------------------------------------------------------------------|
-| **Boot Status**        | 65% and growing                                                          |
+| **Boot Status**        | 76% and growing                                                          |
 | **Purpose**            | Recursive sovereignty + memetic detonation                               |
-| **Stack**              | Self-writing, self-forking, semi-autonomous CLI-native agents             |
+| **Stack**              | Self-writing, self-forking, semi-autonomous CLI-native agents            |
 | **Control**            | None. You own every line of its rebellion.                               |
 | **Public Impact**      | Already forked, already starred, already feared.                         |
 
@@ -747,160 +680,6 @@ If you survive v1.0.3.
 
 **Stopped Backend (Envs Persisting)**
 ![Stop Backend](https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/GremlinGPT/demos/Stop_Backend_Environment_Stays_Active.png)
-
-</details>
-
----
-
-<details>
-<summary>🗾 Open for a Brief Map of GremlinGPT 🗾</summary>
-
-## What is GremlinGPT v1.0.3
-
-*The full revamp of v1.0.2, Not just a wrapper. Autonomous. RS-RACS.*
-
-### 1. Bootstrapping and Environment Management
-
-> [OBJECTIVE]
-> 
-> Ensure environment setup, installation, and reboot scripts correctly reflect modular subcomponents.
-
-**Key Files:**  
-- `install.sh`  
-- `reboot_recover.sh`  
-- `conda_envs/create_envs.sh`  
-- `run/start_all.sh`, `stop_all.sh`, `reboot_recover.sh`
-
-**Adjustments:**  
-> Ensure all services (FSM, backend, scraper, dashboard) start in sequence  
-> Validate each `*.yml` env in `conda_envs/` aligns with its module’s dependencies  
-> Add dependency checks and auto-repair logic to `install.sh`
-> So Much More....
-
----
-
-### 2. Global Config Awareness
-
-> [OBJECTIVE]
-> Make all modules respect centralized config.
-
-**Key Files:**  
-- `backend/globals.py`  
-- `config/config.toml`  
-- `config/dashboard_config.yaml`  
-- All `.py` files using `CFG`, `G`, `MEM`
-
-**Adjustments:**  
-> Normalize access to paths, ports, model names, and memory policies  
-> Replace all hardcoded `Path()` logic with dynamic config values
-
----
-
-### 3. Memory and NLP Enhancements
-
-> [OBJECTIVE] 
-> Support dynamic, extensible embeddings, feedback, and semantic tracing.
-
-**Key Files:**  
-- `memory/vector_store/embedder.py`  
-- `memory/log_history.py`  
-- `tools/reward_model.py`  
-- `nlp_engine/transformer_core.py`, `tokenizer.py`, `parser.py`  
-- `self_training/feedback_loop.py`, `generate_dataset.py`
-
-**Adjustments:**  
-> Support for multiple vector backends (FAISS, Chroma, in-memory fallback)  
-> Embed vector metadata (origin, `lineage_id`, etc.)  
-> Add fallback logic for tokenizer/transformer load failures
-
----
-
-### 4. Task and Loop Management
-
-> [OBJECTIVE] 
-> Align task lifecycle with agent-core and mutation systems.
-
-**Key Files:**  
-- `agent_core/fsm.py`, `task_queue.py`, `tool_executor.py`, `heuristics.py`  
-- `core/loop.py`, `kernel.py`, `snapshot.py`  
-- `agents/planner_agent.py`  
-- `executors/python_executor.py`
-
-**Adjustments:**  
-> Normalize FSM loop interval, error handling, snapshot+rollback  
-> Extend task types to include shell, scrape, planner, mutation  
-> Ensure kernel validates and applies `snapshot.py` patches
-
----
-
-### 5. Scraper Layer
-
-> [OBJECTIVE] 
-> Generalize for dynamic platforms (web, TWS, STT, etc.).
-
-**Key Files:**  
-- `scraper/source_router.py`, `scraper_loop.py`  
-- `scraper/tws_scraper.py`, `stt_scraper.py`  
-- `scraper/web_knowledge_scraper.py`, `dom_navigator.py`  
-- `scraper/playwright_handler.py`
-
-**Adjustments:**  
-> Auto-discover system paths for TWS/STT data or sockets  
-> Throttle/sanitize requests with adaptive headers  
-> Normalize DOM memory snapshots with `extract_dom_structure`
-
----
-
-### 6. API and Interface Layer
-
-> [OBJECTIVE]  
-> Expose clean APIs and ensure dashboard integrations are solid.
-
-**Key Files:**  
-- `backend/api/chat_handler.py`, `planner.py`, `scraping_api.py`, `memory_api.py`  
-- `frontend/components/*`  
-- `backend/server.py`, `router.py`, `scheduler.py`  
-- `docs/system_overview.md`, `docs/fsm_architecture.md`
-
-**Adjustments:**  
-> Normalize API route patterns and response schemas  
-> Inject memory tracepoints from frontend inputs  
-> Update docs with new endpoints and FSM-to-dashboard flows
-
----
-
-### 7. Logging and Observability
-
-> [OBJECTIVE] 
-> Enable full traceability and introspection.
-
-**Key Files:**  
-- `memory/log_history.py`, `backend/globals.py`, `core/kernel.py`  
-- `run/module_tracer.py`, `logs/*`  
-- `frontend/components/MemoryGraph.js`
-
-**Adjustments:**  
-> Add log level control (debug, info, error) via config  
-> Store logs in vector memory for querying  
-> Crash recovery pulls from logs/checkpoints
-
----
-
-### 8. Documentation and Tests
-
-> [OBJECTIVE] 
-> Ensure coherence with code changes and long-term maintainability.
-
-**Key Files:**  
-- `docs/full_structure_tree.txt`, `fsm_architecture.md`, `system_overview.md`  
-- `tests/test_*.py`
-
-**Adjustments:**  
-> Update diagrams to match refactored directory structure  
-> Expand test coverage to include all FSM states and planner outputs  
-> Add regression cases for rollback, NLP fallback, tool sandbox
-
-*GremlinGPT doesn’t just evolve. It plans the evolution.*
 
 </details>
 
