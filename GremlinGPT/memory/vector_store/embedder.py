@@ -85,12 +85,43 @@ USE_CHROMA  = dashboard_selected_backend == "chromadb"
 EMBED_MODEL = MEM.get("embedding", {}).get("model", "all-MiniLM-L6-v2")
 DIMENSION   = MEM.get("embedding", {}).get("dimension", 384)
 
-# --- Ensure directories exist (and log failures) ---
-for path in (FAISS_DIR, CHROMA_DIR, LOCAL_INDEX_PATH):
-    try:
+
+def ensure_db_setup():
+    paths = [FAISS_DIR, CHROMA_DIR, LOCAL_INDEX_PATH]
+    for path in paths:
         os.makedirs(path, exist_ok=True)
+
+    # Ensure ChromaDB setup
+    if chromadb:
+        global chroma_client, collection
+        chroma_client = chromadb.PersistentClient(path=CHROMA_DIR)
+        collection = chroma_client.get_or_create_collection(name="gremlin_memory")
+        logger.info(f"[CHROMA] Initialized at {CHROMA_DIR}")
+
+    # Ensure FAISS setup
+    global faiss_index
+    if faiss:
+        if not os.path.exists(FAISS_INDEX_PATH):
+            faiss_index = faiss.IndexFlatL2(DIMENSION)
+            faiss.write_index(faiss_index, FAISS_INDEX_PATH)
+            logger.info("[FAISS] Created new IndexFlatL2")
+        else:
+            faiss_index = faiss.read_index(FAISS_INDEX_PATH)
+            logger.info(f"[FAISS] Loaded existing index from {FAISS_INDEX_PATH}")
+
+
+def initialize_embedder():
+    ensure_db_setup()
+    try:
+        _load_from_disk()
+        logger.info("[EMBEDDER] Initial disk load complete")
     except Exception as e:
-        logger.error(f"[EMBEDDER] Failed to create directory {path}: {e}")
+        logger.error(f"[EMBEDDER] Initial load failed: {e}")
+
+# Call initialization at script start
+if __name__ == '__main__':
+    initialize_embedder()
+
 
 # --- Chroma Client Setup ---
 if chromadb:
