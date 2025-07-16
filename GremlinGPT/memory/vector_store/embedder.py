@@ -11,6 +11,7 @@
 
 import os
 import shutil
+import sqlite3
 import uuid
 import json
 import numpy as np # type: ignore
@@ -82,8 +83,72 @@ METADATA_DB_PATH = storage_conf.get("metadata_db", os.path.join(LOCAL_INDEX_ROOT
 # Use dashboard-selected backend for toggling
 USE_FAISS   = dashboard_selected_backend == "faiss"
 USE_CHROMA  = dashboard_selected_backend == "chromadb"
+SQLITE_PATH = os.path.join(LOCAL_INDEX_ROOT, "documents.db")
 EMBED_MODEL = MEM.get("embedding", {}).get("model", "all-MiniLM-L6-v2")
 DIMENSION   = MEM.get("embedding", {}).get("dimension", 384)
+
+# Ensure paths exist
+os.makedirs(LOCAL_INDEX_PATH, exist_ok=True)
+
+# SQLite setup
+def ensure_sqlite_db():
+    conn = sqlite3.connect(SQLITE_PATH)
+    cursor = conn.cursor()
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS embeddings (
+            id TEXT PRIMARY KEY,
+            text TEXT,
+            embedding BLOB,
+            meta TEXT,
+            created TEXT,
+            model TEXT,
+            source TEXT
+        )
+    """)
+    conn.commit()
+    conn.close()
+
+ensure_sqlite_db()
+
+# Save embedding to SQLite
+def save_to_sqlite(embedding):
+    try:
+        conn = sqlite3.connect(SQLITE_PATH)
+        cursor = conn.cursor()
+        cursor.execute("""
+            INSERT OR REPLACE INTO embeddings (id, text, embedding, meta, created, model, source)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        """, (
+            embedding['id'],
+            embedding['text'],
+            json.dumps(embedding['embedding']),
+            json.dumps(embedding['meta']),
+            embedding['created'],
+            embedding['model'],
+            embedding['source']
+        ))
+        conn.commit()
+        conn.close()
+        logger.info(f"[SQLITE] Stored embedding {embedding['id']} in documents.db")
+    except Exception as e:
+        logger.error(f"[SQLITE] Failed to write to DB: {e}")
+
+# Overwrite _write_to_disk
+_original_write_to_disk = None
+try:
+    from __main__ import _write_to_disk as _original_write_to_disk
+except Exception:
+    pass
+
+def _write_to_disk(embedding):
+    try:
+        path = os.path.join(LOCAL_INDEX_PATH, f"{embedding['id']}.json")
+        with open(path, "w") as f:
+            json.dump(embedding, f, indent=2)
+        logger.info(f"[DISK] Stored {embedding['id']} as JSON")
+        save_to_sqlite(embedding)
+    except Exception as e:
+        logger.error(f"[DISK] Failed to write {embedding['id']}: {e}")
 
 
 def ensure_db_setup():
@@ -134,6 +199,7 @@ if chromadb:
 else:
     collection = None
 
+
 def add_to_chroma(text, emb_id, vector, meta):
     if not collection:
         logger.warning(f"[CHROMA] Skipping add; collection not available")
@@ -164,6 +230,7 @@ try:
 except Exception as e:
     logger.error(f"[FAISS] Failed to load or init index: {e}")
     faiss_index = None
+
 
 def add_to_faiss(vector, emb_id):
     if not faiss_index:
@@ -218,6 +285,8 @@ def add_to_faiss(vector, emb_id):
         logger.info(f"[FAISS] Added {emb_id}")
     except Exception as e:
         logger.error(f"[FAISS] Add failed for {emb_id}: {e}")
+
+
 def get_index_info():
     """Return diagnostic info about FAISS and Chroma index types and available methods."""
     info = {}
@@ -237,11 +306,13 @@ def get_index_info():
         info['chroma_methods'] = []
     return info
 
+
 # --- Backend Selection Functions for Dashboard ---
 def get_current_backend():
     """Get the currently selected vector backend."""
     global dashboard_selected_backend
     return dashboard_selected_backend
+
 
 def set_backend(backend_name):
     """Set the vector backend (faiss or chromadb) and update config."""
@@ -262,7 +333,7 @@ def set_backend(backend_name):
             config['memory'] = {}
         config['memory']['dashboard_selected_backend'] = backend_name
         
-        with open(CONFIG_PATH, 'w') as f:
+        with open(CONFIG_PATH, 'w') as f:      
             toml.dump(config, f)
         
         logger.info(f"[EMBEDDER] Backend switched to: {backend_name}")
@@ -270,6 +341,7 @@ def set_backend(backend_name):
     except Exception as e:
         logger.error(f"[EMBEDDER] Failed to update config: {e}")
         return {"error": f"Failed to update config: {e}", "backend": backend_name}
+
 
 def get_backend_status():
     """Get status of both FAISS and Chroma backends."""
@@ -311,6 +383,7 @@ else:
 
 memory_vectors = {}
 
+
 # --- Core Embedding Functions ---
 def embed_text(text):
     if not model:
@@ -323,6 +396,7 @@ def embed_text(text):
     except Exception as e:
         logger.error(f"[EMBEDDER] Embedding failed: {e}")
         return np.zeros(DIMENSION, dtype="float32")
+
 
 def package_embedding(text, vector, meta):
     emb_id = str(uuid.uuid4())
