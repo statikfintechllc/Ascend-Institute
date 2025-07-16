@@ -80,7 +80,7 @@ CHROMA_DIR       = os.path.join(BASE_VECTOR_PATH, "chroma")
 
 LOCAL_INDEX_ROOT = storage_conf.get("local_index_path", "./memory/local_index")
 LOCAL_INDEX_PATH = os.path.join(LOCAL_INDEX_ROOT, "documents")
-SQLITE_PATH      = os.path.join(LOCAL_INDEX_ROOT, "documents.db")
+SQLITE_PATH      = storage_conf.get("local_db", os.path.join(LOCAL_INDEX_ROOT, "documents.db"))
 
 # Backend usage flags (local always on)
 USE_LOCAL  = True
@@ -136,24 +136,8 @@ def save_to_sqlite(embedding):
     except Exception as e:
         logger.error(f"[SQLITE] Failed to write to DB: {e}")
 
-# Overwrite _write_to_disk
-_original_write_to_disk = None
-try:
-    from __main__ import _write_to_disk as _original_write_to_disk
-except Exception:
-    pass
 
-def _write_to_disk(embedding):
-    try:
-        path = os.path.join(LOCAL_INDEX_PATH, f"{embedding['id']}.json")
-        with open(path, "w") as f:
-            json.dump(embedding, f, indent=2)
-        logger.info(f"[DISK] Stored {embedding['id']} as JSON")
-        save_to_sqlite(embedding)
-    except Exception as e:
-        logger.error(f"[DISK] Failed to write {embedding['id']}: {e}")
-
-
+# _write_to_disk writes embedding to both JSON and SQLite
 def ensure_db_setup():
     paths = [FAISS_DIR, CHROMA_DIR, LOCAL_INDEX_PATH]
     for path in paths:
