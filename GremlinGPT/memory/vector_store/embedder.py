@@ -73,17 +73,20 @@ if not isinstance(storage_conf, dict):
     logger.error("[EMBEDDER] storage config malformed; resetting to empty dict")
     storage_conf = {}
 
+# --- Configuration & Paths ---
 BASE_VECTOR_PATH = storage_conf.get("vector_store_path", "./memory/vector_store")
 FAISS_DIR        = os.path.join(BASE_VECTOR_PATH, "faiss")
 CHROMA_DIR       = os.path.join(BASE_VECTOR_PATH, "chroma")
+
 LOCAL_INDEX_ROOT = storage_conf.get("local_index_path", "./memory/local_index")
 LOCAL_INDEX_PATH = os.path.join(LOCAL_INDEX_ROOT, "documents")
-METADATA_DB_PATH = storage_conf.get("metadata_db", os.path.join(LOCAL_INDEX_ROOT, "memory.json"))
+SQLITE_PATH      = os.path.join(LOCAL_INDEX_ROOT, "documents.db")
 
-# Use dashboard-selected backend for toggling
-USE_FAISS   = dashboard_selected_backend == "faiss"
-USE_CHROMA  = dashboard_selected_backend == "chromadb"
-SQLITE_PATH = os.path.join(LOCAL_INDEX_ROOT, "documents.db")
+# Backend usage flags (local always on)
+USE_LOCAL  = True
+USE_FAISS  = storage_conf.get("use_faiss", True)
+USE_CHROMA = storage_conf.get("use_chroma", False)
+
 EMBED_MODEL = MEM.get("embedding", {}).get("model", "all-MiniLM-L6-v2")
 DIMENSION   = MEM.get("embedding", {}).get("dimension", 384)
 
@@ -400,9 +403,11 @@ def embed_text(text):
 
 def package_embedding(text, vector, meta):
     emb_id = str(uuid.uuid4())
+    
     if not isinstance(meta, dict):
         logger.warning(f"[EMBEDDER] meta not dict; got {type(meta)}; coercing")
         meta = {"source": str(meta)}
+    
     embedding = {
         "id": emb_id,
         "text": text,
@@ -413,20 +418,22 @@ def package_embedding(text, vector, meta):
         "model": EMBED_MODEL,
         "replaceable": True,
     }
-    
-    # Use current backend selection (dynamically determined)
-    current_backend = get_current_backend()
-    if current_backend == "faiss" and faiss_index is not None:
+
+    # Fan out to all active backends
+    if USE_FAISS and faiss_index is not None:
         add_to_faiss(vector, emb_id)
-    if current_backend == "chromadb" and collection is not None:
+
+    if USE_CHROMA and collection is not None:
         add_to_chroma(text, emb_id, vector, meta)
-        
+
+    if USE_LOCAL:
+        try:
+            _write_to_disk(embedding)
+            logger.info(f"[LOCAL] Stored embedding {emb_id} to disk and SQLite")
+        except Exception as e:
+            logger.error(f"[LOCAL] Disk write failed for {emb_id}: {e}")
+
     memory_vectors[emb_id] = embedding
-    try:
-        _write_to_disk(embedding)
-        logger.info(f"[EMBEDDER] Stored embedding: {emb_id} using {current_backend}")
-    except Exception as e:
-        logger.error(f"[EMBEDDER] Disk write failed for {emb_id}: {e}")
     return embedding
 
 def archive_plan(vector_path="data/nlp_training_sets/auto_generated.jsonl"):
