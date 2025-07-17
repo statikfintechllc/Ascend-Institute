@@ -31,11 +31,25 @@ models_dir = "$ROOT/nlp_engine/"
 checkpoints_dir = "$ROOT/run/checkpoints/"
 log_file = "$ROOT/data/logs/runtime.log"
 snapshot_dir = "$ROOT/run/checkpoints/snapshots/"
-vector_store_path = "$ROOT/memory/vector_store/faiss/"
+
+# Clean vector store roots
+vector_store_path = "$ROOT/memory/vector_store/"
+faiss_path = "$ROOT/memory/vector_store/faiss/"
 chroma_path = "$ROOT/memory/vector_store/chroma/"
-metadata_db = "$ROOT/memory/local_index/metadata.db"
+
+# Explicit index files if needed
+faiss_index_file = "$ROOT/memory/vector_store/faiss/faiss_index.index"
+chroma_db = "$ROOT/memory/vector_store/chroma/chroma.sqlite3"
+
+# Local index
+local_index_path = "$ROOT/memory/local_index/documents/"
+local_db = "$ROOT/memory/local_index/documents.db"
+
+# Logs and Training
 logs_dir = "$ROOT/data/logs/"
 training_sets_dir = "$ROOT/data/nlp_training_sets/"
+
+# Recovery
 recovery_file = "$ROOT/run/recover.json"
 
 # -------------------------------------------
