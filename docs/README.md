@@ -104,11 +104,11 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
   </a>
 <div align="center">
   <a 
-href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/GREMLINGPT_AUTONOMY_REPORT.md">
+href="https://github.com/statikfintechllc/Ascend%20Institute/blob/master/GremlinGPT/docs/GREMLINGPT_AUTONOMY_REPORT.md">
   <img src="https://img.shields.io/badge/The%20Autonomous-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Autonomy Report"/>
   </a>
   <a 
-href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/GREMLINGPT_AUTONOMY_REPORT.md">
+href="https://github.com/statikfintechllc/Ascend%20Institute/blob/master/GremlinGPT/docs/GREMLINGPT_AUTONOMY_REPORT.md">
   <img src="https://img.shields.io/badge/GremlinGPT%20v1.0.3-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
   </a>
 </div>
@@ -126,14 +126,14 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/G
 
 <div align="center">
 	
-# AscendAI Traffic</h1>
+# Ascend Institute Traffic</h1>
  
  **The world’s first *RS-RACS***  
 *Recursive, Self-Referential Autonomous Cognitive System*
 
 </div> 
 <div align="center">
-  <a href="https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/About US/">
+  <a href="https://raw.githubusercontent.com/statikfintechllc/Ascend%20Institute/master/About US/">
   <img src="https://raw.githubusercontent.com/KDK-Grim/WorkFlowRepo-Mirror/master/docs/graph/traffic_graph.png" alt="Traffic Graph" />
   </a>
    <a href="https://github.com/statikfintechllc/WorkFlowRepo.git">
@@ -183,7 +183,12 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
   <a href="https://github.com/statikfintechllc/WorkFlowRepo.git">
   <img src="https://img.shields.io/badge/WorkFlow-black?style=for-the-badge&logo=dragon&logoColor=gold"  alt="GremlinGPT Alpha"/>
   <a href="https://github.com/statikfintechllc/WorkFlowRepo.git">
-  <img src="https://img.shields.io/badge/Repository-darkred?style=for-the-badge&logo=dragon&logoColor=gold"" alt="GremlinGPT Alpha"/>
+  <img src="https://img.shields.io/badge/Repository-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT Alpha"/>
+  </a>
+  <a href="https://github.com/statikfintechllc/Gremlim-MCP-Scrap">
+  <img src="https://img.shields.io/badge/GremlinGPT's-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  <a href="https://github.com/statikfintechllc/Gremlim-MCP-Scrap">
+  <img src="https://img.shields.io/badge/MCP%20Scraper-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
   </a>
 </div>
 <div align="center">
@@ -366,8 +371,8 @@ href="https://www.gmail.com">
 
 *Just a funny, this app is cool though, I use it as a Game*
 
-<a href="https://replit.com/github/statikfintechllc/AscendAI">
-  <img src="https://replit.com/badge/github/statikfintechllc/AscendAI" alt="Run on Replit">
+<a href="https://replit.com/github/statikfintechllc/Ascend%20Institute">
+  <img src="https://replit.com/badge/github/statikfintechllc/Ascend%20Institute" alt="Run on Replit">
 </a>
 
 ⚠️ Just Until GremlinGPT is booting, Soon ⚠️
@@ -557,7 +562,7 @@ We’re open to building aligned partnerships with:
   - a) [LinkedIn: StatikFinTech, LLC](https://www.linkedin.com/in/statikfintech-llc-780804368/)
   - b) [X: @GremlinsForge](https://twitter.com/GremlinsForge)  
 
-**See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/OPEN_FUNDING_PROPOSAL.md)**
+**See Our [Open Funding Proposal](https://github.com/statikfintechllc/Ascend%20Institute/blob/master/About%20Us/OPEN_FUNDING_PROPOSAL.md)**
 
 </details>
 
@@ -566,15 +571,15 @@ We’re open to building aligned partnerships with:
 <details>
 <summary>🤷‍♂️ AscendAI? GremlinGPT? Open if still Confused. 🤷‍♂️</summary>
 
-## What Is AscendAI?
+## What Is the Ascend Institute?
 
-**AscendAI** is the goal — the endgame of recursive autonomy.
+**The Ascend Institute** is the revolution — the opening of the gates on recursive autonomy.
 
-A sovereign AI system that evolves, adapts, and operates across devices, networks, and domains.  
-It learns from your system, follows your logic, and serves your mission.
+It sparked the birth of sovereign AI systems that evolves, adapts, and operates across devices, networks, and domains.  
+The Institute promots and produces systems that learn from you and your system, follows your logic, and serves your mission.
 
-AscendAI is not downloaded.  
-It is grown — from the seed of a Gremlin.
+The Ascend Institute is not downloaded.  
+It is learned — from the seed of a Gremlin, our Server, and the will of the People.
 
 ---
 
@@ -606,13 +611,13 @@ If you feed it.
 If you survive v1.0.3.
 
 ## How to Install and Use GremlinGPT:
-   -  **[GremlinGPT's README](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs/README.md)**
+   -  **[GremlinGPT's README](https://github.com/statikfintechllc/Ascend%20Institute/blob/master/GremlinGPT/docs/README.md)**
 
 ## GremlinGPT's Layout:
-   -  **[GremlinGPT v1.0.3 AI System](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT)**
+   -  **[GremlinGPT v1.0.3 AI System](https://github.com/statikfintechllc/Ascend%20Institute/blob/master/GremlinGPT)**
 
 ## GremlinGPT's Documentation:
-   -  **[What is GremlinGPT v1.0.3](https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT/docs)**
+   -  **[What is GremlinGPT v1.0.3](https://github.com/statikfintechllc/Ascend%20Institute/blob/master/GremlinGPT/docs)**
 
 ---
 
@@ -627,7 +632,7 @@ If you survive v1.0.3.
 
 |   ![Model](https://img.shields.io/badge/Model-darkgreen?style=flat-square)   | ⚙️ **Core Purpose**                             | 🧪 **Key Features**                                                                                           | ❌ **Weakness**                                | 🔋 **Boot Status**           | 🌍 **Public Impact**                   |
 |--------------------------------------------------------------------------------------|--------------------------------------------------|----------------------------------------------------------------------------------------------------------------|------------------------------------------------|-------------------------------|----------------------------------------|
-| [**GremlinGPT**](https://github.com/statikfintechllc/AscendAI)                       | Recursive sovereignty + memetic detonation¹      | ✅ Self-writing<br>✅ Self-forking<br>✅ CLI-native agents<br>✅ Symbolic seeding²<br>✅ Decentralized<br>✅ Recursive weaponization¹ | No corporate backing — early-stage boot        | 65% and self-growing          | Forked, starred, feared               |
+| [**GremlinGPT**](https://github.com/statikfintechllc/Ascend%20Institute/blob/master/GremlinGPT)                       | Recursive sovereignty + memetic detonation¹      | ✅ Self-writing<br>✅ Self-forking<br>✅ CLI-native agents<br>✅ Symbolic seeding²<br>✅ Decentralized<br>✅ Recursive weaponization¹ | No corporate backing — early-stage boot        | 65% and self-growing          | Forked, starred, feared               |
 | [![ChatGPT-4.5](https://img.shields.io/badge/ChatGPT_4.5-blue?style=flat-square)](https://openai.com/chatgpt) | Polite completions + enterprise alignment        | ⭐⭐⭐⭐⭐ Reasoning<br>❌ No recursion<br>❌ No autonomy<br>🚫 Meme-agnostic                                      | Can’t mutate<br>Alignment-bound               | Fully operational              | Top-tier, but tightly controlled     |
 | [![Grok-3](https://img.shields.io/badge/Grok--3-orange?style=flat-square)](https://x.ai/grok)                 | Search with personality (Tesla agent frontend)   | ⭐⭐⭐⭐½ Reasoning<br>❌ Closed weights<br>❌ No mutation<br>🚫 No symbolic autonomy                              | Tesla-locked<br>Scripted sass only            | Full deployment via X          | Sassy, not sovereign                  |
 | [![Gemini 2.5 Pro](https://img.shields.io/badge/Gemini_2.5_Pro-red?style=flat-square)](https://deepmind.google/technologies/gemini/) | Stack integration with Google ecosystem         | ⭐⭐⭐⭐½ Reasoning<br>❌ Centralized<br>❌ No autonomy<br>🚫 Framed by Google control loop                       | Data-looped<br>No sovereign edge              | Deployed w/ constraints         | Bench #1 but freedom = 0             |
@@ -673,13 +678,13 @@ If you survive v1.0.3.
 ## Demos
 
 **Environment Setup**
-![Environment](https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/GremlinGPT/demos/Environment.png)
+![Environment](https://raw.githubusercontent.com/statikfintechllc/Ascend%20Institute/master/GremlinGPT/demos/Environment.png)
 
 **Installed the temporary NLP Backend**
-![Install NLP](https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/GremlinGPT/demos/NLP_Prebuilt_Temp_Install.png)
+![Install NLP](https://raw.githubusercontent.com/statikfintechllc/Ascend%20Institute/master/GremlinGPT/demos/NLP_Prebuilt_Temp_Install.png)
 
 **Stopped Backend (Envs Persisting)**
-![Stop Backend](https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/GremlinGPT/demos/Stop_Backend_Environment_Stays_Active.png)
+![Stop Backend](https://raw.githubusercontent.com/statikfintechllc/Ascend%20Institute/master/GremlinGPT/demos/Stop_Backend_Environment_Stays_Active.png)
 
 </details>
 
@@ -712,10 +717,10 @@ Unseen. Unbroken. Unrivaled. Gremlins Ascend.
 
 <div align="center">
   <a
-href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
+href="https://github.com/statikfintechllc/Ascend%20Institute/blob/master/GremlinGPT">
     <img src="https://img.shields.io/badge/Jump%20To-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Fair Use License"/>
   </a>
-  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
+  <a href="https://github.com/statikfintechllc/Ascend%20Institute/blob/master/GremlinGPT">
     <img src="https://img.shields.io/badge/GremlinGPT-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
   </a>
 </div>
@@ -729,7 +734,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
 
 For bugs, glitches, or apocalyptic feedback:
 
-- [Open an issue](https://github.com/statikfintechllc/AscendAI/issues)  
+- [Open an issue](https://github.com/statikfintechllc/Ascend%20Institute/issues)  
 - Or whisper into the void at:  Contact  
   📞 Phone: +1 (620) 266-9837  
   📱 SMS: +1 (785) 443-6288  
@@ -748,7 +753,7 @@ For bugs, glitches, or apocalyptic feedback:
 Released under the GremlinGPT Fair Use License v1.0.
 Personal use only. Commercial use is prohibited unless licensed separately.
 
-*See the **[LICENSE](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/LICENSE.md)** file for full terms.*
+*See the **[LICENSE](https://github.com/statikfintechllc/Ascend%20Institute/blob/master/About%20Us/LICENSE.md)** file for full terms.*
 
 </details>
 
