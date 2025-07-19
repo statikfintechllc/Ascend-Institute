@@ -128,7 +128,7 @@ href="https://github.com/statikfintechllc/Ascend%20Institute/blob/master/Gremlin
 	
 # Ascend Institute Traffic</h1>
  
- **The world’s first *RS-RACS***  
+ **Home to The World's first *RS-RACS***  
 *Recursive, Self-Referential Autonomous Cognitive System*
 
 </div> 
