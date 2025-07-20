@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
   <title>AscendAI – Sovereign Stack</title>
@@ -15,11 +15,6 @@
       max-width: 960px;
       margin: 4rem auto;
       padding: 1rem;
-    }
-
-    .error-message {
-      color: red;
-      font-weight: bold;
     }
 
     .admonition {
@@ -90,7 +85,7 @@
               important: '🟣',
               caution: '🔴'
             };
-            const label = match[1][0].toUpperCase() + match[1].slice(1).toLowerCase();
+            const label = match[1].charAt(0) + match[1].slice(1).toLowerCase();
             const rest = p.innerHTML.replace(/^\[!\w+\]/, '').trim();
             const div = document.createElement('div');
             div.className = `admonition admonition-${type}`;
@@ -112,7 +107,7 @@
             if (target) {
               e.preventDefault();
               target.scrollIntoView({ behavior: 'smooth' });
-              location.hash = this.getAttribute('href');
+              history.pushState(null, null, this.getAttribute('href'));
             }
           });
         });
@@ -126,16 +121,13 @@
           backgroundColor: 0x000000
         });
 
-        if (!document.querySelector('script[src="scrollFX.js"]')) {
-          const fxScript = document.createElement('script');
-          fxScript.src = 'scrollFX.js';
-          document.body.appendChild(fxScript);
-        }
+        const fxScript = document.createElement('script');
+        fxScript.src = 'scrollFX.js';
+        document.body.appendChild(fxScript);
       })
-        document.getElementById('readme').innerHTML = "<p class='error-message'>Error loading README.md</p>";
+      .catch(err => {
         console.error(err);
         document.getElementById('readme').innerHTML = "<p style='color:red'>Error loading README.md</p>";
       });
   </script>
 </body>
-</html>
