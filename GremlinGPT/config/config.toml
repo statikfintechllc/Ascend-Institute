@@ -41,11 +41,6 @@ chroma_path = "$ROOT/memory/vector_store/chroma/"
 faiss_index_file = "$ROOT/memory/vector_store/faiss/faiss_index.index"
 chroma_db = "$ROOT/memory/vector_store/chroma/chroma.sqlite3"
 
-# Local index and metadata
-local_index_path = "$ROOT/memory/local_index/documents/"
-local_db = "$ROOT/memory/local_index/documents.db"
-metadata_db = "$ROOT/memory/local_index/metadata.db"
-
 # Local index
 local_index_path = "$ROOT/memory/local_index/documents/"
 local_db = "$ROOT/memory/local_index/documents.db"
@@ -56,6 +51,11 @@ training_sets_dir = "$ROOT/data/nlp_training_sets/"
 
 # Recovery
 recovery_file = "$ROOT/run/recover.json"
+
+# Local index and metadata
+local_index_path = "$ROOT/memory/local_index/documents/"
+local_db = "$ROOT/memory/local_index/documents.db"
+metadata_db = "$ROOT/memory/local_index/metadata.db"
 
 # -------------------------------------------
 # Agent Core / FSM / Recursion
