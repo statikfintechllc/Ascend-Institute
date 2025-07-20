@@ -1,0 +1,2 @@
+2025-07-20 00:53:31.865 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/backend/backend_chat_handler.log
+2025-07-20 00:54:05.504 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/backend/backend_chat_handler.log

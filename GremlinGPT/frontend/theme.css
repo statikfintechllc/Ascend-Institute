@@ -1,5 +1,6 @@
 body {
-  background-color: #111;
+  background: url('Icon_Logo/Background_Image_For_App.png') no-repeat center center fixed;
+  background-size: cover;
   color: #fff;
   font-family: 'Segoe UI', 'Arial', sans-serif;
   /* Gold/silver accent with red highlights */

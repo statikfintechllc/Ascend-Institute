@@ -1,0 +1,4 @@
+2025-07-20 00:53:30.234 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_semantic_score.log
+2025-07-20 00:54:04.271 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_semantic_score.log
+2025-07-20 00:56:14.611 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_semantic_score.log
+2025-07-20 01:26:34.871 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_semantic_score.log

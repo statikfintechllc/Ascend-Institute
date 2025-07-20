@@ -21,44 +21,15 @@ sys.path.insert(0, str(project_root))
 
 from utils.logging_config import setup_module_logger
 
-logger = setup_module_logger('backend', 'api_endpoints')
+# ...existing code...
+logger = setup_module_logger('backend', 'INFO')
 
 from agent_core.fsm import (
     fsm_loop,
     get_fsm_status,
-    step_fsm,
-    reset_fsm,
-    inject_task as fsm_inject_task,
-)
-# Importing necessary modules for the API
-from agent_core.task_queue import TaskQueue
-from backend.api.chat_handler import chat
-from backend.api.memory_api import graph as memory_graph
-from backend.api.planner import list_tasks, mutation_notify, set_task_priority
-from backend.api.scraping_api import scrape_url
-from memory.vector_store.embedder import get_memory_graph
-from trading_core.signal_generator import generate_signals
-from nlp_engine.chat_session import ChatSession
-from tools.reward_model import get_reward_feed
-
-# Create Flask Blueprint for API
-api_blueprint = flask.Blueprint("api", __name__)
-
-# In-memory session store (for demo; use Redis or DB for production)
-_sessions = {}
-
-
-# --- Core Chat / NLP ---
-@api_blueprint.route("/api/chat", methods=["POST"])
-def api_chat():
-    data = flask.request.get_json()
-    user_input = data.get("message", "")
-    response = chat(user_input)
-    return flask.jsonify({"response": response})
-
-
-@api_blueprint.route("/api/chat/session", methods=["POST"])
-def api_chat_session():
+from backend.globals import CFG, logger, resolve_path, DATA_DIR, MEM
+from backend.api.api_endpoints import *
+from backend.router import route_task
     data = flask.request.get_json()
     user_input = data.get("message", "")
     session_id = data.get("session_id")

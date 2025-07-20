@@ -10,24 +10,7 @@
 # GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 
-import json
-from pathlib import Path
-import sys
-
-# Add project root to path for imports
-project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root))
-
-from backend.globals import CFG
-from utils.logging_config import setup_module_logger
-from datetime import datetime
-
-logger = setup_module_logger("backend", "state_manager")
-
-STATE_FILE = (
-    Path(CFG["paths"].get("checkpoints_dir", "run/checkpoints/"))
-    / "state_snapshot.json"
-)
+from backend.globals import CFG, logger, resolve_path, DATA_DIR, MEM
 # Directory creation deferred to save_state()
 
 

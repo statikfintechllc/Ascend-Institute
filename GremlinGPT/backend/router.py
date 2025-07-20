@@ -10,12 +10,8 @@
 # GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 
-from utils.logging_config import setup_module_logger
-
-# Initialize module-specific logger
-logger = setup_module_logger("backend", "router")
-
-from backend.api import chat_handler, memory_api, scraping_api, planner
+from backend.globals import CFG, logger, resolve_path, DATA_DIR, MEM
+from backend.api.api_endpoints import *
 
 def register_routes(app):
     logger.info("[ROUTER] Verifying and backing up API routes...")

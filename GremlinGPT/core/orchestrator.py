@@ -9,25 +9,9 @@
 
 # GremlinGPT v1.0.3 :: Core Orchestrator - Global Intelligence Coordinator
 
-import asyncio
-import threading
-import time
-from datetime import datetime, timezone
-from pathlib import Path
-import sys
-import json
-from typing import Dict, List, Any, Optional
-from concurrent.futures import ThreadPoolExecutor
-import logging
-
-# Add project root to path for imports
-project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root))
-
-from backend.globals import CFG, LOOP
-from utils.logging_config import setup_module_logger
-from memory.log_history import log_event
-from backend.state_manager import save_state, load_state
+from backend.globals import CFG, logger, resolve_path, DATA_DIR, MEM
+from backend.api.api_endpoints import *
+from backend.router import route_task
 
 logger = setup_module_logger("core", "orchestrator")
 

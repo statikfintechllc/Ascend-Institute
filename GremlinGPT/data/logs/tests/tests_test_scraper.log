@@ -1,0 +1,3 @@
+2025-07-20 01:46:04.356 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests_test_scraper.log
+2025-07-20 01:46:19.446 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests_test_scraper.log
+2025-07-20 01:46:30.909 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests_test_scraper.log

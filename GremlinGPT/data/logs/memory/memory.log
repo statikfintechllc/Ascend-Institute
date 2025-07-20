@@ -161,3 +161,67 @@
 2025-07-15 19:13:21.590 | ERROR    | memory.vector_store.embedder:<module>:132 - [FAISS] faiss unavailable; index not initialized
 2025-07-15 19:13:22.648 | INFO     | memory.vector_store.embedder:<module>:274 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
 2025-07-15 19:13:22.649 | INFO     | memory.vector_store.embedder:<module>:410 - [EMBEDDER] Initial disk load complete
+2025-07-20 00:40:44.517 | INFO     | utils.logging_config:setup_module_logger:99 - [LOGGING] Module logger initialized for memory -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/memory/memory.log
+2025-07-20 00:40:44.517 | ERROR    | memory.vector_store.embedder:<module>:35 - [EMBEDDER] chromadb import failed: No module named 'chromadb'
+2025-07-20 00:40:48.661 | SUCCESS  | nlp_engine.transformer_core:<module>:33 - [TRANSFORMER] Loaded model: bert-base-uncased on cuda
+2025-07-20 00:40:48.661 | ERROR    | memory.vector_store.embedder:<module>:133 - [FAISS] faiss unavailable; index not initialized
+2025-07-20 00:40:49.924 | INFO     | memory.vector_store.embedder:<module>:275 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-20 00:40:49.931 | INFO     | memory.vector_store.embedder:<module>:411 - [EMBEDDER] Initial disk load complete
+2025-07-20 00:41:13.973 | INFO     | utils.logging_config:setup_module_logger:99 - [LOGGING] Module logger initialized for memory -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/memory/memory.log
+2025-07-20 00:42:16.127 | INFO     | utils.logging_config:setup_module_logger:99 - [LOGGING] Module logger initialized for memory -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/memory/memory.log
+2025-07-20 00:42:53.245 | INFO     | utils.logging_config:setup_module_logger:99 - [LOGGING] Module logger initialized for memory -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/memory/memory.log
+2025-07-20 00:42:55.946 | SUCCESS  | nlp_engine.transformer_core:<module>:33 - [TRANSFORMER] Loaded model: bert-base-uncased on cuda
+2025-07-20 00:42:56.032 | INFO     | memory.vector_store.embedder:<module>:127 - [FAISS] Loaded index from /home/statiksmoke8/Ascend-Institute/GremlinGPT/memory/vector_store/faiss/faiss_index.index
+2025-07-20 00:42:56.964 | INFO     | memory.vector_store.embedder:<module>:275 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-20 00:42:56.972 | INFO     | memory.vector_store.embedder:<module>:411 - [EMBEDDER] Initial disk load complete
+2025-07-20 00:43:21.741 | INFO     | utils.logging_config:setup_module_logger:99 - [LOGGING] Module logger initialized for memory -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/memory/memory.log
+2025-07-20 00:43:24.649 | SUCCESS  | nlp_engine.transformer_core:<module>:33 - [TRANSFORMER] Loaded model: bert-base-uncased on cuda
+2025-07-20 00:43:24.731 | INFO     | memory.vector_store.embedder:<module>:127 - [FAISS] Loaded index from /home/statiksmoke8/Ascend-Institute/GremlinGPT/memory/vector_store/faiss/faiss_index.index
+2025-07-20 00:43:25.745 | INFO     | memory.vector_store.embedder:<module>:275 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-20 00:43:25.751 | INFO     | memory.vector_store.embedder:<module>:411 - [EMBEDDER] Initial disk load complete
+2025-07-20 00:43:46.245 | INFO     | utils.logging_config:setup_module_logger:99 - [LOGGING] Module logger initialized for memory -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/memory/memory.log
+2025-07-20 00:43:49.284 | SUCCESS  | nlp_engine.transformer_core:<module>:33 - [TRANSFORMER] Loaded model: bert-base-uncased on cuda
+2025-07-20 00:43:49.370 | INFO     | memory.vector_store.embedder:<module>:127 - [FAISS] Loaded index from /home/statiksmoke8/Ascend-Institute/GremlinGPT/memory/vector_store/faiss/faiss_index.index
+2025-07-20 00:43:50.348 | INFO     | memory.vector_store.embedder:<module>:275 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-20 00:43:50.356 | INFO     | memory.vector_store.embedder:<module>:411 - [EMBEDDER] Initial disk load complete
+2025-07-20 00:47:53.795 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for memory -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/memory/memory.log
+2025-07-20 00:47:53.795 | ERROR    | memory.vector_store.embedder:<module>:35 - [EMBEDDER] chromadb import failed: No module named 'chromadb'
+2025-07-20 00:47:57.733 | SUCCESS  | nlp_engine.transformer_core:<module>:33 - [TRANSFORMER] Loaded model: bert-base-uncased on cuda
+2025-07-20 00:47:57.734 | INFO     | memory.vector_store.embedder:<module>:127 - [FAISS] Loaded index from /home/statiksmoke8/Ascend-Institute/GremlinGPT/memory/vector_store/faiss/faiss_index.index
+2025-07-20 00:47:58.703 | INFO     | memory.vector_store.embedder:<module>:275 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-20 00:47:58.709 | INFO     | memory.vector_store.embedder:<module>:411 - [EMBEDDER] Initial disk load complete
+2025-07-20 00:53:10.297 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for memory -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/memory/memory.log
+2025-07-20 00:53:10.297 | ERROR    | memory.vector_store.embedder:<module>:35 - [EMBEDDER] chromadb import failed: No module named 'chromadb'
+2025-07-20 00:53:12.936 | SUCCESS  | nlp_engine.transformer_core:<module>:33 - [TRANSFORMER] Loaded model: bert-base-uncased on cuda
+2025-07-20 00:53:12.936 | INFO     | memory.vector_store.embedder:<module>:127 - [FAISS] Loaded index from /home/statiksmoke8/Ascend-Institute/GremlinGPT/memory/vector_store/faiss/faiss_index.index
+2025-07-20 00:53:14.021 | INFO     | memory.vector_store.embedder:<module>:275 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-20 00:53:14.027 | INFO     | memory.vector_store.embedder:<module>:411 - [EMBEDDER] Initial disk load complete
+2025-07-20 00:53:26.194 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for memory -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/memory/memory.log
+2025-07-20 00:53:26.195 | ERROR    | memory.vector_store.embedder:<module>:35 - [EMBEDDER] chromadb import failed: No module named 'chromadb'
+2025-07-20 00:53:29.120 | SUCCESS  | nlp_engine.transformer_core:<module>:33 - [TRANSFORMER] Loaded model: bert-base-uncased on cuda
+2025-07-20 00:53:29.121 | INFO     | memory.vector_store.embedder:<module>:127 - [FAISS] Loaded index from /home/statiksmoke8/Ascend-Institute/GremlinGPT/memory/vector_store/faiss/faiss_index.index
+2025-07-20 00:53:30.121 | INFO     | memory.vector_store.embedder:<module>:275 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-20 00:53:30.128 | INFO     | memory.vector_store.embedder:<module>:411 - [EMBEDDER] Initial disk load complete
+2025-07-20 00:54:00.408 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for memory -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/memory/memory.log
+2025-07-20 00:54:00.409 | ERROR    | memory.vector_store.embedder:<module>:35 - [EMBEDDER] chromadb import failed: No module named 'chromadb'
+2025-07-20 00:54:03.268 | SUCCESS  | nlp_engine.transformer_core:<module>:33 - [TRANSFORMER] Loaded model: bert-base-uncased on cuda
+2025-07-20 00:54:03.269 | INFO     | memory.vector_store.embedder:<module>:127 - [FAISS] Loaded index from /home/statiksmoke8/Ascend-Institute/GremlinGPT/memory/vector_store/faiss/faiss_index.index
+2025-07-20 00:54:04.178 | INFO     | memory.vector_store.embedder:<module>:275 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-20 00:54:04.185 | INFO     | memory.vector_store.embedder:<module>:411 - [EMBEDDER] Initial disk load complete
+2025-07-20 00:56:10.089 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for memory -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/memory/memory.log
+2025-07-20 00:56:10.089 | ERROR    | memory.vector_store.embedder:<module>:35 - [EMBEDDER] chromadb import failed: No module named 'chromadb'
+2025-07-20 00:56:12.591 | SUCCESS  | nlp_engine.transformer_core:<module>:33 - [TRANSFORMER] Loaded model: bert-base-uncased on cuda
+2025-07-20 00:56:12.591 | INFO     | memory.vector_store.embedder:<module>:127 - [FAISS] Loaded index from /home/statiksmoke8/Ascend-Institute/GremlinGPT/memory/vector_store/faiss/faiss_index.index
+2025-07-20 00:56:13.467 | INFO     | memory.vector_store.embedder:<module>:275 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-20 00:56:13.473 | INFO     | memory.vector_store.embedder:<module>:411 - [EMBEDDER] Initial disk load complete
+2025-07-20 01:26:29.424 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for memory -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/memory/memory.log
+2025-07-20 01:26:32.544 | SUCCESS  | nlp_engine.transformer_core:<module>:33 - [TRANSFORMER] Loaded model: bert-base-uncased on cuda
+2025-07-20 01:26:32.635 | INFO     | memory.vector_store.embedder:<module>:139 - [FAISS] Loaded index from ./memory/vector_store/faiss/faiss_index.index
+2025-07-20 01:26:33.604 | INFO     | memory.vector_store.embedder:<module>:287 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-20 01:26:33.613 | INFO     | memory.vector_store.embedder:<module>:423 - [EMBEDDER] Initial disk load complete
+2025-07-20 01:46:00.586 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for memory -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/memory/memory.log
+2025-07-20 01:46:00.586 | ERROR    | memory.vector_store.embedder:<module>:35 - [EMBEDDER] chromadb import failed: No module named 'chromadb'
+2025-07-20 01:46:15.459 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for memory -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/memory/memory.log
+2025-07-20 01:46:15.460 | ERROR    | memory.vector_store.embedder:<module>:35 - [EMBEDDER] chromadb import failed: No module named 'chromadb'
+2025-07-20 01:46:26.997 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for memory -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/memory/memory.log
+2025-07-20 01:46:26.997 | ERROR    | memory.vector_store.embedder:<module>:35 - [EMBEDDER] chromadb import failed: No module named 'chromadb'

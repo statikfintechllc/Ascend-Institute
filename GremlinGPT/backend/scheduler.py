@@ -19,11 +19,13 @@ logger = setup_module_logger("backend", "scheduler")
 import threading
 from backend.globals import CFG
 
-# Thread-safe LOOP access
-_LOOP = None
-_LOOP_LOCK = threading.Lock()
-
-def get_loop():
+from backend.globals import CFG, logger, resolve_path, DATA_DIR, MEM
+from backend.api.api_endpoints import trigger_retrain
+from backend.router import enqueue_next
+from backend.router import scan_and_diff
+import threading
+import signal
+import traceback
     global _LOOP
     with _LOOP_LOCK:
         return _LOOP

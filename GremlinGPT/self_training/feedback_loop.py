@@ -22,15 +22,8 @@
 
 # self_training/feedback_loop.py
 
-import json
-import os
-from datetime import datetime
-from pathlib import Path
-from utils.logging_config import setup_module_logger
-
-# Initialize module-specific logger
-logger = setup_module_logger("self_training", "feedback_loop")
-from memory.vector_store.embedder import inject_watermark, package_embedding
+from backend.globals import CFG, logger, resolve_path, DATA_DIR, MEM
+from backend.globals import CFG, logger, resolve_path, DATA_DIR, MEM
 
 # Paths
 LOG_PATH = Path("data/logs/")

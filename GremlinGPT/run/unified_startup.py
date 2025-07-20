@@ -9,24 +9,9 @@
 
 # GremlinGPT v1.0.3 :: Unified System Startup - Living AI Ecosystem
 
-import asyncio
-import sys
-import signal
-import time
-from pathlib import Path
-from datetime import datetime, timezone
-import json
-
-# Add project root to path for imports
-project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root))
-
-from utils.logging_config import setup_module_logger
-from memory.log_history import log_event
-from backend.globals import CFG
-from core.integration import initialize_gremlin_ecosystem, get_unified_system
-
-logger = setup_module_logger("core", "startup")
+from backend.globals import CFG, logger, resolve_path, DATA_DIR, MEM
+from backend.api.api_endpoints import *
+from backend.router import route_task
 
 
 class GremlinGPTEcosystemLauncher:

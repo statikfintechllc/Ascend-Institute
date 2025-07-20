@@ -1,0 +1,4 @@
+2025-07-20 00:53:30.342 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for agent_core -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/agent_core/agent_core_error_log.log
+2025-07-20 00:54:04.340 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for agent_core -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/agent_core/agent_core_error_log.log
+2025-07-20 00:56:14.684 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for agent_core -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/agent_core/agent_core_error_log.log
+2025-07-20 01:26:35.004 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for agent_core -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/agent_core/agent_core_error_log.log

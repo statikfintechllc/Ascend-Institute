@@ -48,3 +48,30 @@
 2025-07-13 15:14:58.077 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/tests/../data/logs/tests/tests.log
 2025-07-13 15:15:59.777 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/tests/../data/logs/tests/tests.log
 2025-07-13 15:15:59.881 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-20 01:46:00.378 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-20 01:46:00.427 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-20 01:46:00.428 | WARNING  | test_agent_core:<module>:71 - Agent core modules not available: Using mock classes for testing
+2025-07-20 01:46:00.490 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-20 01:46:00.491 | WARNING  | test_backend:<module>:40 - Backend modules not available: Using mock classes for testing
+2025-07-20 01:46:04.153 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-20 01:46:04.153 | WARNING  | test_nlp:<module>:59 - NLP modules not available: Using mock functions for testing
+2025-07-20 01:46:04.351 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-20 01:46:04.387 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-20 01:46:15.250 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-20 01:46:15.297 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-20 01:46:15.297 | WARNING  | test_agent_core:<module>:71 - Agent core modules not available: Using mock classes for testing
+2025-07-20 01:46:15.360 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-20 01:46:15.360 | WARNING  | test_backend:<module>:40 - Backend modules not available: Using mock classes for testing
+2025-07-20 01:46:19.391 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-20 01:46:19.392 | WARNING  | test_nlp:<module>:59 - NLP modules not available: Using mock functions for testing
+2025-07-20 01:46:19.441 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-20 01:46:19.469 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-20 01:46:26.796 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-20 01:46:26.843 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-20 01:46:26.844 | WARNING  | test_agent_core:<module>:71 - Agent core modules not available: Using mock classes for testing
+2025-07-20 01:46:26.906 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-20 01:46:26.906 | WARNING  | test_backend:<module>:40 - Backend modules not available: Using mock classes for testing
+2025-07-20 01:46:30.854 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-20 01:46:30.854 | WARNING  | test_nlp:<module>:59 - NLP modules not available: Using mock functions for testing
+2025-07-20 01:46:30.904 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-20 01:46:30.934 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests.log

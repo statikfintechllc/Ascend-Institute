@@ -1,0 +1,156 @@
+{
+  "name": "gremlingpt",
+  "displayName": "GremlinGPT - Autonomous AI System",
+  "description": "Autonomous recursive self-referential cognitive system with memory, trading, and self-training capabilities",
+  "version": "1.0.3",
+  "publisher": "StatikFintechLLC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/statikfintechllc/AscendAI.git"
+  },
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Machine Learning",
+    "Data Science",
+    "Other"
+  ],
+  "keywords": [
+    "AI",
+    "autonomous",
+    "trading",
+    "memory",
+    "neural",
+    "embeddings",
+    "MCP",
+    "model context protocol"
+  ],
+  "activationEvents": [
+    "onCommand:gremlingpt.start",
+    "onCommand:gremlingpt.dashboard",
+    "onCommand:gremlingpt.memory",
+    "onCommand:gremlingpt.trading",
+    "onCommand:gremlingpt.terminal",
+    "onWebviewPanel:gremlingpt.dashboard"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "gremlingpt.start",
+        "title": "Start GremlinGPT System",
+        "category": "GremlinGPT"
+      },
+      {
+        "command": "gremlingpt.dashboard",
+        "title": "Open Dashboard",
+        "category": "GremlinGPT"
+      },
+      {
+        "command": "gremlingpt.memory",
+        "title": "Memory Management",
+        "category": "GremlinGPT"
+      },
+      {
+        "command": "gremlingpt.trading",
+        "title": "Trading Panel",
+        "category": "GremlinGPT"
+      },
+      {
+        "command": "gremlingpt.terminal",
+        "title": "GremlinGPT Terminal",
+        "category": "GremlinGPT"
+      },
+      {
+        "command": "gremlingpt.stop",
+        "title": "Stop GremlinGPT System",
+        "category": "GremlinGPT"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "gremlingpt.start"
+        },
+        {
+          "command": "gremlingpt.dashboard"
+        },
+        {
+          "command": "gremlingpt.memory"
+        },
+        {
+          "command": "gremlingpt.trading"
+        },
+        {
+          "command": "gremlingpt.terminal"
+        },
+        {
+          "command": "gremlingpt.stop"
+        }
+      ]
+    },
+    "views": {
+      "explorer": [
+        {
+          "id": "gremlingpt.sidebar",
+          "name": "GremlinGPT",
+          "when": "gremlingpt.active"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "gremlingpt-container",
+          "title": "GremlinGPT",
+          "icon": "$(robot)"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "GremlinGPT",
+      "properties": {
+        "gremlingpt.autoStart": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically start GremlinGPT when VS Code opens"
+        },
+        "gremlingpt.serverPort": {
+          "type": "number",
+          "default": 7777,
+          "description": "Port for GremlinGPT backend server"
+        },
+        "gremlingpt.memoryBackend": {
+          "type": "string",
+          "enum": [
+            "faiss",
+            "chromadb"
+          ],
+          "default": "faiss",
+          "description": "Vector storage backend to use"
+        },
+        "gremlingpt.debugMode": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable debug logging"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "18.x",
+    "@types/vscode": "^1.74.0",
+    "@types/ws": "^8.18.1",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "ws": "^8.14.0"
+  }
+}

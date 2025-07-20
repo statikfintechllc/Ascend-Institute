@@ -10,21 +10,8 @@
 # GremlinGPT v5 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion. v5 :: Module Integrity Directive
 
-from flask import jsonify
-from memory.vector_store.embedder import get_all_embeddings
-from backend.globals import MEM
-from memory.log_history import log_event
-import sys
-from pathlib import Path
-from datetime import datetime, UTC
 
-# Add project root to path for imports
-project_root = Path(__file__).parent.parent.parent
-sys.path.insert(0, str(project_root))
-
-from utils.logging_config import setup_module_logger
-
-logger = setup_module_logger('backend', 'memory_api')
+from backend.globals import CFG, logger, resolve_path, DATA_DIR, MEM
 
 
 def graph():
@@ -46,7 +33,7 @@ def graph():
                 "limit": limit,
                 "embedding_dim": dimension,
                 "similarity_threshold": threshold,
-                "timestamp": datetime.now(UTC).isoformat(),
+                "timestamp": datetime.now(timezone.utc).isoformat(),
                 "source": "memory_api.graph",
                 "watermark": "source:GremlinGPT",
             },

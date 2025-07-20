@@ -1,0 +1,5 @@
+2025-07-20 00:53:14.101 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for executors -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/executors/executors_shell_executor.log
+2025-07-20 00:53:30.216 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for executors -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/executors/executors_shell_executor.log
+2025-07-20 00:54:04.257 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for executors -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/executors/executors_shell_executor.log
+2025-07-20 00:56:14.600 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for executors -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/executors/executors_shell_executor.log
+2025-07-20 01:26:34.849 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for executors -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/executors/executors_shell_executor.log

@@ -16,19 +16,7 @@ import hashlib
 import json
 from datetime import datetime
 from pathlib import Path
-import uuid
-import sys
-
-# Add project root to path for imports
-project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root))
-
-from nlp_engine.diff_engine import diff_texts
-from memory.vector_store.embedder import embed_text, package_embedding
-from utils.logging_config import setup_module_logger
-
-# Initialize module-specific logger
-logger = setup_module_logger("core", "snapshot")
+from backend.globals import CFG, logger, resolve_path, DATA_DIR, MEM
 
 SNAPSHOT_ROOT = Path("run/checkpoints/snapshots/")
 SNAPSHOT_ROOT.mkdir(parents=True, exist_ok=True)

@@ -9,23 +9,8 @@
 
 # GremlinGPT v1.0.3 :: Module Integrity Directive
 
-import time
-import json
-from utils.logging_config import get_module_logger
-from watchdog.observers import Observer
-from watchdog.events import FileSystemEventHandler
-from backend.globals import CFG
-from self_training.generate_dataset import extract_training_data
-from self_training.mutation_engine import mutate_dataset
-from memory.vector_store.embedder import package_embedding, embed_text, inject_watermark
-from nlp_engine.mini_attention import MiniMultiHeadAttention
-from datetime import datetime
-import numpy as np
-import os
-import sys
-
-# Initialize self_training module logger
-logger = get_module_logger("self_training")
+from backend.globals import CFG, logger, resolve_path, DATA_DIR, MEM
+from backend.globals import CFG, logger, resolve_path, DATA_DIR, MEM
 
 LOG_DIR = CFG["paths"].get("data_dir", "data/") + "logs/"
 OUTPUT_PATH = (
