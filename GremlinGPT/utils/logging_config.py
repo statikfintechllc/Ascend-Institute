@@ -14,6 +14,36 @@ import sys
 from pathlib import Path
 from loguru import logger
 
+# Define custom logging level 'log_history'
+logger.level("log_history", no=25, color="<yellow>", icon="📝")
+
+# Define custom logging level 'globals'
+logger.level("globals", no=30, color="<blue>", icon="🌐")
+
+# Define custom logging level 'task_queue'
+logger.level("task_queue", no=20, color="<cyan>", icon="📋")
+
+# Define custom logging level 'state_manager'
+logger.level("state_manager", no=25, color="<magenta>", icon="🗂")
+
+# Define custom logging level 'orchestrator'
+logger.level("orchestrator", no=30, color="<green>", icon="🔄")
+
+# Define custom logging level 'data_analyst'
+logger.level("data_analyst", no=35, color="<yellow>", icon="📊")
+
+# Define custom logging level 'trading_strategist'
+logger.level("trading_strategist", no=40, color="<red>", icon="📈")
+
+# Define custom logging level 'learning_agent'
+logger.level("learning_agent", no=45, color="<blue>", icon="📘")
+
+# Define custom logging level 'coordinator'
+logger.level("coordinator", no=50, color="<magenta>", icon="🤝")
+
+# Define custom logging level 'integration'
+logger.level("integration", no=55, color="<cyan>", icon="🔗")
+
 # Base logging directory - use project directory instead of home
 project_root = Path(__file__).parent.parent
 BASE_LOG_DIR = project_root / "data" / "logs"

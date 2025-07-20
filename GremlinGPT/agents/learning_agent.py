@@ -26,7 +26,7 @@ import re
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
-from backend.globals import CFG
+from backend.globals import CFG, MODELS_DIR, METADATA_DB_PATH
 from utils.logging_config import setup_module_logger
 from memory.log_history import log_event
 from memory.vector_store import embedder
@@ -99,8 +99,8 @@ class LearningAgent:
             "max_learning_history": 1000
         })
         
-        # Learning models directory
-        self.models_dir = Path("memory/learning_models")
+        # Learning models directory - use config-driven path
+        self.models_dir = Path(MODELS_DIR) / "learning_models"
         self.models_dir.mkdir(parents=True, exist_ok=True)
         
         logger.info(f"[LEARNING_AGENT] Initialized agent: {self.agent_id}")

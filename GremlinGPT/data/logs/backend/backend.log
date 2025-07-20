@@ -172,3 +172,20 @@
 2025-07-13 08:51:39.028 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/data/logs/backend/backend.log
 2025-07-13 08:51:39.036 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/data/logs/backend/backend.log
 2025-07-13 14:22:20.437 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/tests/../data/logs/backend/backend.log
+2025-07-15 19:05:47.249 | INFO     | utils.logging_config:setup_module_logger:72 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/workspace/AscendAI/GremlinGPT/data/logs/backend/backend.log
+2025-07-15 19:05:47.249 | CRITICAL | backend.globals:load_config:33 - [GLOBALS] Failed to load TOML config: [Errno 2] No such file or directory: 'config/config.toml'
+2025-07-15 19:05:47.249 | CRITICAL | backend.globals:load_memory_config:42 - [GLOBALS] Failed to load memory config: [Errno 2] No such file or directory: 'config/memory.json'
+2025-07-15 19:06:33.180 | INFO     | utils.logging_config:setup_module_logger:72 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/workspace/AscendAI/GremlinGPT/data/logs/backend/backend.log
+2025-07-15 19:06:33.180 | CRITICAL | backend.globals:load_config:33 - [GLOBALS] Failed to load TOML config: [Errno 2] No such file or directory: 'config/config.toml'
+2025-07-15 19:06:33.181 | CRITICAL | backend.globals:load_memory_config:42 - [GLOBALS] Failed to load memory config: [Errno 2] No such file or directory: 'config/memory.json'
+2025-07-15 19:07:01.261 | INFO     | utils.logging_config:setup_module_logger:72 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/workspace/AscendAI/GremlinGPT/data/logs/backend/backend.log
+2025-07-15 19:07:16.102 | INFO     | utils.logging_config:setup_module_logger:75 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/workspace/AscendAI/GremlinGPT/data/logs/backend/backend.log
+2025-07-15 19:07:32.623 | INFO     | utils.logging_config:setup_module_logger:78 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/workspace/AscendAI/GremlinGPT/data/logs/backend/backend.log
+2025-07-15 19:07:49.489 | INFO     | utils.logging_config:setup_module_logger:81 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/workspace/AscendAI/GremlinGPT/data/logs/backend/backend.log
+2025-07-15 19:08:05.134 | INFO     | utils.logging_config:setup_module_logger:84 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/workspace/AscendAI/GremlinGPT/data/logs/backend/backend.log
+2025-07-15 19:08:26.894 | INFO     | utils.logging_config:setup_module_logger:87 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/workspace/AscendAI/GremlinGPT/data/logs/backend/backend.log
+2025-07-15 19:08:47.152 | INFO     | utils.logging_config:setup_module_logger:90 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/workspace/AscendAI/GremlinGPT/data/logs/backend/backend.log
+2025-07-15 19:09:11.030 | INFO     | utils.logging_config:setup_module_logger:93 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/workspace/AscendAI/GremlinGPT/data/logs/backend/backend.log
+2025-07-15 19:09:49.368 | INFO     | utils.logging_config:setup_module_logger:96 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/workspace/AscendAI/GremlinGPT/data/logs/backend/backend.log
+2025-07-15 19:10:15.603 | INFO     | utils.logging_config:setup_module_logger:99 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/workspace/AscendAI/GremlinGPT/data/logs/backend/backend.log
+2025-07-15 19:13:18.611 | INFO     | utils.logging_config:setup_module_logger:102 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/workspace/AscendAI/GremlinGPT/data/logs/backend/backend.log
