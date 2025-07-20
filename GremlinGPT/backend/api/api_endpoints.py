@@ -24,12 +24,15 @@ from utils.logging_config import setup_module_logger
 # ...existing code...
 logger = setup_module_logger('backend', 'INFO')
 
+from backend.globals import CFG, logger, resolve_path, DATA_DIR, MEM
+
 from agent_core.fsm import (
     fsm_loop,
     get_fsm_status,
-from backend.globals import CFG, logger, resolve_path, DATA_DIR, MEM
-from backend.api.api_endpoints import *
-from backend.router import route_task
+    step_fsm,
+    reset_fsm,
+    fsm_inject_task
+)
     data = flask.request.get_json()
     user_input = data.get("message", "")
     session_id = data.get("session_id")

@@ -22,6 +22,8 @@ socketio = SocketIO(app, cors_allowed_origins="*", async_mode="eventlet")
 from backend.globals import CFG, logger, resolve_path, DATA_DIR, MEM
 from backend.api.api_endpoints import *
 from backend.router import *
+
+try:
     register_routes(app)
     logger.info("[SERVER] Additional routes registered")
 except Exception as e:

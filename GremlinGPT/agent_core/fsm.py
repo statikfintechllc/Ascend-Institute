@@ -48,7 +48,6 @@ if __name__ == "__main__":
 
 def get_fsm_status():
     return route_task("get_fsm_status")
-...existing code...
 
 
 def reset_fsm():
