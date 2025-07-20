@@ -11,16 +11,28 @@
 # Self-improving tokenizer for GremlinGPT.
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 
-import re
-from transformers import AutoTokenizer
-from backend.globals import CFG, logger
+# Refactored to use centralized imports from backend.globals
+from backend.globals import (
+    re, transformers, CFG, logger, datetime, nltk, 
+    embed_text, package_embedding, inject_watermark
+)
 
-from memory.vector_store.embedder import embed_text, package_embedding, inject_watermark
-from datetime import datetime
-from utils.nltk_setup import setup_nltk_data
-import nltk
+# Local project imports that can't be centralized
+try:
+    from utils.nltk_setup import setup_nltk_data
+    NLTK_DATA_DIR = setup_nltk_data()
+except ImportError:
+    NLTK_DATA_DIR = None
 
-NLTK_DATA_DIR = setup_nltk_data()
+# Try to get AutoTokenizer from transformers if available
+try:
+    if transformers:
+        from transformers import AutoTokenizer
+    else:
+        AutoTokenizer = None
+except ImportError:
+    AutoTokenizer = None
+
 WATERMARK = "source:GremlinGPT"
 ORIGIN = "tokenizer"
 MODEL = CFG["nlp"].get("tokenizer_model", "bert-base-uncased")

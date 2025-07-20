@@ -10,13 +10,8 @@
 # GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 
-import json
-from pathlib import Path
-from datetime import datetime
-from utils.logging_config import setup_module_logger
-
-# Initialize module-specific logger
-logger = setup_module_logger("memory", "log_history")
+# Refactored to use centralized imports
+from backend.globals import json, Path, datetime, logger
 
 HISTORY_DIR = Path("data/logs/history/")
 HISTORY_FILE = HISTORY_DIR / "gremlin_exec_log.jsonl"

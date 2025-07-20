@@ -22,7 +22,7 @@
 
 # trading_core/rules_engine.py
 
-from datetime import datetime
+from datetime from backend.globals import datetime
 from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger

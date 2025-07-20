@@ -18,14 +18,8 @@
 #   - Automatically stages and commits files to the current Git repository
 #   - Designed to be used by other modules without manual intervention
 
-import os
-import shutil
-from datetime import datetime
-from pathlib import Path
-from utils.logging_config import setup_module_logger
-
-# Initialize module-specific logger
-logger = setup_module_logger("backend", "git_ops")
+# Refactored to use centralized imports
+from backend.globals import os, shutil, datetime, Path, logger
 
 DEFAULT_ARCHIVE_DIR = "docs/"
 
