@@ -37,36 +37,40 @@ except ImportError as e:
 try:
     import sys
     sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
-    from backend.globals import MEM
+    from backend.globals import (MEM, VECTOR_STORE_PATH, FAISS_PATH, CHROMA_PATH, 
+                                LOCAL_INDEX_PATH, METADATA_DB_PATH)
     if not isinstance(MEM, dict):
         raise ValueError("MEM is not a dict")
 except Exception as e:
-    logger.error(f"[EMBEDDER] MEM import or type-check failed: {e}")
+    logger.error(f"[COMMANDS] Failed to import from backend.globals: {e}")
     MEM = {}
+    # Fallback to hardcoded paths if config import fails
+    VECTOR_STORE_PATH = "./memory/vector_store"
+    FAISS_PATH = "./memory/vector_store/faiss"
+    CHROMA_PATH = "./memory/vector_store/chroma"
+    LOCAL_INDEX_PATH = "./memory/local_index/documents"
+    METADATA_DB_PATH = "./memory/local_index/metadata.db"
 
 try:
     from nlp_engine.transformer_core import encode
 except ImportError as e:
-    logger.error(f"[EMBEDDER] encode import failed: {e}")
+    logger.error(f"[COMMANDS] encode import failed: {e}")
     # fallback to a dummy encoder
     def encode(text):
         return np.zeros( MEM.get("embedding",{}).get("dimension",384), dtype="float32" )
 
-# --- Configuration & Paths ---
+# --- Configuration-driven Paths (loaded from backend.globals) ---
+"""
+All paths are now loaded from backend.globals.py which reads from config.toml.
+METADATA_DB_PATH is used for all metadata operations across the system.
+"""
+BASE_VECTOR_PATH = VECTOR_STORE_PATH
+FAISS_DIR = FAISS_PATH
+CHROMA_DIR = CHROMA_PATH
+# Note: LOCAL_INDEX_PATH is already the documents subdirectory from config
+
+# Use storage configuration from MEM for backend compatibility
 storage_conf = MEM.get("storage", {})
-if not isinstance(storage_conf, dict):
-    logger.error("[EMBEDDER] storage config malformed; resetting to empty dict")
-    storage_conf = {}
-
-BASE_VECTOR_PATH = storage_conf.get("vector_store_path", "./memory/vector_store")
-FAISS_DIR        = os.path.join(BASE_VECTOR_PATH, "faiss")
-CHROMA_DIR       = os.path.join(BASE_VECTOR_PATH, "chroma")
-
-LOCAL_INDEX_ROOT = storage_conf.get("local_index_path", "./memory/local_index")
-LOCAL_INDEX_PATH = os.path.join(LOCAL_INDEX_ROOT, "documents")
-# Change config filename from memory_settings.json to memory.json
-METADATA_DB_PATH = storage_conf.get("metadata_db", os.path.join(LOCAL_INDEX_ROOT, "memory.json"))
-
 USE_FAISS   = storage_conf.get("use_faiss", True)
 USE_CHROMA  = storage_conf.get("use_chroma", False)
 EMBED_MODEL = MEM.get("embedding", {}).get("model", "all-MiniLM-L6-v2")

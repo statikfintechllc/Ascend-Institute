@@ -62,6 +62,35 @@ MODELS_DIR = resolve_path(CFG["paths"].get("models_dir", "models"))
 CHECKPOINTS_DIR = resolve_path(CFG["paths"].get("checkpoints_dir", "run/checkpoints"))
 LOG_FILE = resolve_path(CFG["paths"].get("log_file", "data/logs/runtime.log"))
 
+# === MEMORY & VECTOR STORE PATHS ===
+"""
+Configuration-driven paths for memory, vector store, and metadata operations.
+All modules should use these paths instead of hardcoded values.
+"""
+VECTOR_STORE_PATH = resolve_path(CFG["paths"].get("vector_store_path", "$ROOT/memory/vector_store/"))
+FAISS_PATH = resolve_path(CFG["paths"].get("faiss_path", "$ROOT/memory/vector_store/faiss/"))
+CHROMA_PATH = resolve_path(CFG["paths"].get("chroma_path", "$ROOT/memory/vector_store/chroma/"))
+FAISS_INDEX_FILE = resolve_path(CFG["paths"].get("faiss_index_file", "$ROOT/memory/vector_store/faiss/faiss_index.index"))
+CHROMA_DB = resolve_path(CFG["paths"].get("chroma_db", "$ROOT/memory/vector_store/chroma/chroma.sqlite3"))
+LOCAL_INDEX_PATH = resolve_path(CFG["paths"].get("local_index_path", "$ROOT/memory/local_index/documents/"))
+LOCAL_DB = resolve_path(CFG["paths"].get("local_db", "$ROOT/memory/local_index/documents.db"))
+
+# === METADATA DATABASE PATH ===
+"""
+METADATA_DB_PATH: Central metadata store for the GremlinGPT system.
+Used by all modules for:
+  - Memory indexing and retrieval
+  - Vector store metadata management
+  - Training data provenance
+  - Trading signal metadata
+  - Scraper data annotation
+  - Router decision tracking
+  
+All modules (API, router, training, trading, scraper, etc.) should import this
+from backend.globals instead of using hardcoded paths.
+"""
+METADATA_DB_PATH = resolve_path(CFG["paths"].get("metadata_db", "$ROOT/memory/local_index/metadata.db"))
+
 
 # === LOGGER INITIALIZATION ===
 from utils.logging_config import setup_module_logger

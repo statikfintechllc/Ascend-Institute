@@ -44,19 +44,19 @@ except ImportError as e:
 try:
     import sys
     sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
-    from backend.globals import MEM
-    import toml
-    CONFIG_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../config/config.toml'))
-    try:
-        config = toml.load(CONFIG_PATH)
-        memory_conf = config.get('memory', {})
-        dashboard_selected_backend = memory_conf.get('dashboard_selected_backend', 'faiss')
-    except Exception as e:
-        logger.error(f"[EMBEDDER] Failed to load config.toml: {e}")
-        dashboard_selected_backend = 'faiss'
+    from backend.globals import (MEM, VECTOR_STORE_PATH, FAISS_PATH, CHROMA_PATH, 
+                                LOCAL_INDEX_PATH, METADATA_DB_PATH, CFG)
+    dashboard_selected_backend = CFG.get("memory", {}).get("dashboard_selected_backend", "faiss")
 except Exception as e:
-    logger.error(f"[EMBEDDER] MEM import or type-check failed: {e}")
+    logger.error(f"[EMBEDDER] Failed to import from backend.globals: {e}")
     MEM = {}
+    # Fallback to hardcoded paths if config import fails
+    VECTOR_STORE_PATH = "./memory/vector_store"
+    FAISS_PATH = "./memory/vector_store/faiss"
+    CHROMA_PATH = "./memory/vector_store/chroma"
+    LOCAL_INDEX_PATH = "./memory/local_index/documents"
+    METADATA_DB_PATH = "./memory/local_index/metadata.db"
+    dashboard_selected_backend = 'faiss'
 
 try:
     from nlp_engine.transformer_core import encode
@@ -66,30 +66,19 @@ except Exception:
         _ = text  # Access the parameter to avoid unused variable warning
         return np.zeros(MEM.get("embedding", {}).get("dimension", 384), dtype="float32")
 
-# --- Configuration & Paths ---
-storage_conf = MEM.get("storage", {})
-if not isinstance(storage_conf, dict):
-    logger.error("[EMBEDDER] storage config malformed; resetting to empty dict")
-    storage_conf = {}
-
-BASE_VECTOR_PATH = storage_conf.get("vector_store_path", "./memory/vector_store")
-FAISS_DIR        = os.path.join(BASE_VECTOR_PATH, "faiss")
-CHROMA_DIR       = os.path.join(BASE_VECTOR_PATH, "chroma")
-LOCAL_INDEX_ROOT = storage_conf.get("local_index_path", "./memory/local_index")
-LOCAL_INDEX_PATH = os.path.join(LOCAL_INDEX_ROOT, "documents")
-METADATA_DB_PATH = storage_conf.get("metadata_db", os.path.join(LOCAL_INDEX_ROOT, "metadata.db"))
-
-# --- Metadata DB Path Documentation ---
+# --- Configuration-driven Paths (loaded from backend.globals) ---
 """
-METADATA_DB_PATH:
-    Persistent metadata store for local index and vector store.
-    Loaded from config/memory.json as storage["metadata_db"].
-    Used for:
-      - Embedding metadata
-      - Knowledge graph construction
-      - Routing, training, and other GremlinGPT modules
-    All modules should reference this path via config, not hardcoded.
+All paths are now loaded from backend.globals.py which reads from config.toml.
+This ensures consistent path usage across all modules.
+
+METADATA_DB_PATH: Central metadata store for the GremlinGPT system.
+Used for embedding metadata, knowledge graph construction, routing, training, etc.
+All modules should import this from backend.globals instead of hardcoding paths.
 """
+BASE_VECTOR_PATH = VECTOR_STORE_PATH
+FAISS_DIR = FAISS_PATH  
+CHROMA_DIR = CHROMA_PATH
+# Note: LOCAL_INDEX_PATH is already the documents subdirectory from config
 
 # Use dashboard-selected backend for toggling
 USE_FAISS   = dashboard_selected_backend == "faiss"
