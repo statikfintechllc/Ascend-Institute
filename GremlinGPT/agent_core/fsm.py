@@ -9,12 +9,18 @@
 
 # GremlinGPT v1.0.3 :: FSM Core & Module Integrity Directive
 
-from backend.globals import CFG, logger, resolve_path, DATA_DIR, MEM
+from backend.globals import (
+    schedule, logging_config, nltk_setup, task_queue, heuristics, error_log, agent_profiles,
+    planner_agent, backend_globals, backend_utils, router, scheduler, server, state_manager,
+    git_ops, embedder, log_history, watcher, mutation_daemon, generate_dataset, kernel,
+    CFG, logger, resolve_path, DATA_DIR, MEM
+)
+
 from backend.api.api_endpoints import *
 from backend.router import route_task
 
 
-NLTK_DATA_DIR = setup_nltk_data()
+NLTK_DATA_DIR = nltk_setup.setup_nltk_data() if nltk_setup else None
 
 FSM_STATE = "IDLE"
 console = None

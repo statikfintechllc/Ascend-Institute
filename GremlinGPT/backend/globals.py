@@ -38,6 +38,70 @@ except ImportError:
 CONFIG_PATH = str(Path(__file__).parent.parent / "config" / "config.toml")
 MEMORY_JSON = str(Path(__file__).parent.parent / "config" / "memory.json")
 
+"""
+Centralized imports for GremlinGPT modules
+All modules needed by agent_core/fsm.py are imported and re-exported here
+"""
+try:
+    import schedule
+except ImportError:
+    schedule = None
+try:
+    from utils import logging_config, nltk_setup
+except ImportError:
+    logging_config = None
+    nltk_setup = None
+try:
+    from agent_core import task_queue, heuristics, error_log, agent_profiles
+except ImportError:
+    task_queue = None
+    heuristics = None
+    error_log = None
+    agent_profiles = None
+try:
+    from agents import planner_agent
+except ImportError:
+    planner_agent = None
+try:
+    from backend import globals as backend_globals, utils as backend_utils
+    from backend import router, scheduler, server, state_manager
+except ImportError:
+    backend_globals = None
+    backend_utils = None
+    router = None
+    scheduler = None
+    server = None
+    state_manager = None
+try:
+    from backend.utils import git_ops
+except ImportError:
+    git_ops = None
+try:
+    from memory.vector_store import embedder
+    from memory import log_history
+except ImportError:
+    embedder = None
+    log_history = None
+try:
+    from self_mutation_watcher import watcher, mutation_daemon
+except ImportError:
+    watcher = None
+    mutation_daemon = None
+try:
+    from self_training import generate_dataset
+except ImportError:
+    generate_dataset = None
+try:
+    from core import kernel
+except ImportError:
+    kernel = None
+
+# Re-export for other modules
+__all__ = [
+    "schedule", "logging_config", "nltk_setup", "task_queue", "heuristics", "error_log", "agent_profiles",
+    "planner_agent", "backend_globals", "backend_utils", "router", "scheduler", "server", "state_manager",
+    "git_ops", "embedder", "log_history", "watcher", "mutation_daemon", "generate_dataset", "kernel"
+]
 
 def load_config():
     """Load configuration with fallback for missing dependencies"""
