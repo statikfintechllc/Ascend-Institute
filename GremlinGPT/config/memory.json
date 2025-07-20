@@ -6,9 +6,9 @@
   "storage": {
     "vector_store_path": "./memory/vector_store",
     "use_faiss": true,
-    "use_chroma": true,
+    "use_chroma": false,
     "local_index_path": "./memory/local_index",
-    "local_db": "./memory/local_index/documents.db",
+    "metadata_db": "./memory/local_index/metadata.db",
     "log_dir": "./data/logs/",
     "training_data_path": "./data/nlp_training_sets/"
   },
@@ -65,5 +65,10 @@
     "track_embedding_origins": true,
     "embedding_hash_check": true,
     "conflict_resolution": "merge"
+  },
+
+  "memory": {
+    "short_term": [],
+    "long_term": []
   }
 }

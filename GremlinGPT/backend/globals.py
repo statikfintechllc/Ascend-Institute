@@ -22,8 +22,8 @@ from utils.logging_config import get_module_logger
 logger = get_module_logger("backend")
 
 # === CONFIGURATION PATHS ===
-CONFIG_PATH = "config/config.toml"
-MEMORY_JSON = "config/memory.json"
+CONFIG_PATH = str(Path(__file__).parent.parent / "config" / "config.toml")
+MEMORY_JSON = str(Path(__file__).parent.parent / "config" / "memory.json")
 
 
 def load_config():
