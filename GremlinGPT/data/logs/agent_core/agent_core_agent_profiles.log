@@ -1,0 +1,123 @@
+2025-07-20 00:53:30.361 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for agent_core -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/agent_core/agent_core_agent_profiles.log
+2025-07-20 00:53:30.593 | SUCCESS  | nlp_engine.tokenizer:<module>:31 - [TOKENIZER] Loaded: bert-base-uncased
+2025-07-20 00:53:30.593 | INFO     | agent_core.task_queue:_load_snapshot:178 - [TaskQueue] Queue restored from snapshot.
+2025-07-20 00:54:04.355 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for agent_core -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/agent_core/agent_core_agent_profiles.log
+2025-07-20 00:54:04.566 | SUCCESS  | nlp_engine.tokenizer:<module>:31 - [TOKENIZER] Loaded: bert-base-uncased
+2025-07-20 00:54:04.566 | INFO     | agent_core.task_queue:_load_snapshot:178 - [TaskQueue] Queue restored from snapshot.
+2025-07-20 00:56:14.700 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for agent_core -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/agent_core/agent_core_agent_profiles.log
+2025-07-20 00:56:14.700 | ERROR    | agent_core.agent_profiles:load_agent_profiles:50 - [AGENT_PROFILE] Failed to load profiles: [Errno 2] No such file or directory: '/home/statiksmoke8/Ascend-Institute/agent_core/agent_profiles.yaml'
+2025-07-20 00:56:14.906 | SUCCESS  | nlp_engine.tokenizer:<module>:31 - [TOKENIZER] Loaded: bert-base-uncased
+2025-07-20 00:56:14.907 | WARNING  | agent_core.task_queue:_load_snapshot:180 - [TaskQueue] Failed to load queue snapshot: [Errno 2] No such file or directory: 'run/checkpoints/task_queue.json'
+2025-07-20 00:56:14.907 | INFO     | core.integration:_setup_fsm_integration:191 - [UNIFIED_SYSTEM] FSM integration configured
+2025-07-20 00:56:14.907 | INFO     | core.integration:_setup_workflow_triggers:370 - [UNIFIED_SYSTEM] Configured 3 workflow triggers
+2025-07-20 00:56:14.907 | INFO     | core.integration:_start_intelligent_task_routing:384 - [UNIFIED_SYSTEM] Intelligent task routing activated
+2025-07-20 00:56:14.907 | SUCCESS  | core.integration:initialize_unified_system:107 - [UNIFIED_SYSTEM] System initialization completed successfully
+2025-07-20 00:56:14.907 | SUCCESS  | __main__:launch_ecosystem:71 - [PHASE 1] ✅ Unified system initialized
+2025-07-20 00:56:14.907 | INFO     | __main__:launch_ecosystem:74 - [PHASE 2] Performing system health check...
+2025-07-20 00:56:14.907 | INFO     | __main__:_validate_system_health:143 - [HEALTH_CHECK] System health score: 100/100
+2025-07-20 00:56:14.907 | SUCCESS  | __main__:launch_ecosystem:78 - [PHASE 2] ✅ System health check passed
+2025-07-20 00:56:14.907 | INFO     | __main__:launch_ecosystem:83 - [PHASE 3] Starting core execution loops...
+2025-07-20 00:56:14.907 | INFO     | __main__:_start_core_loops:177 - [CORE_LOOPS] Monitoring loop started
+2025-07-20 00:56:14.908 | SUCCESS  | __main__:launch_ecosystem:85 - [PHASE 3] ✅ Core loops active
+2025-07-20 00:56:14.908 | INFO     | __main__:launch_ecosystem:89 - [PHASE 4] Running startup validation workflows...
+2025-07-20 00:56:14.908 | INFO     | __main__:_run_startup_tests:251 - [STARTUP_TEST] Testing workflow execution...
+2025-07-20 00:56:14.908 | INFO     | agents.agent_coordinator:execute_collaborative_workflow:134 - [AGENT_COORDINATOR] Starting workflow: workflow_20250720_005614_0 [comprehensive_market_analysis]
+2025-07-20 00:56:14.908 | INFO     | agents.agent_coordinator:_execute_market_analysis_workflow:198 - [WORKFLOW:workflow_20250720_005614_0] Step 1: Data analysis
+2025-07-20 00:56:15.044 | INFO     | memory.vector_store.embedder:add_to_faiss:145 - [FAISS] Index type: <class 'faiss.swigfaiss_avx512.IndexFlatL2'>
+2025-07-20 00:56:15.045 | INFO     | memory.vector_store.embedder:add_to_faiss:152 - [FAISS] Using add_with_ids method.
+2025-07-20 00:56:15.046 | WARNING  | memory.vector_store.embedder:add_to_faiss:168 - [FAISS] add_with_ids failed, falling back to add: Error in virtual void faiss::Index::add_with_ids(faiss::idx_t, const float*, const faiss::idx_t*) at /project/faiss/faiss/Index.cpp:45: add_with_ids not implemented for this type of index
+2025-07-20 00:56:15.046 | INFO     | memory.vector_store.embedder:add_to_faiss:172 - [FAISS] Using add method (no ID support).
+2025-07-20 00:56:15.046 | INFO     | memory.vector_store.embedder:add_to_faiss:180 - [FAISS] Added a6019d55-0f4c-4a3f-b33b-88d0f5cdffd6 without ID
+2025-07-20 00:56:15.047 | INFO     | memory.vector_store.embedder:add_to_faiss:188 - [FAISS] Added a6019d55-0f4c-4a3f-b33b-88d0f5cdffd6
+2025-07-20 00:56:15.047 | INFO     | memory.vector_store.embedder:package_embedding:323 - [EMBEDDER] Stored embedding: a6019d55-0f4c-4a3f-b33b-88d0f5cdffd6 using faiss
+2025-07-20 00:56:15.047 | INFO     | agents.data_analyst_agent:analyze_data_stream:162 - [DATA_ANALYST] Analyzed market_analysis: 1 points, 0 anomalies, quality 1.00
+2025-07-20 00:56:15.047 | INFO     | agents.agent_coordinator:_execute_market_analysis_workflow:211 - [WORKFLOW:workflow_20250720_005614_0] Step 2: Trading strategy analysis
+2025-07-20 00:56:15.047 | WARNING  | agents.trading_strategist_agent:generate_trading_signals:134 - [TRADING_STRATEGIST] No data available for TEST
+2025-07-20 00:56:15.053 | INFO     | memory.vector_store.embedder:add_to_faiss:145 - [FAISS] Index type: <class 'faiss.swigfaiss_avx512.IndexFlatL2'>
+2025-07-20 00:56:15.053 | INFO     | memory.vector_store.embedder:add_to_faiss:152 - [FAISS] Using add_with_ids method.
+2025-07-20 00:56:15.053 | WARNING  | memory.vector_store.embedder:add_to_faiss:168 - [FAISS] add_with_ids failed, falling back to add: Error in virtual void faiss::Index::add_with_ids(faiss::idx_t, const float*, const faiss::idx_t*) at /project/faiss/faiss/Index.cpp:45: add_with_ids not implemented for this type of index
+2025-07-20 00:56:15.053 | INFO     | memory.vector_store.embedder:add_to_faiss:172 - [FAISS] Using add method (no ID support).
+2025-07-20 00:56:15.053 | INFO     | memory.vector_store.embedder:add_to_faiss:180 - [FAISS] Added 078c8d18-5ab2-4eee-89f4-bfa7e00eb905 without ID
+2025-07-20 00:56:15.053 | INFO     | memory.vector_store.embedder:add_to_faiss:188 - [FAISS] Added 078c8d18-5ab2-4eee-89f4-bfa7e00eb905
+2025-07-20 00:56:15.054 | INFO     | memory.vector_store.embedder:package_embedding:323 - [EMBEDDER] Stored embedding: 078c8d18-5ab2-4eee-89f4-bfa7e00eb905 using faiss
+2025-07-20 00:56:15.054 | INFO     | agents.trading_strategist_agent:generate_trading_signals:167 - [TRADING_STRATEGIST] Generated 0 signals for 1 symbols
+2025-07-20 00:56:15.054 | INFO     | agents.agent_coordinator:_execute_market_analysis_workflow:224 - [WORKFLOW:workflow_20250720_005614_0] Step 3: Cross-validation and synthesis
+2025-07-20 00:56:15.054 | INFO     | agents.agent_coordinator:_execute_market_analysis_workflow:234 - [WORKFLOW:workflow_20250720_005614_0] Step 4: Learning integration
+2025-07-20 00:56:15.054 | INFO     | agents.learning_agent:monitor_performance:188 - [LEARNING_AGENT] Monitored market_analysis_workflow: 0 opportunities identified
+2025-07-20 00:56:15.056 | INFO     | memory.vector_store.embedder:add_to_faiss:145 - [FAISS] Index type: <class 'faiss.swigfaiss_avx512.IndexFlatL2'>
+2025-07-20 00:56:15.056 | INFO     | memory.vector_store.embedder:add_to_faiss:152 - [FAISS] Using add_with_ids method.
+2025-07-20 00:56:15.056 | WARNING  | memory.vector_store.embedder:add_to_faiss:168 - [FAISS] add_with_ids failed, falling back to add: Error in virtual void faiss::Index::add_with_ids(faiss::idx_t, const float*, const faiss::idx_t*) at /project/faiss/faiss/Index.cpp:45: add_with_ids not implemented for this type of index
+2025-07-20 00:56:15.056 | INFO     | memory.vector_store.embedder:add_to_faiss:172 - [FAISS] Using add method (no ID support).
+2025-07-20 00:56:15.056 | INFO     | memory.vector_store.embedder:add_to_faiss:180 - [FAISS] Added 5170454a-a917-418f-9c78-3a7f6764edc4 without ID
+2025-07-20 00:56:15.057 | INFO     | memory.vector_store.embedder:add_to_faiss:188 - [FAISS] Added 5170454a-a917-418f-9c78-3a7f6764edc4
+2025-07-20 00:56:15.057 | INFO     | memory.vector_store.embedder:package_embedding:323 - [EMBEDDER] Stored embedding: 5170454a-a917-418f-9c78-3a7f6764edc4 using faiss
+2025-07-20 00:56:15.057 | INFO     | agents.learning_agent:learn_from_feedback:393 - [LEARNING_AGENT] Processed workflow_feedback feedback: 0 patterns, 1 updates
+2025-07-20 00:56:15.057 | SUCCESS  | agents.agent_coordinator:execute_collaborative_workflow:166 - [AGENT_COORDINATOR] Completed workflow: workflow_20250720_005614_0
+2025-07-20 00:56:15.057 | INFO     | __main__:_run_startup_tests:270 - [STARTUP_TEST] Testing agent coordination...
+2025-07-20 00:56:15.057 | INFO     | __main__:_run_startup_tests:283 - [STARTUP_TEST] Testing system integration...
+2025-07-20 00:56:15.058 | SUCCESS  | __main__:_run_startup_tests:306 - [STARTUP_TEST] ✅ All tests passed
+2025-07-20 00:56:15.058 | SUCCESS  | __main__:launch_ecosystem:91 - [PHASE 4] ✅ Startup tests completed
+2025-07-20 00:56:15.058 | INFO     | __main__:launch_ecosystem:94 - ================================================================================
+2025-07-20 00:56:15.058 | SUCCESS  | __main__:launch_ecosystem:95 - 🚀 GREMLINGPT ECOSYSTEM FULLY OPERATIONAL
+2025-07-20 00:56:15.058 | INFO     | __main__:launch_ecosystem:96 - System Status: AUTONOMOUS & SELF-IMPROVING
+2025-07-20 00:56:15.058 | INFO     | __main__:launch_ecosystem:97 - Startup Time: 0:00:01.557717
+2025-07-20 00:56:15.058 | INFO     | __main__:launch_ecosystem:98 - ================================================================================
+2025-07-20 00:56:15.058 | INFO     | __main__:_monitor_ecosystem:319 - [ECOSYSTEM_MONITOR] Monitoring started - system will run until interrupted
+2025-07-20 01:26:35.035 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for agent_core -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/agent_core/agent_core_agent_profiles.log
+2025-07-20 01:26:35.263 | SUCCESS  | nlp_engine.tokenizer:<module>:31 - [TOKENIZER] Loaded: bert-base-uncased
+2025-07-20 01:26:35.263 | INFO     | agent_core.task_queue:_load_snapshot:178 - [TaskQueue] Queue restored from snapshot.
+2025-07-20 01:26:35.263 | INFO     | core.integration:_setup_fsm_integration:191 - [UNIFIED_SYSTEM] FSM integration configured
+2025-07-20 01:26:35.263 | INFO     | core.integration:_setup_workflow_triggers:370 - [UNIFIED_SYSTEM] Configured 3 workflow triggers
+2025-07-20 01:26:35.263 | INFO     | core.integration:_start_intelligent_task_routing:384 - [UNIFIED_SYSTEM] Intelligent task routing activated
+2025-07-20 01:26:35.264 | SUCCESS  | core.integration:initialize_unified_system:107 - [UNIFIED_SYSTEM] System initialization completed successfully
+2025-07-20 01:26:35.264 | SUCCESS  | __main__:launch_ecosystem:71 - [PHASE 1] ✅ Unified system initialized
+2025-07-20 01:26:35.264 | INFO     | __main__:launch_ecosystem:74 - [PHASE 2] Performing system health check...
+2025-07-20 01:26:35.264 | INFO     | __main__:_validate_system_health:143 - [HEALTH_CHECK] System health score: 100/100
+2025-07-20 01:26:35.264 | SUCCESS  | __main__:launch_ecosystem:78 - [PHASE 2] ✅ System health check passed
+2025-07-20 01:26:35.264 | INFO     | __main__:launch_ecosystem:83 - [PHASE 3] Starting core execution loops...
+2025-07-20 01:26:35.264 | INFO     | __main__:_start_core_loops:177 - [CORE_LOOPS] Monitoring loop started
+2025-07-20 01:26:35.264 | SUCCESS  | __main__:launch_ecosystem:85 - [PHASE 3] ✅ Core loops active
+2025-07-20 01:26:35.264 | INFO     | __main__:launch_ecosystem:89 - [PHASE 4] Running startup validation workflows...
+2025-07-20 01:26:35.264 | INFO     | __main__:_run_startup_tests:251 - [STARTUP_TEST] Testing workflow execution...
+2025-07-20 01:26:35.264 | INFO     | agents.agent_coordinator:execute_collaborative_workflow:134 - [AGENT_COORDINATOR] Starting workflow: workflow_20250720_012635_0 [comprehensive_market_analysis]
+2025-07-20 01:26:35.264 | INFO     | agents.agent_coordinator:_execute_market_analysis_workflow:198 - [WORKFLOW:workflow_20250720_012635_0] Step 1: Data analysis
+2025-07-20 01:26:35.419 | INFO     | memory.vector_store.embedder:add_to_faiss:157 - [FAISS] Index type: <class 'faiss.swigfaiss_avx512.IndexFlatL2'>
+2025-07-20 01:26:35.419 | INFO     | memory.vector_store.embedder:add_to_faiss:164 - [FAISS] Using add_with_ids method.
+2025-07-20 01:26:35.420 | WARNING  | memory.vector_store.embedder:add_to_faiss:180 - [FAISS] add_with_ids failed, falling back to add: Error in virtual void faiss::Index::add_with_ids(faiss::idx_t, const float*, const faiss::idx_t*) at /project/faiss/faiss/Index.cpp:45: add_with_ids not implemented for this type of index
+2025-07-20 01:26:35.420 | INFO     | memory.vector_store.embedder:add_to_faiss:184 - [FAISS] Using add method (no ID support).
+2025-07-20 01:26:35.420 | INFO     | memory.vector_store.embedder:add_to_faiss:192 - [FAISS] Added f43d8573-9d31-4c1d-97df-24501cdc19a7 without ID
+2025-07-20 01:26:35.420 | INFO     | memory.vector_store.embedder:add_to_faiss:200 - [FAISS] Added f43d8573-9d31-4c1d-97df-24501cdc19a7
+2025-07-20 01:26:35.421 | INFO     | memory.vector_store.embedder:package_embedding:335 - [EMBEDDER] Stored embedding: f43d8573-9d31-4c1d-97df-24501cdc19a7 using faiss
+2025-07-20 01:26:35.421 | INFO     | agents.data_analyst_agent:analyze_data_stream:162 - [DATA_ANALYST] Analyzed market_analysis: 1 points, 0 anomalies, quality 1.00
+2025-07-20 01:26:35.421 | INFO     | agents.agent_coordinator:_execute_market_analysis_workflow:211 - [WORKFLOW:workflow_20250720_012635_0] Step 2: Trading strategy analysis
+2025-07-20 01:26:35.421 | WARNING  | agents.trading_strategist_agent:generate_trading_signals:134 - [TRADING_STRATEGIST] No data available for TEST
+2025-07-20 01:26:35.427 | INFO     | memory.vector_store.embedder:add_to_faiss:157 - [FAISS] Index type: <class 'faiss.swigfaiss_avx512.IndexFlatL2'>
+2025-07-20 01:26:35.428 | INFO     | memory.vector_store.embedder:add_to_faiss:164 - [FAISS] Using add_with_ids method.
+2025-07-20 01:26:35.428 | WARNING  | memory.vector_store.embedder:add_to_faiss:180 - [FAISS] add_with_ids failed, falling back to add: Error in virtual void faiss::Index::add_with_ids(faiss::idx_t, const float*, const faiss::idx_t*) at /project/faiss/faiss/Index.cpp:45: add_with_ids not implemented for this type of index
+2025-07-20 01:26:35.428 | INFO     | memory.vector_store.embedder:add_to_faiss:184 - [FAISS] Using add method (no ID support).
+2025-07-20 01:26:35.428 | INFO     | memory.vector_store.embedder:add_to_faiss:192 - [FAISS] Added 418e3b46-c461-4945-aed5-32e97b96f720 without ID
+2025-07-20 01:26:35.428 | INFO     | memory.vector_store.embedder:add_to_faiss:200 - [FAISS] Added 418e3b46-c461-4945-aed5-32e97b96f720
+2025-07-20 01:26:35.429 | INFO     | memory.vector_store.embedder:package_embedding:335 - [EMBEDDER] Stored embedding: 418e3b46-c461-4945-aed5-32e97b96f720 using faiss
+2025-07-20 01:26:35.429 | INFO     | agents.trading_strategist_agent:generate_trading_signals:167 - [TRADING_STRATEGIST] Generated 0 signals for 1 symbols
+2025-07-20 01:26:35.429 | INFO     | agents.agent_coordinator:_execute_market_analysis_workflow:224 - [WORKFLOW:workflow_20250720_012635_0] Step 3: Cross-validation and synthesis
+2025-07-20 01:26:35.429 | INFO     | agents.agent_coordinator:_execute_market_analysis_workflow:234 - [WORKFLOW:workflow_20250720_012635_0] Step 4: Learning integration
+2025-07-20 01:26:35.429 | INFO     | agents.learning_agent:monitor_performance:188 - [LEARNING_AGENT] Monitored market_analysis_workflow: 0 opportunities identified
+2025-07-20 01:26:35.432 | INFO     | memory.vector_store.embedder:add_to_faiss:157 - [FAISS] Index type: <class 'faiss.swigfaiss_avx512.IndexFlatL2'>
+2025-07-20 01:26:35.432 | INFO     | memory.vector_store.embedder:add_to_faiss:164 - [FAISS] Using add_with_ids method.
+2025-07-20 01:26:35.432 | WARNING  | memory.vector_store.embedder:add_to_faiss:180 - [FAISS] add_with_ids failed, falling back to add: Error in virtual void faiss::Index::add_with_ids(faiss::idx_t, const float*, const faiss::idx_t*) at /project/faiss/faiss/Index.cpp:45: add_with_ids not implemented for this type of index
+2025-07-20 01:26:35.433 | INFO     | memory.vector_store.embedder:add_to_faiss:184 - [FAISS] Using add method (no ID support).
+2025-07-20 01:26:35.433 | INFO     | memory.vector_store.embedder:add_to_faiss:192 - [FAISS] Added 6037df5e-c8e6-4c12-a9f8-44a1fec6aa5e without ID
+2025-07-20 01:26:35.433 | INFO     | memory.vector_store.embedder:add_to_faiss:200 - [FAISS] Added 6037df5e-c8e6-4c12-a9f8-44a1fec6aa5e
+2025-07-20 01:26:35.433 | INFO     | memory.vector_store.embedder:package_embedding:335 - [EMBEDDER] Stored embedding: 6037df5e-c8e6-4c12-a9f8-44a1fec6aa5e using faiss
+2025-07-20 01:26:35.433 | INFO     | agents.learning_agent:learn_from_feedback:393 - [LEARNING_AGENT] Processed workflow_feedback feedback: 0 patterns, 1 updates
+2025-07-20 01:26:35.433 | SUCCESS  | agents.agent_coordinator:execute_collaborative_workflow:166 - [AGENT_COORDINATOR] Completed workflow: workflow_20250720_012635_0
+2025-07-20 01:26:35.433 | INFO     | __main__:_run_startup_tests:270 - [STARTUP_TEST] Testing agent coordination...
+2025-07-20 01:26:35.434 | INFO     | __main__:_run_startup_tests:283 - [STARTUP_TEST] Testing system integration...
+2025-07-20 01:26:35.434 | SUCCESS  | __main__:_run_startup_tests:306 - [STARTUP_TEST] ✅ All tests passed
+2025-07-20 01:26:35.434 | SUCCESS  | __main__:launch_ecosystem:91 - [PHASE 4] ✅ Startup tests completed
+2025-07-20 01:26:35.434 | INFO     | __main__:launch_ecosystem:94 - ================================================================================
+2025-07-20 01:26:35.434 | SUCCESS  | __main__:launch_ecosystem:95 - 🚀 GREMLINGPT ECOSYSTEM FULLY OPERATIONAL
+2025-07-20 01:26:35.434 | INFO     | __main__:launch_ecosystem:96 - System Status: AUTONOMOUS & SELF-IMPROVING
+2025-07-20 01:26:35.434 | INFO     | __main__:launch_ecosystem:97 - Startup Time: 0:00:01.783364
+2025-07-20 01:26:35.434 | INFO     | __main__:launch_ecosystem:98 - ================================================================================
+2025-07-20 01:26:35.434 | INFO     | __main__:_monitor_ecosystem:319 - [ECOSYSTEM_MONITOR] Monitoring started - system will run until interrupted

@@ -1,0 +1,51 @@
+2025-07-20 01:46:04.445 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests_test_trading_core.log
+2025-07-20 01:46:04.454 | INFO     | test_agent_core:test_fsm_initialization:285 - FSM initialization test passed
+2025-07-20 01:46:04.454 | INFO     | test_agent_core:test_state_transitions:301 - FSM state transition test passed
+2025-07-20 01:46:04.455 | INFO     | test_agent_core:test_invalid_transitions:312 - FSM invalid transition test passed
+2025-07-20 01:46:04.455 | INFO     | test_agent_core:test_state_history:329 - FSM state history test passed
+2025-07-20 01:46:19.524 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests_test_trading_core.log
+2025-07-20 01:46:19.531 | INFO     | test_agent_core:test_fsm_initialization:285 - FSM initialization test passed
+2025-07-20 01:46:19.532 | INFO     | test_agent_core:test_state_transitions:301 - FSM state transition test passed
+2025-07-20 01:46:19.532 | INFO     | test_agent_core:test_invalid_transitions:312 - FSM invalid transition test passed
+2025-07-20 01:46:19.533 | INFO     | test_agent_core:test_state_history:329 - FSM state history test passed
+2025-07-20 01:46:19.634 | INFO     | test_agent_core:test_fsm_async_operations:346 - FSM async operations test passed
+2025-07-20 01:46:19.635 | INFO     | test_agent_core:test_task_creation:368 - Task creation test passed
+2025-07-20 01:46:19.636 | INFO     | test_agent_core:test_queue_operations:391 - Task queue operations test passed
+2025-07-20 01:46:19.636 | INFO     | test_agent_core:test_task_status_updates:409 - Task status update test passed
+2025-07-20 01:46:20.738 | INFO     | test_agent_core:test_task_timeout:428 - Task timeout test passed
+2025-07-20 01:46:20.739 | INFO     | test_agent_core:test_heuristics_initialization:438 - Performance heuristics initialization test passed
+2025-07-20 01:46:20.740 | INFO     | test_agent_core:test_performance_tracking:453 - Performance tracking test passed
+2025-07-20 01:46:20.740 | INFO     | test_agent_core:test_threshold_analysis:471 - Threshold analysis test passed
+2025-07-20 01:46:30.989 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests_test_trading_core.log
+2025-07-20 01:46:30.997 | INFO     | test_agent_core:test_fsm_initialization:285 - FSM initialization test passed
+2025-07-20 01:46:30.997 | INFO     | test_agent_core:test_state_transitions:301 - FSM state transition test passed
+2025-07-20 01:46:30.998 | INFO     | test_agent_core:test_invalid_transitions:312 - FSM invalid transition test passed
+2025-07-20 01:46:30.998 | INFO     | test_agent_core:test_state_history:329 - FSM state history test passed
+2025-07-20 01:46:31.099 | INFO     | test_agent_core:test_fsm_async_operations:346 - FSM async operations test passed
+2025-07-20 01:46:31.101 | INFO     | test_agent_core:test_task_creation:368 - Task creation test passed
+2025-07-20 01:46:31.101 | INFO     | test_agent_core:test_queue_operations:391 - Task queue operations test passed
+2025-07-20 01:46:31.102 | INFO     | test_agent_core:test_task_status_updates:409 - Task status update test passed
+2025-07-20 01:46:32.204 | INFO     | test_agent_core:test_task_timeout:428 - Task timeout test passed
+2025-07-20 01:46:32.205 | INFO     | test_agent_core:test_heuristics_initialization:438 - Performance heuristics initialization test passed
+2025-07-20 01:46:32.206 | INFO     | test_agent_core:test_performance_tracking:453 - Performance tracking test passed
+2025-07-20 01:46:32.206 | INFO     | test_agent_core:test_threshold_analysis:471 - Threshold analysis test passed
+2025-07-20 01:46:32.213 | INFO     | test_agent_core:test_resource_monitoring:503 - Resource monitoring test passed
+2025-07-20 01:46:32.213 | INFO     | test_agent_core:test_resource_prediction:519 - Resource prediction test passed
+2025-07-20 01:46:32.214 | INFO     | test_agent_core:test_profile_loading:533 - Profile loading test passed
+2025-07-20 01:46:32.214 | INFO     | test_agent_core:test_profile_creation:556 - Profile creation test passed
+2025-07-20 01:46:32.215 | INFO     | test_agent_core:test_profile_validation:577 - Profile validation test passed
+2025-07-20 01:46:32.215 | INFO     | test_agent_core:test_error_logging:594 - Error logging test passed
+2025-07-20 01:46:32.216 | INFO     | test_agent_core:test_error_categorization:610 - Error categorization test passed
+2025-07-20 01:46:32.217 | INFO     | test_agent_core:test_error_statistics:626 - Error statistics test passed
+2025-07-20 01:46:32.222 | INFO     | test_agent_core:test_heuristics_error_integration:686 - Heuristics-Error integration test passed
+2025-07-20 01:46:32.252 | INFO     | test_agent_core:test_task_queue_performance:718 - Task queue performance test: 1000 tasks in 0.03s
+2025-07-20 01:46:32.255 | INFO     | test_agent_core:test_heuristics_memory_usage:736 - Heuristics memory usage: 0.00MB
+2025-07-20 01:46:32.506 | INFO     | test_backend:test_server_shutdown:463 - Server shutdown test passed
+2025-07-20 01:46:32.512 | INFO     | test_backend:test_router_initialization:491 - Router initialization test passed
+2025-07-20 01:46:32.528 | INFO     | test_backend:test_route_middleware:551 - Route middleware test passed
+2025-07-20 01:46:32.529 | INFO     | test_backend:test_scheduler_initialization:565 - Scheduler initialization test passed
+2025-07-20 01:46:32.529 | INFO     | test_backend:test_task_scheduling:586 - Task scheduling test passed
+2025-07-20 01:46:32.737 | INFO     | test_backend:test_recurring_tasks:638 - Recurring tasks test passed
+2025-07-20 01:46:32.738 | INFO     | test_backend:test_task_cancellation:660 - Task cancellation test passed
+2025-07-20 01:46:32.743 | INFO     | test_backend:test_state_operations:691 - State operations test passed
+2025-07-20 01:46:32.744 | INFO     | test_backend:test_state_persistence:713 - State persistence test passed

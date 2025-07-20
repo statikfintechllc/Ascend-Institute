@@ -8,32 +8,9 @@
 
 # GremlinGPT v1.0.3 :: kernel.py
 
-from datetime import datetime
-from pathlib import Path
-import sys
-
-# Add project root to path for imports
-project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root))
-
-from memory.vector_store.embedder import embed_text, package_embedding
-from self_training.feedback_loop import inject_feedback
-from nlp_engine.diff_engine import diff_texts
-from utils.logging_config import setup_module_logger
-from backend.globals import CFG
-import shutil
-import uuid
-import subprocess
-
-# Initialize module-specific logger
-logger = setup_module_logger("core", "kernel")
-
-KERNEL_TAG = "kernel_writer"
-SOURCE_ROOT = Path("GremlinGPT")
-ROLLBACK_DIR = (
-    Path(CFG["paths"].get("checkpoints_dir", "run/checkpoints/")) / "snapshots"
-)
-ROLLBACK_DIR.mkdir(parents=True, exist_ok=True)
+from backend.globals import CFG, logger, resolve_path, DATA_DIR, MEM
+from backend.api.api_endpoints import *
+from backend.router import route_task
 
 
 def read_file(path):

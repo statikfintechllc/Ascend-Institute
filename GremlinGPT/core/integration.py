@@ -9,32 +9,9 @@
 
 # GremlinGPT v1.0.3 :: System Integration Module - Unified Architecture Bridge
 
-import asyncio
-import threading
-from datetime import datetime, timezone
-from pathlib import Path
-import sys
-import json
-from typing import Dict, List, Any, Optional
-import logging
-
-# Add project root to path for imports
-project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root))
-
-from backend.globals import CFG, LOOP
-from utils.logging_config import setup_module_logger
-from memory.log_history import log_event
-from agent_core.task_queue import enqueue_task, TaskQueue
-
-# Import new unified system components
-from core.orchestrator import get_global_orchestrator
-from agents.agent_coordinator import get_agent_coordinator
-from agents.data_analyst_agent import get_data_analyst_agent
-from agents.trading_strategist_agent import get_trading_strategist_agent
-from agents.learning_agent import get_learning_agent
-
-logger = setup_module_logger("core", "integration")
+from backend.globals import CFG, logger, resolve_path, DATA_DIR, MEM
+from backend.api.api_endpoints import *
+from backend.router import route_task
 
 
 class GremlinGPTUnifiedSystem:

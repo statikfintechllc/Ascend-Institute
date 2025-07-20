@@ -25,9 +25,8 @@ from datetime import datetime
 project_root = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(project_root))
 
-from utils.logging_config import setup_module_logger
 
-logger = setup_module_logger('backend', 'chat_handler')
+from backend.globals import logger
 
 
 def chat(user_input=None):

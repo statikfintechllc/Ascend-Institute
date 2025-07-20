@@ -8,17 +8,16 @@
 
 # GremlinGPT v1.0.3 :: executors/python_executor.py
 
+
 import subprocess
 import tempfile
 import uuid
 import os
 from pathlib import Path
-from utils.logging_config import setup_module_logger
+from backend.globals import DATA_DIR, logger
 
-# Initialize module-specific logger
-logger = setup_module_logger("executors", "python_executor")
-
-EXEC_LOG_DIR = Path("data/logs/executions/")
+# Use centralized log directory from globals
+EXEC_LOG_DIR = Path(DATA_DIR) / "logs" / "executions"
 EXEC_LOG_DIR.mkdir(parents=True, exist_ok=True)
 
 
@@ -31,8 +30,10 @@ def run_python_sandbox(code, timeout=5, env=None):
     Returns:
         dict with id, returncode, stdout, stderr, success, log_path, error (if any)
     """
+
     exec_id = str(uuid.uuid4())
     output_path = EXEC_LOG_DIR / f"{exec_id}.out"
+    script_path = None
 
     try:
         # Write code to a temp file
@@ -81,7 +82,7 @@ def run_python_sandbox(code, timeout=5, env=None):
         return {"id": exec_id, "success": False, "error": str(e)}
 
     finally:
-        if "script_path" in locals() and os.path.exists(script_path):
+        if script_path and os.path.exists(script_path):
             os.remove(script_path)
 
 

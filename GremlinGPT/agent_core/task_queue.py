@@ -8,22 +8,9 @@
 
 # GremlinGPT v1.0.3 :: agent_core/task_queue.py
 
-from collections import deque, defaultdict
-import uuid
-import json
-from pathlib import Path
-import sys
-from datetime import datetime, timedelta
-
-# Add project root to path for imports
-project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root))
-
-from utils.logging_config import setup_module_logger
-
-logger = setup_module_logger('agent_core', 'task_queue')
-
-QUEUE_FILE = Path("run/checkpoints/task_queue.json")
+from backend.globals import CFG, logger, resolve_path, DATA_DIR, MEM
+from backend.globals import CFG, logger, resolve_path, DATA_DIR, MEM
+QUEUE_FILE = resolve_path(CFG["paths"].get("task_queue_file", "$ROOT/run/checkpoints/task_queue.json"))
 ESCALATION_THRESHOLD_SEC = 120
 
 

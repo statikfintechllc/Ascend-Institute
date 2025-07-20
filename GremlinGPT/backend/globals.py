@@ -12,11 +12,7 @@
 
 # backend/globals.py
 
-import os
-import toml
-import json
-from pathlib import Path
-from utils.logging_config import get_module_logger
+from backend.globals import CFG, logger, resolve_path, DATA_DIR, MEM
 
 # Initialize module-specific logger
 logger = get_module_logger("backend")
@@ -31,27 +27,7 @@ def load_config():
         return toml.load(CONFIG_PATH)
     except Exception as e:
         logger.critical(f"[GLOBALS] Failed to load TOML config: {e}")
-        return {}
-
-
-def load_memory_config():
-    try:
-        with open(MEMORY_JSON, "r") as f:
-            return json.load(f)
-    except Exception as e:
-        logger.critical(f"[GLOBALS] Failed to load memory config: {e}")
-        return {}
-
-
-CFG = load_config()
-MEM = load_memory_config()
-
-# === PATH MANAGEMENT ===
-def resolve_path(p):
-    """Expands $ROOT and user home (~) dynamically"""
-    if not isinstance(p, str):
-        return str(p)
-    # Use current script directory as the project root, not the config base_dir
+from backend.globals import CFG, logger, resolve_path, DATA_DIR, MEM
     project_root = Path(__file__).parent.parent.resolve()
     return os.path.expanduser(p.replace("$ROOT", str(project_root)))
 

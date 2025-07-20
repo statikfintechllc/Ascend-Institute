@@ -1,0 +1,6 @@
+2025-07-20 01:46:00.502 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests_test_memory.log
+2025-07-20 01:46:04.144 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests_test_memory.log
+2025-07-20 01:46:15.371 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests_test_memory.log
+2025-07-20 01:46:19.385 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests_test_memory.log
+2025-07-20 01:46:26.918 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests_test_memory.log
+2025-07-20 01:46:30.848 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/tests/../data/logs/tests/tests_test_memory.log

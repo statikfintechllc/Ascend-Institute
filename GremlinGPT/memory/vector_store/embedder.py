@@ -9,53 +9,15 @@
 
 # GremlinGPT v1.0.3 :: Memory Embedder & Vector Store Core
 
-import os
-import shutil
-import uuid
-import json
-import numpy as np # type: ignore
-try:
-    import faiss
-except ImportError:
-    try:
-        import faiss_cpu as faiss  # type: ignore
-    except ImportError as e:
-        print(f"[EMBEDDER] faiss import failed: {e}")
-        faiss = None
-from datetime import datetime, timezone
-from utils.logging_config import setup_module_logger
-
-# Initialize module-specific logger
-logger = setup_module_logger("memory") # type: ignore
-
-# --- Resilient Imports ---
-try:
-    import chromadb  # type: ignore
-except ImportError as e:
-    logger.error(f"[EMBEDDER] chromadb import failed: {e}")
-    chromadb = None
+from backend.globals import CFG, logger, resolve_path, DATA_DIR, MEM
+...existing code...
 
 try:
-    from sentence_transformers import SentenceTransformer # type: ignore
-except ImportError as e:
-    logger.error(f"[EMBEDDER] sentence_transformers import failed: {e}")
-    SentenceTransformer = None
-
-try:
-    import sys
-    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
-    from backend.globals import (MEM, VECTOR_STORE_PATH, FAISS_PATH, CHROMA_PATH, 
-                                LOCAL_INDEX_PATH, METADATA_DB_PATH, CFG)
-    dashboard_selected_backend = CFG.get("memory", {}).get("dashboard_selected_backend", "faiss")
+    from backend.globals import MEM, CFG
+    dashboard_selected_backend = CFG.get('memory', {}).get('dashboard_selected_backend', 'faiss')
 except Exception as e:
-    logger.error(f"[EMBEDDER] Failed to import from backend.globals: {e}")
+    logger.error(f"[EMBEDDER] MEM/CFG import or type-check failed: {e}")
     MEM = {}
-    # Fallback to hardcoded paths if config import fails
-    VECTOR_STORE_PATH = "./memory/vector_store"
-    FAISS_PATH = "./memory/vector_store/faiss"
-    CHROMA_PATH = "./memory/vector_store/chroma"
-    LOCAL_INDEX_PATH = "./memory/local_index/documents"
-    METADATA_DB_PATH = "./memory/local_index/metadata.db"
     dashboard_selected_backend = 'faiss'
 
 try:
@@ -66,19 +28,31 @@ except Exception:
         _ = text  # Access the parameter to avoid unused variable warning
         return np.zeros(MEM.get("embedding", {}).get("dimension", 384), dtype="float32")
 
-# --- Configuration-driven Paths (loaded from backend.globals) ---
-"""
-All paths are now loaded from backend.globals.py which reads from config.toml.
-This ensures consistent path usage across all modules.
+# --- Configuration & Paths ---
+storage_conf = MEM.get("storage", {})
+if not isinstance(storage_conf, dict):
+    logger.error("[EMBEDDER] storage config malformed; resetting to empty dict")
+    storage_conf = {}
 
-METADATA_DB_PATH: Central metadata store for the GremlinGPT system.
-Used for embedding metadata, knowledge graph construction, routing, training, etc.
-All modules should import this from backend.globals instead of hardcoding paths.
+BASE_VECTOR_PATH = storage_conf.get("vector_store_path", "./memory/vector_store")
+FAISS_DIR        = os.path.join(BASE_VECTOR_PATH, "faiss")
+CHROMA_DIR       = os.path.join(BASE_VECTOR_PATH, "chroma")
+LOCAL_INDEX_ROOT = storage_conf.get("local_index_path", "./memory/local_index")
+LOCAL_INDEX_PATH = os.path.join(LOCAL_INDEX_ROOT, "documents")
+LOCAL_INDEX_FILE = os.path.join(LOCAL_INDEX_ROOT, "documents.db")
+METADATA_DB_PATH = storage_conf.get("metadata_db", os.path.join(LOCAL_INDEX_ROOT, "metadata.db"))
+
+# --- Metadata DB Path Documentation ---
 """
-BASE_VECTOR_PATH = VECTOR_STORE_PATH
-FAISS_DIR = FAISS_PATH  
-CHROMA_DIR = CHROMA_PATH
-# Note: LOCAL_INDEX_PATH is already the documents subdirectory from config
+METADATA_DB_PATH:
+    Persistent metadata store for local index and vector store.
+    Loaded from config/memory.json as storage["metadata_db"].
+    Used for:
+      - Embedding metadata
+      - Knowledge graph construction
+      - Routing, training, and other GremlinGPT modules
+    All modules should reference this path via config, not hardcoded.
+"""
 
 # Use dashboard-selected backend for toggling
 USE_FAISS   = dashboard_selected_backend == "faiss"
@@ -227,12 +201,12 @@ def set_backend(backend_name):
     # Update config file
     try:
         import toml
-        config = toml.load(CONFIG_PATH)
+        config = toml.load(resolve_path(CFG['paths'].get('config', 'config/config.toml')))
         if 'memory' not in config:
             config['memory'] = {}
         config['memory']['dashboard_selected_backend'] = backend_name
         
-        with open(CONFIG_PATH, 'w') as f:
+        with open(resolve_path(CFG['paths'].get('config', 'config/config.toml')), 'w') as f:
             toml.dump(config, f)
         
         logger.info(f"[EMBEDDER] Backend switched to: {backend_name}")

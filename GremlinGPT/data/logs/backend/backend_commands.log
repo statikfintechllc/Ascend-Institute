@@ -1,0 +1,10 @@
+2025-07-20 00:53:30.598 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/backend/backend_commands.log
+2025-07-20 00:53:30.598 | ERROR    | backend.interface.commands:<module>:28 - [EMBEDDER] chromadb import failed: No module named 'chromadb'
+2025-07-20 00:53:30.598 | INFO     | backend.interface.commands:<module>:117 - [FAISS] Loaded index from /home/statiksmoke8/Ascend-Institute/GremlinGPT/memory/vector_store/faiss/faiss_index.index
+2025-07-20 00:53:31.855 | INFO     | backend.interface.commands:<module>:142 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-20 00:53:31.861 | INFO     | backend.interface.commands:<module>:288 - [EMBEDDER] Initial disk load complete
+2025-07-20 00:54:04.570 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/backend/backend_commands.log
+2025-07-20 00:54:04.570 | ERROR    | backend.interface.commands:<module>:28 - [EMBEDDER] chromadb import failed: No module named 'chromadb'
+2025-07-20 00:54:04.570 | INFO     | backend.interface.commands:<module>:117 - [FAISS] Loaded index from /home/statiksmoke8/Ascend-Institute/GremlinGPT/memory/vector_store/faiss/faiss_index.index
+2025-07-20 00:54:05.494 | INFO     | backend.interface.commands:<module>:142 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-20 00:54:05.501 | INFO     | backend.interface.commands:<module>:288 - [EMBEDDER] Initial disk load complete

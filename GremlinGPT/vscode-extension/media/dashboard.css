@@ -1,0 +1,247 @@
+/* GremlinGPT VS Code Extension Dashboard Styles */
+
+.gremlin-dashboard {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.gremlin-card {
+    background: #252526;
+    border: 1px solid #3e3e42;
+    border-radius: 6px;
+    margin-bottom: 16px;
+}
+
+.gremlin-card-header {
+    background: #2d2d30;
+    border-bottom: 1px solid #3e3e42;
+    padding: 12px 16px;
+    font-weight: 600;
+}
+
+.gremlin-card-body {
+    padding: 16px;
+}
+
+.status-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+.status-running {
+    background-color: #4caf50;
+    box-shadow: 0 0 4px #4caf50;
+}
+
+.status-stopped {
+    background-color: #f44336;
+}
+
+.status-starting {
+    background-color: #ff9800;
+    animation: pulse 1s infinite;
+}
+
+.status-error {
+    background-color: #f44336;
+    animation: blink 0.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.gremlin-btn {
+    background: #0078d4;
+    border: 1px solid #0078d4;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.gremlin-btn:hover {
+    background: #106ebe;
+}
+
+.gremlin-btn:disabled {
+    background: #3e3e42;
+    border-color: #3e3e42;
+    color: #858585;
+    cursor: not-allowed;
+}
+
+.gremlin-btn-danger {
+    background: #f44336;
+    border-color: #f44336;
+}
+
+.gremlin-btn-danger:hover {
+    background: #d32f2f;
+}
+
+.gremlin-btn-success {
+    background: #4caf50;
+    border-color: #4caf50;
+}
+
+.gremlin-btn-success:hover {
+    background: #388e3c;
+}
+
+.gremlin-log {
+    background: #0c0c0c;
+    border: 1px solid #3e3e42;
+    border-radius: 4px;
+    padding: 12px;
+    font-family: 'Cascadia Code', 'Courier New', monospace;
+    font-size: 12px;
+    max-height: 300px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+}
+
+.gremlin-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 16px 0;
+}
+
+.gremlin-metric {
+    background: #2d2d30;
+    padding: 16px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.gremlin-metric-value {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4caf50;
+}
+
+.gremlin-metric-label {
+    font-size: 12px;
+    color: #858585;
+    margin-top: 4px;
+}
+
+.gremlin-terminal {
+    background: #0c0c0c;
+    color: #00ff00;
+    font-family: 'Cascadia Code', 'Courier New', monospace;
+    padding: 16px;
+    border-radius: 6px;
+    min-height: 200px;
+    overflow-y: auto;
+}
+
+.gremlin-progress {
+    background: #3e3e42;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 8px;
+    margin: 8px 0;
+}
+
+.gremlin-progress-bar {
+    background: linear-gradient(90deg, #0078d4, #4caf50);
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+.gremlin-tabs {
+    display: flex;
+    border-bottom: 1px solid #3e3e42;
+    margin-bottom: 16px;
+}
+
+.gremlin-tab {
+    padding: 12px 24px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.gremlin-tab:hover {
+    background: #2d2d30;
+}
+
+.gremlin-tab.active {
+    border-bottom-color: #0078d4;
+    color: #0078d4;
+}
+
+.gremlin-alert {
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin: 8px 0;
+}
+
+.gremlin-alert-info {
+    background: rgba(1, 120, 212, 0.1);
+    border-left: 4px solid #0078d4;
+    color: #0078d4;
+}
+
+.gremlin-alert-success {
+    background: rgba(76, 175, 80, 0.1);
+    border-left: 4px solid #4caf50;
+    color: #4caf50;
+}
+
+.gremlin-alert-warning {
+    background: rgba(255, 152, 0, 0.1);
+    border-left: 4px solid #ff9800;
+    color: #ff9800;
+}
+
+.gremlin-alert-error {
+    background: rgba(244, 67, 54, 0.1);
+    border-left: 4px solid #f44336;
+    color: #f44336;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1e1e1e;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3e3e42;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Animation for status changes */
+.status-change {
+    animation: statusChange 0.5s ease-in-out;
+}
+
+@keyframes statusChange {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}

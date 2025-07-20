@@ -48,17 +48,28 @@ logger.level("integration", no=55, color="<cyan>", icon="🔗")
 project_root = Path(__file__).parent.parent
 BASE_LOG_DIR = project_root / "data" / "logs"
 
-def setup_module_logger(module_name, log_level="INFO"):
+def setup_module_logger(module_name, param2="INFO"):
     """
     Setup dedicated logger for a specific module
     
     Args:
         module_name (str): Name of the module (e.g., 'backend', 'nlp_engine', 'scraper')
-        log_level (str): Logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+        param2 (str): Either log_level (DEBUG, INFO, WARNING, ERROR, CRITICAL) 
+                     or submodule_name (for backward compatibility)
     
     Returns:
         logger: Configured logger instance
     """
+    # Determine if param2 is a log level or submodule name
+    valid_log_levels = ["TRACE", "DEBUG", "INFO", "SUCCESS", "WARNING", "ERROR", "CRITICAL"]
+    if param2.upper() in valid_log_levels:
+        log_level = param2.upper()
+        submodule = None
+    else:
+        # Backward compatibility: param2 is submodule name
+        log_level = "INFO"
+        submodule = param2
+    
     # Ensure log directory exists
     module_log_dir = BASE_LOG_DIR / module_name
     module_log_dir.mkdir(parents=True, exist_ok=True)
@@ -66,8 +77,11 @@ def setup_module_logger(module_name, log_level="INFO"):
     # Set proper permissions
     os.chmod(str(module_log_dir), 0o755)
     
-    # Configure module-specific log file
-    log_file = module_log_dir / f"{module_name}.log"
+    # Configure module-specific log file (include submodule if provided)
+    if submodule:
+        log_file = module_log_dir / f"{module_name}_{submodule}.log"
+    else:
+        log_file = module_log_dir / f"{module_name}.log"
     
     # Remove existing handlers for this module to avoid duplicates
     logger.remove()
