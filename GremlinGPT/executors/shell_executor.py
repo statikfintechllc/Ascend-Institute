@@ -9,25 +9,21 @@
 
 # GremlinGPT v1.0.3 :: Module Integrity Directive
 
+
+# Import everything from backend.globals for centralized dependency management
+from backend.globals import (
+    json, datetime, Path, package_embedding, setup_module_logger, logging, np, encode
+)
+
 import subprocess
 import shlex
 import shutil
-import json
-from datetime import datetime
-from pathlib import Path
-from memory.vector_store.embedder import package_embedding
-from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
-logger = setup_module_logger("executors", "shell_executor")
-
-# --- Import encode for embedding shell logs ---
-try:
-    from nlp_engine.transformer_core import encode
-except ImportError:
-    import numpy as np
-    def encode(text):
-        return np.zeros(384, dtype="float32")
+if setup_module_logger:
+    logger = setup_module_logger("executors", "shell_executor")
+else:
+    logger = logging.getLogger("executors.shell_executor")
 
 
 LOG_PATH = Path("data/logs/shell_log.jsonl")

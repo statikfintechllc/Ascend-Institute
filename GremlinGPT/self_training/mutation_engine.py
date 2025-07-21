@@ -22,15 +22,15 @@
 
 # self_training/mutation_engine.py
 
-import random
+
+# Import everything from backend.globals for centralized dependency management
+from backend.globals import (
+    random, datetime, tokenize, semantic_similarity, embed_text, package_embedding, setup_module_logger, logging
+)
+
 import ast
-from datetime import datetime
-from nlp_engine.tokenizer import tokenize
 from nlp_engine.pos_tagger import get_pos_tags
-from nlp_engine.semantic_score import semantic_similarity
-from memory.vector_store.embedder import embed_text, package_embedding
 from agents.planner_agent import enqueue_next
-from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
 logger = setup_module_logger("self_training", "mutation_engine")

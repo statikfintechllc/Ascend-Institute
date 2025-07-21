@@ -13,14 +13,11 @@
 # Self-improving chat session manager for GremlinGPT.
 # Handles dialog state, memory, feedback, and learning integration.
 
-
-from datetime import datetime, timezone
-from memory.vector_store.embedder import embed_text, package_embedding, inject_watermark
-from memory.log_history import log_event
-from nlp_engine.tokenizer import tokenize
-from nlp_engine.semantic_score import reasoned_similarity
-from agent_core.fsm import inject_task
-from backend.api.chat_handler import chat as backend_chat
+# Import everything from backend.globals for centralized dependency management
+from backend.globals import (
+    datetime, timezone, embed_text, package_embedding, inject_watermark,
+    log_event, tokenize, reasoned_similarity, inject_task, backend_chat
+)
 
 __all__ = ["ChatSession"]
 

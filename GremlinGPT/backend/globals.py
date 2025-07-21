@@ -52,12 +52,14 @@ import argparse
 import typing
 import dataclasses
 import enum
+import difflib
 from pathlib import Path
 from datetime import datetime, timedelta, timezone
 from collections import defaultdict, Counter, deque
 from typing import Dict, List, Optional, Any, Union
 from dataclasses import dataclass
 from enum import Enum
+from difflib import unified_diff
 
 # ========================================================================================
 # THIRD-PARTY IMPORTS - With fallbacks for missing packages
@@ -423,6 +425,7 @@ detect_financial_terms = safe_import_function('nlp_engine.parser', 'detect_finan
 parse_nlp = safe_import_function('nlp_engine.parser', 'parse_nlp')
 encode = safe_import_function('nlp_engine.transformer_core', 'encode')
 semantic_similarity = safe_import_function('nlp_engine.semantic_score', 'semantic_similarity')
+reasoned_similarity = safe_import_function('nlp_engine.semantic_score', 'reasoned_similarity')
 
 # NLP Classes
 ChatSession = safe_import_class('nlp_engine.chat_session', 'ChatSession')
@@ -438,6 +441,7 @@ get_fsm_status = safe_import_function('agent_core.fsm', 'get_fsm_status')
 step_fsm = safe_import_function('agent_core.fsm', 'step_fsm')
 reset_fsm = safe_import_function('agent_core.fsm', 'reset_fsm')
 fsm_inject_task = safe_import_function('agent_core.fsm', 'fsm_inject_task')
+inject_task = safe_import_function('agent_core.fsm', 'inject_task')
 
 # Task queue operations
 enqueue_task = safe_import_function('agent_core.task_queue', 'enqueue_task')
@@ -572,6 +576,7 @@ get_reward_feed = safe_import_function('tools.reward_model', 'get_reward_feed')
 
 # API handlers
 chat = safe_import_function('backend.api.chat_handler', 'chat')
+backend_chat = chat  # Alias for backend_chat
 graph = safe_import_function('backend.api.memory_api', 'graph')
 set_task_priority = safe_import_function('backend.api.planner', 'set_task_priority')
 list_tasks = safe_import_function('backend.api.planner', 'list_tasks')
@@ -721,7 +726,7 @@ __all__ = [
     'collections', 'subprocess', 'tempfile', 'traceback', 'hashlib', 'shutil', 'signal',
     'uuid', 'math', 'random', 'statistics', 're', 'ast', 'argparse', 'typing', 'dataclasses', 'enum',
     'timedelta', 'timezone', 'defaultdict', 'Counter', 'deque', 'Dict', 'List', 'Optional', 'Any', 'Union',
-    'Path',
+    'Path', 'difflib', 'unified_diff',
     
     # Third-party modules (when available)
     'flask', 'Flask', 'Blueprint', 'request', 'jsonify', 'render_template', 'has_request_context',
@@ -745,11 +750,11 @@ __all__ = [
     
     # NLP functions and classes
     'clean_text', 'tokenize', 'diff_texts', 'diff_files', 'get_pos_tags', 'classify_intent',
-    'extract_code_entities', 'detect_financial_terms', 'parse_nlp', 'encode', 'semantic_similarity',
+    'extract_code_entities', 'detect_financial_terms', 'parse_nlp', 'encode', 'semantic_similarity', 'reasoned_similarity',
     'ChatSession', 'MiniMultiHeadAttention',
     
     # Agent core functions and classes
-    'fsm_loop', 'get_fsm_status', 'step_fsm', 'reset_fsm', 'fsm_inject_task',
+    'fsm_loop', 'get_fsm_status', 'step_fsm', 'reset_fsm', 'fsm_inject_task', 'inject_task',
     'enqueue_task', 'get_all_tasks', 'fetch_task', 'reprioritize', 'dump', 'TaskQueue',
     'evaluate_task', 'log_error', 'JsonlFormatter',
     
@@ -785,7 +790,7 @@ __all__ = [
     'get_reward_feed',
     
     # Backend API functions
-    'chat', 'graph', 'set_task_priority', 'list_tasks', 'get_signals', 'mutation_notify',
+    'chat', 'backend_chat', 'graph', 'set_task_priority', 'list_tasks', 'get_signals', 'mutation_notify',
     'summarize_text',
     
     # Utility functions

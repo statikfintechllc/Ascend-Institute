@@ -10,16 +10,16 @@
 # GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 
-from difflib import unified_diff
-import numpy as np
-from typing import Dict
-from utils.logging_config import setup_module_logger
+# Import everything from backend.globals for centralized dependency management
+from backend.globals import (
+    unified_diff, np, Dict, setup_module_logger, logging, semantic_similarity, encode
+)
 
 # Initialize module-specific logger
-logger = setup_module_logger("nlp_engine", "diff_engine")
-
-from nlp_engine.semantic_score import semantic_similarity
-from nlp_engine.transformer_core import encode
+if setup_module_logger:
+    logger = setup_module_logger("nlp_engine", "diff_engine")
+else:
+    logger = logging.getLogger("nlp_engine.diff_engine")
 
 ENGINE_NAME = "diff_engine"
 

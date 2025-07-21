@@ -10,13 +10,16 @@
 # GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 
+
+# Import everything from backend.globals for centralized dependency management
+from backend.globals import (
+    embed_text, package_embedding, inject_watermark, setup_module_logger, logging, datetime
+)
+
 from scraper.dom_navigator import extract_dom_structure
-from memory.vector_store.embedder import embed_text, package_embedding, inject_watermark
-from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
 logger = setup_module_logger("scraper", "page_simulator")
-from datetime import datetime
 
 WATERMARK = "source:GremlinGPT"
 ORIGIN = "page_simulator"

@@ -9,10 +9,13 @@
 
 # GremlinGPT v1.0.3 :: FSM Core & Module Integrity Directive
 
-import numpy as np
-from datetime import datetime
+
+# Import everything from backend.globals for centralized dependency management
+from backend.globals import (
+    np, datetime, log_event
+)
+
 from memory.vector_store.embedder import package_embedding, embed_text
-from memory.log_history import log_event
 from self_training.feedback_loop import inject_feedback
 
 WATERMARK = "source:GremlinGPT"

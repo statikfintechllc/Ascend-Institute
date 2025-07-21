@@ -22,8 +22,7 @@
 
 # self_training/feedback_loop.py
 
-from backend.globals import CFG, logger, resolve_path, DATA_DIR, MEM
-from backend.globals import CFG, logger, resolve_path, DATA_DIR, MEM
+from backend.globals import CFG, logger, resolve_path, DATA_DIR, MEM, Path
 
 # Paths
 LOG_PATH = Path("data/logs/")
