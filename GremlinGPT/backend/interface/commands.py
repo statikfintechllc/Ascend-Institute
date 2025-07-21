@@ -13,41 +13,23 @@ import os
 import shutil
 import uuid
 import json
-import numpy as np
-import faiss  # type: ignore
+import sys
+from pathlib import Path
 from datetime import datetime
 from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
 logger = setup_module_logger("backend", "commands")
 
-# --- Resilient Imports ---
-try:
-    import chromadb  # type: ignore
-except ImportError as e:
-    logger.error(f"[EMBEDDER] chromadb import failed: {e}")
-    chromadb = None
+# Add project root to path for imports
+project_root = Path(__file__).parent.parent.parent
+sys.path.insert(0, str(project_root))
 
-try:
-    from sentence_transformers import SentenceTransformer
-except ImportError as e:
-    logger.error(f"[EMBEDDER] sentence_transformers import failed: {e}")
-    SentenceTransformer = None
+# Import everything from backend.globals for centralized dependency management
+from backend.globals import *
 
-try:
-    import sys
-    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
-    from backend.globals import (MEM, VECTOR_STORE_PATH, FAISS_PATH, CHROMA_PATH, 
-                                LOCAL_INDEX_PATH, METADATA_DB_PATH)
-    if not isinstance(MEM, dict):
-        raise ValueError("MEM is not a dict")
-except Exception as e:
-    logger.error(f"[COMMANDS] Failed to import from backend.globals: {e}")
-    MEM = {}
-    # Fallback to hardcoded paths if config import fails
-    VECTOR_STORE_PATH = "./memory/vector_store"
-    FAISS_PATH = "./memory/vector_store/faiss"
-    CHROMA_PATH = "./memory/vector_store/chroma"
+# Use the imports from globals.py which includes proper error handling
+# faiss, chromadb, SentenceTransformer, np, etc. are all available from globals
     LOCAL_INDEX_PATH = "./memory/local_index/documents"
     METADATA_DB_PATH = "./memory/local_index/metadata.db"
 

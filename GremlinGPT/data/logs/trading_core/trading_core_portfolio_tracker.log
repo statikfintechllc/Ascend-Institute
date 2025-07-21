@@ -1,0 +1,1 @@
+2025-07-20 20:18:16.963 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for trading_core -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/trading_core/trading_core_portfolio_tracker.log

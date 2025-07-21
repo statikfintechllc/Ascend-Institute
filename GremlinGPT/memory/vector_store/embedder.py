@@ -9,10 +9,16 @@
 
 # GremlinGPT v1.0.3 :: Memory Embedder & Vector Store Core
 
-from backend.globals import CFG, logger, resolve_path, DATA_DIR, MEM
+# Import everything from globals - centralized import management
+from backend.globals import (
+    CFG, logger, resolve_path, DATA_DIR, MEM, np, os, faiss, chromadb, 
+    SentenceTransformer, BeautifulSoup, CONFIG_PATH, VECTOR_STORE_PATH, 
+    FAISS_PATH, CHROMA_PATH, LOCAL_INDEX_PATH, METADATA_DB_PATH,
+    HAS_FAISS, HAS_CHROMADB, HAS_SENTENCE_TRANSFORMERS, HAS_NUMPY,
+    json, uuid, datetime, Path
+)
 
 try:
-    from backend.globals import MEM, CFG
     dashboard_selected_backend = CFG.get('memory', {}).get('dashboard_selected_backend', 'faiss')
 except Exception as e:
     logger.error(f"[EMBEDDER] MEM/CFG import or type-check failed: {e}")
@@ -25,7 +31,10 @@ except Exception:
     # fallback to a dummy encoder
     def encode(text):
         _ = text  # Access the parameter to avoid unused variable warning
-        return np.zeros(MEM.get("embedding", {}).get("dimension", 384), dtype="float32")
+        if np is not None:
+            return np.zeros(MEM.get("embedding", {}).get("dimension", 384), dtype="float32")
+        else:
+            return [0.0] * MEM.get("embedding", {}).get("dimension", 384)
 
 # --- Configuration & Paths ---
 storage_conf = MEM.get("storage", {})

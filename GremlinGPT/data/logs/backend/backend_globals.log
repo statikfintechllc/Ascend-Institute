@@ -20,3 +20,14 @@
 2025-07-20 01:46:29.941 | INFO     | memory.vector_store.embedder:<module>:130 - [FAISS] Loaded index from ./memory/vector_store/faiss/faiss_index.index
 2025-07-20 01:46:30.834 | INFO     | memory.vector_store.embedder:<module>:278 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
 2025-07-20 01:46:30.842 | INFO     | memory.vector_store.embedder:<module>:414 - [EMBEDDER] Initial disk load complete
+2025-07-20 20:06:33.707 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/backend/backend_globals.log
+2025-07-20 20:10:05.279 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/backend/backend_globals.log
+2025-07-20 20:14:40.360 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/backend/backend_globals.log
+2025-07-20 20:16:03.747 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/backend/backend_globals.log
+2025-07-20 20:16:45.730 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/backend/backend_globals.log
+2025-07-20 20:17:35.194 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/backend/backend_globals.log
+2025-07-20 20:18:14.554 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/backend/backend_globals.log
+2025-07-20 20:19:19.363 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/backend/backend_globals.log
+2025-07-20 20:39:51.188 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/backend/backend_globals.log
+2025-07-20 20:43:34.833 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/backend/backend_globals.log
+2025-07-20 20:45:34.175 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/backend/backend_globals.log

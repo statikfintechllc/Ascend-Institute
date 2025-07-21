@@ -11,13 +11,16 @@
 # GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 
-import spacy
-import ast
-from datetime import datetime
+# Use centralized imports from globals.py
+from backend.globals import (
+    spacy, ast, datetime,
+    setup_module_logger
+)
+
+# Internal module imports (direct for GremlinGPT modules)
 from nlp_engine.tokenizer import tokenize
 from nlp_engine.pos_tagger import get_pos_tags
 from memory.vector_store.embedder import embed_text, package_embedding, inject_watermark
-from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
 logger = setup_module_logger("nlp_engine", "parser")

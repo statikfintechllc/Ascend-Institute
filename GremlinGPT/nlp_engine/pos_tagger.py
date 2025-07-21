@@ -10,15 +10,17 @@
 # GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 
-import os
-import nltk
+# Use centralized imports from globals.py
+from backend.globals import (
+    os, nltk, datetime,
+    setup_module_logger
+)
 from nltk import pos_tag, word_tokenize
-from datetime import datetime
-from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
 logger = setup_module_logger("nlp_engine", "pos_tagger")
 
+# Internal module imports (direct for GremlinGPT modules)
 from utils.nltk_setup import setup_nltk_data
 from memory.vector_store.embedder import embed_text, package_embedding, inject_watermark
 

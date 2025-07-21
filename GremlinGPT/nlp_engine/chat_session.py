@@ -67,12 +67,9 @@ class ChatSession:
         # Ensure output is always a string
         if isinstance(bot_response, dict):
             # Prefer explicit "response" key; fallback to first value if not present
-            if "response" in bot_response:
-                bot_response = str(bot_response["response"])
-            else:
-                # Fallback: use the first value in the dict (documented behavior)
-                bot_response = str(next(iter(bot_response.values()), ""))
+            bot_response = str(bot_response.get("response", ""))
         else:
+            # Handle non-dict responses gracefully
             bot_response = str(bot_response)
         # Optionally, reason about similarity to previous turns
         explanation = None

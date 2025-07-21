@@ -9,24 +9,20 @@
 
 # GremlinGPT v1.0.3 :: Specialized Agent - Data Analysis & Anomaly Detection
 
-import asyncio
-import numpy as np
-import pandas as pd
-from datetime import datetime, timezone, timedelta
-from pathlib import Path
-import sys
-import json
+# Use centralized imports from globals.py
+from backend.globals import (
+    asyncio, numpy as np, pandas as pd, datetime, 
+    Path, sys, json, statistics, re, dataclass,
+    CFG, setup_module_logger
+)
+from datetime import timezone, timedelta
 from typing import Dict, List, Any, Optional, Tuple
-import statistics
-import re
-from dataclasses import dataclass
 
 # Add project root to path for imports
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
-from backend.globals import CFG
-from utils.logging_config import setup_module_logger
+# Internal module imports (direct for GremlinGPT modules)
 from memory.log_history import log_event
 from memory.vector_store import embedder
 from agent_core.task_queue import enqueue_task

@@ -10,9 +10,12 @@
 # GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 
+# Use centralized imports from globals.py
+from backend.globals import (
+    playwright, datetime,
+    CFG, logger
+)
 from playwright.async_api import async_playwright, TimeoutError
-from backend.globals import CFG, logger
-from datetime import datetime
 
 ORIGIN = "playwright_handler"
 

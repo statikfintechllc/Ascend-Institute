@@ -9,16 +9,33 @@
 
 # GremlinGPT v1.0.3 :: FSM Core & Module Integrity Directive
 
+# Use centralized imports from globals.py
+# Use centralized imports from globals.py
 from backend.globals import (
-    schedule, logging_config, nltk_setup, task_queue, heuristics, error_log, agent_profiles,
-    planner_agent, backend_globals, backend_utils, router, scheduler, server, state_manager,
-    git_ops, embedder, log_history, watcher, mutation_daemon, generate_dataset, kernel,
-    CFG, logger, resolve_path, DATA_DIR, MEM
+    logging, time, datetime,
+    CFG, logger, setup_module_logger, resolve_path
 )
 
-from backend.api.api_endpoints import *
+# Direct imports for functions that need to work
 from backend.router import route_task
+from backend.utils.git_ops import auto_commit
 
+# Import internal modules normally  
+try:
+    from utils.nltk_setup import setup_nltk_data
+    nltk_setup = setup_nltk_data
+except ImportError:
+    nltk_setup = None
+
+try:
+    from agent_core import task_queue, heuristics, error_log, agent_profiles
+except ImportError:
+    task_queue = heuristics = error_log = agent_profiles = None
+
+try:
+    from agents import planner_agent
+except ImportError:
+    planner_agent = None
 
 NLTK_DATA_DIR = nltk_setup.setup_nltk_data() if nltk_setup else None
 

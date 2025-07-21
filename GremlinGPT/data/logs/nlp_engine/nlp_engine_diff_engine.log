@@ -2,3 +2,69 @@
 2025-07-20 00:54:04.331 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
 2025-07-20 00:56:14.675 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
 2025-07-20 01:26:34.985 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:06:33.714 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:10:05.284 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:14:40.365 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:14:40.370 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:14:40.843 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:14:40.852 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:14:40.861 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:14:40.870 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:14:40.879 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:14:40.880 | INFO     | backend.globals:<module>:780 - [GLOBALS] Centralized import management loaded successfully. 234 items exported.
+2025-07-20 20:14:40.968 | INFO     | memory.vector_store.embedder:<module>:109 - [FAISS] Loaded index from ./memory/vector_store/faiss/faiss_index.index
+2025-07-20 20:14:42.143 | INFO     | memory.vector_store.embedder:<module>:257 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-20 20:14:42.150 | INFO     | memory.vector_store.embedder:<module>:393 - [EMBEDDER] Initial disk load complete
+2025-07-20 20:16:03.752 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:16:03.756 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:16:04.612 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:16:04.612 | INFO     | backend.globals:<module>:783 - [GLOBALS] Centralized import management loaded successfully. 237 items exported.
+2025-07-20 20:16:04.708 | INFO     | memory.vector_store.embedder:<module>:109 - [FAISS] Loaded index from ./memory/vector_store/faiss/faiss_index.index
+2025-07-20 20:16:05.641 | INFO     | memory.vector_store.embedder:<module>:257 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-20 20:16:05.648 | INFO     | memory.vector_store.embedder:<module>:393 - [EMBEDDER] Initial disk load complete
+2025-07-20 20:16:45.735 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:16:45.740 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:16:46.744 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:16:46.745 | INFO     | backend.globals:<module>:783 - [GLOBALS] Centralized import management loaded successfully. 238 items exported.
+2025-07-20 20:16:46.831 | INFO     | memory.vector_store.embedder:<module>:109 - [FAISS] Loaded index from ./memory/vector_store/faiss/faiss_index.index
+2025-07-20 20:16:48.657 | INFO     | memory.vector_store.embedder:<module>:257 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-20 20:16:48.665 | INFO     | memory.vector_store.embedder:<module>:393 - [EMBEDDER] Initial disk load complete
+2025-07-20 20:17:35.199 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:17:35.204 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:17:36.350 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:17:36.351 | INFO     | backend.globals:<module>:783 - [GLOBALS] Centralized import management loaded successfully. 238 items exported.
+2025-07-20 20:17:36.452 | INFO     | memory.vector_store.embedder:<module>:109 - [FAISS] Loaded index from ./memory/vector_store/faiss/faiss_index.index
+2025-07-20 20:17:37.990 | INFO     | memory.vector_store.embedder:<module>:257 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-20 20:17:37.998 | INFO     | memory.vector_store.embedder:<module>:393 - [EMBEDDER] Initial disk load complete
+2025-07-20 20:18:14.559 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:18:14.564 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:18:15.627 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:18:15.628 | INFO     | backend.globals:<module>:783 - [GLOBALS] Centralized import management loaded successfully. 238 items exported.
+2025-07-20 20:18:15.716 | INFO     | memory.vector_store.embedder:<module>:109 - [FAISS] Loaded index from ./memory/vector_store/faiss/faiss_index.index
+2025-07-20 20:18:16.790 | INFO     | memory.vector_store.embedder:<module>:257 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-20 20:18:16.796 | INFO     | memory.vector_store.embedder:<module>:393 - [EMBEDDER] Initial disk load complete
+2025-07-20 20:18:16.797 | INFO     | agent_core.task_queue:_load_snapshot:168 - [TaskQueue] Queue restored from snapshot.
+2025-07-20 20:19:19.368 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:19:19.372 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:19:20.326 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:19:20.327 | INFO     | backend.globals:<module>:784 - [GLOBALS] Centralized import management loaded successfully. 239 items exported.
+2025-07-20 20:19:20.416 | INFO     | memory.vector_store.embedder:<module>:109 - [FAISS] Loaded index from ./memory/vector_store/faiss/faiss_index.index
+2025-07-20 20:19:21.816 | INFO     | memory.vector_store.embedder:<module>:257 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-20 20:19:21.822 | INFO     | memory.vector_store.embedder:<module>:393 - [EMBEDDER] Initial disk load complete
+2025-07-20 20:39:51.194 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:39:51.200 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:39:52.163 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:39:52.164 | INFO     | backend.globals:<module>:785 - [GLOBALS] Centralized import management loaded successfully. 240 items exported.
+2025-07-20 20:43:34.839 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:43:34.843 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:43:35.233 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:43:35.243 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:43:35.255 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:43:35.266 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:43:35.275 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:43:35.276 | INFO     | backend.globals:<module>:785 - [GLOBALS] Centralized import management loaded successfully. 240 items exported.
+2025-07-20 20:43:35.776 | ERROR    | nlp_engine.transformer_core:<module>:40 - [TRANSFORMER] Failed to load model 'bert-base-uncased': Unexpected error from cudaGetDeviceCount(). Did you run some cuda functions before calling NumCudaDevices() that might have already set an error? Error 804: forward compatibility was attempted on non supported HW
+2025-07-20 20:45:34.182 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:45:34.187 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:45:35.244 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for nlp_engine -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/nlp_engine/nlp_engine_diff_engine.log
+2025-07-20 20:45:35.245 | INFO     | backend.globals:<module>:785 - [GLOBALS] Centralized import management loaded successfully. 240 items exported.

@@ -1,28 +1,26 @@
-#!/usr/bin/env python3
-
-# ─────────────────────────────────────────────────────────────
-# ⚠️ GremlinGPT Fair Use Only | Commercial Use Requires License
-# Built under the GremlinGPT Dual License v1.0
-# © 2025 StatikFintechLLC / AscendAI Project
-# Contact: ascend.gremlin@gmail.com
-# ─────────────────────────────────────────────────────────────
+# !/usr/bin/env python3
 
 # GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 
-from transformers import AutoModel, AutoTokenizer
-import torch
-import numpy as np
-from backend.globals import CFG, logger
+# Use centralized imports from globals.py
+from backend.globals import (
+    torch, transformers, np, datetime, CFG, logger, AutoModel, AutoTokenizer
+)
 
 # ─────────────────────────────────────────────
 # Config Load
 MODEL_NAME = CFG["nlp"].get("transformer_model", "bert-base-uncased")
-EMBEDDING_DIM = CFG["nlp"].get("embedding_dim", 384)
-DEVICE = CFG["nlp"].get("device", "auto")
+EMBEDDING_DIM_RAW = CFG["nlp"].get("embedding_dim", 384)
+if isinstance(EMBEDDING_DIM_RAW, (list, tuple)):
+    EMBEDDING_DIM = [int(x) for x in EMBEDDING_DIM_RAW]
+else:
+    EMBEDDING_DIM = int(EMBEDDING_DIM_RAW)
+DEVICE = "cuda"
 
-if DEVICE == "auto":
-    DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+# Force GPU-only mode, abort if CUDA is not available
+if not torch.cuda.is_available():
+    raise RuntimeError("[TRANSFORMER] CUDA GPU is required. No compatible GPU found.")
 
 # ─────────────────────────────────────────────
 # Model Bootstrap
@@ -35,6 +33,8 @@ except Exception as e:
     logger.error(f"[TRANSFORMER] Failed to load model '{MODEL_NAME}': {e}")
     tokenizer = None
     model = None
+
+# ─────────────────────────────────────────────
 
 
 # ─────────────────────────────────────────────

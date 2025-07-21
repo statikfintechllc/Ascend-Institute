@@ -10,6 +10,13 @@
 # GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 
+# Use centralized imports from globals.py
+from backend.globals import (
+    datetime,
+    setup_module_logger
+)
+
+# Internal module imports (direct for GremlinGPT modules)
 from trading_core.rules_engine import apply_signal_rules
 from trading_core.stock_scraper import get_live_penny_stocks
 from memory.vector_store.embedder import (
@@ -17,11 +24,9 @@ from memory.vector_store.embedder import (
     embed_text,
     inject_watermark,
 )
-from utils.logging_config import setup_module_logger
 
 # Initialize module-specific logger
 logger = setup_module_logger("trading_core", "signal_generator")
-from datetime import datetime
 
 WATERMARK = "source:GremlinGPT"
 ORIGIN = "signal_generator"

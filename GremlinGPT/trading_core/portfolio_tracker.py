@@ -22,10 +22,11 @@
 
 # trading_core/portfolio_tracker.py
 
-import json
-from pathlib import Path
-from datetime import datetime
-from utils.logging_config import setup_module_logger
+# Use centralized imports from globals.py
+from backend.globals import (
+    json, Path, datetime,
+    setup_module_logger
+)
 
 # Initialize module-specific logger
 logger = setup_module_logger("trading_core", "portfolio_tracker")

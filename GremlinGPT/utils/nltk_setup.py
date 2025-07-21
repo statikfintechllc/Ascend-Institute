@@ -11,8 +11,10 @@
 # Self-improving NLTK setup for GremlinGPT.
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 
-import os
-import nltk
+# Use centralized imports from globals.py
+from backend.globals import (
+    os, nltk
+)
 
 def setup_nltk_data():
     """

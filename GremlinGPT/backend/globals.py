@@ -15,10 +15,19 @@
 # All modules should import their dependencies from here to ensure consistency
 
 # ========================================================================================
-# STANDARD LIBRARY IMPORTS - Always available
+# FORCE CPU MODE - Set environment variables BEFORE any torch/transformers imports
 # ========================================================================================
 import os
 import sys
+
+# Force CPU-only mode to avoid CUDA compatibility issues
+os.environ["CUDA_VISIBLE_DEVICES"] = ""
+os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:128"
+os.environ["TORCH_USE_CUDA_DSA"] = "0"
+
+# ========================================================================================
+# STANDARD LIBRARY IMPORTS - Always available
+# ========================================================================================
 import json
 import time
 import logging
@@ -36,6 +45,7 @@ import signal
 import uuid
 import math
 import random
+import statistics
 import re
 import ast
 import argparse
@@ -44,7 +54,7 @@ import dataclasses
 import enum
 from pathlib import Path
 from datetime import datetime, timedelta, timezone
-from collections import defaultdict, Counter
+from collections import defaultdict, Counter, deque
 from typing import Dict, List, Optional, Any, Union
 from dataclasses import dataclass
 from enum import Enum
@@ -90,17 +100,19 @@ except ImportError:
 # Scientific Computing
 try:
     import numpy as np
+    import numpy  # Also make numpy available without alias
     HAS_NUMPY = True
 except ImportError:
     HAS_NUMPY = False
-    np = None
+    np = numpy = None
 
 try:
     import pandas as pd
+    import pandas  # Also make pandas available without alias
     HAS_PANDAS = True
 except ImportError:
     HAS_PANDAS = False
-    pd = None
+    pd = pandas = None
 
 # HTTP Requests
 try:
@@ -160,11 +172,126 @@ except ImportError:
 
 # Web Automation
 try:
-    from playwright.async_api import async_playwright
+    import playwright
+    from playwright.async_api import async_playwright, TimeoutError as PlaywrightTimeoutError
     HAS_PLAYWRIGHT = True
 except ImportError:
     HAS_PLAYWRIGHT = False
-    async_playwright = None
+    playwright = async_playwright = PlaywrightTimeoutError = None
+
+# Vector Databases and Embedding Libraries
+try:
+    import faiss
+    HAS_FAISS = True
+except ImportError:
+    HAS_FAISS = False
+    faiss = None
+
+try:
+    import chromadb
+    HAS_CHROMADB = True
+except ImportError:
+    HAS_CHROMADB = False
+    chromadb = None
+
+try:
+    from sentence_transformers import SentenceTransformer, util as st_util
+    HAS_SENTENCE_TRANSFORMERS = True
+except ImportError:
+    HAS_SENTENCE_TRANSFORMERS = False
+    SentenceTransformer = st_util = None
+
+# Web Scraping
+try:
+    from bs4 import BeautifulSoup
+    import bs4
+    HAS_BS4 = True
+except ImportError:
+    HAS_BS4 = False
+    BeautifulSoup = bs4 = None
+
+try:
+    import lxml
+    HAS_LXML = True
+except ImportError:
+    HAS_LXML = False
+    lxml = None
+
+# Language Detection
+try:
+    import langdetect
+    HAS_LANGDETECT = True
+except ImportError:
+    HAS_LANGDETECT = False
+    langdetect = None
+
+# NLP Processing
+try:
+    import spacy
+    HAS_SPACY = True
+except ImportError:
+    HAS_SPACY = False
+    spacy = None
+
+# Configuration Management
+try:
+    import yaml
+    HAS_YAML = True
+except ImportError:
+    HAS_YAML = False
+    yaml = None
+
+# System Monitoring
+try:
+    import psutil
+    HAS_PSUTIL = True
+except ImportError:
+    HAS_PSUTIL = False
+    psutil = None
+
+# Networking
+try:
+    import networkx as nx
+    HAS_NETWORKX = True
+except ImportError:
+    HAS_NETWORKX = False
+    nx = None
+
+# File Watching
+try:
+    import watchdog
+    from watchdog.observers import Observer
+    from watchdog.events import FileSystemEventHandler
+    HAS_WATCHDOG = True
+except ImportError:
+    HAS_WATCHDOG = False
+    watchdog = Observer = FileSystemEventHandler = None
+
+# Additional NLTK imports
+try:
+    from nltk import pos_tag
+    from nltk.tag import pos_tag as nltk_pos_tag
+    HAS_NLTK_POS = True
+except ImportError:
+    HAS_NLTK_POS = False
+    pos_tag = nltk_pos_tag = None
+
+# Additional transformers imports
+
+# Correct submodule imports for AutoModel and AutoTokenizer
+try:
+    from transformers.models.auto.modeling_auto import AutoModel
+    from transformers.models.auto.tokenization_auto import AutoTokenizer
+    HAS_AUTO_TRANSFORMERS = True
+except ImportError:
+    HAS_AUTO_TRANSFORMERS = False
+    AutoModel = AutoTokenizer = None
+
+# Export for global import
+__all__ = [
+    # ...existing exports...
+    "torch", "transformers", "AutoModel", "AutoTokenizer", "np", "datetime", "CFG", "logger"
+]
 
 # ========================================================================================
 # PROJECT CONFIGURATION AND PATHS
@@ -276,6 +403,7 @@ load_state = safe_import_function('backend.state_manager', 'load_state')
 # Router and backend utilities
 register_routes = safe_import_function('backend.router', 'register_routes')
 route_task = safe_import_function('backend.router', 'route_task')
+auto_commit = safe_import_function('backend.utils.git_ops', 'auto_commit')
 
 # ========================================================================================
 # NLP ENGINE MODULES
@@ -336,6 +464,10 @@ simulate_technical_indicators = safe_import_function('trading_core.stock_scraper
 route_scraping = safe_import_function('trading_core.stock_scraper', 'route_scraping')
 simulate_fallback = safe_import_function('trading_core.stock_scraper', 'simulate_fallback')
 
+# Additional functions that may be missing
+trigger_mutation = safe_import_function('self_training.mutation_engine', 'trigger_mutation')
+start_feedback_loop = safe_import_function('self_training.feedback_loop', 'start_feedback_loop')
+
 # ========================================================================================
 # MEMORY SYSTEM MODULES
 # ========================================================================================
@@ -369,6 +501,10 @@ tag_event = safe_import_function('self_training.feedback_loop', 'tag_event')
 check_trigger = safe_import_function('self_training.feedback_loop', 'check_trigger')
 inject_feedback = safe_import_function('self_training.feedback_loop', 'inject_feedback')
 clear_trigger = safe_import_function('self_training.feedback_loop', 'clear_trigger')
+
+# Training functions
+trigger_retrain = safe_import_function('self_training.trainer', 'trigger_retrain')
+schedule_retrain = trigger_retrain  # Alias for API compatibility
 
 # Training classes
 LogEventHandler = safe_import_class('self_training.trainer', 'LogEventHandler')
@@ -578,13 +714,18 @@ __all__ = [
     # Standard library modules
     'os', 'sys', 'json', 'time', 'logging', 'asyncio', 'threading', 'pathlib', 'datetime',
     'collections', 'subprocess', 'tempfile', 'traceback', 'hashlib', 'shutil', 'signal',
-    'uuid', 'math', 'random', 're', 'ast', 'argparse', 'typing', 'dataclasses', 'enum',
-    'timedelta', 'timezone', 'defaultdict', 'Counter', 'Dict', 'List', 'Optional', 'Any', 'Union',
+    'uuid', 'math', 'random', 'statistics', 're', 'ast', 'argparse', 'typing', 'dataclasses', 'enum',
+    'timedelta', 'timezone', 'defaultdict', 'Counter', 'deque', 'Dict', 'List', 'Optional', 'Any', 'Union',
+    'Path',
     
     # Third-party modules (when available)
     'flask', 'Flask', 'Blueprint', 'request', 'jsonify', 'render_template',
-    'np', 'pd', 'requests', 'aiohttp', 'nltk', 'word_tokenize', 'torch', 'transformers',
-    'schedule', 'pytest', 'async_playwright', 'toml',
+    'np', 'pd', 'numpy', 'pandas', 'requests', 'aiohttp', 'nltk', 'word_tokenize', 'pos_tag', 'nltk_pos_tag',
+    'torch', 'transformers', 'AutoModel', 'AutoTokenizer',
+    'schedule', 'pytest', 'playwright', 'async_playwright', 'PlaywrightTimeoutError', 'toml',
+    'faiss', 'chromadb', 'SentenceTransformer', 'st_util',
+    'BeautifulSoup', 'bs4', 'lxml', 'langdetect', 'spacy', 'yaml',
+    'psutil', 'nx', 'watchdog', 'Observer', 'FileSystemEventHandler',
     
     # Configuration and paths
     'CFG', 'logger', 'resolve_path', 'CONFIG_PATH', 'MEMORY_JSON',
@@ -595,7 +736,7 @@ __all__ = [
     
     # Core system functions
     'boot_loop', 'build_tree', 'verify_snapshot', 'rollback', 'snapshot_file', 'sha256_file',
-    'save_state', 'load_state', 'register_routes', 'route_task',
+    'save_state', 'load_state', 'register_routes', 'route_task', 'auto_commit',
     
     # NLP functions and classes
     'clean_text', 'tokenize', 'diff_texts', 'diff_files', 'get_pos_tags', 'classify_intent',
@@ -610,7 +751,7 @@ __all__ = [
     # Trading functions
     'repair_signal_index', 'generate_signals', 'get_signal_history', 'apply_signal_rules',
     'estimate_batch', 'estimate_tax', 'get_live_penny_stocks', 'simulate_technical_indicators',
-    'route_scraping', 'simulate_fallback',
+    'route_scraping', 'simulate_fallback', 'trigger_mutation', 'start_feedback_loop',
     
     # Memory functions
     'embed_text', 'inject_watermark', 'package_embedding', 'get_all_embeddings', 'repair_index',
@@ -619,7 +760,7 @@ __all__ = [
     # Self-training functions and classes
     'is_valid_python', 'mutate_dataset', 'extract_training_data', 'hash_entry',
     'schedule_extraction', 'generate_datasets', 'tag_event', 'check_trigger',
-    'inject_feedback', 'clear_trigger', 'LogEventHandler',
+    'inject_feedback', 'clear_trigger', 'trigger_retrain', 'schedule_retrain', 'LogEventHandler',
     
     # Scraper functions
     'extract_dom_structure', 'store_scrape_to_memory', 'run_search_and_scrape',
@@ -653,8 +794,10 @@ __all__ = [
     
     # Availability flags
     'HAS_TOML', 'HAS_FLASK', 'HAS_NUMPY', 'HAS_PANDAS', 'HAS_REQUESTS', 'HAS_AIOHTTP',
-    'HAS_NLTK', 'HAS_TORCH', 'HAS_TRANSFORMERS', 'HAS_SCHEDULE', 'HAS_PYTEST',
-    'HAS_PLAYWRIGHT', 'HAS_LOGGER'
+    'HAS_NLTK', 'HAS_NLTK_POS', 'HAS_TORCH', 'HAS_TRANSFORMERS', 'HAS_AUTO_TRANSFORMERS', 'HAS_SCHEDULE', 'HAS_PYTEST',
+    'HAS_PLAYWRIGHT', 'HAS_FAISS', 'HAS_CHROMADB', 'HAS_SENTENCE_TRANSFORMERS',
+    'HAS_BS4', 'HAS_LXML', 'HAS_LANGDETECT', 'HAS_SPACY', 'HAS_YAML',
+    'HAS_PSUTIL', 'HAS_NETWORKX', 'HAS_WATCHDOG', 'HAS_LOGGER'
 ]
 
 logger.info(f"[GLOBALS] Centralized import management loaded successfully. {len(__all__)} items exported.")

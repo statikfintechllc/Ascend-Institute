@@ -10,9 +10,10 @@
 # GremlinGPT v1.0.3 :: Module Integrity Directive
 # Bulletproofed: Never fails on no task, pipeline errors, or module import issues.
 
-import asyncio
-import time
-from datetime import datetime
+# Use centralized imports from globals.py
+from backend.globals import (
+    asyncio, time, datetime
+)
 
 try:
     from scraper.playwright_handler import get_dom_html

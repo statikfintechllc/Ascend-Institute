@@ -11,25 +11,18 @@
 # Self-improving semantic similarity engine for GremlinGPT.
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 
-import re
-import numpy as np
-import langdetect
-import torch
+# Import external dependencies from globals (centralized import management)
+from backend.globals import (
+    re, np, langdetect, torch, CFG, logger, nltk, word_tokenize,
+    SentenceTransformer, st_util, log_event, inject_feedback
+)
+
+# Local project imports that can't be centralized
 from utils.logging_config import setup_module_logger
+from utils.nltk_setup import setup_nltk_data
 
 # Initialize module-specific logger
 logger = setup_module_logger("nlp_engine", "semantic_score")
-from backend.globals import CFG
-from sentence_transformers import SentenceTransformer, util
-from utils.nltk_setup import setup_nltk_data
-import nltk
-from nltk.tokenize import word_tokenize
-from memory.log_history import log_event
-
-try:
-    from self_training.feedback_loop import inject_feedback
-except ImportError:
-    inject_feedback = None
 
 NLTK_DATA_DIR = setup_nltk_data()
 
