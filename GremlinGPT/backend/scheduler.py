@@ -26,6 +26,8 @@ from backend.router import scan_and_diff
 import threading
 import signal
 import traceback
+
+def get_loop():
     global _LOOP
     with _LOOP_LOCK:
         return _LOOP

@@ -1,15 +1,7 @@
-# backend/api/summarizer.py  # type: ignore
+# backend/api/summarizer.py
+# Refactored to use centralized imports from backend.globals
 
-import sys
-from pathlib import Path
-
-# Add project root to path for imports
-project_root = Path(__file__).parent.parent.parent
-sys.path.insert(0, str(project_root))
-
-from utils.logging_config import setup_module_logger
-
-logger = setup_module_logger('backend', 'summarizer')
+from backend.globals import logger
 
 def summarize_text(text):
     """Stub summarizer: returns the first 128 characters with ellipsis if too long."""
