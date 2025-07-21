@@ -8,15 +8,13 @@
 
 # GremlinGPT v1.0.3 :: agents/planner_agent.py
 
-from agent_core.task_queue import enqueue_task, reprioritize, dump
-from tools.reward_model import top_rewarded_tasks
-from memory.vector_store import embedder
-import logging
+# Import everything from backend.globals for centralized dependency management
+from backend.globals import (
+    enqueue_task, reprioritize, dump, top_rewarded_tasks, embedder, 
+    logging, archive_json_log, auto_commit, datetime, random, os
+)
+
 logger = logging.getLogger("GremlinGPT.TaskQueue")
-from backend.utils.git_ops import archive_json_log, auto_commit
-from datetime import datetime
-import random
-import os
 
 AGENT_NAME = "planner_agent"
 

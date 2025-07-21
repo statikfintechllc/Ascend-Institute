@@ -74,11 +74,11 @@ except ImportError:
 # Flask Web Framework
 try:
     import flask
-    from flask import Flask, Blueprint, request, jsonify, render_template
+    from flask import Flask, Blueprint, request, jsonify, render_template, has_request_context
     HAS_FLASK = True
 except ImportError:
     HAS_FLASK = False
-    flask = request = jsonify = render_template = None
+    flask = request = jsonify = render_template = has_request_context = None
     # Mock Flask components for non-web environments
     class MockFlask:
         def __init__(self, name): pass
@@ -401,9 +401,11 @@ save_state = safe_import_function('backend.state_manager', 'save_state')
 load_state = safe_import_function('backend.state_manager', 'load_state')
 
 # Router and backend utilities
+commands = safe_import_module('backend.interface.commands')
 register_routes = safe_import_function('backend.router', 'register_routes')
 route_task = safe_import_function('backend.router', 'route_task')
 auto_commit = safe_import_function('backend.utils.git_ops', 'auto_commit')
+archive_json_log = safe_import_function('backend.utils.git_ops', 'archive_json_log')
 
 # ========================================================================================
 # NLP ENGINE MODULES
@@ -420,6 +422,7 @@ extract_code_entities = safe_import_function('nlp_engine.parser', 'extract_code_
 detect_financial_terms = safe_import_function('nlp_engine.parser', 'detect_financial_terms')
 parse_nlp = safe_import_function('nlp_engine.parser', 'parse_nlp')
 encode = safe_import_function('nlp_engine.transformer_core', 'encode')
+semantic_similarity = safe_import_function('nlp_engine.semantic_score', 'semantic_similarity')
 
 # NLP Classes
 ChatSession = safe_import_class('nlp_engine.chat_session', 'ChatSession')
@@ -441,6 +444,7 @@ enqueue_task = safe_import_function('agent_core.task_queue', 'enqueue_task')
 get_all_tasks = safe_import_function('agent_core.task_queue', 'get_all_tasks')
 fetch_task = safe_import_function('agent_core.task_queue', 'fetch_task')
 reprioritize = safe_import_function('agent_core.task_queue', 'reprioritize')
+dump = safe_import_function('agent_core.task_queue', 'dump')
 TaskQueue = safe_import_class('agent_core.task_queue', 'TaskQueue')
 
 # Heuristics and error handling
@@ -473,6 +477,7 @@ start_feedback_loop = safe_import_function('self_training.feedback_loop', 'start
 # ========================================================================================
 
 # Vector store and embeddings
+embedder = safe_import_module('memory.vector_store.embedder')
 embed_text = safe_import_function('memory.vector_store.embedder', 'embed_text')
 inject_watermark = safe_import_function('memory.vector_store.embedder', 'inject_watermark')
 package_embedding = safe_import_function('memory.vector_store.embedder', 'package_embedding')
@@ -719,7 +724,7 @@ __all__ = [
     'Path',
     
     # Third-party modules (when available)
-    'flask', 'Flask', 'Blueprint', 'request', 'jsonify', 'render_template',
+    'flask', 'Flask', 'Blueprint', 'request', 'jsonify', 'render_template', 'has_request_context',
     'np', 'pd', 'numpy', 'pandas', 'requests', 'aiohttp', 'nltk', 'word_tokenize', 'pos_tag', 'nltk_pos_tag',
     'torch', 'transformers', 'AutoModel', 'AutoTokenizer',
     'schedule', 'pytest', 'playwright', 'async_playwright', 'PlaywrightTimeoutError', 'toml',
@@ -736,16 +741,16 @@ __all__ = [
     
     # Core system functions
     'boot_loop', 'build_tree', 'verify_snapshot', 'rollback', 'snapshot_file', 'sha256_file',
-    'save_state', 'load_state', 'register_routes', 'route_task', 'auto_commit',
+    'save_state', 'load_state', 'commands', 'register_routes', 'route_task', 'auto_commit', 'archive_json_log',
     
     # NLP functions and classes
     'clean_text', 'tokenize', 'diff_texts', 'diff_files', 'get_pos_tags', 'classify_intent',
-    'extract_code_entities', 'detect_financial_terms', 'parse_nlp', 'encode',
+    'extract_code_entities', 'detect_financial_terms', 'parse_nlp', 'encode', 'semantic_similarity',
     'ChatSession', 'MiniMultiHeadAttention',
     
     # Agent core functions and classes
     'fsm_loop', 'get_fsm_status', 'step_fsm', 'reset_fsm', 'fsm_inject_task',
-    'enqueue_task', 'get_all_tasks', 'fetch_task', 'reprioritize', 'TaskQueue',
+    'enqueue_task', 'get_all_tasks', 'fetch_task', 'reprioritize', 'dump', 'TaskQueue',
     'evaluate_task', 'log_error', 'JsonlFormatter',
     
     # Trading functions
@@ -754,7 +759,7 @@ __all__ = [
     'route_scraping', 'simulate_fallback', 'trigger_mutation', 'start_feedback_loop',
     
     # Memory functions
-    'embed_text', 'inject_watermark', 'package_embedding', 'get_all_embeddings', 'repair_index',
+    'embedder', 'embed_text', 'inject_watermark', 'package_embedding', 'get_all_embeddings', 'repair_index',
     'search_memory', 'log_event', 'load_history',
     
     # Self-training functions and classes

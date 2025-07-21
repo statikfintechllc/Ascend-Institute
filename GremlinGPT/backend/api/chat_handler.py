@@ -10,23 +10,11 @@
 # # GremlinGPT v1.0.3 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion. v5 :: Module Integrity Directive
 
-from flask import request, jsonify, has_request_context
-from backend.interface import commands
-from nlp_engine.tokenizer import tokenize
-from nlp_engine.transformer_core import encode
-from agent_core.task_queue import enqueue_task
-from memory.vector_store import embedder
-from memory.log_history import log_event
-import sys
-from pathlib import Path
-from datetime import datetime
-
-# Add project root to path for imports
-project_root = Path(__file__).parent.parent.parent
-sys.path.insert(0, str(project_root))
-
-
-from backend.globals import logger
+# Import everything from backend.globals for centralized dependency management
+from backend.globals import (
+    request, jsonify, has_request_context, commands, tokenize, encode, 
+    enqueue_task, embedder, log_event, sys, Path, datetime, logger
+)
 
 
 def chat(user_input=None):

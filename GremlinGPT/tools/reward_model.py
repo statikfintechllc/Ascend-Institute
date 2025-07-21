@@ -10,16 +10,18 @@
 # GremlinGPT v5 :: Module Integrity Directive
 # This script is a component of the GremlinGPT system, under Alpha expansion.
 
-import json
-from datetime import datetime
-from pathlib import Path
-import numpy as np
-from utils.logging_config import setup_module_logger
+# Import everything from backend.globals for centralized dependency management
+from backend.globals import (
+    json, datetime, Path, np, setup_module_logger, semantic_similarity, diff_texts, logging
+)
 
 # Initialize module-specific logger
-logger = setup_module_logger("tools", "reward_model")
-from nlp_engine.semantic_score import semantic_similarity
-from nlp_engine.diff_engine import diff_texts
+if setup_module_logger:
+    logger = setup_module_logger("tools", "reward_model")
+else:
+    # Fallback if setup_module_logger is not available
+    import logging
+    logger = logging.getLogger("tools.reward_model")
 # Lazy import to avoid circular dependency
 # from agent_core.fsm import inject_task  # For feedback loop
 
