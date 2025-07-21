@@ -436,6 +436,7 @@ MiniMultiHeadAttention = safe_import_class('nlp_engine.mini_attention', 'MiniMul
 # ========================================================================================
 
 # FSM and task management
+fsm = safe_import_module('agent_core.fsm')
 fsm_loop = safe_import_function('agent_core.fsm', 'fsm_loop')
 get_fsm_status = safe_import_function('agent_core.fsm', 'get_fsm_status')
 step_fsm = safe_import_function('agent_core.fsm', 'step_fsm')
@@ -754,7 +755,7 @@ __all__ = [
     'ChatSession', 'MiniMultiHeadAttention',
     
     # Agent core functions and classes
-    'fsm_loop', 'get_fsm_status', 'step_fsm', 'reset_fsm', 'fsm_inject_task', 'inject_task',
+    'fsm', 'fsm_loop', 'get_fsm_status', 'step_fsm', 'reset_fsm', 'fsm_inject_task', 'inject_task',
     'enqueue_task', 'get_all_tasks', 'fetch_task', 'reprioritize', 'dump', 'TaskQueue',
     'evaluate_task', 'log_error', 'JsonlFormatter',
     

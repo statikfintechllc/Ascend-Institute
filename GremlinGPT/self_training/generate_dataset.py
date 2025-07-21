@@ -13,21 +13,18 @@ This module provides the main dataset generation function for self-training, FSM
 It is fully integrated with watermarking, tagging, tokenizing, deduplication, memory, feedback, and logging subsystems.
 """
 
-import os
-import json
-import time
-import uuid
-import hashlib
-import schedule
-from datetime import datetime
-from pathlib import Path
-from agent_core.task_queue import enqueue_task
-from self_training.feedback_loop import inject_feedback
-from nlp_engine.tokenizer import tokenize
-from memory.vector_store.embedder import (
-    embed_text, package_embedding, inject_watermark
+# Import everything from backend.globals for centralized dependency management
+from backend.globals import (
+    os, json, time, uuid, hashlib, schedule, datetime, Path, 
+    enqueue_task, inject_feedback, setup_module_logger, logging,
+    tokenize, embed_text, package_embedding, inject_watermark, log_event
 )
-from memory.log_history import log_event
+
+# Initialize module-specific logger
+if setup_module_logger:
+    logger = setup_module_logger("self_training", "generate_dataset")
+else:
+    logger = logging.getLogger("self_training.generate_dataset")
 
 WATERMARK = "source:GremlinGPT"
 KEYWORDS = ["FAIL", "LOW_CONF", "INVALID", "delta", "error", "retry", "timeout", "null"]
