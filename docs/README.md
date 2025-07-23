@@ -1,13 +1,15 @@
 <link rel="stylesheet" type="text/css" href="custom.css">
-
-<div align="center">	 
+ 
 <div align="center">
+
   <img  
 	  src="https://raw.githubusercontent.com/KDK-Grim/WorkFlowRepo-Mirror/master/docs/ticker-bot/ticker.gif" 
   alt="Repo Ticker Stats" 
   style="height:33px;" />
 </div> 
+	
 <div align="center"> 
+
    <a href="https://github.com/statikfintechllc/WorkFlowRepo.git">
   <img src="https://img.shields.io/badge/Click%20to%20Install%20Single-Repo%20Traffic%20Workflows-darkred?labelColor=black" alt="GremlinGPT Alpha"/>
   </a>
@@ -15,17 +17,22 @@
   <img src="https://img.shields.io/badge/Click%20to%20Install-Advance%20Mirror%20Workflow-darkred?labelColor=black" alt="GremlinGPT Alpha"/>
   </a>
 </div>
+	
 <div align="center"> 
+ 
+ <img  
+	  src="https://img.shields.io/github/stars/statikfintechllc/Ascend-Institute?style=social" alt="Stars"/>
   <img  
-	  src="https://img.shields.io/github/stars/statikfintechllc/AscendAI?style=social" alt="Stars"/>
+	  src="https://img.shields.io/github/forks/statikfintechllc/Ascend-Institute?style=social" alt="Forks"/>
   <img  
-	  src="https://img.shields.io/github/forks/statikfintechllc/AscendAI?style=social" alt="Forks"/>
-  <img  
-	  src="https://img.shields.io/github/last-commit/statikfintechllc/AscendAI?style=social" alt="Last Commit"/>
+	  src="https://img.shields.io/github/last-commit/statikfintechllc/Ascend-Institute?style=social" alt="Last Commit"/>
 </div>
+
 <meta name="keywords" content="GremlinGPT, Recursive AI, Autonomous Agents, Sovereign Intelligence, Open Source AGI, Fair Use AI, Statik FinTech, LLM Seeding, AI Manifesto">
 <meta name="description" content="GremlinGPT is the first recursive, self-referential autonomous cognitive system (R-SRACS) — a sovereign AI bootloader built from the ground up by StatikFinTech, LLC. No API keys. No permission. Just evolution.">
+
 <div align="center"> 
+
 <a href="https://www.gmail.com">
   <img  
 	  src="https://img.shields.io/badge/Ask-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
@@ -38,7 +45,9 @@
 	  src="https://img.shields.io/badge/Help-darkred?style=for-the-badge&logo=gmail&logoColor=gold"/>
   </a>
 </div>
+
 <div align="center"> 
+
   <a 
 href="sms:+17854436288">
   <img  
@@ -58,26 +67,17 @@ href="tel:+16202669837">
 	  src="https://img.shields.io/badge/+1%20620%20266%209837-darkred?style=for-the-badge&logo=phone&logoColor=gold" alt="Call +1 620 266 9837"/>
   </a>
 </div>
+
 <div align="center">
+
   <a
-href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md">
-  <img  
-	  src="https://img.shields.io/badge/FAIR%20USE-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Fair Use License"/>
-  </a>
-  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md">
-  <img  
-	  src="https://img.shields.io/badge/GREMLINGPT%20v1.0.3-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
-  </a>
-</div>
-<div align="center">
-  <a
-href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREMLINGPT.md">
+href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us">
   <img  
 	  src="https://img.shields.io/badge/Why-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Why"/>
   </a>
-  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREMLINGPT.md">
+  <a href="https://github.com/statikfintechllc/Ascend-Institute/blob/master/About Us">
   <img  
-	  src="https://img.shields.io/badge/GremlinGPT-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
+	  src="https://img.shields.io/badge/SFTi-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
   </a>
 	  
 # The Ascend Institute
@@ -87,33 +87,6 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
 
 **Mission: Autonomous Sovereignty & Human Financial Liberation**
 
-</div>
-</div>
-<div align="center">
-
-  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/GremlinGPT">
-  <img src="https://img.shields.io/badge/v1.0.3-alpha-darkred?labelColor=black" alt="GremlinGPT Alpha"/>
-  </a>
-  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/FOUNDER_LOG.md">
-  <img src="https://img.shields.io/badge/Founder's%20Log-Manifesto-darkred?labelColor=black" alt="Founder's Log"/>
-  </a>
-  <a href="https://github.com/statikfintechllc">
-  <img src="https://img.shields.io/badge/contributors-1-darkred?labelColor=black" alt="Contributors"/>
-  </a>
-  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/FOUNDER_STATEMENT.md">
-  <img src="https://img.shields.io/badge/Founder's%20Log-Statement-darkred?labelColor=black" alt="Founder's Statement"/>
-  </a>
-<div align="center">
-  <a 
-href="https://github.com/statikfintechllc/Ascend%20Institute/blob/master/GremlinGPT/docs/GREMLINGPT_AUTONOMY_REPORT.md">
-  <img src="https://img.shields.io/badge/The%20Autonomous-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Autonomy Report"/>
-  </a>
-  <a 
-href="https://github.com/statikfintechllc/Ascend%20Institute/blob/master/GremlinGPT/docs/GREMLINGPT_AUTONOMY_REPORT.md">
-  <img src="https://img.shields.io/badge/GremlinGPT%20v1.0.3-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
-  </a>
-</div>
-</div>
 </div>
 
 > [!CAUTION]
@@ -133,22 +106,28 @@ href="https://github.com/statikfintechllc/Ascend%20Institute/blob/master/Gremlin
 *Recursive, Self-Referential Autonomous Cognitive System*
 
 </div> 
+
 <div align="center">
+
   <a href="https://raw.githubusercontent.com/statikfintechllc/Ascend%20Institute/master/About US/">
   <img src="https://raw.githubusercontent.com/KDK-Grim/WorkFlowRepo-Mirror/master/docs/graph/traffic_graph.png" alt="Traffic Graph" />
   </a>
    <a href="https://github.com/statikfintechllc/WorkFlowRepo.git">
   <img src="https://img.shields.io/badge/Click%20to%20Install-Graph%20Workflow-darkred?labelColor=black" alt="GremlinGPT Alpha"/>
   </a>
+
 </div>
   
 <div align="center">
+
   <em>
 Reset: After 7:00pm CST on First 2 Clones
   </em>
+
 </div>
 
 <div align="center">
+
   <a
 href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
   <img src="https://img.shields.io/badge/Learn-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Why"/>
@@ -156,58 +135,69 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
   <a href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
   <img src="https://img.shields.io/badge/Why-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
   </a>
+
 </div>
 
 ---
 
 <div align="center">
+
   <a href="https://github.com/statikfintechllc">
   <img src="https://img.shields.io/badge/GitHub-black?style=for-the-badge&logo=github&logoColor=gold"/>
   <a href="https://github.com/statikfintechllc">
   <img src="https://img.shields.io/badge/SFTi%20Home-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
   </a><br>
-  <a href="https://github.com/statikfintechllc/GodCore.git">
-  <img src="https://img.shields.io/badge/GodCore-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  <a href="https://github.com/statikfintechllc/GodCore.git">
-  <img src="https://img.shields.io/badge/DualRouter-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  </a>
-  <a href="https://github.com/statikfintechllc/Mobile-Mirror.git">
-  <img src="https://img.shields.io/badge/Mobile--Developer-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  <a href="https://github.com/statikfintechllc/Mobile-Mirror.git">
-  <img src="https://img.shields.io/badge/Mobile--Mirror-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  </a>
-  <a href="https://github.com/statikfintechllc/AscendNet.git">
-  <img src="https://img.shields.io/badge/AscendNet-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  <a href="https://github.com/statikfintechllc/AscendNet.git">
-  <img src="https://img.shields.io/badge/Pending%20Funding-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  </a>
-  <a href="https://github.com/statikfintechllc/WorkFlowRepo.git">
-  <img src="https://img.shields.io/badge/WorkFlow-black?style=for-the-badge&logo=dragon&logoColor=gold"  alt="GremlinGPT Alpha"/>
-  <a href="https://github.com/statikfintechllc/WorkFlowRepo.git">
-  <img src="https://img.shields.io/badge/Repository-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT Alpha"/>
-  </a>
+  <a href="https://github.com/statikfintechllc/GremlinGPT.git">
+  <img src="https://img.shields.io/badge/SFTi's-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  <a href="https://github.com/statikfintechllc/GremlinGPT.git">
+  <img src="https://img.shields.io/badge/GremlinGPT-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  </a>	
   <a href="https://github.com/statikfintechllc/Gremlin-MCP-Scrap">
   <img src="https://img.shields.io/badge/GremlinGPT's-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
   <a href="https://github.com/statikfintechllc/Gremlin-MCP-Scrap">
   <img src="https://img.shields.io/badge/MCP%20Scraper-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
   </a>
   <a href="https://github.com/statikfintechllc/Gremlin-ShadTail-Trader">
-  <img src="https://img.shields.io/badge/Gremlin%20Shadcn-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  <img src="https://img.shields.io/badge/GremlinGPT's-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
   <a href="https://github.com/statikfintechllc/Gremlin-ShadTail-Trader">
-  <img src="https://img.shields.io/badge/Tail%20Trader-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  </a>
+  <img src="https://img.shields.io/badge/ShadTail%20Trader-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  </a>	  
   <a href="https://github.com/statikfintechllc/statik-server">
   <img src="https://img.shields.io/badge/Statik-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
   <a href="https://github.com/statikfintechllc/statik-server">
   <img src="https://img.shields.io/badge/Server-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  </a>	 
+  <a href="https://github.com/statikfintechllc/Mobile-Mirror.git">
+  <img src="https://img.shields.io/badge/Mobile--Developer-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  <a href="https://github.com/statikfintechllc/Mobile-Mirror.git">
+  <img src="https://img.shields.io/badge/Mobile--Mirror-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  </a>	  
+  <a href="https://github.com/statikfintechllc/AscendNet.git">
+  <img src="https://img.shields.io/badge/AscendNet-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  <a href="https://github.com/statikfintechllc/AscendNet.git">
+  <img src="https://img.shields.io/badge/Pending%20Funding-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
   </a>
+  <a href="https://github.com/statikfintechllc/GodCore.git">
+  <img src="https://img.shields.io/badge/GodCore-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  <a href="https://github.com/statikfintechllc/GodCore.git">
+  <img src="https://img.shields.io/badge/DualRouter-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  </a>	  
+  <a href="https://github.com/statikfintechllc/WorkFlowRepo.git">
+  <img src="https://img.shields.io/badge/WorkFlow-black?style=for-the-badge&logo=dragon&logoColor=gold"  alt="GremlinGPT Alpha"/>
+  <a href="https://github.com/statikfintechllc/WorkFlowRepo.git">
+  <img src="https://img.shields.io/badge/Repository-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT Alpha"/>
+  </a>
+
 </div>
+
 <div align="center">
+
   <a href="https://youtube.com/@gremlins_forge?si=9_OjKtlEPIErBrO2">
   <img src="https://img.shields.io/badge/YouTube-black?style=for-the-badge&logo=youtube&logoColor=gold"/>
   <a href="https://youtube.com/@gremlins_forge?si=9_OjKtlEPIErBrO2">
   <img src="https://img.shields.io/badge/Demos-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
   </a>
+
 </div>
 
 > [!WARNING]
@@ -670,24 +660,6 @@ If you survive v1.0.3.
 2. **Symbolic seeding**: Strategic injection of memes, symbols, and language triggers into public channels and LLM feedback loops for memetic propagation.
 
 3. Now being embedded into VS Code Runtime, as well as getting a properly functioning web-scraper, and soon to be a prototype operational trading system that will the new bases of Gremlin Trading™
-
-</details>
-
----
-
-<details>
-<summary>📸 Open to see the Demo ScreenShots 📸</summary>
-
-## Demos
-
-**Environment Setup**
-![Environment](https://raw.githubusercontent.com/statikfintechllc/Ascend%20Institute/master/GremlinGPT/demos/Environment.png)
-
-**Installed the temporary NLP Backend**
-![Install NLP](https://raw.githubusercontent.com/statikfintechllc/Ascend%20Institute/master/GremlinGPT/demos/NLP_Prebuilt_Temp_Install.png)
-
-**Stopped Backend (Envs Persisting)**
-![Stop Backend](https://raw.githubusercontent.com/statikfintechllc/Ascend%20Institute/master/GremlinGPT/demos/Stop_Backend_Environment_Stays_Active.png)
 
 </details>
 
