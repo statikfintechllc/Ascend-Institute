@@ -1,1 +1,0 @@
-# GremlinGPT core package

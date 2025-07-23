@@ -1,4 +1,0 @@
-2025-07-20 00:53:30.347 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/backend/backend_git_ops.log
-2025-07-20 00:54:04.343 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/backend/backend_git_ops.log
-2025-07-20 00:56:14.688 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/backend/backend_git_ops.log
-2025-07-20 01:26:35.011 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for backend -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/backend/backend_git_ops.log

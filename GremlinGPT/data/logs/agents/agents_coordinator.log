@@ -1,2 +1,0 @@
-2025-07-20 00:56:13.494 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for agents -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/agents/agents_coordinator.log
-2025-07-20 01:26:33.639 | INFO     | utils.logging_config:setup_module_logger:113 - [LOGGING] Module logger initialized for agents -> /home/statiksmoke8/Ascend-Institute/GremlinGPT/data/logs/agents/agents_coordinator.log

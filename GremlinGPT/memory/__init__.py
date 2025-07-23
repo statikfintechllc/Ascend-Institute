@@ -1,1 +1,0 @@
-# GremlinGPT memory package
