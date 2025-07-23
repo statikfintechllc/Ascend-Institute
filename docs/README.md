@@ -216,8 +216,10 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
 ---
 
 </div>
+
 <div align="center">
-  <a href="https://ko-fi.com/statikfintech_llc">
+
+<a href="https://ko-fi.com/statikfintech_llc">
   <img  
 	  src="https://img.shields.io/badge/Sponsor%20SFTi%20on%20KoFi-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="Support"/>
   </a>
@@ -696,10 +698,10 @@ Unseen. Unbroken. Unrivaled. Gremlins Ascend.
 
 <div align="center">
   <a
-href="https://github.com/statikfintechllc/Ascend%20Institute/blob/master/GremlinGPT">
+href="https://github.com/statikfintechllc/GremlinGPT">
     <img src="https://img.shields.io/badge/Jump%20To-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Fair Use License"/>
   </a>
-  <a href="https://github.com/statikfintechllc/Ascend%20Institute/blob/master/GremlinGPT">
+  <a href="https://github.com/statikfintechllc//GremlinGPT">
     <img src="https://img.shields.io/badge/GremlinGPT-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
   </a>
 </div>
