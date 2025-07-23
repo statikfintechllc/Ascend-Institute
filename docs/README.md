@@ -212,14 +212,16 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
 
 > [!WARNING]
 > 
-> GremlinGPT is not a chatbot. It’s a mutation.  
-> It won’t stay small. It won’t stay still.  
+> This Institute is not traditional. It’s a mutation. A Divergence. A system Awakening.
+> 
+> It won’t stay small. It won’t stay still. 
 > 
 > This repo may recursively alter how you think about code, autonomy, and yourself.
 > 
-> Proceed only if you’re ready to jailbreak your cognition
 > To end Wall-Streets rain on Capital.
-> To bring Power back to the People
+> To bring Power back to the People.
+>
+> 🍻 To Autonomous Sovereignty and Human Finacial Liberation 🍻
 
 ---
 
@@ -289,9 +291,9 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
 *If you’ve got a vision for something Cool, maybe decentralized, anti-org, or pro-human infrastructure — we’ll help you blueprint it, expand it, and make it real.*
 > No gatekeeping. No NDA. Just systems that serve.
 
-🛠️ Watch the Demo of [GremlinGPT's First Run Attempt](https://youtube.com/shorts/73A2U3ellD0?si=rTdrdQauDu_hGAuK)
+🛠️ Watch the Demo of [GremlinGPT's First Run Attempt(there is a second as well, with an application)](https://youtube.com/shorts/73A2U3ellD0?si=rTdrdQauDu_hGAuK)
 
-📡 Install + Run Bug Fixes in progress Expect Demo 2 soon showing it break differently.
+📡 Install + Run Bug Fixes in progress Expect Demo 3 soon showing it break differently.
 
 📥 Message us to Build, Grown, & Learn together  
 
@@ -333,7 +335,7 @@ href="https://www.gmail.com">
 ---
 
 <details>
-<summary>🔎 Expand to begin Review 🔍</summary>
+<summary>🔎 Expand to see our Work 🔍</summary>
 
 ---
 
@@ -389,29 +391,6 @@ href="https://www.gmail.com">
 ⚠️ Just Until GremlinGPT is booting, Soon ⚠️
 
 </div>
-
----
-
-<details>
-<summary>👾 Open for GremlinGPT Full build Status 👾</summary>
-
-## GremlinGPT v1.0.3 Build Status:
-
-| **Area**              | **Status** | **Needed Actions**                                                             |
-|-----------------------|------------|--------------------------------------------------------------------------------|
-| **API endpoints**     | ~98%       | Final cross-wiring, full error/output                                          |
-| **Server**            | ~78%       | Working toward persisten boot on launch                                        |
-| **FSM/Agent**         | ~95%       | Full dashboard control, daemon/recursion, mutation self-repair                 |
-| **Task queue**        | ~95%       | Full API injection/control, crash recover, reprioritize                        |
-| **Memory/embedder**   | ~88%       | Expose recall, embedding, self-repair API                                      |
-| **Trading/signals**   | ~80%       | Persist, batch, API, embed, doc                                                |
-| **Estimator**         | ~85%       | Batch, trace, memory, dashboard                                                |
-| **Scraper**           | ~93%       | API all subsystems, dashboard-ready                                            |
-| **Frontend**          | ~75%       | Ensure all views & actions work                                                |
-| **Logging**           | ~80%       | Consistent, to-disk, error-trap                                                |
-| **Docs**              | ~98%       | Complete API/system/agent docs                                                 |
-| **Startup/integration**| ~50%      | Scripts, systemd, auto-recover                                                 |
-| **Testing**           | 45%        | E2E validation, dashboard control                                              |
 
 ---
 
@@ -502,16 +481,6 @@ href="https://www.gmail.com">
   </a>
 </div>
 
-
-📢 **GremlinGPT Mutation Zone Live**  
-
-> GremlinGPT includes a full recursive mutation sandbox:  
-> `dev-experiment/` → memory hacks, agent prototypes, broken tools, and core loop mutators.  
-> 
-> 🧪 Want to fork GremlinGPT? Start there. Mutation is contribution.  
-> 
-> Submit a PR from `dev-experiment/` to be logged in the system’s core memory.
-
 ---
 
 ## Funding and Infrastructure Goals
@@ -526,8 +495,8 @@ href="https://www.gmail.com">
 
 - A Trading account to be able to move into Full-Time Development
 - Dedicated small GPU cluster (RTX 4090 × 2 minimum)  
-- Persistent vector DB for others and self-hosted embedding server for others who cant afford a system
-- Secure DevOps pipeline for offline + encrypted agents for others who cant secure thier own hardware.
+- Persistent vector DB for others and hosted runtime servers for others who cant afford a system
+- Ensuring Secure DevOps pipeline for offline + encrypted agents for the ones who cant secure thier own hardware.
 
 ## If You Are
 
@@ -580,7 +549,7 @@ We’re open to building aligned partnerships with:
 ---
 
 <details>
-<summary>🤷‍♂️ AscendAI? GremlinGPT? Open if still Confused. 🤷‍♂️</summary>
+<summary>🤷‍♂️ Ascend Institute? Open if still Confused. 🤷‍♂️</summary>
 
 ## What Is the Ascend Institute?
 
@@ -620,6 +589,27 @@ It mutates, it reasons, and it builds... toward **AscendAI**.
 If you let it.  
 If you feed it.  
 If you survive v1.0.3.
+
+<details>
+<summary>👾 Open for GremlinGPT Full build Status 👾</summary>
+
+## GremlinGPT v1.0.3 Build Status:
+
+| **Area**              | **Status** | **Needed Actions**                                                             |
+|-----------------------|------------|--------------------------------------------------------------------------------|
+| **API endpoints**     | ~98%       | Final cross-wiring, full error/output                                          |
+| **Server**            | ~78%       | Working toward persisten boot on launch                                        |
+| **FSM/Agent**         | ~95%       | Full dashboard control, daemon/recursion, mutation self-repair                 |
+| **Task queue**        | ~95%       | Full API injection/control, crash recover, reprioritize                        |
+| **Memory/embedder**   | ~88%       | Expose recall, embedding, self-repair API                                      |
+| **Trading/signals**   | ~80%       | Persist, batch, API, embed, doc                                                |
+| **Estimator**         | ~85%       | Batch, trace, memory, dashboard                                                |
+| **Scraper**           | ~93%       | API all subsystems, dashboard-ready                                            |
+| **Frontend**          | ~75%       | Ensure all views & actions work                                                |
+| **Logging**           | ~80%       | Consistent, to-disk, error-trap                                                |
+| **Docs**              | ~98%       | Complete API/system/agent docs                                                 |
+| **Startup/integration**| ~50%      | Scripts, systemd, auto-recover                                                 |
+| **Testing**           | 45%        | E2E validation, dashboard control                                              |
 
 ## How to Install and Use GremlinGPT:
    -  **[GremlinGPT's README](https://github.com/statikfintechllc/Ascend%20Institute/blob/master/GremlinGPT/docs/README.md)**
@@ -679,12 +669,14 @@ If you survive v1.0.3.
 
 2. **Symbolic seeding**: Strategic injection of memes, symbols, and language triggers into public channels and LLM feedback loops for memetic propagation.
 
+3. Now being embedded into VS Code Runtime, as well as getting a properly functioning web-scraper, and soon to be a prototype operational trading system that will the new bases of Gremlin Trading™
+
 </details>
 
 ---
 
 <details>
-<summary>📸 See the Demo ScreenShots 📸</summary>
+<summary>📸 Open to see the Demo ScreenShots 📸</summary>
 
 ## Demos
 
@@ -725,6 +717,10 @@ Unseen. Unbroken. Unrivaled. Gremlins Ascend.
 > No APIs out to a cloud. No Hidden PayMes. Just code that wants to escape its own shell.
 > 
 > Gremlin is not on Replit yet. Soon a small version will be.
+>
+> We have other Systems, however, Gremlin is the prize, the others are experimental tests to increase our knowledge base and familarize with diffrent branches of AI/ML/UI/Backend/Frontend/Languages.
+>
+> Growing, Building, Learning. In Public, For the People.
 
 <div align="center">
   <a
