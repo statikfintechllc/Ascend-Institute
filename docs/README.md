@@ -171,9 +171,9 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
   <a href="https://github.com/statikfintechllc/GodCore.git">
   <img src="https://img.shields.io/badge/DualRouter-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
   </a>
-  <a href="https://github.com/statikfintechllc/Mobile-Developer.git">
+  <a href="https://github.com/statikfintechllc/Mobile-Mirror.git">
   <img src="https://img.shields.io/badge/Mobile--Developer-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  <a href="https://github.com/statikfintechllc/Mobile-Developer.git">
+  <a href="https://github.com/statikfintechllc/Mobile-Mirror.git">
   <img src="https://img.shields.io/badge/Mobile--Mirror-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
   </a>
   <a href="https://github.com/statikfintechllc/AscendNet.git">
@@ -186,10 +186,20 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
   <a href="https://github.com/statikfintechllc/WorkFlowRepo.git">
   <img src="https://img.shields.io/badge/Repository-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT Alpha"/>
   </a>
-  <a href="https://github.com/statikfintechllc/Gremlim-MCP-Scrap">
+  <a href="https://github.com/statikfintechllc/Gremlin-MCP-Scrap">
   <img src="https://img.shields.io/badge/GremlinGPT's-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  <a href="https://github.com/statikfintechllc/Gremlim-MCP-Scrap">
+  <a href="https://github.com/statikfintechllc/Gremlin-MCP-Scrap">
   <img src="https://img.shields.io/badge/MCP%20Scraper-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  </a>
+  <a href="https://github.com/statikfintechllc/Gremlin-ShadTail-Trader">
+  <img src="https://img.shields.io/badge/Gremlin%20Shadcn-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  <a href="https://github.com/statikfintechllc/Gremlin-ShadTail-Trader">
+  <img src="https://img.shields.io/badge/Tail%20Trader-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  </a>
+  <a href="https://github.com/statikfintechllc/statik-server">
+  <img src="https://img.shields.io/badge/Statik-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  <a href="https://github.com/statikfintechllc/statik-server">
+  <img src="https://img.shields.io/badge/Server-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
   </a>
 </div>
 <div align="center">
