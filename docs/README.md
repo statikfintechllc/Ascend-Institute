@@ -161,7 +161,8 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
 ---
 
 <div align="center">
-  <!-- Medium Publications -->
+
+  <!-- Row 1 — Medium Publications -->
   <a href="https://medium.com/@ascend.gremlin/the-govseverance-doctrine-70fa170a9e8f">
     <img src="https://img.shields.io/badge/GovSeverance%20Doctrine-black?style=for-the-badge&logo=medium&logoColor=white" alt="GovSeverance Doctrine"/>
   </a>
@@ -171,6 +172,8 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
   <a href="https://medium.com/@ascend.gremlin/the-wealth-power-imbalance-and-contemporary-forms-of-economic-servitude-bf2700d91632">
     <img src="https://img.shields.io/badge/Wealth–Power%20Imbalance-black?style=for-the-badge&logo=medium&logoColor=white" alt="Wealth–Power Imbalance"/>
   </a>
+
+  <!-- Row 2 — Medium Publications -->
   <a href="https://medium.com/@ascend.gremlin/while-dubai-was-building-control-systems-i-built-an-autonomous-mind-fb4c8c4c0dc1">
     <img src="https://img.shields.io/badge/Autonomous%20Mind-black?style=for-the-badge&logo=medium&logoColor=white" alt="Autonomous Mind"/>
   </a>
@@ -181,7 +184,18 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
     <img src="https://img.shields.io/badge/OpenAI%20MCP%20Disappearance-black?style=for-the-badge&logo=medium&logoColor=white" alt="OpenAI MCP Disappearance"/>
   </a>
 
-  <!-- Zenodo Archives -->
+  <!-- Row 3 — More Medium -->
+  <a href="https://medium.com/@ascend.gremlin/the-lessons-i-am-learning-b33dfe1df0b8">
+    <img src="https://img.shields.io/badge/Lessons%20I’m%20Learning-black?style=for-the-badge&logo=medium&logoColor=white" alt="Lessons I’m Learning"/>
+  </a>
+  <a href="https://medium.com/@ascend.gremlin/designing-gremlingpt-8521fbdedcf8">
+    <img src="https://img.shields.io/badge/Designing%20GremlinGPT-black?style=for-the-badge&logo=medium&logoColor=white" alt="Designing GremlinGPT"/>
+  </a>
+  <a href="https://medium.com/@ascend.gremlin/building-an-autonomous-ai-driven-ide-pipeline-f7c9faffbd2e">
+    <img src="https://img.shields.io/badge/AI–Driven%20IDE%20Pipeline-black?style=for-the-badge&logo=medium&logoColor=white" alt="AI–Driven IDE Pipeline"/>
+  </a>
+
+  <!-- Row 4 — Zenodo Archives -->
   <a href="https://doi.org/10.5281/zenodo.15717788">
     <img src="https://img.shields.io/badge/The%20GovSeverance%20Doctrine-black?style=for-the-badge&logo=zenodo&logoColor=white" alt="GovSeverance v1.0"/>
   </a>
@@ -191,12 +205,10 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
   <a href="https://doi.org/10.5281/zenodo.15825120">
     <img src="https://img.shields.io/badge/GenX%20Didn't%20Fail-black?style=for-the-badge&logo=zenodo&logoColor=white" alt="OpenAI MCP Analysis"/>
   </a>
-</div>
-<div align="center">
   <!-- GitHub Archives -->
   <a href="https://github.com/statikfintechllc/AscendDocs-of-GovSeverance.git">
   <img src="https://img.shields.io/badge/GovSeverance%20Docs-darkred?style=for-the-badge&logo=github&logoColor=white" alt="GovSeverance Docs"/>
-</a>
+  </a>
 </div>
 
 <div align="center">
