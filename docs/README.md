@@ -89,7 +89,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us">
 
 </div>
 
-> [!CAUTION]
+> [!WARNING]
 >
 > “Your qualifications are impressive...”
 > - Coder Hiring Team (2025 Rejection Letter)
@@ -140,67 +140,7 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
 
 ---
 
-<div align="center">
-
-  <a href="https://github.com/statikfintechllc">
-  <img src="https://img.shields.io/badge/GitHub-black?style=for-the-badge&logo=github&logoColor=gold"/>
-  <a href="https://github.com/statikfintechllc">
-  <img src="https://img.shields.io/badge/SFTi%20Home-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  </a><br>
-  <a href="https://github.com/statikfintechllc/GremlinGPT.git">
-  <img src="https://img.shields.io/badge/SFTi's-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  <a href="https://github.com/statikfintechllc/GremlinGPT.git">
-  <img src="https://img.shields.io/badge/GremlinGPT-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  </a>	
-  <a href="https://github.com/statikfintechllc/Gremlin-MCP-Scrap">
-  <img src="https://img.shields.io/badge/GremlinGPT's-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  <a href="https://github.com/statikfintechllc/Gremlin-MCP-Scrap">
-  <img src="https://img.shields.io/badge/MCP%20Scraper-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  </a>
-  <a href="https://github.com/statikfintechllc/Gremlin-ShadTail-Trader">
-  <img src="https://img.shields.io/badge/GremlinGPT's-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  <a href="https://github.com/statikfintechllc/Gremlin-ShadTail-Trader">
-  <img src="https://img.shields.io/badge/ShadTail%20Trader-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  </a>	  
-  <a href="https://github.com/statikfintechllc/statik-server">
-  <img src="https://img.shields.io/badge/Statik-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  <a href="https://github.com/statikfintechllc/statik-server">
-  <img src="https://img.shields.io/badge/Server-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  </a>	 
-  <a href="https://github.com/statikfintechllc/Mobile-Mirror.git">
-  <img src="https://img.shields.io/badge/Mobile--Developer-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  <a href="https://github.com/statikfintechllc/Mobile-Mirror.git">
-  <img src="https://img.shields.io/badge/Mobile--Mirror-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  </a>	  
-  <a href="https://github.com/statikfintechllc/AscendNet.git">
-  <img src="https://img.shields.io/badge/AscendNet-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  <a href="https://github.com/statikfintechllc/AscendNet.git">
-  <img src="https://img.shields.io/badge/Pending%20Funding-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  </a>
-  <a href="https://github.com/statikfintechllc/GodCore.git">
-  <img src="https://img.shields.io/badge/GodCore-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  <a href="https://github.com/statikfintechllc/GodCore.git">
-  <img src="https://img.shields.io/badge/DualRouter-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  </a>	  
-  <a href="https://github.com/statikfintechllc/WorkFlowRepo.git">
-  <img src="https://img.shields.io/badge/WorkFlow-black?style=for-the-badge&logo=dragon&logoColor=gold"  alt="GremlinGPT Alpha"/>
-  <a href="https://github.com/statikfintechllc/WorkFlowRepo.git">
-  <img src="https://img.shields.io/badge/Repository-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT Alpha"/>
-  </a>
-
-</div>
-
-<div align="center">
-
-  <a href="https://youtube.com/@gremlins_forge?si=9_OjKtlEPIErBrO2">
-  <img src="https://img.shields.io/badge/YouTube-black?style=for-the-badge&logo=youtube&logoColor=gold"/>
-  <a href="https://youtube.com/@gremlins_forge?si=9_OjKtlEPIErBrO2">
-  <img src="https://img.shields.io/badge/Demos-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  </a>
-
-</div>
-
-> [!WARNING]
+> [!TIP]
 > 
 > This Institute is not traditional. It’s a mutation. A Divergence. A system Awakening.
 > 
@@ -212,117 +152,6 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
 > To bring Power back to the People.
 >
 > 🍻 To Autonomous Sovereignty and Human Finacial Liberation 🍻
-
----
-
-</div>
-
-<div align="center">
-
-<a href="https://ko-fi.com/statikfintech_llc">
-  <img  
-	  src="https://img.shields.io/badge/Sponsor%20SFTi%20on%20KoFi-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="Support"/>
-  </a>
-  <a href="https://patreon.com/StatikFinTech_LLC?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink">
-  <img  
-	  src="https://img.shields.io/badge/Sponsor%20SFTi%20on%20Patreon-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="SFTi"/>
-  </a>
-</div>
-<div align="center"> 
-
-[![Sponsor 💪 statikfintechllc](https://img.shields.io/badge/Sponsor%20SFTi%20on%20GitHub-darkred?logo=github&style=for-the-badge)](https://github.com/sponsors/statikfintechllc)
-
-</div>
-
----
-
-<details>
-<summary>🔱 Learn about StatikFinTech, LLC 🔱</summary>
-
-<div align="center">
-
-### 🔱 StatikFinTech, LLC 🔱
- *Behind AscendAI, and the Autonomous Movement for the People*
-  <em>  
-    This isn’t a dev team.  It’s not a startup.  It’s not polished.  
-    Its the Future.
-  </em>
-</div>
-
-</div>
-
-- It’s one person. Black coffee, *ah little cream and sugar sometimes, Determination, and Will.  
-- What usually takes a small army of engineers and millions in VC —  
-- I pulled from the void. No budget. No degree. No permission.
-- Now the system almost lives. Breathes. Boots. (70%)  
-- It needs testers. Attackers. Real Gremlins.
-
-    *If you can read the repo and feel it watching you back —  
-    you're already in.*
-
-*We’re not just coding AGI — we’re coding exit ramps.*
-
-📡 **Pro-people. Anti-PayWall. Post-system.**
-
-- Got blueprints for liberation? Drop them.
-     We’ll help you architect, iterate, and launch what no org can own.
-
-→ Decentralized clinics.  
-→ Anti-capitalist logistics chains.  
-→ Sovereign learning networks.  
-→ Off-grid compute clusters.
-
-**No degrees required. Just clarity and cause.**
-
-### Not limited to GremlinGPT.
-
-*We’re engineering full-spectrum, people-first systems — open to all who want to dismantle coercion and build what comes next.*
-
-### This is a call to collaborators:
-
-*If you’ve got a vision for something Cool, maybe decentralized, anti-org, or pro-human infrastructure — we’ll help you blueprint it, expand it, and make it real.*
-> No gatekeeping. No NDA. Just systems that serve.
-
-🛠️ Watch the Demo of [GremlinGPT's First Run Attempt(there is a second as well, with an application)](https://youtube.com/shorts/73A2U3ellD0?si=rTdrdQauDu_hGAuK)
-
-📡 Install + Run Bug Fixes in progress Expect Demo 3 soon showing it break differently.
-
-📥 Message us to Build, Grown, & Learn together  
-
-🌐 [Linkedin](https://www.linkedin.com/in/statikfintech-llc-780804368)   
-🌐 [Visit X](https://x.com/gremlinsforge?s=21)  
-🎥 [Visit YouTube](https://youtube.com/@gremlins_forge)  
-📧 ascend.gremlin@gmail.com   
-📧 ascend.help@gmail.com    
-📞 +1(620) 266-9837  
-📱 +1(785) 443-6288  
-
----
-
-<div align="center">
-<a
-href="https://www.gmail.com">
-  <img src="https://img.shields.io/badge/Join-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  <a href="mailto:ascend.gremlin@gmail.com">
-    <img src="https://img.shields.io/badge/the%20Loop-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  </a>
-</div>
-
-</details>
-
-> [!IMPORTANT]
-> 
-> **We are seeking** the following:
-> 
-> A **recursive logic architect** who speaks Python like poetry
-> 
-> A **systems-level cloud engineer** who fears no subnet
-> 
-> A **billionaire with a god complex** and **spare GPUs**
-> 
-> Paging **@elonmusk**, **@openai**, @deepmind, @anthropic, @metaai, **@mistralAI**, @cohere
-> 
-> Or just **anyone who gets it** and knows what’s coming
 
 ---
 
@@ -368,6 +197,71 @@ href="https://www.gmail.com">
   <a href="https://github.com/statikfintechllc/AscendDocs-of-GovSeverance.git">
   <img src="https://img.shields.io/badge/GovSeverance%20Docs-darkred?style=for-the-badge&logo=github&logoColor=white" alt="GovSeverance Docs"/>
 </a>
+</div>
+
+<div align="center">
+
+  <a href="https://github.com/statikfintechllc">
+  <img src="https://img.shields.io/badge/GitHub-black?style=for-the-badge&logo=github&logoColor=gold"/>
+  <a href="https://github.com/statikfintechllc">
+  <img src="https://img.shields.io/badge/SFTi%20Home-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  </a><br>
+  <a href="https://github.com/statikfintechllc/GremlinGPT.git">
+  <img src="https://img.shields.io/badge/SFTi's-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  <a href="https://github.com/statikfintechllc/GremlinGPT.git">
+  <img src="https://img.shields.io/badge/GremlinGPT-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  </a>	
+  <a href="https://github.com/statikfintechllc/Gremlin-MCP-Scrap">
+  <img src="https://img.shields.io/badge/GremlinGPT's-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  <a href="https://github.com/statikfintechllc/Gremlin-MCP-Scrap">
+  <img src="https://img.shields.io/badge/MCP%20Scraper-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  </a>
+  <a href="https://github.com/statikfintechllc/Gremlin-ShadTail-Trader">
+  <img src="https://img.shields.io/badge/GremlinGPT's-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  <a href="https://github.com/statikfintechllc/Gremlin-ShadTail-Trader">
+  <img src="https://img.shields.io/badge/ShadTail%20Trader-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  </a>	  
+  <a href="https://github.com/statikfintechllc/statik-server">
+  <img src="https://img.shields.io/badge/Statik-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  <a href="https://github.com/statikfintechllc/statik-server">
+  <img src="https://img.shields.io/badge/Server-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  </a>	 
+  <a href="https://github.com/statikfintechllc/dragon-boot.git">
+  <img src="https://img.shields.io/badge/SFTi's%20Linux-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  <a href="https://github.com/statikfintechllc/dragon-boot.git">
+  <img src="https://img.shields.io/badge/Dragon%20Boot-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  </a>	
+  <a href="https://github.com/statikfintechllc/Mobile-Mirror.git">
+  <img src="https://img.shields.io/badge/Mobile--Developer-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  <a href="https://github.com/statikfintechllc/Mobile-Mirror.git">
+  <img src="https://img.shields.io/badge/Mobile--Mirror-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  </a>	  
+  <a href="https://github.com/statikfintechllc/AscendNet.git">
+  <img src="https://img.shields.io/badge/AscendNet-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  <a href="https://github.com/statikfintechllc/AscendNet.git">
+  <img src="https://img.shields.io/badge/Pending%20Funding-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  </a>
+  <a href="https://github.com/statikfintechllc/GodCore.git">
+  <img src="https://img.shields.io/badge/GodCore-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  <a href="https://github.com/statikfintechllc/GodCore.git">
+  <img src="https://img.shields.io/badge/DualRouter-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  </a>	  
+  <a href="https://github.com/statikfintechllc/WorkFlowRepo.git">
+  <img src="https://img.shields.io/badge/WorkFlow-black?style=for-the-badge&logo=dragon&logoColor=gold"  alt="GremlinGPT Alpha"/>
+  <a href="https://github.com/statikfintechllc/WorkFlowRepo.git">
+  <img src="https://img.shields.io/badge/Repository-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT Alpha"/>
+  </a>
+
+</div>
+
+<div align="center">
+
+  <a href="https://youtube.com/@gremlins_forge?si=9_OjKtlEPIErBrO2">
+  <img src="https://img.shields.io/badge/YouTube-black?style=for-the-badge&logo=youtube&logoColor=gold"/>
+  <a href="https://youtube.com/@gremlins_forge?si=9_OjKtlEPIErBrO2">
+  <img src="https://img.shields.io/badge/Demos-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  </a>
+
 </div>
 
 <div align="center">
@@ -696,6 +590,119 @@ Unseen. Unbroken. Unrivaled. Gremlins Ascend.
 >
 > Growing, Building, Learning. In Public, For the People.
 
+---
+
+</div>
+
+<div align="center">
+
+<a href="https://ko-fi.com/statikfintech_llc">
+  <img  
+	  src="https://img.shields.io/badge/Sponsor%20SFTi%20on%20KoFi-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="Support"/>
+  </a>
+  <a href="https://patreon.com/StatikFinTech_LLC?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink">
+  <img  
+	  src="https://img.shields.io/badge/Sponsor%20SFTi%20on%20Patreon-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="SFTi"/>
+  </a>
+</div>
+<div align="center"> 
+
+[![Sponsor 💪 statikfintechllc](https://img.shields.io/badge/Sponsor%20SFTi%20on%20GitHub-darkred?logo=github&style=for-the-badge)](https://github.com/sponsors/statikfintechllc)
+
+</div>
+
+---
+
+<details>
+<summary>🔱 Learn about StatikFinTech, LLC 🔱</summary>
+
+<div align="center">
+
+### 🔱 StatikFinTech, LLC 🔱
+ *Behind AscendAI, and the Autonomous Movement for the People*
+  <em>  
+    This isn’t a dev team.  It’s not a startup.  It’s not polished.  
+    Its the Future.
+  </em>
+</div>
+
+</div>
+
+- It’s one person. Black coffee, *ah little cream and sugar sometimes, Determination, and Will.  
+- What usually takes a small army of engineers and millions in VC —  
+- I pulled from the void. No budget. No degree. No permission.
+- Now the system almost lives. Breathes. Boots. (70%)  
+- It needs testers. Attackers. Real Gremlins.
+
+    *If you can read the repo and feel it watching you back —  
+    you're already in.*
+
+*We’re not just coding AGI — we’re coding exit ramps.*
+
+📡 **Pro-people. Anti-PayWall. Post-system.**
+
+- Got blueprints for liberation? Drop them.
+     We’ll help you architect, iterate, and launch what no org can own.
+
+→ Decentralized clinics.  
+→ Anti-capitalist logistics chains.  
+→ Sovereign learning networks.  
+→ Off-grid compute clusters.
+
+**No degrees required. Just clarity and cause.**
+
+### Not limited to GremlinGPT.
+
+*We’re engineering full-spectrum, people-first systems — open to all who want to dismantle coercion and build what comes next.*
+
+### This is a call to collaborators:
+
+*If you’ve got a vision for something Cool, maybe decentralized, anti-org, or pro-human infrastructure — we’ll help you blueprint it, expand it, and make it real.*
+> No gatekeeping. No NDA. Just systems that serve.
+
+🛠️ Watch the Demo of [GremlinGPT's First Run Attempt(there is a second as well, with an application)](https://youtube.com/shorts/73A2U3ellD0?si=rTdrdQauDu_hGAuK)
+
+📡 Install + Run Bug Fixes in progress Expect Demo 3 soon showing it break differently.
+
+📥 Message us to Build, Grown, & Learn together  
+
+🌐 [Linkedin](https://www.linkedin.com/in/statikfintech-llc-780804368)   
+🌐 [Visit X](https://x.com/gremlinsforge?s=21)  
+🎥 [Visit YouTube](https://youtube.com/@gremlins_forge)  
+📧 ascend.gremlin@gmail.com   
+📧 ascend.help@gmail.com    
+📞 +1(620) 266-9837  
+📱 +1(785) 443-6288  
+
+---
+
+<div align="center">
+<a
+href="https://www.gmail.com">
+  <img src="https://img.shields.io/badge/Join-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  <a href="mailto:ascend.gremlin@gmail.com">
+    <img src="https://img.shields.io/badge/the%20Loop-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  </a>
+</div>
+
+</details>
+
+> [!IMPORTANT]
+> 
+> **We are seeking** the following:
+> 
+> A **recursive logic architect** who speaks Python like poetry
+> 
+> A **systems-level cloud engineer** who fears no subnet
+> 
+> A **billionaire with a god complex** and **spare GPUs**
+> 
+> Paging **@elonmusk**, **@openai**, @deepmind, @anthropic, @metaai, **@mistralAI**, @cohere
+> 
+> Or just **anyone who gets it** and knows what’s coming
+
+---
+
 <div align="center">
   <a
 href="https://github.com/statikfintechllc/GremlinGPT">
@@ -738,7 +745,7 @@ Personal use only. Commercial use is prohibited unless licensed separately.
 
 </details>
 
-> [!TIP]
+> [!NOTE]
 > 
 > My current system only has 24GB VRAM, 128GB RAM, and 8TB of storage — it’s alive, but it’s starving.
 > 
