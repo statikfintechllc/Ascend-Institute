@@ -313,6 +313,14 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
   </thead>
   <tbody>
     <tr>
+      <td><strong>GitHub</strong></td>
+      <td>
+        <a href="https://github.com/sponsors/statikfintechllc">
+          <img src="https://img.shields.io/badge/GitHub-StatikFinTech_LLC-ff0000?style=for-the-badge&logo=github&logoColor=white&labelColor=000000" />
+        </a>
+      </td>
+    </tr>
+    <tr>
       <td><strong>Patreon</strong></td>
       <td>
         <a href="https://patreon.com/StatikFinTech_LLC">
