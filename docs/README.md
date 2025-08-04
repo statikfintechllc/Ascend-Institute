@@ -645,7 +645,7 @@ Unseen. Unbroken. Unrivaled. Gremlins Ascend.
 <div align="center">
 
 ### 🔱 StatikFinTech, LLC 🔱
- *Behind AscendAI, and the Autonomous Movement for the People*
+ *Behind GremlinGPT, and the Local Autonomous Movement for the People*
   <em>  
     This isn’t a dev team.  It’s not a startup.  It’s not polished.  
     Its the Future.
