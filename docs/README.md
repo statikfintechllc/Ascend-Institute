@@ -161,7 +161,6 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
 ---
 
 <div align="center">
-
   <!-- Row 1 — Medium Publications -->
   <a href="https://medium.com/@ascend.gremlin/the-govseverance-doctrine-70fa170a9e8f">
     <img src="https://img.shields.io/badge/GovSeverance%20Doctrine-black?style=for-the-badge&logo=medium&logoColor=white" alt="GovSeverance Doctrine"/>
@@ -172,7 +171,8 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
   <a href="https://medium.com/@ascend.gremlin/the-wealth-power-imbalance-and-contemporary-forms-of-economic-servitude-bf2700d91632">
     <img src="https://img.shields.io/badge/Wealth–Power%20Imbalance-black?style=for-the-badge&logo=medium&logoColor=white" alt="Wealth–Power Imbalance"/>
   </a>
-
+</div>
+<div align="center">
   <!-- Row 2 — Medium Publications -->
   <a href="https://medium.com/@ascend.gremlin/while-dubai-was-building-control-systems-i-built-an-autonomous-mind-fb4c8c4c0dc1">
     <img src="https://img.shields.io/badge/Autonomous%20Mind-black?style=for-the-badge&logo=medium&logoColor=white" alt="Autonomous Mind"/>
@@ -183,7 +183,8 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
   <a href="https://medium.com/@ascend.gremlin/the-disappearance-of-the-openai-mcp-repo-a5419347be0b">
     <img src="https://img.shields.io/badge/OpenAI%20MCP%20Disappearance-black?style=for-the-badge&logo=medium&logoColor=white" alt="OpenAI MCP Disappearance"/>
   </a>
-
+</div>
+<div align="center">
   <!-- Row 3 — More Medium -->
   <a href="https://medium.com/@ascend.gremlin/the-lessons-i-am-learning-b33dfe1df0b8">
     <img src="https://img.shields.io/badge/Lessons%20I’m%20Learning-black?style=for-the-badge&logo=medium&logoColor=white" alt="Lessons I’m Learning"/>
@@ -194,7 +195,8 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
   <a href="https://medium.com/@ascend.gremlin/building-an-autonomous-ai-driven-ide-pipeline-f7c9faffbd2e">
     <img src="https://img.shields.io/badge/AI–Driven%20IDE%20Pipeline-black?style=for-the-badge&logo=medium&logoColor=white" alt="AI–Driven IDE Pipeline"/>
   </a>
-
+</div>
+<div align="center">
   <!-- Row 4 — Zenodo Archives -->
   <a href="https://doi.org/10.5281/zenodo.15717788">
     <img src="https://img.shields.io/badge/The%20GovSeverance%20Doctrine-black?style=for-the-badge&logo=zenodo&logoColor=white" alt="GovSeverance v1.0"/>
@@ -205,19 +207,26 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
   <a href="https://doi.org/10.5281/zenodo.15825120">
     <img src="https://img.shields.io/badge/GenX%20Didn't%20Fail-black?style=for-the-badge&logo=zenodo&logoColor=white" alt="OpenAI MCP Analysis"/>
   </a>
-  <!-- GitHub Archives -->
-  <a href="https://github.com/statikfintechllc/AscendDocs-of-GovSeverance.git">
-  <img src="https://img.shields.io/badge/GovSeverance%20Docs-darkred?style=for-the-badge&logo=github&logoColor=white" alt="GovSeverance Docs"/>
-  </a>
 </div>
 
 <div align="center">
-
+  <!-- GitHub Archives -->
   <a href="https://github.com/statikfintechllc">
   <img src="https://img.shields.io/badge/GitHub-black?style=for-the-badge&logo=github&logoColor=gold"/>
   <a href="https://github.com/statikfintechllc">
   <img src="https://img.shields.io/badge/SFTi%20Home-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  </a><br>
+  </a>
+  <a href="https://github.com/statikfintechllc/AscendDocs-of-GovSeverance.git">
+  <img src="https://img.shields.io/badge/Github%20Archives-darkred?style=for-the-badge&logo=github&logoColor=white" alt="GovSeverance Docs"/>
+  </a>
+  <a href="https://youtube.com/@gremlins_forge?si=9_OjKtlEPIErBrO2">
+  <img src="https://img.shields.io/badge/YouTube-black?style=for-the-badge&logo=youtube&logoColor=gold"/>
+  <a href="https://youtube.com/@gremlins_forge?si=9_OjKtlEPIErBrO2">
+  <img src="https://img.shields.io/badge/Demos-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  </a>	  
+</div>
+
+<div align="center">
   <a href="https://github.com/statikfintechllc/GremlinGPT.git">
   <img src="https://img.shields.io/badge/SFTi's-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
   <a href="https://github.com/statikfintechllc/GremlinGPT.git">
@@ -237,7 +246,9 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
   <img src="https://img.shields.io/badge/Statik-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
   <a href="https://github.com/statikfintechllc/statik-server">
   <img src="https://img.shields.io/badge/Server-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  </a>	 
+  </a>
+</div>
+<div align="center">  
   <a href="https://github.com/statikfintechllc/dragon-boot.git">
   <img src="https://img.shields.io/badge/SFTi's%20Linux-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
   <a href="https://github.com/statikfintechllc/dragon-boot.git">
@@ -251,31 +262,26 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
   <a href="https://github.com/statikfintechllc/AscendNet.git">
   <img src="https://img.shields.io/badge/AscendNet-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
   <a href="https://github.com/statikfintechllc/AscendNet.git">
-  <img src="https://img.shields.io/badge/Pending%20Funding-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  <img src="https://img.shields.io/badge/P2P%20FOR%20LLM-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
   </a>
   <a href="https://github.com/statikfintechllc/GodCore.git">
   <img src="https://img.shields.io/badge/GodCore-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
   <a href="https://github.com/statikfintechllc/GodCore.git">
   <img src="https://img.shields.io/badge/DualRouter-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
   </a>	  
+</div>
+<div align="center">   
   <a href="https://github.com/statikfintechllc/WorkFlowRepo.git">
   <img src="https://img.shields.io/badge/WorkFlow-black?style=for-the-badge&logo=dragon&logoColor=gold"  alt="GremlinGPT Alpha"/>
   <a href="https://github.com/statikfintechllc/WorkFlowRepo.git">
   <img src="https://img.shields.io/badge/Repository-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT Alpha"/>
   </a>
-
+  <a href="https://github.com/KDK-Grim/WorkFlowRepo-Mirror.git">
+  <img src="https://img.shields.io/badge/Upgraded%20WorkFlow-black?style=for-the-badge&logo=dragon&logoColor=gold"  alt="GremlinGPT Alpha"/>
+  <a href="https://github.com/KDK-Grim/WorkFlowRepo-Mirror.git">
+  <img src="https://img.shields.io/badge/Repo%20Mirror-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT Alpha"/>
+  </a>	  
 </div>
-
-<div align="center">
-
-  <a href="https://youtube.com/@gremlins_forge?si=9_OjKtlEPIErBrO2">
-  <img src="https://img.shields.io/badge/YouTube-black?style=for-the-badge&logo=youtube&logoColor=gold"/>
-  <a href="https://youtube.com/@gremlins_forge?si=9_OjKtlEPIErBrO2">
-  <img src="https://img.shields.io/badge/Demos-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  </a>
-
-</div>
-
 <div align="center">
 
 ### Make your Own App:
