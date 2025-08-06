@@ -242,13 +242,13 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
   <a href="https://github.com/statikfintechllc/Gremlin-ShadTail-Trader">
   <img src="https://img.shields.io/badge/ShadTail%20Trader-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
   </a>	  
+</div>
+<div align="center">  
   <a href="https://github.com/statikfintechllc/statik-server">
   <img src="https://img.shields.io/badge/Statik-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
   <a href="https://github.com/statikfintechllc/statik-server">
   <img src="https://img.shields.io/badge/Server-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
   </a>
-</div>
-<div align="center">  
   <a href="https://github.com/statikfintechllc/dragon-boot.git">
   <img src="https://img.shields.io/badge/SFTi's%20Linux-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
   <a href="https://github.com/statikfintechllc/dragon-boot.git">
@@ -259,10 +259,18 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
   <a href="https://github.com/statikfintechllc/Mobile-Mirror.git">
   <img src="https://img.shields.io/badge/Mobile--Mirror-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
   </a>	  
+</div>
+<div align="center">  
   <a href="https://github.com/statikfintechllc/AscendNet.git">
   <img src="https://img.shields.io/badge/AscendNet-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
   <a href="https://github.com/statikfintechllc/AscendNet.git">
   <img src="https://img.shields.io/badge/P2P%20FOR%20LLM-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  </a>
+  <a
+href="https://github.com/statikfintechllc/Ascend-Institute.git">
+  <img src="https://img.shields.io/badge/SFTis-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
+  <a href="https://github.com/statikfintechllc/Ascend-Institute.git">
+  <img src="https://img.shields.io/badge/Institute-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
   </a>
   <a href="https://github.com/statikfintechllc/GodCore.git">
   <img src="https://img.shields.io/badge/GodCore-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
