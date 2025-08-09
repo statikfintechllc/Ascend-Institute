@@ -109,7 +109,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us">
 
 <div align="center">
 
-  <a href="https://raw.githubusercontent.com/statikfintechllc/GremlinGPT">
+  <a href="https://www.github.com/statikfintechllc/GremlinGPT">
   <img src="https://raw.githubusercontent.com/KDK-Grim/WorkFlowRepo-Mirror/master/docs/graph/traffic_graph.png" alt="Traffic Graph" />
   </a>
    <a href="https://github.com/statikfintechllc/WorkFlowRepo.git">
