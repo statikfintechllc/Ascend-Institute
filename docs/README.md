@@ -100,7 +100,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us">
 
 <div align="center">
 	
-# Ascend Institute Traffic</h1>
+# Ascend Institute's GremlinGPT Traffic</h1>
  
  **Home to The World's first *RS-RACS***  
 *Recursive, Self-Referential Autonomous Cognitive System*
@@ -109,7 +109,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us">
 
 <div align="center">
 
-  <a href="https://raw.githubusercontent.com/statikfintechllc/Ascend%20Institute/master/About US/">
+  <a href="https://raw.githubusercontent.com/statikfintechllc/GremlinGPT">
   <img src="https://raw.githubusercontent.com/KDK-Grim/WorkFlowRepo-Mirror/master/docs/graph/traffic_graph.png" alt="Traffic Graph" />
   </a>
    <a href="https://github.com/statikfintechllc/WorkFlowRepo.git">
