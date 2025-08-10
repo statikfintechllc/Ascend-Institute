@@ -197,7 +197,19 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
   </a>
 </div>
 <div align="center">
-  <!-- Row 4 — Zenodo Archives -->
+  <!-- Row 4 — Additional Medium -->
+  <a href="https://medium.com/@ascend.gremlin/gremlingpts-structural-extraction-c945b74971d3">
+    <img src="https://img.shields.io/badge/The%20Structural%20Extraction-black?style=for-the-badge&logo=medium&logoColor=white" alt="GremlinGPT's Structural Extraction"/>
+  </a>
+  <a href="https://medium.com/@ascend.gremlin/open-isnt-open-2f4aaf98c19e">
+    <img src="https://img.shields.io/badge/OpenAI%20Isn%27t%20Open-black?style=for-the-badge&logo=medium&logoColor=white" alt="OpenAI Isn't Open"/>
+  </a>
+  <a href="https://medium.com/@ascend.gremlin/the-pivot-that-broke-product-market-fit-e82dd8e9d868">
+    <img src="https://img.shields.io/badge/Open%20PMF%20Pivot-black?style=for-the-badge&logo=medium&logoColor=white" alt="The Pivot That Broke Product-Market Fit"/>
+  </a>
+</div>
+<div align="center">
+  <!-- Row 5 — Zenodo Archives -->
   <a href="https://doi.org/10.5281/zenodo.15717788">
     <img src="https://img.shields.io/badge/The%20GovSeverance%20Doctrine-black?style=for-the-badge&logo=zenodo&logoColor=white" alt="GovSeverance v1.0"/>
   </a>
@@ -210,7 +222,7 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
 </div>
 
 <div align="center">
-  <!-- GitHub Archives -->
+  <!-- GitHub -->
   <a href="https://github.com/statikfintechllc">
   <img src="https://img.shields.io/badge/GitHub-black?style=for-the-badge&logo=github&logoColor=gold"/>
   <a href="https://github.com/statikfintechllc">
