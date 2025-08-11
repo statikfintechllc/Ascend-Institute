@@ -99,11 +99,44 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us">
 > Still building what they can’t classify." 🔱  -*StatikFinTech, LLC*
 
 <div align="center">
+
+<div align="center">
+  <img src="https://skillicons.dev/icons?i=python,anaconda,nodejs,bash,linux,css,tailwind,react,electron,go,typescript,javascript,html,astro,jupyter,nixos&theme=dark" alt="Skill icons"><br>
+  <a href="https://github.com/statikfintechllc">
+    <img src="https://img.shields.io/badge/-000000?logo=github&logoColor=white&style=flat-square" alt="GitHub">
+  </a>
+  <a href="https://www.linkedin.com/in/daniel-morris-780804368">
+    <img src="https://img.shields.io/badge/In-e11d48?logo=linkedin&logoColor=white&style=flat-square" alt="LinkedIn">
+  </a>
+  <a href="mailto:ascend.gremlin@gmail.com">
+    <img src="https://img.shields.io/badge/-D14836?logo=gmail&logoColor=white&style=flat-square" alt="Email">
+  </a>
+  <a href="https://www.youtube.com/@Gremlins_Forge">
+    <img src="https://img.shields.io/badge/-FF0000?logo=youtube&logoColor=white&style=flat-square" alt="YouTube">
+  </a>
+  <a href="https://x.com/GremlinsForge">
+    <img src="https://img.shields.io/badge/-000000?logo=x&logoColor=white&style=flat-square" alt="X">
+  </a>
+  <a href="https://medium.com/@ascend.gremlin">
+    <img src="https://img.shields.io/badge/-000000?logo=medium&logoColor=white&style=flat-square" alt="Medium">
+  </a>
+</div>
+<div align="center">
+  <img src="https://github.com/KDK-Grim/GremlinGPT-Boost/blob/master/docs/svg/crimson-flow.svg?raw=1" alt="Statik DK Smoke Activity">
+</div>
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=statikfintechllc&show_icons=true&count_private=true&include_all_commits=true&rank_icon=github&theme=transparent&hide_border=true&title_color=e11d48&icon_color=e11d48" height="165" alt="Stats">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=statikfintechllc&layout=compact&langs_count=10&hide_border=true&theme=transparent&title_color=e11d48" height="165" alt="Top languages">
+</div>
+<div align="center">
+  <img src="https://streak-stats.demolab.com?user=statikfintechllc&theme=transparent&hide_border=true&ring=e11d48&fire=e11d48&currStreakLabel=e11d48" alt="Streak">
+</div>
+<div align="center">
+  <img src="https://github-profile-trophy.vercel.app/?username=statikfintechllc&theme=darkhub&column=6&margin-w=5&margin-h=5&title_color=e11d48" alt="Trophies">
+</div>
 	
-# Ascend Institute's GremlinGPT Traffic</h1>
- 
- **Home to The World's first *RS-RACS***  
-*Recursive, Self-Referential Autonomous Cognitive System*
+### The Institute's GremlinGPT
+The World's first *RS-RACS* | *Recursive, Self-Referential Autonomous Cognitive System*
 
 </div> 
 
@@ -120,9 +153,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us">
   
 <div align="center">
 
-  <em>
 Reset: After 7:00pm CST on First 2 Clones
-  </em>
 
 </div>
 
