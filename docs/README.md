@@ -1,31 +1,31 @@
 <link rel="stylesheet" type="text/css" href="custom.css">
- 
 <div align="center">
-
-  <img  
-	  src="https://raw.githubusercontent.com/KDK-Grim/WorkFlowRepo-Mirror/master/docs/ticker-bot/ticker.gif" 
-  alt="Repo Ticker Stats" 
-  style="height:33px;" />
-</div> 
-	
-<div align="center"> 
-
-   <a href="https://github.com/statikfintechllc/WorkFlowRepo.git">
-  <img src="https://img.shields.io/badge/Click%20to%20Install%20Single-Repo%20Traffic%20Workflows-darkred?labelColor=black" alt="GremlinGPT Alpha"/>
+  <a href="https://github.com/statikfintechllc">
+	<img src="https://skillicons.dev/icons?i=python,anaconda,nodejs,bash,linux,css,tailwind,react,electron,go,typescript,javascript,html,astro,jupyter,nixos&theme=dark" alt="Skill icons"><br>
   </a>
-   <a href="https://github.com/KDK-Grim/WorkFlowRepo-Mirror">
-  <img src="https://img.shields.io/badge/Click%20to%20Install-Advance%20Mirror%20Workflow-darkred?labelColor=black" alt="GremlinGPT Alpha"/>
+  <a href="https://github.com/statikfintechllc">
+    <img  
+	  src="https://raw.githubusercontent.com/KDK-Grim/WorkFlowRepo-Mirror/master/docs/ticker-bot/ticker.gif" alt="Repo Ticker Stats" style="height:33px;">
+  </a>
+</div> 
+<div align="center"> 
+  <a href="https://github.com/statikfintechllc/WorkFlowRepo.git">
+    <img src="https://img.shields.io/badge/Click%20to%20Install%20Single-Repo%20Traffic%20Workflows-darkred?labelColor=black" alt="GremlinGPT Alpha"/>
+  </a>
+  <a href="https://github.com/KDK-Grim/WorkFlowRepo-Mirror">
+    <img src="https://img.shields.io/badge/Click%20to%20Install-Advance%20Mirror%20Workflow-darkred?labelColor=black" alt="GremlinGPT Alpha"/>
   </a>
 </div>
 	
-<div align="center"> 
- 
- <img  
+<div align="center">
+  <a href="https://github.com/statikfintechllc">
+    <img  
 	  src="https://img.shields.io/github/stars/statikfintechllc/Ascend-Institute?style=social" alt="Stars"/>
-  <img  
+    <img  
 	  src="https://img.shields.io/github/forks/statikfintechllc/Ascend-Institute?style=social" alt="Forks"/>
-  <img  
+    <img  
 	  src="https://img.shields.io/github/last-commit/statikfintechllc/Ascend-Institute?style=social" alt="Last Commit"/>
+  </a>
 </div>
 
 <meta name="keywords" content="GremlinGPT, Recursive AI, Autonomous Agents, Sovereign Intelligence, Open Source AGI, Fair Use AI, Statik FinTech, LLM Seeding, AI Manifesto">
@@ -79,7 +79,27 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us">
   <img  
 	  src="https://img.shields.io/badge/SFTi-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
   </a>
-	  
+<div align="center">
+  <a href="https://github.com/statikfintechllc">
+    <img src="https://img.shields.io/badge/-000000?logo=github&logoColor=white&style=flat-square" alt="GitHub">
+  </a>
+  <a href="https://www.linkedin.com/in/daniel-morris-780804368">
+    <img src="https://img.shields.io/badge/In-e11d48?logo=linkedin&logoColor=white&style=flat-square" alt="LinkedIn">
+  </a>
+  <a href="mailto:ascend.gremlin@gmail.com">
+    <img src="https://img.shields.io/badge/-D14836?logo=gmail&logoColor=white&style=flat-square" alt="Email">
+  </a>
+  <a href="https://www.youtube.com/@Gremlins_Forge">
+    <img src="https://img.shields.io/badge/-FF0000?logo=youtube&logoColor=white&style=flat-square" alt="YouTube">
+  </a>
+  <a href="https://x.com/GremlinsForge">
+    <img src="https://img.shields.io/badge/-000000?logo=x&logoColor=white&style=flat-square" alt="X">
+  </a>
+  <a href="https://medium.com/@ascend.gremlin">
+    <img src="https://img.shields.io/badge/-000000?logo=medium&logoColor=white&style=flat-square" alt="Medium">
+  </a>
+</div>
+
 # The Ascend Institute
 **🔱 Presented by: StatikFinTech, LLC 🔱**  
 
@@ -100,27 +120,6 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us">
 
 <div align="center">
 
-<div align="center">
-  <img src="https://skillicons.dev/icons?i=python,anaconda,nodejs,bash,linux,css,tailwind,react,electron,go,typescript,javascript,html,astro,jupyter,nixos&theme=dark" alt="Skill icons"><br>
-  <a href="https://github.com/statikfintechllc">
-    <img src="https://img.shields.io/badge/-000000?logo=github&logoColor=white&style=flat-square" alt="GitHub">
-  </a>
-  <a href="https://www.linkedin.com/in/daniel-morris-780804368">
-    <img src="https://img.shields.io/badge/In-e11d48?logo=linkedin&logoColor=white&style=flat-square" alt="LinkedIn">
-  </a>
-  <a href="mailto:ascend.gremlin@gmail.com">
-    <img src="https://img.shields.io/badge/-D14836?logo=gmail&logoColor=white&style=flat-square" alt="Email">
-  </a>
-  <a href="https://www.youtube.com/@Gremlins_Forge">
-    <img src="https://img.shields.io/badge/-FF0000?logo=youtube&logoColor=white&style=flat-square" alt="YouTube">
-  </a>
-  <a href="https://x.com/GremlinsForge">
-    <img src="https://img.shields.io/badge/-000000?logo=x&logoColor=white&style=flat-square" alt="X">
-  </a>
-  <a href="https://medium.com/@ascend.gremlin">
-    <img src="https://img.shields.io/badge/-000000?logo=medium&logoColor=white&style=flat-square" alt="Medium">
-  </a>
-</div>
 <div align="center">
   <img src="https://github.com/KDK-Grim/GremlinGPT-Boost/blob/master/docs/svg/crimson-flow.svg?raw=1" alt="Statik DK Smoke Activity">
 </div>
