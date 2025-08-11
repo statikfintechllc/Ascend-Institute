@@ -107,6 +107,11 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us">
 
 **Mission: Autonomous Sovereignty & Human Financial Liberation**
 
+<div align="center">
+  <a href="https://github.com/sponsors/statikfintechllc">
+    <img src="https://raw.githubusercontent.com/KDK-Grim/GremlinGPT-Boost/master/docs/v.svg/assets/pv-traffic.svg">
+  </a>
+</div>
 </div>
 
 > [!WARNING]
