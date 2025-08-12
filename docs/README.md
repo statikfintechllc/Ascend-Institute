@@ -126,7 +126,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us">
 <div align="center">
 
 <div align="center">
-  <img src="https://github.com/KDK-Grim/GremlinGPT-Boost/blob/master/docs/svg/crimson-flow.svg?raw=1" alt="Statik DK Smoke Activity">
+  <img src="https://github.com/KDK-Grim/GremlinGPT-Boost/blob/master/docs/c.svg/assets/crimson-flow.svg?raw=1" alt="Statik DK Smoke Activity">
 </div>
 <div align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=statikfintechllc&show_icons=true&count_private=true&include_all_commits=true&rank_icon=github&theme=transparent&hide_border=true&title_color=e11d48&icon_color=e11d48" height="165" alt="Stats">
