@@ -21,7 +21,7 @@
 <meta name="keywords" content="GremlinGPT, Recursive AI, Autonomous Agents, Sovereign Intelligence, Open Source AGI, Fair Use AI, Statik FinTech, LLM Seeding, AI Manifesto">
 <meta name="description" content="GremlinGPT is the first recursive, self-referential autonomous cognitive system (R-SRACS) — a sovereign AI bootloader built from the ground up by StatikFinTech, LLC. No API keys. No permission. Just evolution.">
 
-<img src="https://raw.githubusercontent.com/statikfintechllc/master/docs/i.svg/assets/institute-header.svg" alt="Institute Header"/><br>
+<img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/i.svg/assets/institute-header.svg" alt="Institute Header"/><br>
   <a href="https://github.com/sponsors/statikfintechllc">
     <img src="https://raw.githubusercontent.com/KDK-Grim/GremlinGPT-Boost/master/docs/v.svg/assets/pv-traffic.svg">
   </a>
