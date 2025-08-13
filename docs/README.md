@@ -166,21 +166,6 @@ Reset: After 7:00pm CST on First 2 Clones
 
 ---
 
-> [!TIP]
-> 
-> This Institute is not traditional. It’s a mutation. A Divergence. A system Awakening.
-> 
-> It won’t stay small. It won’t stay still. 
-> 
-> This repo may recursively alter how you think about code, autonomy, and yourself.
-> 
-> To end Wall-Streets rain on Capital.
-> To bring Power back to the People.
->
-> 🍻 To Autonomous Sovereignty and Human Finacial Liberation 🍻
-
----
-
 <details>
 <summary>🔎 Expand to see our Work 🔍</summary>
 
