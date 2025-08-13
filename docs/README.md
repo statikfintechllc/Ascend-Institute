@@ -70,11 +70,15 @@
   <a href="https://github.com/sponsors/statikfintechllc">
     <img src="https://raw.githubusercontent.com/KDK-Grim/GremlinGPT-Boost/master/docs/v.svg/assets/pv-traffic.svg">
   </a><br>
+<div align="center"
   <a href="https://github.com/statikfintechllc">
     <img src="https://img.shields.io/github/stars/statikfintechllc/Ascend-Institute?style=social" alt="Stars"/>
     <img src="https://img.shields.io/github/forks/statikfintechllc/Ascend-Institute?style=social" alt="Forks"/><br>
     <img src="https://img.shields.io/github/last-commit/statikfintechllc/Ascend-Institute?style=social" alt="Last Commit"/>
-  </a><br>
+  </a>
+</div>
+</div>
+<div aling="center"
   <a href="https://github.com/statikfintechllc/GremlinGPT">
     <img src="https://github-readme-stats.vercel.app/api/pin/?username=statikfintechllc&repo=GremlinGPT&theme=transparent&hide_border=true&title_color=e11d48" alt="GremlinGPT card">
   </a>
