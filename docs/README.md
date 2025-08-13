@@ -124,7 +124,30 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us">
 > Still building what they can’t classify." 🔱  -*StatikFinTech, LLC*
 
 <div align="center">
-
+  <a href="https://github.com/statikfintechllc/GremlinGPT">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=statikfintechllc&repo=GremlinGPT&theme=transparent&hide_border=true&title_color=e11d48" alt="GremlinGPT card">
+  </a>
+  <a href="https://github.com/statikfintechllc/Gremlin-ShadTail-Trader">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=statikfintechllc&repo=Gremlin-ShadTail-Trader&theme=transparent&hide_border=true&title_color=e11d48" alt="Gremlin-ShadTail-Trader card">
+  </a>
+</div>
+<div align="center">
+  <a href="https://github.com/statikfintechllc/statik-server">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=statikfintechllc&repo=Statik-Server&theme=transparent&hide_border=true&title_color=e11d48" alt="statik-server card">
+  </a>
+  <a href="https://github.com/statikfintechllc/AscendDocs-of-GovSeverance">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=statikfintechllc&repo=AscendDocs-of-GovSeverance&theme=transparent&hide_border=true&title_color=e11d48" alt="AscendDocs-of-GovSeverance card">
+  </a>
+</div>
+<div align="center">
+  <a href="https://github.com/statikfintechllc/dragon-boot">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=statikfintechllc&repo=Dragon-Boot&theme=transparent&hide_border=true&title_color=e11d48" alt="dragon-boot card">
+  </a>
+  <a href="https://github.com/statikfintechllc/Gremlin-MCP-Scrap">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=statikfintechllc&repo=Gremlin-MCP-Scrap&theme=transparent&hide_border=true&title_color=e11d48" alt="Gremlin-MCP-Scrap card">
+  </a>
+</div>
+<div align="center">
 <div align="center">
   <img src="https://github.com/KDK-Grim/GremlinGPT-Boost/blob/master/docs/c.svg/assets/crimson-flow.svg?raw=1" alt="Statik DK Smoke Activity">
 </div>
@@ -133,10 +156,20 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us">
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=statikfintechllc&layout=compact&langs_count=10&hide_border=true&theme=transparent&title_color=e11d48" height="165" alt="Top languages">
 </div>
 <div align="center">
-  <img src="https://streak-stats.demolab.com?user=statikfintechllc&theme=transparent&hide_border=true&ring=e11d48&fire=e11d48&currStreakLabel=e11d48" alt="Streak">
+  <a href="https://github.com/sponsors/statikfintechllc">
+    <img src="https://skillicons.dev/icons?i=python,anaconda,nodejs,bash,linux,css,tailwind,react,electron,go,typescript,javascript,html,astro,jupyter,nixos&theme=dark" alt="Skill icons"><br>
+  </a>
+  <img src="https://raw.githubuserconten.com/statikfintechllc/master/docs/c.svg/assets/crimson-flow.svg" alt="Statik DK Smoke Activity">
 </div>
 <div align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=statikfintechllc&theme=darkhub&column=6&margin-w=5&margin-h=5&title_color=e11d48" alt="Trophies">
+  <a href="https://github.com/sponsors/statikfintechllc">
+    <img src="https://raw.githubuserconten.com/statikfintechllc/master/docs/s.svg/assets/streak.svg" alt="Streak" />
+  </a>
+</div>
+<div align="center">
+  <a href="https://github.com/sponsors/statikfintechllc">
+	<img src="https://raw.githubuserconten.com/statikfintechllc/master/docs/t.svg/assets/trophies.svg" alt="Trophies" />
+  </a>
 </div>
 	
 ### The Institute's GremlinGPT
