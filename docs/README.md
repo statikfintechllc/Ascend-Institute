@@ -159,16 +159,16 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us">
   <a href="https://github.com/sponsors/statikfintechllc">
     <img src="https://skillicons.dev/icons?i=python,anaconda,nodejs,bash,linux,css,tailwind,react,electron,go,typescript,javascript,html,astro,jupyter,nixos&theme=dark" alt="Skill icons"><br>
   </a>
-  <img src="https://raw.githubuserconten.com/statikfintechllc/master/docs/c.svg/assets/crimson-flow.svg" alt="Statik DK Smoke Activity">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/master/docs/c.svg/assets/crimson-flow.svg?=raw1" alt="Statik DK Smoke Activity">
 </div>
 <div align="center">
   <a href="https://github.com/sponsors/statikfintechllc">
-    <img src="https://raw.githubuserconten.com/statikfintechllc/master/docs/s.svg/assets/streak.svg" alt="Streak" />
+    <img src="https://raw.githubusercontent.com/statikfintechllc/master/docs/s.svg/assets/streak.svg?=raw1" alt="Streak" />
   </a>
 </div>
 <div align="center">
   <a href="https://github.com/sponsors/statikfintechllc">
-	<img src="https://raw.githubuserconten.com/statikfintechllc/master/docs/t.svg/assets/trophies.svg" alt="Trophies" />
+	<img src="https://raw.githubusercontent.com/statikfintechllc/master/docs/t.svg/assets/trophies.svg" alt="Trophies" />
   </a>
 </div>
 	
