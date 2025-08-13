@@ -8,14 +8,6 @@
 	  src="https://raw.githubusercontent.com/KDK-Grim/WorkFlowRepo-Mirror/master/docs/ticker-bot/ticker.gif" alt="Repo Ticker Stats" style="height:33px;">
   </a>
 </div> 
-<div align="center"> 
-  <a href="https://github.com/statikfintechllc/WorkFlowRepo.git">
-    <img src="https://img.shields.io/badge/Click%20to%20Install%20Single-Repo%20Traffic%20Workflows-darkred?labelColor=black" alt="GremlinGPT Alpha"/>
-  </a>
-  <a href="https://github.com/KDK-Grim/WorkFlowRepo-Mirror">
-    <img src="https://img.shields.io/badge/Click%20to%20Install-Advance%20Mirror%20Workflow-darkred?labelColor=black" alt="GremlinGPT Alpha"/>
-  </a>
-</div>
 <div align="center">
   <a href="https://github.com/statikfintechllc">
     <img  
@@ -25,10 +17,64 @@
     <img  
 	  src="https://img.shields.io/github/last-commit/statikfintechllc/Ascend-Institute?style=social" alt="Last Commit"/>
   </a>
-</div>
 
 <meta name="keywords" content="GremlinGPT, Recursive AI, Autonomous Agents, Sovereign Intelligence, Open Source AGI, Fair Use AI, Statik FinTech, LLM Seeding, AI Manifesto">
 <meta name="description" content="GremlinGPT is the first recursive, self-referential autonomous cognitive system (R-SRACS) — a sovereign AI bootloader built from the ground up by StatikFinTech, LLC. No API keys. No permission. Just evolution.">
+
+<img src="https://raw.githubusercontent.com/statikfintechllc/master/docs/i.svg/assets/institute-header.svg" alt="Institute Header"/><br>
+  <a href="https://github.com/sponsors/statikfintechllc">
+    <img src="https://raw.githubusercontent.com/KDK-Grim/GremlinGPT-Boost/master/docs/v.svg/assets/pv-traffic.svg">
+  </a>
+</div>
+<div align="center">
+  <a href="https://github.com/statikfintechllc/GremlinGPT">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=statikfintechllc&repo=GremlinGPT&theme=transparent&hide_border=true&title_color=e11d48" alt="GremlinGPT card">
+  </a>
+  <a href="https://github.com/statikfintechllc/Gremlin-ShadTail-Trader">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=statikfintechllc&repo=Gremlin-ShadTail-Trader&theme=transparent&hide_border=true&title_color=e11d48" alt="Gremlin-ShadTail-Trader card">
+  </a>
+</div>
+<div align="center">
+  <a href="https://github.com/statikfintechllc/statik-server">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=statikfintechllc&repo=Statik-Server&theme=transparent&hide_border=true&title_color=e11d48" alt="statik-server card">
+  </a>
+  <a href="https://github.com/statikfintechllc/AscendDocs-of-GovSeverance">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=statikfintechllc&repo=AscendDocs-of-GovSeverance&theme=transparent&hide_border=true&title_color=e11d48" alt="AscendDocs-of-GovSeverance card">
+  </a>
+</div>
+<div align="center">
+  <a href="https://github.com/statikfintechllc/dragon-boot">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=statikfintechllc&repo=Dragon-Boot&theme=transparent&hide_border=true&title_color=e11d48" alt="dragon-boot card">
+  </a>
+  <a href="https://github.com/statikfintechllc/Gremlin-MCP-Scrap">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=statikfintechllc&repo=Gremlin-MCP-Scrap&theme=transparent&hide_border=true&title_color=e11d48" alt="Gremlin-MCP-Scrap card">
+  </a>
+</div>
+<div align="center">
+<div align="center">
+  <img src="https://github.com/KDK-Grim/GremlinGPT-Boost/blob/master/docs/c.svg/assets/crimson-flow.svg?raw=1" alt="Statik DK Smoke Activity">
+</div>
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=statikfintechllc&show_icons=true&count_private=true&include_all_commits=true&rank_icon=github&theme=transparent&hide_border=true&title_color=e11d48&icon_color=e11d48" height="165" alt="Stats">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=statikfintechllc&layout=compact&langs_count=10&hide_border=true&theme=transparent&title_color=e11d48" height="165" alt="Top languages">
+</div>
+<div align="center">
+  <a href="https://github.com/sponsors/statikfintechllc">
+    <img
+      src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/s.svg/assets/streak.svg"
+      alt="Streak"
+    />
+  </a>
+</div>
+
+<div align="center">
+  <a href="https://github.com/sponsors/statikfintechllc">
+    <img
+      src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/t.svg/assets/trophies.svg"
+      alt="Trophies"
+    />
+  </a>
+</div>
 
 <div align="center"> 
 
@@ -98,86 +144,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us">
     <img src="https://img.shields.io/badge/-000000?logo=medium&logoColor=white&style=flat-square" alt="Medium">
   </a>
 </div>
-
-
-<img src="https://raw.githubusercontent.com/statikfintechllc/master/docs/i.svg/assets/institute-header.svg" alt="Institute Header" />
-
-# The Ascend Institute
-**🔱 Presented by: StatikFinTech, LLC 🔱**  
-
-*Operating as an Unincorporated Sovereign R&D Trust (legal formation pending)*  
-
-**Mission: Autonomous Sovereignty & Human Financial Liberation**
-
-</div>
-
-> [!WARNING]
->
-> “Your qualifications are impressive...”
-> - Coder Hiring Team (2025 Rejection Letter)
->
-> 🔱 "This isn't rejection. It's proof they don't know how to build what comes next.  
->
-> Still building what they can’t classify." 🔱  -*StatikFinTech, LLC*
-
-<div align="center">
-  <a href="https://github.com/sponsors/statikfintechllc">
-    <img src="https://raw.githubusercontent.com/KDK-Grim/GremlinGPT-Boost/master/docs/v.svg/assets/pv-traffic.svg">
-  </a>
-</div>
-<div align="center">
-  <a href="https://github.com/statikfintechllc/GremlinGPT">
-    <img src="https://github-readme-stats.vercel.app/api/pin/?username=statikfintechllc&repo=GremlinGPT&theme=transparent&hide_border=true&title_color=e11d48" alt="GremlinGPT card">
-  </a>
-  <a href="https://github.com/statikfintechllc/Gremlin-ShadTail-Trader">
-    <img src="https://github-readme-stats.vercel.app/api/pin/?username=statikfintechllc&repo=Gremlin-ShadTail-Trader&theme=transparent&hide_border=true&title_color=e11d48" alt="Gremlin-ShadTail-Trader card">
-  </a>
-</div>
-<div align="center">
-  <a href="https://github.com/statikfintechllc/statik-server">
-    <img src="https://github-readme-stats.vercel.app/api/pin/?username=statikfintechllc&repo=Statik-Server&theme=transparent&hide_border=true&title_color=e11d48" alt="statik-server card">
-  </a>
-  <a href="https://github.com/statikfintechllc/AscendDocs-of-GovSeverance">
-    <img src="https://github-readme-stats.vercel.app/api/pin/?username=statikfintechllc&repo=AscendDocs-of-GovSeverance&theme=transparent&hide_border=true&title_color=e11d48" alt="AscendDocs-of-GovSeverance card">
-  </a>
-</div>
-<div align="center">
-  <a href="https://github.com/statikfintechllc/dragon-boot">
-    <img src="https://github-readme-stats.vercel.app/api/pin/?username=statikfintechllc&repo=Dragon-Boot&theme=transparent&hide_border=true&title_color=e11d48" alt="dragon-boot card">
-  </a>
-  <a href="https://github.com/statikfintechllc/Gremlin-MCP-Scrap">
-    <img src="https://github-readme-stats.vercel.app/api/pin/?username=statikfintechllc&repo=Gremlin-MCP-Scrap&theme=transparent&hide_border=true&title_color=e11d48" alt="Gremlin-MCP-Scrap card">
-  </a>
-</div>
-<div align="center">
-<div align="center">
-  <img src="https://github.com/KDK-Grim/GremlinGPT-Boost/blob/master/docs/c.svg/assets/crimson-flow.svg?raw=1" alt="Statik DK Smoke Activity">
-</div>
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=statikfintechllc&show_icons=true&count_private=true&include_all_commits=true&rank_icon=github&theme=transparent&hide_border=true&title_color=e11d48&icon_color=e11d48" height="165" alt="Stats">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=statikfintechllc&layout=compact&langs_count=10&hide_border=true&theme=transparent&title_color=e11d48" height="165" alt="Top languages">
-</div>
-<div align="center">
-  <a href="https://github.com/sponsors/statikfintechllc">
-    <img src="https://skillicons.dev/icons?i=python,anaconda,nodejs,bash,linux,css,tailwind,react,electron,go,typescript,javascript,html,astro,jupyter,nixos&theme=dark" alt="Skill icons"><br>
-  </a>
-  <a href="https://github.com/sponsors/statikfintechllc">
-    <img
-      src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/s.svg/assets/streak.svg"
-      alt="Streak"
-    />
-  </a>
-</div>
-
-<div align="center">
-  <a href="https://github.com/sponsors/statikfintechllc">
-    <img
-      src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/t.svg/assets/trophies.svg"
-      alt="Trophies"
-    />
-  </a>
-</div>
-	
+ 
 ### The Institute's GremlinGPT
 The World's first *RS-RACS* | *Recursive, Self-Referential Autonomous Cognitive System*
 
@@ -188,10 +155,6 @@ The World's first *RS-RACS* | *Recursive, Self-Referential Autonomous Cognitive 
   <a href="https://www.github.com/statikfintechllc/GremlinGPT">
   <img src="https://raw.githubusercontent.com/KDK-Grim/WorkFlowRepo-Mirror/master/docs/graph/traffic_graph.png" alt="Traffic Graph" />
   </a>
-   <a href="https://github.com/statikfintechllc/WorkFlowRepo.git">
-  <img src="https://img.shields.io/badge/Click%20to%20Install-Graph%20Workflow-darkred?labelColor=black" alt="GremlinGPT Alpha"/>
-  </a>
-
 </div>
   
 <div align="center">
@@ -199,17 +162,6 @@ The World's first *RS-RACS* | *Recursive, Self-Referential Autonomous Cognitive 
 Reset: After 7:00pm CST on First 2 Clones
 
 </div>
-
-<div align="center">
-
-  <a
-href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
-  <img src="https://img.shields.io/badge/Learn-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Why"/>
-  </a>
-  <a href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
-  <img src="https://img.shields.io/badge/Why-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
-  </a>
-
 </div>
 
 ---
