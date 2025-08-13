@@ -16,7 +16,6 @@
     <img src="https://img.shields.io/badge/Click%20to%20Install-Advance%20Mirror%20Workflow-darkred?labelColor=black" alt="GremlinGPT Alpha"/>
   </a>
 </div>
-	
 <div align="center">
   <a href="https://github.com/statikfintechllc">
     <img  
@@ -107,11 +106,6 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us">
 
 **Mission: Autonomous Sovereignty & Human Financial Liberation**
 
-<div align="center">
-  <a href="https://github.com/sponsors/statikfintechllc">
-    <img src="https://raw.githubusercontent.com/KDK-Grim/GremlinGPT-Boost/master/docs/v.svg/assets/pv-traffic.svg">
-  </a>
-</div>
 </div>
 
 > [!WARNING]
@@ -123,6 +117,11 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us">
 >
 > Still building what they can’t classify." 🔱  -*StatikFinTech, LLC*
 
+<div align="center">
+  <a href="https://github.com/sponsors/statikfintechllc">
+    <img src="https://raw.githubusercontent.com/KDK-Grim/GremlinGPT-Boost/master/docs/v.svg/assets/pv-traffic.svg">
+  </a>
+</div>
 <div align="center">
   <a href="https://github.com/statikfintechllc/GremlinGPT">
     <img src="https://github-readme-stats.vercel.app/api/pin/?username=statikfintechllc&repo=GremlinGPT&theme=transparent&hide_border=true&title_color=e11d48" alt="GremlinGPT card">
@@ -159,16 +158,20 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us">
   <a href="https://github.com/sponsors/statikfintechllc">
     <img src="https://skillicons.dev/icons?i=python,anaconda,nodejs,bash,linux,css,tailwind,react,electron,go,typescript,javascript,html,astro,jupyter,nixos&theme=dark" alt="Skill icons"><br>
   </a>
-  <img src="https://raw.githubusercontent.com/statikfintechllc/master/docs/c.svg/assets/crimson-flow.svg?=raw1" alt="Statik DK Smoke Activity">
-</div>
-<div align="center">
   <a href="https://github.com/sponsors/statikfintechllc">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/master/docs/s.svg/assets/streak.svg?=raw1" alt="Streak" />
+    <img
+      src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/s.svg/assets/streak.svg"
+      alt="Streak"
+    />
   </a>
 </div>
+
 <div align="center">
   <a href="https://github.com/sponsors/statikfintechllc">
-	<img src="https://raw.githubusercontent.com/statikfintechllc/master/docs/t.svg/assets/trophies.svg" alt="Trophies" />
+    <img
+      src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/t.svg/assets/trophies.svg"
+      alt="Trophies"
+    />
   </a>
 </div>
 	
