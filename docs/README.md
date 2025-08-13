@@ -99,7 +99,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us">
   </a>
 </div>
 
-<!-- README usage -->
+
 <img src="https://raw.githubusercontent.com/statikfintechllc/master/docs/i.svg/assets/institute-header.svg" alt="Institute Header" />
 
 # The Ascend Institute
