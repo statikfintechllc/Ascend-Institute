@@ -76,6 +76,9 @@
   </a>
 </div>
 </div>
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=statikfintechllc&show_icons=true&count_private=true&include_all_commits=true&rank_icon=github&theme=transparent&hide_border=true&title_color=e11d48&icon_color=e11d48" height="165" alt="Stats">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=statikfintechllc&layout=compact&langs_count=10&hide_border=true&theme=transparent&title_color=e11d48" height="165" alt="Top languages"><br>
 <div aling="center"
   <a href="https://github.com/statikfintechllc/GremlinGPT">
     <img src="https://github-readme-stats.vercel.app/api/pin/?username=statikfintechllc&repo=GremlinGPT&theme=transparent&hide_border=true&title_color=e11d48" alt="GremlinGPT card">
@@ -100,9 +103,6 @@
     <img src="https://github-readme-stats.vercel.app/api/pin/?username=statikfintechllc&repo=Gremlin-MCP-Scrap&theme=transparent&hide_border=true&title_color=e11d48" alt="Gremlin-MCP-Scrap card">
   </a>
 </div>
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=statikfintechllc&show_icons=true&count_private=true&include_all_commits=true&rank_icon=github&theme=transparent&hide_border=true&title_color=e11d48&icon_color=e11d48" height="165" alt="Stats">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=statikfintechllc&layout=compact&langs_count=10&hide_border=true&theme=transparent&title_color=e11d48" height="165" alt="Top languages"><br>
 <a href="https://www.gmail.com">
   <img  
 	  src="https://img.shields.io/badge/Ask-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
