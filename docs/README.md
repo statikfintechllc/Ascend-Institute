@@ -64,7 +64,6 @@
   <a href="https://medium.com/@ascend.gremlin">
     <img src="https://img.shields.io/badge/-000000?logo=medium&logoColor=white&style=flat-square" alt="Medium">
   </a><br>
-
 <meta name="keywords" content="GremlinGPT, Recursive AI, Autonomous Agents, Sovereign Intelligence, Open Source AGI, Fair Use AI, Statik FinTech, LLM Seeding, AI Manifesto">
 <meta name="description" content="GremlinGPT is the first recursive, self-referential autonomous cognitive system (R-SRACS) — a sovereign AI bootloader built from the ground up by StatikFinTech, LLC. No API keys. No permission. Just evolution."><br>
 </div>
@@ -87,6 +86,9 @@
     <img src="https://github-readme-stats.vercel.app/api/pin/?username=statikfintechllc&repo=Gremlin-ShadTail-Trader&theme=transparent&hide_border=true&title_color=e11d48" alt="Gremlin-ShadTail-Trader card">
   </a>
 </div>
+
+
+ 
 <div align="center">
   <a href="https://github.com/statikfintechllc/statik-server">
     <img src="https://github-readme-stats.vercel.app/api/pin/?username=statikfintechllc&repo=Statik-Server&theme=transparent&hide_border=true&title_color=e11d48" alt="statik-server card">
