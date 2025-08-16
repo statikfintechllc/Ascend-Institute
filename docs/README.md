@@ -843,7 +843,9 @@ Personal use only. Commercial use is prohibited unless licensed separately.
 > 
 > I don’t need more code. I need more power.
 
----
+<div align="center">
+  <img src="https://komarev.com/ghpvc/?username=statikfintechllc&color=8b0000&style=flat-square" alt="Profile Views">
+</div>
 
 <!--
 <details>
