@@ -1,9 +1,9 @@
 <link rel="stylesheet" type="text/css" href="custom.css">
 <div align="center">
-<img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/i.svg/assets/institute-header.svg" alt="Institute Header"/><br>
   <a href="https://github.com/sponsors/statikfintechllc">
     <img src="https://raw.githubusercontent.com/KDK-Grim/WorkFlowRepo-Mirror/master/docs/ticker-bot/ticker.gif" alt="Repo Ticker Stats" height="36">
-  </a>
+  </a><br>	
+<img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/i.svg/assets/institute-header.svg" alt="Institute Header"/>
 </div>
 <div align="center">
   <a href="https://github.com/sponsors/statikfintechllc">
