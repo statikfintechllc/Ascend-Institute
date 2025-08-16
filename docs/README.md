@@ -111,7 +111,7 @@
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/S.S.svg/assets/statik-server-card.svg" alt="statik-server" width="340"/>
   </a>
 
-  <a href="https://github.com/statikfintechllc">
+  <a href="https://github.com/statikfintechllc/statikfintechllc">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/S.F.svg/assets/statikfintechllc-card.svg" alt="statikfintechllc" width="340"/>
   </a>
 
