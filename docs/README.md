@@ -78,20 +78,12 @@
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/S.S.svg/assets/statik-server-card.svg" alt="statik-server" width="400"/>
   </a>
 
-  <a href="https://github.com/statikfintechllc/statikfintechllc">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/S.F.svg/assets/statikfintechllc-card.svg" alt="statikfintechllc" width="400"/>
-  </a>
-
-  <a href="https://github.com/statikfintechllc/WorkFlowRepo-Mirror">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/W.M.svg/assets/workflowrepo-mirror-card.svg" alt="WorkFlowRepo-Mirror" width="400"/>
+  <a href="https://github.com/statikfintechllc/AscendNet">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/A.N.svg/assets/ascendnet-card.svg" alt="AscendNet" width="400"/>
   </a>
 
   <a href="https://github.com/statikfintechllc/Ascend-Institute">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/A.I.svg/assets/ascend-institute-card.svg" alt="Ascend-Institute" width="400"/>
-  </a>
-
-  <a href="https://github.com/statikfintechllc/AscendNet">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/A.N.svg/assets/ascendnet-card.svg" alt="AscendNet" width="400"/>
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/A.I.svg/assets/ascend-institute-card.svg" alt="Ascend-Institute" width="400">
   </a>
 
   <a href="https://github.com/statikfintechllc/AscendDocs-of-GovSeverance">
