@@ -43,8 +43,9 @@
   <a href="https://medium.com/@ascend.gremlin">
     <img src="https://img.shields.io/badge/-000000?logo=medium&logoColor=white&style=flat-square" alt="Medium">
   </a><br>
-  <a 
-  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/c.svg/assets/crimson-flow.svg" alt="Statik DK Smoke Activity">
+  <a href="https://github.com/sponsors/statikfintechllc">
+ <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/c.svg/assets/crimson-flow.svg" alt="Statik DK Smoke Activity">
+  </a>
 </div>
 <!-- Flexbox Grid -->
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
