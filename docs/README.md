@@ -41,11 +41,6 @@
   </a>
 </div>  
 <div align="center">
-  <a href="https://github.com/sponsors/statikfintechllc">
-    <img src="https://avatars.githubusercontent.com/u/200911899?v=4" alt="Statik DK Smoke avatar" width="96" height="96" style="border-radius:50%">
-  </a>
-</div>	
-<div align="center">
   <a href="https://github.com/statikfintechllc">
     <img src="https://img.shields.io/badge/-000000?logo=github&logoColor=white&style=flat-square" alt="GitHub">
   </a>
@@ -74,65 +69,67 @@
     <img src="https://img.shields.io/github/last-commit/statikfintechllc/Ascend-Institute?style=social" alt="Last Commit"/>
   </a>
 </div>
+<div align="center">
+  <a href="https://github.com/sponsors/statikfintechllc">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/sdks.svg/assets/statik.title.svg">
+  </a>
 </div>
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=statikfintechllc&show_icons=true&count_private=true&include_all_commits=true&rank_icon=github&theme=transparent&hide_border=true&title_color=e11d48&icon_color=e11d48" height="165" alt="Stats">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=statikfintechllc&layout=compact&langs_count=10&hide_border=true&theme=transparent&title_color=e11d48" height="165" alt="Top languages"><br>
-<div align="center">
-
+  <a href="https://github.com/sponsors/statikfintechllc">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/g.svg/assets/github-profile.svg">
+  </a>
 <!-- Flexbox Grid -->
-<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
-
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
   <a href="https://github.com/statikfintechllc/GremlinGPT">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/G.G.svg/assets/gremlingpt-card.svg" alt="GremlinGPT" width="340"/>
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/G.G.svg/assets/gremlingpt-card.svg" alt="GremlinGPT" width="320"/>
   </a>
 
   <a href="https://github.com/statikfintechllc/dragon-boot">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/D.B.svg/assets/dragon-boot-card.svg" alt="dragon-boot" width="340"/>
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/D.B.svg/assets/dragon-boot-card.svg" alt="dragon-boot" width="320"/>
   </a>
 
   <a href="https://github.com/statikfintechllc/Gremlin-ShadTail-Trader">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/G.S.svg/assets/gremlin-shadtail-trader-card.svg" alt="Gremlin-ShadTail-Trader" width="340"/>
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/G.S.svg/assets/gremlin-shadtail-trader-card.svg" alt="Gremlin-ShadTail-Trader" width="320"/>
   </a>
 
   <a href="https://github.com/statikfintechllc/Gremlin-MCP-Scrap">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/G.M.svg/assets/gremlin-mcp-scrap-card.svg" alt="Gremlin-MCP-Scrap" width="340"/>
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/G.M.svg/assets/gremlin-mcp-scrap-card.svg" alt="Gremlin-MCP-Scrap" width="320"/>
   </a>
 
   <a href="https://github.com/statikfintechllc/Mobile-Mirror">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/M.M.svg/assets/mobile-mirror-card.svg" alt="Mobile-Mirror" width="340"/>
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/M.M.svg/assets/mobile-mirror-card.svg" alt="Mobile-Mirror" width="320"/>
   </a>
 
   <a href="https://github.com/statikfintechllc/GodCore">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/G.C.svg/assets/godcore-card.svg" alt="GodCore" width="340"/>
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/G.C.svg/assets/godcore-card.svg" alt="GodCore" width="320"/>
   </a>
 
   <a href="https://github.com/statikfintechllc/statik-server">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/S.S.svg/assets/statik-server-card.svg" alt="statik-server" width="340"/>
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/S.S.svg/assets/statik-server-card.svg" alt="statik-server" width="320"/>
   </a>
 
   <a href="https://github.com/statikfintechllc/statikfintechllc">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/S.F.svg/assets/statikfintechllc-card.svg" alt="statikfintechllc" width="340"/>
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/S.F.svg/assets/statikfintechllc-card.svg" alt="statikfintechllc" width="320"/>
   </a>
 
   <a href="https://github.com/statikfintechllc/WorkFlowRepo-Mirror">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/W.M.svg/assets/workflowrepo-mirror-card.svg" alt="WorkFlowRepo-Mirror" width="340"/>
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/W.M.svg/assets/workflowrepo-mirror-card.svg" alt="WorkFlowRepo-Mirror" width="320"/>
   </a>
 
   <a href="https://github.com/statikfintechllc/Ascend-Institute">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/A.I.svg/assets/ascend-institute-card.svg" alt="Ascend-Institute" width="340"/>
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/A.I.svg/assets/ascend-institute-card.svg" alt="Ascend-Institute" width="320"/>
   </a>
 
   <a href="https://github.com/statikfintechllc/AscendNet">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/A.N.svg/assets/ascendnet-card.svg" alt="AscendNet" width="340"/>
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/A.N.svg/assets/ascendnet-card.svg" alt="AscendNet" width="320"/>
   </a>
 
   <a href="https://github.com/statikfintechllc/AscendDocs-of-GovSeverance">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/A.D.svg/assets/ascenddocs-of-govseverance-card.svg" alt="AscendDocs-of-GovSeverance" width="340"/>
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/A.D.svg/assets/ascenddocs-of-govseverance-card.svg" alt="AscendDocs-of-GovSeverance" width="320"/>
   </a>
-
 </div>
 </div>
+<div align="center"> 
 <a href="https://www.gmail.com">
   <img  
 	  src="https://img.shields.io/badge/Ask-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
@@ -145,9 +142,7 @@
 	  src="https://img.shields.io/badge/Help-darkred?style=for-the-badge&logo=gmail&logoColor=gold"/>
   </a>
 </div>
-
 <div align="center"> 
-
   <a 
 href="sms:+17854436288">
   <img  
@@ -167,9 +162,7 @@ href="tel:+16202669837">
 	  src="https://img.shields.io/badge/+1%20620%20266%209837-darkred?style=for-the-badge&logo=phone&logoColor=gold" alt="Call +1 620 266 9837"/>
   </a>
 </div>
-
 <div align="center">
-
   <a
 href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us">
   <img  
@@ -184,14 +177,11 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us">
 The World's first *RS-RACS* | *Recursive, Self-Referential Autonomous Cognitive System*
 
 </div> 
-
 <div align="center">
-
   <a href="https://www.github.com/statikfintechllc/GremlinGPT">
   <img src="https://raw.githubusercontent.com/KDK-Grim/WorkFlowRepo-Mirror/master/docs/graph/traffic_graph.png" alt="Traffic Graph" />
   </a>
 </div>
-  
 <div align="center">
 
 Reset: After 7:00pm CST on First 2 Clones
