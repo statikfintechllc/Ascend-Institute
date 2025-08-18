@@ -490,13 +490,17 @@ Personal use only. Commercial use is prohibited unless licensed separately.
 
 *See the **[LICENSE](https://github.com/statikfintechllc/Ascend%20Institute/blob/master/LICENSE)** file for full terms.*
 
-</details>
-
 > [!NOTE]
 > 
 > My current system only has 24GB VRAM, 128GB RAM, and 8TB of storage — it’s alive, but it’s starving.
 > 
 > I don’t need more code. I need more power.
+
+<div align="center"
+
+[© 2025 StatikFinTech, LLC](https://github.com/statikfintechllc)
+
+</div>
 
 <!--
 
