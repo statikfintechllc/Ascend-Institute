@@ -195,6 +195,13 @@
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/sdks.svg/assets/statik.title.svg">
   </a>
 </div>
+
+> [!NOTE]
+> 
+> My current system only has 24GB VRAM, 128GB RAM, and 8TB of storage — it’s alive, but it’s starving.
+> 
+> I don’t need more code. I need more power.
+
 <div align="center">
   <a href="https://github.com/sponsors/statikfintechllc">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/v.svg/assets/pv-traffic.svg">
@@ -248,66 +255,39 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us">
   <img  
 	  src="https://img.shields.io/badge/SFTi-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
   </a>
- 
-### The Institute's GremlinGPT
-The World's first *RS-RACS* | *Recursive, Self-Referential Autonomous Cognitive System*
-
-</div> 
 <div align="center">
+  <a href="https://github.com/sponsors/statikfintechllc">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/ai_architect.svg" alt="AI Architect" height="24">
+  </a>
+  <a href="https://github.com/sponsors/statikfintechllc">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/full_stack_dev.svg" alt="Full-Stack Dev" height="24">
+  </a>
+  <a href="https://github.com/sponsors/statikfintechllc">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/prompt_blacksmith.svg" alt="Prompt Blacksmith" height="24">
+  </a>
+</div>
+<div align="center">
+<img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/G.I.badge.svg" alt="The Institute's GremlinGPT" />
   <a href="https://www.github.com/statikfintechllc/GremlinGPT">
   <img src="https://raw.githubusercontent.com/KDK-Grim/WorkFlowRepo-Mirror/master/docs/graph/traffic_graph.png" alt="Traffic Graph" />
   </a>
+   <a href="https://github.com/statikfintechllc/WorkFlowRepo.git">
+  <img src="https://img.shields.io/badge/Click%20to%20Install-Graph%20Workflow-darkred?labelColor=black" alt="GremlinGPT Alpha"/>
+  </a>
 </div>
 <div align="center">
-
-Reset: After 7:00pm CST on First 2 Clones
-
+<img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/R.S.badge.svg" alt="Reset Schedule" />
 </div>
-</div>
-<div align="center">
-<a href="https://ko-fi.com/statikfintech_llc">
-  <img  
-	  src="https://img.shields.io/badge/Sponsor%20SFTi%20on%20KoFi-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="Support"/>
-  </a>
-  <a href="https://patreon.com/StatikFinTech_LLC?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink">
-  <img  
-	  src="https://img.shields.io/badge/Sponsor%20SFTi%20on%20Patreon-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="SFTi"/>
-  </a>
-</div>
-<div align="center"> 
-
-[![Sponsor 💪 statikfintechllc](https://img.shields.io/badge/Sponsor%20SFTi%20on%20GitHub-darkred?logo=github&style=for-the-badge)](https://github.com/sponsors/statikfintechllc)  
-  <a
-href="https://github.com/statikfintechllc/GremlinGPT">
-    <img src="https://img.shields.io/badge/Jump%20To-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Fair Use License"/>
-  </a>
-  <a href="https://github.com/statikfintechllc//GremlinGPT">
-    <img src="https://img.shields.io/badge/GremlinGPT-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
-  </a><br>
-<a
-href="https://www.gmail.com">
-  <img src="https://img.shields.io/badge/Join-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  <a href="mailto:ascend.gremlin@gmail.com">
-    <img src="https://img.shields.io/badge/the%20Loop-darkred?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  </a>
-</div>
-
-> [!IMPORTANT]
-> 
-> **We are seeking** the following:
-> 
-> A **recursive logic architect** who speaks Python like poetry
-> 
-> A **systems-level cloud engineer** who fears no subnet
-> 
-> A **billionaire with a god complex** and **spare GPUs**
-> 
-> Paging **@elonmusk**, **@openai**, @deepmind, @anthropic, @metaai, **@mistralAI**, @cohere
-> 
-> Or just **anyone who gets it** and knows what’s coming
 
 ---
-	
+
+<div align="center">
+  <a href="https://github.com/sponsors/statikfintechllc">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/L.W.badge.svg" alt="Like my work?" />
+  </a>
+</div>
+<div align="center">
+
 ## Support This Project
 *If you find this project valuable and want to support its continued development, consider sponsoring or contributing*
 
@@ -391,19 +371,34 @@ href="https://www.gmail.com">
     </tr>
   </tbody>
 </table>
-
 </div>
-
 <div align="center">
   <a href="https://maps.app.goo.gl/7tekD9g8i7FkWqxk8" target="_blank" rel="noopener">
   <img src="https://img.shields.io/badge/StatikFinTeck--LLC-Google%20Verified-ff0000?style=for-the-badge&logo=googlemaps&logoColor=white&labelColor=000000" />
+  </a><br>
+  <a
+href="https://github.com/statikfintechllc/GremlinGPT">
+    <img src="https://img.shields.io/badge/Jump%20To-black?style=for-the-badge&logo=dragon&logoColor=white&labelColor=000000" alt="Fair Use License"/>
   </a>
+  <a href="https://github.com/statikfintechllc//GremlinGPT">
+    <img src="https://img.shields.io/badge/GremlinGPT-ff0000?style=for-the-badge&logo=dragon&logoColor=white&labelColor=000000" alt="GremlinGPT License"/>
+  </a><br>
+<a
+href="https://www.gmail.com">
+  <img src="https://img.shields.io/badge/Join-black?style=for-the-badge&logo=dragon&logoColor=white&labelColor=000000"/>
+  <a href="mailto:ascend.gremlin@gmail.com">
+    <img src="https://img.shields.io/badge/the%20Loop-ff0000?style=for-the-badge&logo=dragon&logoColor=white&labelColor=000000"/>
+  </a>
+</div>
+</div>
 </div>
 
 ---
 
 ## Funding and Infrastructure Goals
 
+> [!CAUTION]
+> 
 > *GremlinGPT is growing. It learns(as do I while finishing GremlinGPT). It Launches(Soon).*
 > *The project is reaching the limits of what a solo builder can finish without external support.*
 > *The next stage—deployment, agent orchestration, and memory stability, an infrastructure investment to move into full time Development.*
@@ -477,11 +472,27 @@ For bugs, glitches, or apocalyptic feedback:
   ✉️ ascend.gremlin@gmail.com  
   ✉️ ascend.help@gmail.com  
 
+> [!IMPORTANT]
+> 
+> **We are seeking** the following:
+> 
+> A **recursive logic architect** who speaks Python like poetry
+> 
+> A **systems-level cloud engineer** who fears no subnet
+> 
+> A **billionaire with a god complex** and **spare GPUs**
+> 
+> Paging **@elonmusk**, **@openai**, @deepmind, @anthropic, @metaai, **@mistralAI**, @cohere
+> 
+> Or just **anyone who gets it** and knows what’s coming
+
 ---
 
 ## License
 
-> ⚠️ **LEGAL NOTICE:**  
+> [!WARNING]
+> 
+> **LEGAL NOTICE**:  
 > GremlinGPT is released under a Fair-Use License. Commercial, organizational, or enterprise use is **strictly prohibited** without a paid license.  
 > Violators will be publicly disclosed and pursued for license infringement.
 
@@ -489,12 +500,6 @@ Released under the GremlinGPT Fair Use License v1.0.
 Personal use only. Commercial use is prohibited unless licensed separately.
 
 *See the **[LICENSE](https://github.com/statikfintechllc/Ascend%20Institute/blob/master/LICENSE)** file for full terms.*
-
-> [!NOTE]
-> 
-> My current system only has 24GB VRAM, 128GB RAM, and 8TB of storage — it’s alive, but it’s starving.
-> 
-> I don’t need more code. I need more power.
 
 <div align="center"
 
