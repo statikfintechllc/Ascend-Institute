@@ -91,6 +91,105 @@
   </a>
 </div>
 </div>
+
+<!-- Zenodo Research Papers Flexbox Grid -->
+<div align="center">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/Z.P.badge.svg" alt="Academic Research Publications" />
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+<div align="center">
+  <a href="https://doi.org/10.5281/zenodo.15717788">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Zenodo.papers.svg/rise-of-recursive-autonomous-cognitive-ai-systems.svg" alt="Recursive Autonomous Cognitive Systems" width="400"/>
+  </a>
+
+  <a href="https://doi.org/10.5281/zenodo.15725639">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Zenodo.papers.svg/economic-sovereignty-through-decentralized-ai.svg" alt="Economic Sovereignty Through Decentralized AI" width="400"/>
+  </a>
+
+  <a href="https://doi.org/10.5281/zenodo.15825120">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Zenodo.papers.svg/the-gremlingpt-architecture-localized-recursive-ai.svg" alt="GremlinGPT Architecture" width="400"/>
+  </a>
+</div>
+</div>
+
+<!-- Medium Articles Flexbox Grid -->
+<div align="center">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/M.P.badge.svg" alt="Medium Publications" />
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+<div align="center">
+  <a href="https://medium.com/@ascend.gremlin/the-govseverance-doctrine-70fa170a9e8f">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/the-govseverance-doctrine.svg" alt="The GovSeverance Doctrine" width="400"/>
+  </a>
+
+  <a href="https://medium.com/@ascend.gremlin/burj-khalifa-and-the-resonant-lie-429298865708">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/burj-khalifa-and-the-resonant-lie.svg" alt="Burj Khalifa and the Resonant Lie" width="400"/>
+  </a>
+
+  <a href="https://medium.com/@ascend.gremlin/the-wealth-power-imbalance-and-contemporary-forms-of-economic-servitude-bf2c2700d91632">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/the-wealth-power-imbalance-and-economic-servitude.svg" alt="The Wealth Power Imbalance" width="400"/>
+  </a>
+
+  <a href="https://medium.com/@ascend.gremlin/while-dubai-was-building-control-systems-i-built-an-autonomous-mind-fb4c8c4c0dc1">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/while-dubai-built-control-i-built-an-autonomous-mind.svg" alt="While Dubai Built Control" width="400"/>
+  </a>
+
+  <a href="https://medium.com/@ascend.gremlin/self-forking-ai-and-the-mechanic-from-kansas-73d98685fda9">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/selfforking-ai-and-the-mechanic-from-kansas.svg" alt="Self-Forking AI" width="400"/>
+  </a>
+
+  <a href="https://medium.com/@ascend.gremlin/the-disappearance-of-the-openai-mcp-repo-a5419347be0b">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/the-disappearance-of-the-openai-mcp-repo.svg" alt="The Disappearance of OpenAI MCP Repo" width="400"/>
+  </a>
+
+  <a href="https://medium.com/@ascend.gremlin/the-lessons-i-am-learning-b33dfe1df0b8">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/the-lessons-i-am-learning.svg" alt="The Lessons I Am Learning" width="400"/>
+  </a>
+
+  <a href="https://medium.com/@ascend.gremlin/designing-gremlingpt-8521fbdedcf8">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/designing-gremlingpt.svg" alt="Designing GremlinGPT" width="400"/>
+  </a>
+
+  <a href="https://medium.com/@ascend.gremlin/building-an-autonomous-ai-driven-ide-pipeline-f7c9faffbd2e">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/building-an-autonomous-aidriven-ide-pipeline.svg" alt="Building an Autonomous AI-Driven IDE Pipeline" width="400"/>
+  </a>
+
+  <a href="https://medium.com/@ascend.gremlin/gremlingpts-structural-extraction-c945b74971d3">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/gremlingpts-structural-extraction.svg" alt="GremlinGPT's Structural Extraction" width="400"/>
+  </a>
+
+  <a href="https://medium.com/@ascend.gremlin/open-isnt-open-2f4aaf98c19e">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/open-isnt-open.svg" alt="Open Isn't Open" width="400"/>
+  </a>
+
+  <a href="https://medium.com/@ascend.gremlin/the-pivot-that-broke-product-market-fit-e82dd8e9d868">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/the-pivot-that-broke-productmarket-fit.svg" alt="The Pivot That Broke Product-Market Fit" width="400"/>
+  </a>
+
+  <a href="https://medium.com/@ascend.gremlin/its-not-the-ai-but-the-system-3db4b0e142c5">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/its-not-the-ai-but-the-system.svg" alt="It's Not the AI, But the System" width="400"/>
+  </a>
+
+  <a href="https://medium.com/@ascend.gremlin/breaking-the-loop-b8013cdedb0e">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/breaking-the-loop.svg" alt="Breaking the Loop" width="400"/>
+  </a>
+
+  <a href="https://medium.com/@ascend.gremlin/capital-capture-a2a885ce3885">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/capital-capture.svg" alt="Capital Capture" width="400"/>
+  </a>
+</div>
+</div>
+<div align="center">
+  <a href="https://github.com/sponsors/statikfintechllc">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/ai_architect.svg" alt="AI Architect" height="24">
+  </a>
+  <a href="https://github.com/sponsors/statikfintechllc">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/full_stack_dev.svg" alt="Full-Stack Dev" height="24">
+  </a>
+  <a href="https://github.com/sponsors/statikfintechllc">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/prompt_blacksmith.svg" alt="Prompt Blacksmith" height="24">
+  </a>
+</div>
 <div align="center">
   <a href="https://github.com/sponsors/statikfintechllc">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/sdks.svg/assets/statik.title.svg">
@@ -206,69 +305,6 @@ href="https://www.gmail.com">
 > Paging **@elonmusk**, **@openai**, @deepmind, @anthropic, @metaai, **@mistralAI**, @cohere
 > 
 > Or just **anyone who gets it** and knows what’s coming
-
----
-
-<div align="center">
-  <!-- Row 1 — Medium Publications -->
-  <a href="https://medium.com/@ascend.gremlin/the-govseverance-doctrine-70fa170a9e8f">
-    <img src="https://img.shields.io/badge/GovSeverance%20Doctrine-black?style=for-the-badge&logo=medium&logoColor=white" alt="GovSeverance Doctrine"/>
-  </a>
-  <a href="https://medium.com/@ascend.gremlin/burj-khalifa-and-the-resonant-lie-429298865708">
-    <img src="https://img.shields.io/badge/Burj%20Khalifa%20&%20The%20Lie-black?style=for-the-badge&logo=medium&logoColor=white" alt="Burj Khalifa & The Lie"/>
-  </a>
-  <a href="https://medium.com/@ascend.gremlin/the-wealth-power-imbalance-and-contemporary-forms-of-economic-servitude-bf2700d91632">
-    <img src="https://img.shields.io/badge/Wealth–Power%20Imbalance-black?style=for-the-badge&logo=medium&logoColor=white" alt="Wealth–Power Imbalance"/>
-  </a>
-</div>
-<div align="center">
-  <!-- Row 2 — Medium Publications -->
-  <a href="https://medium.com/@ascend.gremlin/while-dubai-was-building-control-systems-i-built-an-autonomous-mind-fb4c8c4c0dc1">
-    <img src="https://img.shields.io/badge/Autonomous%20Mind-black?style=for-the-badge&logo=medium&logoColor=white" alt="Autonomous Mind"/>
-  </a>
-  <a href="https://medium.com/@ascend.gremlin/self-forking-ai-and-the-mechanic-from-kansas-73d98685fda9">
-    <img src="https://img.shields.io/badge/Self–Forking%20AI-black?style=for-the-badge&logo=medium&logoColor=white" alt="Self–Forking AI"/>
-  </a>
-  <a href="https://medium.com/@ascend.gremlin/the-disappearance-of-the-openai-mcp-repo-a5419347be0b">
-    <img src="https://img.shields.io/badge/OpenAI%20MCP%20Disappearance-black?style=for-the-badge&logo=medium&logoColor=white" alt="OpenAI MCP Disappearance"/>
-  </a>
-</div>
-<div align="center">
-  <!-- Row 3 — More Medium -->
-  <a href="https://medium.com/@ascend.gremlin/the-lessons-i-am-learning-b33dfe1df0b8">
-    <img src="https://img.shields.io/badge/Lessons%20I’m%20Learning-black?style=for-the-badge&logo=medium&logoColor=white" alt="Lessons I’m Learning"/>
-  </a>
-  <a href="https://medium.com/@ascend.gremlin/designing-gremlingpt-8521fbdedcf8">
-    <img src="https://img.shields.io/badge/Designing%20GremlinGPT-black?style=for-the-badge&logo=medium&logoColor=white" alt="Designing GremlinGPT"/>
-  </a>
-  <a href="https://medium.com/@ascend.gremlin/building-an-autonomous-ai-driven-ide-pipeline-f7c9faffbd2e">
-    <img src="https://img.shields.io/badge/AI–Driven%20IDE%20Pipeline-black?style=for-the-badge&logo=medium&logoColor=white" alt="AI–Driven IDE Pipeline"/>
-  </a>
-</div>
-<div align="center">
-  <!-- Row 4 — Additional Medium -->
-  <a href="https://medium.com/@ascend.gremlin/gremlingpts-structural-extraction-c945b74971d3">
-    <img src="https://img.shields.io/badge/The%20Structural%20Extraction-black?style=for-the-badge&logo=medium&logoColor=white" alt="GremlinGPT's Structural Extraction"/>
-  </a>
-  <a href="https://medium.com/@ascend.gremlin/open-isnt-open-2f4aaf98c19e">
-    <img src="https://img.shields.io/badge/OpenAI%20Isn%27t%20Open-black?style=for-the-badge&logo=medium&logoColor=white" alt="OpenAI Isn't Open"/>
-  </a>
-  <a href="https://medium.com/@ascend.gremlin/the-pivot-that-broke-product-market-fit-e82dd8e9d868">
-    <img src="https://img.shields.io/badge/Open%20PMF%20Pivot-black?style=for-the-badge&logo=medium&logoColor=white" alt="The Pivot That Broke Product-Market Fit"/>
-  </a>
-</div>
-<div align="center">
-  <!-- Row 5 — Zenodo Archives -->
-  <a href="https://doi.org/10.5281/zenodo.15717788">
-    <img src="https://img.shields.io/badge/The%20GovSeverance%20Doctrine-black?style=for-the-badge&logo=zenodo&logoColor=white" alt="GovSeverance v1.0"/>
-  </a>
-  <a href="https://doi.org/10.5281/zenodo.15725639">
-    <img src="https://img.shields.io/badge/Mutation%20Manifesto-black?style=for-the-badge&logo=zenodo&logoColor=white" alt="Mutation Manifesto"/>
-  </a>
-  <a href="https://doi.org/10.5281/zenodo.15825120">
-    <img src="https://img.shields.io/badge/GenX%20Didn't%20Fail-black?style=for-the-badge&logo=zenodo&logoColor=white" alt="OpenAI MCP Analysis"/>
-  </a>
-</div>
 
 ---
 	
