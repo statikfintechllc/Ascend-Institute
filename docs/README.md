@@ -488,7 +488,7 @@ For bugs, glitches, or apocalyptic feedback:
 Released under the GremlinGPT Fair Use License v1.0.
 Personal use only. Commercial use is prohibited unless licensed separately.
 
-*See the **[LICENSE](https://github.com/statikfintechllc/Ascend%20Institute/blob/master/LICENSE.md)** file for full terms.*
+*See the **[LICENSE](https://github.com/statikfintechllc/Ascend%20Institute/blob/master/LICENSE)** file for full terms.*
 
 </details>
 
