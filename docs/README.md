@@ -287,119 +287,30 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us">
   </a>
 </div>
 <div align="center">
-
-## Support This Project
-*If you find this project valuable and want to support its continued development, consider sponsoring or contributing*
-
-**Sponsor via:**
-
-## Support Options
-
-<div align="center">
-
-<table>
-  <thead>
-    <tr>
-      <th>Vendor</th>
-      <th>Access</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>GitHub</strong></td>
-      <td>
-        <a href="https://github.com/sponsors/statikfintechllc">
-          <img src="https://img.shields.io/badge/GitHub-StatikFinTech_LLC-ff0000?style=for-the-badge&logo=github&logoColor=white&labelColor=000000" />
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td><strong>Patreon</strong></td>
-      <td>
-        <a href="https://patreon.com/StatikFinTech_LLC">
-          <img src="https://img.shields.io/badge/Patreon-StatikFinTech_LLC-ff0000?style=for-the-badge&logo=patreon&logoColor=white&labelColor=000000" />
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td><strong>Ko-Fi</strong></td>
-      <td>
-        <a href="https://ko-fi.com/statikfintech_llc">
-          <img src="https://img.shields.io/badge/Ko--Fi-statikfintech_llc-ff0000?style=for-the-badge&logo=kofi&logoColor=white&labelColor=000000" />
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td><strong>CashApp</strong></td>
-      <td>
-        <a href="https://cash.app/$statikmoney8">
-          <img src="https://img.shields.io/badge/CashApp-%24statikmoney8-ff0000?style=for-the-badge&logo=cashapp&logoColor=white&labelColor=000000" />
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td><strong>PayPal</strong></td>
-      <td>
-        <a href="https://paypal.me/statikmoney8">
-          <img src="https://img.shields.io/badge/PayPal-paypal.me%2Fstatikmoney8-ff0000?style=for-the-badge&logo=paypal&logoColor=white&labelColor=000000" />
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td><strong>Bitcoin</strong></td>
-      <td>
-        <a href="https://www.blockchain.com/explorer/addresses/btc/bc1qarsr966ulmcs3mlcvae7p63v4j2y2vqrw74jl8">
-          <img src="https://img.shields.io/badge/Bitcoin-bc1qarsr9...-ff0000?style=for-the-badge&logo=bitcoin&logoColor=white&labelColor=000000" />
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td><strong>Ethereum</strong></td>
-      <td>
-        <a href="https://etherscan.io/address/0xC2db50A0fc6c95f36Af7171D8C41F6998184103F">
-          <img src="https://img.shields.io/badge/Ethereum-0xC2db5...-ff0000?style=for-the-badge&logo=ethereum&logoColor=white&labelColor=000000" />
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td><strong>Chime</strong></td>
-      <td>
-        <a href="#">
-          <img src="https://img.shields.io/badge/Chime-%24StatikSmokTM-ff0000?style=for-the-badge&logo=chime&logoColor=white&labelColor=000000" />
-        </a>
-      </td>
-    </tr>
-  </tbody>
-</table>
-</div>
-<div align="center">
-  <a href="https://maps.app.goo.gl/7tekD9g8i7FkWqxk8" target="_blank" rel="noopener">
-  <img src="https://img.shields.io/badge/StatikFinTeck--LLC-Google%20Verified-ff0000?style=for-the-badge&logo=googlemaps&logoColor=white&labelColor=000000" />
-  </a><br>
-  <a
-href="https://github.com/statikfintechllc/GremlinGPT">
-    <img src="https://img.shields.io/badge/Jump%20To-black?style=for-the-badge&logo=dragon&logoColor=white&labelColor=000000" alt="Fair Use License"/>
-  </a>
-  <a href="https://github.com/statikfintechllc//GremlinGPT">
-    <img src="https://img.shields.io/badge/GremlinGPT-ff0000?style=for-the-badge&logo=dragon&logoColor=white&labelColor=000000" alt="GremlinGPT License"/>
-  </a><br>
-<a
-href="https://www.gmail.com">
-  <img src="https://img.shields.io/badge/Join-black?style=for-the-badge&logo=dragon&logoColor=white&labelColor=000000"/>
-  <a href="mailto:ascend.gremlin@gmail.com">
-    <img src="https://img.shields.io/badge/the%20Loop-ff0000?style=for-the-badge&logo=dragon&logoColor=white&labelColor=000000"/>
-  </a>
-</div>
-</div>
-
+<a href="https://github.com/sponsors/statikfintechllc">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/git.sponsor.svg">
+</a><br>
 <a href="https://ko-fi.com/statikfintech_llc">
   <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/kofi.sponsor.svg">
-  </a><br>
-  <a href="https://patreon.com/StatikFinTech_LLC">
+</a><br>
+<a href="https://patreon.com/StatikFinTech_LLC">
   <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/patreon.sponsor.svg">
-  </a><br>
-  <a href="https://github.com/sponsors/statikfintechllc">
-  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/git.sponsor.svg">
+</a><br>
+<a href="https://cash.app/$statikmoney8">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/cashapp.sponsor.svg">
+</a><br>
+<a href="https://paypal.me/statikmoney8">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/paypal.sponsor.svg">
+</a><br>
+<a href="https://www.blockchain.com/explorer/addresses/btc/bc1qarsr966ulmcs3mlcvae7p63v4j2y2vqrw74jl8">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/bitcoin.sponsor.svg">
+</a><br>
+<a href="https://etherscan.io/address/0xC2db50A0fc6c95f36Af7171D8C41F6998184103F">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/ethereum.sponsor.svg">
+</a><br>
+<a href="#">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/chime.sponsor.svg">
+</a>
 </div>
 
 ---
@@ -510,9 +421,9 @@ Personal use only. Commercial use is prohibited unless licensed separately.
 
 *See the **[LICENSE](https://github.com/statikfintechllc/Ascend%20Institute/blob/master/LICENSE)** file for full terms.*
 
-<div align="center"
+<div align="center"> 
 
-[© 2025 StatikFinTech, LLC](https://github.com/statikfintechllc)
+  <br/> [© 2025 StatikFinTech, LLC](https://www.github.com/statikfintechllc/GremlinGPT/master/blob/LICENSE.md)
 
 </div>
 
