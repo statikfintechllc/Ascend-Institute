@@ -312,6 +312,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us">
   <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/chime.sponsor.svg">
 </a>
 </div>
+</div>
 
 ---
 
