@@ -393,6 +393,29 @@ href="https://www.gmail.com">
 </div>
 </div>
 
+<div align="center">
+  <a href="https://github.com/sponsors/statikfintechllc">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/L.W.badge.svg" alt="Like my work?" />
+  </a>
+</div>
+<div align="center">
+
+<a href="https://ko-fi.com/statikfintech_llc">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/kofi.sponsor.svg">
+  </a><br>
+  <a href="https://patreon.com/StatikFinTech_LLC">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/patreon.sponsor.svg">
+  </a><br>
+  <a href="https://github.com/sponsors/statikfintechllc">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/git.sponsor.svg">
+</div>
+<div align="center"> 
+
+
+  <br/> [© 2025 StatikFinTech, LLC](https://statikfintechllc.github.io/Ascend-Institute/)
+
+</div>
+
 ---
 
 ## Funding and Infrastructure Goals
