@@ -308,7 +308,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us">
 <a href="https://etherscan.io/address/0xC2db50A0fc6c95f36Af7171D8C41F6998184103F">
   <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/ethereum.sponsor.svg">
 </a><br>
-<a href="#">
+<a href="https://www.chime.com">
   <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/chime.sponsor.svg">
 </a>
 </div>
