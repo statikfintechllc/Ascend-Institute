@@ -191,7 +191,7 @@
   </a>
 </div>
 <div align="center">
-  <a href="https://github.com/sponsors/statikfintechllc">
+  <a href="https://github.com/statikfintechllc/statikfintechllc">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/sdks.svg/assets/statik.title.svg">
   </a>
 </div>
@@ -255,17 +255,6 @@ href="https://github.com/statikfintechllc/Ascend-Institute/blob/master/About Us"
   <img  
 	  src="https://img.shields.io/badge/SFTi-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
   </a>
-<div align="center">
-  <a href="https://github.com/sponsors/statikfintechllc">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/ai_architect.svg" alt="AI Architect" height="24">
-  </a>
-  <a href="https://github.com/sponsors/statikfintechllc">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/full_stack_dev.svg" alt="Full-Stack Dev" height="24">
-  </a>
-  <a href="https://github.com/sponsors/statikfintechllc">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/prompt_blacksmith.svg" alt="Prompt Blacksmith" height="24">
-  </a>
-</div>
 <div align="center">
 <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/G.I.badge.svg" alt="The Institute's GremlinGPT" />
   <a href="https://www.github.com/statikfintechllc/GremlinGPT">
