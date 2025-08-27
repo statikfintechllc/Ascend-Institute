@@ -424,7 +424,7 @@ Personal use only. Commercial use is prohibited unless licensed separately.
 
 <div align="center"> 
 
-  <br/> [© 2025 StatikFinTech, LLC](https://www.github.com/statikfintechllc/GremlinGPT/master/blob/LICENSE.md)
+  <br/> [© 2025 StatikFinTech, LLC](https://www.github.com/statikfintechllc/GremlinGPT/blob/master/LICENSE.md)
 
 </div>
 
