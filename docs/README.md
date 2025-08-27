@@ -240,7 +240,7 @@ href="tel:+16202669837">
   <img  
 	  src="https://img.shields.io/badge/Gremlin-darkred?style=for-the-badge&logo=gmail&logoColor=gold"/>
   </a>
-  <a href="mailto:gremlin.help@gmail.com">
+  <a href="mailto:ascendai.help@gmail.com">
   <img  
 	  src="https://img.shields.io/badge/Help-darkred?style=for-the-badge&logo=gmail&logoColor=gold"/>
   </a>
@@ -391,7 +391,7 @@ For bugs, glitches, or apocalyptic feedback:
   📱 SMS: +1 (785) 443-6288  
 📧 Email:  
   ✉️ ascend.gremlin@gmail.com  
-  ✉️ gremlin.help@gmail.com  
+  ✉️ ascendai.help@gmail.com  
 
 > [!IMPORTANT]
 > 
