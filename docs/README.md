@@ -240,14 +240,14 @@ href="tel:+16202669837">
   <img  
 	  src="https://img.shields.io/badge/Gremlin-darkred?style=for-the-badge&logo=gmail&logoColor=gold"/>
   </a>
-  <a href="mailto:ascend.help@gmail.com">
+  <a href="mailto:gremlin.help@gmail.com">
   <img  
 	  src="https://img.shields.io/badge/Help-darkred?style=for-the-badge&logo=gmail&logoColor=gold"/>
   </a>
 </div>
 <div align="center">
   <a
-href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us">
+href="https://github.com/statikfintechllc/Ascend-Institute/blob/master/About Us">
   <img  
 	  src="https://img.shields.io/badge/Why-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Why"/>
   </a>
@@ -391,7 +391,7 @@ For bugs, glitches, or apocalyptic feedback:
   📱 SMS: +1 (785) 443-6288  
 📧 Email:  
   ✉️ ascend.gremlin@gmail.com  
-  ✉️ ascend.help@gmail.com  
+  ✉️ gremlin.help@gmail.com  
 
 > [!IMPORTANT]
 > 
