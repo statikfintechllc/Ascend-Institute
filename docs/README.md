@@ -177,6 +177,12 @@
   <a href="https://medium.com/@ascend.gremlin/capital-capture-a2a885ce3885">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/capital-capture.svg" alt="Capital Capture" width="400"/>
   </a>
+  <a  href="https://medium.com/@ascend.gremlin/how-icann-stole-the-internet-3deb8369f777">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/how-icann-stole-the-internet.svg" alt="Capital Capture" width="400"/>
+  </a>
+  <a href="https://medium.com/@ascend.gremlin/the-contribution-revolution-4542ca5665aa">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/contribution-revolution.svg" alt="Capital Capture" width="400"/>
+  </a>
 </div>
 </div>
 <div align="center">
