@@ -352,20 +352,6 @@ We’re open to building aligned partnerships with:
 
 **See Our [Open Funding Proposal](https://github.com/statikfintechllc/Ascend-Institute/blob/master/About%20Us/OPEN_FUNDING_PROPOSAL.md)**
 
----
-
-### Tech Support
-
-For bugs, glitches, or apocalyptic feedback:
-
-- [Open an issue](https://github.com/statikfintechllc/Ascend%20Institute/issues)  
-- Or whisper into the void at:  Contact  
-  📞 Phone: +1 (620) 266-9837  
-  📱 SMS: +1 (785) 443-6288  
-📧 Email:  
-  ✉️ ascend.gremlin@gmail.com  
-  ✉️ ascendai.help@gmail.com  
-
 > [!IMPORTANT]
 > 
 > **We are seeking** the following:
@@ -382,20 +368,39 @@ For bugs, glitches, or apocalyptic feedback:
 
 ---
 
+### Tech Support
+
+For bugs, glitches, or apocalyptic feedback:
+
+- [Open an issue](https://github.com/statikfintechllc/Ascend%20Institute/issues)  
+- Or whisper into the void at:  Contact  
+  📞 Phone: +1 (620) 266-9837  
+  📱 SMS: +1 (785) 443-6288  
+📧 Email:  
+  ✉️ ascend.gremlin@gmail.com  
+  ✉️ ascendai.help@gmail.com  
+
+---
+
 ### License
 
 > [!WARNING]
 > 
 > **LEGAL NOTICE**:  
-> GremlinGPT is released under a Fair-Use License. Commercial, organizational, or enterprise use is **strictly prohibited** without a paid license.  
+> Our FlagShip, GremlinGPT, is released under a Fair-Use License. Commercial, organizational, or enterprise use is **strictly prohibited** without a paid license.  
 > Violators will be publicly disclosed and pursued for license infringement.
+>
+> The Instistitute is the current Landing page and Navigation for our Systems.
 
-Released under the GremlinGPT Fair Use License v1.0.
-Personal use only. Commercial use is prohibited unless licensed separately.
-
-*See the **[LICENSE](https://github.com/statikfintechllc/Ascend%20Institute/blob/master/LICENSE)** file for full terms.*
+*Released under the GremlinGPT Fair Use License v1.0.
+Personal use only. Commercial use is prohibited unless licensed separately.*
 
 <div align="center">
+	
+*See the **[LICENSE](https://github.com/statikfintechllc/Ascend%20Institute/blob/master/LICENSE)** file for full terms.*
+
+  <br/> [© 2025 StatikFinTech, LLC](https://www.github.com/statikfintechllc/GremlinGPT/blob/master/LICENSE.md)
+  
   <a href="https://github.com/statikfintechllc">
     <img src="https://img.shields.io/badge/-000000?logo=github&logoColor=white&style=flat-square" alt="GitHub">
   </a>
@@ -413,10 +418,7 @@ Personal use only. Commercial use is prohibited unless licensed separately.
   </a>
   <a href="https://medium.com/@ascend.gremlin">
     <img src="https://img.shields.io/badge/-000000?logo=medium&logoColor=white&style=flat-square" alt="Medium">
-  </a><br>
-		
-  <br/> [© 2025 StatikFinTech, LLC](https://www.github.com/statikfintechllc/GremlinGPT/blob/master/LICENSE.md)
-
+  </a>
 </div>
 
 <!--
