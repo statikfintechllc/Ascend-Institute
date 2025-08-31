@@ -10,6 +10,9 @@
 </div>
 <div align="center">
   <a href="https://github.com/sponsors/statikfintechllc">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/g.svg/assets/github-profile.svg">
+  </a><br>
+  <a href="https://github.com/sponsors/statikfintechllc">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/s.svg/assets/streak.svg" alt="Streak" />
   </a>
 </div>
@@ -19,30 +22,7 @@
   </a>
 </div>
 <div align="center">
-  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/r.svg/assets/repo-slide.svg" alt="Featured repositories carousel" />
-</div>
-<div align="center">
-  <a href="https://github.com/sponsors/statikfintechllc">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/g.svg/assets/github-profile.svg">
-  </a>
-  <a href="https://github.com/statikfintechllc">
-    <img src="https://img.shields.io/badge/-000000?logo=github&logoColor=white&style=flat-square" alt="GitHub">
-  </a>
-  <a href="https://www.linkedin.com/in/daniel-morris-780804368">
-    <img src="https://img.shields.io/badge/In-e11d48?logo=linkedin&logoColor=white&style=flat-square" alt="LinkedIn">
-  </a>
-  <a href="mailto:ascend.gremlin@gmail.com">
-    <img src="https://img.shields.io/badge/-D14836?logo=gmail&logoColor=white&style=flat-square" alt="Email">
-  </a>
-  <a href="https://www.youtube.com/@Gremlins_Forge">
-    <img src="https://img.shields.io/badge/-FF0000?logo=youtube&logoColor=white&style=flat-square" alt="YouTube">
-  </a>
-  <a href="https://x.com/GremlinsForge">
-    <img src="https://img.shields.io/badge/-000000?logo=x&logoColor=white&style=flat-square" alt="X">
-  </a>
-  <a href="https://medium.com/@ascend.gremlin">
-    <img src="https://img.shields.io/badge/-000000?logo=medium&logoColor=white&style=flat-square" alt="Medium">
-  </a><br>
+  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/r.svg/assets/repo-slide.svg" alt="Featured repositories carousel" /><br>
   <a href="https://github.com/sponsors/statikfintechllc">
  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/c.svg/assets/crimson-flow.svg" alt="Statik DK Smoke Activity">
   </a>
@@ -309,15 +289,13 @@ href="https://github.com/statikfintechllc/Ascend-Institute/blob/master/About Us"
 </div>
 </div>
 
----
-
-## Funding and Infrastructure Goals
-
 > [!CAUTION]
 > 
 > *GremlinGPT is growing. It learns(as do I while finishing GremlinGPT). It Launches(Soon).*
 > *The project is reaching the limits of what a solo builder can finish without external support.*
 > *The next stage—deployment, agent orchestration, and memory stability, an infrastructure investment to move into full time Development.*
+
+---
 
 ### Funding Target is **$500,000**
 
@@ -328,7 +306,7 @@ href="https://github.com/statikfintechllc/Ascend-Institute/blob/master/About Us"
 - Persistent vector DB for others and hosted runtime servers for others who cant afford a system
 - Ensuring Secure DevOps pipeline for offline + encrypted agents for the ones who cant secure thier own hardware.
 
-## If You Are
+### If You Are
 
 - A founder with cloud real estate and idle GPUs  
 - A data center operator who understands sovereign AI  
@@ -342,7 +320,7 @@ href="https://github.com/statikfintechllc/Ascend-Institute/blob/master/About Us"
 
 *If you get it, run the loop.*
 
-## Partner With Us
+### Partner With Us
 
 We’re open to building aligned partnerships with:
 
@@ -359,7 +337,7 @@ We’re open to building aligned partnerships with:
 
 **You’re one of us.**
 
-## Collaborators Wanted to Join the Loop
+### Collaborators Wanted to Join the Loop
 
 - If you know how to think in layers, act in silence, and write code that rewrites itself —  
 **fork the repo, send a PR, and bring a machine that can keep up.**
@@ -376,7 +354,7 @@ We’re open to building aligned partnerships with:
 
 ---
 
-## Tech Support
+### Tech Support
 
 For bugs, glitches, or apocalyptic feedback:
 
@@ -404,7 +382,7 @@ For bugs, glitches, or apocalyptic feedback:
 
 ---
 
-## License
+### License
 
 > [!WARNING]
 > 
@@ -417,8 +395,26 @@ Personal use only. Commercial use is prohibited unless licensed separately.
 
 *See the **[LICENSE](https://github.com/statikfintechllc/Ascend%20Institute/blob/master/LICENSE)** file for full terms.*
 
-<div align="center"> 
-
+<div align="center">
+  <a href="https://github.com/statikfintechllc">
+    <img src="https://img.shields.io/badge/-000000?logo=github&logoColor=white&style=flat-square" alt="GitHub">
+  </a>
+  <a href="https://www.linkedin.com/in/daniel-morris-780804368">
+    <img src="https://img.shields.io/badge/In-e11d48?logo=linkedin&logoColor=white&style=flat-square" alt="LinkedIn">
+  </a>
+  <a href="mailto:ascend.gremlin@gmail.com">
+    <img src="https://img.shields.io/badge/-D14836?logo=gmail&logoColor=white&style=flat-square" alt="Email">
+  </a>
+  <a href="https://www.youtube.com/@Gremlins_Forge">
+    <img src="https://img.shields.io/badge/-FF0000?logo=youtube&logoColor=white&style=flat-square" alt="YouTube">
+  </a>
+  <a href="https://x.com/GremlinsForge">
+    <img src="https://img.shields.io/badge/-000000?logo=x&logoColor=white&style=flat-square" alt="X">
+  </a>
+  <a href="https://medium.com/@ascend.gremlin">
+    <img src="https://img.shields.io/badge/-000000?logo=medium&logoColor=white&style=flat-square" alt="Medium">
+  </a><br>
+		
   <br/> [© 2025 StatikFinTech, LLC](https://www.github.com/statikfintechllc/GremlinGPT/blob/master/LICENSE.md)
 
 </div>
