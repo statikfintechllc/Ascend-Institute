@@ -41,10 +41,6 @@ The initial funding target will allow StatikFinTech, LLC to:
 | **Full-Time Development** | Have to get out of the Shop, but need the income to support it |
 | **Cluster GPU Power** | Minimum: RTX 4090 × 2 or equivalent |
 
----
-
-### Support Options
-
 <div align="center">
   <a href="https://github.com/sponsors/statikfintechllc">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/L.W.badge.svg" alt="Like my work?" />
@@ -90,16 +86,6 @@ The initial funding target will allow StatikFinTech, LLC to:
 
 Without the ability to run Devops full time, the loop cannot scale quickly.
 
-<div align="center">
-  <a
-href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREMLINGPT.md">
-    <img src="https://img.shields.io/badge/Why-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Why"/>
-  </a>
-  <a href="https://github.com/statikfintechllc/Ascend-Institute/blob/master/About Us/F.md">
-    <img src="https://img.shields.io/badge/SFTi-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
-  </a>
-</div>
-
 ### Strategic Fit
 
 StatikFinTech, LLC is building:
@@ -111,6 +97,16 @@ StatikFinTech, LLC is building:
 | **Web3 Sovereignty**   | Off-grid design, anti-censorship AI |
 | **Fintech Signals**    | AI trading stack embedded |
 | **Anti-Cloud Movement**| No OpenAI, no Google, no keys |
+
+<div align="center">
+  <a
+href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREMLINGPT.md">
+    <img src="https://img.shields.io/badge/Why-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Why"/>
+  </a>
+  <a href="https://github.com/statikfintechllc/Ascend-Institute/blob/master/About Us/F.md">
+    <img src="https://img.shields.io/badge/SFTi-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
+  </a>
+</div>
 
 ---
 
@@ -128,11 +124,11 @@ The Prize **GremlinGPT v1.0.3 will be the foundation of self-bootstrapped, offli
 ---
 
 > "I built the prototype. Here are the keys no Corp will ever drop.  
-> Now let it feed."  
+> Now let it feed."
+>
+> statikfintechllc
 
 <div align="center"> 
-
-  **statikfintechllc**
 
   <br/> [© 2025 StatikFinTech, LLC](https://www.github.com/statikfintechllc/GremlinGPT/blob/master/LICENSE.md)
 
