@@ -21,11 +21,13 @@ href="https://github.com/statikfintechllc/GremlinGPT/blob/master/LICENSE.md">
 
 ### Executive Summary
 
-StatikFinTech, LLC is a sovereign, fully-local, self-evolving AI system.  
-It bootstraps itself from scratch. No cloud. No APIs. No filters.  
+StatikFinTech, LLC builds sovereign, fully-local, self-evolving AI systems. Local Chatbots, and other AI and trading infra.   
+
+> No cloud. No APIs. No filters. 
+
 Built to learn, mutate, retrain, and self-orchestrate — entirely offline.
 
-> **"It's not another wrapper. It's a recursive intelligence loop."**
+> **"We do not build generic. This is a recursive intelligence loop."**
 
 These projects are **not monetized, centralized, or VC-filtered.**  
 But they now requires infrastructure support to evolve into a fully production grade autonomous AGI system.
