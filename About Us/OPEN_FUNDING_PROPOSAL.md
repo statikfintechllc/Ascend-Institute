@@ -28,7 +28,7 @@ Built to learn, mutate, retrain, and self-orchestrate — entirely offline.
 > **"It's not another wrapper. It's a recursive intelligence loop."**
 
 These projects are **not monetized, centralized, or VC-filtered.**  
-But it now requires infrastructure support to evolve into a fully production grade autonomous AGI system.
+But they now requires infrastructure support to evolve into a fully production grade autonomous AGI system.
 
 ---
 
