@@ -372,7 +372,7 @@ We’re open to building aligned partnerships with:
   - a) [LinkedIn: StatikFinTech, LLC](https://www.linkedin.com/in/statikfintech-llc-780804368/)
   - b) [X: @GremlinsForge](https://twitter.com/GremlinsForge)  
 
-**See Our [Open Funding Proposal](https://github.com/statikfintechllc/Ascend%20Institute/blob/master/About%20Us/OPEN_FUNDING_PROPOSAL.md)**
+**See Our [Open Funding Proposal](https://github.com/statikfintechllc/Ascend-Institute/blob/master/About%20Us/OPEN_FUNDING_PROPOSAL.md)**
 
 ---
 
