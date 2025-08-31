@@ -1,61 +1,38 @@
-<link rel="stylesheet" type="text/css" href="docs/custom.css">
 <div align="center">
   <a
-href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md">
+href="https://github.com/statikfintechllc/GremlinGPT/blob/master/LICENSE.md">
     <img src="https://img.shields.io/badge/FAIR%20USE-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Fair Use License"/>
   </a>
-  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/LICENSE.md">
+  <a href="https://github.com/statikfintechllc/GremlinGPT/blob/master/LICENSE.md">
     <img src="https://img.shields.io/badge/GREMLINGPT%20v1.0.3-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
   </a>
 </div>
-<div align="center">
-  <a
-href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREMLINGPT.md">
-    <img src="https://img.shields.io/badge/Why-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Why"/>
-  </a>
-  <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREMLINGPT.md">
-    <img src="https://img.shields.io/badge/GremlinGPT-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
-  </a>
-</div>
 
-  <div align="center">
-  <a href="https://ko-fi.com/statikfintech_llc">
-    <img src="https://img.shields.io/badge/Support-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Support"/>
-  </a>
-  <a href="https://patreon.com/StatikFinTech_LLC?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink">
-    <img src="https://img.shields.io/badge/SFTi-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="SFTi"/>
-  </a>
-</div>
+<h1 align="center">StatikFinnTech, LLC</h1>
+<h3 align="center">The SFTi Open Funding Proposal</h3>
 
-# GremlinGPT – Open Funding Proposal
-
-**Project:** GremlinGPT v1.0.3  
-*Repo:*
-
-[https://github.com/statikfintechllc/AscendAI](https://github.com/statikfintechllc/AscendAI.git)  
-**Maintainer:** statikfintechllc / ascend.gremlin@gmail.com   
-**Version:** 1.0.3-alpha   
-**License:** Dual License – Fair Use + GremlinGPT Commercial Lock   
-**Status:** Actively Maintained   
-**Dashboard:** [https://statikfintechllc.github.io
-](https://statikfintechllc.github.io/AscendAI/)
+**Systems Scope**: Autonomous, Cognitive, Agentic, FinTech, For The People  
+**Maintainer**: [statikfintechllc](https://github.com/statikfintechllc)  
+**Systems Status**: Actively Maintained   
+**Dashboard**: [https://statikfintechllc.github.io
+](https://statikfintechllc.github.io/Ascend-Institute/)  
 
 ---
 
-## Executive Summary
+### Executive Summary
 
-GremlinGPT is a sovereign, fully-local, self-evolving AI system.  
+StatikFinTech, LLC is a sovereign, fully-local, self-evolving AI system.  
 It bootstraps itself from scratch. No cloud. No APIs. No filters.  
 Built to learn, mutate, retrain, and self-orchestrate — entirely offline.
 
 > **"It's not another wrapper. It's a recursive intelligence loop."**
 
-This project is **not monetized, centralized, or VC-filtered.**  
-But it now requires infrastructure support to evolve into an autonomous AGI prototype.
+These projects are **not monetized, centralized, or VC-filtered.**  
+But it now requires infrastructure support to evolve into a fully production grade autonomous AGI system.
 
 ---
 
-## Funding Goal: $500,000 USD
+### Funding Goal: $500,000 USD
 
 The initial funding target will allow StatikFinTech, LLC to:
 | Goal | Purpose |
@@ -66,77 +43,38 @@ The initial funding target will allow StatikFinTech, LLC to:
 
 ---
 
-## Support Options
+### Support Options
 
 <div align="center">
-
-<table>
-  <thead>
-    <tr>
-      <th>Vendor</th>
-      <th>Access</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Patreon</strong></td>
-      <td>
-        <a href="https://patreon.com/StatikFinTech_LLC">
-          <img src="https://img.shields.io/badge/Patreon-StatikFinTech_LLC-ff0000?style=for-the-badge&logo=patreon&logoColor=white&labelColor=000000" />
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td><strong>Ko-Fi</strong></td>
-      <td>
-        <a href="https://ko-fi.com/statikfintech_llc">
-          <img src="https://img.shields.io/badge/Ko--Fi-statikfintech_llc-ff0000?style=for-the-badge&logo=kofi&logoColor=white&labelColor=000000" />
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td><strong>CashApp</strong></td>
-      <td>
-        <a href="https://cash.app/$statikmoney8">
-          <img src="https://img.shields.io/badge/CashApp-%24statikmoney8-ff0000?style=for-the-badge&logo=cashapp&logoColor=white&labelColor=000000" />
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td><strong>PayPal</strong></td>
-      <td>
-        <a href="https://paypal.me/statikmoney8">
-          <img src="https://img.shields.io/badge/PayPal-paypal.me%2Fstatikmoney8-ff0000?style=for-the-badge&logo=paypal&logoColor=white&labelColor=000000" />
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td><strong>Bitcoin</strong></td>
-      <td>
-        <a href="https://www.blockchain.com/explorer/addresses/btc/bc1qarsr966ulmcs3mlcvae7p63v4j2y2vqrw74jl8">
-          <img src="https://img.shields.io/badge/Bitcoin-bc1qarsr9...-ff0000?style=for-the-badge&logo=bitcoin&logoColor=white&labelColor=000000" />
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td><strong>Ethereum</strong></td>
-      <td>
-        <a href="https://etherscan.io/address/0xC2db50A0fc6c95f36Af7171D8C41F6998184103F">
-          <img src="https://img.shields.io/badge/Ethereum-0xC2db5...-ff0000?style=for-the-badge&logo=ethereum&logoColor=white&labelColor=000000" />
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td><strong>Chime</strong></td>
-      <td>
-        <a href="#">
-          <img src="https://img.shields.io/badge/Chime-%24StatikSmokTM-ff0000?style=for-the-badge&logo=chime&logoColor=white&labelColor=000000" />
-        </a>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
+  <a href="https://github.com/sponsors/statikfintechllc">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/L.W.badge.svg" alt="Like my work?" />
+  </a>
+</div>
+<div align="center">
+<a href="https://github.com/sponsors/statikfintechllc">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/git.sponsor.svg">
+</a><br>
+<a href="https://ko-fi.com/statikfintech_llc">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/kofi.sponsor.svg">
+</a><br>
+<a href="https://patreon.com/StatikFinTech_LLC">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/patreon.sponsor.svg">
+</a><br>
+<a href="https://cash.app/$statikmoney8">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/cashapp.sponsor.svg">
+</a><br>
+<a href="https://paypal.me/statikmoney8">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/paypal.sponsor.svg">
+</a><br>
+<a href="https://www.blockchain.com/explorer/addresses/btc/bc1qarsr966ulmcs3mlcvae7p63v4j2y2vqrw74jl8">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/bitcoin.sponsor.svg">
+</a><br>
+<a href="https://etherscan.io/address/0xC2db50A0fc6c95f36Af7171D8C41F6998184103F">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/ethereum.sponsor.svg">
+</a><br>
+<a href="https://www.chime.com">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/chime.sponsor.svg">
+</a>
 </div>
 
 **Want equity, See you're own ideas built, or to sponsor hardware directly? Reach Out to:**
@@ -148,27 +86,35 @@ The initial funding target will allow StatikFinTech, LLC to:
 
 ---
 
-## Why Now?
+### Why Now?
 
 Without the ability to run Devops full time, the loop cannot scale quickly.
 
----
+<div align="center">
+  <a
+href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREMLINGPT.md">
+    <img src="https://img.shields.io/badge/Why-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Why"/>
+  </a>
+  <a href="https://github.com/statikfintechllc/Ascend-Institute/blob/master/About Us/F.md">
+    <img src="https://img.shields.io/badge/SFTi-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
+  </a>
+</div>
 
-## Strategic Fit
+### Strategic Fit
 
 StatikFinTech, LLC is building:
 
 | Sector           | Why it Fits |
 |------------------|-------------|
 | **Autonomous Agents** | Built for recursive execution |
-| **Edge AI / IoT**      | Fully local, no dependencies |
+| **Edge AI / IoT**      | Fully local, no external cloud dependencies |
 | **Web3 Sovereignty**   | Off-grid design, anti-censorship AI |
 | **Fintech Signals**    | AI trading stack embedded |
 | **Anti-Cloud Movement**| No OpenAI, no Google, no keys |
 
 ---
 
-## Summary
+### Summary
 
 This isn’t another LLM Wrapper Start-Up.
 
@@ -183,4 +129,11 @@ The Prize **GremlinGPT v1.0.3 will be the foundation of self-bootstrapped, offli
 
 > "I built the prototype. Here are the keys no Corp will ever drop.  
 > Now let it feed."  
-> — **statikfintechllc**
+
+<div align="center"> 
+
+  **statikfintechllc**
+
+  <br/> [© 2025 StatikFinTech, LLC](https://www.github.com/statikfintechllc/GremlinGPT/blob/master/LICENSE.md)
+
+</div>
