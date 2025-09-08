@@ -9,7 +9,7 @@
 <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/i.svg/assets/institute-header.svg" alt="Institute Header"/>
 </div>
 <div align="center">
-  <a href="https://github.com/sponsors/statikfintechllc">
+  <a href="https://github.com/statikfintechllc">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/g.svg/assets/github-profile.svg">
   </a><br>
   <a href="https://github.com/sponsors/statikfintechllc">
