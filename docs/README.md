@@ -30,6 +30,14 @@
 <!-- Flexbox Grid -->
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
 <div align="center">
+  <a href="https://github.com/statikfintechllc/IB-G.Scanner">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/IB.G.svg/assets/ib-g-scanner-card.svg" alt="IB-G.Scanner" width="400"/>
+  </a>
+
+  <a href="https://github.com/statikfintechllc/Pilot-Server">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/P.S.svg/assets/pilot-server-card.svg" alt="Pilot-Server" width="400"/>
+  </a>
+
   <a href="https://github.com/statikfintechllc/GremlinGPT">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/G.G.svg/assets/gremlingpt-card.svg" alt="GremlinGPT" width="400"/>
   </a>
@@ -44,14 +52,6 @@
 
   <a href="https://github.com/statikfintechllc/statik-server">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/S.S.svg/assets/statik-server-card.svg" alt="statik-server" width="400"/>
-  </a>
-
-  <a href="https://github.com/statikfintechllc/IB-G.Scanner">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/IB.G.svg/assets/ib-g-scanner-card.svg" alt="IB-G.Scanner" width="400"/>
-  </a>
-
-  <a href="https://github.com/statikfintechllc/Pilot-Server">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/P.S.svg/assets/pilot-server-card.svg" alt="Pilot-Server" width="400"/>
   </a>
 
   <a href="https://github.com/statikfintechllc/AscendNet">
@@ -70,12 +70,12 @@
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/M.M.svg/assets/mobile-mirror-card.svg" alt="Mobile-Mirror" width="400"/>
   </a>
 
-  <a href="https://github.com/statikfintechllc/AscendDocs-of-GovSeverance">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/A.D.svg/assets/ascenddocs-of-govseverance-card.svg" alt="AscendDocs-of-GovSeverance" width="400"/>
-  </a>
-
   <a href="https://github.com/statikfintechllc/dragon-boot">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/D.B.svg/assets/dragon-boot-card.svg" alt="dragon-boot" width="400"/>
+  </a>
+  
+  <a href="https://github.com/statikfintechllc/AscendDocs-of-GovSeverance">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/A.D.svg/assets/ascenddocs-of-govseverance-card.svg" alt="AscendDocs-of-GovSeverance" width="400"/>
   </a>
 </div>
 </div>
