@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Navbar Example - Ascend Institute</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8fafc;
+        }
+        
+        .demo-container {
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+        
+        .demo-content {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .demo-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+        
+        .demo-description {
+            color: #64748b;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .feature-list li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .feature-list li::before {
+            content: '✓';
+            color: #22c55e;
+            font-weight: bold;
+        }
+        
+        .controls {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .controls h3 {
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+            color: #1e293b;
+        }
+        
+        .control-group {
+            margin-bottom: 1rem;
+        }
+        
+        .control-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #374151;
+        }
+        
+        .control-group input,
+        .control-group select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+        
+        .control-group button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .control-group button:hover {
+            background: #2563eb;
+        }
+        
+        .demo-info {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .demo-info h4 {
+            color: #1d4ed8;
+            margin-bottom: 0.5rem;
+        }
+        
+        .demo-info p {
+            color: #1e40af;
+            font-size: 0.9rem;
+        }
+        
+        /* Hide on desktop */
+        @media (min-width: 769px) {
+            .desktop-notice {
+                display: block;
+                background: #fef3c7;
+                border: 1px solid #f59e0b;
+                border-radius: 8px;
+                padding: 1rem;
+                margin-bottom: 2rem;
+                text-align: center;
+            }
+            
+            .desktop-notice p {
+                color: #92400e;
+                margin: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .desktop-notice {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Navbar will be inserted here -->
+    <div id="mobile-navbar"></div>
+
+    <div class="demo-container">
+        <div class="desktop-notice">
+            <p><strong>Notice:</strong> This is a mobile navbar example. Resize your browser to mobile width (≤768px) or use mobile device to see the full functionality.</p>
+        </div>
+        
+        <div class="demo-content">
+            <h1 class="demo-title">Mobile Navbar Component</h1>
+            <p class="demo-description">
+                This demo showcases the mobile navbar component with hamburger menu, 
+                dropdown navigation, and integrated ticker functionality. The navbar 
+                is optimized for touch interactions and provides a seamless mobile experience.
+            </p>
+            
+            <h3>Features:</h3>
+            <ul class="feature-list">
+                <li>Hamburger menu with smooth animation</li>
+                <li>Touch-friendly navigation links (44px minimum targets)</li>
+                <li>Integrated ticker with scrolling announcements</li>
+                <li>Fixed positioning with proper body margin</li>
+                <li>Automatic hiding on desktop breakpoints</li>
+                <li>Smooth dropdown animations</li>
+                <li>Click-outside-to-close functionality</li>
+            </ul>
+            
+            <div class="controls">
+                <h3>Interactive Controls</h3>
+                
+                <div class="control-group">
+                    <label>Update Logo Text:</label>
+                    <input type="text" id="logoText" value="Ascend Institute" placeholder="Enter logo text">
+                    <button onclick="updateLogo()">Update Logo</button>
+                </div>
+                
+                <div class="control-group">
+                    <label>Update Ticker Text:</label>
+                    <input type="text" id="tickerText" value="Latest updates and announcements scroll here" placeholder="Enter ticker message">
+                    <button onclick="updateTicker()">Update Ticker</button>
+                </div>
+                
+                <div class="control-group">
+                    <label>Ticker Control:</label>
+                    <button onclick="toggleTicker()">Toggle Ticker</button>
+                    <button onclick="navbar.closeMenu()">Close Menu</button>
+                </div>
+            </div>
+            
+            <div class="demo-info">
+                <h4>Implementation Notes</h4>
+                <p>
+                    The navbar automatically calculates body margin based on navbar height plus ticker height. 
+                    Touch events are optimized for mobile devices with proper event handling for touchstart/touchend. 
+                    The component is responsive and will automatically hide on desktop viewports (>768px).
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load the mobile navbar component -->
+    <script src="navbar.js"></script>
+    
+    <script>
+        // Initialize navbar with custom options
+        let navbar;
+        
+        function initNavbar() {
+            navbar = new MobileNavbar({
+                containerId: 'mobile-navbar',
+                logoText: 'Ascend Institute',
+                logoHref: '/',
+                showTicker: true,
+                tickerText: 'Latest updates and announcements scroll here • Join our community today • Learn about digital sovereignty'
+            });
+        }
+        
+        function updateLogo() {
+            const newText = document.getElementById('logoText').value;
+            if (newText.trim()) {
+                const logoElement = document.querySelector('.logo');
+                if (logoElement) {
+                    logoElement.textContent = newText;
+                }
+            }
+        }
+        
+        function updateTicker() {
+            const newText = document.getElementById('tickerText').value;
+            if (newText.trim() && navbar) {
+                navbar.updateTickerText(newText);
+            }
+        }
+        
+        function toggleTicker() {
+            const tickerElement = document.querySelector('.ticker-mobile');
+            const bodyMargin = parseInt(document.body.style.marginTop) || 96;
+            
+            if (tickerElement) {
+                if (tickerElement.style.display === 'none') {
+                    tickerElement.style.display = 'flex';
+                    document.body.style.marginTop = '96px';
+                } else {
+                    tickerElement.style.display = 'none';
+                    document.body.style.marginTop = '64px';
+                }
+            }
+        }
+        
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initNavbar);
+        } else {
+            initNavbar();
+        }
+        
+        // Demo event listeners
+        document.addEventListener('cardClick', (e) => {
+            console.log('Navbar interaction:', e.detail);
+        });
+        
+        // Responsive demo
+        window.addEventListener('resize', () => {
+            const notice = document.querySelector('.desktop-notice p');
+            if (notice) {
+                if (window.innerWidth > 768) {
+                    notice.innerHTML = '<strong>Notice:</strong> Switch to mobile view (≤768px) to see the mobile navbar in action.';
+                } else {
+                    notice.innerHTML = '<strong>Perfect!</strong> You can now see the mobile navbar functionality.';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "",
+  "builds": {},
+  "components": {
+    "navbar": {
+      "platforms": ["mobile", "desktop"],
+      "status": "ready",
+      "dependencies": {
+        "mobile": ["ticker.js"],
+        "desktop": []
+      },
+      "lastBuild": null
+    },
+    "footer": {
+      "platforms": ["mobile", "desktop"],
+      "status": "ready",
+      "dependencies": {
+        "mobile": [],
+        "desktop": []
+      },
+      "lastBuild": null
+    },
+    "card": {
+      "platforms": ["mobile", "desktop"],
+      "status": "ready",
+      "dependencies": {
+        "mobile": [],
+        "desktop": []
+      },
+      "lastBuild": null
+    },
+    "svg-card": {
+      "platforms": ["mobile", "desktop"],
+      "status": "ready",
+      "dependencies": {
+        "mobile": [],
+        "desktop": []
+      },
+      "lastBuild": null
+    },
+    "ticker": {
+      "platforms": ["mobile"],
+      "status": "ready",
+      "dependencies": {
+        "mobile": []
+      },
+      "lastBuild": null
+    }
+  },
+  "domains": {
+    "dev": {
+      "components": {},
+      "lastBuild": null
+    },
+    "server": {
+      "components": {},
+      "lastBuild": null
+    },
+    "www": {
+      "components": {},
+      "lastBuild": null
+    }
+  },
+  "buildHistory": [],
+  "statistics": {
+    "totalBuilds": 0,
+    "successfulBuilds": 0,
+    "failedBuilds": 0,
+    "componentsBuilt": 0
+  }
+}

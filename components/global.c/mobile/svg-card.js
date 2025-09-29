@@ -1,0 +1,444 @@
+// Mobile SVG Card Component
+// SVG-based card with mobile optimizations and touch interactions
+
+class MobileSVGCard {
+  constructor(options = {}) {
+    this.options = {
+      containerId: null,
+      title: 'SVG Card',
+      description: 'SVG-enhanced card component',
+      iconSvg: null,
+      iconType: 'default', // default, tech, finance, education
+      linkUrl: null,
+      linkText: 'Learn More',
+      variant: 'default', // default, gradient, outline
+      color: '#3b82f6',
+      interactive: true,
+      ...options
+    };
+    
+    this.init();
+  }
+
+  init() {
+    this.render();
+    if (this.options.interactive) {
+      this.attachEventListeners();
+    }
+  }
+
+  render() {
+    const container = this.options.containerId ? 
+      document.getElementById(this.options.containerId) : 
+      document.createElement('div');
+    
+    const cardHTML = `
+      <div class="svg-card-mobile ${this.options.variant}" data-card-id="${this.generateId()}">
+        <div class="svg-card-icon">
+          ${this.renderIcon()}
+        </div>
+        <div class="svg-card-content">
+          <h3 class="svg-card-title">${this.options.title}</h3>
+          <p class="svg-card-description">${this.options.description}</p>
+          ${this.options.linkUrl ? this.renderButton() : ''}
+        </div>
+      </div>
+      
+      <style>
+        .svg-card-mobile {
+          background: white;
+          border-radius: 16px;
+          padding: 1.5rem;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          border: 1px solid #f1f5f9;
+          transition: all 0.3s ease;
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+          cursor: pointer;
+          min-height: 44px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        
+        .svg-card-mobile.interactive:active {
+          transform: scale(0.98);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Variant styles */
+        .svg-card-mobile.gradient {
+          background: linear-gradient(135deg, ${this.options.color}15 0%, ${this.options.color}05 100%);
+          border-color: ${this.options.color}30;
+        }
+        
+        .svg-card-mobile.outline {
+          background: transparent;
+          border: 2px solid ${this.options.color};
+        }
+        
+        .svg-card-mobile.outline .svg-card-title {
+          color: ${this.options.color};
+        }
+        
+        /* Icon container */
+        .svg-card-icon {
+          width: 64px;
+          height: 64px;
+          margin-bottom: 1rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          background: ${this.options.color}15;
+          transition: all 0.3s ease;
+        }
+        
+        .svg-card-mobile:active .svg-card-icon {
+          transform: scale(1.1);
+          background: ${this.options.color}25;
+        }
+        
+        .svg-card-icon svg {
+          width: 32px;
+          height: 32px;
+          color: ${this.options.color};
+          transition: transform 0.3s ease;
+        }
+        
+        .svg-card-mobile:active .svg-card-icon svg {
+          transform: rotate(5deg);
+        }
+        
+        /* Content styles */
+        .svg-card-content {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        
+        .svg-card-title {
+          font-size: 1.125rem;
+          font-weight: 600;
+          color: #1e293b;
+          margin: 0 0 0.75rem 0;
+          line-height: 1.4;
+        }
+        
+        .svg-card-description {
+          font-size: 0.9rem;
+          color: #64748b;
+          line-height: 1.5;
+          margin: 0 0 1.25rem 0;
+          text-align: center;
+        }
+        
+        /* Button styles */
+        .svg-card-button {
+          background: ${this.options.color};
+          color: white;
+          border: none;
+          padding: 0.75rem 1.5rem;
+          border-radius: 8px;
+          font-size: 0.9rem;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          min-height: 44px;
+          min-width: 44px;
+          justify-content: center;
+        }
+        
+        .svg-card-button:active {
+          transform: scale(0.95);
+          background: ${this.options.color}dd;
+        }
+        
+        /* Pulse animation for interactive feedback */
+        .svg-card-mobile.pulse {
+          animation: pulse 0.6s ease-in-out;
+        }
+        
+        @keyframes pulse {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.05); }
+          100% { transform: scale(1); }
+        }
+        
+        /* Loading state */
+        .svg-card-mobile.loading {
+          pointer-events: none;
+          opacity: 0.7;
+        }
+        
+        .svg-card-mobile.loading .svg-card-icon svg {
+          animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+        
+        /* Hide on desktop */
+        @media (min-width: 769px) {
+          .svg-card-mobile {
+            display: none;
+          }
+        }
+        
+        /* Very small screens */
+        @media (max-width: 320px) {
+          .svg-card-mobile {
+            padding: 1rem;
+          }
+          
+          .svg-card-icon {
+            width: 56px;
+            height: 56px;
+          }
+          
+          .svg-card-icon svg {
+            width: 28px;
+            height: 28px;
+          }
+          
+          .svg-card-title {
+            font-size: 1rem;
+          }
+          
+          .svg-card-description {
+            font-size: 0.85rem;
+          }
+        }
+        
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+          .svg-card-mobile {
+            background: #1e293b;
+            border-color: #334155;
+          }
+          
+          .svg-card-title {
+            color: #f8fafc;
+          }
+          
+          .svg-card-description {
+            color: #cbd5e1;
+          }
+          
+          .svg-card-mobile.gradient {
+            background: linear-gradient(135deg, ${this.options.color}20 0%, ${this.options.color}10 100%);
+          }
+        }
+      </style>
+    `;
+    
+    if (this.options.containerId) {
+      container.innerHTML = cardHTML;
+    } else {
+      container.innerHTML = cardHTML;
+      return container;
+    }
+  }
+
+  renderIcon() {
+    if (this.options.iconSvg) {
+      return this.options.iconSvg;
+    }
+    
+    // Default icons based on type
+    const icons = {
+      default: `
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+      `,
+      tech: `
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+        </svg>
+      `,
+      finance: `
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
+        </svg>
+      `,
+      education: `
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+        </svg>
+      `
+    };
+    
+    return icons[this.options.iconType] || icons.default;
+  }
+
+  renderButton() {
+    return `
+      <a href="${this.options.linkUrl}" class="svg-card-button">
+        ${this.options.linkText}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z"/>
+        </svg>
+      </a>
+    `;
+  }
+
+  attachEventListeners() {
+    const card = document.querySelector(`[data-card-id="${this.generateId()}"]`);
+    const button = card?.querySelector('.svg-card-button');
+    
+    if (card && this.options.interactive) {
+      // Card click handling with touch feedback
+      card.addEventListener('click', (e) => {
+        if (!e.target.closest('.svg-card-button')) {
+          this.addPulseEffect();
+          this.onCardClick(e);
+        }
+      });
+      
+      // Touch events
+      card.addEventListener('touchstart', () => {
+        card.style.transform = 'scale(0.98)';
+      });
+      
+      card.addEventListener('touchend', () => {
+        card.style.transform = 'scale(1)';
+      });
+      
+      card.addEventListener('touchcancel', () => {
+        card.style.transform = 'scale(1)';
+      });
+    }
+    
+    if (button) {
+      button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.onButtonClick(e);
+      });
+    }
+  }
+
+  addPulseEffect() {
+    const card = document.querySelector(`[data-card-id="${this.generateId()}"]`);
+    if (card) {
+      card.classList.add('pulse');
+      setTimeout(() => {
+        card.classList.remove('pulse');
+      }, 600);
+    }
+  }
+
+  onCardClick(event) {
+    if (this.options.linkUrl) {
+      window.location.href = this.options.linkUrl;
+    } else {
+      const customEvent = new CustomEvent('svgCardClick', {
+        detail: { 
+          cardId: this.generateId(),
+          title: this.options.title,
+          options: this.options 
+        }
+      });
+      document.dispatchEvent(customEvent);
+    }
+  }
+
+  onButtonClick(event) {
+    const customEvent = new CustomEvent('svgCardButtonClick', {
+      detail: { 
+        cardId: this.generateId(),
+        title: this.options.title,
+        options: this.options 
+      }
+    });
+    document.dispatchEvent(customEvent);
+  }
+
+  generateId() {
+    if (!this._id) {
+      this._id = 'svg-card-' + Math.random().toString(36).substr(2, 9);
+    }
+    return this._id;
+  }
+
+  setLoading(isLoading) {
+    const card = document.querySelector(`[data-card-id="${this.generateId()}"]`);
+    if (card) {
+      if (isLoading) {
+        card.classList.add('loading');
+      } else {
+        card.classList.remove('loading');
+      }
+    }
+  }
+
+  updateContent(newOptions) {
+    this.options = { ...this.options, ...newOptions };
+    
+    const card = document.querySelector(`[data-card-id="${this.generateId()}"]`);
+    if (card) {
+      const title = card.querySelector('.svg-card-title');
+      const description = card.querySelector('.svg-card-description');
+      const button = card.querySelector('.svg-card-button');
+      const icon = card.querySelector('.svg-card-icon');
+      
+      if (title && newOptions.title) title.textContent = newOptions.title;
+      if (description && newOptions.description) description.textContent = newOptions.description;
+      if (button && newOptions.linkText) button.textContent = newOptions.linkText;
+      if (icon && newOptions.iconSvg) icon.innerHTML = newOptions.iconSvg;
+    }
+  }
+
+  setColor(color) {
+    this.options.color = color;
+    // Re-render to apply new color
+    this.render();
+    if (this.options.interactive) {
+      this.attachEventListeners();
+    }
+  }
+
+  destroy() {
+    const card = document.querySelector(`[data-card-id="${this.generateId()}"]`);
+    if (card) {
+      card.remove();
+    }
+  }
+
+  // Static method to create icon grid
+  static createIconGrid(iconsData, containerSelector) {
+    const container = document.querySelector(containerSelector);
+    if (!container) return [];
+    
+    container.style.display = 'grid';
+    container.style.gridTemplateColumns = 'repeat(auto-fit, minmax(150px, 1fr))';
+    container.style.gap = '1rem';
+    
+    const cards = [];
+    iconsData.forEach((iconData, index) => {
+      const cardElement = document.createElement('div');
+      cardElement.id = `mobile-svg-card-${index}`;
+      container.appendChild(cardElement);
+      
+      const card = new MobileSVGCard({
+        ...iconData,
+        containerId: cardElement.id
+      });
+      cards.push(card);
+    });
+    
+    return cards;
+  }
+}
+
+// Export for module use
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = MobileSVGCard;
+}
