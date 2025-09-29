@@ -1,0 +1,102 @@
+{
+  "components": {
+    "navbar": {
+      "version": "1.0.0",
+      "platforms": ["mobile", "desktop"],
+      "dependencies": {
+        "mobile": ["ticker.js"],
+        "desktop": []
+      },
+      "shadcn": {
+        "variant": "default",
+        "size": "default"
+      },
+      "description": "Navigation bar component with platform-specific behavior"
+    },
+    "footer": {
+      "version": "1.0.0",
+      "platforms": ["mobile", "desktop"],
+      "dependencies": {
+        "mobile": [],
+        "desktop": []
+      },
+      "gridColumns": {
+        "mobile": 1,
+        "desktop": 4
+      },
+      "shadcn": {
+        "variant": "default",
+        "size": "default"
+      },
+      "description": "Footer component with responsive grid layout"
+    },
+    "card": {
+      "version": "1.0.0",
+      "platforms": ["mobile", "desktop"],
+      "dependencies": {
+        "mobile": [],
+        "desktop": []
+      },
+      "shadcn": {
+        "variant": "default",
+        "size": "default"
+      },
+      "description": "Card component for displaying content"
+    },
+    "svg-card": {
+      "version": "1.0.0",
+      "platforms": ["mobile", "desktop"],
+      "dependencies": {
+        "mobile": [],
+        "desktop": []
+      },
+      "shadcn": {
+        "variant": "default",
+        "size": "default"
+      },
+      "description": "SVG-based card component"
+    },
+    "ticker": {
+      "version": "1.0.0",
+      "platforms": ["mobile"],
+      "dependencies": {
+        "mobile": []
+      },
+      "shadcn": {
+        "variant": "default",
+        "size": "default"
+      },
+      "description": "Mobile-only ticker component for scrolling text"
+    }
+  },
+  "buildSettings": {
+    "breakpoints": {
+      "mobile": "768px",
+      "desktop": "769px"
+    },
+    "touchTargets": {
+      "minimum": "44px"
+    },
+    "outputPaths": {
+      "domain": "{domain}/components/{domain}.c/{platform}.c/",
+      "centralized": "components/{domain}.c/{platform}/"
+    }
+  },
+  "domains": {
+    "dev": {
+      "name": "Development",
+      "pathPrefix": "/dev",
+      "description": "Development domain components"
+    },
+    "server": {
+      "name": "Server",
+      "pathPrefix": "/server", 
+      "description": "Server domain components"
+    },
+    "www": {
+      "name": "Web",
+      "pathPrefix": "/www",
+      "description": "Web domain components"
+    }
+  }
+}

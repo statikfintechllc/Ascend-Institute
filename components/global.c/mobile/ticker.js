@@ -1,0 +1,328 @@
+// Mobile Ticker Component
+// Mobile-only scrolling ticker for announcements and updates
+
+class MobileTicker {
+  constructor(options = {}) {
+    this.options = {
+      containerId: 'mobile-ticker',
+      text: 'Welcome to Ascend Institute • Latest courses and updates • Join our community today',
+      speed: 30, // seconds for full cycle
+      pauseOnHover: true,
+      autoStart: true,
+      ...options
+    };
+    
+    this.isRunning = false;
+    this.isPaused = false;
+    this.init();
+  }
+
+  init() {
+    if (window.innerWidth > 768) {
+      return; // Don't initialize on desktop
+    }
+    
+    this.render();
+    this.attachEventListeners();
+    
+    if (this.options.autoStart) {
+      this.start();
+    }
+  }
+
+  render() {
+    const container = document.getElementById(this.options.containerId) || document.body;
+    
+    const tickerHTML = `
+      <div class="ticker-mobile" id="mobile-ticker-component">
+        <div class="ticker-content" id="ticker-content">
+          ${this.options.text}
+        </div>
+      </div>
+      
+      <style>
+        .ticker-mobile {
+          position: fixed;
+          top: 64px; /* Position below navbar */
+          left: 0;
+          right: 0;
+          height: 32px;
+          background: #333;
+          color: white;
+          overflow: hidden;
+          z-index: 999;
+          display: flex;
+          align-items: center;
+          font-size: 0.875rem;
+          font-weight: 500;
+        }
+        
+        .ticker-content {
+          white-space: nowrap;
+          padding-left: 100%;
+          animation: ticker ${this.options.speed}s linear infinite;
+          animation-play-state: running;
+          cursor: pointer;
+        }
+        
+        .ticker-content.paused {
+          animation-play-state: paused;
+        }
+        
+        @keyframes ticker {
+          0% {
+            transform: translateX(100%);
+          }
+          100% {
+            transform: translateX(-100%);
+          }
+        }
+        
+        /* Hide on desktop */
+        @media (min-width: 769px) {
+          .ticker-mobile {
+            display: none;
+          }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+          .ticker-mobile {
+            font-size: 0.8rem;
+            height: 28px;
+          }
+        }
+        
+        /* Accessibility improvements */
+        @media (prefers-reduced-motion: reduce) {
+          .ticker-content {
+            animation: none;
+            transform: none;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            text-align: center;
+          }
+        }
+        
+        /* Theme variations */
+        .ticker-mobile.theme-primary {
+          background: linear-gradient(90deg, #3b82f6, #2563eb);
+        }
+        
+        .ticker-mobile.theme-success {
+          background: linear-gradient(90deg, #22c55e, #16a34a);
+        }
+        
+        .ticker-mobile.theme-warning {
+          background: linear-gradient(90deg, #f59e0b, #d97706);
+          color: #000;
+        }
+        
+        .ticker-mobile.theme-danger {
+          background: linear-gradient(90deg, #ef4444, #dc2626);
+        }
+        
+        /* Interactive states */
+        .ticker-mobile:hover {
+          background-color: #444;
+        }
+        
+        .ticker-content:hover {
+          animation-play-state: paused;
+        }
+      </style>
+    `;
+    
+    if (container.id === this.options.containerId) {
+      container.innerHTML = tickerHTML;
+    } else {
+      container.insertAdjacentHTML('afterbegin', tickerHTML);
+    }
+  }
+
+  attachEventListeners() {
+    const tickerContent = document.getElementById('ticker-content');
+    const tickerContainer = document.querySelector('.ticker-mobile');
+    
+    if (tickerContent && this.options.pauseOnHover) {
+      // Pause on hover
+      tickerContent.addEventListener('mouseenter', () => {
+        this.pause();
+      });
+      
+      tickerContent.addEventListener('mouseleave', () => {
+        this.resume();
+      });
+      
+      // Touch events for mobile
+      tickerContent.addEventListener('touchstart', () => {
+        this.pause();
+      });
+      
+      tickerContent.addEventListener('touchend', () => {
+        setTimeout(() => this.resume(), 2000); // Resume after 2 seconds
+      });
+    }
+    
+    // Click to action (optional)
+    if (tickerContainer) {
+      tickerContainer.addEventListener('click', () => {
+        this.onTickerClick();
+      });
+    }
+    
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        this.destroy();
+      }
+    });
+    
+    // Handle reduced motion preference
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      this.stop();
+    }
+  }
+
+  start() {
+    const tickerContent = document.getElementById('ticker-content');
+    if (tickerContent) {
+      tickerContent.style.animationPlayState = 'running';
+      this.isRunning = true;
+      this.isPaused = false;
+    }
+  }
+
+  stop() {
+    const tickerContent = document.getElementById('ticker-content');
+    if (tickerContent) {
+      tickerContent.style.animationPlayState = 'paused';
+      this.isRunning = false;
+      this.isPaused = false;
+    }
+  }
+
+  pause() {
+    if (this.isRunning) {
+      const tickerContent = document.getElementById('ticker-content');
+      if (tickerContent) {
+        tickerContent.style.animationPlayState = 'paused';
+        tickerContent.classList.add('paused');
+        this.isPaused = true;
+      }
+    }
+  }
+
+  resume() {
+    if (this.isRunning && this.isPaused) {
+      const tickerContent = document.getElementById('ticker-content');
+      if (tickerContent) {
+        tickerContent.style.animationPlayState = 'running';
+        tickerContent.classList.remove('paused');
+        this.isPaused = false;
+      }
+    }
+  }
+
+  updateText(newText) {
+    const tickerContent = document.getElementById('ticker-content');
+    if (tickerContent) {
+      tickerContent.textContent = newText;
+      this.options.text = newText;
+    }
+  }
+
+  setTheme(theme) {
+    const tickerContainer = document.querySelector('.ticker-mobile');
+    if (tickerContainer) {
+      // Remove existing theme classes
+      tickerContainer.classList.remove('theme-primary', 'theme-success', 'theme-warning', 'theme-danger');
+      
+      // Add new theme class
+      if (theme) {
+        tickerContainer.classList.add(`theme-${theme}`);
+      }
+    }
+  }
+
+  setSpeed(seconds) {
+    const tickerContent = document.getElementById('ticker-content');
+    if (tickerContent) {
+      tickerContent.style.animationDuration = `${seconds}s`;
+      this.options.speed = seconds;
+    }
+  }
+
+  onTickerClick() {
+    // Override this method to handle ticker clicks
+    console.log('Ticker clicked');
+    
+    // Example: Could navigate to announcements page
+    // window.location.href = '/announcements';
+    
+    // Or trigger a custom event
+    const event = new CustomEvent('tickerClick', {
+      detail: { text: this.options.text }
+    });
+    document.dispatchEvent(event);
+  }
+
+  isVisible() {
+    const tickerContainer = document.querySelector('.ticker-mobile');
+    return tickerContainer && tickerContainer.offsetHeight > 0;
+  }
+
+  hide() {
+    const tickerContainer = document.querySelector('.ticker-mobile');
+    if (tickerContainer) {
+      tickerContainer.style.display = 'none';
+    }
+  }
+
+  show() {
+    const tickerContainer = document.querySelector('.ticker-mobile');
+    if (tickerContainer && window.innerWidth <= 768) {
+      tickerContainer.style.display = 'flex';
+    }
+  }
+
+  destroy() {
+    const ticker = document.getElementById('mobile-ticker-component');
+    if (ticker) {
+      ticker.remove();
+    }
+  }
+}
+
+// Utility function to create ticker with multiple messages
+MobileTicker.createMultiMessage = function(messages, options = {}) {
+  const combinedText = messages.join(' • ');
+  return new MobileTicker({
+    ...options,
+    text: combinedText
+  });
+};
+
+// Utility function to create urgent ticker
+MobileTicker.createUrgent = function(text, options = {}) {
+  return new MobileTicker({
+    ...options,
+    text: `🔴 URGENT: ${text}`,
+    speed: 20 // Faster speed for urgent messages
+  });
+};
+
+// Auto-initialize on DOM ready (only if specifically requested)
+if (typeof document !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', () => {
+    // Only auto-initialize if a ticker container exists
+    if (document.getElementById('mobile-ticker') && window.innerWidth <= 768) {
+      new MobileTicker();
+    }
+  });
+}
+
+// Export for module use
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = MobileTicker;
+}

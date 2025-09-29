@@ -1,0 +1,116 @@
+/* Server Domain Tailwind Utilities */
+
+/* Server-specific component classes using Tailwind */
+@layer components {
+  .navbar-server-tw {
+    @apply navbar-base bg-gradient-to-r from-server-500 to-server-700 border-b-2 border-server-400;
+  }
+  
+  .navbar-server-tw .nav-link {
+    @apply text-white font-medium transition-all duration-300 hover:text-server-200 hover:-translate-y-0.5;
+  }
+  
+  .navbar-server-tw .logo {
+    @apply text-white font-bold text-xl;
+  }
+  
+  .navbar-server-tw .hamburger {
+    @apply text-white text-2xl cursor-pointer p-2 rounded hover:bg-white/10 transition-colors duration-200 touch-target;
+  }
+  
+  .navbar-server-tw .mobile-menu {
+    @apply dropdown-menu bg-server-800 border-t border-server-400;
+  }
+  
+  .navbar-server-tw .mobile-menu .nav-link {
+    @apply block px-4 py-3 border-b border-white/10 touch-target;
+  }
+  
+  .ticker-server-tw {
+    @apply ticker-base bg-gradient-to-r from-server-400 to-server-500 text-white text-sm font-medium flex items-center;
+  }
+  
+  .ticker-server-tw .ticker-content {
+    @apply animate-ticker whitespace-nowrap pl-full;
+  }
+  
+  .footer-server-tw {
+    @apply bg-server-50 border-t-4 border-server-500 text-server-800 p-footer-padding;
+  }
+  
+  .footer-server-tw .footer-title {
+    @apply text-server-800 font-semibold mb-4;
+  }
+  
+  .footer-server-tw .footer-link {
+    @apply text-server-700 no-underline transition-colors duration-200 hover:text-server-500;
+  }
+  
+  .card-server-tw {
+    @apply bg-white border-2 border-server-200 rounded-lg transition-all duration-300 shadow-card hover:shadow-card-hover hover:-translate-y-0.5 hover:border-server-500;
+  }
+  
+  .card-server-tw .card-header {
+    @apply bg-server-200 text-server-800 font-semibold p-4 rounded-t-md;
+  }
+  
+  .card-server-tw .card-content {
+    @apply p-4 text-server-700;
+  }
+  
+  .btn-server-tw {
+    @apply bg-server-500 text-white border-none px-4 py-2 rounded-md font-medium cursor-pointer transition-all duration-200 hover:bg-server-700 hover:-translate-y-0.5 hover:shadow-lg;
+  }
+}
+
+/* Server-specific responsive utilities */
+@layer utilities {
+  .mobile\:server-text {
+    @apply mobile:text-mobile-sm mobile:leading-5;
+  }
+  
+  .mobile\:server-padding {
+    @apply mobile:p-4;
+  }
+  
+  .mobile\:server-margin {
+    @apply mobile:m-2;
+  }
+  
+  .desktop\:server-text {
+    @apply desktop:text-desktop-base desktop:leading-6;
+  }
+  
+  .desktop\:server-padding {
+    @apply desktop:p-6;
+  }
+  
+  .desktop\:server-margin {
+    @apply desktop:m-4;
+  }
+  
+  /* Server domain color utilities */
+  .text-server-primary {
+    @apply text-server-500;
+  }
+  
+  .bg-server-primary {
+    @apply bg-server-500;
+  }
+  
+  .border-server-primary {
+    @apply border-server-500;
+  }
+  
+  .hover\:text-server-primary:hover {
+    @apply hover:text-server-600;
+  }
+  
+  .hover\:bg-server-primary:hover {
+    @apply hover:bg-server-600;
+  }
+  
+  .focus\:ring-server-primary:focus {
+    @apply focus:ring-server-500;
+  }
+}

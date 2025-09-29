@@ -1,0 +1,398 @@
+// Desktop Navbar Component
+// Features: Horizontal navigation, hover states, no hamburger menu, no ticker
+
+class DesktopNavbar {
+  constructor(options = {}) {
+    this.options = {
+      containerId: 'desktop-navbar',
+      logoText: 'Ascend Institute',
+      logoHref: '/',
+      showSearch: true,
+      ...options
+    };
+    
+    this.init();
+  }
+
+  init() {
+    this.render();
+    this.attachEventListeners();
+  }
+
+  render() {
+    const container = document.getElementById(this.options.containerId) || document.body;
+    
+    const navbarHTML = `
+      <nav class="navbar-desktop" id="desktop-navbar-component">
+        <div class="navbar-container">
+          <div class="navbar-brand">
+            <a href="${this.options.logoHref}" class="logo">
+              ${this.options.logoText}
+            </a>
+          </div>
+          
+          <div class="navbar-nav">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/about" class="nav-link">About</a>
+            <a href="/courses" class="nav-link">Courses</a>
+            <a href="/resources" class="nav-link">Resources</a>
+            <a href="/community" class="nav-link">Community</a>
+            <a href="/contact" class="nav-link">Contact</a>
+          </div>
+          
+          ${this.options.showSearch ? this.renderSearch() : ''}
+        </div>
+      </nav>
+      
+      <style>
+        .navbar-desktop {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          z-index: 1000;
+          background: white;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          height: 64px;
+        }
+        
+        .navbar-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 2rem;
+          height: 100%;
+        }
+        
+        .navbar-brand .logo {
+          font-size: 1.5rem;
+          font-weight: bold;
+          text-decoration: none;
+          color: #333;
+          transition: color 0.2s ease;
+        }
+        
+        .navbar-brand .logo:hover {
+          color: #2563eb;
+        }
+        
+        .navbar-nav {
+          display: flex;
+          align-items: center;
+          gap: 2rem;
+        }
+        
+        .navbar-nav .nav-link {
+          text-decoration: none;
+          color: #4b5563;
+          font-weight: 500;
+          font-size: 0.95rem;
+          padding: 0.5rem 0;
+          position: relative;
+          transition: all 0.3s ease;
+        }
+        
+        .navbar-nav .nav-link:hover {
+          color: #2563eb;
+          transform: translateY(-1px);
+        }
+        
+        .navbar-nav .nav-link::after {
+          content: '';
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background: #2563eb;
+          transition: width 0.3s ease;
+        }
+        
+        .navbar-nav .nav-link:hover::after {
+          width: 100%;
+        }
+        
+        .navbar-nav .nav-link.active {
+          color: #2563eb;
+        }
+        
+        .navbar-nav .nav-link.active::after {
+          width: 100%;
+        }
+        
+        .navbar-search {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+        
+        .search-box {
+          position: relative;
+        }
+        
+        .search-input {
+          padding: 0.5rem 1rem;
+          border: 1px solid #d1d5db;
+          border-radius: 6px;
+          font-size: 0.875rem;
+          width: 200px;
+          transition: all 0.2s ease;
+        }
+        
+        .search-input:focus {
+          outline: none;
+          border-color: #2563eb;
+          box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+          width: 250px;
+        }
+        
+        .search-button {
+          position: absolute;
+          right: 0.5rem;
+          top: 50%;
+          transform: translateY(-50%);
+          background: none;
+          border: none;
+          color: #6b7280;
+          cursor: pointer;
+          padding: 0.25rem;
+          border-radius: 3px;
+          transition: color 0.2s ease;
+        }
+        
+        .search-button:hover {
+          color: #2563eb;
+          background: rgba(37, 99, 235, 0.05);
+        }
+        
+        /* Dropdown menu styles for future use */
+        .dropdown {
+          position: relative;
+        }
+        
+        .dropdown-menu {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          background: white;
+          border: 1px solid #e5e7eb;
+          border-radius: 6px;
+          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+          min-width: 200px;
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(-10px);
+          transition: all 0.2s ease;
+          z-index: 1001;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
+        
+        .dropdown-item {
+          display: block;
+          padding: 0.75rem 1rem;
+          color: #374151;
+          text-decoration: none;
+          font-size: 0.875rem;
+          transition: background-color 0.2s ease;
+        }
+        
+        .dropdown-item:hover {
+          background: #f9fafb;
+          color: #2563eb;
+        }
+        
+        /* Ensure body has top margin for fixed navbar */
+        body {
+          margin-top: 64px;
+        }
+        
+        @media (max-width: 768px) {
+          .navbar-desktop {
+            display: none;
+          }
+        }
+        
+        @media (max-width: 1024px) {
+          .navbar-container {
+            padding: 0 1rem;
+          }
+          
+          .navbar-nav {
+            gap: 1.5rem;
+          }
+          
+          .search-input {
+            width: 150px;
+          }
+          
+          .search-input:focus {
+            width: 180px;
+          }
+        }
+      </style>
+    `;
+    
+    if (container.id === this.options.containerId) {
+      container.innerHTML = navbarHTML;
+    } else {
+      container.insertAdjacentHTML('afterbegin', navbarHTML);
+    }
+  }
+  
+  renderSearch() {
+    return `
+      <div class="navbar-search">
+        <div class="search-box">
+          <input 
+            type="text" 
+            class="search-input" 
+            placeholder="Search..."
+            id="navbar-search"
+          />
+          <button class="search-button" type="button" aria-label="Search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M21.71 20.29l-3.4-3.39A9 9 0 1 0 16 18l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.41zM11 18a7 7 0 1 1 7-7 7 7 0 0 1-7 7z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  attachEventListeners() {
+    // Handle search functionality
+    const searchInput = document.getElementById('navbar-search');
+    const searchButton = document.querySelector('.search-button');
+    
+    if (searchInput && searchButton) {
+      searchButton.addEventListener('click', () => {
+        this.performSearch(searchInput.value);
+      });
+      
+      searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          this.performSearch(searchInput.value);
+        }
+      });
+    }
+    
+    // Set active nav link based on current path
+    this.setActiveNavLink();
+    
+    // Handle dropdown menus (if any are added in the future)
+    this.initDropdowns();
+  }
+  
+  performSearch(query) {
+    if (query.trim()) {
+      // Implement search functionality
+      console.log('Searching for:', query);
+      // You can redirect to a search page or implement inline search
+      window.location.href = `/search?q=${encodeURIComponent(query)}`;
+    }
+  }
+  
+  setActiveNavLink() {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      const linkPath = new URL(link.href).pathname;
+      
+      if (linkPath === currentPath || (currentPath !== '/' && linkPath !== '/' && currentPath.startsWith(linkPath))) {
+        link.classList.add('active');
+      }
+    });
+  }
+  
+  initDropdowns() {
+    // Initialize any dropdown menus
+    const dropdowns = document.querySelectorAll('.dropdown');
+    
+    dropdowns.forEach(dropdown => {
+      const menu = dropdown.querySelector('.dropdown-menu');
+      
+      dropdown.addEventListener('mouseenter', () => {
+        if (menu) {
+          menu.style.display = 'block';
+        }
+      });
+      
+      dropdown.addEventListener('mouseleave', () => {
+        if (menu) {
+          setTimeout(() => {
+            menu.style.display = 'none';
+          }, 100);
+        }
+      });
+    });
+  }
+  
+  updateSearch(placeholder) {
+    const searchInput = document.getElementById('navbar-search');
+    if (searchInput) {
+      searchInput.placeholder = placeholder;
+    }
+  }
+  
+  addDropdownToNavItem(navItemText, dropdownItems) {
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    const targetLink = Array.from(navLinks).find(link => link.textContent.trim() === navItemText);
+    
+    if (targetLink) {
+      const dropdown = document.createElement('div');
+      dropdown.className = 'dropdown';
+      
+      // Move the nav link into the dropdown
+      targetLink.parentNode.insertBefore(dropdown, targetLink);
+      dropdown.appendChild(targetLink);
+      
+      // Create dropdown menu
+      const menu = document.createElement('div');
+      menu.className = 'dropdown-menu';
+      
+      dropdownItems.forEach(item => {
+        const link = document.createElement('a');
+        link.className = 'dropdown-item';
+        link.href = item.href;
+        link.textContent = item.text;
+        menu.appendChild(link);
+      });
+      
+      dropdown.appendChild(menu);
+      this.initDropdowns();
+    }
+  }
+  
+  destroy() {
+    const navbar = document.getElementById('desktop-navbar-component');
+    if (navbar) {
+      navbar.remove();
+    }
+    
+    // Reset body margin
+    document.body.style.marginTop = '0';
+  }
+}
+
+// Auto-initialize on DOM ready
+if (typeof document !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.innerWidth > 768) {
+      new DesktopNavbar();
+    }
+  });
+}
+
+// Export for module use
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = DesktopNavbar;
+}

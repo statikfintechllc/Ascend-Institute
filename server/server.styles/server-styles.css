@@ -1,0 +1,176 @@
+/* Server Domain Styles - Green Theme */
+
+:root {
+  --server-primary: #22c55e;
+  --server-primary-dark: #15803d;
+  --server-primary-light: #86efac;
+  --server-accent: #4ade80;
+  --server-text: #166534;
+  --server-background: #f0fdf4;
+  --server-surface: #dcfce7;
+}
+
+/* Server domain navbar styles */
+.navbar-server {
+  background: linear-gradient(135deg, var(--server-primary) 0%, var(--server-primary-dark) 100%);
+  border-bottom: 2px solid var(--server-accent);
+}
+
+.navbar-server .nav-link {
+  color: white;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.navbar-server .nav-link:hover {
+  color: var(--server-primary-light);
+  transform: translateY(-1px);
+}
+
+.navbar-server .logo {
+  color: white;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+/* Server domain mobile styles */
+@media (max-width: 768px) {
+  .navbar-server .hamburger {
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .navbar-server .hamburger:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .navbar-server .mobile-menu {
+    background: var(--server-primary-dark);
+    border-top: 1px solid var(--server-accent);
+  }
+  
+  .navbar-server .mobile-menu .nav-link {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Server domain ticker styles */
+.ticker-server {
+  background: linear-gradient(90deg, var(--server-accent) 0%, var(--server-primary) 100%);
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.ticker-server .ticker-content {
+  animation: ticker 30s linear infinite;
+  white-space: nowrap;
+  padding-left: 100%;
+}
+
+/* Server domain footer styles */
+.footer-server {
+  background: var(--server-background);
+  border-top: 3px solid var(--server-primary);
+  color: var(--server-text);
+}
+
+.footer-server .footer-title {
+  color: var(--server-primary-dark);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.footer-server .footer-link {
+  color: var(--server-text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-server .footer-link:hover {
+  color: var(--server-primary);
+}
+
+/* Server domain card styles */
+.card-server {
+  background: white;
+  border: 2px solid var(--server-surface);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(34, 197, 94, 0.1);
+}
+
+.card-server:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(34, 197, 94, 0.2);
+  border-color: var(--server-primary);
+}
+
+.card-server .card-header {
+  background: var(--server-surface);
+  color: var(--server-primary-dark);
+  font-weight: 600;
+  padding: 1rem;
+  border-radius: 6px 6px 0 0;
+}
+
+.card-server .card-content {
+  padding: 1rem;
+  color: var(--server-text);
+}
+
+/* Server domain button styles */
+.btn-server {
+  background: var(--server-primary);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-server:hover {
+  background: var(--server-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(34, 197, 94, 0.3);
+}
+
+/* Server domain responsive utilities */
+@media (max-width: 768px) {
+  .server-text-mobile {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  
+  .server-padding-mobile {
+    padding: 1rem;
+  }
+  
+  .server-margin-mobile {
+    margin: 0.5rem;
+  }
+}
+
+@media (min-width: 769px) {
+  .server-text-desktop {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  
+  .server-padding-desktop {
+    padding: 1.5rem;
+  }
+  
+  .server-margin-desktop {
+    margin: 1rem;
+  }
+}

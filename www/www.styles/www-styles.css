@@ -1,0 +1,176 @@
+/* WWW Domain Styles - Purple Theme */
+
+:root {
+  --www-primary: #a855f7;
+  --www-primary-dark: #7c3aed;
+  --www-primary-light: #c084fc;
+  --www-accent: #9333ea;
+  --www-text: #6b21a8;
+  --www-background: #faf5ff;
+  --www-surface: #f3e8ff;
+}
+
+/* WWW domain navbar styles */
+.navbar-www {
+  background: linear-gradient(135deg, var(--www-primary) 0%, var(--www-primary-dark) 100%);
+  border-bottom: 2px solid var(--www-accent);
+}
+
+.navbar-www .nav-link {
+  color: white;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.navbar-www .nav-link:hover {
+  color: var(--www-primary-light);
+  transform: translateY(-1px);
+}
+
+.navbar-www .logo {
+  color: white;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+/* WWW domain mobile styles */
+@media (max-width: 768px) {
+  .navbar-www .hamburger {
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .navbar-www .hamburger:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .navbar-www .mobile-menu {
+    background: var(--www-primary-dark);
+    border-top: 1px solid var(--www-accent);
+  }
+  
+  .navbar-www .mobile-menu .nav-link {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* WWW domain ticker styles */
+.ticker-www {
+  background: linear-gradient(90deg, var(--www-accent) 0%, var(--www-primary) 100%);
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.ticker-www .ticker-content {
+  animation: ticker 30s linear infinite;
+  white-space: nowrap;
+  padding-left: 100%;
+}
+
+/* WWW domain footer styles */
+.footer-www {
+  background: var(--www-background);
+  border-top: 3px solid var(--www-primary);
+  color: var(--www-text);
+}
+
+.footer-www .footer-title {
+  color: var(--www-primary-dark);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.footer-www .footer-link {
+  color: var(--www-text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-www .footer-link:hover {
+  color: var(--www-primary);
+}
+
+/* WWW domain card styles */
+.card-www {
+  background: white;
+  border: 2px solid var(--www-surface);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(168, 85, 247, 0.1);
+}
+
+.card-www:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(168, 85, 247, 0.2);
+  border-color: var(--www-primary);
+}
+
+.card-www .card-header {
+  background: var(--www-surface);
+  color: var(--www-primary-dark);
+  font-weight: 600;
+  padding: 1rem;
+  border-radius: 6px 6px 0 0;
+}
+
+.card-www .card-content {
+  padding: 1rem;
+  color: var(--www-text);
+}
+
+/* WWW domain button styles */
+.btn-www {
+  background: var(--www-primary);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-www:hover {
+  background: var(--www-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(168, 85, 247, 0.3);
+}
+
+/* WWW domain responsive utilities */
+@media (max-width: 768px) {
+  .www-text-mobile {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  
+  .www-padding-mobile {
+    padding: 1rem;
+  }
+  
+  .www-margin-mobile {
+    margin: 0.5rem;
+  }
+}
+
+@media (min-width: 769px) {
+  .www-text-desktop {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  
+  .www-padding-desktop {
+    padding: 1.5rem;
+  }
+  
+  .www-margin-desktop {
+    margin: 1rem;
+  }
+}
