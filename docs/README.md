@@ -27,6 +27,18 @@
  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/c.svg/assets/crimson-flow.svg" alt="Statik DK Smoke Activity">
   </a>
 </div>
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+<div align="center">
+<!-- SFTi Home-Page Card -->
+<a href="https://sfti-ai.org">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/H.P.svg/assets/sfti-homepage-card.svg" alt="Visit SFTi Home-Page" width="400"/>
+</a>
+<!-- My Trades Card -->
+<a href="https://github.com/statikfintechllc/Gremlin-ShadTail-Trader">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/M.T.svg/assets/my-trades-card.svg" alt="Check out my Trades" width="400"/>
+</a>
+</div>
+</div>
 <!-- Flexbox Grid -->
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
 <div align="center">
