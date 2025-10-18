@@ -11,4 +11,4 @@ Since you're using this repo internally:
 Daniel “Statik DK Smoke” Morris  
 ascend.gremlin@gmail.com
 
-![Screenshot showing evidence of OpenAI's internal use of GremlinGPT repository, demonstrating the need for proper attribution per the Dual License terms](https://github.com/user-attachments/assets/d2c970a4-1752-4d7a-ae25-2bd0b9ac793a)
+![Evidence of OpenAI's internal use of GremlinGPT repository requiring attribution](https://github.com/user-attachments/assets/d2c970a4-1752-4d7a-ae25-2bd0b9ac793a)
