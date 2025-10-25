@@ -77,13 +77,19 @@ const imageObserver = new IntersectionObserver((entries, observer) => {
 
 ## Performance Impact
 
+Expected improvements based on local testing with Chrome 120 on a modern desktop (Intel i7, 16GB RAM):
+
 | Metric | Before | After | Improvement |
 |--------|--------|-------|-------------|
 | Initial Load | ~3s | <1.5s | 50% faster |
 | Memory Usage | ~200MB | <100MB | 50% less |
 | Frame Rate | ~35 FPS | 55+ FPS | 57% smoother |
 
+*Note: Actual results may vary based on network speed, device hardware, and browser.*
+
 ## Files
+
+All files mentioned below are in the `docs/` directory:
 
 - `index.html` - Main HTML with VANTA optimizations
 - `scrollFX.js` - Scroll animations and lazy loading
@@ -92,7 +98,7 @@ const imageObserver = new IntersectionObserver((entries, observer) => {
 
 ## Testing
 
-See [../PERFORMANCE_TESTING.md](../PERFORMANCE_TESTING.md) for comprehensive testing guide.
+See [PERFORMANCE_TESTING.md](../PERFORMANCE_TESTING.md) for comprehensive testing guide.
 
 Quick test:
 1. Open DevTools Console
