@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!('IntersectionObserver' in window)) {
     console.warn('IntersectionObserver not supported, using fallback');
     // Fallback: show all elements immediately
-    document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, ul, ol, img, code, pre, .glass').forEach((el) => {
+    document.querySelectorAll('h1, h2, h3, .glass, div[align="center"]:has(img)').forEach((el) => {
       el.style.opacity = 1;
       el.style.transform = 'translateY(0)';
     });
