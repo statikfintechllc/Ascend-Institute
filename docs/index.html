@@ -172,7 +172,7 @@
       if (vantaInstance && typeof vantaInstance.pause === 'function') {
         if (document.hidden) {
           vantaInstance.pause();
-        } else {
+        } else if (typeof vantaInstance.play === 'function') {
           vantaInstance.play();
         }
       }
