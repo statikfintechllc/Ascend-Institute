@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SFTi Institue – Sovereign Stack</title>
   <link rel="stylesheet" type="text/css" href="custom.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-dark.min.css">
@@ -45,11 +46,18 @@
     <div id="readme" class="markdown-body glass"></div>
   </main>
 
+  <!-- IntersectionObserver polyfill for older browsers -->
+  <script src="intersection-observer-polyfill.js"></script>
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
   <script>
+    // Performance optimization: Debounce VANTA animation updates
+    let vantaInstance = null;
+    let isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     const githubSlug = (text) =>
       text.toLowerCase()
           .trim()
@@ -112,22 +120,62 @@
           });
         });
 
-        VANTA.NET({
-          el: "#vanta-bg",
-          mouseControls: true,
-          touchControls: true,
-          gyroControls: false,
-          color: 0xff0000,
-          backgroundColor: 0x000000
-        });
+        // Initialize VANTA with performance optimizations
+        try {
+          // Skip animation if user prefers reduced motion
+          if (isReducedMotion) {
+            console.log('Reduced motion preferred, skipping VANTA animation');
+            document.getElementById('vanta-bg').style.background = 'linear-gradient(180deg, #000 0%, #111 100%)';
+          } else {
+            vantaInstance = VANTA.NET({
+              el: "#vanta-bg",
+              mouseControls: true,
+              touchControls: true,
+              gyroControls: false,
+              color: 0xff0000,
+              backgroundColor: 0x000000,
+              points: 10.00,  // Reduced from default for better performance
+              maxDistance: 20.00,  // Reduced from default
+              spacing: 15.00  // Increased spacing for fewer particles
+            });
+          }
+        } catch (err) {
+          console.error('VANTA initialization failed:', err);
+          // Fallback to gradient background
+          document.getElementById('vanta-bg').style.background = 'linear-gradient(180deg, #000 0%, #111 100%)';
+        }
 
+        // Load scrollFX.js only after content is ready
         const fxScript = document.createElement('script');
         fxScript.src = 'scrollFX.js';
+        fxScript.onerror = () => console.error('Failed to load scrollFX.js');
         document.body.appendChild(fxScript);
       })
       .catch(err => {
         console.error(err);
         document.getElementById('readme').innerHTML = "<p style='color:red'>Error loading README.md</p>";
       });
+
+    // Cleanup VANTA on page unload to prevent memory leaks
+    window.addEventListener('beforeunload', () => {
+      if (vantaInstance) {
+        try {
+          vantaInstance.destroy();
+        } catch (err) {
+          console.error('Error destroying VANTA:', err);
+        }
+      }
+    });
+
+    // Pause VANTA animation when page is hidden (performance optimization)
+    document.addEventListener('visibilitychange', () => {
+      if (vantaInstance && typeof vantaInstance.pause === 'function') {
+        if (document.hidden) {
+          vantaInstance.pause();
+        } else if (typeof vantaInstance.play === 'function') {
+          vantaInstance.play();
+        }
+      }
+    });
   </script>
 </body>

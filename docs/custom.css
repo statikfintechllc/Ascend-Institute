@@ -118,6 +118,35 @@ img:hover {
   box-shadow: 0 0 10px #FFD700;
 }
 
+/* Lazy loading states */
+img:not(.loaded) {
+  background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  min-height: 50px; /* Prevent layout shift */
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Reduce animation on slow connections or low-powered devices */
+@media (prefers-reduced-motion: reduce) {
+  img:not(.loaded) {
+    animation: none;
+  }
+  section, div, article {
+    animation: none;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Section animation */
 section, div, article {
   opacity: 0;
@@ -177,6 +206,7 @@ hr {
   pointer-events: none;
 }
 
-* {
+/* Removed global transition - apply selectively to improve performance */
+a, img, .badge, h1, h2, h3, h4, h5 {
   transition: all 0.3s ease-in-out;
 }
