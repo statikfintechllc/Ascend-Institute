@@ -137,7 +137,7 @@
     if (!alreadyObserved) {
       this.observedElements.push({ target: element });
       // Trigger initial check
-      requestAnimationFrame(this._checkIntersections);
+      this._checkIntersections();
     }
   };
 
