@@ -39,9 +39,20 @@
 </a>
 </div>
 </div>
+<div align="center">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/G.H.badge.svg" alt="GitHub Repositories" />
+</div>
 <!-- Flexbox Grid -->
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
 <div align="center">
+  <a href="https://github.com/statikfintechllc/GremlinGPT">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/G.G.svg/assets/gremlingpt-card.svg" alt="GremlinGPT" width="400"/>
+  </a>
+
+  <a href="https://github.com/StatikFinTech-LLC/SFTi-Pennies">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/S.P.svg/assets/sfti-pennies-card.svg" alt="SFTi-Pennies" width="400"/>
+  </a>
+  
   <a href="https://github.com/statikfintechllc/IB-G.Scanner">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/IB.G.svg/assets/ib-g-scanner-card.svg" alt="IB-G.Scanner" width="400"/>
   </a>
@@ -50,10 +61,10 @@
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/P.S.svg/assets/pilot-server-card.svg" alt="Pilot-Server" width="400"/>
   </a>
 
-  <a href="https://github.com/statikfintechllc/GremlinGPT">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/G.G.svg/assets/gremlingpt-card.svg" alt="GremlinGPT" width="400"/>
+  <a href="https://github.com/statikfintechllc/SFTi-TimeLine">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/S.T.svg/assets/sfti-timeline-card.svg" alt="SFTi-TimeLine" width="400"/>
   </a>
-
+  
   <a href="https://github.com/statikfintechllc/Gremlin-ShadTail-Trader">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/G.S.svg/assets/gremlin-shadtail-trader-card.svg" alt="Gremlin-ShadTail-Trader" width="400"/>
   </a>
@@ -82,12 +93,16 @@
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/M.M.svg/assets/mobile-mirror-card.svg" alt="Mobile-Mirror" width="400"/>
   </a>
 
+  <a href="https://github.com/statikfintechllc/AscendDocs-of-GovSeverance">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/A.D.svg/assets/ascenddocs-of-govseverance-card.svg" alt="AscendDocs-of-GovSeverance" width="400"/>
+  </a>
+
   <a href="https://github.com/statikfintechllc/dragon-boot">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/D.B.svg/assets/dragon-boot-card.svg" alt="dragon-boot" width="400"/>
   </a>
-  
-  <a href="https://github.com/statikfintechllc/AscendDocs-of-GovSeverance">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/A.D.svg/assets/ascenddocs-of-govseverance-card.svg" alt="AscendDocs-of-GovSeverance" width="400"/>
+
+  <a href="https://github.com/statikfintechllc/WorkFlowRepo">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/W.R.svg/assets/workflowrepo-card.svg" alt="WorkFlowRepo" width="400"/>
   </a>
 </div>
 </div>
