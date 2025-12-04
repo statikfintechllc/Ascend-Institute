@@ -104,6 +104,14 @@
   <a href="https://github.com/statikfintechllc/WorkFlowRepo">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/W.R.svg/assets/workflowrepo-card.svg" alt="WorkFlowRepo" width="400"/>
   </a>
+
+  <a href="https://github.com/statikfintechllc/OSX-KVM">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/O.K.svg/assets/osx-kvm-card.svg" alt="OSX-KVM" width="400"/>
+  </a>
+
+  <a href="https://github.com/statikfintechllc/The_GateKeepers_Riddle.Interactive">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/T.G.svg/assets/gatekeeper-riddle-card.svg" alt="The GateKeeper's Riddle" width="400"/>
+  </a>
 </div>
 </div>
 <!-- Zenodo Research Papers Flexbox Grid -->
