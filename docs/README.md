@@ -28,19 +28,11 @@
   </a>
 </div>
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
-<div align="center">
-<!-- SFTi Home-Page Card -->
-<a href="https://sfti-ai.org">
-  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/H.P.svg/assets/sfti-homepage-card.svg" alt="Visit SFTi Home-Page" width="400"/>
-</a>
-<!-- My Trades Card -->
-<a href="https://statikfintechllc.github.io/SFTi-Pennies/">
-  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/M.T.svg/assets/my-trades-card.svg" alt="Check out my Trades" width="400"/>
-</a>
 </div>
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
 </div>
 <div align="center">
-  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/G.H.badge.svg" alt="GitHub Repositories" />
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/G.H.badge.svg" alt="GitHub Repositories" />
 </div>
 <!-- Flexbox Grid -->
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
@@ -48,71 +40,33 @@
   <a href="https://github.com/statikfintechllc/GremlinGPT">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/G.G.svg/assets/gremlingpt-card.svg" alt="GremlinGPT" width="400"/>
   </a>
-
-  <a href="https://github.com/StatikFinTech-LLC/SFTi-Pennies">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/S.P.svg/assets/sfti-pennies-card.svg" alt="SFTi-Pennies" width="400"/>
-  </a>
-  
-  <a href="https://github.com/statikfintechllc/IB-G.Scanner">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/IB.G.svg/assets/ib-g-scanner-card.svg" alt="IB-G.Scanner" width="400"/>
-  </a>
-
-  <a href="https://github.com/statikfintechllc/Pilot-Server">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/P.S.svg/assets/pilot-server-card.svg" alt="Pilot-Server" width="400"/>
-  </a>
-
-  <a href="https://github.com/statikfintechllc/SFTi-TimeLine">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/S.T.svg/assets/sfti-timeline-card.svg" alt="SFTi-TimeLine" width="400"/>
-  </a>
-  
-  <a href="https://github.com/statikfintechllc/Gremlin-ShadTail-Trader">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/G.S.svg/assets/gremlin-shadtail-trader-card.svg" alt="Gremlin-ShadTail-Trader" width="400"/>
-  </a>
-
-  <a href="https://github.com/statikfintechllc/Gremlin-MCP-Scrap">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/G.M.svg/assets/gremlin-mcp-scrap-card.svg" alt="Gremlin-MCP-Scrap" width="400"/>
-  </a>
-
-  <a href="https://github.com/statikfintechllc/statik-server">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/S.S.svg/assets/statik-server-card.svg" alt="statik-server" width="400"/>
-  </a>
-
-  <a href="https://github.com/statikfintechllc/AscendNet">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/A.N.svg/assets/ascendnet-card.svg" alt="AscendNet" width="400"/>
-  </a>
-
   <a href="https://github.com/statikfintechllc/Ascend-Institute">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/A.I.svg/assets/ascend-institute-card.svg" alt="Ascend-Institute" width="400">
   </a>
-
-  <a href="https://github.com/statikfintechllc/GodCore">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/G.C.svg/assets/godcore-card.svg" alt="GodCore" width="400"/>
-  </a>
-
-  <a href="https://github.com/statikfintechllc/Mobile-Mirror">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/M.M.svg/assets/mobile-mirror-card.svg" alt="Mobile-Mirror" width="400"/>
-  </a>
-
   <a href="https://github.com/statikfintechllc/AscendDocs-of-GovSeverance">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/A.D.svg/assets/ascenddocs-of-govseverance-card.svg" alt="AscendDocs-of-GovSeverance" width="400"/>
   </a>
-
-  <a href="https://github.com/statikfintechllc/dragon-boot">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/D.B.svg/assets/dragon-boot-card.svg" alt="dragon-boot" width="400"/>
+  <a href="https://github.com/statikfintechllc/GodCore">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/G.C.svg/assets/godcore-card.svg" alt="GodCore" width="400"/>
   </a>
-
-  <a href="https://github.com/statikfintechllc/WorkFlowRepo">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/W.R.svg/assets/workflowrepo-card.svg" alt="WorkFlowRepo" width="400"/>
+  <a href="https://github.com/StatikFinTech-LLC/SFTi-Pennies">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/S.P.svg/assets/sfti-pennies-card.svg" alt="SFTi-Pennies" width="400"/>
   </a>
-
-  <a href="https://github.com/statikfintechllc/OSX-KVM">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/O.K.svg/assets/osx-kvm-card.svg" alt="OSX-KVM" width="400"/>
+  <a href="https://github.com/statikfintechllc/SFTi-TimeLine">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/S.T.svg/assets/sfti-timeline-card.svg" alt="SFTi-TimeLine" width="400"/>
   </a>
-
+  <a href="https://github.com/statikfintechllc/SFTi.Trade_Grade">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/S.TG.svg/assets/sfti-trade-grade-card.svg" alt="SFTi.Trade_Grade" width="400"/>
+  </a>
   <a href="https://github.com/statikfintechllc/The-GateKeepers-Riddles.i">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/T.G.svg/assets/gatekeeper-riddle-card.svg" alt="The GateKeeper's Riddle" width="400"/>
   </a>
-</div>
+  <a href="https://github.com/statikfintechllc/dragon-boot">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/D.B.svg/assets/dragon-boot-card.svg" alt="dragon-boot" width="400"/>
+  </a>
+  <a href="https://github.com/statikfintechllc/zsh.installer">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Z.I.svg/assets/zsh-installer-card.svg" alt="zsh.installer" width="400"/>
+  </a>
 </div>
 <!-- Zenodo Research Papers Flexbox Grid -->
 <div align="center">
@@ -123,82 +77,65 @@
   <a href="https://doi.org/10.5281/zenodo.15717788">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Zenodo.papers.svg/rise-of-recursive-autonomous-cognitive-ai-systems.svg" alt="Recursive Autonomous Cognitive Systems" width="400"/>
   </a>
-
   <a href="https://doi.org/10.5281/zenodo.15725639">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Zenodo.papers.svg/economic-sovereignty-through-decentralized-ai.svg" alt="Economic Sovereignty Through Decentralized AI" width="400"/>
   </a>
-
   <a href="https://doi.org/10.5281/zenodo.15825120">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Zenodo.papers.svg/the-gremlingpt-architecture-localized-recursive-ai.svg" alt="GremlinGPT Architecture" width="400"/>
   </a>
 </div>
-</div>
-
 <!-- Medium Articles Flexbox Grid -->
 <div align="center">
   <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/M.P.badge.svg" alt="Medium Publications" />
+</div>
 </div>
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
 <div align="center">
   <a href="https://medium.com/@ascend.gremlin/the-govseverance-doctrine-70fa170a9e8f">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/the-govseverance-doctrine.svg" alt="The GovSeverance Doctrine" width="400"/>
   </a>
-
   <a href="https://medium.com/@ascend.gremlin/burj-khalifa-and-the-resonant-lie-429298865708">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/burj-khalifa-and-the-resonant-lie.svg" alt="Burj Khalifa and the Resonant Lie" width="400"/>
   </a>
-
   <a href="https://medium.com/@ascend.gremlin/the-wealth-power-imbalance-and-contemporary-forms-of-economic-servitude-bf2c2700d91632">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/the-wealth-power-imbalance-and-economic-servitude.svg" alt="The Wealth Power Imbalance" width="400"/>
   </a>
-
   <a href="https://medium.com/@ascend.gremlin/while-dubai-was-building-control-systems-i-built-an-autonomous-mind-fb4c8c4c0dc1">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/while-dubai-built-control-i-built-an-autonomous-mind.svg" alt="While Dubai Built Control" width="400"/>
   </a>
-
   <a href="https://medium.com/@ascend.gremlin/self-forking-ai-and-the-mechanic-from-kansas-73d98685fda9">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/selfforking-ai-and-the-mechanic-from-kansas.svg" alt="Self-Forking AI" width="400"/>
   </a>
-
   <a href="https://medium.com/@ascend.gremlin/the-disappearance-of-the-openai-mcp-repo-a5419347be0b">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/the-disappearance-of-the-openai-mcp-repo.svg" alt="The Disappearance of OpenAI MCP Repo" width="400"/>
   </a>
-
   <a href="https://medium.com/@ascend.gremlin/the-lessons-i-am-learning-b33dfe1df0b8">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/the-lessons-i-am-learning.svg" alt="The Lessons I Am Learning" width="400"/>
   </a>
-
   <a href="https://medium.com/@ascend.gremlin/designing-gremlingpt-8521fbdedcf8">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/designing-gremlingpt.svg" alt="Designing GremlinGPT" width="400"/>
   </a>
-
   <a href="https://medium.com/@ascend.gremlin/building-an-autonomous-ai-driven-ide-pipeline-f7c9faffbd2e">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/building-an-autonomous-aidriven-ide-pipeline.svg" alt="Building an Autonomous AI-Driven IDE Pipeline" width="400"/>
   </a>
-
   <a href="https://medium.com/@ascend.gremlin/gremlingpts-structural-extraction-c945b74971d3">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/gremlingpts-structural-extraction.svg" alt="GremlinGPT's Structural Extraction" width="400"/>
   </a>
-
   <a href="https://medium.com/@ascend.gremlin/open-isnt-open-2f4aaf98c19e">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/open-isnt-open.svg" alt="Open Isn't Open" width="400"/>
   </a>
-
   <a href="https://medium.com/@ascend.gremlin/the-pivot-that-broke-product-market-fit-e82dd8e9d868">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/the-pivot-that-broke-productmarket-fit.svg" alt="The Pivot That Broke Product-Market Fit" width="400"/>
   </a>
-
   <a href="https://medium.com/@ascend.gremlin/its-not-the-ai-but-the-system-3db4b0e142c5">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/its-not-the-ai-but-the-system.svg" alt="It's Not the AI, But the System" width="400"/>
   </a>
-
   <a href="https://medium.com/@ascend.gremlin/breaking-the-loop-b8013cdedb0e">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/breaking-the-loop.svg" alt="Breaking the Loop" width="400"/>
   </a>
-
   <a href="https://medium.com/@ascend.gremlin/capital-capture-a2a885ce3885">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/capital-capture.svg" alt="Capital Capture" width="400"/>
-  </a>
+  </a>  
   <a  href="https://medium.com/@ascend.gremlin/how-icann-stole-the-internet-3deb8369f777">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/how-icann-stole-the-internet.svg" alt="Capital Capture" width="400"/>
   </a>
@@ -207,7 +144,48 @@
   </a>
 </div>
 </div>
+
+---
+
+**Want to See you're own ideas built, or to sponsor hardware directly? Reach Out to:**
+- **Email:** [sfti_ai@icloud.com](mailto:sfti_ai@icloud.com)
+- **Text Me:** [+1 (785) 443-6288](sms:+17854436288)  
+- **DM:**  
+  - a) [LinkedIn: StatikFinTech, LLC](https://www.linkedin.com/in/statikfintech-llc-780804368/)
+  - b) [X: @GremlinsForge](https://twitter.com/GremlinsForge)  
+
+**See the [Open Funding Proposal](https://github.com/statikfintechllc/Ascend-Institute/blob/master/About%20Us/OPEN_FUNDING_PROPOSAL.md)**
+
+---
+
 <div align="center">
+  <a href="https://github.com/sponsors/statikfintechllc">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/L.W.badge.svg" alt="Like my work?" />
+  </a>
+  <a href="https://github.com/sponsors/statikfintechllc">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/git.sponsor.svg">
+  </a><br>
+  <a href="https://ko-fi.com/statikfintech_llc">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/kofi.sponsor.svg">
+  </a><br>
+  <a href="https://patreon.com/StatikFinTech_LLC">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/patreon.sponsor.svg">
+  </a><br>
+  <a href="https://cash.app/$statikmoney8">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/cashapp.sponsor.svg">
+  </a><br>
+  <a href="https://paypal.me/statikmoney8">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/paypal.sponsor.svg">
+  </a><br>
+  <a href="https://www.blockchain.com/explorer/addresses/btc/bc1qarsr966ulmcs3mlcvae7p63v4j2y2vqrw74jl8">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/bitcoin.sponsor.svg">
+  </a><br>
+  <a href="https://etherscan.io/address/0xC2db50A0fc6c95f36Af7171D8C41F6998184103F">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/ethereum.sponsor.svg">
+  </a><br>
+  <a href="https://app.chime.com/link/qr?u=StatikSmokTM">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/chime.sponsor.svg">
+  </a>
   <a href="https://github.com/sponsors/statikfintechllc">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/ai_architect.svg" alt="AI Architect" height="24">
   </a>
@@ -217,13 +195,13 @@
   <a href="https://github.com/sponsors/statikfintechllc">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/prompt_blacksmith.svg" alt="Prompt Blacksmith" height="24">
   </a>
-</div>
-<div align="center">
   <a href="https://github.com/statikfintechllc/statikfintechllc">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/sdks.svg/assets/statik.title.svg">
   </a>
 </div>
+</div>
 
+	
 > [!NOTE]
 > 
 > My current system only has 24GB VRAM, 128GB RAM, and 8TB of storage — it’s alive, but it’s starving.
@@ -283,51 +261,6 @@ href="https://github.com/statikfintechllc/Ascend-Institute/blob/master/About Us"
   <img  
 	  src="https://img.shields.io/badge/SFTi-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
   </a>
-<div align="center">
-<img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/G.I.badge.svg" alt="The Institute's GremlinGPT" />
-  <a href="https://www.github.com/statikfintechllc/GremlinGPT">
-  <img src="https://raw.githubusercontent.com/KDK-Grim/WorkFlowRepo-Mirror/master/docs/graph/traffic_graph.png" alt="Traffic Graph" />
-  </a>
-   <a href="https://github.com/statikfintechllc/WorkFlowRepo.git">
-  <img src="https://img.shields.io/badge/Click%20to%20Install-Graph%20Workflow-darkred?labelColor=black" alt="GremlinGPT Alpha"/>
-  </a>
-</div>
-<div align="center">
-<img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/R.S.badge.svg" alt="Reset Schedule" />
-</div>
-
----
-
-<div align="center">
-  <a href="https://github.com/sponsors/statikfintechllc">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/L.W.badge.svg" alt="Like my work?" />
-  </a>
-</div>
-<div align="center">
-<a href="https://github.com/sponsors/statikfintechllc">
-  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/git.sponsor.svg">
-</a><br>
-<a href="https://ko-fi.com/statikfintech_llc">
-  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/kofi.sponsor.svg">
-</a><br>
-<a href="https://patreon.com/StatikFinTech_LLC">
-  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/patreon.sponsor.svg">
-</a><br>
-<a href="https://cash.app/$statikmoney8">
-  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/cashapp.sponsor.svg">
-</a><br>
-<a href="https://paypal.me/statikmoney8">
-  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/paypal.sponsor.svg">
-</a><br>
-<a href="https://www.blockchain.com/explorer/addresses/btc/bc1qarsr966ulmcs3mlcvae7p63v4j2y2vqrw74jl8">
-  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/bitcoin.sponsor.svg">
-</a><br>
-<a href="https://etherscan.io/address/0xC2db50A0fc6c95f36Af7171D8C41F6998184103F">
-  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/ethereum.sponsor.svg">
-</a><br>
-<a href="https://www.chime.com">
-  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/chime.sponsor.svg">
-</a>
 </div>
 </div>
 
@@ -464,7 +397,6 @@ Personal use only. Commercial use is prohibited unless licensed separately.*
 </div>
 
 <!--
-
 <div align="center">
   <img src="https://komarev.com/ghpvc/?username=statikfintechllc&color=8b0000&style=flat-square" alt="Profile Views">
 </div>
