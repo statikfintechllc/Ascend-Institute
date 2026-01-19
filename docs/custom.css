@@ -1,3 +1,37 @@
+/* Vanta background container styles (moved from inline style) */
+.vanta-bg {
+  height: 100vh;
+  position: fixed;
+  z-index: -1;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+/* Main content styles (moved from index.html) */
+main {
+  max-width: 960px;
+  margin: 4rem auto;
+  padding: 1rem;
+}
+
+/* Admonition styles (moved from index.html) */
+.admonition {
+  border-left: 4px solid #444;
+  padding: 1em;
+  margin: 1.5em 0;
+  background: #0d1117;
+  border-radius: 6px;
+}
+.admonition-note { border-color: #2f81f7; }
+.admonition-tip { border-color: #3fb950; }
+.admonition-warning { border-color: #d29922; }
+.admonition-important { border-color: #8250df; }
+.admonition-caution { border-color: #f85149; }
+.admonition-title {
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
 body {
   background-color: #000;
   color: #ddd;
@@ -36,8 +70,8 @@ h1:hover, h2:hover, h3:hover {
   background: rgba(0, 0, 0, 0.01);
   border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow: 0 0 40px rgba(255, 215, 0, 0.1), 0 0 10px rgba(255, 0, 0, 0.05);
-  backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
   padding: 2rem;
   border-radius: 16px;
   color: #ddd;
