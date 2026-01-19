@@ -1,0 +1,50 @@
+2025-07-12 23:02:12.379 | INFO     | __main__:setup_module_logger:68 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/data/logs/tests/tests.log
+2025-07-13 14:22:18.212 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-13 14:22:46.106 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-13 14:22:46.106 | WARNING  | __main__:<module>:59 - NLP modules not available: Using mock functions for testing
+2025-07-13 14:22:46.106 | INFO     | __main__:<module>:201 - Use 'python -m pytest test_nlp.py' to run with pytest
+2025-07-13 14:24:16.410 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-13 14:24:16.452 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-13 14:24:16.453 | WARNING  | test_nlp:<module>:59 - NLP modules not available: Using mock functions for testing
+2025-07-13 14:24:16.455 | INFO     | test_nlp:test_tokenizer:91 - Tokenizer test passed: 4 tokens
+2025-07-13 14:24:16.455 | INFO     | test_nlp:test_pos_tagger:102 - POS tagger test passed: 4 tags
+2025-07-13 14:24:16.459 | INFO     | test_nlp:test_encode_and_diff:131 - Encoding and diff test passed
+2025-07-13 14:24:16.460 | INFO     | test_nlp:test_semantic_similarity:143 - Semantic similarity test passed: 0.5
+2025-07-13 14:24:16.460 | INFO     | test_nlp:test_text_parsing:152 - Text parsing test passed
+2025-07-13 14:24:29.229 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-13 14:24:29.282 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-13 14:24:29.282 | WARNING  | test_nlp:<module>:59 - NLP modules not available: Using mock functions for testing
+2025-07-13 14:24:29.284 | INFO     | test_nlp:test_tokenizer:91 - Tokenizer test passed: 4 tokens
+2025-07-13 14:24:29.285 | INFO     | test_nlp:test_pos_tagger:102 - POS tagger test passed: 4 tags
+2025-07-13 14:24:29.290 | INFO     | test_nlp:test_encode_and_diff:131 - Encoding and diff test passed
+2025-07-13 14:24:29.291 | INFO     | test_nlp:test_semantic_similarity:143 - Semantic similarity test passed: 0.5
+2025-07-13 14:24:29.291 | INFO     | test_nlp:test_text_parsing:152 - Text parsing test passed
+2025-07-13 14:24:29.292 | INFO     | test_nlp:test_text_quality_validation:161 - NLP internal check test passed
+2025-07-13 14:24:29.292 | INFO     | test_nlp:test_nlp_pipeline:185 - NLP pipeline integration test passed
+2025-07-13 15:09:33.328 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-13 15:09:33.416 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-13 15:09:33.416 | WARNING  | test_backend:<module>:40 - Backend modules not available: Using mock classes for testing
+2025-07-13 15:09:33.487 | INFO     | test_backend:test_server_shutdown:463 - Server shutdown test passed
+2025-07-13 15:09:33.494 | INFO     | test_backend:test_router_initialization:491 - Router initialization test passed
+2025-07-13 15:09:33.511 | INFO     | test_backend:test_route_middleware:551 - Route middleware test passed
+2025-07-13 15:09:33.511 | INFO     | test_backend:test_scheduler_initialization:565 - Scheduler initialization test passed
+2025-07-13 15:09:33.512 | INFO     | test_backend:test_task_scheduling:586 - Task scheduling test passed
+2025-07-13 15:09:33.719 | INFO     | test_backend:test_recurring_tasks:638 - Recurring tasks test passed
+2025-07-13 15:09:33.720 | INFO     | test_backend:test_task_cancellation:660 - Task cancellation test passed
+2025-07-13 15:09:33.726 | INFO     | test_backend:test_state_operations:691 - State operations test passed
+2025-07-13 15:09:33.727 | INFO     | test_backend:test_state_persistence:713 - State persistence test passed
+2025-07-13 15:09:33.750 | INFO     | test_backend:test_health_endpoint:785 - Health endpoint test passed
+2025-07-13 15:09:33.779 | INFO     | test_backend:test_websocket_handler_initialization:851 - WebSocket handler initialization test passed
+2025-07-13 15:09:33.813 | INFO     | test_backend:test_server_scheduler_integration:946 - Server-Scheduler integration test passed
+2025-07-13 15:09:33.828 | INFO     | test_backend:test_concurrent_api_requests:1001 - Concurrent API test: 100 requests in 0.00s
+2025-07-13 15:09:33.830 | INFO     | test_backend:test_state_manager_performance:1029 - State manager performance: 0.00s, 0.00MB
+2025-07-13 15:09:50.650 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-13 15:09:50.650 | WARNING  | tests.test_backend:<module>:40 - Backend modules not available: Using mock classes for testing
+2025-07-13 15:10:02.131 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-13 15:10:02.131 | WARNING  | tests.test_nlp:<module>:59 - NLP modules not available: Using mock functions for testing
+2025-07-13 15:14:18.310 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-13 15:14:36.341 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-13 15:14:57.992 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-13 15:14:58.077 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-13 15:15:59.777 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/tests/../data/logs/tests/tests.log
+2025-07-13 15:15:59.881 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for tests -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/tests/../data/logs/tests/tests.log

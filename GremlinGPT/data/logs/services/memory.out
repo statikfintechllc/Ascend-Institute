@@ -1,0 +1,7 @@
+2025-07-10 18:51:24.003 | INFO     | backend.globals:<module>:64 - [GLOBALS] Configuration loaded and logger initialized.
+2025-07-10 18:51:24.681 | ERROR    | nlp_engine.transformer_core:<module>:35 - [TRANSFORMER] Failed to load model 'bert-base-uncased': CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero.
+2025-07-10 18:51:24.744 | INFO     | __main__:<module>:115 - [FAISS] Initialized new IndexFlatL2
+/home/statiksmoke8/miniconda3/envs/gremlin-memory/lib/python3.9/site-packages/torch/cuda/__init__.py:174: UserWarning: CUDA initialization: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero. (Triggered internally at /pytorch/c10/cuda/CUDAFunctions.cpp:109.)
+  return torch._C._cuda_getDeviceCount() > 0
+2025-07-10 18:51:25.796 | INFO     | __main__:<module>:137 - [EMBEDDER] Loaded model: all-MiniLM-L6-v2
+2025-07-10 18:51:25.802 | INFO     | __main__:<module>:279 - [EMBEDDER] Initial disk load complete

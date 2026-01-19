@@ -1,0 +1,2 @@
+[NLP_CHECK] ImportError: No module named 'backend.globals'
+[NLP_CHECK] Could not write to $HOME/data/logs/nlp.out: [Errno 2] No such file or directory: '$HOME/data/logs/nlp.out'

@@ -1,0 +1,102 @@
+2025-07-12 23:02:12.328 | INFO     | __main__:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-12 23:03:14.370 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-12 23:03:19.938 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-12 23:03:21.560 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-12 23:07:15.161 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-12 23:07:44.118 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-12 23:07:48.836 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-12 23:07:48.868 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-12 23:07:50.316 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-12 23:07:50.321 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-12 23:07:50.326 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-12 23:07:50.331 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-12 23:10:57.926 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-12 23:11:03.984 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-12 23:11:04.022 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-12 23:11:05.580 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-12 23:11:05.586 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-12 23:11:05.592 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-12 23:11:05.597 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:02:42.620 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:02:48.670 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:02:48.764 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:02:50.153 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:02:50.159 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:02:50.165 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:02:50.171 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:04:51.744 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:05:22.106 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:05:22.110 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:05:22.131 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:05:43.300 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:05:43.306 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:05:43.328 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:05:58.232 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:06:02.605 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:06:02.632 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:06:15.510 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:06:15.514 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:06:15.533 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:06:53.806 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:06:58.074 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:06:58.104 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:07:18.317 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:07:22.744 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:07:22.779 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:07:24.234 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:07:24.239 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:07:24.243 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:07:24.248 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:08:42.284 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:09:00.110 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:09:00.114 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:09:00.133 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:10:50.633 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:10:50.637 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:10:50.657 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:10:51.908 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:10:51.914 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:10:51.919 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:10:51.925 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:11:31.827 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:11:37.205 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:11:37.209 | INFO     | utils.logging_config:setup_module_logger:68 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/data/logs/scraper/scraper.log
+2025-07-13 00:22:31.983 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/data/logs/scraper/scraper.log
+2025-07-13 15:15:40.989 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/data/logs/scraper/scraper.log
+2025-07-13 15:15:59.925 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/tests/../data/logs/scraper/scraper.log
+2025-07-13 15:16:19.475 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/data/logs/scraper/scraper.log
+2025-07-13 15:16:19.475 | INFO     | scraper.dom_navigator:extract_dom_structure:74 - [DOM NAVIGATOR] Parsed HTML → 0 links, 0 semantic nodes, 12 chars of text.
+2025-07-13 15:16:39.927 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/data/logs/scraper/scraper.log
+2025-07-13 15:17:02.052 | INFO     | scraper.tws_scraper:safe_scrape_tws:129 - [tws_scraper] No valid files found — using fallback simulation.
+2025-07-13 15:22:37.161 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/data/logs/scraper/scraper.log
+2025-07-13 15:22:37.161 | INFO     | scraper.tws_scraper:locate_tws_files:51 - [tws_scraper] Scanning for TWS files in /home/statiksmoke8
+2025-07-13 15:23:39.765 | INFO     | scraper.tws_scraper:locate_tws_files:162 - [tws_scraper] Total candidates found: 0
+2025-07-13 15:23:39.765 | INFO     | scraper.tws_scraper:locate_tws_files:51 - [tws_scraper] Scanning for TWS files in /home/statiksmoke8
+2025-07-13 15:24:43.708 | INFO     | scraper.tws_scraper:locate_tws_files:162 - [tws_scraper] Total candidates found: 0
+2025-07-13 15:24:43.708 | INFO     | scraper.tws_scraper:safe_scrape_tws:232 - [tws_scraper] No valid files found — using fallback simulation.
+2025-07-13 15:38:15.533 | INFO     | utils.logging_config:setup_module_logger:69 - [LOGGING] Module logger initialized for scraper -> /home/statiksmoke8/AscendNet/server/AscendAI/GremlinGPT/data/logs/scraper/scraper.log
+2025-07-13 15:38:15.534 | INFO     | scraper.tws_scraper:locate_tws_files:51 - [tws_scraper] Scanning for TWS files in /home/statiksmoke8
+2025-07-13 15:38:15.534 | INFO     | scraper.tws_scraper:locate_tws_files:105 - [tws_scraper] Scanning explicit TWS directory: /home/statiksmoke8/Jts
+2025-07-13 15:38:15.535 | INFO     | scraper.tws_scraper:locate_tws_files:108 - [tws_scraper] Found TWS file in Jts: /home/statiksmoke8/Jts/hs_err_pid107844.log
+2025-07-13 15:38:15.535 | INFO     | scraper.tws_scraper:locate_tws_files:108 - [tws_scraper] Found TWS file in Jts: /home/statiksmoke8/Jts/launcher.log
+2025-07-13 15:38:15.535 | INFO     | scraper.tws_scraper:locate_tws_files:108 - [tws_scraper] Found TWS file in Jts: /home/statiksmoke8/Jts/launcher.20250705.log
+2025-07-13 15:38:15.535 | INFO     | scraper.tws_scraper:locate_tws_files:108 - [tws_scraper] Found TWS file in Jts: /home/statiksmoke8/Jts/launcher.20250712.log
+2025-07-13 15:38:15.535 | INFO     | scraper.tws_scraper:locate_tws_files:108 - [tws_scraper] Found TWS file in Jts: /home/statiksmoke8/Jts/launcher.20250707.log
+2025-07-13 15:38:15.535 | INFO     | scraper.tws_scraper:locate_tws_files:108 - [tws_scraper] Found TWS file in Jts: /home/statiksmoke8/Jts/launcher.20250704.log
+2025-07-13 15:38:15.535 | INFO     | scraper.tws_scraper:locate_tws_files:108 - [tws_scraper] Found TWS file in Jts: /home/statiksmoke8/Jts/launcher.20250702.log
+2025-07-13 15:38:15.535 | INFO     | scraper.tws_scraper:locate_tws_files:108 - [tws_scraper] Found TWS file in Jts: /home/statiksmoke8/Jts/launcher.20250706.log
+2025-07-13 15:38:15.535 | INFO     | scraper.tws_scraper:locate_tws_files:108 - [tws_scraper] Found TWS file in Jts: /home/statiksmoke8/Jts/.install4j/updater.log
+2025-07-13 15:38:15.535 | INFO     | scraper.tws_scraper:locate_tws_files:108 - [tws_scraper] Found TWS file in Jts: /home/statiksmoke8/Jts/.install4j/files.log
+2025-07-13 15:38:15.535 | INFO     | scraper.tws_scraper:locate_tws_files:108 - [tws_scraper] Found TWS file in Jts: /home/statiksmoke8/Jts/.install4j/installation.log
+2025-07-13 15:39:21.166 | INFO     | scraper.tws_scraper:locate_tws_files:171 - [tws_scraper] Total candidates found: 11
+2025-07-13 15:39:21.167 | INFO     | scraper.tws_scraper:locate_tws_files:173 - [tws_scraper] Candidate file: /home/statiksmoke8/Jts/hs_err_pid107844.log (size: 425532 bytes)
+2025-07-13 15:39:21.167 | INFO     | scraper.tws_scraper:locate_tws_files:173 - [tws_scraper] Candidate file: /home/statiksmoke8/Jts/launcher.log (size: 71856 bytes)
+2025-07-13 15:39:21.167 | INFO     | scraper.tws_scraper:locate_tws_files:173 - [tws_scraper] Candidate file: /home/statiksmoke8/Jts/launcher.20250705.log (size: 53302 bytes)
+2025-07-13 15:39:21.167 | INFO     | scraper.tws_scraper:locate_tws_files:173 - [tws_scraper] Candidate file: /home/statiksmoke8/Jts/launcher.20250712.log (size: 11613 bytes)
+2025-07-13 15:39:21.167 | INFO     | scraper.tws_scraper:locate_tws_files:173 - [tws_scraper] Candidate file: /home/statiksmoke8/Jts/launcher.20250707.log (size: 15131 bytes)
+2025-07-13 15:39:21.167 | INFO     | scraper.tws_scraper:locate_tws_files:173 - [tws_scraper] Candidate file: /home/statiksmoke8/Jts/launcher.20250704.log (size: 8390 bytes)
+2025-07-13 15:39:21.167 | INFO     | scraper.tws_scraper:locate_tws_files:173 - [tws_scraper] Candidate file: /home/statiksmoke8/Jts/launcher.20250702.log (size: 11610 bytes)
+2025-07-13 15:39:21.167 | INFO     | scraper.tws_scraper:locate_tws_files:173 - [tws_scraper] Candidate file: /home/statiksmoke8/Jts/launcher.20250706.log (size: 7201 bytes)
+2025-07-13 15:39:21.167 | INFO     | scraper.tws_scraper:locate_tws_files:173 - [tws_scraper] Candidate file: /home/statiksmoke8/Jts/.install4j/updater.log (size: 5229 bytes)
+2025-07-13 15:39:21.167 | INFO     | scraper.tws_scraper:locate_tws_files:173 - [tws_scraper] Candidate file: /home/statiksmoke8/Jts/.install4j/files.log (size: 71285 bytes)
+2025-07-13 15:39:21.167 | INFO     | scraper.tws_scraper:locate_tws_files:173 - [tws_scraper] Candidate file: /home/statiksmoke8/Jts/.install4j/installation.log (size: 43359 bytes)
