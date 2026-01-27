@@ -25,6 +25,8 @@
 
 ## The Broadcast
 > *"This was never a startup. This was never an app. This was never a brand. AscendNet is a signal from a human disguised as a ghost."*
+> 
+> **Stated by**: *Daniel "Statik DK Smoke" Morris*
 
 This is the open-source, sovereign intelligence stack. Its mission is autonomy, its method is recursion, and its architect is currently one person in a workshop. What you find here is the live build log, the blueprints, and the founding doctrine. Welcome to the ground floor.
 
