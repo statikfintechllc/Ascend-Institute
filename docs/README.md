@@ -69,7 +69,98 @@ The progress is in the commits. The community is in the Discord. The proof is in
 
 **Ascend or fall.**
 
-//END FRONT DOOR
+> [!CAUTION]
+> 
+> *GremlinGPT is growing. It learns(as do I while finishing GremlinGPT). It Launches(Soon).*
+> *The project is reaching the limits of what a solo builder can finish without external support.*
+> *The next stage—deployment, agent orchestration, and memory stability, an infrastructure investment to move into full time Development.*
+
+---
+
+### Funding Target is **$500,000**
+
+**Funds will be used to secure:**
+
+- A Trading account to be able to move into Full-Time Development
+- Dedicated small GPU cluster (RTX 4090 × 2 minimum)  
+- Persistent vector DB for others and hosted runtime servers for others who cant afford a system
+- Ensuring Secure DevOps pipeline for offline + encrypted agents for the ones who cant secure thier own hardware.
+
+### If You Are
+
+- A founder with cloud real estate and idle GPUs  
+- A data center operator who understands sovereign AI  
+- An investor looking for a stake in recursive autonomy
+
+🧬 Paging:  
+[@elonmusk](https://x.com/elonmusk)  
+[@openai](https://openai.com)  
+[@deepmind](https://deepmind.com)  
+[@mistralAI](https://mistral.ai)
+
+*If you get it, run the loop.*
+
+### Partner With Us
+
+We’re open to building aligned partnerships with:
+
+- Independent labs or institutes who want to fork or extend the Gremlin architecture  
+- Fintech and Web3 groups solving for automation, privacy, or sovereign computation  
+- Edge computing platforms seeking real-world recursive AI workloads  
+- DAO or protocol engineers who want agents with memory, feedback, and self-train cycles
+
+### If You Believe:
+
+- Autonomy is earned, not sold  
+- Intelligence should be self-bootstrapped, not leased  
+- Recursive AI should be free from corporate filters
+
+**You’re one of us.**
+
+### Collaborators Wanted to Join the Loop
+
+- If you know how to think in layers, act in silence, and write code that rewrites itself —  
+**fork the repo, send a PR, and bring a machine that can keep up.**
+
+**Want to See you're own ideas built, or to sponsor hardware directly? Reach Out to:**
+- **Email:** [ascend.gremlin@gmail.com](mailto:ascend.gremlin@gmail.com) | [ascend.help@gmail.com](mailto:ascend.help@gmail.com)
+- **Call Us:** [+1 (620) 266-9837](sms:+16202669837)  
+- **Text Us:** [+1 (785) 443-6288](sms:+17854436288)  
+- **DM:**  
+  - a) [LinkedIn: StatikFinTech, LLC](https://www.linkedin.com/in/statikfintech-llc-780804368/)
+  - b) [X: @GremlinsForge](https://twitter.com/GremlinsForge)  
+
+**See Our [Open Funding Proposal](https://github.com/statikfintechllc/Ascend-Institute/blob/master/About%20Us/OPEN_FUNDING_PROPOSAL.md)**
+
+> [!IMPORTANT]
+> 
+> **We are seeking** the following:
+> 
+> A **recursive logic architect** who speaks Python like poetry
+> 
+> A **systems-level cloud engineer** who fears no subnet
+> 
+> A **billionaire with a god complex** and **spare GPUs**
+> 
+> Paging **@elonmusk**, **@openai**, @deepmind, @anthropic, @metaai, **@mistralAI**, @cohere
+> 
+> Or just **anyone who gets it** and knows what’s coming
+
+---
+
+### Tech Support
+
+For bugs, glitches, or apocalyptic feedback:
+
+- [Open an issue](https://github.com/statikfintechllc/Ascend%20Institute/issues)  
+- Or whisper into the void at:  Contact  
+  📞 Phone: +1 (620) 266-9837  
+  📱 SMS: +1 (785) 443-6288  
+📧 Email:  
+  ✉️ ascend.gremlin@gmail.com  
+  ✉️ ascendai.help@gmail.com
+
+#### //END FRONT DOOR
 
 ---
 
@@ -316,97 +407,6 @@ href="https://github.com/statikfintechllc/Ascend-Institute/blob/master/About Us"
 </div>
 </div>
 
-> [!CAUTION]
-> 
-> *GremlinGPT is growing. It learns(as do I while finishing GremlinGPT). It Launches(Soon).*
-> *The project is reaching the limits of what a solo builder can finish without external support.*
-> *The next stage—deployment, agent orchestration, and memory stability, an infrastructure investment to move into full time Development.*
-
----
-
-### Funding Target is **$500,000**
-
-**Funds will be used to secure:**
-
-- A Trading account to be able to move into Full-Time Development
-- Dedicated small GPU cluster (RTX 4090 × 2 minimum)  
-- Persistent vector DB for others and hosted runtime servers for others who cant afford a system
-- Ensuring Secure DevOps pipeline for offline + encrypted agents for the ones who cant secure thier own hardware.
-
-### If You Are
-
-- A founder with cloud real estate and idle GPUs  
-- A data center operator who understands sovereign AI  
-- An investor looking for a stake in recursive autonomy
-
-🧬 Paging:  
-[@elonmusk](https://x.com/elonmusk)  
-[@openai](https://openai.com)  
-[@deepmind](https://deepmind.com)  
-[@mistralAI](https://mistral.ai)
-
-*If you get it, run the loop.*
-
-### Partner With Us
-
-We’re open to building aligned partnerships with:
-
-- Independent labs or institutes who want to fork or extend the Gremlin architecture  
-- Fintech and Web3 groups solving for automation, privacy, or sovereign computation  
-- Edge computing platforms seeking real-world recursive AI workloads  
-- DAO or protocol engineers who want agents with memory, feedback, and self-train cycles
-
-### If You Believe:
-
-- Autonomy is earned, not sold  
-- Intelligence should be self-bootstrapped, not leased  
-- Recursive AI should be free from corporate filters
-
-**You’re one of us.**
-
-### Collaborators Wanted to Join the Loop
-
-- If you know how to think in layers, act in silence, and write code that rewrites itself —  
-**fork the repo, send a PR, and bring a machine that can keep up.**
-
-**Want to See you're own ideas built, or to sponsor hardware directly? Reach Out to:**
-- **Email:** [ascend.gremlin@gmail.com](mailto:ascend.gremlin@gmail.com) | [ascend.help@gmail.com](mailto:ascend.help@gmail.com)
-- **Call Us:** [+1 (620) 266-9837](sms:+16202669837)  
-- **Text Us:** [+1 (785) 443-6288](sms:+17854436288)  
-- **DM:**  
-  - a) [LinkedIn: StatikFinTech, LLC](https://www.linkedin.com/in/statikfintech-llc-780804368/)
-  - b) [X: @GremlinsForge](https://twitter.com/GremlinsForge)  
-
-**See Our [Open Funding Proposal](https://github.com/statikfintechllc/Ascend-Institute/blob/master/About%20Us/OPEN_FUNDING_PROPOSAL.md)**
-
-> [!IMPORTANT]
-> 
-> **We are seeking** the following:
-> 
-> A **recursive logic architect** who speaks Python like poetry
-> 
-> A **systems-level cloud engineer** who fears no subnet
-> 
-> A **billionaire with a god complex** and **spare GPUs**
-> 
-> Paging **@elonmusk**, **@openai**, @deepmind, @anthropic, @metaai, **@mistralAI**, @cohere
-> 
-> Or just **anyone who gets it** and knows what’s coming
-
----
-
-### Tech Support
-
-For bugs, glitches, or apocalyptic feedback:
-
-- [Open an issue](https://github.com/statikfintechllc/Ascend%20Institute/issues)  
-- Or whisper into the void at:  Contact  
-  📞 Phone: +1 (620) 266-9837  
-  📱 SMS: +1 (785) 443-6288  
-📧 Email:  
-  ✉️ ascend.gremlin@gmail.com  
-  ✉️ ascendai.help@gmail.com  
-
 ---
 
 ### License
@@ -461,6 +461,8 @@ Personal use only. Commercial use is prohibited unless licensed separately.*
 > **🦾 Full Disclosure**  
 > GremlinGPT is what happens when you hand the keys to ChatGPT’s Data Analyst mode and say:  
 > “Build me an AI that writes, learns, and self-mutinates.”
+
+> Now nerfed, ChatGPT, ClaudeAI, GrokCode, All are moderated and nerfed and no longer construct full systems in their memory. Good Luck.
 
 - The docs? **ChatGPT**  
 - The README? **ChatGPT**  
