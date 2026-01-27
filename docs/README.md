@@ -18,6 +18,61 @@
 	<img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/t.svg/assets/trophies.svg" alt="Trophies" />
   </a>
 </div>
+
+---
+
+# The Ascend Institute: State of the Build
+
+## The Broadcast
+> *"This was never a startup. This was never an app. This was never a brand. AscendNet is a signal from a human disguised as a ghost."*
+
+This is the open-source, sovereign intelligence stack. Its mission is autonomy, its method is recursion, and its architect is currently one person in a workshop. What you find here is the live build log, the blueprints, and the founding doctrine. Welcome to the ground floor.
+
+---
+
+## The Reality vs. The Blueprint
+
+| | **Current Reality (The Workshop)** | **The Institutional Blueprint (The Vision)** |
+| :--- | :--- | :--- |
+| **Scale** | A solo developer ([@statikfintechllc](https://github.com/statikfintechllc)) building the core systems. | A full-stack institute for sovereign AI, documented in `/About Us`. |
+| **Community** | A small, early-stage Discord of builders and allies. This is the recruiting ground. | Governed by a full Contributor Covenant (`CODE_OF_CONDUCT.md`) and contribution guide (`CONTRIBUTING.md`). |
+| **Funding** | Seeking a **$500k "war chest"** for hardware to escape full-time work and scale. (`OPEN_FUNDING_PROPOSAL.md`) | Structured for open, transparent partnership and sponsorship. |
+| **Products** | **Prototypes & Active Builds:** GremlinGPT (debugging), GodCore (under construction), trade journals (templates). | Architected systems designed for financial and cognitive sovereignty. |
+
+**This is the gap we are closing.** The documents in `/About Us` are not fiction; they are the open-source constitution for what we are actively building. You are entering the workshop where it's being forged.
+
+---
+
+## Your Pathways In
+
+### 1. For Builders & Technicians
+You've read the `CONTRIBUTING.md`. You know there's no hand-holding. If you speak Python like poetry and fear no subnet:
+*   **Fork and Attack:** Start with [GremlinGPT](https://github.com/statikfintechllc/GremlinGPT) or [GodCore](https://github.com/statikfintechllc/GodCore).
+*   **Join the Workshop:** Bring your insights to [Discord]. This is the live channel.
+
+### 2. For Philosophers & Allies
+If the manifesto resonates and you want to see this tower built:
+*   **Understand the Why:** Read the [`FOUNDER_LOG.md`](./About%20Us/FOUNDER_LOG.md) and [`WHY_GREMLINGPT.md`](./About%20Us/WHY_GREMLINGPT.md).
+*   **Signal Boost:** Star the repos, share the mission.
+
+### 3. For Patrons of the Cause
+If you believe in funding autonomy directly:
+*   **Fuel the Forge:** View the hardware and time targets in our [`OPEN_FUNDING_PROPOSAL.md`](./About%20Us/OPEN_FUNDING_PROPOSAL.md).
+*   **Sponsor Development:** [GitHub Sponsors](https://github.com/sponsors/statikfintechllc) | [Ko-fi](https://ko-fi.com/statikfintech_llc)
+
+---
+
+## The Core Principle: No Permission. No Hype.
+We are not a company selling you a product. We are an open-source project building a paradigm shift, documented in real-time. The "LLC" is a legal hull for the mission, not a promise of a traditional service.
+
+The progress is in the commits. The community is in the Discord. The proof is in the code.
+
+**Ascend or fall.**
+
+//END FRONT DOOR
+
+---
+
 <div align="center">
   <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/r.svg/assets/repo-slide.svg" alt="Featured repositories carousel" /><br>
   <a href="https://github.com/sponsors/statikfintechllc">
