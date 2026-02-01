@@ -1,187 +1,860 @@
 <!DOCTYPE html>
 <html lang="en">
-<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SFTi Institue – Sovereign Stack</title>
-  <link rel="stylesheet" type="text/css" href="custom.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AscendAI – Sovereign Stack</title>
-  <link rel="stylesheet" type="text/css" href="custom.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-dark.min.css">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <meta property="og:title" content="SFTi's Ascend Institute – Sovereign Stack">
-  <meta property="og:description" content="GremlinGPT, Financial Autonomy, and Self-Hosting Liberation.">
-  <meta property="og:image" content="https://statikfintechllc.github.io/assets/og-image.png">
-  <meta property="og:url" content="https://statikfintechllc.github.io/Ascend-Institute/">
-  <!-- Styles moved to custom.css -->
-  <meta property="og:url" content="https://statikfintechllc.github.io/Ascend-Institute/">
-  <style>
-    main {
-      max-width: 960px;
-      margin: 4rem auto;
-      padding: 1rem;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFTi - Statik FinTech Intelligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --accent-red: #e63946;
+            --accent-gold: #d4af37;
+            --accent-silver: #c0c0c0;
+            --text-primary: #e8e8f0;
+            --text-secondary: #9a9aaa;
+        }
 
-    .admonition {
-      border-left: 4px solid #444;
-      padding: 1em;
-      margin: 1.5em 0;
-      background: #0d1117;
-      border-radius: 6px;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .admonition-note { border-color: #2f81f7; }
-    .admonition-tip { border-color: #3fb950; }
-    .admonition-warning { border-color: #d29922; }
-    .admonition-important { border-color: #8250df; }
-    .admonition-caution { border-color: #f85149; }
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: #050508;
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
 
-    .admonition-title {
-      font-weight: bold;
-      margin-bottom: 0.5em;
-    }
-  </style>
+        /* Flowing Background */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 10% 20%, rgba(230, 57, 70, 0.15) 0%, transparent 40%),
+                radial-gradient(ellipse at 90% 80%, rgba(212, 175, 55, 0.12) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 50%, rgba(192, 192, 192, 0.05) 0%, transparent 60%);
+            z-index: 0;
+            animation: bgFlow 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes bgFlow {
+            0% { 
+                background-position: 0% 0%, 100% 100%, 50% 50%;
+                filter: hue-rotate(0deg);
+            }
+            100% { 
+                background-position: 10% 10%, 90% 90%, 60% 40%;
+                filter: hue-rotate(5deg);
+            }
+        }
+
+        .gradient-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(135deg, rgba(230, 57, 70, 0.03) 0%, transparent 30%, rgba(212, 175, 55, 0.04) 70%, transparent 100%),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(230, 57, 70, 0.02) 2px, rgba(230, 57, 70, 0.02) 4px);
+            z-index: 1;
+            pointer-events: none;
+            animation: gradientShift 15s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 0.9; }
+        }
+
+        /* Header */
+        header {
+            position: relative;
+            z-index: 100;
+            padding: 2rem 7% 3rem;
+            background: linear-gradient(180deg, rgba(10, 10, 15, 0.95) 0%, rgba(10, 10, 15, 0.7) 100%);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid transparent;
+            border-image: linear-gradient(90deg, transparent, var(--accent-red), var(--accent-gold), transparent) 1;
+        }
+
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(120deg, var(--accent-red) 0%, var(--accent-gold) 50%, var(--accent-silver) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.15em;
+            filter: drop-shadow(0 0 30px rgba(230, 57, 70, 0.6));
+            animation: logoGlow 4s ease-in-out infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes logoGlow {
+            0%, 100% { 
+                filter: drop-shadow(0 0 30px rgba(230, 57, 70, 0.6));
+                background-position: 0% 50%;
+            }
+            50% { 
+                filter: drop-shadow(0 0 50px rgba(212, 175, 55, 0.7));
+                background-position: 100% 50%;
+            }
+        }
+
+        .tagline {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.9rem;
+            color: var(--accent-silver);
+            letter-spacing: 0.4em;
+            margin-top: 0.3rem;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeInUp 1.2s ease-out 0.3s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 0.8;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+
+        /* Main Content */
+        main {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 7% 3rem;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.7rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-silver));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 2.5rem 0 1.2rem;
+            position: relative;
+            padding-left: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent-red), var(--accent-gold));
+            box-shadow: 0 0 15px var(--accent-red);
+            border-radius: 2px;
+        }
+
+        /* Flowing Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: linear-gradient(135deg, rgba(26, 26, 38, 0.6) 0%, rgba(18, 18, 26, 0.8) 100%);
+            border-radius: 20px;
+            padding: 1.8rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(230, 57, 70, 0.15);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(230, 57, 70, 0.15) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            padding: 1px;
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-gold), var(--accent-silver));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card:hover::after {
+            opacity: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(230, 57, 70, 0.3), 0 0 40px rgba(212, 175, 55, 0.2);
+            border-color: transparent;
+        }
+
+        .card-icon {
+            font-size: 2.2rem;
+            margin-bottom: 0.8rem;
+            filter: drop-shadow(0 0 10px var(--accent-red));
+            animation: iconFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(5deg); }
+        }
+
+        .card-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.2rem;
+            font-weight: 600;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-silver));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .card-description {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.5;
+            margin-bottom: 1.2rem;
+        }
+
+        .card-link {
+            display: inline-block;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 0.6rem 1.2rem;
+            background: linear-gradient(135deg, rgba(230, 57, 70, 0.2), rgba(212, 175, 55, 0.2));
+            border-radius: 25px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(192, 192, 192, 0.2);
+        }
+
+        .card-link::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-gold));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: 25px;
+        }
+
+        .card-link span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-link:hover::before {
+            opacity: 1;
+        }
+
+        .card-link:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(230, 57, 70, 0.4);
+            border-color: transparent;
+        }
+
+        /* Flowing Carousel */
+        .carousel-container {
+            position: relative;
+            margin: 2rem 0;
+            overflow: visible;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 1.2rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(230, 57, 70, 0.6) rgba(18, 18, 26, 0.4);
+            padding: 1rem 0.5rem;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .carousel-track::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .carousel-track::-webkit-scrollbar-track {
+            background: rgba(18, 18, 26, 0.4);
+            border-radius: 10px;
+        }
+
+        .carousel-track::-webkit-scrollbar-thumb {
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-gold));
+            border-radius: 10px;
+        }
+
+        .carousel-card {
+            min-width: 280px;
+            background: linear-gradient(135deg, rgba(26, 26, 38, 0.7) 0%, rgba(18, 18, 26, 0.9) 100%);
+            border-radius: 18px;
+            padding: 1.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .carousel-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), var(--accent-red), transparent);
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 0.6s ease;
+        }
+
+        .carousel-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .carousel-card:hover {
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.25);
+            transform: translateY(-3px);
+        }
+
+        /* Link List - More Compact */
+        .link-list {
+            list-style: none;
+            margin: 1.5rem 0;
+            display: grid;
+            gap: 0.7rem;
+        }
+
+        .link-item {
+            background: linear-gradient(90deg, rgba(26, 26, 38, 0.5) 0%, rgba(18, 18, 26, 0.7) 100%);
+            border-left: 2px solid var(--accent-red);
+            padding: 0.9rem 1.3rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .link-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, rgba(230, 57, 70, 0.15), rgba(212, 175, 55, 0.1), transparent);
+            transition: width 0.4s ease;
+        }
+
+        .link-item:hover::before {
+            width: 100%;
+        }
+
+        .link-item:hover {
+            border-left-width: 4px;
+            border-left-color: var(--accent-gold);
+            transform: translateX(8px);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .link-item a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .link-item:hover a {
+            color: var(--accent-gold);
+        }
+
+        /* Contact Grid - Tighter */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, rgba(26, 26, 38, 0.6) 0%, rgba(18, 18, 26, 0.8) 100%);
+            border: 1px solid rgba(192, 192, 192, 0.15);
+            border-radius: 16px;
+            padding: 1.3rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .contact-card:hover {
+            border-color: rgba(192, 192, 192, 0.4);
+            box-shadow: 0 8px 30px rgba(192, 192, 192, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .contact-icon {
+            font-size: 1.8rem;
+            filter: drop-shadow(0 0 8px var(--accent-silver));
+            margin-bottom: 0.8rem;
+        }
+
+        .contact-label {
+            font-family: 'Orbitron', monospace;
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            margin-bottom: 0.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .contact-value {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .contact-value a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-value a:hover {
+            color: var(--accent-red);
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.7rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-left: 0.4rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .status-down {
+            background: rgba(230, 57, 70, 0.25);
+            color: var(--accent-red);
+            border: 1px solid rgba(230, 57, 70, 0.5);
+            box-shadow: 0 0 10px rgba(230, 57, 70, 0.3);
+        }
+
+        .status-active {
+            background: rgba(212, 175, 55, 0.25);
+            color: var(--accent-gold);
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 2.5rem 7%;
+            margin-top: 3rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 15, 0.9) 50%);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid transparent;
+            border-image: linear-gradient(90deg, transparent, var(--accent-gold), transparent) 1;
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* Animations */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .card, .carousel-card, .link-item {
+            animation: slideInLeft 0.7s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.05s; }
+        .card:nth-child(2) { animation-delay: 0.1s; }
+        .card:nth-child(3) { animation-delay: 0.15s; }
+        .card:nth-child(4) { animation-delay: 0.2s; }
+        .card:nth-child(5) { animation-delay: 0.25s; }
+        .card:nth-child(6) { animation-delay: 0.3s; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+
+            main {
+                padding: 1.5rem 5%;
+            }
+
+            header {
+                padding: 1.5rem 5% 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="bg-grid"></div>
+    <div class="gradient-overlay"></div>
 
-  <div id="vanta-bg" class="vanta-bg"></div>
+    <header>
+        <div class="logo">SFTi</div>
+        <div class="tagline">Statik FinTech Intelligence</div>
+    </header>
 
-  <main>
-    <div id="readme" class="markdown-body glass"></div>
-  </main>
+    <main>
+        <!-- Main Sites -->
+        <h2 class="section-title">Command Centers</h2>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">🌐</div>
+                <div class="card-title">Main Site</div>
+                <div class="card-description">
+                    Primary intelligence hub for SFTi operations. Server infrastructure currently offline.
+                    <span class="status-badge status-down">Offline</span>
+                </div>
+                <a href="https://www.sfti-ai.org" class="card-link" target="_blank"><span>sfti-ai.org</span></a>
+            </div>
 
-  <!-- IntersectionObserver polyfill for older browsers -->
-  <script src="intersection-observer-polyfill.js"></script>
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <div class="card-title">Temporary Operations</div>
+                <div class="card-description">
+                    Active deployment site. PWA functionality pending restoration.
+                    <span class="status-badge status-active">Active</span>
+                </div>
+                <a href="https://statikfintechllc.github.io/statikfintechllc/" class="card-link" target="_blank"><span>View Site</span></a>
+            </div>
 
-  <script>
-    // Performance optimization: Debounce VANTA animation updates
-    let vantaInstance = null;
-    let isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            <div class="card">
+                <div class="card-icon">🎓</div>
+                <div class="card-title">Ascend Institute</div>
+                <div class="card-description">
+                    Educational platform and knowledge repository for autonomous systems development.
+                </div>
+                <a href="https://statikfintechllc.github.io/Ascend-Institute/" class="card-link" target="_blank"><span>Enter Institute</span></a>
+            </div>
+        </div>
 
-    const githubSlug = (text) =>
-      text.toLowerCase()
-          .trim()
-          .replace(/[^\w\s-]/g, '')
-          .replace(/\s+/g, '-')
-          .replace(/-+/g, '-')
-          .replace(/^-|-$/g, '');
+        <!-- Trading Tools -->
+        <h2 class="section-title">Trading Intelligence</h2>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">💰</div>
+                <div class="card-title">SFTi Pennies</div>
+                <div class="card-description">
+                    Hedge fund-level analytics, democratized. Template-driven trade journal powered by GitHub Pages. Zero cost, maximum insight.
+                </div>
+                <a href="https://statikfintech-llc.github.io/SFTi-Pennies/" class="card-link" target="_blank"><span>Launch Pennies</span></a>
+            </div>
 
-    marked.setOptions({
-      headerIds: true,
-      headerPrefix: '',
-      mangle: false,
-      slugger: {
-        slug: githubSlug
-      }
-    });
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <div class="card-title">Trade Grade</div>
+                <div class="card-description">
+                    Pre-market and after-hours trade grading system. Build tactical plans, journal execution, analyze performance.
+                </div>
+                <a href="https://statikfintechllc.github.io/SFTi.Trade_Grade/" class="card-link" target="_blank"><span>Grade Trades</span></a>
+            </div>
 
-    fetch('README.md')
-      .then(res => res.ok ? res.text() : Promise.reject('README fetch failed'))
-      .then(md => {
-        const container = document.getElementById('readme');
-        container.innerHTML = marked.parse(md);
+            <div class="card">
+                <div class="card-icon">🧩</div>
+                <div class="card-title">The Riddle</div>
+                <div class="card-description">
+                    Interactive intelligence challenge. Designed to stump English professors. Test your pattern recognition.
+                </div>
+                <a href="https://statikfintechllc.github.io/The-GateKeepers-Riddles.i/" class="card-link" target="_blank"><span>Solve Riddles</span></a>
+            </div>
+        </div>
 
-        // Post-render transformation of admonitions (no markdown badge breakage)
-        container.querySelectorAll('p').forEach(p => {
-          const match = p.textContent.trim().match(/^\[!(NOTE|TIP|WARNING|IMPORTANT|CAUTION)\]/i);
-          if (match) {
-            const type = match[1].toLowerCase();
-            const emojiMap = {
-              note: '📝',
-              tip: '💡',
-              warning: '⚠️',
-              important: '🗣️',
-              caution: '⛔️'
-            };
-            const label = match[1].charAt(0) + match[1].slice(1).toLowerCase();
-            const rest = p.innerHTML.replace(/^\[!\w+\]/, '').trim();
-            const div = document.createElement('div');
-            div.className = `admonition admonition-${type}`;
-            div.innerHTML = `<div class="admonition-title">${emojiMap[type]} ${label}</div><p>${rest}</p>`;
-            p.replaceWith(div);
-          }
-        });
+        <!-- Publishing -->
+        <h2 class="section-title">Knowledge Archives</h2>
+        <div class="carousel-container">
+            <div class="carousel-track">
+                <div class="carousel-card">
+                    <div class="card-title" style="font-size: 1.1rem;">Medium</div>
+                    <div class="card-description">27 articles on AI autonomy, extraction systems, and paradigm shifts</div>
+                    <a href="https://medium.com/@ascend.gremlin" class="card-link" target="_blank"><span>View Profile</span></a>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-title" style="font-size: 1.1rem;">Zenodo</div>
+                    <div class="card-description">3 peer-reviewed archives on autonomous intelligence and economic models</div>
+                    <a href="https://zenodo.org/records/15717788" class="card-link" target="_blank"><span>Archive 1</span></a>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-title" style="font-size: 1.1rem;">GitHub Docs</div>
+                    <div class="card-description">Documentation hub for GovSeverance and system architectures</div>
+                    <a href="https://github.com/statikfintechllc/AscendDocs-of-GovSeverance" class="card-link" target="_blank"><span>View Docs</span></a>
+                </div>
+            </div>
+        </div>
 
-        container.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(header => {
-          if (!header.id) {
-            const id = githubSlug(header.textContent);
-            header.id = id;
-          }
-        });
+        <!-- Featured Publications -->
+        <h3 class="section-title" style="font-size: 1.5rem;">Featured Articles</h3>
+        <ul class="link-list">
+            <li class="link-item"><a href="https://medium.com/@ascend.gremlin/the-govseverance-doctrine-70fa170a9e8f" target="_blank">The GovSeverance Doctrine</a></li>
+            <li class="link-item"><a href="https://medium.com/@ascend.gremlin/self-forking-ai-and-the-mechanic-from-kansas-73d98685fda9" target="_blank">Self-Forking AI and the Mechanic from Kansas</a></li>
+            <li class="link-item"><a href="https://medium.com/@ascend.gremlin/designing-gremlingpt-8521fbdedcf8" target="_blank">Designing GremlinGPT</a></li>
+            <li class="link-item"><a href="https://medium.com/@ascend.gremlin/the-autonomous-intelligence-paradox-12d38dbd5b00" target="_blank">The Autonomous Intelligence Paradox</a></li>
+            <li class="link-item"><a href="https://medium.com/@ascend.gremlin/capital-capture-a2a885ce3885" target="_blank">Capital Capture</a></li>
+        </ul>
 
-        container.querySelectorAll('a[href^="#"]').forEach(anchor => {
-          anchor.addEventListener('click', function (e) {
-            const target = document.getElementById(this.getAttribute('href').slice(1));
-            if (target) {
-              e.preventDefault();
-              target.scrollIntoView({ behavior: 'smooth' });
-              history.pushState(null, null, this.getAttribute('href'));
-            }
-          });
-        });
+        <!-- GitHub Projects -->
+        <h2 class="section-title">System Architectures</h2>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">🤖</div>
+                <div class="card-title">GremlinGPT</div>
+                <div class="card-description">
+                    Flagship autonomous system. Multi-agent architecture across 5 conda environments. Currently under reconstruction.
+                </div>
+                <a href="https://github.com/statikfintechllc/GremlinGPT" class="card-link" target="_blank"><span>View Repository</span></a>
+            </div>
 
-        // Initialize VANTA with performance optimizations
-        try {
-          // Skip animation if user prefers reduced motion
-          if (isReducedMotion) {
-            console.log('Reduced motion preferred, skipping VANTA animation');
-            document.getElementById('vanta-bg').style.background = 'linear-gradient(180deg, #000 0%, #111 100%)';
-          } else {
-            vantaInstance = VANTA.NET({
-              el: "#vanta-bg",
-              mouseControls: true,
-              touchControls: true,
-              gyroControls: false,
-              color: 0xff0000,
-              backgroundColor: 0x000000,
-              points: 10.00,  // Reduced from default for better performance
-              maxDistance: 20.00,  // Reduced from default
-              spacing: 15.00  // Increased spacing for fewer particles
+            <div class="card">
+                <div class="card-icon">⚙️</div>
+                <div class="card-title">GodCore</div>
+                <div class="card-description">
+                    Second-generation build. 2 releases deployed. Infrastructure upgrade in progress.
+                </div>
+                <a href="https://github.com/statikfintechllc/GodCore" class="card-link" target="_blank"><span>View Repository</span></a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🐉</div>
+                <div class="card-title">Dragon Boot</div>
+                <div class="card-description">
+                    Animated dragon boot theme for Linux. Visual aesthetics meet system-level design.
+                </div>
+                <a href="https://github.com/statikfintechllc/dragon-boot" class="card-link" target="_blank"><span>View Repository</span></a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🔧</div>
+                <div class="card-title">ZSH Installer</div>
+                <div class="card-description">
+                    Automated ZSH setup for iSH. Configures GitHub integration and clones approved repositories to mobile devices.
+                </div>
+                <a href="https://github.com/statikfintechllc/zsh.installer" class="card-link" target="_blank"><span>View Repository</span></a>
+            </div>
+        </div>
+
+        <!-- Social Presence -->
+        <h2 class="section-title">Network Nodes</h2>
+        <div class="carousel-container">
+            <div class="carousel-track">
+                <div class="carousel-card">
+                    <div class="card-title" style="font-size: 1.1rem;">LinkedIn</div>
+                    <a href="https://www.linkedin.com/in/statikfintech-llc-780804368" class="card-link" target="_blank"><span>Connect</span></a>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-title" style="font-size: 1.1rem;">Reddit</div>
+                    <a href="https://www.reddit.com/user/StatikFinTech_LLC/" class="card-link" target="_blank"><span>Profile</span></a>
+                    <a href="https://www.reddit.com/r/SFTi_Trading/s/O8WpBcQmQe" class="card-link" target="_blank"><span>Community</span></a>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-title" style="font-size: 1.1rem;">Discord</div>
+                    <a href="https://discord.gg/vVAfmuD85" class="card-link" target="_blank"><span>Join Server</span></a>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-title" style="font-size: 1.1rem;">X (Twitter)</div>
+                    <a href="https://x.com/gremlinsforge" class="card-link" target="_blank"><span>@gremlinsforge</span></a>
+                </div>
+                <div class="carousel-card">
+                    <div class="card-title" style="font-size: 1.1rem;">YouTube</div>
+                    <a href="https://youtube.com/@gremlins_forge" class="card-link" target="_blank"><span>Channel</span></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Funding -->
+        <h2 class="section-title">Support Infrastructure</h2>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">☕</div>
+                <div class="card-title">Ko-fi</div>
+                <div class="card-description">Direct financial support for system development and operational costs.</div>
+                <a href="https://ko-fi.com/statikfintechllc" class="card-link" target="_blank"><span>Support on Ko-fi</span></a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🎯</div>
+                <div class="card-title">Patreon</div>
+                <div class="card-description">Recurring support model for sustained development cycles.</div>
+                <a href="https://patreon.com/StatikFinTech_LLC" class="card-link" target="_blank"><span>Become a Patron</span></a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">💻</div>
+                <div class="card-title">GitHub Sponsors</div>
+                <div class="card-description">Platform-integrated support for open-source contributions.</div>
+                <a href="https://github.com/sponsors/statikfintechllc" class="card-link" target="_blank"><span>Sponsor</span></a>
+            </div>
+        </div>
+
+        <!-- Contact -->
+        <h2 class="section-title">Direct Channels</h2>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon">📞</div>
+                <div class="contact-label">Voice</div>
+                <div class="contact-value">
+                    <a href="tel:+17854436288">+1 (785) 443-6288</a>
+                </div>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon">💬</div>
+                <div class="contact-label">SMS</div>
+                <div class="contact-value">
+                    <a href="sms:+17854436288">+1 (785) 443-6288</a>
+                </div>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon">📧</div>
+                <div class="contact-label">Primary Email</div>
+                <div class="contact-value">
+                    <a href="mailto:sfti.help@sfti-ai.org">sfti.help@sfti-ai.org</a>
+                </div>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon">✉️</div>
+                <div class="contact-label">Secondary Email</div>
+                <div class="contact-value">
+                    <a href="mailto:daniel@sfti-ai.org">daniel@sfti-ai.org</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>SFTi - Autonomous Intelligence Infrastructure | Built by a mechanic from Kansas</p>
+        <p style="margin-top: 0.5rem; color: var(--accent-silver);">System extracting value. AI will act.</p>
+    </footer>
+
+    <script>
+        // Smooth scroll for carousel
+        document.querySelectorAll('.carousel-track').forEach(track => {
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            track.addEventListener('mousedown', (e) => {
+                isDown = true;
+                track.style.cursor = 'grabbing';
+                startX = e.pageX - track.offsetLeft;
+                scrollLeft = track.scrollLeft;
             });
-          }
-        } catch (err) {
-          console.error('VANTA initialization failed:', err);
-          // Fallback to gradient background
-          document.getElementById('vanta-bg').style.background = 'linear-gradient(180deg, #000 0%, #111 100%)';
-        }
 
-        // Load scrollFX.js only after content is ready
-        const fxScript = document.createElement('script');
-        fxScript.src = 'scrollFX.js';
-        fxScript.onerror = () => console.error('Failed to load scrollFX.js');
-        document.body.appendChild(fxScript);
-      })
-      .catch(err => {
-        console.error(err);
-        document.getElementById('readme').innerHTML = "<p style='color:red'>Error loading README.md</p>";
-      });
+            track.addEventListener('mouseleave', () => {
+                isDown = false;
+                track.style.cursor = 'grab';
+            });
 
-    // Cleanup VANTA on page unload to prevent memory leaks
-    window.addEventListener('beforeunload', () => {
-      if (vantaInstance) {
-        try {
-          vantaInstance.destroy();
-        } catch (err) {
-          console.error('Error destroying VANTA:', err);
-        }
-      }
-    });
+            track.addEventListener('mouseup', () => {
+                isDown = false;
+                track.style.cursor = 'grab';
+            });
 
-    // Pause VANTA animation when page is hidden (performance optimization)
-    document.addEventListener('visibilitychange', () => {
-      if (vantaInstance && typeof vantaInstance.pause === 'function') {
-        if (document.hidden) {
-          vantaInstance.pause();
-        } else if (typeof vantaInstance.play === 'function') {
-          vantaInstance.play();
-        }
-      }
-    });
-  </script>
+            track.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - track.offsetLeft;
+                const walk = (x - startX) * 2;
+                track.scrollLeft = scrollLeft - walk;
+            });
+        });
+
+        // Card click to open link
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                // Only trigger if the click wasn't on a link or button inside the card
+                if (!e.target.closest('a') && !e.target.closest('button')) {
+                    const link = card.querySelector('a.card-link');
+                    if (link) {
+                        window.open(link.href, '_blank');
+                    }
+                }
+            });
+        });
+    </script>
 </body>
+</html>
