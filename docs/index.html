@@ -327,12 +327,13 @@
             transform: translateX(2px) scale(0.98);
         }
 
-        /* Touch-Optimized Carousel */
+        /* Touch-Optimized Carousel - FIXED VERSION */
         .carousel-container {
             position: relative;
             margin: 1.5rem 0;
             overflow: hidden;
             width: 100%;
+            padding: 0.5rem 0;
         }
 
         .carousel-track {
@@ -346,10 +347,15 @@
             -webkit-overflow-scrolling: touch;
             scroll-snap-type: x mandatory;
             width: 100%;
+            cursor: grab;
         }
 
         .carousel-track::-webkit-scrollbar {
             display: none;
+        }
+
+        .carousel-track:active {
+            cursor: grabbing;
         }
 
         .carousel-card {
@@ -366,6 +372,7 @@
             border: 1px solid rgba(212, 175, 55, 0.15);
             scroll-snap-align: center;
             box-sizing: border-box;
+            user-select: none;
         }
 
         .carousel-card::before {
@@ -603,7 +610,6 @@
         .card:nth-child(1) { animation-delay: 0.05s; }
         .card:nth-child(2) { animation-delay: 0.1s; }
         .card:nth-child(3) { animation-delay: 0.15s; }
-        .card:nth-child(4) { animation-delay: 0.2s; }
         .carousel-card:nth-child(1) { animation-delay: 0.1s; }
         .carousel-card:nth-child(2) { animation-delay: 0.15s; }
         .carousel-card:nth-child(3) { animation-delay: 0.2s; }
@@ -650,8 +656,8 @@
             }
 
             .carousel-card {
-                min-width: 280px;
-                max-width: 280px;
+                min-width: 320px;
+                max-width: 320px;
             }
 
             .contact-grid {
@@ -733,40 +739,7 @@
     </header>
 
     <main>
-        <!-- Main Sites -->
-        <h2 class="section-title">Command Centers</h2>
-        <div class="card-grid">
-            <div class="card">
-                <div class="card-icon">🌐</div>
-                <div class="card-title">Main Site</div>
-                <div class="card-description">
-                    Primary intelligence hub for SFTi operations. Server infrastructure currently offline.
-                    <span class="status-badge status-down">Offline</span>
-                </div>
-                <a href="https://www.sfti-ai.org" class="card-link" target="_blank"><span>sfti-ai.org</span></a>
-            </div>
-
-            <div class="card">
-                <div class="card-icon">⚡</div>
-                <div class="card-title">Temporary Operations</div>
-                <div class="card-description">
-                    Active deployment site. PWA functionality pending restoration.
-                    <span class="status-badge status-active">Active</span>
-                </div>
-                <a href="https://statikfintechllc.github.io/statikfintechllc/" class="card-link" target="_blank"><span>View Site</span></a>
-            </div>
-
-            <div class="card">
-                <div class="card-icon">🎓</div>
-                <div class="card-title">Ascend Institute</div>
-                <div class="card-description">
-                    Educational platform and knowledge repository for autonomous systems development.
-                </div>
-                <a href="https://statikfintechllc.github.io/Ascend-Institute/" class="card-link" target="_blank"><span>Enter Institute</span></a>
-            </div>
-        </div>
-
-        <!-- Trading Tools -->
+        <!-- Trading Tools (Now first section) -->
         <h2 class="section-title">Trading Intelligence</h2>
         <div class="card-grid">
             <div class="card">
@@ -797,10 +770,10 @@
             </div>
         </div>
 
-        <!-- Publishing -->
+        <!-- Publishing - FIXED CAROUSEL -->
         <h2 class="section-title">Knowledge Archives</h2>
         <div class="carousel-container">
-            <div class="carousel-track">
+            <div class="carousel-track" id="knowledge-carousel">
                 <div class="carousel-card">
                     <div class="card-title" style="font-size: 1.1rem;">Medium</div>
                     <div class="card-description">27 articles on AI autonomy, extraction systems, and paradigm shifts</div>
@@ -869,10 +842,10 @@
             </div>
         </div>
 
-        <!-- Social Presence -->
+        <!-- Social Presence - FIXED CAROUSEL -->
         <h2 class="section-title">Network Nodes</h2>
         <div class="carousel-container">
-            <div class="carousel-track">
+            <div class="carousel-track" id="network-carousel">
                 <div class="carousel-card">
                     <div class="card-title" style="font-size: 1.1rem;">LinkedIn</div>
                     <a href="https://www.linkedin.com/in/statikfintech-llc-780804368" class="card-link" target="_blank"><span>Connect</span></a>
@@ -897,28 +870,30 @@
             </div>
         </div>
 
-        <!-- Funding -->
+        <!-- Funding - NOW A CAROUSEL -->
         <h2 class="section-title">Support Infrastructure</h2>
-        <div class="card-grid">
-            <div class="card">
-                <div class="card-icon">☕</div>
-                <div class="card-title">Ko-fi</div>
-                <div class="card-description">Direct financial support for system development and operational costs.</div>
-                <a href="https://ko-fi.com/statikfintechllc" class="card-link" target="_blank"><span>Support on Ko-fi</span></a>
-            </div>
+        <div class="carousel-container">
+            <div class="carousel-track" id="support-carousel">
+                <div class="carousel-card">
+                    <div class="card-icon">☕</div>
+                    <div class="card-title">Ko-fi</div>
+                    <div class="card-description">Direct financial support for system development and operational costs.</div>
+                    <a href="https://ko-fi.com/statikfintechllc" class="card-link" target="_blank"><span>Support on Ko-fi</span></a>
+                </div>
 
-            <div class="card">
-                <div class="card-icon">🎯</div>
-                <div class="card-title">Patreon</div>
-                <div class="card-description">Recurring support model for sustained development cycles.</div>
-                <a href="https://patreon.com/StatikFinTech_LLC" class="card-link" target="_blank"><span>Become a Patron</span></a>
-            </div>
+                <div class="carousel-card">
+                    <div class="card-icon">🎯</div>
+                    <div class="card-title">Patreon</div>
+                    <div class="card-description">Recurring support model for sustained development cycles.</div>
+                    <a href="https://patreon.com/StatikFinTech_LLC" class="card-link" target="_blank"><span>Become a Patron</span></a>
+                </div>
 
-            <div class="card">
-                <div class="card-icon">💻</div>
-                <div class="card-title">GitHub Sponsors</div>
-                <div class="card-description">Platform-integrated support for open-source contributions.</div>
-                <a href="https://github.com/sponsors/statikfintechllc" class="card-link" target="_blank"><span>Sponsor</span></a>
+                <div class="carousel-card">
+                    <div class="card-icon">💻</div>
+                    <div class="card-title">GitHub Sponsors</div>
+                    <div class="card-description">Platform-integrated support for open-source contributions.</div>
+                    <a href="https://github.com/sponsors/statikfintechllc" class="card-link" target="_blank"><span>Sponsor</span></a>
+                </div>
             </div>
         </div>
 
@@ -965,108 +940,110 @@
     </footer>
 
     <script>
-        // Touch-optimized carousel with momentum scrolling
-        document.querySelectorAll('.carousel-track').forEach(track => {
-            let isDown = false;
-            let startX;
-            let scrollLeft;
-            let velocity = 0;
-            let lastX = 0;
-            let animationFrame;
-            let lastTime = 0;
-
+        // SIMPLIFIED CAROUSEL SYSTEM - No lag, no freezing
+        function initializeCarousel(carouselId) {
+            const track = document.getElementById(carouselId);
+            if (!track) return;
+            
+            let isDragging = false;
+            let startPos = 0;
+            let currentTranslate = 0;
+            let prevTranslate = 0;
+            let animationId = 0;
+            
+            // Touch events
+            track.addEventListener('touchstart', touchStart, { passive: true });
+            track.addEventListener('touchmove', touchMove, { passive: true });
+            track.addEventListener('touchend', touchEnd);
+            
             // Mouse events
-            track.addEventListener('mousedown', (e) => {
-                isDown = true;
-                track.style.cursor = 'grabbing';
-                startX = e.pageX - track.offsetLeft;
-                scrollLeft = track.scrollLeft;
-                velocity = 0;
-                lastX = e.pageX;
-                cancelAnimationFrame(animationFrame);
+            track.addEventListener('mousedown', mouseDown);
+            track.addEventListener('mousemove', mouseMove);
+            track.addEventListener('mouseup', mouseEnd);
+            track.addEventListener('mouseleave', mouseEnd);
+            
+            // Prevent image drag
+            const images = track.querySelectorAll('img');
+            images.forEach(img => {
+                img.addEventListener('dragstart', (e) => e.preventDefault());
             });
-
-            track.addEventListener('mouseleave', () => {
-                isDown = false;
-                track.style.cursor = 'grab';
-                applyMomentum();
-            });
-
-            track.addEventListener('mouseup', () => {
-                isDown = false;
-                track.style.cursor = 'grab';
-                applyMomentum();
-            });
-
-            track.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                e.preventDefault();
-                const x = e.pageX - track.offsetLeft;
-                const walk = (x - startX) * 1.5;
-                track.scrollLeft = scrollLeft - walk;
-                
-                // Calculate velocity for momentum
-                const currentTime = Date.now();
-                if (currentTime - lastTime > 16) { // ~60fps
-                    velocity = (e.pageX - lastX) / (currentTime - lastTime);
-                    lastX = e.pageX;
-                    lastTime = currentTime;
-                }
-            });
-
-            // Touch events for mobile
-            track.addEventListener('touchstart', (e) => {
-                isDown = true;
-                startX = e.touches[0].pageX - track.offsetLeft;
-                scrollLeft = track.scrollLeft;
-                velocity = 0;
-                lastX = e.touches[0].pageX;
-                lastTime = Date.now();
-                cancelAnimationFrame(animationFrame);
-            }, { passive: true });
-
-            track.addEventListener('touchmove', (e) => {
-                if (!isDown) return;
-                const x = e.touches[0].pageX - track.offsetLeft;
-                const walk = (x - startX) * 1.5;
-                track.scrollLeft = scrollLeft - walk;
-                
-                // Calculate velocity for momentum
-                const currentTime = Date.now();
-                velocity = (e.touches[0].pageX - lastX) / (currentTime - lastTime);
-                lastX = e.touches[0].pageX;
-                lastTime = currentTime;
-            }, { passive: true });
-
-            track.addEventListener('touchend', () => {
-                isDown = false;
-                applyMomentum();
-            });
-
-            function applyMomentum() {
-                if (Math.abs(velocity) < 0.01) return;
-                
-                track.scrollLeft += velocity * 50;
-                velocity *= 0.95; // Decay factor
-                
-                if (Math.abs(velocity) > 0.01) {
-                    animationFrame = requestAnimationFrame(applyMomentum);
-                }
+            
+            function getPositionX(event) {
+                return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
             }
-
-            // Snap to nearest card on scroll end
-            track.addEventListener('scroll', () => {
-                clearTimeout(track.scrollTimeout);
-                track.scrollTimeout = setTimeout(() => {
-                    const cardWidth = track.querySelector('.carousel-card').offsetWidth + 16; // 16px gap
-                    const scrollPosition = track.scrollLeft;
-                    const nearestCard = Math.round(scrollPosition / cardWidth);
-                    track.scrollTo({
-                        left: nearestCard * cardWidth,
-                        behavior: 'smooth'
-                    });
-                }, 100);
-            });
+            
+            function setTrackPosition() {
+                track.style.transform = `translateX(${currentTranslate}px)`;
+            }
+            
+            function animation() {
+                setTrackPosition();
+                if (isDragging) requestAnimationFrame(animation);
+            }
+            
+            function touchStart(event) {
+                startPos = getPositionX(event);
+                isDragging = true;
+                animationId = requestAnimationFrame(animation);
+                track.style.cursor = 'grabbing';
+            }
+            
+            function touchMove(event) {
+                if (!isDragging) return;
+                const currentPosition = getPositionX(event);
+                currentTranslate = prevTranslate + currentPosition - startPos;
+            }
+            
+            function touchEnd() {
+                isDragging = false;
+                cancelAnimationFrame(animationId);
+                const movedBy = currentTranslate - prevTranslate;
+                
+                if (Math.abs(movedBy) < 100) {
+                    currentTranslate = prevTranslate;
+                }
+                
+                setTrackPosition();
+                track.style.cursor = 'grab';
+            }
+            
+            function mouseDown(event) {
+                startPos = getPositionX(event);
+                isDragging = true;
+                animationId = requestAnimationFrame(animation);
+                track.style.cursor = 'grabbing';
+                event.preventDefault();
+            }
+            
+            function mouseMove(event) {
+                if (!isDragging) return;
+                const currentPosition = getPositionX(event);
+                currentTranslate = prevTranslate + currentPosition - startPos;
+            }
+            
+            function mouseEnd() {
+                isDragging = false;
+                cancelAnimationFrame(animationId);
+                const movedBy = currentTranslate - prevTranslate;
+                
+                if (Math.abs(movedBy) < 100) {
+                    currentTranslate = prevTranslate;
+                }
+                
+                setTrackPosition();
+                track.style.cursor = 'grab';
+            }
+            
+            // Enable native scrolling as fallback
+            track.style.overflowX = 'auto';
+            track.style.cursor = 'grab';
+        }
+        
+        // Initialize all carousels
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeCarousel('knowledge-carousel');
+            initializeCarousel('network-carousel');
+            initializeCarousel('support-carousel');
         });
 
         // Enhanced card click handling for touch devices
@@ -1116,17 +1093,6 @@
                 }
             });
         });
-
-        // Prevent accidental zoom on double tap for mobile
-        let lastTap = 0;
-        document.addEventListener('touchend', (e) => {
-            const currentTime = new Date().getTime();
-            const tapLength = currentTime - lastTap;
-            if (tapLength < 300 && tapLength > 0) {
-                e.preventDefault();
-            }
-            lastTap = currentTime;
-        }, false);
 
         // Performance optimization: Reduce animations when page is not visible
         document.addEventListener('visibilitychange', () => {
