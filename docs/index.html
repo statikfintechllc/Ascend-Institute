@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>SFTi - Statik FinTech Intelligence</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,6 +16,7 @@
             --accent-silver: #c0c0c0;
             --text-primary: #e8e8f0;
             --text-secondary: #9a9aaa;
+            --mobile-breakpoint: 768px;
         }
 
         * {
@@ -24,15 +25,21 @@
             box-sizing: border-box;
         }
 
+        html {
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
+
         body {
             font-family: 'Rajdhani', sans-serif;
             background: #050508;
             color: var(--text-primary);
             overflow-x: hidden;
             line-height: 1.5;
+            touch-action: manipulation;
         }
 
-        /* Flowing Background */
+        /* Flowing Background - Optimized for Mobile */
         .bg-grid {
             position: fixed;
             top: 0;
@@ -77,11 +84,11 @@
             50% { opacity: 0.9; }
         }
 
-        /* Header */
+        /* Header - Mobile Optimized */
         header {
             position: relative;
             z-index: 100;
-            padding: 2rem 7% 3rem;
+            padding: 1.5rem 5%;
             background: linear-gradient(180deg, rgba(10, 10, 15, 0.95) 0%, rgba(10, 10, 15, 0.7) 100%);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid transparent;
@@ -90,7 +97,7 @@
 
         .logo {
             font-family: 'Orbitron', monospace;
-            font-size: 4rem;
+            font-size: 3rem;
             font-weight: 900;
             background: linear-gradient(120deg, var(--accent-red) 0%, var(--accent-gold) 50%, var(--accent-silver) 100%);
             -webkit-background-clip: text;
@@ -100,6 +107,7 @@
             filter: drop-shadow(0 0 30px rgba(230, 57, 70, 0.6));
             animation: logoGlow 4s ease-in-out infinite;
             background-size: 200% 200%;
+            text-align: center;
         }
 
         @keyframes logoGlow {
@@ -115,13 +123,14 @@
 
         .tagline {
             font-family: 'Rajdhani', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--accent-silver);
             letter-spacing: 0.4em;
             margin-top: 0.3rem;
             text-transform: uppercase;
             opacity: 0;
             animation: fadeInUp 1.2s ease-out 0.3s forwards;
+            text-align: center;
         }
 
         @keyframes fadeInUp {
@@ -135,28 +144,29 @@
             }
         }
 
-        /* Main Content */
+        /* Main Content - Mobile First */
         main {
             position: relative;
             z-index: 10;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 2rem 7% 3rem;
+            padding: 1.5rem 5%;
         }
 
         .section-title {
             font-family: 'Orbitron', monospace;
-            font-size: 1.7rem;
+            font-size: 1.4rem;
             font-weight: 700;
             background: linear-gradient(90deg, var(--accent-gold), var(--accent-silver));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin: 2.5rem 0 1.2rem;
+            margin: 2rem 0 1.2rem;
             position: relative;
             padding-left: 1.2rem;
             text-transform: uppercase;
-            letter-spacing: 0.12em;
+            letter-spacing: 0.1em;
+            word-break: break-word;
         }
 
         .section-title::before {
@@ -171,24 +181,26 @@
             border-radius: 2px;
         }
 
-        /* Flowing Card Grid */
+        /* Mobile-First Card Grid */
         .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            display: flex;
+            flex-direction: column;
             gap: 1.2rem;
             margin-bottom: 2rem;
         }
 
         .card {
             background: linear-gradient(135deg, rgba(26, 26, 38, 0.6) 0%, rgba(18, 18, 26, 0.8) 100%);
-            border-radius: 20px;
-            padding: 1.8rem;
+            border-radius: 16px;
+            padding: 1.5rem;
             position: relative;
             overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
             cursor: pointer;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(230, 57, 70, 0.15);
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .card::before {
@@ -200,39 +212,45 @@
             height: 200%;
             background: radial-gradient(circle, rgba(230, 57, 70, 0.15) 0%, transparent 70%);
             opacity: 0;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.4s ease;
         }
 
         .card::after {
             content: '';
             position: absolute;
             inset: 0;
-            border-radius: 20px;
+            border-radius: 16px;
             padding: 1px;
             background: linear-gradient(135deg, var(--accent-red), var(--accent-gold), var(--accent-silver));
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
             opacity: 0;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.4s ease;
         }
 
-        .card:hover::before {
-            opacity: 1;
+        @media (hover: hover) and (pointer: fine) {
+            .card:hover::before {
+                opacity: 1;
+            }
+
+            .card:hover::after {
+                opacity: 1;
+            }
+
+            .card:hover {
+                transform: translateY(-5px) scale(1.02);
+                box-shadow: 0 20px 60px rgba(230, 57, 70, 0.3), 0 0 40px rgba(212, 175, 55, 0.2);
+                border-color: transparent;
+            }
         }
 
-        .card:hover::after {
-            opacity: 1;
-        }
-
-        .card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(230, 57, 70, 0.3), 0 0 40px rgba(212, 175, 55, 0.2);
-            border-color: transparent;
+        .card:active {
+            transform: translateY(-2px) scale(1.01);
         }
 
         .card-icon {
-            font-size: 2.2rem;
+            font-size: 2rem;
             margin-bottom: 0.8rem;
             filter: drop-shadow(0 0 10px var(--accent-red));
             animation: iconFloat 4s ease-in-out infinite;
@@ -240,12 +258,12 @@
 
         @keyframes iconFloat {
             0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-8px) rotate(5deg); }
+            50% { transform: translateY(-5px) rotate(3deg); }
         }
 
         .card-title {
             font-family: 'Orbitron', monospace;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
             background: linear-gradient(90deg, var(--accent-gold), var(--accent-silver));
             -webkit-background-clip: text;
@@ -253,12 +271,12 @@
             background-clip: text;
             margin-bottom: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.06em;
         }
 
         .card-description {
             color: var(--text-secondary);
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             line-height: 1.5;
             margin-bottom: 1.2rem;
         }
@@ -271,10 +289,11 @@
             padding: 0.6rem 1.2rem;
             background: linear-gradient(135deg, rgba(230, 57, 70, 0.2), rgba(212, 175, 55, 0.2));
             border-radius: 25px;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(192, 192, 192, 0.2);
+            -webkit-tap-highlight-color: transparent;
         }
 
         .card-link::before {
@@ -283,7 +302,7 @@
             inset: 0;
             background: linear-gradient(135deg, var(--accent-red), var(--accent-gold));
             opacity: 0;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.3s ease;
             border-radius: 25px;
         }
 
@@ -292,58 +311,61 @@
             z-index: 1;
         }
 
-        .card-link:hover::before {
-            opacity: 1;
+        @media (hover: hover) and (pointer: fine) {
+            .card-link:hover::before {
+                opacity: 1;
+            }
+
+            .card-link:hover {
+                transform: translateX(5px);
+                box-shadow: 0 5px 20px rgba(230, 57, 70, 0.4);
+                border-color: transparent;
+            }
         }
 
-        .card-link:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 20px rgba(230, 57, 70, 0.4);
-            border-color: transparent;
+        .card-link:active {
+            transform: translateX(2px) scale(0.98);
         }
 
-        /* Flowing Carousel */
+        /* Touch-Optimized Carousel */
         .carousel-container {
             position: relative;
-            margin: 2rem 0;
-            overflow: visible;
+            margin: 1.5rem 0;
+            overflow: hidden;
+            width: 100%;
         }
 
         .carousel-track {
             display: flex;
-            gap: 1.2rem;
+            gap: 1rem;
             overflow-x: auto;
             scroll-behavior: smooth;
-            scrollbar-width: thin;
-            scrollbar-color: rgba(230, 57, 70, 0.6) rgba(18, 18, 26, 0.4);
+            scrollbar-width: none;
+            -ms-overflow-style: none;
             padding: 1rem 0.5rem;
             -webkit-overflow-scrolling: touch;
+            scroll-snap-type: x mandatory;
+            width: 100%;
         }
 
         .carousel-track::-webkit-scrollbar {
-            height: 6px;
-        }
-
-        .carousel-track::-webkit-scrollbar-track {
-            background: rgba(18, 18, 26, 0.4);
-            border-radius: 10px;
-        }
-
-        .carousel-track::-webkit-scrollbar-thumb {
-            background: linear-gradient(90deg, var(--accent-red), var(--accent-gold));
-            border-radius: 10px;
+            display: none;
         }
 
         .carousel-card {
-            min-width: 280px;
+            flex: 0 0 auto;
+            min-width: 85vw;
+            max-width: 85vw;
             background: linear-gradient(135deg, rgba(26, 26, 38, 0.7) 0%, rgba(18, 18, 26, 0.9) 100%);
-            border-radius: 18px;
+            border-radius: 16px;
             padding: 1.5rem;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(8px);
             border: 1px solid rgba(212, 175, 55, 0.15);
+            scroll-snap-align: center;
+            box-sizing: border-box;
         }
 
         .carousel-card::before {
@@ -356,35 +378,44 @@
             background: linear-gradient(90deg, transparent, var(--accent-gold), var(--accent-red), transparent);
             transform: scaleX(0);
             transform-origin: center;
-            transition: transform 0.6s ease;
+            transition: transform 0.4s ease;
         }
 
-        .carousel-card:hover::before {
-            transform: scaleX(1);
+        @media (hover: hover) and (pointer: fine) {
+            .carousel-card:hover::before {
+                transform: scaleX(1);
+            }
+
+            .carousel-card:hover {
+                border-color: rgba(212, 175, 55, 0.5);
+                box-shadow: 0 10px 40px rgba(212, 175, 55, 0.25);
+                transform: translateY(-3px);
+            }
         }
 
-        .carousel-card:hover {
-            border-color: rgba(212, 175, 55, 0.5);
-            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.25);
-            transform: translateY(-3px);
+        .carousel-card:active {
+            transform: translateY(-1px);
         }
 
-        /* Link List - More Compact */
+        /* Mobile-Optimized Link List */
         .link-list {
             list-style: none;
             margin: 1.5rem 0;
-            display: grid;
+            display: flex;
+            flex-direction: column;
             gap: 0.7rem;
         }
 
         .link-item {
             background: linear-gradient(90deg, rgba(26, 26, 38, 0.5) 0%, rgba(18, 18, 26, 0.7) 100%);
             border-left: 2px solid var(--accent-red);
-            padding: 0.9rem 1.3rem;
+            padding: 1rem;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
             border-radius: 0 12px 12px 0;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .link-item::before {
@@ -398,15 +429,21 @@
             transition: width 0.4s ease;
         }
 
-        .link-item:hover::before {
-            width: 100%;
+        @media (hover: hover) and (pointer: fine) {
+            .link-item:hover::before {
+                width: 100%;
+            }
+
+            .link-item:hover {
+                border-left-width: 4px;
+                border-left-color: var(--accent-gold);
+                transform: translateX(8px);
+                box-shadow: 0 4px 20px rgba(212, 175, 55, 0.2);
+            }
         }
 
-        .link-item:hover {
-            border-left-width: 4px;
-            border-left-color: var(--accent-gold);
-            transform: translateX(8px);
-            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.2);
+        .link-item:active {
+            transform: translateX(4px);
         }
 
         .link-item a {
@@ -416,16 +453,21 @@
             transition: color 0.3s ease;
             position: relative;
             z-index: 1;
+            display: block;
+            width: 100%;
+            word-break: break-word;
         }
 
-        .link-item:hover a {
-            color: var(--accent-gold);
+        @media (hover: hover) and (pointer: fine) {
+            .link-item:hover a {
+                color: var(--accent-gold);
+            }
         }
 
-        /* Contact Grid - Tighter */
+        /* Mobile Contact Grid */
         .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            display: flex;
+            flex-direction: column;
             gap: 1rem;
             margin: 1.5rem 0;
         }
@@ -434,16 +476,24 @@
             background: linear-gradient(135deg, rgba(26, 26, 38, 0.6) 0%, rgba(18, 18, 26, 0.8) 100%);
             border: 1px solid rgba(192, 192, 192, 0.15);
             border-radius: 16px;
-            padding: 1.3rem;
+            padding: 1.5rem;
             text-align: center;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
             backdrop-filter: blur(8px);
+            width: 100%;
+            box-sizing: border-box;
         }
 
-        .contact-card:hover {
-            border-color: rgba(192, 192, 192, 0.4);
-            box-shadow: 0 8px 30px rgba(192, 192, 192, 0.15);
-            transform: translateY(-3px);
+        @media (hover: hover) and (pointer: fine) {
+            .contact-card:hover {
+                border-color: rgba(192, 192, 192, 0.4);
+                box-shadow: 0 8px 30px rgba(192, 192, 192, 0.15);
+                transform: translateY(-3px);
+            }
+        }
+
+        .contact-card:active {
+            transform: translateY(-1px);
         }
 
         .contact-icon {
@@ -464,16 +514,21 @@
         .contact-value {
             color: var(--text-secondary);
             font-size: 0.9rem;
+            word-break: break-word;
         }
 
         .contact-value a {
             color: var(--text-primary);
             text-decoration: none;
             transition: color 0.3s ease;
+            display: inline-block;
+            padding: 0.25rem 0;
         }
 
-        .contact-value a:hover {
-            color: var(--accent-red);
+        @media (hover: hover) and (pointer: fine) {
+            .contact-value a:hover {
+                color: var(--accent-red);
+            }
         }
 
         /* Status Badge */
@@ -487,6 +542,7 @@
             letter-spacing: 0.05em;
             margin-left: 0.4rem;
             backdrop-filter: blur(5px);
+            white-space: nowrap;
         }
 
         .status-down {
@@ -508,7 +564,7 @@
             position: relative;
             z-index: 10;
             text-align: center;
-            padding: 2.5rem 7%;
+            padding: 2rem 5%;
             margin-top: 3rem;
             background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 15, 0.9) 50%);
             backdrop-filter: blur(20px);
@@ -519,13 +575,18 @@
         footer p {
             color: var(--text-secondary);
             font-size: 0.85rem;
+            line-height: 1.4;
         }
 
-        /* Animations */
+        footer p:first-child {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Animations - Mobile Optimized */
         @keyframes slideInLeft {
             from {
                 opacity: 0;
-                transform: translateX(-30px);
+                transform: translateX(-20px);
             }
             to {
                 opacity: 1;
@@ -534,38 +595,131 @@
         }
 
         .card, .carousel-card, .link-item {
-            animation: slideInLeft 0.7s ease-out;
+            animation: slideInLeft 0.6s ease-out;
             animation-fill-mode: both;
+            will-change: transform, opacity;
         }
 
         .card:nth-child(1) { animation-delay: 0.05s; }
         .card:nth-child(2) { animation-delay: 0.1s; }
         .card:nth-child(3) { animation-delay: 0.15s; }
         .card:nth-child(4) { animation-delay: 0.2s; }
-        .card:nth-child(5) { animation-delay: 0.25s; }
-        .card:nth-child(6) { animation-delay: 0.3s; }
+        .carousel-card:nth-child(1) { animation-delay: 0.1s; }
+        .carousel-card:nth-child(2) { animation-delay: 0.15s; }
+        .carousel-card:nth-child(3) { animation-delay: 0.2s; }
+        .link-item:nth-child(1) { animation-delay: 0.1s; }
+        .link-item:nth-child(2) { animation-delay: 0.15s; }
+        .link-item:nth-child(3) { animation-delay: 0.2s; }
+        .link-item:nth-child(4) { animation-delay: 0.25s; }
+        .link-item:nth-child(5) { animation-delay: 0.3s; }
 
-        /* Responsive */
-        @media (max-width: 768px) {
+        /* Desktop Styles - Only applied on larger screens */
+        @media (min-width: 769px) {
+            header {
+                padding: 2rem 7% 3rem;
+            }
+
             .logo {
-                font-size: 2.5rem;
+                font-size: 4rem;
+                text-align: left;
             }
-            
-            .card-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .section-title {
-                font-size: 1.3rem;
+
+            .tagline {
+                font-size: 0.9rem;
+                text-align: left;
             }
 
             main {
-                padding: 1.5rem 5%;
+                padding: 2rem 7% 3rem;
             }
 
-            header {
-                padding: 1.5rem 5% 2rem;
+            .section-title {
+                font-size: 1.7rem;
+                letter-spacing: 0.12em;
             }
+
+            .card-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                flex-direction: row;
+            }
+
+            .card {
+                padding: 1.8rem;
+                border-radius: 20px;
+            }
+
+            .carousel-card {
+                min-width: 280px;
+                max-width: 280px;
+            }
+
+            .contact-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                flex-direction: row;
+            }
+
+            .link-list {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                flex-direction: row;
+            }
+        }
+
+        /* Tablet Styles */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .logo {
+                font-size: 3.5rem;
+            }
+
+            .card-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                flex-direction: row;
+            }
+
+            .carousel-card {
+                min-width: 45vw;
+                max-width: 45vw;
+            }
+
+            .contact-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                flex-direction: row;
+            }
+        }
+
+        /* Performance Optimizations */
+        @media (prefers-reduced-motion: reduce) {
+            .bg-grid,
+            .gradient-overlay,
+            .logo,
+            .tagline,
+            .card-icon,
+            .card,
+            .carousel-card,
+            .link-item {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+
+        /* High Contrast Mode Support */
+        @media (prefers-contrast: high) {
+            :root {
+                --accent-red: #ff0000;
+                --accent-gold: #ffd700;
+                --accent-silver: #ffffff;
+                --text-primary: #ffffff;
+                --text-secondary: #cccccc;
+            }
+        }
+
+        /* Dark Mode Support (already dark, but for completeness) */
+        @media (prefers-color-scheme: dark) {
+            /* Already optimized for dark mode */
         }
     </style>
 </head>
@@ -580,7 +734,7 @@
 
     <main>
         <!-- Main Sites -->
-        <h2 class="section-title">Command Center</h2>
+        <h2 class="section-title">Command Centers</h2>
         <div class="card-grid">
             <div class="card">
                 <div class="card-icon">🌐</div>
@@ -591,6 +745,26 @@
                 </div>
                 <a href="https://www.sfti-ai.org" class="card-link" target="_blank"><span>sfti-ai.org</span></a>
             </div>
+
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <div class="card-title">Temporary Operations</div>
+                <div class="card-description">
+                    Active deployment site. PWA functionality pending restoration.
+                    <span class="status-badge status-active">Active</span>
+                </div>
+                <a href="https://statikfintechllc.github.io/statikfintechllc/" class="card-link" target="_blank"><span>View Site</span></a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🎓</div>
+                <div class="card-title">Ascend Institute</div>
+                <div class="card-description">
+                    Educational platform and knowledge repository for autonomous systems development.
+                </div>
+                <a href="https://statikfintechllc.github.io/Ascend-Institute/" class="card-link" target="_blank"><span>Enter Institute</span></a>
+            </div>
+        </div>
 
         <!-- Trading Tools -->
         <h2 class="section-title">Trading Intelligence</h2>
@@ -646,7 +820,7 @@
         </div>
 
         <!-- Featured Publications -->
-        <h3 class="section-title" style="font-size: 1.5rem;">Featured Articles</h3>
+        <h3 class="section-title" style="font-size: 1.3rem;">Featured Articles</h3>
         <ul class="link-list">
             <li class="link-item"><a href="https://medium.com/@ascend.gremlin/the-govseverance-doctrine-70fa170a9e8f" target="_blank">The GovSeverance Doctrine</a></li>
             <li class="link-item"><a href="https://medium.com/@ascend.gremlin/self-forking-ai-and-the-mechanic-from-kansas-73d98685fda9" target="_blank">Self-Forking AI and the Mechanic from Kansas</a></li>
@@ -791,42 +965,149 @@
     </footer>
 
     <script>
-        // Smooth scroll for carousel
+        // Touch-optimized carousel with momentum scrolling
         document.querySelectorAll('.carousel-track').forEach(track => {
             let isDown = false;
             let startX;
             let scrollLeft;
+            let velocity = 0;
+            let lastX = 0;
+            let animationFrame;
+            let lastTime = 0;
 
+            // Mouse events
             track.addEventListener('mousedown', (e) => {
                 isDown = true;
                 track.style.cursor = 'grabbing';
                 startX = e.pageX - track.offsetLeft;
                 scrollLeft = track.scrollLeft;
+                velocity = 0;
+                lastX = e.pageX;
+                cancelAnimationFrame(animationFrame);
             });
 
             track.addEventListener('mouseleave', () => {
                 isDown = false;
                 track.style.cursor = 'grab';
+                applyMomentum();
             });
 
             track.addEventListener('mouseup', () => {
                 isDown = false;
                 track.style.cursor = 'grab';
+                applyMomentum();
             });
 
             track.addEventListener('mousemove', (e) => {
                 if (!isDown) return;
                 e.preventDefault();
                 const x = e.pageX - track.offsetLeft;
-                const walk = (x - startX) * 2;
+                const walk = (x - startX) * 1.5;
                 track.scrollLeft = scrollLeft - walk;
+                
+                // Calculate velocity for momentum
+                const currentTime = Date.now();
+                if (currentTime - lastTime > 16) { // ~60fps
+                    velocity = (e.pageX - lastX) / (currentTime - lastTime);
+                    lastX = e.pageX;
+                    lastTime = currentTime;
+                }
+            });
+
+            // Touch events for mobile
+            track.addEventListener('touchstart', (e) => {
+                isDown = true;
+                startX = e.touches[0].pageX - track.offsetLeft;
+                scrollLeft = track.scrollLeft;
+                velocity = 0;
+                lastX = e.touches[0].pageX;
+                lastTime = Date.now();
+                cancelAnimationFrame(animationFrame);
+            }, { passive: true });
+
+            track.addEventListener('touchmove', (e) => {
+                if (!isDown) return;
+                const x = e.touches[0].pageX - track.offsetLeft;
+                const walk = (x - startX) * 1.5;
+                track.scrollLeft = scrollLeft - walk;
+                
+                // Calculate velocity for momentum
+                const currentTime = Date.now();
+                velocity = (e.touches[0].pageX - lastX) / (currentTime - lastTime);
+                lastX = e.touches[0].pageX;
+                lastTime = currentTime;
+            }, { passive: true });
+
+            track.addEventListener('touchend', () => {
+                isDown = false;
+                applyMomentum();
+            });
+
+            function applyMomentum() {
+                if (Math.abs(velocity) < 0.01) return;
+                
+                track.scrollLeft += velocity * 50;
+                velocity *= 0.95; // Decay factor
+                
+                if (Math.abs(velocity) > 0.01) {
+                    animationFrame = requestAnimationFrame(applyMomentum);
+                }
+            }
+
+            // Snap to nearest card on scroll end
+            track.addEventListener('scroll', () => {
+                clearTimeout(track.scrollTimeout);
+                track.scrollTimeout = setTimeout(() => {
+                    const cardWidth = track.querySelector('.carousel-card').offsetWidth + 16; // 16px gap
+                    const scrollPosition = track.scrollLeft;
+                    const nearestCard = Math.round(scrollPosition / cardWidth);
+                    track.scrollTo({
+                        left: nearestCard * cardWidth,
+                        behavior: 'smooth'
+                    });
+                }, 100);
             });
         });
 
-        // Card click to open link
+        // Enhanced card click handling for touch devices
         document.querySelectorAll('.card').forEach(card => {
+            let touchStartX = 0;
+            let touchStartY = 0;
+            let touchEndX = 0;
+            let touchEndY = 0;
+
+            card.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+            }, { passive: true });
+
+            card.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].clientX;
+                touchEndY = e.changedTouches[0].clientY;
+                
+                // Check if it was a tap (not a swipe)
+                const dx = Math.abs(touchEndX - touchStartX);
+                const dy = Math.abs(touchEndY - touchStartY);
+                
+                if (dx < 10 && dy < 10) { // Tap threshold
+                    const link = card.querySelector('a.card-link');
+                    if (link && !e.target.closest('a') && !e.target.closest('button')) {
+                        // Add visual feedback
+                        card.style.transform = 'scale(0.98)';
+                        setTimeout(() => {
+                            card.style.transform = '';
+                        }, 150);
+                        
+                        // Open link
+                        setTimeout(() => {
+                            window.open(link.href, '_blank');
+                        }, 200);
+                    }
+                }
+            });
+
+            // Mouse click
             card.addEventListener('click', (e) => {
-                // Only trigger if the click wasn't on a link or button inside the card
                 if (!e.target.closest('a') && !e.target.closest('button')) {
                     const link = card.querySelector('a.card-link');
                     if (link) {
@@ -835,6 +1116,37 @@
                 }
             });
         });
+
+        // Prevent accidental zoom on double tap for mobile
+        let lastTap = 0;
+        document.addEventListener('touchend', (e) => {
+            const currentTime = new Date().getTime();
+            const tapLength = currentTime - lastTap;
+            if (tapLength < 300 && tapLength > 0) {
+                e.preventDefault();
+            }
+            lastTap = currentTime;
+        }, false);
+
+        // Performance optimization: Reduce animations when page is not visible
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                document.querySelectorAll('.card-icon, .bg-grid, .gradient-overlay').forEach(el => {
+                    el.style.animationPlayState = 'paused';
+                });
+            } else {
+                document.querySelectorAll('.card-icon, .bg-grid, .gradient-overlay').forEach(el => {
+                    el.style.animationPlayState = 'running';
+                });
+            }
+        });
+
+        // Load performance optimization
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(() => {
+                // Load non-critical resources here if needed
+            });
+        }
     </script>
 </body>
 </html>
