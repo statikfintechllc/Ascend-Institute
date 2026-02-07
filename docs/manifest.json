@@ -1,0 +1,47 @@
+{
+  "name": "Ascend Institute - Statik FinTech Intelligence",
+  "short_name": "SFTi",
+  "description": "Ascend Institute for Autonomous Sovereignty & Human Financial Liberation — canonical hub for Statik FinTech systems, AI projects, and public artifacts.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#e63946",
+  "background_color": "#0a0a0f",
+  "icons": [
+    {
+      "src": "./sfti.img/sfti.r-d.p.jpeg",
+      "sizes": "1024x1024",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "./sfti.img/sfti.r-d.p.jpeg",
+      "sizes": "1024x1024",
+      "type": "image/jpeg",
+      "purpose": "maskable"
+    },
+    {
+      "src": "./sfti.img/sfti.r-d.p.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "./sfti.img/sfti.r-d.p.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "./sfti.img/sfti.r-d.p.jpeg",
+      "sizes": "1024x1024",
+      "type": "image/jpeg",
+      "form_factor": "wide"
+    }
+  ],
+  "categories": ["finance", "business", "education", "productivity"],
+  "shortcuts": []
+}
