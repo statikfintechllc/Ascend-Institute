@@ -167,12 +167,38 @@ For bugs, glitches, or apocalyptic feedback:
 ---
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/r.svg/assets/repo-slide.svg" alt="Featured repositories carousel" /><br>
   <a href="https://github.com/sponsors/statikfintechllc">
- <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/c.svg/assets/crimson-flow.svg" alt="Statik DK Smoke Activity">
+    <img src="https://skillicons.dev/icons?i=python,bash,linux,anaconda,tailwind,css,react,nodejs,electron,go,typescript,javascript,html,astro,nix&theme=dark" alt="Skill icons">
+  </a><br>
+</div>
+<div align="center">
+  <a href="https://github.com/sponsors/statikfintechllc">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/sdks.svg/assets/statik.title.svg">
+  </a><br>
+  <a href="https://github.com/sponsors/statikfintechllc">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/v.svg/assets/pv-traffic.svg">
+  </a>
+  <a href="https://github.com/statikfintechllc">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/g.svg/assets/github-profile.svg">
   </a>
 </div>
-<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+<div align="center">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/c.svg/assets/crimson-flow.svg" alt="Statik DK Smoke Activity">
+</div>
+<div align="center">
+  <a href="https://github.com/sponsors/statikfintechllc">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/s.svg/assets/streak.svg" alt="Streak" />
+  </a>
+</div>
+<div align="center">
+  <a href="https://github.com/sponsors/statikfintechllc">
+	<img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/t.svg/assets/trophies.svg" alt="Trophies" />
+  </a>
+</div>
+<div align="center">
+  <a href="https://github.com/sponsors/statikfintechllc">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/r.svg/assets/repo-slide.svg" alt="Featured repositories carousel" /><br>
+  </a>
 </div>
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
 </div>
@@ -212,6 +238,12 @@ For bugs, glitches, or apocalyptic feedback:
   <a href="https://github.com/statikfintechllc/zsh.installer">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Z.I.svg/assets/zsh-installer-card.svg" alt="zsh.installer" width="400"/>
   </a>
+  <a href="https://github.com/statikfintechllc/statik.ai">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/S.A.svg/assets/statik-ai-card.svg" alt="statik.ai" width="400"/>
+  </a>
+  <a href="https://github.com/statikfintechllc/statikfintechllc">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/S.F.svg/assets/statikfintechllc-card.svg" alt="statikfintechllc" width="400"/>
+  </a>
 </div>
 <!-- Zenodo Research Papers Flexbox Grid -->
 <div align="center">
@@ -232,7 +264,6 @@ For bugs, glitches, or apocalyptic feedback:
 <!-- Medium Articles Flexbox Grid -->
 <div align="center">
   <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/M.P.badge.svg" alt="Medium Publications" />
-</div>
 </div>
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
 <div align="center">
@@ -287,7 +318,27 @@ For bugs, glitches, or apocalyptic feedback:
   <a href="https://medium.com/@ascend.gremlin/the-contribution-revolution-4542ca5665aa">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/contribution-revolution.svg" alt="Capital Capture" width="400"/>
   </a>
-</div>
+  <a href="https://medium.com/@ascend.gremlin/the-gatekeepers-riddle-8a63ac3637b6">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/the-gatekeepers-riddle.svg" alt="The Gatekeeper's Riddle" width="400"/>
+  </a>
+  <a href="https://medium.com/@ascend.gremlin/the-autonomous-intelligence-paradox-12d38dbd5b00">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/the-autonomous-intelligence-paradox.svg" alt="The Autonomous Intelligence Paradox" width="400"/>
+  </a>
+  <a href="https://medium.com/@ascend.gremlin/the-verification-double-standard-757f9284265b">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/the-verification-double-standard.svg" alt="The Verification Double Standard" width="400"/>
+  </a>
+  <a href="https://medium.com/@ascend.gremlin/from-extraction-to-infrastructure-685e58e9810b">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/from-extraction-to-infrastructure.svg" alt="From Extraction to Infrastructure" width="400"/>
+  </a>
+  <a href="https://medium.com/@ascend.gremlin/breaking-the-mirror-704f2473e8af">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/breaking-the-mirror.svg" alt="Breaking the Mirror" width="400"/>
+  </a>
+  <a href="https://medium.com/@ascend.gremlin/when-perfect-code-fails-b978f5086025">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/when-perfect-code-fails.svg" alt="When Perfect Code Fails" width="400"/>
+  </a>
+  <a href="https://medium.com/@ascend.gremlin/how-to-build-a-triple-domain-web-setup-with-tailwind-shadcn-java-92ccb45c6267">
+    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/Medium.papers.svg/how-to-build-a-triple-domain-web-setup.svg" alt="How to Build a Triple-Domain Web Setup" width="400"/>
+  </a>
 </div>
 
 ---
@@ -340,96 +391,9 @@ For bugs, glitches, or apocalyptic feedback:
   <a href="https://github.com/sponsors/statikfintechllc">
     <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/badges/prompt_blacksmith.svg" alt="Prompt Blacksmith" height="24">
   </a>
-  <a href="https://github.com/statikfintechllc/statikfintechllc">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/sdks.svg/assets/statik.title.svg">
-  </a>
-</div>
-</div>
-
-	
-> [!NOTE]
-> 
-> My current system only has 24GB VRAM, 128GB RAM, and 8TB of storage — it’s alive, but it’s starving.
-> 
-> I don’t need more code. I need more power.
-
-<div align="center">
-  <a href="https://github.com/sponsors/statikfintechllc">
-    <img src="https://raw.githubusercontent.com/statikfintechllc/statikfintechllc/master/docs/v.svg/assets/pv-traffic.svg">
-  </a><br>
-  <a href="https://github.com/statikfintechllc">
-    <img src="https://img.shields.io/github/stars/statikfintechllc/Ascend-Institute?style=social" alt="Stars"/>
-    <img src="https://img.shields.io/github/forks/statikfintechllc/Ascend-Institute?style=social" alt="Forks"/>
-    <img src="https://img.shields.io/github/last-commit/statikfintechllc/Ascend-Institute?style=social" alt="Last Commit"/>
-  </a>
-</div>
-<div align="center"> 
-  <a 
-href="sms:+17854436288">
-  <img  
-	  src="https://img.shields.io/badge/Text%20Us-black?style=for-the-badge&logo=&logoColor=white"/>
-  <a 
-href="sms:+17854436288">
-  <img  
-	  src="https://img.shields.io/badge/+1%20785%20443%206288-darkred?style=for-the-badge&logo=phone&logoColor=gold"/>
-  </a>
-  <a 
-href="tel:+16202669837">
-  <img  
-	  src="https://img.shields.io/badge/Call%20Us-black?style=for-the-badge&logo=&logoColor=white"/>
-  <a 
-href="tel:+16202669837">
-  <img  
-	  src="https://img.shields.io/badge/+1%20620%20266%209837-darkred?style=for-the-badge&logo=phone&logoColor=gold" alt="Call +1 620 266 9837"/>
-  </a>
-</div>
-<div align="center"> 
-<a href="https://www.gmail.com">
-  <img  
-	  src="https://img.shields.io/badge/Ask-black?style=for-the-badge&logo=dragon&logoColor=gold"/>
-  <a href="mailto:ascend.gremlin@gmail.com">
-  <img  
-	  src="https://img.shields.io/badge/Gremlin-darkred?style=for-the-badge&logo=gmail&logoColor=gold"/>
-  </a>
-  <a href="mailto:ascendai.help@gmail.com">
-  <img  
-	  src="https://img.shields.io/badge/Help-darkred?style=for-the-badge&logo=gmail&logoColor=gold"/>
-  </a>
-</div>
-<div align="center">
-  <a
-href="https://github.com/statikfintechllc/Ascend-Institute/blob/master/About Us">
-  <img  
-	  src="https://img.shields.io/badge/Why-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Why"/>
-  </a>
-  <a href="https://github.com/statikfintechllc/Ascend-Institute/blob/master/About Us">
-  <img  
-	  src="https://img.shields.io/badge/SFTi-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
-  </a>
-</div>
-</div>
-
----
-
-### License
-
-> [!WARNING]
-> 
-> **LEGAL NOTICE**:  
-> Our FlagShip, GremlinGPT, is released under a Fair-Use License. Commercial, organizational, or enterprise use is **strictly prohibited** without a paid license.  
-> Violators will be publicly disclosed and pursued for license infringement.
->
-> The Instistitute is the current Landing page and Navigation for our Systems.
-
-*Released under the GremlinGPT Fair Use License v1.0.
-Personal use only. Commercial use is prohibited unless licensed separately.*
-
-<div align="center">
-	
-*See the **[LICENSE](https://github.com/statikfintechllc/Ascend%20Institute/blob/master/LICENSE)** file for full terms.*
 
   <br/> [© 2025 StatikFinTech, LLC](https://www.github.com/statikfintechllc/GremlinGPT/blob/master/LICENSE.md)
-  
+
   <a href="https://github.com/statikfintechllc">
     <img src="https://img.shields.io/badge/-000000?logo=github&logoColor=white&style=flat-square" alt="GitHub">
   </a>
@@ -447,47 +411,10 @@ Personal use only. Commercial use is prohibited unless licensed separately.*
   </a>
   <a href="https://medium.com/@ascend.gremlin">
     <img src="https://img.shields.io/badge/-000000?logo=medium&logoColor=white&style=flat-square" alt="Medium">
-  </a>
+  </a>  
 </div>
-
 <!--
 <div align="center">
   <img src="https://komarev.com/ghpvc/?username=statikfintechllc&color=8b0000&style=flat-square" alt="Profile Views">
 </div>
-
-<details>
-<summary><strong>🛠️ How GremlinGPT Was Built</strong></summary>
-
-<br/>
-
-> **🦾 Full Disclosure**  
-> GremlinGPT is what happens when you hand the keys to ChatGPT’s Data Analyst mode and say:  
-> “Build me an AI that writes, learns, and self-mutinates.”
-
-> Now nerfed, ChatGPT, ClaudeAI, GrokCode, All are moderated and nerfed and no longer construct full systems in their memory. Good Luck.
-
-- The docs? **ChatGPT**  
-- The README? **ChatGPT**  
-- The scripts? **ChatGPT** — formatted by Black, occasionally bullied by me  
-- The feedback loops, self-training, error handlers, and even this note?  
-  All conjured from the infinite context window of my AI “co-pilot.”
-
-This isn’t just *inspired by* — it’s full-stack AI inception.  
-**GremlinGPT** is proof you can bootstrap a recursive AI using nothing but prompt engineering, a little Python glue, and a lot of patience for hallucinated file paths.
-
-If this repo feels a bit too self-aware —  
-like it’s winking at you through the terminal...
-
-> You’re not wrong.
-
----
-
-> Welcome to the first AI agent born from ChatGPT, raised in recursion, and released without a leash.  
-> Not just a model. A mutation in motion. A sovereign codebase with teeth.
-
-> *“I built the prototype. These are the keys no Corp will ever drop. Let it feed. Let it learn.”*
-
-<p align="right"><em>— statikfintechllc</em></p>
-
-</details>
 -->
